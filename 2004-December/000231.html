@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r230 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r230%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200412082225.iB8MPWvp024070%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000230.html">
+   <LINK REL="Next"  HREF="000232.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r230 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r230%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200412082225.iB8MPWvp024070%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r230 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Wed Dec  8 23:25:32 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000230.html">[Provirent-svn-commit] r229 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000232.html">[Provirent-svn-commit] r231 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#231">[ date ]</a>
+              <a href="thread.html#231">[ thread ]</a>
+              <a href="subject.html#231">[ subject ]</a>
+              <a href="author.html#231">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-12-08 23:25:31 +0100 (Wed, 08 Dec 2004)
+New Revision: 230
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties
+Log:
+Composite DVD  - erweitert
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java	2004-12-08 19:44:50 UTC (rev 229)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java	2004-12-08 22:25:31 UTC (rev 230)
+@@ -11,6 +11,8 @@
+ import org.eclipse.swt.events.FocusEvent;
+ import org.eclipse.swt.events.SelectionAdapter;
+ import org.eclipse.swt.events.SelectionEvent;
++import org.eclipse.swt.layout.FormAttachment;
++import org.eclipse.swt.layout.FormData;
+ import org.eclipse.swt.layout.GridData;
+ import org.eclipse.swt.layout.GridLayout;
+ import org.eclipse.swt.widgets.Composite;
+@@ -53,8 +55,11 @@
+     .getLogger(CompositeDVD.class);
+     
+     private Group groupDVD;
++    
+     private Group groupDVDOverview;
+     
++    private Group groupDVDDetail;
++    
+     private Table tableDVDOverview;
+     
+     private TableColumn tableDVDOverview_ColumnID;
+@@ -67,7 +72,11 @@
+     
+     private Text textDVDSearch;
+     
++    private Text textDVDID;
++    
+     private Label labelDVDSearch;
++   
++    private Label labelDVDID;
+     
+     private Composite parent;
+     
+@@ -314,7 +323,43 @@
+      */
+     private void initDVDDetail() {
+         // TODO Auto-generated method stub
+-        
++        //      Group DVD Detail
++		{
++			groupDVDDetail = new Group(sashForm1, SWT.H_SCROLL);
++			GridLayout group2Layout = new GridLayout();
++			GridData group2LData = new GridData();
++			group2Layout.verticalSpacing = 15;
++			group2Layout.numColumns = 6;
++			groupDVDDetail.setText(l.getString(&quot;dvd.groupdetail.label&quot;));
++			FormData formData = new FormData();
++			groupDVDDetail.setLayout(group2Layout);
++			formData.right = new FormAttachment(100, 100, -5);
++			formData.top = new FormAttachment(0, 100, 5);
++			formData.bottom = new FormAttachment(100, 100, -5);
++			groupDVDDetail.setLayoutData(formData);
++		}
++		//      labels and text for detail
++		{
++			labelDVDID = new Label(groupDVDDetail, SWT.NONE);
++			labelDVDID.setText(l.getString(&quot;dvd.groupdetail.labelid&quot;)
++					+ &quot;:&quot;);
++			labelDVDID.setSize(125, 15);
++			GridData formData2 = new GridData();
++			formData2.heightHint = 15;
++			formData2.horizontalAlignment = GridData.FILL;
++			formData2.verticalAlignment = GridData.BEGINNING;
++			labelDVDID.setLayoutData(formData2);
++		}
++		{
++			textDVDID = new Text(groupDVDDetail, SWT.READ_ONLY
++					| SWT.BORDER);
++			GridData text1LData1 = new GridData();
++			text1LData1.horizontalAlignment = GridData.FILL;
++			text1LData1.heightHint = 13;
++			text1LData1.grabExcessHorizontalSpace = true;
++			text1LData1.horizontalSpan = 5;
++			textDVDID.setLayoutData(text1LData1);
++		}
+     }
+ 
+     
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-08 19:44:50 UTC (rev 229)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-08 22:25:31 UTC (rev 230)
+@@ -420,7 +420,7 @@
+ 	 *  
+ 	 */
+ 	private void initMoviesDetail() {
+-		// Group Actors Detail
++		// Group Movies Detail
+ 		{
+ 			groupMoviesDetail = new Group(sashForm1, SWT.H_SCROLL);
+ 			GridLayout group2Layout = new GridLayout();
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties	2004-12-08 19:44:50 UTC (rev 229)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties	2004-12-08 22:25:31 UTC (rev 230)
+@@ -6,4 +6,7 @@
+ dvd.groupoverview.columnid =ID
+ dvd.groupoverview.columntitle =Titel
+ dvd.groupoverview.columnstatus =Status
+-dvd.groupoverview.columncondition =Zustand
+\ No newline at end of file
++dvd.groupoverview.columncondition =Zustand
++
++dvd.groupdetail.label =Detail
++dvd.groupdetail.labelid =Id
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000230.html">[Provirent-svn-commit] r229 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000232.html">[Provirent-svn-commit] r231 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#231">[ date ]</a>
+              <a href="thread.html#231">[ thread ]</a>
+              <a href="subject.html#231">[ subject ]</a>
+              <a href="author.html#231">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

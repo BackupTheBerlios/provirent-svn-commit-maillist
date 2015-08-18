@@ -1,0 +1,473 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r227 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r227%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/objects&In-Reply-To=%3C200412081900.iB8J0tbM014466%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000227.html">
+   <LINK REL="Next"  HREF="000229.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r227 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r227%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/objects&In-Reply-To=%3C200412081900.iB8J0tbM014466%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r227 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Wed Dec  8 20:00:55 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000227.html">[Provirent-svn-commit] r226 - in project_src/provirent_hibernate/src: de/hsharz/provirent de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000229.html">[Provirent-svn-commit] r228 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#228">[ date ]</a>
+              <a href="thread.html#228">[ thread ]</a>
+              <a href="subject.html#228">[ subject ]</a>
+              <a href="author.html#228">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-12-08 20:00:54 +0100 (Wed, 08 Dec 2004)
+New Revision: 227
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.java	2004-12-08 18:52:28 UTC (rev 226)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.java	2004-12-08 19:00:54 UTC (rev 227)
+@@ -1,13 +1,12 @@
+ package de.hsharz.provirent.objects;
+ 
+-import java.io.Serializable;
+-import java.util.List;
++import java.io.Serializable;
++import java.util.List;
++import org.apache.commons.lang.builder.EqualsBuilder;
++import org.apache.commons.lang.builder.HashCodeBuilder;
++import org.apache.commons.lang.builder.ToStringBuilder;
+ 
+-import org.apache.commons.lang.builder.EqualsBuilder;
+-import org.apache.commons.lang.builder.HashCodeBuilder;
+-import org.apache.commons.lang.builder.ToStringBuilder;
+ 
+-
+ /** 
+  *         Represents a single Dvd.
+  *         @author Philipp Schneider
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml	2004-12-08 18:52:28 UTC (rev 226)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml	2004-12-08 19:00:54 UTC (rev 227)
+@@ -41,9 +41,9 @@
+ 				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+       &lt;/property&gt;
+  
+-			&lt;one-to-one name=&quot;mainImage&quot; class=&quot;de.hsharz.provirent.objects.Image&quot;&gt;
++			&lt;many-to-one name=&quot;mainImage&quot; class=&quot;de.hsharz.provirent.objects.Image&quot;&gt;
+ 					&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-			&lt;/one-to-one&gt;
++			&lt;/many-to-one&gt;
+ 
+  			&lt;list	name=&quot;images&quot;
+  						table=&quot;MOVIEIMAGES&quot;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.java	2004-12-08 18:52:28 UTC (rev 226)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.java	2004-12-08 19:00:54 UTC (rev 227)
+@@ -1,198 +1,197 @@
+ package de.hsharz.provirent.objects;
+ 
+-import java.io.Serializable;
+-import java.util.Calendar;
++import java.io.Serializable;
++import java.util.Calendar;
++import org.apache.commons.lang.builder.EqualsBuilder;
++import org.apache.commons.lang.builder.HashCodeBuilder;
++import org.apache.commons.lang.builder.ToStringBuilder;
+ 
+-import org.apache.commons.lang.builder.EqualsBuilder;
+-import org.apache.commons.lang.builder.HashCodeBuilder;
+-import org.apache.commons.lang.builder.ToStringBuilder;
+ 
+-/** 
+- *         Represents an OrderItem.
+- *         @author Philipp Schneider
+- *       
+- */
++/** 
++ *         Represents an OrderItem.
++ *         @author Philipp Schneider
++ *       
++*/
+ public class OrderItem implements Serializable {
+ 
+-	/** identifier field */
+-	private Integer orderItemId;
++    /** identifier field */
++    private Integer orderItemId;
+ 
+-	/** nullable persistent field */
+-	private Calendar orderTime;
++    /** nullable persistent field */
++    private Calendar orderTime;
+ 
+-	/** nullable persistent field */
+-	private Calendar senderTime;
++    /** nullable persistent field */
++    private Calendar senderTime;
+ 
+-	/** nullable persistent field */
+-	private Calendar receivingTime;
++    /** nullable persistent field */
++    private Calendar receivingTime;
+ 
+-	/** persistent field */
+-	private int duration;
++    /** persistent field */
++    private int duration;
+ 
+-	/** nullable persistent field */
+-	private de.hsharz.provirent.objects.Customer customer;
++    /** nullable persistent field */
++    private de.hsharz.provirent.objects.Customer customer;
+ 
+-	/** nullable persistent field */
+-	private de.hsharz.provirent.objects.Dvd dvd;
++    /** nullable persistent field */
++    private de.hsharz.provirent.objects.Dvd dvd;
+ 
+-	/** nullable persistent field */
+-	private de.hsharz.provirent.objects.Payment payment;
++    /** nullable persistent field */
++    private de.hsharz.provirent.objects.Payment payment;
+ 
+-	/** nullable persistent field */
+-	private de.hsharz.provirent.objects.Condition conditionSend;
++    /** nullable persistent field */
++    private de.hsharz.provirent.objects.Condition conditionSend;
+ 
+-	/** nullable persistent field */
+-	private de.hsharz.provirent.objects.Condition conditionReceiving;
++    /** nullable persistent field */
++    private de.hsharz.provirent.objects.Condition conditionReceiving;
+ 
+-	/** full constructor */
+-	public OrderItem(Calendar orderTime, Calendar senderTime,
+-			Calendar receivingTime, int duration,
+-			de.hsharz.provirent.objects.Customer customer,
+-			de.hsharz.provirent.objects.Dvd dvd,
+-			de.hsharz.provirent.objects.Payment payment,
+-			de.hsharz.provirent.objects.Condition conditionSend,
+-			de.hsharz.provirent.objects.Condition conditionReceiving) {
+-		this.orderTime = orderTime;
+-		this.senderTime = senderTime;
+-		this.receivingTime = receivingTime;
+-		this.duration = duration;
+-		this.customer = customer;
+-		this.dvd = dvd;
+-		this.payment = payment;
+-		this.conditionSend = conditionSend;
+-		this.conditionReceiving = conditionReceiving;
+-	}
++    /** full constructor */
++    public OrderItem(Calendar orderTime, Calendar senderTime, Calendar receivingTime, int duration, de.hsharz.provirent.objects.Customer customer, de.hsharz.provirent.objects.Dvd dvd, de.hsharz.provirent.objects.Payment payment, de.hsharz.provirent.objects.Condition conditionSend, de.hsharz.provirent.objects.Condition conditionReceiving) {
++        this.orderTime = orderTime;
++        this.senderTime = senderTime;
++        this.receivingTime = receivingTime;
++        this.duration = duration;
++        this.customer = customer;
++        this.dvd = dvd;
++        this.payment = payment;
++        this.conditionSend = conditionSend;
++        this.conditionReceiving = conditionReceiving;
++    }
+ 
+-	/** default constructor */
+-	public OrderItem() {
+-	}
++    /** default constructor */
++    public OrderItem() {
++    }
+ 
+-	/** minimal constructor */
+-	public OrderItem(int duration) {
+-		this.duration = duration;
+-	}
++    /** minimal constructor */
++    public OrderItem(int duration) {
++        this.duration = duration;
++    }
+ 
+-	public Integer getOrderItemId() {
+-		return this.orderItemId;
+-	}
++    public Integer getOrderItemId() {
++        return this.orderItemId;
++    }
+ 
+-	public void setOrderItemId(Integer orderItemId) {
+-		this.orderItemId = orderItemId;
+-	}
++    public void setOrderItemId(Integer orderItemId) {
++        this.orderItemId = orderItemId;
++    }
+ 
+-	public Calendar getOrderTime() {
+-		return this.orderTime;
+-	}
++    public Calendar getOrderTime() {
++        return this.orderTime;
++    }
+ 
+-	public void setOrderTime(Calendar orderTime) {
+-		this.orderTime = orderTime;
+-	}
++    public void setOrderTime(Calendar orderTime) {
++        this.orderTime = orderTime;
++    }
+ 
+-	public Calendar getSenderTime() {
+-		return this.senderTime;
+-	}
++    public Calendar getSenderTime() {
++        return this.senderTime;
++    }
+ 
+-	public void setSenderTime(Calendar senderTime) {
+-		this.senderTime = senderTime;
+-	}
++    public void setSenderTime(Calendar senderTime) {
++        this.senderTime = senderTime;
++    }
+ 
+-	public Calendar getReceivingTime() {
+-		return this.receivingTime;
+-	}
++    public Calendar getReceivingTime() {
++        return this.receivingTime;
++    }
+ 
+-	public void setReceivingTime(Calendar receivingTime) {
+-		this.receivingTime = receivingTime;
+-	}
++    public void setReceivingTime(Calendar receivingTime) {
++        this.receivingTime = receivingTime;
++    }
+ 
+-	public int getDuration() {
+-		return this.duration;
+-	}
++    public int getDuration() {
++        return this.duration;
++    }
+ 
+-	public void setDuration(int duration) {
+-		this.duration = duration;
+-	}
++    public void setDuration(int duration) {
++        this.duration = duration;
++    }
+ 
+-	public de.hsharz.provirent.objects.Customer getCustomer() {
+-		return this.customer;
+-	}
++    public de.hsharz.provirent.objects.Customer getCustomer() {
++        return this.customer;
++    }
+ 
+-	public void setCustomer(de.hsharz.provirent.objects.Customer customer) {
+-		this.customer = customer;
+-	}
++    public void setCustomer(de.hsharz.provirent.objects.Customer customer) {
++        this.customer = customer;
++    }
+ 
+-	public de.hsharz.provirent.objects.Dvd getDvd() {
+-		return this.dvd;
+-	}
++    public de.hsharz.provirent.objects.Dvd getDvd() {
++        return this.dvd;
++    }
+ 
+-	public void setDvd(de.hsharz.provirent.objects.Dvd dvd) {
+-		this.dvd = dvd;
+-	}
++    public void setDvd(de.hsharz.provirent.objects.Dvd dvd) {
++        this.dvd = dvd;
++    }
+ 
+-	public de.hsharz.provirent.objects.Payment getPayment() {
+-		return this.payment;
+-	}
++    public de.hsharz.provirent.objects.Payment getPayment() {
++        return this.payment;
++    }
+ 
+-	public void setPayment(de.hsharz.provirent.objects.Payment payment) {
+-		this.payment = payment;
+-	}
++    public void setPayment(de.hsharz.provirent.objects.Payment payment) {
++        this.payment = payment;
++    }
+ 
+-	public de.hsharz.provirent.objects.Condition getConditionSend() {
+-		return this.conditionSend;
+-	}
++    public de.hsharz.provirent.objects.Condition getConditionSend() {
++        return this.conditionSend;
++    }
+ 
+-	public void setConditionSend(
+-			de.hsharz.provirent.objects.Condition conditionSend) {
+-		this.conditionSend = conditionSend;
+-	}
++    public void setConditionSend(de.hsharz.provirent.objects.Condition conditionSend) {
++        this.conditionSend = conditionSend;
++    }
+ 
+-	public de.hsharz.provirent.objects.Condition getConditionReceiving() {
+-		return this.conditionReceiving;
+-	}
++    public de.hsharz.provirent.objects.Condition getConditionReceiving() {
++        return this.conditionReceiving;
++    }
+ 
+-	public void setConditionReceiving(
+-			de.hsharz.provirent.objects.Condition conditionReceiving) {
+-		this.conditionReceiving = conditionReceiving;
+-	}
++    public void setConditionReceiving(de.hsharz.provirent.objects.Condition conditionReceiving) {
++        this.conditionReceiving = conditionReceiving;
++    }
+ 
+-	public String toString() {
+-		return new ToStringBuilder(this)
+-				.append(&quot;orderItemId&quot;, getOrderItemId()).append(&quot;orderTime&quot;,
+-						getOrderTime()).append(&quot;senderTime&quot;, getSenderTime())
+-				.append(&quot;receivingTime&quot;, getReceivingTime()).append(&quot;duration&quot;,
+-						getDuration()).append(&quot;customer&quot;, getCustomer())
+-				.append(&quot;dvd&quot;, getDvd()).append(&quot;payment&quot;, getPayment())
+-				.append(&quot;conditionSend&quot;, getConditionSend()).append(
+-						&quot;conditionReceiving&quot;, getConditionReceiving())
+-				.toString();
+-	}
++    public String toString() {
++        return new ToStringBuilder(this)
++            .append(&quot;orderItemId&quot;, getOrderItemId())
++            .append(&quot;orderTime&quot;, getOrderTime())
++            .append(&quot;senderTime&quot;, getSenderTime())
++            .append(&quot;receivingTime&quot;, getReceivingTime())
++            .append(&quot;duration&quot;, getDuration())
++            .append(&quot;customer&quot;, getCustomer())
++            .append(&quot;dvd&quot;, getDvd())
++            .append(&quot;payment&quot;, getPayment())
++            .append(&quot;conditionSend&quot;, getConditionSend())
++            .append(&quot;conditionReceiving&quot;, getConditionReceiving())
++            .toString();
++    }
+ 
+-	public boolean equals(Object other) {
+-		if ((this == other))
+-			return true;
+-		if (!(other instanceof OrderItem))
+-			return false;
+-		OrderItem castOther = (OrderItem) other;
+-		return new EqualsBuilder().append(this.getOrderItemId(),
+-				castOther.getOrderItemId()).append(this.getOrderTime(),
+-				castOther.getOrderTime()).append(this.getSenderTime(),
+-				castOther.getSenderTime()).append(this.getReceivingTime(),
+-				castOther.getReceivingTime()).append(this.getDuration(),
+-				castOther.getDuration()).append(this.getCustomer(),
+-				castOther.getCustomer()).append(this.getDvd(),
+-				castOther.getDvd()).append(this.getPayment(),
+-				castOther.getPayment()).append(this.getConditionSend(),
+-				castOther.getConditionSend())
+-				.append(this.getConditionReceiving(),
+-						castOther.getConditionReceiving()).isEquals();
+-	}
++    public boolean equals(Object other) {
++        if ( (this == other ) ) return true;
++        if ( !(other instanceof OrderItem) ) return false;
++        OrderItem castOther = (OrderItem) other;
++        return new EqualsBuilder()
++            .append(this.getOrderItemId(), castOther.getOrderItemId())
++            .append(this.getOrderTime(), castOther.getOrderTime())
++            .append(this.getSenderTime(), castOther.getSenderTime())
++            .append(this.getReceivingTime(), castOther.getReceivingTime())
++            .append(this.getDuration(), castOther.getDuration())
++            .append(this.getCustomer(), castOther.getCustomer())
++            .append(this.getDvd(), castOther.getDvd())
++            .append(this.getPayment(), castOther.getPayment())
++            .append(this.getConditionSend(), castOther.getConditionSend())
++            .append(this.getConditionReceiving(), castOther.getConditionReceiving())
++            .isEquals();
++    }
+ 
+-	public int hashCode() {
+-		return new HashCodeBuilder().append(getOrderItemId()).append(
+-				getOrderTime()).append(getSenderTime()).append(
+-				getReceivingTime()).append(getDuration()).append(getCustomer())
+-				.append(getDvd()).append(getPayment()).append(
+-						getConditionSend()).append(getConditionReceiving())
+-				.toHashCode();
+-	}
++    public int hashCode() {
++        return new HashCodeBuilder()
++            .append(getOrderItemId())
++            .append(getOrderTime())
++            .append(getSenderTime())
++            .append(getReceivingTime())
++            .append(getDuration())
++            .append(getCustomer())
++            .append(getDvd())
++            .append(getPayment())
++            .append(getConditionSend())
++            .append(getConditionReceiving())
++            .toHashCode();
++    }
+ 
+-}
+\ No newline at end of file
++}
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000227.html">[Provirent-svn-commit] r226 - in project_src/provirent_hibernate/src: de/hsharz/provirent de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000229.html">[Provirent-svn-commit] r228 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#228">[ date ]</a>
+              <a href="thread.html#228">[ thread ]</a>
+              <a href="subject.html#228">[ subject ]</a>
+              <a href="author.html#228">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

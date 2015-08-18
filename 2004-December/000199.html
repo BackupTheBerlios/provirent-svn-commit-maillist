@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r198 - project_src/provirent_hibernate/src/de/hsharz/provirent
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r198%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent&In-Reply-To=%3C200412021949.iB2JnPwp001119%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000198.html">
+   <LINK REL="Next"  HREF="000200.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r198 - project_src/provirent_hibernate/src/de/hsharz/provirent</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r198%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent&In-Reply-To=%3C200412021949.iB2JnPwp001119%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r198 - project_src/provirent_hibernate/src/de/hsharz/provirent">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Thu Dec  2 20:49:25 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000198.html">[Provirent-svn-commit] r197 - in project_src/provirent_hibernate/src/de/hsharz/provirent: . management/gui
+</A></li>
+        <LI>Next message: <A HREF="000200.html">[Provirent-svn-commit] r199 - in project_src/provirent_hibernate/src/de/hsharz/provirent: . management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#199">[ date ]</a>
+              <a href="thread.html#199">[ thread ]</a>
+              <a href="subject.html#199">[ subject ]</a>
+              <a href="author.html#199">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-12-02 20:49:24 +0100 (Thu, 02 Dec 2004)
+New Revision: 198
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java	2004-12-02 18:14:16 UTC (rev 197)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java	2004-12-02 19:49:24 UTC (rev 198)
+@@ -34,13 +34,10 @@
+ 
+ import java.io.UnsupportedEncodingException;
+ import java.security.MessageDigest;
+-import java.text.DateFormatSymbols;
+ import java.text.ParseException;
+ import java.text.SimpleDateFormat;
+ import java.util.Calendar;
+ import java.util.Properties;
+-import java.util.StringTokenizer;
+-import java.util.Vector;
+ 
+ import javax.mail.Address;
+ import javax.mail.Message;
+@@ -52,8 +49,6 @@
+ 
+ import org.apache.log4j.Logger;
+ 
+-import de.hsharz.provirent.persistence.DataBaseException;
+-
+ /**
+  * @author Philipp Schneider
+  *  
+@@ -138,19 +133,21 @@
+      * @param text
+      * @return
+      */
+-    public static Calendar getDateByText(String textdate) throws ParseException {
++    public static Calendar getDateByText(String textdate) {
+         SimpleDateFormat format = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);
+         Calendar date = Calendar.getInstance();
+-
+-        date.setTime(format.parse(textdate));
+-
++        try {
++            date.setTime(format.parse(textdate));
++        } catch (ParseException e) {
++            date = null;
++            logger.error(e.toString());
++        }
+         return date;
+     }
+-
++    
+     public static String getTextByDate(Calendar date) {
+-        SimpleDateFormat format = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);
+-
+-        return format.format(date.getTime());
++        SimpleDateFormat format = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);       
++        return date != null ? format.format(date.getTime()) : null;
+     }
+ 
+     public static int compareDates(Calendar Date1, Calendar Date2) {
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000198.html">[Provirent-svn-commit] r197 - in project_src/provirent_hibernate/src/de/hsharz/provirent: . management/gui
+</A></li>
+	<LI>Next message: <A HREF="000200.html">[Provirent-svn-commit] r199 - in project_src/provirent_hibernate/src/de/hsharz/provirent: . management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#199">[ date ]</a>
+              <a href="thread.html#199">[ thread ]</a>
+              <a href="subject.html#199">[ subject ]</a>
+              <a href="author.html#199">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

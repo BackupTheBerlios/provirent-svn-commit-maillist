@@ -1,0 +1,486 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r121 - in project_src/provirent_hibernate: . src/de/hsharz/provirent/management/gui src/de/hsharz/provirent/management/gui/language
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r121%20-%20in%20project_src/provirent_hibernate%3A%20.%20src/de/hsharz/provirent/management/gui%20src/de/hsharz/provirent/management/gui/language&In-Reply-To=%3C200411101341.iAADfHIR012180%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000121.html">
+   <LINK REL="Next"  HREF="000123.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r121 - in project_src/provirent_hibernate: . src/de/hsharz/provirent/management/gui src/de/hsharz/provirent/management/gui/language</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r121%20-%20in%20project_src/provirent_hibernate%3A%20.%20src/de/hsharz/provirent/management/gui%20src/de/hsharz/provirent/management/gui/language&In-Reply-To=%3C200411101341.iAADfHIR012180%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r121 - in project_src/provirent_hibernate: . src/de/hsharz/provirent/management/gui src/de/hsharz/provirent/management/gui/language">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Wed Nov 10 14:41:17 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000121.html">[Provirent-svn-commit] r120 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+        <LI>Next message: <A HREF="000123.html">[Provirent-svn-commit] r122 - project_src/provirent_hibernate/bin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#122">[ date ]</a>
+              <a href="thread.html#122">[ thread ]</a>
+              <a href="subject.html#122">[ subject ]</a>
+              <a href="author.html#122">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-11-10 14:41:15 +0100 (Wed, 10 Nov 2004)
+New Revision: 121
+
+Modified:
+   project_src/provirent_hibernate/.classpath
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/StatusLineStyledText.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/actors.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties
+Log:
+ManagementGui Mindestfenstergr?\195?\182?\195?\159e festgelegt
+Firebird.jar angepasst
+Compsite Actros ge?\195?\164ndert
+
+Modified: project_src/provirent_hibernate/.classpath
+===================================================================
+--- project_src/provirent_hibernate/.classpath	2004-11-10 10:03:11 UTC (rev 120)
++++ project_src/provirent_hibernate/.classpath	2004-11-10 13:41:15 UTC (rev 121)
+@@ -42,6 +42,6 @@
+ 	&lt;classpathentry sourcepath=&quot;ECLIPSE_HOME/plugins/org.eclipse.platform.source.win32.win32.x86_3.0.1/src/org.eclipse.swt.win32_3.0.1/ws/win32/swtsrc.zip&quot; kind=&quot;var&quot; path=&quot;ECLIPSE_HOME/plugins/org.eclipse.swt.win32_3.0.1/ws/win32/swt.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;lib/activation.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;lib/mail.jar&quot;/&gt;
+-	&lt;classpathentry kind=&quot;lib&quot; path=&quot;C:/Schule/Projektarbeit/provirent/project_src/provirent_hibernate/lib/firebirdsql.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;lib/firebirdsql.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;output&quot; path=&quot;bin&quot;/&gt;
+ &lt;/classpath&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java	2004-11-10 10:03:11 UTC (rev 120)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java	2004-11-10 13:41:15 UTC (rev 121)
+@@ -6,15 +6,29 @@
+ 
+ import org.apache.log4j.Logger;
+ import org.eclipse.swt.SWT;
+-import org.eclipse.swt.layout.GridData;
++import org.eclipse.swt.custom.SashForm;
++import org.eclipse.swt.events.FocusAdapter;
++import org.eclipse.swt.events.FocusEvent;
++import org.eclipse.swt.events.SelectionAdapter;
++import org.eclipse.swt.events.SelectionEvent;
++import org.eclipse.swt.layout.FormData;
++import org.eclipse.swt.layout.FormLayout;
+ import org.eclipse.swt.layout.GridLayout;
++import org.eclipse.swt.widgets.Button;
+ import org.eclipse.swt.widgets.Composite;
+ import org.eclipse.swt.widgets.Display;
+-import org.eclipse.swt.widgets.Group;
++import org.eclipse.swt.widgets.Event;
++import org.eclipse.swt.widgets.Label;
++import org.eclipse.swt.widgets.Listener;
+ import org.eclipse.swt.widgets.Shell;
+-import org.eclipse.swt.widgets.Text;
+ 
++
++import org.eclipse.swt.widgets.Group;
++import org.eclipse.swt.layout.GridData;
+ import com.cloudgarden.resource.SWTResourceManager;
++import org.eclipse.swt.widgets.Text;
++import org.eclipse.swt.widgets.Table;
++import org.eclipse.swt.widgets.TableColumn;
+ /**
+ * This code was generated using CloudGarden's Jigloo
+ * SWT/Swing GUI Builder, which is free for non-commercial
+@@ -46,13 +60,26 @@
+     
+     
+     private final static int MODE_VIEW = 0;
+-
+     private final static int MODE_ADD = 1;
+-    private Text text1;
+-    private Group groupActor;
+-
+     private final static int MODE_EDIT = 2;
+     
++    private Table tableActorsOverview;
++    private TableColumn tableActorsOverview_ColumnID;
++    private TableColumn tableActorsOverview_ColumnFName;
++    private TableColumn tableActorsOverview_ColumnLName;
++    
++    
++    private SashForm sashForm1;
++    private SashForm sashForm2;
++    
++    private Group groupActor;
++    private Group groupActorsOverview;
++    private Group groupActorsDetail;
++    
++    private Text textActorsSearch;
++    
++    private Label labelActorsSearch;
++    
+     private StatusLineStyledText statusLine;
+ 
+     private ResourceBundle l;
+@@ -75,7 +102,7 @@
+     public void initLanguage(Locale locale) {
+ 
+         l = PropertyResourceBundle.getBundle(
+-                &quot;de.hsharz.provirent.management.gui.language.actors&quot;, locale);
++                &quot;de.hsharz.provirent.managment.gui.language.actors&quot;, locale);
+ 
+     }
+     
+@@ -135,16 +162,181 @@
+             groupActor.setLayoutData(groupActorLData);
+             groupActorLayout.makeColumnsEqualWidth = true;
+             groupActor.setLayout(groupActorLayout);
+-            groupActor.setText(&quot;Actor&quot;);
++            groupActor.setText(l.getString(&quot;actors.group.label&quot;));
+             {
+-                text1 = new Text(groupActor, SWT.MULTI | SWT.WRAP);
+-                text1.setText(&quot;text1&quot;);
+-                GridData text1LData = new GridData();
+-                text1.setBackground(SWTResourceManager.getColor(255, 0, 0));
+-                text1LData.widthHint = 336;
+-                text1LData.heightHint = 173;
+-                text1.setLayoutData(text1LData);
++                sashForm2 = new SashForm(groupActor, SWT.NONE);
++                GridData sashForm2LData = new GridData();
++                sashForm2LData.verticalAlignment = GridData.FILL;
++                sashForm2LData.horizontalAlignment = GridData.FILL;
++                sashForm2LData.grabExcessHorizontalSpace = true;
++                sashForm2LData.grabExcessVerticalSpace = true;
++                sashForm2.setLayoutData(sashForm2LData);
++                // Group Actors Overview 
++                {
++                    groupActorsOverview = new Group(sashForm2,SWT.NONE);
++                    GridLayout group1Layout = new GridLayout();
++                    groupActorsOverview.setBounds(0, 0, 781, 487);
++                    groupActorsOverview.setBounds(0, 0, 647, 448);
++                    group1Layout.makeColumnsEqualWidth = true;
++                    GridData group1LData = new GridData();
++                    group1Layout.makeColumnsEqualWidth = true;
++                    groupActorsOverview.setLayout(group1Layout);
++                    groupActorsOverview.setText(l.getString(&quot;actors.groupoverview.label&quot;));
++                    {
++                        tableActorsOverview = new Table(
++                            groupActorsOverview,
++                            SWT.SINGLE
++                                | SWT.FULL_SELECTION
++                                | SWT.V_SCROLL | SWT.BORDER);
++                        GridData tableActorsOverviewLData = new GridData();
++                        tableActorsOverview.setHeaderVisible(true);
++                        tableActorsOverview.setLinesVisible(true);
++                        tableActorsOverviewLData.horizontalAlignment = GridData.FILL;
++                        tableActorsOverviewLData.verticalAlignment = GridData.FILL;
++                        tableActorsOverviewLData.horizontalSpan = 8;
++                        tableActorsOverviewLData.grabExcessHorizontalSpace = true;
++                        tableActorsOverviewLData.grabExcessVerticalSpace = true;
++                        tableActorsOverview
++                            .setLayoutData(tableActorsOverviewLData);
++                        tableActorsOverview
++                            .addFocusListener(new FocusAdapter() {
++                                public void focusLost(FocusEvent evt) {
++                                    System.out
++                                        .println(&quot;tableActorsOverview.focusLost, event=&quot;
++                                            + evt);
++                                    //TODO add your code for tableVideoFormat.focusLost
++                                }
++                                public void focusGained(FocusEvent evt) {
++                                    System.out
++                                        .println(&quot;tableActorsOverview.focusGained, event=&quot;
++                                            + evt);
++                                    //TODO add your code for tableVideoFormat.focusGained
++                                }
++                            });
++                        tableActorsOverview
++                            .addSelectionListener(new SelectionAdapter() {
++                                public void widgetSelected(SelectionEvent evt) {
++                                    if (logger.isDebugEnabled()) {
++                                        logger
++                                            .debug(&quot;widgetSelected(SelectionEvent evt = &quot;
++                                                + evt
++                                                + &quot;) - start&quot;);
++                                    }
++
++                                    int index = tableActorsOverview
++                                        .getSelectionIndex();
++
++                                    System.out.println(&quot;Table select. id: &quot;
++                                        + index
++                                        + &quot; TableItem:&quot;
++                                        + tableActorsOverview.getItem(index)
++                                        + &quot; id: &quot;
++                                        + tableActorsOverview.getItem(index)
++                                            .getText(0));
++
++                                    //es wurde ein Element aus Tabelle ausgewaehlt jetzt muss die
++                                    //Detailansicht aktualisiert werden
++                                    //                               refreshActorsDetail(tableActorsOverview.getItem(index)
++                                    //                                   .getText(0));
++
++                                    if (logger.isDebugEnabled()) {
++                                        logger
++                                            .debug(&quot;widgetSelected(SelectionEvent) - end&quot;);
++                                    }
++                                }
++                            });
++
++                        {
++                            tableActorsOverview_ColumnID = new TableColumn(
++                                tableActorsOverview,
++                                SWT.CENTER);
++                            tableActorsOverview_ColumnID.setText(l
++                                .getString(&quot;actors.groupoverview.columnid&quot;));
++                            tableActorsOverview_ColumnID.setWidth(40);
++                        }
++                        {
++                            tableActorsOverview_ColumnFName = new TableColumn(
++                                tableActorsOverview,
++                                SWT.CENTER);
++                            tableActorsOverview_ColumnFName.setText(l
++                                .getString(&quot;actors.groupoverview.columnid&quot;));
++                            tableActorsOverview_ColumnFName.setWidth(80);
++                        }
++                        {
++                            tableActorsOverview_ColumnLName = new TableColumn(
++                                tableActorsOverview,
++                                SWT.CENTER);
++                            tableActorsOverview_ColumnLName.setText(l
++                                .getString(&quot;actors.groupoverview.columnid&quot;));
++                            tableActorsOverview_ColumnLName.setWidth(80);
++                        }
++                    }// table Actors Overview
++                    // table Actors Overview
++                    // Search
++                    {
++                        //label f&#252;r die Suche
++                        labelActorsSearch = new Label(groupActorsOverview, SWT.NONE);
++                        labelActorsSearch.setText(l
++                                .getString(&quot;actors.groupoverview.searchlabel&quot;)
++                                + &quot;:&quot;);
++                        GridData label2LData = new GridData();
++                        label2LData.horizontalSpan = 3;
++                        labelActorsSearch.setLayoutData(label2LData);
++
++                        //das Suchfeld
++                        textActorsSearch = new Text(groupActorsOverview, SWT.BORDER);
++                        GridData text2LData = new GridData();
++                        textActorsSearch.addFocusListener(new FocusAdapter() {
++                            public void focusLost(FocusEvent evt) {
++                                if (logger.isDebugEnabled()) {
++                                    logger.debug(&quot;focusLost(FocusEvent evt = &quot; + evt + &quot; &quot;
++                                            + textActorsSearch.getText() + &quot;) - start&quot;);
++                                }
++
++                   //             refreshVideoFormatTable(textVideoFormatSearch.getText());
++
++                                if (logger.isDebugEnabled()) {
++                                    logger.debug(&quot;focusLost(FocusEvent) - end&quot;);
++                                }
++                            }
++                        });
++                        textActorsSearch.addListener(SWT.DefaultSelection, new Listener() {
++                            public void handleEvent(Event e) {
++                                if (logger.isDebugEnabled()) {
++                                    logger.debug(&quot;handleEvent(Event e = &quot; + e + &quot; &quot;
++                                            + textActorsSearch.getText() + &quot;) - start&quot;);
++                                }
++
++                //                refreshVideoFormatTable(textActorsSearch.getText());
++
++                                if (logger.isDebugEnabled()) {
++                                    logger.debug(&quot;handleEvent(Event) - end&quot;);
++                                }
++                            }
++                        });
++                        text2LData.horizontalAlignment = GridData.FILL;
++                        text2LData.horizontalSpan = 5;
++                        text2LData.grabExcessHorizontalSpace = true;
++                        textActorsSearch.setLayoutData(text2LData);
++                    }// Search
++                    
++                
++                }
++                // Group Actors Detail
++                {
++                    groupActorsDetail = new Group(sashForm2, SWT.NONE);
++                    GridLayout group2Layout = new GridLayout();
++                    groupActorsDetail.setBounds(0, 0, 781, 487);
++                    groupActorsDetail.setBounds(0, 0, 647, 448);
++                    group2Layout.makeColumnsEqualWidth = true;
++                    GridData group2LData = new GridData();
++                    group2Layout.makeColumnsEqualWidth = true;
++                    groupActorsDetail.setLayout(group2Layout);
++                    groupActorsDetail.setText(l.getString(&quot;actors.groupdetail.label&quot;));   
++                }
+             }
++            // init the rest of the layout
++            initActorsGroup();
+         }
+ 
+         this.layout();
+@@ -156,6 +348,7 @@
+         }
+ 	}
+ 
+-	
++	private void initActorsGroup()  {	    
++	}
+ 
+ }
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-10 10:03:11 UTC (rev 120)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-10 13:41:15 UTC (rev 121)
+@@ -61,7 +61,24 @@
+ 
+ import de.hsharz.provirent.management.exceptions.GuiInitException;
+ import de.hsharz.provirent.persistence.Database;
++
+ /**
++* This code was generated using CloudGarden's Jigloo
++* SWT/Swing GUI Builder, which is free for non-commercial
++* use. If Jigloo is being used commercially (ie, by a corporation,
++* company or business for any purpose whatever) then you
++* should purchase a license for each developer using Jigloo.
++* Please visit www.cloudgarden.com for details.
++* Use of Jigloo implies acceptance of these licensing terms.
++* *************************************
++* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED
++* for this machine, so Jigloo or this code cannot be used legally
++* for any corporate or commercial purpose.
++* *************************************
++*/
++import org.eclipse.swt.events.ControlAdapter;
++import org.eclipse.swt.events.ControlEvent;
++/**
+  * @author Philipp Schneider
+  *  
+  */
+@@ -77,9 +94,13 @@
+ 
+     public final static int MODE_EDIT = 2;
+ 
+-    private static final int MAIN_WINDOW_WIDTH = 700;
++    private static final int MAIN_WINDOW_WIDTH = 830;
+ 
+-    private static final int MAIN_WINDOW_HEIGHT = 500;
++    private static final int MAIN_WINDOW_HEIGHT = 520;
++    private static final int MIN_WINDOW_WIDTH = 830;
++    private static final int MIN_WINDOW_HEIGHT = 520;
++    private static final int MIN_WINDOW_X = 50;
++    private static final int MIN_WINDOW_Y = 50;
+ 
+     private CTabFolder cTabFolderMain;
+ 
+@@ -196,7 +217,7 @@
+         shell.setText(l.getString(&quot;mainwindow.title&quot;));
+ 
+         //set the Site
+-        shell.setSize(476, 216);
++        shell.setSize(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
+ 
+         {
+             //Register as a resource user - SWTResourceManager will
+@@ -205,6 +226,16 @@
+         }
+         //set the layout for the shell
+         FillLayout thisLayout = new FillLayout(SWT.HORIZONTAL);
++        shell.addControlListener(new ControlAdapter() {
++            public void controlResized(ControlEvent evt) {
++                //TODO add your code for shell.controlResized
++                //min Size of the Main Window
++                if (shell.getBounds().height &lt; 520 || shell.getBounds().width &lt; 830) {
++                    shell.setBounds(MIN_WINDOW_X,MIN_WINDOW_Y,MIN_WINDOW_WIDTH,MIN_WINDOW_HEIGHT);
++                    statusLine.setStatus(StatusLineStyledText.STATUS_WARN,l.getString(&quot;status.resizewarn&quot;)); 
++                }                         
++            }
++        });
+         shell.setLayout(thisLayout);
+         
+        
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/StatusLineStyledText.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/StatusLineStyledText.java	2004-11-10 10:03:11 UTC (rev 120)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/StatusLineStyledText.java	2004-11-10 13:41:15 UTC (rev 121)
+@@ -43,9 +43,11 @@
+ public class StatusLineStyledText extends StyledText {
+ 
+     private static final int SLEEP_TIME = 5;
++    public static final int STATUS_INFO =1; 
++    public static final int STATUS_WARN =2;
++    public static final int STATUS_STANDARD =0;
++    public static final int STATUS_ERROR =3;
+     
+-    
+-    
+     public void setStatus(final int mode, final String message) {
+         /**
+          * mode values 0 normal message 1 information message 2 warn message 3
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/actors.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/actors.properties	2004-11-10 10:03:11 UTC (rev 120)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/actors.properties	2004-11-10 13:41:15 UTC (rev 121)
+@@ -0,0 +1,10 @@
++actors.group.label=Darsteller
++
++actors.groupoverview.label = &#220;berblick
++actors.groupoverview.searchlabel = Suche nach
++actors.groupoverview.columnid = ID
++actors.groupoverview.columnfirstname = Vorname
++actors.groupoverview.columnlastname = Nachname
++
++
++actors.groupdetail.label = Detail
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties	2004-11-10 10:03:11 UTC (rev 120)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties	2004-11-10 13:41:15 UTC (rev 121)
+@@ -41,3 +41,4 @@
+ tab.status.title=
+ tab.condition.title=
+ tab.movie.title=
++status.resizewarn=Fenster kann Mindestgr&#246;&#223;e nicht unterschreiten.
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000121.html">[Provirent-svn-commit] r120 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+	<LI>Next message: <A HREF="000123.html">[Provirent-svn-commit] r122 - project_src/provirent_hibernate/bin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#122">[ date ]</a>
+              <a href="thread.html#122">[ thread ]</a>
+              <a href="subject.html#122">[ subject ]</a>
+              <a href="author.html#122">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

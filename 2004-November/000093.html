@@ -1,0 +1,466 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r92 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r92%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200411041856.iA4IukNT027321%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000092.html">
+   <LINK REL="Next"  HREF="000094.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r92 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r92%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200411041856.iA4IukNT027321%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r92 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Thu Nov  4 19:56:46 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000092.html">[Provirent-svn-commit] r91 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+        <LI>Next message: <A HREF="000094.html">[Provirent-svn-commit] r93 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#93">[ date ]</a>
+              <a href="thread.html#93">[ thread ]</a>
+              <a href="subject.html#93">[ subject ]</a>
+              <a href="author.html#93">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-04 19:56:45 +0100 (Thu, 04 Nov 2004)
+New Revision: 92
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java	2004-11-04 18:56:33 UTC (rev 91)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java	2004-11-04 18:56:45 UTC (rev 92)
+@@ -178,15 +178,7 @@
+     public static void showGUI() {
+         Display display = Display.getDefault();
+         Shell shell = new Shell(display);
+-        /*
+-         * CompositeFormate inst = new CompositeFormate(shell, SWT.NULL); Point
+-         * size = inst.getSize(); shell.setLayout(new FillLayout());
+-         * shell.layout(); if(size.x == 0 &amp;&amp; size.y == 0) { inst.pack();
+-         * shell.pack(); } else { Rectangle shellBounds = shell.computeTrim(0,
+-         * 0, size.x, size.y); int MENU_HEIGHT = 22; if (shell.getMenuBar() !=
+-         * null) shellBounds.height -= MENU_HEIGHT;
+-         * shell.setSize(shellBounds.width, shellBounds.height); }
+-         */
++
+         shell.open();
+         while (!shell.isDisposed()) {
+             if (!display.readAndDispatch())
+@@ -779,11 +771,11 @@
+             composite2.setLayout(composite2Layout);
+             composite2LData.verticalAlignment = GridData.END;
+             composite2LData.horizontalAlignment = GridData.CENTER;
+-            composite2LData.widthHint = 322;
++            composite2LData.widthHint = 391;
+             composite2LData.horizontalSpan = 6;
+             composite2LData.grabExcessHorizontalSpace = true;
+             composite2LData.grabExcessVerticalSpace = true;
+-            composite2LData.heightHint = 33;
++            composite2LData.heightHint = 35;
+             composite2.setLayoutData(composite2LData);
+ 
+             //init all the Buttons
+@@ -986,7 +978,7 @@
+         }
+ 
+         this.setLayout(new GridLayout());
+-        this.setSize(681, 433);
++        this.setSize(816, 540);
+         {
+             sashForm1 = new SashForm(this, SWT.VERTICAL | SWT.V_SCROLL);
+             GridData sashForm1LData1 = new GridData();
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java	2004-11-04 18:56:33 UTC (rev 91)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java	2004-11-04 18:56:45 UTC (rev 92)
+@@ -119,19 +119,6 @@
+ 
+     private CTabItem tabItemFormat;
+ 
+-    private List list3;
+-
+-    private Group group2Director;
+-
+-    private Text filterTextVideoFormat;
+-
+-    private Label filterLabelVideoFormat;
+-
+-    private TableColumn tableColumnDirectorFirstname;
+-
+-    private TableColumn tableColumnDirectorLastname;
+-
+-    private TableColumn tableColumnDirectorId;
+     private CompositeFormate compositeFormate;
+ 
+     private MenuItem aboutMenuItem;
+@@ -143,15 +130,12 @@
+     private MenuItem helpMenuItem;
+ 
+     private MenuItem viewDirectorMenuItem;
++    
++    private MenuItem viewFormatMenuItem,viewActorMenuItem,viewGenreMenuItem;
++    private MenuItem viewSubtitleMenuItem,viewLanguageMenuItem,viewStatusMenuItem;
++    private MenuItem viewConditionMenuItem,viewMovieMenuItem,viewDvdMenuItem, viewBillMenuItem;
++    
+ 
+-    private Table tableDirector;
+-
+-    private Group group1Director;
+-
+-    private SashForm sashFormDirector;
+-
+-    private CTabItem cTabItem2;
+-
+     private Shell shell;
+ 
+     private Display display;
+@@ -282,24 +266,24 @@
+              */
+         }
+         fileMenuItem = new MenuItem(rootMenu, SWT.CASCADE);
+-        fileMenuItem.setText(&quot;Datei&quot;);
++        fileMenuItem.setText(l.getString(&quot;menu.file&quot;));
+         fileMenu = new Menu(fileMenuItem);
+         fileMenuItem.setMenu(fileMenu);
+ 
+         openFileMenuItem = new MenuItem(fileMenu, SWT.CASCADE);
+-        openFileMenuItem.setText(&quot;&#214;ffnen&quot;);
++        openFileMenuItem.setText(l.getString(&quot;menu.file.open&quot;));
+ 
+         newFileMenuItem = new MenuItem(fileMenu, SWT.CASCADE);
+-        newFileMenuItem.setText(&quot;Neu&quot;);
++        newFileMenuItem.setText(l.getString(&quot;menu.file.new&quot;));
+ 
+         saveFileMenuItem = new MenuItem(fileMenu, SWT.CASCADE);
+-        saveFileMenuItem.setText(&quot;Speichern&quot;);
++        saveFileMenuItem.setText(l.getString(&quot;menu.file.save&quot;));
+ 
+         closeFileMenuItem = new MenuItem(fileMenu, SWT.CASCADE);
+-        closeFileMenuItem.setText(&quot;Schlie&#223;en&quot;);
++        closeFileMenuItem.setText(l.getString(&quot;menu.file.close&quot;));
+ 
+         exitMenuItem = new MenuItem(fileMenu, SWT.CASCADE);
+-        exitMenuItem.setText(&quot;Beenden&quot;);
++        exitMenuItem.setText(l.getString(&quot;menu.file.exit&quot;));
+ 
+     }
+ 
+@@ -316,29 +300,67 @@
+         }
+ 
+         viewMenuItem = new MenuItem(rootMenu, SWT.CASCADE);
+-        viewMenuItem.setText(&quot;Ansicht&quot;);
++        viewMenuItem.setText(l.getString(&quot;menu.view&quot;));
+ 
+         viewMenu = new Menu(viewMenuItem);
+         viewMenuItem.setMenu(viewMenu);
+ 
+         viewVideoFormatMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+-        viewVideoFormatMenuItem.setText(&quot;VideoFormat&quot;);
+-        viewVideoFormatMenuItem.setSelection(false);
++        viewVideoFormatMenuItem.setText(l.getString(&quot;menu.view.format&quot;));
++        viewVideoFormatMenuItem.setSelection(true);
+         viewVideoFormatMenuItem.addSelectionListener(new SelectionAdapter() {
+             public void widgetSelected(SelectionEvent evt) {
+-                System.out
+-                        .println(&quot;viewVideoFormatMenuItem.widgetSelected, event=&quot;
+-                                + evt);
+-                setStatus(3, &quot;Fehler aufgetreten&quot;);
+-                //TODO add your code for
+-                // viewVideoFormatMenuItem.widgetSelected
++				if(tabItemFormat == null || tabItemFormat.isDisposed()){
++				    initFormatTab();
++				 return;   
++				}
++				
++				cTabFolderMain.setSelection(tabItemFormat);
++				viewVideoFormatMenuItem.setSelection(true);
++            
+             }
+         });
+ 
+         viewDirectorMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+-        viewDirectorMenuItem.setText(&quot;Director&quot;);
++        viewDirectorMenuItem.setText(l.getString(&quot;menu.view.director&quot;));
+         viewDirectorMenuItem.setSelection(false);
+ 
++        viewActorMenuItem = new MenuItem(viewMenu, SWT.CHECK);
++        viewActorMenuItem.setText(l.getString(&quot;menu.view.actor&quot;));
++        viewActorMenuItem.setSelection(false);
++        
++        viewGenreMenuItem = new MenuItem(viewMenu, SWT.CHECK);
++        viewGenreMenuItem.setText(l.getString(&quot;menu.view.genre&quot;));
++        viewActorMenuItem.setSelection(false);
++
++        viewSubtitleMenuItem = new MenuItem(viewMenu, SWT.CHECK);
++        viewSubtitleMenuItem.setText(l.getString(&quot;menu.view.subtitle&quot;));
++        viewSubtitleMenuItem.setSelection(false);
++        
++        viewLanguageMenuItem = new MenuItem(viewMenu, SWT.CHECK);
++        viewLanguageMenuItem.setText(l.getString(&quot;menu.view.language&quot;));
++        viewLanguageMenuItem.setSelection(false);
++
++        viewStatusMenuItem = new MenuItem(viewMenu, SWT.CHECK);
++        viewStatusMenuItem.setText(l.getString(&quot;menu.view.status&quot;));
++        viewStatusMenuItem.setSelection(false);
++
++        viewConditionMenuItem = new MenuItem(viewMenu, SWT.CHECK);
++        viewConditionMenuItem.setText(l.getString(&quot;menu.view.condition&quot;));
++        viewConditionMenuItem.setSelection(false);
++
++        viewMovieMenuItem = new MenuItem(viewMenu, SWT.CHECK);
++        viewMovieMenuItem.setText(l.getString(&quot;menu.view.movie&quot;));
++        viewMovieMenuItem.setSelection(false);
++
++        viewDvdMenuItem = new MenuItem(viewMenu, SWT.CHECK);
++        viewDvdMenuItem.setText(l.getString(&quot;menu.view.dvd&quot;));
++        viewDvdMenuItem.setSelection(false);
++
++        viewBillMenuItem = new MenuItem(viewMenu, SWT.CHECK);
++        viewBillMenuItem.setText(l.getString(&quot;menu.view.bill&quot;));
++        viewBillMenuItem.setSelection(false);
++
+     }
+ 
+     /**
+@@ -349,6 +371,7 @@
+             throw new GuiInitException();
+         }
+         helpMenuItem = new MenuItem(rootMenu, SWT.CASCADE);
++        helpMenuItem.setText(l.getString(&quot;menu.help&quot;));
+         {
+             helpMenu = new Menu(helpMenuItem);
+             helpMenuItem.setMenu(helpMenu);
+@@ -362,6 +385,19 @@
+ 
+     }
+ 
++    
++    private void initFormatTab() {
++        tabItemFormat = new CTabItem(cTabFolderMain, SWT.NONE);
++        tabItemFormat.setText(l.getString(&quot;tab.format.title&quot;));
++        {
++            compositeFormate = new CompositeFormate(
++                cTabFolderMain,
++                SWT.NONE, statusLine, locale);
++            
++            tabItemFormat.setControl(compositeFormate);
++        }
++    }
++    
+     private void initRootComposite() {
+ 
+         //set up the root composite incl. layout
+@@ -446,6 +482,8 @@
+                         cTabFolder1LData.verticalAlignment = GridData.FILL;
+                         cTabFolderMain.setLayoutData(cTabFolder1LData);
+                         {
++                            initFormatTab();
++                            /*
+                             tabItemFormat = new CTabItem(cTabFolderMain, SWT.NONE);
+                             tabItemFormat.setText(&quot;Formate&quot;);
+                             {
+@@ -455,156 +493,8 @@
+                                 
+                                 tabItemFormat.setControl(compositeFormate);
+                             }
++                            */
+                         }
+-                        {
+-                            cTabItem2 = new CTabItem(cTabFolderMain, SWT.NONE);
+-                            cTabItem2.setText(&quot;cTabItem2&quot;);
+-                            {
+-                                sashFormDirector = new SashForm(cTabFolderMain,
+-                                        SWT.NONE);
+-                                cTabItem2.setControl(sashFormDirector);
+-                                FormLayout sashFormDirectorLayout = new FormLayout();
+-                                sashFormDirector
+-                                        .setLayout(sashFormDirectorLayout);
+-                                {
+-                                    group1Director = new Group(
+-                                            sashFormDirector, SWT.NONE);
+-                                    GridLayout gridLayout = new GridLayout();
+-                                    gridLayout.numColumns = 6;
+-                                    group1Director
+-                                            .setText(&quot;Directors &#220;bersicht&quot;);
+-                                    FormData formData = new FormData();
+-                                    group1Director.setLayout(gridLayout);
+-                                    formData.right = new FormAttachment(100,
+-                                            100, -5);
+-                                    formData.top = new FormAttachment(0, 100, 5);
+-                                    formData.bottom = new FormAttachment(100,
+-                                            100, -5);
+-                                    group1Director.setLayoutData(formData);
+-                                    {
+-                                        tableDirector = new Table(
+-                                                group1Director, SWT.SINGLE
+-                                                        | SWT.FULL_SELECTION
+-                                                        | SWT.V_SCROLL
+-                                                        | SWT.BORDER);
+-                                        tableDirector.setHeaderVisible(true);
+-                                        tableDirector.setLinesVisible(true);
+-                                        GridData griddata = new GridData();
+-                                        tableDirector
+-                                                .addSelectionListener(new SelectionAdapter() {
+-                                                    public void widgetSelected(
+-                                                            SelectionEvent evt) {
+-
+-                                                        int index = tableDirector
+-                                                                .getSelectionIndex();
+-                                                        System.out
+-                                                                .println(&quot;Table select. id: &quot;
+-                                                                        + index
+-                                                                        + &quot; TableItem:&quot;
+-                                                                        + tableDirector
+-                                                                                .getItem(index)
+-                                                                        + &quot; id: &quot;
+-                                                                        + tableDirector
+-                                                                                .getItem(
+-                                                                                        index)
+-                                                                                .getText(
+-                                                                                        0));
+-                                                    }
+-                                                });
+-                                        griddata.verticalAlignment = GridData.FILL;
+-                                        griddata.horizontalAlignment = GridData.FILL;
+-                                        griddata.horizontalSpan = 6;
+-                                        griddata.grabExcessHorizontalSpace = true;
+-                                        griddata.grabExcessVerticalSpace = true;
+-                                        tableDirector.setLayoutData(griddata);
+-                                        {
+-                                            tableColumnDirectorId = new TableColumn(
+-                                                    tableDirector, SWT.CENTER);
+-                                            tableColumnDirectorId.setText(&quot;id&quot;);
+-                                            tableColumnDirectorId.setWidth(100);
+-                                        }
+-                                        {
+-                                            tableColumnDirectorLastname = new TableColumn(
+-                                                    tableDirector, SWT.CENTER);
+-                                            tableColumnDirectorLastname
+-                                                    .setText(&quot;Name&quot;);
+-                                            tableColumnDirectorLastname
+-                                                    .setWidth(100);
+-
+-                                        }
+-                                        {
+-                                            tableColumnDirectorFirstname = new TableColumn(
+-                                                    tableDirector, SWT.CENTER);
+-                                            tableColumnDirectorFirstname
+-                                                    .setText(&quot;Short&quot;);
+-                                            tableColumnDirectorFirstname
+-                                                    .setWidth(100);
+-
+-                                        }
+-                                    }
+-                                    {
+-                                        filterLabelVideoFormat = new Label(
+-                                                group1Director, SWT.NONE);
+-                                        filterLabelVideoFormat
+-                                                .setText(&quot;Suche nach:&quot;);
+-                                        GridData data1 = new GridData();
+-                                        data1.horizontalSpan = 2;
+-                                        filterLabelVideoFormat
+-                                                .setLayoutData(data1);
+-                                    }
+-                                    {
+-                                        filterTextVideoFormat = new Text(
+-                                                group1Director, SWT.BORDER);
+-                                        GridData data2 = new GridData();
+-
+-                                        data2.horizontalAlignment = GridData.FILL;
+-                                        data2.horizontalSpan = 4;
+-                                        data2.grabExcessHorizontalSpace = true;
+-                                        filterTextVideoFormat
+-                                                .setLayoutData(data2);
+-                                    }
+-                                }
+-                                {
+-                                    group2Director = new Group(
+-                                            sashFormDirector, SWT.NONE);
+-                                    GridLayout gridLayout = new GridLayout();
+-                                    gridLayout.numColumns = 2;
+-                                    group2Director.setText(&quot;Filmliste&quot;);
+-                                    FormData formData = new FormData();
+-                                    group2Director.setLayout(gridLayout);
+-                                    formData.left = new FormAttachment(0, 100,
+-                                            5);
+-                                    formData.top = new FormAttachment(0, 100, 5);
+-                                    formData.bottom = new FormAttachment(100,
+-                                            100, -5);
+-                                    group2Director.setLayoutData(formData);
+-                                    {
+-                                        list3 = new List(group2Director,
+-                                                SWT.SINGLE | SWT.H_SCROLL
+-                                                        | SWT.V_SCROLL
+-                                                        | SWT.BORDER);
+-                                        GridData list3LData = new GridData();
+-                                        list3
+-                                                .addSelectionListener(new SelectionAdapter() {
+-                                                    public void widgetSelected(
+-                                                            SelectionEvent evt) {
+-                                                        System.out
+-                                                                .println(&quot;list1.widgetSelected, event=&quot;
+-                                                                        + evt);
+-
+-                                                        //TODO add your code for
+-                                                        // list1.widgetSelected
+-                                                    }
+-                                                });
+-                                        list3LData.verticalAlignment = GridData.FILL;
+-                                        list3LData.horizontalAlignment = GridData.FILL;
+-                                        list3LData.grabExcessHorizontalSpace = true;
+-                                        list3LData.grabExcessVerticalSpace = true;
+-                                        list3.setLayoutData(list3LData);
+-                                    }
+-                                }
+-                            }
+-                        }
+                     }
+                 }
+                 {
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000092.html">[Provirent-svn-commit] r91 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+	<LI>Next message: <A HREF="000094.html">[Provirent-svn-commit] r93 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#93">[ date ]</a>
+              <a href="thread.html#93">[ thread ]</a>
+              <a href="subject.html#93">[ subject ]</a>
+              <a href="author.html#93">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

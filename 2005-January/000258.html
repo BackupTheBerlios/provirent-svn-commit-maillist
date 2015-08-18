@@ -1,0 +1,1365 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r257 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-January/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r257%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20management/gui/language%20persistence&In-Reply-To=%3C200501092027.j09KRc13028034%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000257.html">
+   <LINK REL="Next"  HREF="000259.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r257 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r257%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20management/gui/language%20persistence&In-Reply-To=%3C200501092027.j09KRc13028034%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r257 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Sun Jan  9 21:27:38 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000257.html">[Provirent-svn-commit] r256 - project_src/website
+</A></li>
+        <LI>Next message: <A HREF="000259.html">[Provirent-svn-commit] r258 - project_src/website
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#258">[ date ]</a>
+              <a href="thread.html#258">[ thread ]</a>
+              <a href="subject.html#258">[ subject ]</a>
+              <a href="author.html#258">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2005-01-09 21:27:37 +0100 (Sun, 09 Jan 2005)
+New Revision: 257
+
+Added:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogDVD.java
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+Log:
+Composite DVD - beendet
+DialogDVD     - erstellt und beendet
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java	2005-01-09 20:11:25 UTC (rev 256)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java	2005-01-09 20:27:37 UTC (rev 257)
+@@ -1,14 +1,11 @@
+ package de.hsharz.provirent.management.gui;
+ 
+-import java.text.DateFormat;
+ import java.text.MessageFormat;
+-import java.text.ParseException;
+ import java.util.ArrayList;
+-import java.util.Calendar;
++import java.util.List;
+ import java.util.Locale;
+ import java.util.PropertyResourceBundle;
+ import java.util.ResourceBundle;
+-import java.util.List;
+ 
+ import org.apache.log4j.Logger;
+ import org.eclipse.swt.SWT;
+@@ -37,19 +34,15 @@
+ 
+ import com.cloudgarden.resource.SWTResourceManager;
+ 
+-import de.hsharz.provirent.objects.Actor;
+-import de.hsharz.provirent.objects.Director;
++import de.hsharz.provirent.objects.AudioFormat;
++import de.hsharz.provirent.objects.Condition;
+ import de.hsharz.provirent.objects.Dvd;
+-import de.hsharz.provirent.objects.Genre;
+-import de.hsharz.provirent.objects.Image;
+ import de.hsharz.provirent.objects.Language;
+-import de.hsharz.provirent.objects.Subtitle;
+-import de.hsharz.provirent.objects.VideoFormat;
+-import de.hsharz.provirent.objects.AudioFormat;
+ import de.hsharz.provirent.objects.Movie;
+ import de.hsharz.provirent.objects.PaymentCategory;
+-import de.hsharz.provirent.objects.Condition;
+ import de.hsharz.provirent.objects.Status;
++import de.hsharz.provirent.objects.Subtitle;
++import de.hsharz.provirent.objects.VideoFormat;
+ import de.hsharz.provirent.persistence.DataBaseException;
+ import de.hsharz.provirent.persistence.Database;
+ 
+@@ -426,7 +419,6 @@
+      * 
+      */
+     private void initDVDDetail() {
+-        // TODO Auto-generated method stub
+         //      Group DVD Detail
+ 		{
+ 			groupDVDDetail = new Group(sashForm1, SWT.H_SCROLL);
+@@ -485,7 +477,8 @@
+ 		}
+         {
+             labelDVDMovie = new Label(groupDVDDetail, SWT.NONE);
+-            labelDVDMovie.setText(&quot;labelDVDMovie&quot;);
++            labelDVDMovie.setText(l.getString(&quot;dvd.groupdetail.labelmovie&quot;)
++					+ &quot;:&quot;);
+             GridData labelDVDMovieLData = new GridData();
+             labelDVDMovieLData.horizontalAlignment = GridData.FILL;
+             labelDVDMovie.setLayoutData(labelDVDMovieLData);
+@@ -505,7 +498,8 @@
+         }
+         {
+             labelDVDPayment = new Label(groupDVDDetail, SWT.NONE);
+-            labelDVDPayment.setText(&quot;labelDVDPayment&quot;);
++            labelDVDPayment.setText(l.getString(&quot;dvd.groupdetail.labelpayment&quot;)
++					+ &quot;:&quot;);
+             GridData labelDVDPaymentLData = new GridData();
+             labelDVDPaymentLData.horizontalAlignment = GridData.FILL;
+             labelDVDPayment.setLayoutData(labelDVDPaymentLData);
+@@ -525,7 +519,8 @@
+         }
+         {
+             labelDVDStatus = new Label(groupDVDDetail, SWT.NONE);
+-            labelDVDStatus.setText(&quot;labelDVDStatus&quot;);
++            labelDVDStatus.setText(l.getString(&quot;dvd.groupdetail.labelstatus&quot;)
++					+ &quot;:&quot;);
+             GridData labelDVDStatusLData = new GridData();
+             labelDVDStatusLData.horizontalAlignment = GridData.FILL;
+             labelDVDStatus.setLayoutData(labelDVDStatusLData);
+@@ -546,7 +541,8 @@
+         }
+         {
+             labelDVDCondition = new Label(groupDVDDetail, SWT.NONE);
+-            labelDVDCondition.setText(&quot;labelDVDCondition&quot;);
++            labelDVDCondition.setText(l.getString(&quot;dvd.groupdetail.labelcondition&quot;)
++					+ &quot;:&quot;);
+             GridData labelDVDConditionLData = new GridData();
+             labelDVDConditionLData.horizontalAlignment = GridData.FILL;
+             labelDVDCondition.setLayoutData(labelDVDConditionLData);
+@@ -603,30 +599,27 @@
+ 					.addSelectionListener(new SelectionAdapter() {
+ 						public void widgetSelected(SelectionEvent evt) {
+ 							//open responsible Dialog and insert objects into
+-							/* table
+-							DialogMovie dialog = new DialogMovie(getShell(), 0,
+-									locale, localmovie,
+-									DialogMovie.TYPE_DIRECTOR);
++							//table
++							DialogDVD dialog = new DialogDVD(getShell(), 0,
++									locale, localdvd,
++									DialogDVD.TYPE_LANGUAGE);
+ 							dialog.open();
+ 
+-							tableMoviesDirectorsDetail.removeAll();
++							tableDVDLanguagesDetail.removeAll();
+ 							TableItem item;
+-							for (int i = 0; i &lt; localmovie.getDirector().size(); i++) {
++							for (int i = 0; i &lt; localdvd.getLanguages().size(); i++) {
+ 								item = new TableItem(
+-										tableMoviesDirectorsDetail, SWT.NONE);
++										tableDVDLanguagesDetail, SWT.NONE);
+ 								item.setText(new String[] {
+-										((Director) localmovie.getDirector()
+-												.get(i)).getDirectorId()
++										((Language) localdvd.getLanguages()
++												.get(i)).getLanguageId()
+ 												+ &quot;&quot;,
+-										((Director) localmovie.getDirector()
+-												.get(i)).getLastName()
+-												+ &quot; , &quot;
+-												+ ((Director) localmovie
+-														.getDirector().get(i))
+-														.getFirstName() });
++										((Language) localdvd.getLanguages()
++												.get(i)).getName()
++								});
+ 							}
+-							*/
+-						    // TODO
++							
++						    
+ 						}
+ 					});
+ 		}
+@@ -666,7 +659,7 @@
+ 								tableDVDLanguagesDetail.remove(index);
+ 							}
+ 							
+-						    //TODO
++						    
+ 						}
+ 					});
+ 		}
+@@ -733,26 +726,24 @@
+ 			buttonDVDAddSubtitles.addSelectionListener(new SelectionAdapter() {
+ 				public void widgetSelected(SelectionEvent evt) {
+ 					//open responsible Dialog and insert objects into table
+-					/*
+-				    DialogMovie dialog = new DialogMovie(getShell(), 0, locale,
+-							localmovie, DialogMovie.TYPE_ACTOR);
++					//
++				    DialogDVD dialog = new DialogDVD(getShell(), 0, locale,
++							localdvd, DialogDVD.TYPE_SUBTITLE);
+ 					dialog.open();
+ 
+-					tableMoviesActorsDetail.removeAll();
++					tableDVDSubtitlesDetail.removeAll();
+ 					TableItem item;
+-					for (int i = 0; i &lt; localmovie.getActors().size(); i++) {
+-						item = new TableItem(tableMoviesActorsDetail, SWT.NONE);
++					for (int i = 0; i &lt; localdvd.getSubtitles().size(); i++) {
++						item = new TableItem(tableDVDSubtitlesDetail, SWT.NONE);
+ 						item.setText(new String[] {
+-								((Actor) localmovie.getActors().get(i))
+-										.getActorId()
++								((Subtitle) localdvd.getSubtitles().get(i))
++										.getSubtitleId()
+ 										+ &quot;&quot;,
+-								((Actor) localmovie.getActors().get(i))
+-										.getLastName()
+-										+ &quot;, &quot;
+-										+ ((Actor) localmovie.getActors()
+-												.get(i)).getFirstName() });
++								((Subtitle) localdvd.getSubtitles().get(i))
++										.getName() 
++						});
+ 					}
+-				*/
++				
+ 				}
+ 			});
+ 		}
+@@ -855,24 +846,23 @@
+ 			buttonDVDAddVideoformat.addSelectionListener(new SelectionAdapter() {
+ 				public void widgetSelected(SelectionEvent evt) {
+ 					//open responsible Dialog and insert objects into table
+-					/*
+-				    DialogMovie dialog = new DialogMovie(getShell(), 0, locale,
+-							localmovie, DialogMovie.TYPE_GENRE);
++					//
++				    DialogDVD dialog = new DialogDVD(getShell(), 0, locale,
++							localdvd, DialogDVD.TYPE_VIDEOFORMAT);
+ 					dialog.open();
+ 
+-					tableMoviesGenresDetail.removeAll();
++					tableDVDVideoformatDetail.removeAll();
+ 					TableItem item;
+-					for (int i = 0; i &lt; localmovie.getGenres().size(); i++) {
+-						item = new TableItem(tableMoviesGenresDetail, SWT.NONE);
++					for (int i = 0; i &lt; localdvd.getVideoFormats().size(); i++) {
++						item = new TableItem(tableDVDVideoformatDetail, SWT.NONE);
+ 						item.setText(new String[] {
+-								((Genre) localmovie.getGenres().get(i))
+-										.getGenreId()
++								((VideoFormat) localdvd.getVideoFormats().get(i))
++										.getVideoFormatId()
+ 										+ &quot;&quot;,
+-								((Genre) localmovie.getGenres().get(i))
+-										.getName()
+-										+ &quot;&quot; });
++								((VideoFormat) localdvd.getVideoFormats().get(i))
++										.getName() });
+ 					}
+-				*/
++				
+ 				}
+ 			});
+ 		}
+@@ -975,26 +965,25 @@
+ 			buttonDVDAddAudioformat.addSelectionListener(new SelectionAdapter() {
+ 				public void widgetSelected(SelectionEvent evt) {
+ 					//open responsible Dialog and insert objects into table
+-					/*
+-				    DialogMovie dialog = new DialogMovie(getShell(), 0, locale,
+-							localmovie, DialogMovie.TYPE_IMAGE);
++					//
++				    DialogDVD dialog = new DialogDVD(getShell(), 0, locale,
++							localdvd, DialogDVD.TYPE_AUDIOFORMAT);
+ 					dialog.open();
+ 
+-					tableMoviesImagesDetail.removeAll();
++					tableDVDAudioformatDetail.removeAll();
+ 					TableItem item;
+-					for (int i = 0; i &lt; localmovie.getImages().size(); i++) {
+-						item = new TableItem(tableMoviesImagesDetail, SWT.NONE);
++					for (int i = 0; i &lt; localdvd.getAudioFormats().size(); i++) {
++						item = new TableItem(tableDVDAudioformatDetail, SWT.NONE);
+ 						item.setText(new String[] {
+-								((Image) localmovie.getImages().get(i))
+-										.getImageId()
++								((AudioFormat) localdvd.getAudioFormats().get(i))
++										.getAudioFormatId()
+ 										+ &quot;&quot;,
+-								((Image) localmovie.getImages().get(i))
+-										.getImageFileName()
++								((AudioFormat) localdvd.getAudioFormats().get(i))
++										.getName()
+ 										+ &quot;&quot; });
+ 					}
+-					*/
+-				    //TODO
+-				}
++					
++				 }
+ 			});
+ 		}
+ 		{
+@@ -1093,6 +1082,10 @@
+ 					comboDVDPayment.setEnabled(true);
+ 					comboDVDStatus.setEnabled(true);
+ 					comboDVDCondition.setEnabled(true);
++					comboDVDMovie.setText(&quot;&quot;);
++					comboDVDPayment.setText(&quot;&quot;);
++					comboDVDCondition.setText(&quot;&quot;);
++					comboDVDStatus.setText(&quot;&quot;);
+ 					
+ 					buttonDVDCancel.setEnabled(true);
+ 					buttonDVDSave.setEnabled(true);
+@@ -1272,7 +1265,7 @@
+ 										+ evt);
+ 					}
+ 
+-					/*List errors = validateInput();
++					List errors = validateInput();
+ 
+ 					if (errors.size() &gt; 0) {
+ 						StringBuffer buf = new StringBuffer();
+@@ -1291,32 +1284,41 @@
+ 						return;
+ 
+ 					}
+-					*/
+-					//testen welcher mode
++					
++					
+ 					localdvd.setBarcode(textDVDBarcode.getText());
+ 					
+-					/*
+-					try {
+-						localmovie.setRuntime(Integer
+-								.parseInt(textMoviesRuntime.getText()));
+-					} catch (Exception ex) {
+-						logger.error(&quot;widgetSelected(SelectionEvent)&quot;, ex);
+-						showMsg(
+-								l
+-										.getString(&quot;movies.groupdetail.savebutton.warn.noname.msg&quot;),
+-								l
+-										.getString(&quot;movies.groupdetail.savebutton.warn.noname.title&quot;),
+-								SWT.ICON_WARNING | SWT.YES);
+-						return;
++					
++					// sehr schlechte L&#246;sung
++					//TODO bessere L&#246;sung finden
++					List list = Database.getMovie(&quot;&quot;);
++					for(int i=0;i&lt;list.size();i++)  {
++					    if(comboDVDMovie.getText().compareTo(((Movie)list.get(i)).getTitle()) == 0)  {
++					      localdvd.setMovie((Movie)list.get(i)); 
++					      break;
++					    }
+ 					}
+-					*/
+-					/**
+-					 * @todo eine Exception bekommen wieder leider NOCH nicht
+-					 *       mit d.h. es muss noch ein r&#252;ckgabewert kommen oder
+-					 *       eine Exception &#252;bermitteln werden (aus der DB
+-					 *       Klasse)
+-					 */
+-					//neues Objekt erzeugen
++					list = Database.getPaymentCategory();
++					for(int i=0;i&lt;list.size();i++)  {
++					    if(comboDVDPayment.getText().compareTo(((PaymentCategory)list.get(i)).getName()) == 0)  {
++					      localdvd.setPaymentCategory((PaymentCategory)list.get(i)); 
++					      break;
++					    }
++					}
++					list = Database.getCondition(&quot;&quot;);
++					for(int i=0;i&lt;list.size();i++)  {
++					    if(comboDVDCondition.getText().compareTo(((Condition)list.get(i)).getConditionName()) == 0)  {
++					      localdvd.setCondition((Condition)list.get(i)); 
++					      break;
++					    }
++					}
++					list = Database.getStatus(&quot;&quot;);
++					for(int i=0;i&lt;list.size();i++)  {
++					    if(comboDVDStatus.getText().compareTo(((Status)list.get(i)).getStatusName()) == 0)  {
++					      localdvd.setStatus((Status)list.get(i)); 
++					      break;
++					    }
++					}
+ 					try {
+ 						//object speichern
+ 						// Fehlerbehandlung
+@@ -1330,7 +1332,7 @@
+ 									+ &quot; nach speichern&quot;);
+ 
+ 							// in &#220;bersichtstabelle einf&#252;gen
+-							insertIntoMoviesOverviewTable(localdvd);
++							insertIntoDVDOverviewTable(localdvd);
+ 							textDVDID.setText(localdvd.getDvdId() + &quot;&quot;);
+ 						} else if (mode_dvd == ManagementGui.MODE_EDIT) {
+ 							Database.updateObject(localdvd);
+@@ -1339,8 +1341,7 @@
+ 						statusLine
+ 								.setStatus(
+ 										1,
+-										l
+-												.getString(&quot;dvd.groupdetail.savebutton.newok&quot;));
++										l.getString(&quot;dvd.groupdetail.savebutton.newok&quot;));
+ 					} catch (DataBaseException e) {
+ 						logger.debug(&quot;DataBaseException: &quot; + e);
+ 						if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
+@@ -1349,11 +1350,9 @@
+ 							statusLine
+ 									.setStatus(
+ 											3,
+-											l
+-													.getString(&quot;dvd.groupdetail.savebutton.errorsave&quot;));
++											l.getString(&quot;dvd.groupdetail.savebutton.errorsave&quot;));
+ 							showMsg(
+-									l
+-											.getString(&quot;dvd.groupdetail.savebutton.errorsave&quot;),
++									l.getString(&quot;dvd.groupdetail.savebutton.errorsave&quot;),
+ 									&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
+ 
+ 						} else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
+@@ -1361,11 +1360,9 @@
+ 							statusLine
+ 									.setStatus(
+ 											3,
+-											l
+-													.getString(&quot;dvd.groupdetail.savebutton.errordb&quot;));
++											l.getString(&quot;dvd.groupdetail.savebutton.errordb&quot;));
+ 							showMsg(
+-									l
+-											.getString(&quot;dvd.groupdetail.savebutton.errordb&quot;),
++									l.getString(&quot;dvd.groupdetail.savebutton.errordb&quot;),
+ 									&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
+ 
+ 						} else {
+@@ -1379,7 +1376,7 @@
+ 
+ 					//activate buttons
+ 					setDVDGroupButtonSaveCancel();
+-
++					refreshDVDOverviewTable(textDVDSearch.getText());
+ 				}
+ 
+ 			});
+@@ -1440,8 +1437,14 @@
+     /**
+      * @param localdvd2
+      */
+-    private void insertIntoMoviesOverviewTable(Dvd localdvd2) {
+-        // TODO Auto-generated method stub
++    private void insertIntoDVDOverviewTable(Dvd localdvd2) {
++//      TODO Auto-generated method stub
++		TableItem item = new TableItem(tableDVDOverview, SWT.NONE);
++		item.setText(new String[] {
++				localdvd2.getDvdId() + &quot; &quot;,
++				localdvd2.getMovie().getTitle() + &quot; &quot;,
++				localdvd2.getPaymentCategory().getName() + &quot; &quot;,
++				localdvd2.getStatus().getStatusName()});
+         
+     }
+ 
+@@ -1561,4 +1564,57 @@
+ 		mode_dvd = ManagementGui.MODE_VIEW;
+     }
+ 
++	private List validateInput() {
++		List errors = new ArrayList();
++
++		if (textDVDBarcode.getText().trim().equalsIgnoreCase(&quot;&quot;)) {
++			errors.add(l
++					.getString(&quot;dvd.groupdetail.savebutton.warn.nobarcode&quot;));
++		}
++
++		if (comboDVDMovie.getText().compareToIgnoreCase(&quot;&quot;) == 0) {
++			errors
++					.add(l.getString(&quot;dvd.groupdetail.savebutton.warn.nomovie&quot;));
++		}
++
++		if (comboDVDPayment.getText().compareToIgnoreCase(&quot;&quot;) == 0) {
++			errors
++					.add(l
++							.getString(&quot;dvd.groupdetail.savebutton.warn.nopayment&quot;));
++		}
++
++		if (comboDVDCondition.getText().compareToIgnoreCase(&quot;&quot;) == 0) {
++			errors
++					.add(l
++							.getString(&quot;dvd.groupdetail.savebutton.warn.nocondition&quot;));
++		}
++
++		if (comboDVDStatus.getText().compareToIgnoreCase(&quot;&quot;) == 0) {
++			errors.add(l
++					.getString(&quot;dvd.groupdetail.savebutton.warn.nostatus&quot;));
++		}
++
++		if (localdvd.getLanguages().size() == 0) {
++			errors.add(l
++					.getString(&quot;dvd.groupdetail.savebutton.warn.nolanguage&quot;));
++		}
++
++		if (localdvd.getSubtitles().size() == 0) {
++			errors.add(l
++					.getString(&quot;dvd.groupdetail.savebutton.warn.nosubtitle&quot;));
++		}
++
++		if (localdvd.getVideoFormats().size() == 0) {
++			errors.add(l
++					.getString(&quot;dvd.groupdetail.savebutton.warn.novideoformat&quot;));
++		}
++		
++		if (localdvd.getAudioFormats().size() == 0) {
++			errors.add(l
++					.getString(&quot;dvd.groupdetail.savebutton.warn.noaudioformat&quot;));
++		}
++		return errors;
++	}
++    
+ }
++
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogDVD.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogDVD.java	2005-01-09 20:11:25 UTC (rev 256)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogDVD.java	2005-01-09 20:27:37 UTC (rev 257)
+@@ -0,0 +1,416 @@
++package de.hsharz.provirent.management.gui;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.Locale;
++import java.util.PropertyResourceBundle;
++import java.util.ResourceBundle;
++
++import org.apache.log4j.Logger;
++import org.eclipse.swt.SWT;
++import org.eclipse.swt.events.SelectionAdapter;
++import org.eclipse.swt.events.SelectionEvent;
++import org.eclipse.swt.layout.GridData;
++import org.eclipse.swt.layout.GridLayout;
++import org.eclipse.swt.widgets.Button;
++import org.eclipse.swt.widgets.Display;
++import org.eclipse.swt.widgets.Group;
++import org.eclipse.swt.widgets.Label;
++import org.eclipse.swt.widgets.Shell;
++import org.eclipse.swt.widgets.Table;
++import org.eclipse.swt.widgets.TableColumn;
++import org.eclipse.swt.widgets.TableItem;
++import org.eclipse.swt.widgets.Text;
++
++import de.hsharz.provirent.objects.AudioFormat;
++import de.hsharz.provirent.objects.Dvd;
++import de.hsharz.provirent.objects.Language;
++import de.hsharz.provirent.objects.Subtitle;
++import de.hsharz.provirent.objects.VideoFormat;
++import de.hsharz.provirent.persistence.Database;
++
++
++/**
++* This code was generated using CloudGarden's Jigloo
++* SWT/Swing GUI Builder, which is free for non-commercial
++* use. If Jigloo is being used commercially (ie, by a corporation,
++* company or business for any purpose whatever) then you
++* should purchase a license for each developer using Jigloo.
++* Please visit www.cloudgarden.com for details.
++* Use of Jigloo implies acceptance of these licensing terms.
++* *************************************
++* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED
++* for this machine, so Jigloo or this code cannot be used legally
++* for any corporate or commercial purpose.
++* *************************************
++*/
++public class DialogDVD extends org.eclipse.swt.widgets.Dialog {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(DialogMovie.class);
++
++    public final static int TYPE_LANGUAGE = 1;
++
++    public final static int TYPE_SUBTITLE = 2;
++
++    public final static int TYPE_VIDEOFORMAT = 3;
++
++    public final static int TYPE_AUDIOFORMAT = 4;
++    
++    private int type = 0;
++
++    private Shell dialogShell;
++
++    private Group groupDialogDescription;
++
++    private Button buttonDescriptionAbort;
++
++    private Button buttonDescriptionAccept;
++
++    private Label labelDescriptionAdvice;
++
++    private Button button1;
++
++    private Table table1;
++
++    private Button button2;
++
++    private Text text1;
++
++    private Dvd dvd;
++
++    private List valuelist;
++
++    private ResourceBundle l;
++
++    private Shell shell;
++    
++    private int size_width = 200;
++    private int size_height = 210;
++    private int start_x = 50;
++    private int start_y = 50;
++
++    /**
++     * Auto-generated main method to display this org.eclipse.swt.widgets.Dialog
++     * inside a new Shell.
++     */
++    public static void main(String[] args) {
++
++        try {
++
++            Display display = Display.getDefault();
++            Dvd dvd = new Dvd();
++            dvd.setLanguages(new ArrayList());
++            dvd.setSubtitles(new ArrayList());
++            dvd.setVideoFormats(new ArrayList());
++            dvd.setAudioFormats(new ArrayList());
++
++            Shell shell = new Shell(display);
++            DialogDVD inst = new DialogDVD(shell, SWT.NULL, Locale.GERMAN,
++                    dvd, TYPE_LANGUAGE);
++            inst.open();
++        } catch (Exception e) {
++            e.printStackTrace();
++        }
++    }
++
++    /*
++     * &#196;ndert die Sprache aller Elemente
++     * 
++     * @see de.hsharz.provirent.managment.gui.AbstractComposite#changeLanguage(java.util.Locale)
++     */
++    public void changeLanguage(Locale locale) {
++
++    }
++
++    /*
++     * Init die Sprache (properties Datei)
++     * 
++     * @see de.hsharz.provirent.managment.gui.AbstractComposite#initLanguage(java.util.Locale)
++     */
++    private void initLanguage(Locale locale) {
++        l = PropertyResourceBundle.getBundle(
++                &quot;de.hsharz.provirent.management.gui.language.dvds&quot;, locale);
++
++    }
++
++    public DialogDVD(Shell parent, int style, Locale locale, Dvd dvd,
++            int type) {
++        super(parent, style);
++        shell = parent;
++
++        this.dvd = dvd;
++        initLanguage(locale);
++        this.type = type;
++    }
++
++    public DialogDVD(Shell parent, int style, Locale locale, Dvd dvd,
++            int type, int x, int y, int width, int height) {
++        super(parent, style);
++        shell = parent;
++        this.dvd = dvd;
++        initLanguage(locale);
++        this.type = type;
++        start_x = x;
++        start_y = y;
++        size_height = height;
++        size_width = width;
++    }
++    
++    
++    public void open() {
++
++        Shell parent = getParent();
++        dialogShell = new Shell(parent, SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
++        dialogShell.setSize(size_width, size_height);
++        dialogShell.setBounds(start_x,start_y,size_width,size_height);
++        dialogShell.setLayout(new GridLayout());
++
++        groupDialogDescription = new Group(dialogShell, SWT.NONE);
++        GridLayout groupDialogDescriptionLayout = new GridLayout();
++        groupDialogDescriptionLayout.numColumns = 5;
++        groupDialogDescriptionLayout.makeColumnsEqualWidth = true;
++
++        groupDialogDescription.setLayout(groupDialogDescriptionLayout);
++
++        if (type == TYPE_LANGUAGE) {
++            groupDialogDescription.setText(l
++                    .getString(&quot;dvd.dialog.title.language&quot;));
++        } else if (type == TYPE_SUBTITLE) {
++            groupDialogDescription.setText(l
++                    .getString(&quot;dvd.dialog.title.subtitle&quot;));
++        } else if (type == TYPE_VIDEOFORMAT) {
++            groupDialogDescription.setText(l
++                    .getString(&quot;dvd.dialog.title.videoformat&quot;));
++        } else if (type == TYPE_AUDIOFORMAT) {
++            groupDialogDescription.setText(l
++                    .getString(&quot;dvd.dialog.title.audioformat&quot;));
++        }
++        
++        GridData groupForm1LData = new GridData();
++        groupForm1LData.widthHint = 300;
++        groupForm1LData.heightHint = 200;
++        groupDialogDescription.setLayoutData(groupForm1LData);
++
++        text1 = new Text(groupDialogDescription, SWT.BORDER);
++        text1.setToolTipText(l.getString(&quot;dvd.dialog.search.tooltip&quot;));
++
++        GridData text1LData = new GridData();
++        text1LData.horizontalSpan = 4;
++        text1LData.horizontalAlignment = GridData.FILL;
++        text1LData.grabExcessHorizontalSpace = true;
++        text1.setLayoutData(text1LData);
++
++        {
++            button1 = new Button(groupDialogDescription, SWT.PUSH | SWT.CENTER);
++            button1.setText(l.getString(&quot;dvd.dialog.search.buttonname&quot;));
++
++            button1.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++                    refreshList(text1.getText());
++                }
++            });
++        }
++        {
++            labelDescriptionAdvice = new Label(groupDialogDescription, SWT.NONE);
++
++            if (type == TYPE_LANGUAGE) {
++                labelDescriptionAdvice.setText(l
++                        .getString(&quot;dvd.dialog.labeltable.language&quot;));
++            } else if (type == TYPE_SUBTITLE) {
++                labelDescriptionAdvice.setText(l
++                        .getString(&quot;dvd.dialog.labeltable.subtitle&quot;));
++            } else if (type == TYPE_VIDEOFORMAT) {
++                labelDescriptionAdvice.setText(l
++                        .getString(&quot;dvd.dialog.labeltable.videoformat&quot;));
++            } else if (type == TYPE_AUDIOFORMAT) {
++                labelDescriptionAdvice.setText(l
++                        .getString(&quot;dvd.dialog.labeltable.audioformat&quot;));
++            }
++            
++            
++            table1 = new Table(groupDialogDescription, SWT.SINGLE
++                    | SWT.FULL_SELECTION);
++            GridData table1LData = new GridData();
++            table1LData.horizontalAlignment = GridData.FILL;
++            table1LData.horizontalSpan = 5;
++            table1LData.grabExcessHorizontalSpace = true;
++            table1LData.verticalAlignment = GridData.FILL;
++            table1LData.grabExcessVerticalSpace = true;
++            table1.setLayoutData(table1LData);
++            table1.setLinesVisible(true);
++            table1.setHeaderVisible(true);
++            {
++                TableColumn item = new TableColumn(table1, SWT.CENTER);
++                item.setText(l.getString(&quot;dvd.dialog.column.id&quot;));
++                item.setWidth(0);
++                item.setResizable(false);
++            }
++            {
++                TableColumn item = new TableColumn(table1, SWT.CENTER);
++                item.setAlignment(SWT.LEFT);
++                item.setWidth(100);
++
++                if (type == TYPE_LANGUAGE) {
++                    item.setText(l
++                            .getString(&quot;dvd.dialog.column.language&quot;));
++                } else if (type == TYPE_SUBTITLE) {
++                    item.setText(l
++                             .getString(&quot;dvd.dialog.column.subtitle&quot;));
++                } else if (type == TYPE_VIDEOFORMAT) {
++                    item.setText(l
++                             .getString(&quot;dvd.dialog.column.videoformat&quot;));
++                } else if (type == TYPE_AUDIOFORMAT) {
++                    item.setText(l
++                             .getString(&quot;dvd.dialog.column.audioformat&quot;));
++                }
++
++            }
++            {
++                TableColumn item = new TableColumn(table1, SWT.CENTER);
++                item.setAlignment(SWT.LEFT);
++                item.setWidth(100);
++                item.setText(l
++                            .getString(&quot;dvd.dialog.column.short&quot;));
++                    item.setWidth(150);
++            }
++            
++            buttonDescriptionAccept = new Button(groupDialogDescription,
++                    SWT.PUSH | SWT.CENTER);
++            buttonDescriptionAccept.setText(l
++                        .getString(&quot;dvd.dialog.buttonadd&quot;));                
++            GridData buttonDescriptionAcceptLData2 = new GridData();
++            buttonDescriptionAcceptLData2.horizontalSpan = 2;
++            buttonDescriptionAcceptLData2.horizontalAlignment = GridData.FILL;
++            buttonDescriptionAccept
++                    .setLayoutData(buttonDescriptionAcceptLData2);
++
++            buttonDescriptionAccept.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                            int[] sel = table1.getSelectionIndices();
++                            for (int i = 0; i &lt; sel.length; i++) {
++                                for (int j = 0; j &lt; valuelist.size(); j++) {
++                                    if (type == TYPE_LANGUAGE) {
++                                        if ((table1.getItem(sel[i]).getText(0))
++                                                .equalsIgnoreCase(((Language) valuelist
++                                                        .get(j)).getLanguageId()
++                                                        + &quot;&quot;)) {
++                                            dvd.getLanguages().add(
++                                                    (Language) valuelist.get(j));
++                                            break;
++                                        }
++                                    } else if (type == TYPE_SUBTITLE) {
++                                        if ((table1.getItem(sel[i]).getText(0))
++                                                .equalsIgnoreCase(((Subtitle) valuelist
++                                                        .get(j))
++                                                        .getSubtitleId()
++                                                        + &quot;&quot;)) {
++                                            dvd.getSubtitles().add(
++                                                     (Subtitle) valuelist.get(j));
++                                            break;
++                                        }
++                                    } else if (type == TYPE_VIDEOFORMAT) {
++                                        if ((table1.getItem(sel[i]).getText(0))
++                                                .equalsIgnoreCase(((VideoFormat) valuelist
++                                                        .get(j)).getVideoFormatId()
++                                                        + &quot;&quot;)) {
++                                            dvd.getVideoFormats().add(
++                                                    (VideoFormat) valuelist.get(j));
++                                            break;
++                                        }
++                                    } else if (type == TYPE_AUDIOFORMAT) {
++                                        if ((table1.getItem(sel[i]).getText(0))
++                                                .equalsIgnoreCase(((AudioFormat) valuelist
++                                                        .get(j)).getAudioFormatId()
++                                                        + &quot;&quot;)) {
++
++                                            dvd.getAudioFormats().add(
++                                                    (AudioFormat) valuelist.get(j));
++                                            break;
++                                        }                                                                    
++                                    }
++                                }                           
++                                table1.remove(sel[i]);
++                           }
++            		}
++            });
++        }
++        
++        {
++            button2 = new Button(groupDialogDescription, SWT.FLAT | SWT.CENTER);
++            button2.setEnabled(false);
++            button2.setVisible(false);
++        }
++
++        buttonDescriptionAbort = new Button(groupDialogDescription, SWT.PUSH
++                | SWT.CENTER);
++        buttonDescriptionAbort.setText(l
++                .getString(&quot;dvd.dialog.buttonfinish&quot;));
++        GridData buttonDescriptionAbortLData = new GridData();
++        buttonDescriptionAbortLData.horizontalAlignment = GridData.FILL;
++        buttonDescriptionAbortLData.horizontalSpan = 2;
++        buttonDescriptionAbort.setLayoutData(buttonDescriptionAbortLData);
++        buttonDescriptionAbort.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                dialogShell.close();
++            }
++        });
++
++        //Liste f&#252;llen
++        refreshList(&quot;&quot;);
++        
++        dialogShell.layout();
++        dialogShell.pack();
++        dialogShell.open();
++        Display display = dialogShell.getDisplay();
++        while (!dialogShell.isDisposed()) {
++            if (!display.readAndDispatch())
++                display.sleep();
++        }
++
++    }
++
++    private void refreshList(final String filter) {
++        if (table1 == null || table1.isDisposed()) {
++            logger.warn(&quot;Konnte DialogDVD List nicht refreshen, da diese null ist!&quot;);
++            return;
++        }
++        table1.removeAll();
++        table1.clearAll();
++        if (type == TYPE_LANGUAGE) {
++            valuelist = Database.getLanguageExcept(filter, this.dvd.getLanguages());
++            for (int i = 0; i &lt; valuelist.size(); i++) {
++                Language o = (Language) valuelist.get(i);
++                TableItem item = new TableItem(table1, SWT.NONE);
++                item.setText(new String[] { o.getLanguageId() + &quot;&quot;,
++                        o.getName(), o.getShortname() });
++            }
++        } else if (type == TYPE_SUBTITLE) {
++            valuelist = Database.getSubtitleExcept(filter, this.dvd
++                    .getSubtitles());
++            for (int i = 0; i &lt; valuelist.size(); i++) {
++                Subtitle o = (Subtitle) valuelist.get(i);
++                TableItem item = new TableItem(table1, SWT.NONE);
++                item.setText(new String[] { o.getSubtitleId() + &quot;&quot;,
++                        o.getName(), o.getShortname() });
++            }
++        } else if (type == TYPE_VIDEOFORMAT) {
++            valuelist = Database.getVideoformatExcept(filter, this.dvd.getVideoFormats());
++            for (int i = 0; i &lt; valuelist.size(); i++) {
++                VideoFormat o = (VideoFormat) valuelist.get(i);
++                TableItem item = new TableItem(table1, SWT.NONE);
++                item.setText(new String[] { o.getVideoFormatId() + &quot;&quot;, o.getName(),
++                        o.getShortname() });
++            }
++       } else if (type == TYPE_AUDIOFORMAT) {
++           valuelist = Database.getAudioformatExcept(filter, this.dvd.getAudioFormats());
++           for (int i = 0; i &lt; valuelist.size(); i++) {
++               AudioFormat o = (AudioFormat) valuelist.get(i);
++               TableItem item = new TableItem(table1, SWT.NONE);
++               item.setText(new String[] { o.getAudioFormatId() + &quot;&quot;, o.getName(),
++                    o.getShortname() });
++           }
++       } 
++    }
++}
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties	2005-01-09 20:11:25 UTC (rev 256)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties	2005-01-09 20:27:37 UTC (rev 257)
+@@ -11,6 +11,10 @@
+ dvd.groupdetail.label =Detail
+ dvd.groupdetail.labelid =Id
+ dvd.groupdetail.labelbarcode =Barcode
++dvd.groupdetail.labelmovie =Film
++dvd.groupdetail.labelpayment =Preisklasse
++dvd.groupdetail.labelstatus =Status
++dvd.groupdetail.labelcondition =Zustand
+ dvd.groupdetail.labellanguages =Sprachen
+ dvd.groupdetail.labelSubtitles =Untertitel
+ dvd.groupdetail.labelvideoformat =Videoformat
+@@ -35,3 +39,40 @@
+ dvd.groupdetail.deletebutton.errorsave=Datenbankfehler beim L&#246;schen.
+ dvd.groupdetail.deletebutton.errordb=Datenbankfehler beim Herstellen der Verbindung(del).
+ 
++dvd.groupdetail.savebutton.newok =Speichern der neuen DVD erfolgreich.
++dvd.groupdetail.savebutton.editok =&#196;ndern der DVD erfolgreich.
++dvd.groupdetail.savebutton.errorsave =Datenbankfehler beim Speichern.
++dvd.groupdetail.savebutton.errordb =Datenbankfehler beim Herstellen der Verbindung.(save).
++
++dvd.groupdetail.savebutton.warn.noitems.title =Datensatz speichern
++dvd.groupdetail.savebutton.warn.noitems.msg =Der Datensatz kann nicht gespeichert werden, da folgende Werte fehlen:\n
++dvd.groupdetail.savebutton.warn.noaudioformat =Audioformat
++dvd.groupdetail.savebutton.warn.novideoformat =Videoformat
++dvd.groupdetail.savebutton.warn.nomovie =Film
++dvd.groupdetail.savebutton.warn.nosubtitle =Untertitel
++dvd.groupdetail.savebutton.warn.nolanguage =Sprache
++dvd.groupdetail.savebutton.warn.nocondition =Zustand
++dvd.groupdetail.savebutton.warn.nostatus =Status
++dvd.groupdetail.savebutton.warn.nopayment =Preisklasse
++dvd.groupdetail.savebutton.warn.nobarcode =Barcode
++
++dvd.dialog.title.language =Sprache
++dvd.dialog.title.subtitle =Untertitel
++dvd.dialog.title.videoformat =Videoformat
++dvd.dialog.title.audioformat =Audioformat
++
++dvd.dialog.search.tooltip=Geben Sie hier bitte Ihren Suchbegriff ein
++dvd.dialog.search.buttonname=Suchen
++dvd.dialog.buttonadd=Hinzuf&#252;gen
++dvd.dialog.buttonfinish=Fertig
++dvd.dialog.column.id=id
++dvd.dialog.column.language=Sprache
++dvd.dialog.column.subtitle=Untertitel
++dvd.dialog.column.videoformat=Videoformat
++dvd.dialog.column.audioformat=Audioformat
++dvd.dialog.column.short =Abk.
++
++dvd.dialog.labeltable.language=W&#228;hlen Sie eine Sprache:
++dvd.dialog.labeltable.subtitle=W&#228;hlen Sie die Untertitel:
++dvd.dialog.labeltable.videoformat=W&#228;hlen Sie ein Videoformat:
++dvd.dialog.labeltable.audioformat=W&#228;hlen Sie ein Audioformat:
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2005-01-09 20:11:25 UTC (rev 256)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2005-01-09 20:27:37 UTC (rev 257)
+@@ -427,6 +427,79 @@
+ 
+ 	}
+ 
++	public static List getVideoformatExcept(final String filter, List videoformat) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getVideoformatExcept() - start. String filter= &quot; + filter);
++		}
++
++		//check if elements in list are Genre Objects
++		if (videoformat.size() &gt; 0) {
++			if (!(videoformat.get(0) instanceof VideoFormat)) {
++				logger.error(&quot;Elemente in Liste sind keine Videoformate&quot;);
++				return new ArrayList();
++			}
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(VideoFormat.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;name&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;shortname&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;videoFormatId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			logger.debug(&quot;Anzahl der Videoformate:&quot; + videoformat.size());
++			for (int i = 0; i &lt; videoformat.size(); i++) {
++			    VideoFormat tmp = (VideoFormat) videoformat.get(i);
++				criteria.add(Expression.not(Expression.eq(&quot;videoFormatId&quot;, tmp
++						.getVideoFormatId())));
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getVideoformatExcept() - Error while trying to do Transaction&quot;,
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getVideoformatExcept() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getVideoformatExcept() - end&quot;);
++		}
++		return returnlist;
++
++	}
++	
+ 	public static VideoFormat getSingleVideoFormat(final int id) {
+ 		if (logger.isDebugEnabled()) {
+ 			logger.debug(&quot;getSingleVideoFormat() - start. int filter= &quot; + id);
+@@ -531,6 +604,79 @@
+ 
+ 	}
+ 
++	public static List getAudioformatExcept(final String filter, List audioformat) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getAudioformatExcept() - start. String filter= &quot; + filter);
++		}
++
++		//check if elements in list are Genre Objects
++		if (audioformat.size() &gt; 0) {
++			if (!(audioformat.get(0) instanceof AudioFormat)) {
++				logger.error(&quot;Elemente in Liste sind keine Audioformate&quot;);
++				return new ArrayList();
++			}
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(AudioFormat.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;name&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;shortname&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;audioFormatId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			logger.debug(&quot;Anzahl der Audioformate:&quot; + audioformat.size());
++			for (int i = 0; i &lt; audioformat.size(); i++) {
++			    AudioFormat tmp = (AudioFormat) audioformat.get(i);
++				criteria.add(Expression.not(Expression.eq(&quot;audioFormatId&quot;, tmp
++						.getAudioFormatId())));
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getAudioformatExcept() - Error while trying to do Transaction&quot;,
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getAudioformatExcept() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getAudioformatExcept() - end&quot;);
++		}
++		return returnlist;
++
++	}
++	
+ 	/**
+ 	 * This method gets all Genres from the database.
+ 	 * searches for firstname or lastname or id
+@@ -713,6 +859,79 @@
+ 
+ 	}
+ 
++	public static List getLanguageExcept(final String filter, List language) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getAudioformatExcept() - start. String filter= &quot; + filter);
++		}
++
++		//check if elements in list are Genre Objects
++		if (language.size() &gt; 0) {
++			if (!(language.get(0) instanceof Language)) {
++				logger.error(&quot;Elemente in Liste sind keine Sprachen&quot;);
++				return new ArrayList();
++			}
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Language.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;name&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;shortname&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;languageId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			logger.debug(&quot;Anzahl der Sprachen:&quot; + language.size());
++			for (int i = 0; i &lt; language.size(); i++) {
++			    Language tmp = (Language) language.get(i);
++				criteria.add(Expression.not(Expression.eq(&quot;languageId&quot;, tmp
++						.getLanguageId())));
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getLanguageExcept() - Error while trying to do Transaction&quot;,
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getLanguageExcept() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getLanguageExcept() - end&quot;);
++		}
++		return returnlist;
++
++	}
++	
+ 	public static Language getSingleLanguage(final int id) {
+ 		if (logger.isDebugEnabled()) {
+ 			logger.debug(&quot;getSingleLanguage() - start. int filter= &quot; + id);
+@@ -935,6 +1154,79 @@
+ 
+ 	}
+ 
++	public static List getSubtitleExcept(final String filter, List subtitle) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSubtitleExcept() - start. String filter= &quot; + filter);
++		}
++
++		//check if elements in list are Genre Objects
++		if (subtitle.size() &gt; 0) {
++			if (!(subtitle.get(0) instanceof Subtitle)) {
++				logger.error(&quot;Elemente in Liste sind keine Untertitel&quot;);
++				return new ArrayList();
++			}
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Subtitle.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;name&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;shortname&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;subtitleId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			logger.debug(&quot;Anzahl der Untertitel:&quot; + subtitle.size());
++			for (int i = 0; i &lt; subtitle.size(); i++) {
++			    Subtitle tmp = (Subtitle) subtitle.get(i);
++				criteria.add(Expression.not(Expression.eq(&quot;subtitleId&quot;, tmp
++						.getSubtitleId())));
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getSubtitleExcept() - Error while trying to do Transaction&quot;,
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getSubtitleExcept() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSubtitleExcept() - end&quot;);
++		}
++		return returnlist;
++
++	}
++	
+ 	public static Subtitle getSingleSubtitle(final int id) {
+ 		if (logger.isDebugEnabled()) {
+ 			logger.debug(&quot;getSingleSubtitle() - start. int filter= &quot; + id);
+@@ -1939,7 +2231,6 @@
+ 		return returnobject;
+ 
+ 	}
+-
+ 	
+ 	/**
+ 	 * This method gets all PaymentCategory from the database.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000257.html">[Provirent-svn-commit] r256 - project_src/website
+</A></li>
+	<LI>Next message: <A HREF="000259.html">[Provirent-svn-commit] r258 - project_src/website
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#258">[ date ]</a>
+              <a href="thread.html#258">[ thread ]</a>
+              <a href="subject.html#258">[ subject ]</a>
+              <a href="author.html#258">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

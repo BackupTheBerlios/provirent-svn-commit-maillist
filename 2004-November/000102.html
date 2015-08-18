@@ -1,0 +1,1869 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r101 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r101%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200411091734.iA9HYvPK014120%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000101.html">
+   <LINK REL="Next"  HREF="000103.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r101 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r101%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200411091734.iA9HYvPK014120%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r101 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Tue Nov  9 18:34:57 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000101.html">[Provirent-svn-commit] r100 - project_src/provirent_hibernate
+</A></li>
+        <LI>Next message: <A HREF="000103.html">[Provirent-svn-commit] r102 - in project_src: clienttest/src provirent_hibernate/src/de/hsharz/provirent/managment/gui provirent_hibernate/src/de/hsharz/provirent/managment/gui/language provirent_hibernate/src/de/hsharz/provirent/persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#102">[ date ]</a>
+              <a href="thread.html#102">[ thread ]</a>
+              <a href="subject.html#102">[ subject ]</a>
+              <a href="author.html#102">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-11-09 18:34:40 +0100 (Tue, 09 Nov 2004)
+New Revision: 101
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeGenre.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeLanguage.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java	2004-11-09 17:33:29 UTC (rev 100)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java	2004-11-09 17:34:40 UTC (rev 101)
+@@ -404,7 +404,7 @@
+                 textVideoFormatSearch.setEditable(false);
+                 tableVideoFormat.setEnabled(false);
+ 
+-                mode_VideoFormat = ManagmentGui.MODE_ADD;
++                mode_VideoFormat = ManagementGui.MODE_ADD;
+ 
+             }
+         });
+@@ -415,7 +415,7 @@
+         buttonVideoFormatEdit.addSelectionListener(new SelectionAdapter() {
+             public void widgetSelected(SelectionEvent evt) {
+ 
+-                mode_VideoFormat = ManagmentGui.MODE_EDIT;
++                mode_VideoFormat = ManagementGui.MODE_EDIT;
+ 
+ 
+                 textVideoFormatID.setEditable(false);
+@@ -543,7 +543,7 @@
+                 
+                 //testen welcher mode
+                 
+-                if (mode_VideoFormat == ManagmentGui.MODE_ADD) {
++                if (mode_VideoFormat == ManagementGui.MODE_ADD) {
+                     
+                     /**
+                      * @todo eine Exception bekommen wieder leider NOCH nicht mit
+@@ -592,7 +592,7 @@
+                     //alle Buttons auf aktiv setzen
+                     setVideoGroupButtonSaveCancel();
+                     
+-                } else if (mode_VideoFormat == ManagmentGui.MODE_EDIT) {
++                } else if (mode_VideoFormat == ManagementGui.MODE_EDIT) {
+                     
+                     VideoFormat tmp = new VideoFormat(textVideoFormatName.getText(),
+                                     textVideoFormatShortname.getText());
+@@ -1067,7 +1067,7 @@
+         buttonVideoFormatDelete.setEnabled(true);
+ 
+         //Mode auf view setzen
+-        mode_VideoFormat = ManagmentGui.MODE_VIEW;
++        mode_VideoFormat = ManagementGui.MODE_VIEW;
+ 
+     }
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeGenre.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeGenre.java	2004-11-09 17:33:29 UTC (rev 100)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeGenre.java	2004-11-09 17:34:40 UTC (rev 101)
+@@ -1,22 +1,40 @@
+ package de.hsharz.provirent.managment.gui;
+ 
++import java.text.MessageFormat;
+ import java.util.Locale;
+ import java.util.PropertyResourceBundle;
+ import java.util.ResourceBundle;
+ 
+ import org.apache.log4j.Logger;
+ import org.eclipse.swt.SWT;
++import org.eclipse.swt.custom.SashForm;
++import org.eclipse.swt.events.FocusAdapter;
++import org.eclipse.swt.events.FocusEvent;
++import org.eclipse.swt.events.SelectionAdapter;
++import org.eclipse.swt.events.SelectionEvent;
++import org.eclipse.swt.layout.FormAttachment;
++import org.eclipse.swt.layout.FormData;
++import org.eclipse.swt.layout.FormLayout;
++import org.eclipse.swt.layout.GridData;
+ import org.eclipse.swt.layout.GridLayout;
+ import org.eclipse.swt.widgets.Button;
+ import org.eclipse.swt.widgets.Composite;
+ import org.eclipse.swt.widgets.Display;
++import org.eclipse.swt.widgets.Event;
++import org.eclipse.swt.widgets.Group;
++import org.eclipse.swt.widgets.Label;
++import org.eclipse.swt.widgets.Listener;
+ import org.eclipse.swt.widgets.Shell;
++import org.eclipse.swt.widgets.Table;
++import org.eclipse.swt.widgets.TableColumn;
++import org.eclipse.swt.widgets.TableItem;
++import org.eclipse.swt.widgets.Text;
+ 
++import com.cloudgarden.resource.SWTResourceManager;
+ 
+-import org.eclipse.swt.widgets.Group;
+-import org.eclipse.swt.layout.GridData;
+-import com.cloudgarden.resource.SWTResourceManager;
+-import org.eclipse.swt.widgets.Text;
++import de.hsharz.provirent.objects.Genre;
++import de.hsharz.provirent.persistence.DataBaseException;
++import de.hsharz.provirent.persistence.Database;
+ /**
+ * This code was generated using CloudGarden's Jigloo
+ * SWT/Swing GUI Builder, which is free for non-commercial
+@@ -50,7 +68,45 @@
+     private final static int MODE_VIEW = 0;
+ 
+     private final static int MODE_ADD = 1;
+-    private Text text1;
++    
++    private SashForm sashForm1;
++
++    private Group groupGenreOverview;
++
++    private Group groupGenreDetail;
++
++    private Label labelGenreId;
++
++    private Label labelGenreShortname;
++
++    private Text textGenreName;
++
++    private Label labelGenreName;
++
++    private Text textGenreID;
++    
++    private Button buttonGenreCancel;
++
++    private Button buttonGenreSave;
++
++    private Button buttonGenreFill;
++
++    private Button buttonGenreDelete;
++
++    private Button buttonGenreEdit;
++
++    private Button buttonGenreNew;
++
++    private Text textGenreShortname;
++
++    private Text textGenreSearch;
++
++    private Label labelGenreSearch;
++
++    private Table tableGenre;
++
++    private SashForm sashFormGenre;
++
+     private Group groupGenre;
+ 
+     private final static int MODE_EDIT = 2;
+@@ -60,6 +116,15 @@
+     private ResourceBundle l;
+     
+     private Composite parent;
++
++
++    private Composite composite2;
++
++
++    protected int mode_Genre;
++
++
++    private TableColumn tableColumn;
+     
+     /*
+      * &#196;ndert die Sprache aller Elemente
+@@ -120,44 +185,733 @@
+ 	}
+ 
+ 	private void initGUI() {
+-        if (logger.isDebugEnabled()) {
++	    if (logger.isDebugEnabled()) {
+             logger.debug(&quot;initGUI() - start&quot;);
+         }
+ 
+         this.setLayout(new GridLayout());
+         this.setSize(816, 540);
+         {
+-            groupGenre = new Group(this, SWT.NONE);
+-            GridLayout groupGenreLayout = new GridLayout();
+-            GridData groupGenreLData = new GridData();
+-            groupGenreLData.grabExcessHorizontalSpace = true;
+-            groupGenreLData.grabExcessVerticalSpace = true;
+-            groupGenreLData.horizontalAlignment = GridData.FILL;
+-            groupGenreLData.verticalAlignment = GridData.FILL;
+-            groupGenre.setLayoutData(groupGenreLData);
+-            groupGenreLayout.makeColumnsEqualWidth = true;
+-            groupGenre.setLayout(groupGenreLayout);
+-            groupGenre.setText(&quot;Genre&quot;);
++            sashForm1 = new SashForm(this, SWT.VERTICAL | SWT.V_SCROLL);
++            GridData sashForm1LData1 = new GridData();
++            sashForm1LData1.grabExcessHorizontalSpace = true;
++            sashForm1LData1.horizontalAlignment = GridData.FILL;
++            sashForm1LData1.grabExcessVerticalSpace = true;
++            sashForm1LData1.verticalAlignment = GridData.FILL;
++            sashForm1.setLayoutData(sashForm1LData1);
++
++            initGenreGroup();
++
++        }
++        this.layout();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - end&quot;);
++        }
++    } 
++	
++	/**
++     * 
++     */
++    private void initGenreGroup() {
++        {
++            //init a group for the Genre
++            groupGenre = new Group(sashForm1, SWT.NONE);
++            GridLayout group2Layout = new GridLayout();
++            group2Layout.makeColumnsEqualWidth = true;
++            groupGenre.setText(l.getString(&quot;Genre.group.label&quot;));
++            groupGenre.setSize(758, 284);
++            FormData group2LData = new FormData();
++            groupGenre.addFocusListener(new FocusAdapter() {
++                public void focusLost(FocusEvent evt) {
++                    System.out.println(&quot;groupGenre.focusLost, event=&quot;
++                        + evt);
++                    buttonGenreCancel.setEnabled(false);
++                    buttonGenreDelete.setEnabled(false);
++                    buttonGenreEdit.setEnabled(false);
++                    buttonGenreNew.setEnabled(false);
++                    buttonGenreSave.setEnabled(false);
++                    //TODO add your code for groupGenre.focusLost
++                }
++            });
++            groupGenre.setLayout(group2Layout);
++            groupGenre.setLayoutData(group2LData);
+             {
+-                text1 = new Text(groupGenre, SWT.MULTI | SWT.WRAP);
+-                text1.setText(&quot;text1&quot;);
+-                GridData text1LData = new GridData();
+-                text1.setBackground(SWTResourceManager.getColor(150, 50, 0));
+-                text1LData.widthHint = 336;
+-                text1LData.heightHint = 173;
+-                text1.setLayoutData(text1LData);
++                sashFormGenre = new SashForm(groupGenre, SWT.NONE);
++                FormLayout sashForm2Layout = new FormLayout();
++                sashFormGenre.setSize(748, 300);
++                GridData sashForm2LData = new GridData();
++                sashFormGenre.setLayout(sashForm2Layout);
++                sashForm2LData.verticalAlignment = GridData.FILL;
++                sashForm2LData.horizontalAlignment = GridData.FILL;
++                sashForm2LData.grabExcessHorizontalSpace = true;
++                sashForm2LData.grabExcessVerticalSpace = true;
++                sashFormGenre.setLayoutData(sashForm2LData);
++
++                //init die Gruppe f&#252;r Genree &#220;berblick
++                initGenreGroupOverview();
++                //init die Detailansicht
++                initGenreGroupDetail();
++
+             }
+         }
+ 
+-        this.layout();
++	}
+ 
++    /**
++     * 
++     */
++    private void initGenreGroupDetail() {
++        groupGenreDetail = new Group(sashFormGenre, SWT.NONE);
++        GridLayout groupGenreDetailLayout = new GridLayout();
++        groupGenreDetailLayout.marginHeight = 25;
++        groupGenreDetailLayout.numColumns = 6;
++        groupGenreDetailLayout.verticalSpacing = 15;
++        groupGenreDetail.setText(l
++                .getString(&quot;Genre.groupdetail.label&quot;));
++        FormData formData = new FormData();
++        groupGenreDetail.setLayout(groupGenreDetailLayout);
++        formData.right = new FormAttachment(100, 100, -5);
++        formData.top = new FormAttachment(0, 100, 5);
++        formData.bottom = new FormAttachment(100, 100, -5);
++        groupGenreDetail.setLayoutData(formData);
++        {
++            labelGenreId = new Label(groupGenreDetail, SWT.NONE);
++            labelGenreId.setText(l
++                    .getString(&quot;Genre.groupdetail.idlabel&quot;)
++                    + &quot;:&quot;);
++            labelGenreId.setSize(125, 15);
++            GridData formData2 = new GridData();
++            formData2.widthHint = 125;
++            formData2.heightHint = 15;
++            formData2.horizontalSpan = 2;
++            labelGenreId.setLayoutData(formData2);
++        }
++        {
++            textGenreID = new Text(groupGenreDetail, SWT.READ_ONLY
++                    | SWT.BORDER);
++            GridData text1LData1 = new GridData();
++            text1LData1.horizontalAlignment = GridData.FILL;
++            text1LData1.heightHint = 13;
++            text1LData1.horizontalSpan = 4;
++            text1LData1.grabExcessHorizontalSpace = true;
++            textGenreID.setLayoutData(text1LData1);
++        }
++        {
++            labelGenreName = new Label(groupGenreDetail, SWT.NONE);
++            labelGenreName.setText(l
++                    .getString(&quot;Genre.groupdetail.namelabel&quot;)
++                    + &quot;:&quot;);
++            labelGenreName.setSize(125, 15);
++            GridData labelGenreNameLData = new GridData();
++            labelGenreNameLData.widthHint = 125;
++            labelGenreNameLData.heightHint = 15;
++            labelGenreNameLData.horizontalSpan = 2;
++            labelGenreName.setLayoutData(labelGenreNameLData);
++        }
++        {
++            textGenreName = new Text(groupGenreDetail,
++                    SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData2 = new GridData();
++            text1LData2.horizontalAlignment = GridData.FILL;
++            text1LData2.heightHint = 13;
++            text1LData2.horizontalSpan = 4;
++            text1LData2.grabExcessHorizontalSpace = true;
++            textGenreName.setLayoutData(text1LData2);
++        }
++        {
++            labelGenreShortname = new Label(groupGenreDetail,
++                    SWT.NONE);
++            labelGenreShortname.setText(l
++                    .getString(&quot;Genre.groupdetail.shortcutlabel&quot;)
++                    + &quot;:&quot;);
++            labelGenreShortname.setSize(125, 15);
++            GridData label1LData1 = new GridData();
++            label1LData1.widthHint = 125;
++            label1LData1.heightHint = 15;
++            label1LData1.horizontalSpan = 2;
++            labelGenreShortname.setLayoutData(label1LData1);
++        }
++        {
++            textGenreShortname = new Text(groupGenreDetail,
++                    SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData3 = new GridData();
++            text1LData3.horizontalAlignment = GridData.FILL;
++            text1LData3.heightHint = 13;
++            text1LData3.horizontalSpan = 4;
++            text1LData3.grabExcessHorizontalSpace = true;
++            textGenreShortname.setLayoutData(text1LData3);
++        }
++        {
+ 
++            //die Buttons bekommen ein eigenes Composite
++            composite2 = new Composite(groupGenreDetail, SWT.EMBEDDED);
++            GridLayout composite2Layout = new GridLayout();
++            composite2Layout.numColumns = 6;
++            GridData composite2LData = new GridData();
++            composite2.setLayout(composite2Layout);
++            composite2LData.verticalAlignment = GridData.END;
++            composite2LData.horizontalAlignment = GridData.CENTER;
++            composite2LData.widthHint = 391;
++            composite2LData.horizontalSpan = 6;
++            composite2LData.grabExcessHorizontalSpace = true;
++            composite2LData.grabExcessVerticalSpace = true;
++            composite2LData.heightHint = 35;
++            composite2.setLayoutData(composite2LData);
++
++            //init all the Buttons
++            initGenreDetailButtons();
++
++        }
++
+         
++    }
++
++    /**
++     * 
++     */
++    private void initGenreDetailButtons() {
++        buttonGenreNew = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonGenreNew.setText(l.getString(&quot;button.new&quot;));
++        buttonGenreNew.addSelectionListener(new SelectionAdapter() {
++            
++
++            public void widgetSelected(SelectionEvent evt) {
++
++                textGenreID.setText(&quot;&quot;);
++                textGenreName.setText(&quot;&quot;);
++                textGenreShortname.setText(&quot;&quot;);
++                
++
++                textGenreName.setEditable(true);
++                textGenreShortname.setEditable(true);
++                buttonGenreCancel.setEnabled(true);
++                buttonGenreSave.setEnabled(true);
++                buttonGenreNew.setEnabled(false);
++                buttonGenreEdit.setEnabled(false);
++                buttonGenreDelete.setEnabled(false);
++                
++                textGenreSearch.setEditable(false);
++                tableGenre.setEnabled(false);
++
++                mode_Genre = ManagementGui.MODE_ADD;
++
++            }
++        });
++
++        buttonGenreEdit = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonGenreEdit.setText(l.getString(&quot;button.edit&quot;));
++        buttonGenreEdit.setEnabled(false);
++        buttonGenreEdit.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++
++                mode_Genre = ManagementGui.MODE_EDIT;
++
++
++                textGenreID.setEditable(false);
++
++                textGenreName.setEditable(true);
++                textGenreName.setFocus();
++                textGenreShortname.setEditable(true);
++                buttonGenreCancel.setEnabled(true);
++                buttonGenreSave.setEnabled(true);
++                buttonGenreNew.setEnabled(false);
++                buttonGenreEdit.setEnabled(false);
++                buttonGenreDelete.setEnabled(false);
++
++
++                tableGenre.setEnabled(false);
++                textGenreSearch.setEnabled(false);
++                
++
++            }
++        });
++
++        buttonGenreDelete = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonGenreDelete.setText(l.getString(&quot;button.delete&quot;));
++        buttonGenreDelete.setEnabled(false);
++        buttonGenreDelete.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonGenreDelete.widgetSelected, event=&quot;
++                                + evt);
++                
++                
++               String msg = MessageFormat.format(
++                       l.getString(&quot;Genre.groupdetail.deletebutton.question.text&quot;),
++                               new Object[]{textGenreName.getText()+&quot; &quot;+textGenreShortname.getText()});
++                
++               int question = showMsg(msg,
++                       l.getString(&quot;Genre.groupdetail.deletebutton.question.header&quot;), 
++                       SWT.ICON_QUESTION | SWT.YES | SWT.NO);
++               
++               if (question != SWT.YES){
++                   return;
++               }
++                
++                Genre o = new Genre();
++                o.setGenreId(new Integer(Integer.parseInt(textGenreID.getText())));
++                o.setName(textGenreName.getText());
++                o.setShortname(textGenreShortname.getText());
++                
++                try {
++                    //object speichern
++                    // Fehlerbehandlung
++                    Database.deleteObject(o);
++
++                    //&#220;bersichtsTabelle aktualisieren
++                    refreshGenreTable(textGenreSearch.getText());
++                    
++                    //Detailansicht leeren
++                    textGenreID.setText(&quot;&quot;);
++                    textGenreName.setText(&quot;&quot;);
++                    textGenreShortname.setText(&quot;&quot;);
++                    
++                    //in Tabelle n&#228;chsten ausw&#228;hlen
++                    try {
++                        tableGenre.select(0);
++                    } catch (Exception ex) {}
++                    
++                    //Statusline Nachricht sezten
++                    statusLine.setStatus(1,l.getString(&quot;Genre.groupdetail.deletebutton.newok&quot;));
++
++                } catch (DataBaseException e) {
++                    if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                        //Fehler beim Speichern des Objectes
++
++                        statusLine.setStatus(3,l.getString(&quot;Genre.groupdetail.deletebutton.errorsave&quot;));
++                        showMsg(l.getString(&quot;Genre.groupdetail.deletebutton.errorsave&quot;),
++                                l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                        //fehler beim db aufbau
++                        statusLine.setStatus(3,l.getString(&quot;Genre.groupdetail.deletebutton.errordb&quot;));
++                        showMsg(l.getString(&quot;Genre.groupdetail.deletebutton.errordb&quot;),
++                                l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else {
++                        //@todo
++                        e.printStackTrace();
++                    }
++                    
++                }                
++                
++
++                }
++
++            }
++        );
++
++        //leerer nicht sichtbarer Button
++        buttonGenreFill = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        GridData buttonGenreFillLData = new GridData();
++        buttonGenreFill.setVisible(false);
++        buttonGenreFill.setEnabled(false);
++        buttonGenreFillLData.widthHint = 30;
++        buttonGenreFillLData.heightHint = 23;
++        buttonGenreFill.setLayoutData(buttonGenreFillLData);
++
++        buttonGenreSave = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonGenreSave.setText(l.getString(&quot;button.save&quot;));
++        buttonGenreSave.setEnabled(false);
++        buttonGenreSave.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonGenreSave.widgetSelected, event=&quot;
++                                + evt);
++
++                
++                //testen ob Name leer ist
++                if (textGenreName.getText().trim().equalsIgnoreCase(&quot;&quot;)) {
++                    
++                    showMsg(l.getString(&quot;Genre.groupdetail.savebutton.warn.noname.msg&quot;),
++                            l.getString(&quot;Genre.groupdetail.savebutton.warn.noname.title&quot;),
++                            SWT.ICON_WARNING | SWT.YES);
++
++                    	return;
++                }
++                
++                //testen welcher mode
++                
++                if (mode_Genre == ManagementGui.MODE_ADD) {
++                    
++                    /**
++                     * @todo eine Exception bekommen wieder leider NOCH nicht mit
++                     * d.h. es muss noch ein r&#252;ckgabewert kommen oder eine Exception 
++                     * &#252;bermitteln werden (aus der DB Klasse)
++                     */
++                    //neues Objekt erzeugen
++                    Genre tmp = new Genre(textGenreName.getText(),
++                            textGenreShortname.getText());
++                    
++                    try {
++                        //object speichern
++                        // Fehlerbehandlung
++                        Object o = Database.saveObject(
++                                new Genre(textGenreName.getText(),
++                                        textGenreShortname.getText()));
++                        
++                        // in &#220;bersichtstabelle einf&#252;gen
++                        insertIntoGenreTable((Genre)o);
++                        textGenreID.setText( ((Genre)o).getGenreId()+&quot;&quot; );
++                        
++                        
++                        //Statusline Nachricht sezten
++                        statusLine.setStatus(1,l.getString(&quot;Genre.groupdetail.savebutton.newok&quot;));
++
++                    } catch (DataBaseException e) {
++                        if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                            //Fehler beim Speichern des Objectes
++
++                            statusLine.setStatus(3,l.getString(&quot;Genre.groupdetail.savebutton.errorsave&quot;));
++                            showMsg(l.getString(&quot;Genre.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                            //fehler beim db aufbau
++                            statusLine.setStatus(3,l.getString(&quot;Genre.groupdetail.savebutton.errordb&quot;));
++                            showMsg(l.getString(&quot;Genre.groupdetail.savebutton.errordb&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else {
++                            //@todo
++                            e.printStackTrace();
++                        }
++                        
++                    }
++                    
++                    
++                    //alle Buttons auf aktiv setzen
++                    setGenreGroupButtonSaveCancel();
++                    
++                } else if (mode_Genre == ManagementGui.MODE_EDIT) {
++                    
++                    Genre tmp = new Genre(textGenreName.getText(),
++                                    textGenreShortname.getText());
++        		tmp.setGenreId( new Integer (Integer.parseInt(textGenreID.getText())) );
++                try {
++                    //object speichern
++                    // Fehlerbehandlung
++                    Database.saveObject(tmp);
++                    //&#220;bersichtstabelle aktualisieren
++                    refreshGenreTable(textGenreSearch.getText());
++                    
++                    //Statusline Nachricht sezten
++                    statusLine.setStatus(1,l.getString(&quot;Genre.groupdetail.savebutton.editok&quot;));
++                   
++
++                } catch (DataBaseException e) {
++                    if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                        //Fehler beim Speichern des Objectes
++
++                        statusLine.setStatus(3,l.getString(&quot;Genre.groupdetail.savebutton.errorsave&quot;));
++                        showMsg(l.getString(&quot;Genre.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                        //fehler beim db aufbau
++                        statusLine.setStatus(3,l.getString(&quot;Genre.groupdetail.savebutton.errordb&quot;));
++                        showMsg(l.getString(&quot;Genre.groupdetail.savebutton.errordb&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else {
++                        //@todo
++                        e.printStackTrace();
++                    }
++                    
++                }
++                    
++ 
++                    //alle Buttons auf aktiv setzen
++                    setGenreGroupButtonSaveCancel();
++                    
++                }
++                
++                
++                
++                /**
++                 * @todo Exception werfen, da nur die zwei Modes sein d&#252;rfen
++                 */
++                
++            }
++        });
++
++        buttonGenreCancel = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonGenreCancel.setText(l.getString(&quot;button.cancel&quot;));
++        buttonGenreCancel.setEnabled(false);
++        buttonGenreCancel.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonGenreCancel.widgetSelected, event=&quot;
++                                + evt);
++                setGenreGroupButtonSaveCancel();
++            }
++        });
++
++        
++    }
++
++    /**
++     * 
++     */
++    protected void setGenreGroupButtonSaveCancel() {
++        buttonGenreSave.setEnabled(false);
++        buttonGenreCancel.setEnabled(false);
++        buttonGenreEdit.setEnabled(true);
++        buttonGenreNew.setEnabled(true);
++        buttonGenreDelete.setEnabled(true);
++        textGenreName.setEditable(false);
++        textGenreShortname.setEditable(false);
++        textGenreSearch.setEditable(true);
++
++        // GenreTabelle aktivieren
++        tableGenre.setEnabled(true);
++
++        //GenreSearch aktivieren
++        textGenreSearch.setEnabled(true);
++        
++    }
++
++    /**
++     * @param genre
++     */
++    protected void insertIntoGenreTable(Genre genre) {
++        TableItem item = new TableItem(tableGenre, SWT.NONE);
++        item.setText(new String[] { genre.getGenreId() + &quot;&quot;, genre.getName(),
++                genre.getShortname() });
++        
++    }
++
++    /**
++     * @param text
++     */
++    protected void refreshGenreTable(final String filter) {
++        if (tableGenre == null) {
++            System.out
++                    .println(&quot;Konnte Genretable nicht refreshen, da diese null ist!&quot;);
++            return;
++        }
++        System.out.println(&quot;Versuche nun VideoListe zu refreshen. Filter: &quot;
++                + filter);
++        tableGenre.removeAll();
++        TableItem item;
++        java.util.List Genrelist = Database.getGenre(filter);
++
++        for (int i = 0; i &lt; Genrelist.size(); i++) {
++
++            Genre o = (Genre) Genrelist.get(i);
++            item = new TableItem(tableGenre, SWT.NONE);
++            item.setText(new String[] { o.getGenreId() + &quot;&quot;, o.getName(),
++                    o.getShortname() });
++
++        }
++
++        
++    }
++
++    /**
++     * 
++     */
++    private void initGenreGroupOverview() {
+         if (logger.isDebugEnabled()) {
+-            logger.debug(&quot;initGUI() - end&quot;);
++            logger.debug(&quot;initGenreGroupOverview() - start&quot;);
+         }
+-	}
+ 
++        groupGenreOverview = new Group(sashFormGenre, SWT.NONE);
++        GridLayout group5Layout = new GridLayout();
++        group5Layout.numColumns = 8;
++        groupGenreOverview.setText(l
++                .getString(&quot;Genre.groupoverview.label&quot;));
++        FormData group5LData = new FormData();
++        groupGenreOverview.setLayout(group5Layout);
++        group5LData.left = new FormAttachment(0, 100, 0);
++        group5LData.top = new FormAttachment(0, 100, 0);
++        groupGenreOverview.setLayoutData(group5LData);
++
++        //Tabelle anzeigen
++        initTableGenre();
++        //Suche darunter anzeigen
++        initGenreSearch();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGenreGroupOverview() - end&quot;);
++        }
++        
++    }
++
++    /**
++     * 
++     */
++    private void initGenreSearch() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGenreSearch() - start&quot;);
++        }
++
++        //label f&#252;r die Suche
++        labelGenreSearch = new Label(groupGenreOverview, SWT.NONE);
++        labelGenreSearch.setText(l
++                .getString(&quot;Genre.groupoverview.searchlabel&quot;)
++                + &quot;:&quot;);
++        GridData label2LData = new GridData();
++        label2LData.horizontalSpan = 3;
++        labelGenreSearch.setLayoutData(label2LData);
++
++        //das Suchfeld
++        textGenreSearch = new Text(groupGenreOverview, SWT.BORDER);
++        GridData text2LData = new GridData();
++        textGenreSearch.addFocusListener(new FocusAdapter() {
++            public void focusLost(FocusEvent evt) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;focusLost(FocusEvent evt = &quot; + evt + &quot; &quot;
++                            + textGenreSearch.getText() + &quot;) - start&quot;);
++                }
++
++                refreshGenreTable(textGenreSearch.getText());
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;focusLost(FocusEvent) - end&quot;);
++                }
++            }
++        });
++
++        textGenreSearch.addListener(SWT.DefaultSelection, new Listener() {
++            public void handleEvent(Event e) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;handleEvent(Event e = &quot; + e + &quot; &quot;
++                            + textGenreSearch.getText() + &quot;) - start&quot;);
++                }
++
++                refreshGenreTable(textGenreSearch.getText());
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;handleEvent(Event) - end&quot;);
++                }
++            }
++        });
++
++        text2LData.horizontalAlignment = GridData.FILL;
++        text2LData.horizontalSpan = 5;
++        text2LData.grabExcessHorizontalSpace = true;
++        textGenreSearch.setLayoutData(text2LData);
++
++
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGenreSearch() - end&quot;);
++        }
++        
++    }
++
++    /**
++     * 
++     */
++    private void initTableGenre() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initTableGenre() - start&quot;);
++        }
++
++        tableGenre = new Table(groupGenreOverview, SWT.SINGLE
++                | SWT.FULL_SELECTION | SWT.V_SCROLL | SWT.BORDER);
++        tableGenre.setHeaderVisible(true);
++        tableGenre.setLinesVisible(true);
++        GridData table2LData = new GridData();
++        tableGenre.addFocusListener(new FocusAdapter() {
++            public void focusLost(FocusEvent evt) {
++                System.out.println(&quot;tableGenre.focusLost, event=&quot; + evt);
++                //TODO add your code for tableGenre.focusLost
++            }
++            public void focusGained(FocusEvent evt) {
++                System.out
++                    .println(&quot;tableGenre.focusGained, event=&quot; + evt);
++                //TODO add your code for tableGenre.focusGained
++            }
++        });
++        tableGenre.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;widgetSelected(SelectionEvent evt = &quot;
++                        + evt
++                        + &quot;) - start&quot;);
++                }
++
++                int index = tableGenre.getSelectionIndex();
++
++                System.out.println(&quot;Table select. id: &quot;
++                    + index
++                    + &quot; TableItem:&quot;
++                    + tableGenre.getItem(index)
++                    + &quot; id: &quot;
++                    + tableGenre.getItem(index).getText(0));
++
++                //es wurde ein Element aus Tabelle ausgewaehlt jetzt muss die
++                //Detailansicht aktualisiert werden
++                refreshGenreDetail(tableGenre.getItem(index)
++                    .getText(0));
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;widgetSelected(SelectionEvent) - end&quot;);
++                }
++            }
++        });
++        table2LData.verticalAlignment = GridData.FILL;
++        table2LData.horizontalAlignment = GridData.FILL;
++        table2LData.horizontalSpan = 8;
++        table2LData.grabExcessHorizontalSpace = true;
++        table2LData.grabExcessVerticalSpace = true;
++        tableGenre.setLayoutData(table2LData);
++
++        //einzelne Spalten hinzuf&#252;gen
++        tableColumn = new TableColumn(tableGenre, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Genre.groupoverview.columnid&quot;));
++        tableColumn.setWidth(50);
++
++        tableColumn = new TableColumn(tableGenre, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Genre.groupoverview.columnname&quot;));
++        tableColumn.setWidth(200);
++
++        tableColumn = new TableColumn(tableGenre, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Genre.groupoverview.columnshortname&quot;));
++        tableColumn.setWidth(75);
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initTableGenre() - end&quot;);
++        }
++        
++    }
++
++    /**
++     * @param text
++     */
++    protected void refreshGenreDetail(final String id) {
++        Genre object;
++        try {
++            //since we only can get a String value from the table, we
++            //need to convert this
++            object = Database.getSingleGenre(Integer.parseInt(id));
++
++            if (object == null) {
++
++                /*
++                 * 
++                 * @TODO Statusbar aktualiseren
++                 */
++                return;
++            }
++        } catch (Exception e) {
++            // TODO: handle exception
++            //id ist keine Zahl
++            return;
++        }
++
++        textGenreID.setText(object.getGenreId() + &quot;&quot;);
++        textGenreName.setText(object.getName());
++        textGenreShortname.setText(object.getShortname());
++
++        //Buttons zum l&#246;schen und editieren aktivieren
++        buttonGenreEdit.setEnabled(true);
++        buttonGenreDelete.setEnabled(true);
++
++        //Mode auf view setzen
++        mode_Genre = ManagementGui.MODE_VIEW;
++        
++    }
++
+ 	
+ 
+ }
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeLanguage.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeLanguage.java	2004-11-09 17:33:29 UTC (rev 100)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeLanguage.java	2004-11-09 17:34:40 UTC (rev 101)
+@@ -1,22 +1,40 @@
+ package de.hsharz.provirent.managment.gui;
+ 
++import java.text.MessageFormat;
+ import java.util.Locale;
+ import java.util.PropertyResourceBundle;
+ import java.util.ResourceBundle;
+ 
+ import org.apache.log4j.Logger;
+ import org.eclipse.swt.SWT;
++import org.eclipse.swt.custom.SashForm;
++import org.eclipse.swt.events.FocusAdapter;
++import org.eclipse.swt.events.FocusEvent;
++import org.eclipse.swt.events.SelectionAdapter;
++import org.eclipse.swt.events.SelectionEvent;
++import org.eclipse.swt.layout.FormAttachment;
++import org.eclipse.swt.layout.FormData;
++import org.eclipse.swt.layout.FormLayout;
++import org.eclipse.swt.layout.GridData;
+ import org.eclipse.swt.layout.GridLayout;
+ import org.eclipse.swt.widgets.Button;
+ import org.eclipse.swt.widgets.Composite;
+ import org.eclipse.swt.widgets.Display;
++import org.eclipse.swt.widgets.Event;
++import org.eclipse.swt.widgets.Group;
++import org.eclipse.swt.widgets.Label;
++import org.eclipse.swt.widgets.Listener;
+ import org.eclipse.swt.widgets.Shell;
++import org.eclipse.swt.widgets.Table;
++import org.eclipse.swt.widgets.TableColumn;
++import org.eclipse.swt.widgets.TableItem;
++import org.eclipse.swt.widgets.Text;
+ 
++import com.cloudgarden.resource.SWTResourceManager;
+ 
+-import org.eclipse.swt.widgets.Group;
+-import org.eclipse.swt.layout.GridData;
+-import com.cloudgarden.resource.SWTResourceManager;
+-import org.eclipse.swt.widgets.Text;
++import de.hsharz.provirent.objects.Language;
++import de.hsharz.provirent.persistence.DataBaseException;
++import de.hsharz.provirent.persistence.Database;
+ /**
+ * This code was generated using CloudGarden's Jigloo
+ * SWT/Swing GUI Builder, which is free for non-commercial
+@@ -50,7 +68,45 @@
+     private final static int MODE_VIEW = 0;
+ 
+     private final static int MODE_ADD = 1;
+-    private Text text1;
++    
++    private SashForm sashForm1;
++
++    private Group groupLanguageOverview;
++
++    private Group groupLanguageDetail;
++
++    private Label labelLanguageId;
++
++    private Label labelLanguageShortname;
++
++    private Text textLanguageName;
++
++    private Label labelLanguageName;
++
++    private Text textLanguageID;
++    
++    private Button buttonLanguageCancel;
++
++    private Button buttonLanguageSave;
++
++    private Button buttonLanguageFill;
++
++    private Button buttonLanguageDelete;
++
++    private Button buttonLanguageEdit;
++
++    private Button buttonLanguageNew;
++
++    private Text textLanguageShortname;
++
++    private Text textLanguageSearch;
++
++    private Label labelLanguageSearch;
++
++    private Table tableLanguage;
++
++    private SashForm sashFormLanguage;
++
+     private Group groupLanguage;
+ 
+     private final static int MODE_EDIT = 2;
+@@ -60,6 +116,15 @@
+     private ResourceBundle l;
+     
+     private Composite parent;
++
++
++    private Composite composite2;
++
++
++    protected int mode_Language;
++
++
++    private TableColumn tableColumn;
+     
+     /*
+      * &#196;ndert die Sprache aller Elemente
+@@ -77,7 +142,7 @@
+     public void initLanguage(Locale locale) {
+ 
+         l = PropertyResourceBundle.getBundle(
+-                &quot;de.hsharz.provirent.managment.gui.language.language&quot;, locale);
++                &quot;de.hsharz.provirent.managment.gui.language.Language&quot;, locale);
+ 
+     }
+     
+@@ -120,44 +185,733 @@
+ 	}
+ 
+ 	private void initGUI() {
+-        if (logger.isDebugEnabled()) {
++	    if (logger.isDebugEnabled()) {
+             logger.debug(&quot;initGUI() - start&quot;);
+         }
+ 
+         this.setLayout(new GridLayout());
+         this.setSize(816, 540);
+         {
+-            groupLanguage = new Group(this, SWT.NONE);
+-            GridLayout groupLanguageLayout = new GridLayout();
+-            GridData groupLanguageLData = new GridData();
+-            groupLanguageLData.grabExcessHorizontalSpace = true;
+-            groupLanguageLData.grabExcessVerticalSpace = true;
+-            groupLanguageLData.horizontalAlignment = GridData.FILL;
+-            groupLanguageLData.verticalAlignment = GridData.FILL;
+-            groupLanguage.setLayoutData(groupLanguageLData);
+-            groupLanguageLayout.makeColumnsEqualWidth = true;
+-            groupLanguage.setLayout(groupLanguageLayout);
+-            groupLanguage.setText(&quot;Language&quot;);
++            sashForm1 = new SashForm(this, SWT.VERTICAL | SWT.V_SCROLL);
++            GridData sashForm1LData1 = new GridData();
++            sashForm1LData1.grabExcessHorizontalSpace = true;
++            sashForm1LData1.horizontalAlignment = GridData.FILL;
++            sashForm1LData1.grabExcessVerticalSpace = true;
++            sashForm1LData1.verticalAlignment = GridData.FILL;
++            sashForm1.setLayoutData(sashForm1LData1);
++
++            initLanguageGroup();
++
++        }
++        this.layout();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - end&quot;);
++        }
++    } 
++	
++	/**
++     * 
++     */
++    private void initLanguageGroup() {
++        {
++            //init a group for the Language
++            groupLanguage = new Group(sashForm1, SWT.NONE);
++            GridLayout group2Layout = new GridLayout();
++            group2Layout.makeColumnsEqualWidth = true;
++            groupLanguage.setText(l.getString(&quot;Language.group.label&quot;));
++            groupLanguage.setSize(758, 284);
++            FormData group2LData = new FormData();
++            groupLanguage.addFocusListener(new FocusAdapter() {
++                public void focusLost(FocusEvent evt) {
++                    System.out.println(&quot;groupLanguage.focusLost, event=&quot;
++                        + evt);
++                    buttonLanguageCancel.setEnabled(false);
++                    buttonLanguageDelete.setEnabled(false);
++                    buttonLanguageEdit.setEnabled(false);
++                    buttonLanguageNew.setEnabled(false);
++                    buttonLanguageSave.setEnabled(false);
++                    //TODO add your code for groupLanguage.focusLost
++                }
++            });
++            groupLanguage.setLayout(group2Layout);
++            groupLanguage.setLayoutData(group2LData);
+             {
+-                text1 = new Text(groupLanguage, SWT.MULTI | SWT.WRAP);
+-                text1.setText(&quot;text1&quot;);
+-                GridData text1LData = new GridData();
+-                text1.setBackground(SWTResourceManager.getColor(150, 255, 50));
+-                text1LData.widthHint = 336;
+-                text1LData.heightHint = 173;
+-                text1.setLayoutData(text1LData);
++                sashFormLanguage = new SashForm(groupLanguage, SWT.NONE);
++                FormLayout sashForm2Layout = new FormLayout();
++                sashFormLanguage.setSize(748, 300);
++                GridData sashForm2LData = new GridData();
++                sashFormLanguage.setLayout(sashForm2Layout);
++                sashForm2LData.verticalAlignment = GridData.FILL;
++                sashForm2LData.horizontalAlignment = GridData.FILL;
++                sashForm2LData.grabExcessHorizontalSpace = true;
++                sashForm2LData.grabExcessVerticalSpace = true;
++                sashFormLanguage.setLayoutData(sashForm2LData);
++
++                //init die Gruppe f&#252;r Languagee &#220;berblick
++                initLanguageGroupOverview();
++                //init die Detailansicht
++                initLanguageGroupDetail();
++
+             }
+         }
+ 
+-        this.layout();
++	}
+ 
++    /**
++     * 
++     */
++    private void initLanguageGroupDetail() {
++        groupLanguageDetail = new Group(sashFormLanguage, SWT.NONE);
++        GridLayout groupLanguageDetailLayout = new GridLayout();
++        groupLanguageDetailLayout.marginHeight = 25;
++        groupLanguageDetailLayout.numColumns = 6;
++        groupLanguageDetailLayout.verticalSpacing = 15;
++        groupLanguageDetail.setText(l
++                .getString(&quot;Language.groupdetail.label&quot;));
++        FormData formData = new FormData();
++        groupLanguageDetail.setLayout(groupLanguageDetailLayout);
++        formData.right = new FormAttachment(100, 100, -5);
++        formData.top = new FormAttachment(0, 100, 5);
++        formData.bottom = new FormAttachment(100, 100, -5);
++        groupLanguageDetail.setLayoutData(formData);
++        {
++            labelLanguageId = new Label(groupLanguageDetail, SWT.NONE);
++            labelLanguageId.setText(l
++                    .getString(&quot;Language.groupdetail.idlabel&quot;)
++                    + &quot;:&quot;);
++            labelLanguageId.setSize(125, 15);
++            GridData formData2 = new GridData();
++            formData2.widthHint = 125;
++            formData2.heightHint = 15;
++            formData2.horizontalSpan = 2;
++            labelLanguageId.setLayoutData(formData2);
++        }
++        {
++            textLanguageID = new Text(groupLanguageDetail, SWT.READ_ONLY
++                    | SWT.BORDER);
++            GridData text1LData1 = new GridData();
++            text1LData1.horizontalAlignment = GridData.FILL;
++            text1LData1.heightHint = 13;
++            text1LData1.horizontalSpan = 4;
++            text1LData1.grabExcessHorizontalSpace = true;
++            textLanguageID.setLayoutData(text1LData1);
++        }
++        {
++            labelLanguageName = new Label(groupLanguageDetail, SWT.NONE);
++            labelLanguageName.setText(l
++                    .getString(&quot;Language.groupdetail.namelabel&quot;)
++                    + &quot;:&quot;);
++            labelLanguageName.setSize(125, 15);
++            GridData labelLanguageNameLData = new GridData();
++            labelLanguageNameLData.widthHint = 125;
++            labelLanguageNameLData.heightHint = 15;
++            labelLanguageNameLData.horizontalSpan = 2;
++            labelLanguageName.setLayoutData(labelLanguageNameLData);
++        }
++        {
++            textLanguageName = new Text(groupLanguageDetail,
++                    SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData2 = new GridData();
++            text1LData2.horizontalAlignment = GridData.FILL;
++            text1LData2.heightHint = 13;
++            text1LData2.horizontalSpan = 4;
++            text1LData2.grabExcessHorizontalSpace = true;
++            textLanguageName.setLayoutData(text1LData2);
++        }
++        {
++            labelLanguageShortname = new Label(groupLanguageDetail,
++                    SWT.NONE);
++            labelLanguageShortname.setText(l
++                    .getString(&quot;Language.groupdetail.shortcutlabel&quot;)
++                    + &quot;:&quot;);
++            labelLanguageShortname.setSize(125, 15);
++            GridData label1LData1 = new GridData();
++            label1LData1.widthHint = 125;
++            label1LData1.heightHint = 15;
++            label1LData1.horizontalSpan = 2;
++            labelLanguageShortname.setLayoutData(label1LData1);
++        }
++        {
++            textLanguageShortname = new Text(groupLanguageDetail,
++                    SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData3 = new GridData();
++            text1LData3.horizontalAlignment = GridData.FILL;
++            text1LData3.heightHint = 13;
++            text1LData3.horizontalSpan = 4;
++            text1LData3.grabExcessHorizontalSpace = true;
++            textLanguageShortname.setLayoutData(text1LData3);
++        }
++        {
+ 
++            //die Buttons bekommen ein eigenes Composite
++            composite2 = new Composite(groupLanguageDetail, SWT.EMBEDDED);
++            GridLayout composite2Layout = new GridLayout();
++            composite2Layout.numColumns = 6;
++            GridData composite2LData = new GridData();
++            composite2.setLayout(composite2Layout);
++            composite2LData.verticalAlignment = GridData.END;
++            composite2LData.horizontalAlignment = GridData.CENTER;
++            composite2LData.widthHint = 391;
++            composite2LData.horizontalSpan = 6;
++            composite2LData.grabExcessHorizontalSpace = true;
++            composite2LData.grabExcessVerticalSpace = true;
++            composite2LData.heightHint = 35;
++            composite2.setLayoutData(composite2LData);
++
++            //init all the Buttons
++            initLanguageDetailButtons();
++
++        }
++
+         
++    }
++
++    /**
++     * 
++     */
++    private void initLanguageDetailButtons() {
++        buttonLanguageNew = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonLanguageNew.setText(l.getString(&quot;button.new&quot;));
++        buttonLanguageNew.addSelectionListener(new SelectionAdapter() {
++            
++
++            public void widgetSelected(SelectionEvent evt) {
++
++                textLanguageID.setText(&quot;&quot;);
++                textLanguageName.setText(&quot;&quot;);
++                textLanguageShortname.setText(&quot;&quot;);
++                
++
++                textLanguageName.setEditable(true);
++                textLanguageShortname.setEditable(true);
++                buttonLanguageCancel.setEnabled(true);
++                buttonLanguageSave.setEnabled(true);
++                buttonLanguageNew.setEnabled(false);
++                buttonLanguageEdit.setEnabled(false);
++                buttonLanguageDelete.setEnabled(false);
++                
++                textLanguageSearch.setEditable(false);
++                tableLanguage.setEnabled(false);
++
++                mode_Language = ManagementGui.MODE_ADD;
++
++            }
++        });
++
++        buttonLanguageEdit = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonLanguageEdit.setText(l.getString(&quot;button.edit&quot;));
++        buttonLanguageEdit.setEnabled(false);
++        buttonLanguageEdit.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++
++                mode_Language = ManagementGui.MODE_EDIT;
++
++
++                textLanguageID.setEditable(false);
++
++                textLanguageName.setEditable(true);
++                textLanguageName.setFocus();
++                textLanguageShortname.setEditable(true);
++                buttonLanguageCancel.setEnabled(true);
++                buttonLanguageSave.setEnabled(true);
++                buttonLanguageNew.setEnabled(false);
++                buttonLanguageEdit.setEnabled(false);
++                buttonLanguageDelete.setEnabled(false);
++
++
++                tableLanguage.setEnabled(false);
++                textLanguageSearch.setEnabled(false);
++                
++
++            }
++        });
++
++        buttonLanguageDelete = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonLanguageDelete.setText(l.getString(&quot;button.delete&quot;));
++        buttonLanguageDelete.setEnabled(false);
++        buttonLanguageDelete.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonLanguageDelete.widgetSelected, event=&quot;
++                                + evt);
++                
++                
++               String msg = MessageFormat.format(
++                       l.getString(&quot;Language.groupdetail.deletebutton.question.text&quot;),
++                               new Object[]{textLanguageName.getText()+&quot; &quot;+textLanguageShortname.getText()});
++                
++               int question = showMsg(msg,
++                       l.getString(&quot;Language.groupdetail.deletebutton.question.header&quot;), 
++                       SWT.ICON_QUESTION | SWT.YES | SWT.NO);
++               
++               if (question != SWT.YES){
++                   return;
++               }
++                
++                Language o = new Language();
++                o.setLanguageId(new Integer(Integer.parseInt(textLanguageID.getText())));
++                o.setName(textLanguageName.getText());
++                o.setShortname(textLanguageShortname.getText());
++                
++                try {
++                    //object speichern
++                    // Fehlerbehandlung
++                    Database.deleteObject(o);
++
++                    //&#220;bersichtsTabelle aktualisieren
++                    refreshLanguageTable(textLanguageSearch.getText());
++                    
++                    //Detailansicht leeren
++                    textLanguageID.setText(&quot;&quot;);
++                    textLanguageName.setText(&quot;&quot;);
++                    textLanguageShortname.setText(&quot;&quot;);
++                    
++                    //in Tabelle n&#228;chsten ausw&#228;hlen
++                    try {
++                        tableLanguage.select(0);
++                    } catch (Exception ex) {}
++                    
++                    //Statusline Nachricht sezten
++                    statusLine.setStatus(1,l.getString(&quot;Language.groupdetail.deletebutton.newok&quot;));
++
++                } catch (DataBaseException e) {
++                    if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                        //Fehler beim Speichern des Objectes
++
++                        statusLine.setStatus(3,l.getString(&quot;Language.groupdetail.deletebutton.errorsave&quot;));
++                        showMsg(l.getString(&quot;Language.groupdetail.deletebutton.errorsave&quot;),
++                                l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                        //fehler beim db aufbau
++                        statusLine.setStatus(3,l.getString(&quot;Language.groupdetail.deletebutton.errordb&quot;));
++                        showMsg(l.getString(&quot;Language.groupdetail.deletebutton.errordb&quot;),
++                                l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else {
++                        //@todo
++                        e.printStackTrace();
++                    }
++                    
++                }                
++                
++
++                }
++
++            }
++        );
++
++        //leerer nicht sichtbarer Button
++        buttonLanguageFill = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        GridData buttonLanguageFillLData = new GridData();
++        buttonLanguageFill.setVisible(false);
++        buttonLanguageFill.setEnabled(false);
++        buttonLanguageFillLData.widthHint = 30;
++        buttonLanguageFillLData.heightHint = 23;
++        buttonLanguageFill.setLayoutData(buttonLanguageFillLData);
++
++        buttonLanguageSave = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonLanguageSave.setText(l.getString(&quot;button.save&quot;));
++        buttonLanguageSave.setEnabled(false);
++        buttonLanguageSave.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonLanguageSave.widgetSelected, event=&quot;
++                                + evt);
++
++                
++                //testen ob Name leer ist
++                if (textLanguageName.getText().trim().equalsIgnoreCase(&quot;&quot;)) {
++                    
++                    showMsg(l.getString(&quot;Language.groupdetail.savebutton.warn.noname.msg&quot;),
++                            l.getString(&quot;Language.groupdetail.savebutton.warn.noname.title&quot;),
++                            SWT.ICON_WARNING | SWT.YES);
++
++                    	return;
++                }
++                
++                //testen welcher mode
++                
++                if (mode_Language == ManagementGui.MODE_ADD) {
++                    
++                    /**
++                     * @todo eine Exception bekommen wieder leider NOCH nicht mit
++                     * d.h. es muss noch ein r&#252;ckgabewert kommen oder eine Exception 
++                     * &#252;bermitteln werden (aus der DB Klasse)
++                     */
++                    //neues Objekt erzeugen
++                    Language tmp = new Language(textLanguageName.getText(),
++                            textLanguageShortname.getText());
++                    
++                    try {
++                        //object speichern
++                        // Fehlerbehandlung
++                        Object o = Database.saveObject(
++                                new Language(textLanguageName.getText(),
++                                        textLanguageShortname.getText()));
++                        
++                        // in &#220;bersichtstabelle einf&#252;gen
++                        insertIntoLanguageTable((Language)o);
++                        textLanguageID.setText( ((Language)o).getLanguageId()+&quot;&quot; );
++                        
++                        
++                        //Statusline Nachricht sezten
++                        statusLine.setStatus(1,l.getString(&quot;Language.groupdetail.savebutton.newok&quot;));
++
++                    } catch (DataBaseException e) {
++                        if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                            //Fehler beim Speichern des Objectes
++
++                            statusLine.setStatus(3,l.getString(&quot;Language.groupdetail.savebutton.errorsave&quot;));
++                            showMsg(l.getString(&quot;Language.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                            //fehler beim db aufbau
++                            statusLine.setStatus(3,l.getString(&quot;Language.groupdetail.savebutton.errordb&quot;));
++                            showMsg(l.getString(&quot;Language.groupdetail.savebutton.errordb&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else {
++                            //@todo
++                            e.printStackTrace();
++                        }
++                        
++                    }
++                    
++                    
++                    //alle Buttons auf aktiv setzen
++                    setLanguageGroupButtonSaveCancel();
++                    
++                } else if (mode_Language == ManagementGui.MODE_EDIT) {
++                    
++                    Language tmp = new Language(textLanguageName.getText(),
++                                    textLanguageShortname.getText());
++        		tmp.setLanguageId( new Integer (Integer.parseInt(textLanguageID.getText())) );
++                try {
++                    //object speichern
++                    // Fehlerbehandlung
++                    Database.saveObject(tmp);
++                    //&#220;bersichtstabelle aktualisieren
++                    refreshLanguageTable(textLanguageSearch.getText());
++                    
++                    //Statusline Nachricht sezten
++                    statusLine.setStatus(1,l.getString(&quot;Language.groupdetail.savebutton.editok&quot;));
++                   
++
++                } catch (DataBaseException e) {
++                    if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                        //Fehler beim Speichern des Objectes
++
++                        statusLine.setStatus(3,l.getString(&quot;Language.groupdetail.savebutton.errorsave&quot;));
++                        showMsg(l.getString(&quot;Language.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                        //fehler beim db aufbau
++                        statusLine.setStatus(3,l.getString(&quot;Language.groupdetail.savebutton.errordb&quot;));
++                        showMsg(l.getString(&quot;Language.groupdetail.savebutton.errordb&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else {
++                        //@todo
++                        e.printStackTrace();
++                    }
++                    
++                }
++                    
++ 
++                    //alle Buttons auf aktiv setzen
++                    setLanguageGroupButtonSaveCancel();
++                    
++                }
++                
++                
++                
++                /**
++                 * @todo Exception werfen, da nur die zwei Modes sein d&#252;rfen
++                 */
++                
++            }
++        });
++
++        buttonLanguageCancel = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonLanguageCancel.setText(l.getString(&quot;button.cancel&quot;));
++        buttonLanguageCancel.setEnabled(false);
++        buttonLanguageCancel.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonLanguageCancel.widgetSelected, event=&quot;
++                                + evt);
++                setLanguageGroupButtonSaveCancel();
++            }
++        });
++
++        
++    }
++
++    /**
++     * 
++     */
++    protected void setLanguageGroupButtonSaveCancel() {
++        buttonLanguageSave.setEnabled(false);
++        buttonLanguageCancel.setEnabled(false);
++        buttonLanguageEdit.setEnabled(true);
++        buttonLanguageNew.setEnabled(true);
++        buttonLanguageDelete.setEnabled(true);
++        textLanguageName.setEditable(false);
++        textLanguageShortname.setEditable(false);
++        textLanguageSearch.setEditable(true);
++
++        // LanguageTabelle aktivieren
++        tableLanguage.setEnabled(true);
++
++        //LanguageSearch aktivieren
++        textLanguageSearch.setEnabled(true);
++        
++    }
++
++    /**
++     * @param Language
++     */
++    protected void insertIntoLanguageTable(Language Language) {
++        TableItem item = new TableItem(tableLanguage, SWT.NONE);
++        item.setText(new String[] { Language.getLanguageId() + &quot;&quot;, Language.getName(),
++                Language.getShortname() });
++        
++    }
++
++    /**
++     * @param text
++     */
++    protected void refreshLanguageTable(final String filter) {
++        if (tableLanguage == null) {
++            System.out
++                    .println(&quot;Konnte Languagetable nicht refreshen, da diese null ist!&quot;);
++            return;
++        }
++        System.out.println(&quot;Versuche nun VideoListe zu refreshen. Filter: &quot;
++                + filter);
++        tableLanguage.removeAll();
++        TableItem item;
++        java.util.List Languagelist = Database.getLanguage(filter);
++
++        for (int i = 0; i &lt; Languagelist.size(); i++) {
++
++            Language o = (Language) Languagelist.get(i);
++            item = new TableItem(tableLanguage, SWT.NONE);
++            item.setText(new String[] { o.getLanguageId() + &quot;&quot;, o.getName(),
++                    o.getShortname() });
++
++        }
++
++        
++    }
++
++    /**
++     * 
++     */
++    private void initLanguageGroupOverview() {
+         if (logger.isDebugEnabled()) {
+-            logger.debug(&quot;initGUI() - end&quot;);
++            logger.debug(&quot;initLanguageGroupOverview() - start&quot;);
+         }
+-	}
+ 
++        groupLanguageOverview = new Group(sashFormLanguage, SWT.NONE);
++        GridLayout group5Layout = new GridLayout();
++        group5Layout.numColumns = 8;
++        groupLanguageOverview.setText(l
++                .getString(&quot;Language.groupoverview.label&quot;));
++        FormData group5LData = new FormData();
++        groupLanguageOverview.setLayout(group5Layout);
++        group5LData.left = new FormAttachment(0, 100, 0);
++        group5LData.top = new FormAttachment(0, 100, 0);
++        groupLanguageOverview.setLayoutData(group5LData);
++
++        //Tabelle anzeigen
++        initTableLanguage();
++        //Suche darunter anzeigen
++        initLanguageSearch();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initLanguageGroupOverview() - end&quot;);
++        }
++        
++    }
++
++    /**
++     * 
++     */
++    private void initLanguageSearch() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initLanguageSearch() - start&quot;);
++        }
++
++        //label f&#252;r die Suche
++        labelLanguageSearch = new Label(groupLanguageOverview, SWT.NONE);
++        labelLanguageSearch.setText(l
++                .getString(&quot;Language.groupoverview.searchlabel&quot;)
++                + &quot;:&quot;);
++        GridData label2LData = new GridData();
++        label2LData.horizontalSpan = 3;
++        labelLanguageSearch.setLayoutData(label2LData);
++
++        //das Suchfeld
++        textLanguageSearch = new Text(groupLanguageOverview, SWT.BORDER);
++        GridData text2LData = new GridData();
++        textLanguageSearch.addFocusListener(new FocusAdapter() {
++            public void focusLost(FocusEvent evt) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;focusLost(FocusEvent evt = &quot; + evt + &quot; &quot;
++                            + textLanguageSearch.getText() + &quot;) - start&quot;);
++                }
++
++                refreshLanguageTable(textLanguageSearch.getText());
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;focusLost(FocusEvent) - end&quot;);
++                }
++            }
++        });
++
++        textLanguageSearch.addListener(SWT.DefaultSelection, new Listener() {
++            public void handleEvent(Event e) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;handleEvent(Event e = &quot; + e + &quot; &quot;
++                            + textLanguageSearch.getText() + &quot;) - start&quot;);
++                }
++
++                refreshLanguageTable(textLanguageSearch.getText());
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;handleEvent(Event) - end&quot;);
++                }
++            }
++        });
++
++        text2LData.horizontalAlignment = GridData.FILL;
++        text2LData.horizontalSpan = 5;
++        text2LData.grabExcessHorizontalSpace = true;
++        textLanguageSearch.setLayoutData(text2LData);
++
++
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initLanguageSearch() - end&quot;);
++        }
++        
++    }
++
++    /**
++     * 
++     */
++    private void initTableLanguage() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initTableLanguage() - start&quot;);
++        }
++
++        tableLanguage = new Table(groupLanguageOverview, SWT.SINGLE
++                | SWT.FULL_SELECTION | SWT.V_SCROLL | SWT.BORDER);
++        tableLanguage.setHeaderVisible(true);
++        tableLanguage.setLinesVisible(true);
++        GridData table2LData = new GridData();
++        tableLanguage.addFocusListener(new FocusAdapter() {
++            public void focusLost(FocusEvent evt) {
++                System.out.println(&quot;tableLanguage.focusLost, event=&quot; + evt);
++                //TODO add your code for tableLanguage.focusLost
++            }
++            public void focusGained(FocusEvent evt) {
++                System.out
++                    .println(&quot;tableLanguage.focusGained, event=&quot; + evt);
++                //TODO add your code for tableLanguage.focusGained
++            }
++        });
++        tableLanguage.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;widgetSelected(SelectionEvent evt = &quot;
++                        + evt
++                        + &quot;) - start&quot;);
++                }
++
++                int index = tableLanguage.getSelectionIndex();
++
++                System.out.println(&quot;Table select. id: &quot;
++                    + index
++                    + &quot; TableItem:&quot;
++                    + tableLanguage.getItem(index)
++                    + &quot; id: &quot;
++                    + tableLanguage.getItem(index).getText(0));
++
++                //es wurde ein Element aus Tabelle ausgewaehlt jetzt muss die
++                //Detailansicht aktualisiert werden
++                refreshLanguageDetail(tableLanguage.getItem(index)
++                    .getText(0));
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;widgetSelected(SelectionEvent) - end&quot;);
++                }
++            }
++        });
++        table2LData.verticalAlignment = GridData.FILL;
++        table2LData.horizontalAlignment = GridData.FILL;
++        table2LData.horizontalSpan = 8;
++        table2LData.grabExcessHorizontalSpace = true;
++        table2LData.grabExcessVerticalSpace = true;
++        tableLanguage.setLayoutData(table2LData);
++
++        //einzelne Spalten hinzuf&#252;gen
++        tableColumn = new TableColumn(tableLanguage, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Language.groupoverview.columnid&quot;));
++        tableColumn.setWidth(50);
++
++        tableColumn = new TableColumn(tableLanguage, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Language.groupoverview.columnname&quot;));
++        tableColumn.setWidth(200);
++
++        tableColumn = new TableColumn(tableLanguage, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Language.groupoverview.columnshortname&quot;));
++        tableColumn.setWidth(75);
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initTableLanguage() - end&quot;);
++        }
++        
++    }
++
++    /**
++     * @param text
++     */
++    protected void refreshLanguageDetail(final String id) {
++        Language object;
++        try {
++            //since we only can get a String value from the table, we
++            //need to convert this
++            object = Database.getSingleLanguage(Integer.parseInt(id));
++
++            if (object == null) {
++
++                /*
++                 * 
++                 * @TODO Statusbar aktualiseren
++                 */
++                return;
++            }
++        } catch (Exception e) {
++            // TODO: handle exception
++            //id ist keine Zahl
++            return;
++        }
++
++        textLanguageID.setText(object.getLanguageId() + &quot;&quot;);
++        textLanguageName.setText(object.getName());
++        textLanguageShortname.setText(object.getShortname());
++
++        //Buttons zum l&#246;schen und editieren aktivieren
++        buttonLanguageEdit.setEnabled(true);
++        buttonLanguageDelete.setEnabled(true);
++
++        //Mode auf view setzen
++        mode_Language = ManagementGui.MODE_VIEW;
++        
++    }
++
+ 	
+ 
+ }
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000101.html">[Provirent-svn-commit] r100 - project_src/provirent_hibernate
+</A></li>
+	<LI>Next message: <A HREF="000103.html">[Provirent-svn-commit] r102 - in project_src: clienttest/src provirent_hibernate/src/de/hsharz/provirent/managment/gui provirent_hibernate/src/de/hsharz/provirent/managment/gui/language provirent_hibernate/src/de/hsharz/provirent/persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#102">[ date ]</a>
+              <a href="thread.html#102">[ thread ]</a>
+              <a href="subject.html#102">[ subject ]</a>
+              <a href="author.html#102">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

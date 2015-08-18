@@ -1,0 +1,400 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r295 - in docu/latex: . images
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r295%20-%20in%20docu/latex%3A%20.%20images&In-Reply-To=%3C200512151721.jBFHLjfc024102%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000296.html">
+   <LINK REL="Next"  HREF="000298.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r295 - in docu/latex: . images</H1>
+    <B>sforstner at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r295%20-%20in%20docu/latex%3A%20.%20images&In-Reply-To=%3C200512151721.jBFHLjfc024102%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r295 - in docu/latex: . images">sforstner at berlios.de
+       </A><BR>
+    <I>Thu Dec 15 18:21:45 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000296.html">[Provirent-svn-commit] r294 - / docu/latex/images project_src/clienttest/src project_src/customer project_src/customer/WEB-INF project_src/customer/jsp
+</A></li>
+        <LI>Next message: <A HREF="000298.html">[Provirent-svn-commit] r296 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#297">[ date ]</a>
+              <a href="thread.html#297">[ thread ]</a>
+              <a href="subject.html#297">[ subject ]</a>
+              <a href="author.html#297">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2005-12-15 18:21:27 +0100 (Thu, 15 Dec 2005)
+New Revision: 295
+
+Added:
+   docu/latex/images/Architektur-Struts.JPG
+Modified:
+   docu/latex/3-5-JavaWebanwendungen.tex
+   docu/latex/Provirent-Doku.bib
+   docu/latex/Provirent-Doku.tex
+Log:
+
+
+Modified: docu/latex/3-5-JavaWebanwendungen.tex
+===================================================================
+--- docu/latex/3-5-JavaWebanwendungen.tex	2005-12-14 22:35:26 UTC (rev 294)
++++ docu/latex/3-5-JavaWebanwendungen.tex	2005-12-15 17:21:27 UTC (rev 295)
+@@ -1,7 +1,11 @@
+ \section{Java-Web-Anwendungen} \label{sec:tech-WebAnwendungen}
+-		\subsection{Java Server Faces - JSF}
+ 		
+-Nach \citep{Bill2004} ist JavaServer Faces (JSF) ein komponenten-abh&#228;ngiges Web-Framework, mit dessen Hilfe sich Benutzerschnittstellen mit einer Reihe von wiederverwendbaren GUI-Komponenten, z.B. Labels, Buttons, Eingabefelder usw.,einfach erstellen lassen. JSF ist ein erster offizieller Standard von Sun hinsichtlich der Erstellung von UIs\footnote{User Interface (engl. Benutzerschnittstelle)} von Webanwendungen und wurde im Rahmen des Java Community Process (JCP) unter dem JSR 127\footnote{\url{<A HREF="http://www.jcp.org/en/jsr/detail?id=127">http://www.jcp.org/en/jsr/detail?id=127</A>}} im September 2002 ver&#246;ffentlicht. Im Experten-Gremium sind viele namhafte Firmen wie IBM, BEA, IONA, Novell, Borland, HP, Oracle oder Siemens, was eine gro&#223;e Unterst&#252;tzung seitens der Industrie erwartet.
++%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
++%      Kapitel JSF           %
++%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
++\subsection{Java Server Faces - JSF}
++		
++Nach \citep{Bill2004} ist JavaServer Faces (JSF) ein komponenten-abh&#228;ngiges Web-Framework, mit dessen Hilfe sich Benutzerschnittstellen mit einer Reihe von wiederverwendbaren GUI-Komponenten, z.B. Labels, Buttons, Eingabefelder usw.,einfach erstellen lassen. JSF ist ein erster offizieller Standard von Sun hinsichtlich der Erstellung von UIs\footnote{User Interface (engl. Benutzerschnittstelle)} von Webanwendungen und wurde im Rahmen des Java Community Process (JCP) unter dem JSR 127\footnote{\url{<A HREF="http://www.jcp.org/en/jsr/detail?id=127">http://www.jcp.org/en/jsr/detail?id=127</A>}} im September 2002 ver&#246;ffentlicht. Im Experten-Gremium sind viele namhafte Firmen wie IBM, BEA, IONA, Novell, Borland, HP, Oracle oder Siemens, wodurch eine gro&#223;e Unterst&#252;tzung seitens der Industrie erwartet wird.
+ 
+ \begin{figure}[h]
+ 	\centering
+@@ -17,7 +21,7 @@
+ 	\item JSF Tag Libraries
+ \end{itemize}
+ 
+-Das Pr&#228;sentations-Framework JSF muss die von MVC definierten Komponenten abbilden. Wie in \vref{fig:architecture_jsf} zu sehen ist, wird das Modell durch einfache JavaBeans, aber auch durch EJBs\footnote{Enterprise Java Beans} oder JDOs\footnote{Java Data Objects} abgebildet. Der Controller wird durch Action Handler bzw. Event Listener der jeweiligen UI-Komponenten dargestellt. Im Zentrum des Controllers steht das FacesServlet, welches mit Hilfe der Konfiguration reagieren, agieren und navigieren kann. JSPs und Komponenten sowie deren Renderer, Converter und Validatoren bilden die Views ab. In jeder View, welche meistens durch eine JavaServer Page (JSP) aufgebaut ist, existiert ein entsprechender Component Tree. Dieser beinhaltet alle Komponenten, die in der JSP durch definierte Tags dargestellt werden. Somit hat der Entwickler Zugriff auf alle Komponenten im Laufe des Lebenszyklus der Request-Bearbeitung.\\
++Das Pr&#228;sentations-Framework JSF muss die von MVC definierten Komponenten abbilden. Wie in \vref{fig:architecture_jsf} zu sehen ist, wird das Modell durch einfache JavaBeans, aber auch durch EJBs\footnote{Enterprise Java Beans} oder JDOs\footnote{Java Data Objects} abgebildet. Der Controller wird durch Action Handler bzw. Event Listener der jeweiligen UI-Komponenten dargestellt. Im Zentrum des Controllers steht das FacesServlet, welches mit Hilfe der Konfiguration reagieren, agieren und navigieren kann. JSPs und Komponenten sowie deren Renderer, Converter und Validatoren bilden die Views ab. In jeder View, welche meistens durch eine JavaServer Page (JSP) aufgebaut ist, existiert ein entsprechender Component Tree. Dieser beinhaltet alle Komponenten, die in der JSP durch definierte Tags dargestellt werden. Somit hat der Entwickler Zugriff auf alle Komponenten im Laufe des Lebenszyklus der Request-Bearbeitung.
+ 
+ Dieser Lebenszyklus wird zu jeder Anfrage an die JSF-Applikation durchlaufen und enth&#228;lt folgende Phasen:
+  
+@@ -30,39 +34,174 @@
+ 	\item Render Response: Der Component Tree wird aktualisiert und ein Response generiert
+ \end{enumerate}		
+ 
+-Die Navigation in einer JSF-Applikation wird in einer Konfigurationsdatei definiert. Darin ist f&#252;r jede JSP jeweils eine Navigationsregel festgelegt. Diese Regeln bestehen aus der Aufrufenden Seite sowie verschiedenen Navigationsf&#228;llen. Solche Fallunterscheidungen machen die Navigation abh&#228;ngig von den Ergebnissen der Businesslogik und sorgen f&#252;r die Dynamik der Anwendung.\\
++Die Navigation in einer JSF-Applikation wird in einer Konfigurationsdatei definiert. Darin ist f&#252;r jede JSP jeweils eine Navigationsregel festgelegt. Diese Regeln bestehen aus der Aufrufenden Seite sowie verschiedenen Navigationsf&#228;llen. Solche Fallunterscheidungen machen die Navigation abh&#228;ngig von den Ergebnissen der Businesslogik und sorgen f&#252;r die Dynamik der Anwendung. (vgl. \citep[S.~46ff]{Oeztuerk2004})\\
+ 
+ \textbf{Fazit:} Da in der Projektplanungsphase die derzeitige JSF-Spezifikation zwar relativ ausgereift war, aber noch nicht in einer Finalversion vorlag, wurde in der Phase der Implementierung auf dessen Verwendung verzichtet und stattdessen auf Apache Struts zur&#252;ckgegriffen.
+ 
+ \newpage
+ 
++%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
++%      Kapitel Struts        %
++%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \subsection{Apache Struts}
+ 
++Struts basiert auf dem Model 2 (MVC 2) und ist ein leistungsstarkes und frei erh&#228;ltliches Framework. Hierbei wird die Pr&#228;sentationsebene durch JavaServer Pages konstruiert, der Model-Teil durch JavaBeans &#252;bernommen und Servlets als Controller dieses Frameworks eingesetzt.
++Das Struts Framework Projekt wurde nach \citep{ASF2005} im Mai 2000 von Craig R. McCalahan ins Leben gerufen und versuchte die Vorteile von Java Servlets und JavaServer Pages zu vereinen. Zu Beginn wurde ein Model-View-Controller Framework f&#252;r die Java-Welt erarbeitet, welches im Juli 2001 von der Apache Software Foundation (ASF) unter dem Namen Struts 1.0 ver&#246;ffentlicht wurde.  Die ASF ist eine ehrenamtlich arbeitende Organisation zur F&#246;rderung der Apache-Softwareprojekte. Sie entstand im Juni 1999 aus der Apache Group und soll den Apache Open-Source-Software Projekten organisatorische, juristische und finan-zielle Unterst&#252;tzung zur Verf&#252;gung stellen. Die ASF ist eine nicht kommerzielle Organisation aus Entwicklern, die an Open-Source-Softwareprojekten arbeiten. Auch Struts ist ein Open-Source Projekt und unterliegt der Apache Software License\footnote{\url{<A HREF="http://www.apache.org/licenses/">http://www.apache.org/licenses/</A>}}.
+ 
++\begin{figure}[h]
++	\centering
++	\includegraphics[scale=1]{images/Architektur-Struts.jpg}
++	\caption{Architektur von Struts \citep[Bild 1.5]{Bill2004}}
++	\label{fig:architecture_struts}
++\end{figure}
+ 
++\newpage
+ 
++Wie bereits erw&#228;hnt, verfolgt Struts das Model2-Konzept und l&#228;sst sich somit in die drei Komponenten (Model, View und Controller) unterteilen. \vref{fig:architecture_struts} gibt einen &#220;berblick der Architektur von Struts, welche diese Komponenten vereint. Diese einzelnen Komponenten werden in den folgenden Abschnitten detailliert beschrieben.
+ 
++\subsubsection*{Die Strutskomponente Model}
+ 
++Das Model von Struts wird durch JavaBeans implementiert. Je nach Funktionalit&#228;t
++k&#246;nnen sie in drei Kategorien unterteilt werden:
+ 
++\begin{itemize}
++	\item Beans f&#252;r den Systemzustand
++	\item Beans f&#252;r die Anwendungslogik
++	\item ActionForm-Beans
++\end{itemize}
+ 
++Die Beans f&#252;r den Systemzustand repr&#228;sentieren die Zustandsinformationen des Systems &#252;ber
++deren Attribute. Der interne Zustand der Anwendung wird somit durch eine oder mehrere Beans und den Attributen dargestellt. Im Beispiel der Provirent-Anwendung l&#228;sst sich der Einkaufskorb durch ein Bean darstellen, da es beinhaltet, was ein Kunde f&#252;r seine Bestellung ausgew&#228;hlt hat. Zur Darstellung des aktuellen Zustands k&#246;nnen die zugeh&#246;rigen &quot;`get&quot;'- und &quot;`set&quot;'-Methoden aufgerufen werden. Zum Beispiel kann die Anzahl der ausgew&#228;hlten Artikel, die durch das Attribut anzahlArtikel dargestellt wird, &#252;ber den Aufruf der Methode getArtikelAnzahl() abgefragt werden.
+ 
++Die Anwendungslogik kann durch JavaBeans erg&#228;nzt werden. Damit eine Wiederverwendung der Anwendungslogik gew&#228;hrleistet werden kann, sollten die JavaBeans m&#246;glichst so implementiert werden, dass sie unabh&#228;ngig von der Umgebung der Anwendung ausgef&#252;hrt werden k&#246;nnen. Zum Beispiel sollte die Logik zum Speichern von Bestellungen in die Datenbank ausgelagert werden. Hierbei m&#252;ssen die Funktionalit&#228;ten f&#252;r den Zugriff auf die Datenbank korrekt implementiert werden. Diese Methoden der JavaBeans k&#246;nnen dann sowohl in der Struts-Applikation als auch in anderen Umgebungen, wo Datenbankzugriffe gebraucht werden, aufgerufen werden.
+ 
++Die ActionForm-Beans dienen zur Behandlung eines Formulars einer Webanwendung. F&#252;r jedes Eingabeformular ist ein entsprechendes ActionForm-Bean vorgesehen. Dieses erm&#246;glicht das Zwischenspeichern von Formulareingabedaten, wobei jedes Eingabefeld einem Attribut der Bean entspricht. Mit der Verwendung von ActionForm Beans ist es m&#246;glich, auf die Daten des Formulars in verschiedenen Bereichen der Anwendung zuzugreifen. Eine solche Bean ist von der Klasse \textit{ActionForm} abgeleitet und kann neben den &quot;`get&quot;'- und &quot;`set&quot;'-Methoden optional noch zwei spezielle Methoden besitzen: \textit{validate}() und \textit{reset}(). Die Methode validate() dient dazu, Eingabedaten aus dem Formular zu validieren. Die Attribute eines Formulars lassen sich durch die Methode reset() zur&#252;cksetzen. Aufgrund der zwingend erforderlichen Namensgleichheit zwischen den Formularelementen und den Attributen der ActionForm Beans wird die Kommunikation zwischen dem Bean und dem HTML-Formular sichergestel!
+ lt.
+ 
++\subsubsection*{Die Strutskomponente View}
+ 
++Die View ist f&#252;r die Pr&#228;sentation der Daten zust&#228;ndig, die meist durch JavaServer Pages umgesetzt wird. Die JSPs k&#246;nnen neben HTML, XML und JavaScript, auch zur Laufzeit dynamisch generierten Code enthalten. Da es m&#246;glichst vermieden werden sollte, Java-Code in die JSP einzubauen werden so genannte Tags eingesetzt. Die JSP-eigenen Tags werden durch die umfangreichen Struts Tag-Bibliotheken (Taglibs) erweitert, wodurch eine gr&#246;&#223;ere Funktionalit&#228;t erreicht werden kann. Wie in \vref{code:integration_struts_taglibs} zu erkennen ist, wird jeder einzelnen Bibliothek ein Pr&#228;fix zugeordnet, damit der Compiler diese auseinander halten kann.
+ 
++\begin{lstlisting}[language=XML, caption={Integration der StrutsTaglibs}, label=code:integration_struts_taglibs, showstringspaces=false]
++&lt;\%@ taglib uri=&quot;<A HREF="http://struts.apache.org/tags-bean">http://struts.apache.org/tags-bean</A>&quot; prefix=&quot;bean&quot; \%&gt;
++&lt;\%@ taglib uri=&quot;<A HREF="http://struts.apache.org/tags-html">http://struts.apache.org/tags-html</A>&quot; prefix=&quot;html&quot; \%&gt;
++&lt;\%@ taglib uri=&quot;<A HREF="http://struts.apache.org/tags-logic">http://struts.apache.org/tags-logic</A>&quot; prefix=&quot;logic&quot; \%&gt;
++&lt;\%@ taglib uri=&quot;<A HREF="http://struts.apache.org/tags-tiles">http://struts.apache.org/tags-tiles</A>&quot; prefix=&quot;tiles&quot; \%&gt;
++\end{lstlisting}
+ 
++Neben diesen Bibliotheken lassen sich auch noch eine Reihe anderer Tag-Bibliotheken, wie die Java Standard Tag Library (JSTL), integrieren. Wenn die Funktionalit&#228;ten dann immer noch nicht ausreichen sollten, besteht auch die M&#246;glichkeit, eigene Bibliotheken zu erstellen und zu benutzen. Mit der Verwendung solcher Taglibs wird nach \citep{Cavaness2004} f&#252;r eine deutliche Senkung der Entwicklungszeit und die daraus resultierende Steigerung der Produktivit&#228;t erreicht. Auch die Fehlerbehandlung und die Kommunikation mit den ActionForm Beans wird dadurch vereinfacht. 
+ 
++Dar&#252;ber hinaus ist man in der Lage, die Web-Anwendung in mehreren Sprachen zu unterst&#252;tzen. Dabei muss die JSP nicht in mehreren Sprachen auf dem Server hinterlegen werden, sondern es k&#246;nnen hierf&#252;r die vom Struts-Framework bereitgestellten Message-Tags verwendet werden. 
+ 
++\begin{lstlisting}[language=XML, caption={Struts Message-Tag}, label=code:message_tag, showstringspaces=false]
++&lt;title&gt;
++  &lt;bean:message key=&quot;provirent.title&quot;/&gt;
++&lt;/title&gt;
++\end{lstlisting}
+ 
++An dem Pr&#228;fix \textit{bean} in \vref{code:message_tag} ist zu erkennen, dass dieses Tag der \textit{struts-bean.tld} Bibliothek angeh&#246;rt. Das Attribut \textit{key} verweist auf ein Element einer zentral definierten Datei, in der alle Texte einer Sprache enthalten sind. Es handelt sich hierbei um eine Properties-Datei mit Key-Value Paaren, die f&#252;r jede der unterst&#252;tzten Sprachen vorliegt. Die Schl&#252;ssel werden in den Message-Tags angegeben und verweisen auf die entsprechenden Texte (Values) der jeweiligen Sprache, die in jeder dieser Properties-Dateien enthalten sind. Dies hat den Vorteil, dass keine Texte mehr in den Quellcode der JSP geschrieben werden m&#252;ssen, sondern durch den Einsatz der Message-Tags in der gew&#252;nschten Sprache zu Laufzeit eingef&#252;gt werden. Der Name und der Pfad der Properties-Datei sind frei w&#228;hlbar, m&#252;ssen aber in der Konfigurationsdatei des Frameworks definiert werden. Es muss darauf geachtet werden, dass eine sprachenabh&#228;ngige Properties-Datei der Name!
+ nskonvention entspricht, d.h. im Format \verb|&lt;name_der_Message_Datei&gt;_xx.properties|, wobei das \textit{xx} f&#252;r den zweistelligen Code der jeweiligen L&#228;nder bzw. Sprachen steht (z.B. \textit{en} f&#252;r Englisch, d\textit{e} f&#252;r Deutsch). 
+ 
++F&#252;r die Interaktion von JSPs mit den ActionForm Beans wurden die Standard HTML-Tags in den Struts Taglibs um gewisse Funktionalit&#228;ten erweitert. Prinzipiell kommen alle wichtigen HTML-Elemente  darin vor. Zum Beispiel l&#228;sst sich mit Hilfe des Tags \verb|&lt;html:form\&gt;| ein HTML-Formular erstellen. &#220;ber das Pflichtattribut \textit{action} wird angegeben, wie nach dem Absenden der Formulardaten damit verfahren werden soll. Hierbei kann eine URL angegeben werden. Es ist aber g&#228;ngiger, keine Web-Ressourcen, sondern eine Action-Klasse aufzurufen, was durch die Endung \textit{*.do} gekennzeichnet wird und dem Controller mitteilt, in der struts-config.xml nach dem entsprechenden Pfad zu suchen. Ein solcher Pfad stellt die Verkn&#252;pfung von ActionForm Beans und Action Klassen der JSP dar. Anhand dieser Zuordnungen k&#246;nnen die Formulardaten der ActionForm Bean zugewiesen und validiert werden.
+ 
++Wenn durch die \textit{validate}()-Methode ein Fehler festgestellt wird, kann dem Benutzer eine entsprechende Fehlermeldung &#252;ber den Tag \verb|&lt;html:errors\&gt;| mitgeteilt werden. Dieser Tag wird nur aktiv, wenn die mit dem Attribut property definierte Fehlermeldung w&#228;hrend der Validierung erzeugt wurde.
+ 
++Zus&#228;tzlich zu den oben genannten Tags der Struts-Taglibs stehen dem Struts-Framework noch eine Reihe weiterer Tags zur Verf&#252;gung. Es k&#246;nnen auch die Taglibraries der JSTL Spezifikation\footnote{\url{<A HREF="http://java.sun.com/products/jsp/jstl/index.jsp">http://java.sun.com/products/jsp/jstl/index.jsp</A>}} eingesetzt werden.
+ 
+ 
++\subsubsection*{Die Strutskomponente Controller}
+ 
++Der gesamte Ablauf einer Struts-Anwendung wird &#252;ber den zentral im Struts-Framework vorliegenden Controller gesteuert. Dessen Aufgabe ist es, HTTP-Requests vom Client zu empfangen, diese auszuwerten und zu entscheiden, welche Ma&#223;nahme als n&#228;chstes durchgef&#252;hrt werden soll. Wenn z.B. kein Verarbeitungsschritt mehr notwendig sein sollte, so wird die Anfrage direkt an die JSP weitergeleitet, ansonsten an die spezifische Action-Klasse. Besonders vorteilhaft ist nach \citep{Cavaness2004} die an einem zentralen Punkt liegende Ablaufsteuerung der Anwendung durch den Controller. Bei daran notwendigen &#196;nderungen muss nicht die ganze Anwendung sondern nur ein relativ kleiner Bereich des Programms angepasst werden.
++Der Controller umfasst folgende Komponenten:
+ 
++\begin{itemize}
++	\item die Klasse ActionServlet
++	\item die Datei struts-config.xml
++	\item die Klasse ActionMapping
++	\item verschiedene Klassen, die sich von der Klasse Action ableiten
++\end{itemize}
+ 
++Jede Anwendung enth&#228;lt genau ein ActionServlet, das alle Requests des Benutzers verarbeitet. Dieses Servlet sucht in der Struts-Konfigurationsdatei nach der Action f&#252;r den gerade zu bearbeitenden Request. Dar&#252;ber hinaus erzeugt und verwendet es ActionForm Beans f&#252;r das Speichern und Validieren von Daten aus HTML-Formularen und ActionForward Klassen f&#252;r die Fortsetzung des Programmflusses. Das Servlet wird von der Klasse \textit{org.apache.struts.action.ActionServlet} abgeleitet und wird in der Konfigurationsdatei \textit{web.xml} registriert.
+ 
++Bei einem Request an die Web-Applikation, dessen URL mit *.do endet, schaltet sich das Struts-Framework ein, indem das ActionServlet die Anfrage an die in der URL angegebene Action weiterleitet. Dies geschieht &#252;ber ActionMappings, welche in der \textit{struts-config.xml} angegeben sind. 
+ 
++Ein solches Mapping wird f&#252;r das Abbilden von speziellen Ereignissen auf die zust&#228;ndigen Action-Klassen ben&#246;tigt, was in Struts durch Eintr&#228;ge in die XML-Datei realisiert wird. Der Ablauf der Anwendung kann somit sehr einfach ver&#228;ndert werden, da lediglich eine Datei angepasst werden muss. Dadurch wird die Datei struts-config.xml zum tats&#228;chlichen Mittelpunkt des Frameworks. Ein weiterer Vorteil der Zentralisierung der ActionMappings liegt darin, dass der Ablauf einer Applikation besser zu verstehen ist, wenn dieser nicht im Quellcode versteckt ist. In \vref{code:struts_config_auszug} wird eine solche Konfiguration dargestellt.
++
++\begin{lstlisting}[language=XML, caption={Auszug aus struts-config.xml}, label=code:struts_config_auszug, showstringspaces=false]
++&lt;struts-config&gt;
++
++  &lt;form-beans&gt;
++
++    &lt;form-bean name=&quot;LoginForm&quot; 
++    	type=&quot;de.hsharz.provirent.customer.form.LoginForm&quot;/&gt;
++
++  &lt;/form-beans&gt;
++
++  &lt;global-forwards&gt;
++
++    &lt;forward name=&quot;index&quot; path=&quot;/index.do&quot;/&gt;
++    &lt;forward name=&quot;login&quot; path=&quot;/Login.do&quot;/&gt;
++    &lt;forward name=&quot;logout&quot; path=&quot;/Logout.do&quot; /&gt;
++
++  &lt;/global-forwards&gt;
++
++  &lt;action-mappings&gt;
++
++    &lt;action path=&quot;/index&quot; forward=&quot;provirent.index&quot;/&gt;
++		
++    &lt;action path=&quot;/Login&quot; input=&quot;vkb.scharf.admin.login&quot; 
++    	type=&quot;de.hsharz.provirent.customer.action.LoginAction&quot; name=&quot;LoginForm&quot; 
++    	validate=&quot;true&quot;/&gt;
++
++  &lt;/action-mappings&gt;
++
++  &lt;message-resources parameter=&quot;MessageResources&quot;/&gt;
++
++&lt;/struts-config&gt;
++\end{lstlisting}
++
++Im Bereich \verb|&lt;form-beans&gt;| wird die Zuordnung der HTML-Formulare zu den entsprechenden ActionForm Beans vorgenommen. &#220;ber das Attribut \textit{name} wird dem ActionForm eine Bezeichnung gegeben, unter der es aufgerufen bzw. initialisiert werden kann, w&#228;hrend \textit{type} den vollst&#228;ndigen Namen der zugeh&#246;rigen Java-Klasse angibt.
++
++Der Abschnitt \verb|&lt;global-forwards&gt;| ist dazu notwendig, logische Namen bestimmten URLs (JSPs oder Actions) zuzuordnen. Der Entwickler hat dann die M&#246;glichkeit, im Quellcode diese Namen mit dem Vorteil anzusprechen, dass &#196;nderungen an den URLs nur noch in der Konfigurationsdatei vorgenommen werden m&#252;ssen.
++
++Mit \verb|&lt;action-mappings&gt;| wird die Zuordnung bestimmter Request-URLs auf die Action-Klassen definiert. Dabei wird f&#252;r jedes Ereignis ein eigenes \verb|&lt;action&gt;| Element angelegt. Dessen Attribut \textit{path} gibt die URL der Action an. Nach \vref{code:struts_config_auszug} wird z.B. durch den Aufruf der URL <A HREF="http://localhost:8080/customer/Login.do">http://localhost:8080/customer/Login.do</A> das ActionMapping \textit{/login} aufgerufen. &#220;ber das Attribut \textit{type} wird der vollst&#228;ndige Pfad der Action-Klasse angegeben, w&#228;hrend \textit{name} den Namen der zugeordneten ActionForm Bean festlegt. Ein weiteres Attribut \textit{input} gibt die URL einer JSP oder Action an, die f&#252;r die Ausl&#246;sung des ActionEvents verantwortlich ist.
++
++Mit dem Element \verb|&lt;forward&gt;| definiert man, &#228;hnlich wie bei den Global Forwards, eine m&#246;gliche URL, die nach dem Ausf&#252;hren der Action-Klasse aufgerufen werden kann. Ein solcher Forward wird einer bestimmten Action zugeordnet, somit kann sie auch nur aus dieser Action-Klasse aufgerufen werden. Der Vorteil der ActionMappings ist, dass man jede beliebige Action-Klasse aufrufen und an jede JSP oder andere Action weiterleiten kann. 
++
++Action-Klassen sind die Schnittstellen zwischen den Benutzeranfragen und der Gesch&#228;ftslogik. Bei deren Erstellung spielen nach \citep{Goodwill2004} folgende Faktoren eine Rolle:
++
++\begin{itemize}
++	\item Sie wird von der Klasse \textit{org.apache.struts.action.Action} abgeleitet.
++	\item Sie implementiert die \textit{execute}()-Methode und enth&#228;lt die spezifische Logik.
++	\item Die neue Action muus kompiliert werden und sich danach in dem Verzeichnis der Web-Applikation befinden ( meistens \textit{/WEB-INF/classes} ).
++	\item Es muss ein neues \verb|&lt;action&gt;| Element in der Konfiguration erstellt werden, dass die neue Action abbildet.
++\end{itemize}
++
++Die \textit{execute}()-Methode einer Action-Klasse wird aufgerufen, sobald diese die Kontrolle erhalten hat. Nach \citep{Goodwill2004} wird daraufhin die benutzerdefinierte Gesch&#228;ftslogik ausgef&#252;hrt und die Anfrage weitergereicht. Innerhalb dieser Methode werden alle Operationen, die zum Durchf&#252;hren des Requests n&#246;tig sind, durchgef&#252;hrt. Nach \citep{Wolff2004} und \citep{Robinson2004} sind das haupts&#228;chlich:
++
++\begin{itemize}
++	\item Authentifizierung des Userstatus (Zugriff auf die Session)
++	\item Validierung der Formulareingaben
++	\item Zugriff auf die Gesch&#228;ftslogik
++	\item Aufbereitung der Ergebnisse aus der Gesch&#228;ftslogik, so dass diese angezeigt wer-den k&#246;nnen, und Aktualisieren der ActionForm
++	\item R&#252;ckgabe eines ActionForward-Objektes, das die nachfolgende Aktion angibt
++\end{itemize}
++
++Bei der Erstellung von Action-Klassen muss darauf geachtet werden, dass diese thread-safe und reentrant (wiedereintrittsf&#228;hig) sind. Sie sollten also in einer Multi-Thread Umgebung richtig arbeiten k&#246;nnen. Aus diesem Grund sollten nur lokale Variablen und Methoden zum Einsatz kommen. Dar&#252;ber hinaus kann es zu Skalierungsproblemen kommen, wenn f&#252;r jeden Benutzer Ressourcen, wie z.B. Datenbank-Verbindungen, erzeugt und verwendet werden. Solche Ressourcen sollten &#252;ber Pools vergeben werden. 
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
+ %Hier danach nicht mehr schreiben
+ \label{sec:tech-WebAnwendungen-ende}
+\ No newline at end of file
+
+Modified: docu/latex/Provirent-Doku.bib
+===================================================================
+--- docu/latex/Provirent-Doku.bib	2005-12-14 22:35:26 UTC (rev 294)
++++ docu/latex/Provirent-Doku.bib	2005-12-15 17:21:27 UTC (rev 295)
+@@ -10,6 +10,16 @@
+   timestamp = {2005.12.14},
+ }
+ 
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at BOOK</A>{Cavaness2004,
++  title = {Programming Jakarta Struts},
++  publisher = {O'Reilly Media Inc.},
++  year = {2004},
++  author = {Cavaness, Chuck},
++  edition = {2nd},
++  owner = {Stefan Forstner},
++  timestamp = {2005.12.15},
++}
++
+ @MANUAL{Collins-Sussman2005,
+   title = {Version Control with Subversion},
+   author = {Ben Collins-Sussman and Brian W. Fitzpatrick and C. Michael Pilato},
+@@ -92,6 +102,15 @@
+   url = {<A HREF="http://rollerjm.free.fr/">http://rollerjm.free.fr/</A>},
+ }
+ 
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at BOOK</A>{Goodwill2004,
++  title = {Professional Jakarta Struts},
++  publisher = {Wiley Publishing Inc.},
++  year = {2004},
++  author = {Goodwill, James; Hightower, Richard},
++  owner = {Stefan Forstner},
++  timestamp = {2005.12.15},
++}
++
+ @BOOK{Herold1995,
+   title = {SCCS und RCS. Versionsverwaltung unter UNIX},
+   publisher = {Addison-Wesley, M{\&quot;u}nchen},
+@@ -127,6 +146,15 @@
+   timestamp = {2005.12.08},
+ }
+ 
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at BOOK</A>{Robinson2004,
++  title = {Jakarta Struts for Dummies},
++  publisher = {Wiley Publishing, Inc.},
++  year = {2004},
++  author = {Robinson, Mike; Finkelstein, Ellen},
++  owner = {Stefan Forstner},
++  timestamp = {2005.12.15},
++}
++
+ @BOOKLET{Wikipedia2005,
+   title = {Wikipedia - Enzyklop&#228;die},
+   author = {Wikipedia},
+@@ -135,17 +163,35 @@
+   url = {<A HREF="http://de.wikipedia.org">http://de.wikipedia.org</A>},
+ }
+ 
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at BOOK</A>{Wolff2004,
++  title = {Struts Gepackt},
++  publisher = {Mitp-Verlag},
++  year = {2004},
++  author = {Wolff, Manfred; Albrecht, Michael},
++  owner = {Stefan Forstner},
++  timestamp = {2005.12.15},
++}
++
+ @ARTICLE{Oeztuerk2004,
+   author = {&#214;zt&#252;rk, Muhammet},
+-  title = {GUI f&#252;rs Web &#150; Einf&#252;hrung in die Konzepte von JavaServer Faces (JSF)},
++  title = {GUI f&#252;rs Web - Einf&#252;hrung in die Konzepte von JavaServer Faces (JSF)},
+   journal = {Javamagazin},
+   year = {2004},
+   volume = {1},
+   pages = {20},
+-  owner = {Julchen},
++  owner = {Stefan Forstner},
+   timestamp = {2005.12.14},
+ }
+ 
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at MANUAL</A>{ASF2005,
++  title = {Struts - User Guide},
++  organization = {Apache Software Foundation},
++  address = {<A HREF="http://struts.apache.org/userGuide/index.html">http://struts.apache.org/userGuide/index.html</A>},
++  year = {2005},
++  owner = {Stefan Forstner},
++  timestamp = {2005.12.15},
++}
++
+ @MANUAL{EclipseISV,
+   title = {org.eclipse.platform.doc.isv.3.1.pdf},
+   owner = {Philipp Schneider},
+
+Modified: docu/latex/Provirent-Doku.tex
+===================================================================
+--- docu/latex/Provirent-Doku.tex	2005-12-14 22:35:26 UTC (rev 294)
++++ docu/latex/Provirent-Doku.tex	2005-12-15 17:21:27 UTC (rev 295)
+@@ -19,9 +19,8 @@
+ \definecolor{hellgrau}{gray}{0.90}
+ 
+ \usepackage{listings}
+-\lstset{basicstyle=\footnotesize, numbers=left, numberstyle=\tiny, stepnumber=1,numbersep=10pt, firstnumber=1, backgroundcolor=\color{hellgrau}, frame=shadowbox, rulesepcolor=\color{dunkelgrau},
+-framesep=5pt, framerule=0.75pt, captionpos=b, breaklines=true, breakatwhitespace=false, escapeinside={!*}{*!},
+-aboveskip=0.25cm}
++\lstset{basicstyle=\scriptsize\ttfamily, numbers=left, numberstyle=\tiny, stepnumber=1,numbersep=10pt, firstnumber=1, backgroundcolor=\color{hellgrau}, frame=shadowbox, rulesepcolor=\color{dunkelgrau},
++framesep=5pt, framerule=0.75pt, captionpos=b, breaklines=true, breakatwhitespace=false, escapeinside={!*}{*!}}
+ 
+ \renewcommand{\lstlistlistingname}{Quellcode Verzeichnis}
+ \renewcommand{\lstlistingname}{Quellcode}
+
+Added: docu/latex/images/Architektur-Struts.JPG
+===================================================================
+(Binary files differ)
+
+
+Property changes on: docu/latex/images/Architektur-Struts.JPG
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000296.html">[Provirent-svn-commit] r294 - / docu/latex/images project_src/clienttest/src project_src/customer project_src/customer/WEB-INF project_src/customer/jsp
+</A></li>
+	<LI>Next message: <A HREF="000298.html">[Provirent-svn-commit] r296 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#297">[ date ]</a>
+              <a href="thread.html#297">[ thread ]</a>
+              <a href="subject.html#297">[ subject ]</a>
+              <a href="author.html#297">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

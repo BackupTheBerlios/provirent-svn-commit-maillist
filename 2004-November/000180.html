@@ -1,0 +1,752 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r179 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r179%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20persistence&In-Reply-To=%3C200411301649.iAUGnrHH012492%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000179.html">
+   <LINK REL="Next"  HREF="000181.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r179 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r179%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20persistence&In-Reply-To=%3C200411301649.iAUGnrHH012492%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r179 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Tue Nov 30 17:49:53 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000179.html">[Provirent-svn-commit] r178 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000181.html">[Provirent-svn-commit] r180 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#180">[ date ]</a>
+              <a href="thread.html#180">[ thread ]</a>
+              <a href="subject.html#180">[ subject ]</a>
+              <a href="author.html#180">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-30 17:49:51 +0100 (Tue, 30 Nov 2004)
+New Revision: 179
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java	2004-11-29 21:33:03 UTC (rev 178)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java	2004-11-30 16:49:51 UTC (rev 179)
+@@ -49,18 +49,15 @@
+ import de.hsharz.provirent.persistence.Database;
+ 
+ /**
+- * This code was generated using CloudGarden's Jigloo
+- * SWT/Swing GUI Builder, which is free for non-commercial
+- * use. If Jigloo is being used commercially (ie, by a corporation,
+- * company or business for any purpose whatever) then you
+- * should purchase a license for each developer using Jigloo.
+- * Please visit www.cloudgarden.com for details.
+- * Use of Jigloo implies acceptance of these licensing terms.
++ * This code was generated using CloudGarden's Jigloo SWT/Swing GUI Builder,
++ * which is free for non-commercial use. If Jigloo is being used commercially
++ * (ie, by a corporation, company or business for any purpose whatever) then you
++ * should purchase a license for each developer using Jigloo. Please visit
++ * www.cloudgarden.com for details. Use of Jigloo implies acceptance of these
++ * licensing terms. ************************************* A COMMERCIAL LICENSE
++ * HAS NOT BEEN PURCHASED for this machine, so Jigloo or this code cannot be
++ * used legally for any corporate or commercial purpose.
+  * *************************************
+- * A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED
+- * for this machine, so Jigloo or this code cannot be used legally
+- * for any corporate or commercial purpose.
+- * *************************************
+  */
+ public class CompositeImage extends AbstractComposite {
+ 
+@@ -75,8 +72,6 @@
+      */
+     private static final Logger logger = Logger.getLogger(CompositeImage.class);
+ 
+-
+-
+     private Label labelImagesResize;
+ 
+     private Scale scaleResize;
+@@ -91,9 +86,10 @@
+ 
+     private SashForm sashForm2;
+ 
+-    //private Image ideaImage, scaledImage;
+-    //private byte[] imagebytedata;
+-    private ImageData original_imagedata;    
++    private de.hsharz.provirent.objects.Image localImage;
++
++    private ImageData original_imagedata;
++
+     private ImageData scaled_imagedata;
+ 
+     private int iy, ix = 0;
+@@ -171,8 +167,9 @@
+ 
+     }
+ 
+-    /* 
++    /*
+      * Init die Sprache (properties Datei)
++     * 
+      * @see de.hsharz.provirent.managment.gui.AbstractComposite#initLanguage(java.util.Locale)
+      */
+     public void initLanguage(Locale locale) {
+@@ -183,7 +180,7 @@
+     }
+ 
+     /**
+-     * Auto-generated main method to display this 
++     * Auto-generated main method to display this
+      * org.eclipse.swt.widgets.Composite inside a new Shell.
+      */
+     public static void main(String[] args) {
+@@ -191,8 +188,8 @@
+     }
+ 
+     /**
+-     * Auto-generated method to display this 
+-     * org.eclipse.swt.widgets.Composite inside a new Shell.
++     * Auto-generated method to display this org.eclipse.swt.widgets.Composite
++     * inside a new Shell.
+      */
+     public static void showGUI() {
+         Display display = Display.getDefault();
+@@ -266,7 +263,7 @@
+     }
+ 
+     private void initImagesOverview() {
+-        //	  Group Images Overview 
++        //	  Group Images Overview
+ 
+         groupImagesOverview = new Group(sashForm2, SWT.NONE);
+         GridLayout group1Layout = new GridLayout();
+@@ -295,14 +292,15 @@
+ 
+                     int index = tableImagesOverview.getSelectionIndex();
+ 
+-                    //es wurde ein Element aus Tabelle ausgewaehlt jetzt muss die
++                    //es wurde ein Element aus Tabelle ausgewaehlt jetzt muss
++                    // die
+                     //Detailansicht aktualisiert werden
+                     refreshImagesDetail(tableImagesOverview.getItem(index)
+                             .getText(0));
+ 
+                     buttonImageDelete.setEnabled(true);
+                     buttonImageEdit.setEnabled(true);
+-                    
++
+                     if (logger.isDebugEnabled()) {
+                         logger.debug(&quot;widgetSelected(SelectionEvent) - end&quot;);
+                     }
+@@ -383,7 +381,7 @@
+             text2LData.horizontalSpan = 5;
+             text2LData.grabExcessHorizontalSpace = true;
+             textImagesSearch.setLayoutData(text2LData);
+-        }// Search                    
++        }// Search
+ 
+     }
+ 
+@@ -471,7 +469,7 @@
+             text1LData3.horizontalSpan = 4;
+             text1LData3.grabExcessHorizontalSpace = true;
+             textImagesDescription.setLayoutData(text1LData3);
+-        }// label and buttons for detail      
++        }// label and buttons for detail
+         {
+             labelImagesFile = new Label(groupImagesDetail, SWT.NONE);
+             labelImagesFile.setText(l
+@@ -520,7 +518,8 @@
+                     String selectedFile = fileDialog.open();
+                     if (selectedFile != null) {
+ 
+-                        original_imagedata = scaled_imagedata = new ImageData(selectedFile);
++                        original_imagedata = scaled_imagedata = new ImageData(
++                                selectedFile);
+ 
+                         canvasImg.redraw();
+                         textFileUrl.setText(fileDialog.getFilterPath()
+@@ -533,7 +532,7 @@
+                                         0,
+                                         fileDialog.getFileName().lastIndexOf(
+                                                 &quot;.&quot;)));
+-                        //save the selected dir 
++                        //save the selected dir
+                         currentDir = fileDialog.getFilterPath();
+ 
+                         //set the resizescale enable
+@@ -565,7 +564,7 @@
+             canvasImg.setLayoutData(canvasImgLData);
+             canvasImg.addPaintListener(new PaintListener() {
+                 public void paintControl(PaintEvent e) {
+-                    if (scaled_imagedata != null ) {
++                    if (scaled_imagedata != null) {
+                         paintImage(e);
+                         //e.gc.drawImage(scaledImage, 0, 0);
+                         e.gc.dispose();
+@@ -624,10 +623,10 @@
+                     int newwidth = (int) (original_imagedata.width * scaleFaktor);
+                     int newheight = (int) (original_imagedata.height * scaleFaktor);
+ 
+-                    if(newwidth== 0){
++                    if (newwidth == 0) {
+                         newwidth = 1;
+                     }
+-                    if (newheight == 0){
++                    if (newheight == 0) {
+                         newheight = 1;
+                     }
+                     if (logger.isDebugEnabled()) {
+@@ -635,10 +634,9 @@
+                                 .debug(&quot;widgetSelected(SelectionEvent) - newwidth: &quot;
+                                         + newwidth + &quot; newheight: &quot; + newheight);
+                     }
+-                    scaled_imagedata = original_imagedata.scaledTo(
+-                            newwidth, newheight);
++                    scaled_imagedata = original_imagedata.scaledTo(newwidth,
++                            newheight);
+ 
+-
+                     //redraw the image
+                     canvasImg.redraw();
+                     resizeScrollBars();
+@@ -737,7 +735,6 @@
+                         //reset and resize the scrollbars
+                         resetScrollBars();
+                         resizeScrollBars();
+-                        
+ 
+                     }
+                 });
+@@ -750,95 +747,8 @@
+                     public void widgetSelected(SelectionEvent evt) {
+                         logger.debug(&quot;buttonImageDelete.widgetSelected, event=&quot;
+                                 + evt);
++                        deleteImage();
+ 
+-                        String msg = MessageFormat
+-                                .format(
+-                                        l
+-                                                .getString(&quot;images.groupdetail.deletebutton.question.text&quot;),
+-                                        new Object[] { textImagesName.getText() });
+-
+-                        int question = showMsg(
+-                                msg,
+-                                l
+-                                        .getString(&quot;images.groupdetail.deletebutton.question.header&quot;),
+-                                SWT.ICON_QUESTION | SWT.YES | SWT.NO);
+-                        
+-                        if (question != SWT.YES) {
+-                            return;
+-                        }
+-
+-                        de.hsharz.provirent.objects.Image o = new de.hsharz.provirent.objects.Image();
+-                        o.setImageId(new Integer(Integer.parseInt(textImagesID
+-                                .getText())));
+-                        o.setImageFileName(textImagesName.getText());
+-                        o.setImageFileDescription(textImagesDescription
+-                                .getText());
+-
+-                        /**@todo BildDatei holen */
+-                        /*
+-                         try {
+-                         //object speichern
+-                         // Fehlerbehandlung
+-                         Database.deleteObject(o);
+-
+-                         //&#220;bersichtsTabelle aktualisieren
+-                         refreshImageOverviewTable(textImageSearch
+-                         .getText());
+-
+-                         //Detailansicht leeren
+-                         textImageID.setText(&quot;&quot;);
+-                         textImageFName.setText(&quot;&quot;);
+-                         textImageLName.setText(&quot;&quot;);
+-
+-                         //in Tabelle n&#228;chsten ausw&#228;hlen
+-                         try {
+-                         tableImageOverview.select(0);
+-                         } catch (Exception ex) {
+-                         }
+-
+-                         //Statusline Nachricht sezten
+-                         statusLine
+-                         .setStatus(
+-                         1,
+-                         l
+-                         .getString(&quot;images.groupdetail.deletebutton.newok&quot;));
+-
+-                         } catch (DataBaseException e) {
+-                         if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
+-                         //Fehler beim Speichern des Objectes
+-
+-                         statusLine
+-                         .setStatus(
+-                         3,
+-                         l
+-                         .getString(&quot;images.groupdetail.deletebutton.errorsave&quot;));
+-                         showMsg(
+-                         l
+-                         .getString(&quot;images.groupdetail.deletebutton.errorsave&quot;),
+-                         l.getString(&quot;error&quot;),
+-                         SWT.ICON_ERROR | SWT.OK);
+-
+-                         } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
+-                         //fehler beim db aufbau
+-                         statusLine
+-                         .setStatus(
+-                         3,
+-                         l
+-                         .getString(&quot;images.groupdetail.deletebutton.errordb&quot;));
+-                         showMsg(
+-                         l
+-                         .getString(&quot;images.groupdetail.deletebutton.errordb&quot;),
+-                         l.getString(&quot;error&quot;),
+-                         SWT.ICON_ERROR | SWT.OK);
+-
+-                         } else {
+-                         //@todo
+-                         e.printStackTrace();
+-                         }
+-
+-                         }
+-                         */
+-
+                     }
+                 });
+             }
+@@ -892,9 +802,10 @@
+                         if (mode_image == ManagementGui.MODE_ADD) {
+ 
+                             /**
+-                             * @todo eine Exception bekommen wieder leider NOCH nicht mit
+-                             * d.h. es muss noch ein r&#252;ckgabewert kommen oder eine Exception 
+-                             * &#252;bermitteln werden (aus der DB Klasse)
++                             * @todo eine Exception bekommen wieder leider NOCH
++                             *       nicht mit d.h. es muss noch ein
++                             *       r&#252;ckgabewert kommen oder eine Exception
++                             *       &#252;bermitteln werden (aus der DB Klasse)
+                              */
+                             //neues Objekt erzeugen
+                             de.hsharz.provirent.objects.Image tmp = new de.hsharz.provirent.objects.Image();
+@@ -915,8 +826,7 @@
+                                         + SWT.IMAGE_JPEG);
+                             }
+ 
+-                            imageLoader.save(bos,
+-                                    scaled_imagedata.type);
++                            imageLoader.save(bos, scaled_imagedata.type);
+ 
+                             tmp.setImageFile(bos.toByteArray());
+ 
+@@ -988,18 +898,24 @@
+                             //setImagesGroupButtonSaveCancel();
+ 
+                         } else if (mode_image == ManagementGui.MODE_EDIT) {
+-                            /*
+-                             Actor tmp = new Actor(
+-                             textImageFName.getText(),
+-                             textImageLName.getText());
+-                             tmp.setActorId(new Integer(Integer
+-                             .parseInt(textImageID.getText())));
++                            
++
++                             localImage.setImageFileName(textImagesName.getText());
++                             localImage.setImageId(new Integer(Integer.parseInt(textImagesID.getText())));
++                             localImage.setImageFileDescription(textImagesDescription.getText());
++                             
++                             ImageLoader imageLoader = new ImageLoader();
++                             imageLoader.data = new ImageData[] { scaled_imagedata };
++                             ByteArrayOutputStream bos = new ByteArrayOutputStream();
++                             localImage.setImageFile( bos.toByteArray() );
++                             
++                             
+                              try {
+                              //object speichern
+                              // Fehlerbehandlung
+-                             Database.saveObject(tmp);
++                             Database.saveObject(localImage);
+                              //&#220;bersichtstabelle aktualisieren
+-                             refreshImageOverviewTable(textImageSearch
++                             refreshImageOverviewTable(textImagesSearch
+                              .getText());
+ 
+                              //Statusline Nachricht sezten
+@@ -1045,16 +961,9 @@
+ 
+                              }
+ 
+-                             //alle Buttons auf aktiv setzen
+-                             setImageGroupButtonSaveCancel();
+-
+                              }
+-                             */
+-                            /**
+-                             * @todo Exception werfen, da nur die zwei Modes sein d&#252;rfen
+-                             */
+                         }
+-                    }
++                    
+                 });
+             }
+             {
+@@ -1067,10 +976,10 @@
+ 
+                         tableImagesOverview.setEnabled(true);
+                         textImagesSearch.setEnabled(true);
+-                        
++
+                         textImagesDescription.setEnabled(false);
+                         textImagesName.setEnabled(false);
+-                        
++
+                         buttonImageCancel.setEnabled(false);
+                         buttonImageDelete.setEnabled(false);
+                         buttonImageEdit.setEnabled(false);
+@@ -1078,8 +987,7 @@
+                         buttonImageSave.setEnabled(false);
+                         buttonImageNew.setEnabled(true);
+                         scaleResize.setEnabled(false);
+-                        
+-                        
++
+                     }
+                 });
+             }
+@@ -1088,7 +996,79 @@
+         // buttons for detail
+     }
+ 
+-    void resizeScrollBars() {
++    private void deleteImage() {
++
++        String msg = MessageFormat.format(l
++                .getString(&quot;images.groupdetail.deletebutton.question.text&quot;),
++                new Object[] { textImagesName.getText() });
++
++        int question = showMsg(msg, l
++                .getString(&quot;images.groupdetail.deletebutton.question.header&quot;),
++                SWT.ICON_QUESTION | SWT.YES | SWT.NO);
++
++        if (question != SWT.YES) {
++            return;
++        }
++
++        try {
++            //object speichern
++            // Fehlerbehandlung
++            Database.deleteObject(localImage);
++
++            //&#220;bersichtsTabelle aktualisieren
++            refreshImageOverviewTable(&quot;&quot;);
++
++            //Detailansicht leeren
++            textImagesID.setText(&quot;&quot;);
++            textImagesName.setText(&quot;&quot;);
++            textImagesDescription.setText(&quot;&quot;);
++            
++            localImage= null;
++            scaled_imagedata = null;
++            original_imagedata = null;
++            
++
++            //in Tabelle n&#228;chsten ausw&#228;hlen
++            try {
++                tableImagesOverview.setSelection(0);
++            } catch (Exception ex) {
++            }
++
++            //Statusline Nachricht sezten
++            statusLine.setStatus(1, l
++                    .getString(&quot;images.groupdetail.deletebutton.newok&quot;));
++
++        } catch (DataBaseException e) {
++            if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                //Fehler beim Speichern des Objectes
++
++                statusLine
++                        .setStatus(
++                                3,
++                                l
++                                        .getString(&quot;images.groupdetail.deletebutton.errorsave&quot;));
++                showMsg(
++                        l
++                                .getString(&quot;images.groupdetail.deletebutton.errorsave&quot;),
++                        l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++
++            } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                //fehler beim db aufbau
++                statusLine.setStatus(3, l
++                        .getString(&quot;images.groupdetail.deletebutton.errordb&quot;));
++                showMsg(l.getString(&quot;images.groupdetail.deletebutton.errordb&quot;),
++                        l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++
++            } else {
++                //@todo
++                e.printStackTrace();
++            }
++
++        }
++
++    }
++
++    private void resizeScrollBars() {
+         // Set the max and thumb for the image canvas scroll bars.
+         ScrollBar horizontal = canvasImg.getHorizontalBar();
+         ScrollBar vertical = canvasImg.getVerticalBar();
+@@ -1121,7 +1101,7 @@
+         }
+     }
+ 
+-    void scrollHorizontally(ScrollBar scrollBar) {
++    private void scrollHorizontally(ScrollBar scrollBar) {
+         if (scaled_imagedata == null)
+             return;
+         Rectangle canvasBounds = canvasImg.getClientArea();
+@@ -1140,7 +1120,7 @@
+         }
+     }
+ 
+-    void scrollVertically(ScrollBar scrollBar) {
++    private void scrollVertically(ScrollBar scrollBar) {
+         if (scaled_imagedata == null)
+             return;
+         Rectangle canvasBounds = canvasImg.getClientArea();
+@@ -1159,7 +1139,7 @@
+     }
+ 
+     // Reset the scroll bars to 0.
+-    void resetScrollBars() {
++    private void resetScrollBars() {
+         ix = 0;
+         iy = 0;
+         resizeScrollBars();
+@@ -1168,14 +1148,13 @@
+ 
+     }
+ 
+-    void paintImage(PaintEvent event) {
+-        Image paintImage = new Image(getDisplay(),scaled_imagedata);
++    private void paintImage(PaintEvent event) {
++        Image paintImage = new Image(getDisplay(), scaled_imagedata);
+ 
+         int w = Math.round(scaled_imagedata.width);
+         int h = Math.round(scaled_imagedata.height);
+         event.gc.drawImage(paintImage, 0, 0, scaled_imagedata.width,
+-                scaled_imagedata.height, ix
+-                        + scaled_imagedata.x, iy
++                scaled_imagedata.height, ix + scaled_imagedata.x, iy
+                         + scaled_imagedata.y, w, h);
+         event.gc.dispose();
+     }
+@@ -1204,7 +1183,7 @@
+             //id ist keine Zahl
+             return;
+         }
+-
++        localImage = object;
+         textImagesID.setText(object.getImageId() + &quot;&quot;);
+         textImagesName.setText(object.getImageFileName());
+         textImagesDescription.setText(object.getImageFileDescription());
+@@ -1217,7 +1196,8 @@
+                 logger
+                         .debug(&quot;refreshImagesDetail(String) - Versuche zu zeichnen&quot;);
+             }
+-            scaled_imagedata = original_imagedata = new ImageData(new ByteArrayInputStream(object.getImageFile()));
++            scaled_imagedata = original_imagedata = new ImageData(
++                    new ByteArrayInputStream(object.getImageFile()));
+             canvasImg.redraw();
+         } else {
+             statusLine.setStatus(StatusLineStyledText.STATUS_WARN,
+@@ -1235,7 +1215,7 @@
+     }
+ 
+     /**
+-     * 
++     *  
+      */
+ 
+     protected void insertIntoImagesOverviewTable(
+@@ -1284,9 +1264,9 @@
+ 
+         int maxheight = 75;
+         int maxwidth = 75;
+-        
++
+         final ImageData imgdata = new ImageData(new ByteArrayInputStream(data));
+-        
++
+         final int width = imgdata.width;
+         final int height = imgdata.height;
+         float scalefactor = 1;
+@@ -1301,9 +1281,8 @@
+ 
+         }
+ 
+-        return new Image(getDisplay(), imgdata
+-                .scaledTo((int) (width * scalefactor),
+-                        (int) (height * scalefactor)));
++        return new Image(getDisplay(), imgdata.scaledTo(
++                (int) (width * scalefactor), (int) (height * scalefactor)));
+ 
+     }
+ }
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-29 21:33:03 UTC (rev 178)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-30 16:49:51 UTC (rev 179)
+@@ -227,7 +227,75 @@
+         return o;
+     }
+     
++    public static void deleteObjectWithId(final Class deleteclass, final Integer id) throws DataBaseException{
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;deleteObjectWithId(Class = &quot; + deleteclass.getName()+&quot; Id: &quot;+id+ &quot;) - start&quot;);
++        }
++        int exception =0;
++        
++        Session s = null;
++        Transaction tx = null;
+   
++            try {
++                //get new Session and begin Transaction
++                s = HibernateUtil.currentSession();
++                tx = s.beginTransaction();
++                
++                try{
++                    s.delete(&quot;&quot;);
++                
++                } catch (HibernateException e) {
++                    logger.error(&quot;deleteObjectWithId(). Fehler beim Speichern/Updaten &quot;
++                            + &quot;des Objectes:&quot; + deleteclass.getName() + &quot; ID: &quot;+id+&quot; Exception: &quot; + e);
++                    exception = 1;
++                }
++               
++                
++
++                //s.flush();
++                
++                tx.commit();
++                
++                
++            } catch (HibernateException e) {
++                exception = 2;
++                logger.error(&quot;Message &quot;+  e.getMessages().toString()); 
++                logger
++                        .error(
++                                &quot;deleteObjectWithId(Object) - Something went wrong here; discard all partial changes&quot;,
++                                e);
++                if (tx != null) {
++                    try {
++                        // Something went wrong; discard all partial changes
++                        tx.rollback();
++                    } catch (HibernateException e1) {
++                        e1.printStackTrace();
++                    }
++                }    
++
++            } finally {
++                try {
++                    // No matter what, close the session
++                    HibernateUtil.closeSession();
++                } catch (HibernateException e1) {
++                    
++                    logger
++                            .error(
++                                    &quot;deleteObjectWithId(Object) - Could not Close the Session&quot;,
++                                    e1);
++                    
++                }
++            }
++
++            if (exception &gt; 0) {
++                throw new DataBaseException(&quot;exception&quot;);
++            }
++            
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;deleteObjectWithId(Object) - end&quot;);
++        }
++    }
++  
+     
+     public static void deleteObject(Object o) throws DataBaseException{
+         if (logger.isDebugEnabled()) {
+@@ -247,7 +315,7 @@
+                     s.delete(o);
+                 
+                 } catch (HibernateException e) {
+-                    logger.error(&quot;saveObject(). Fehler beim Speichern/Updaten &quot;
++                    logger.error(&quot;deleteObject(). Fehler beim Speichern/Updaten &quot;
+                             + &quot;des Objectes:&quot; + o + &quot; Exception: &quot; + e);
+                     exception = 1;
+                 }
+@@ -1539,7 +1607,7 @@
+ 	 * This method gets all Movies from the database.
+ 	 * searches for ID,Title,Date,Description,Actor,Director...
+ 	 * @param filter 
+-	 * @return List of Payment objects, or an empty List
++	 * @return List of Movie objects, or an empty List
+ 	 */
+ 	public static List getMovie(final String filter){
+ 	    if (logger.isDebugEnabled()) {
+@@ -1559,14 +1627,6 @@
+ 	            //any of the criteria 
+ 	            Disjunction any = Expression.disjunction();
+ 	          
+-	            /*
+-	            any.add(Expression.sql(&quot;Select * from PAYMENT where name like '&quot; + 
+-	                    		name + 
+-	                    		&quot;' and startdate = (select startdate from PAYMENT where name like '&quot; + 
+-	                    		name +
+-	                    						   &quot;')&quot;));
+-	            
+-	            */
+ 	
+ 	            //if filter not empty
+ 	            if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000179.html">[Provirent-svn-commit] r178 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000181.html">[Provirent-svn-commit] r180 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#180">[ date ]</a>
+              <a href="thread.html#180">[ thread ]</a>
+              <a href="subject.html#180">[ subject ]</a>
+              <a href="author.html#180">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

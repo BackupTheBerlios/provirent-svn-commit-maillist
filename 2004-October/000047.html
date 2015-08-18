@@ -1,0 +1,371 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r46 - in project_src/provirent_hibernate: . data src
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r46%20-%20in%20project_src/provirent_hibernate%3A%20.%20data%20src&In-Reply-To=%3C200410202145.i9KLjGOG015901%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000046.html">
+   <LINK REL="Next"  HREF="000048.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r46 - in project_src/provirent_hibernate: . data src</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r46%20-%20in%20project_src/provirent_hibernate%3A%20.%20data%20src&In-Reply-To=%3C200410202145.i9KLjGOG015901%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r46 - in project_src/provirent_hibernate: . data src">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Wed Oct 20 23:45:16 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000046.html">[Provirent-svn-commit] r45 - in project_src/provirent_hibernate/src/de/hsharz/provirent: . managment managment/gui
+</A></li>
+        <LI>Next message: <A HREF="000048.html">[Provirent-svn-commit] r47 - project_src/provirent_hibernate/bin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#47">[ date ]</a>
+              <a href="thread.html#47">[ thread ]</a>
+              <a href="subject.html#47">[ subject ]</a>
+              <a href="author.html#47">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-20 23:45:15 +0200 (Wed, 20 Oct 2004)
+New Revision: 46
+
+Modified:
+   project_src/provirent_hibernate/.checkstyle
+   project_src/provirent_hibernate/.classpath
+   project_src/provirent_hibernate/.hibernateSynchronizer
+   project_src/provirent_hibernate/data/video.log
+   project_src/provirent_hibernate/data/video.properties
+   project_src/provirent_hibernate/data/video.script
+   project_src/provirent_hibernate/src/log4j.properties
+Log:
+
+
+Modified: project_src/provirent_hibernate/.checkstyle
+===================================================================
+--- project_src/provirent_hibernate/.checkstyle	2004-10-20 21:44:51 UTC (rev 45)
++++ project_src/provirent_hibernate/.checkstyle	2004-10-20 21:45:15 UTC (rev 46)
+@@ -1,6 +1,6 @@
+ &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+ &lt;fileset-config file-format-version=&quot;1.0.0&quot;&gt;
+-    &lt;fileset name=&quot;Sun Check&quot; enabled=&quot;true&quot; check-config-name=&quot;Sun Checks&quot;&gt;
++    &lt;fileset name=&quot;Sun Check&quot; enabled=&quot;false&quot; check-config-name=&quot;Sun Checks&quot;&gt;
+         &lt;file-match-pattern match-pattern=&quot;.java$&quot; include-pattern=&quot;true&quot;/&gt;
+     &lt;/fileset&gt;
+ &lt;/fileset-config&gt;
+
+Modified: project_src/provirent_hibernate/.classpath
+===================================================================
+--- project_src/provirent_hibernate/.classpath	2004-10-20 21:44:51 UTC (rev 45)
++++ project_src/provirent_hibernate/.classpath	2004-10-20 21:45:15 UTC (rev 46)
+@@ -39,5 +39,6 @@
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;lib/xalan-2.4.0.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;lib/xerces-2.4.0.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;lib/xml-apis.jar&quot;/&gt;
++	&lt;classpathentry sourcepath=&quot;ECLIPSE_HOME/plugins/org.eclipse.platform.source.win32.win32.x86_3.0.1/src/org.eclipse.swt.win32_3.0.1/ws/win32/swtsrc.zip&quot; kind=&quot;var&quot; path=&quot;ECLIPSE_HOME/plugins/org.eclipse.swt.win32_3.0.1/ws/win32/swt.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;output&quot; path=&quot;bin&quot;/&gt;
+ &lt;/classpath&gt;
+
+Modified: project_src/provirent_hibernate/.hibernateSynchronizer
+===================================================================
+--- project_src/provirent_hibernate/.hibernateSynchronizer	2004-10-20 21:44:51 UTC (rev 45)
++++ project_src/provirent_hibernate/.hibernateSynchronizer	2004-10-20 21:45:15 UTC (rev 46)
+@@ -4,11 +4,11 @@
+ BaseDAOPackageName=base
+ BasePackageName=base
+ UseCustomRootDAO=false
++BasePackageStyle=Relative
+ ContextObject=
+-BasePackageStyle=Relative
+ BOEnabled=true
+ BaseDAOPackageStyle=Same
+ CustomRootDAOClass=
++BaseDAOUseBasePackage=true
+ DAOPackageStyle=Relative
+-BaseDAOUseBasePackage=true
+ BaseDAOException=net.sf.hibernate.HibernateException
+
+Modified: project_src/provirent_hibernate/data/video.log
+===================================================================
+--- project_src/provirent_hibernate/data/video.log	2004-10-20 21:44:51 UTC (rev 45)
++++ project_src/provirent_hibernate/data/video.log	2004-10-20 21:45:15 UTC (rev 46)
+@@ -1,57 +1,2 @@
+ /*C2*/CONNECT USER SA
+ SET AUTOCOMMIT FALSE
+-INSERT INTO CUSTOMER VALUES(21,'2004-10-12 13:34:07.518','kunde1','kunde1',' ',' ')
+-INSERT INTO PERSON VALUES(23,'Philipp','Schneider',NULL,'Herr',NULL,'Kastanienring','16','Leipzig','04316','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">egal at phil-schneider.de</A>','1981-04-14 13:34:07.508')
+-DELETE FROM PERSON WHERE PERSONID=23
+-DELETE FROM CUSTOMER WHERE CUSTOMERID=21
+-COMMIT
+-INSERT INTO CUSTOMER VALUES(22,'2004-10-12 13:34:08.018','kunde1','kunde1',' ',' ')
+-INSERT INTO PERSON VALUES(24,'Philipp','Schneider',NULL,'Herr',NULL,'Kastanienring','16','Leipzig','04316','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>','1988-09-10 13:34:08.018')
+-INSERT INTO CUSTOMER VALUES(23,'2004-10-12 13:34:08.028','kunde2','kunde2',' ',' ')
+-INSERT INTO PERSON VALUES(25,'Max','Meier',NULL,'Herr',NULL,'Kohlgartenstr.','67','Wernigerode','38855','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>',NULL)
+-INSERT INTO CUSTOMER VALUES(24,'2004-10-12 13:34:08.048','kunde3','kunde3',' ',' ')
+-INSERT INTO PERSON VALUES(26,'Thomas','Pech',NULL,'Herr',NULL,'Riebeck.','7a','Leipzig','04317','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde3-provirent at phil-schneider.de</A>',NULL)
+-COMMIT
+-INSERT INTO ACTOR VALUES(36,'Julianne','Moore')
+-INSERT INTO ACTOR VALUES(37,'Christopher','Kovaleski')
+-INSERT INTO ACTOR VALUES(38,'Matthew','Pleszewicz')
+-INSERT INTO DIRECTOR VALUES(16,'Joseph','Ruben')
+-INSERT INTO GENRE VALUES(37,'Thriller','')
+-INSERT INTO GENRE VALUES(38,'Drama','')
+-INSERT INTO GENRE VALUES(39,'Sci-Fi','')
+-INSERT INTO GENRE VALUES(40,'Mystery','')
+-INSERT INTO LANGUAGE VALUES(25,'Deutsch','de')
+-INSERT INTO LANGUAGE VALUES(26,'Englisch','en')
+-INSERT INTO AUDIOFORMAT VALUES(30,'DTS Surround Sound','')
+-INSERT INTO AUDIOFORMAT VALUES(31,'Surround Sound','')
+-INSERT INTO AUDIOFORMAT VALUES(32,'Dolby','')
+-INSERT INTO SUBTITLE VALUES(25,'Deutsch','de')
+-INSERT INTO SUBTITLE VALUES(26,'Englisch','en')
+-INSERT INTO VIDEOFORMAT VALUES(21,'9:13','')
+-INSERT INTO VIDEOFORMAT VALUES(22,'16:10','')
+-INSERT INTO MOVIE VALUES(8,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 13:34:08.199')
+-INSERT INTO IMAGE VALUES(16,NULL,0,NULL,NULL)
+-INSERT INTO MOVIEACTORS VALUES(8,36,0)
+-INSERT INTO MOVIEACTORS VALUES(8,37,1)
+-INSERT INTO MOVIEACTORS VALUES(8,38,2)
+-INSERT INTO MOVIEDIRECTORS VALUES(8,16,0)
+-INSERT INTO MOVIELANGUAGES VALUES(8,25,0)
+-INSERT INTO MOVIELANGUAGES VALUES(8,26,1)
+-INSERT INTO MOVIESUBTITLES VALUES(8,25,0)
+-INSERT INTO MOVIESUBTITLES VALUES(8,26,1)
+-INSERT INTO MOVIEGENRES VALUES(8,37,0)
+-INSERT INTO MOVIEGENRES VALUES(8,38,1)
+-INSERT INTO MOVIEGENRES VALUES(8,39,2)
+-INSERT INTO MOVIEGENRES VALUES(8,40,3)
+-COMMIT
+-INSERT INTO MOVIE VALUES(9,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 13:34:08.489')
+-INSERT INTO IMAGE VALUES(17,NULL,0,NULL,NULL)
+-INSERT INTO MOVIEACTORS VALUES(9,10,0)
+-INSERT INTO MOVIEACTORS VALUES(9,28,1)
+-INSERT INTO MOVIEDIRECTORS VALUES(9,10,0)
+-INSERT INTO MOVIELANGUAGES VALUES(9,24,0)
+-INSERT INTO MOVIESUBTITLES VALUES(9,22,0)
+-INSERT INTO MOVIEGENRES VALUES(9,28,0)
+-INSERT INTO MOVIEAUDIOFORMATES VALUES(9,30,0)
+-INSERT INTO MOVIEVIDEOFORMATES VALUES(9,15,0)
+-COMMIT
+
+Modified: project_src/provirent_hibernate/data/video.properties
+===================================================================
+--- project_src/provirent_hibernate/data/video.properties	2004-10-20 21:44:51 UTC (rev 45)
++++ project_src/provirent_hibernate/data/video.properties	2004-10-20 21:45:15 UTC (rev 46)
+@@ -1,5 +1,5 @@
+ #HSQL database
+-#Tue Oct 12 13:34:02 CEST 2004
++#Wed Oct 20 23:34:20 CEST 2004
+ hsqldb.cache_file_scale=1
+ runtime.gc_interval=0
+ hsqldb.first_identity=0
+
+Modified: project_src/provirent_hibernate/data/video.script
+===================================================================
+--- project_src/provirent_hibernate/data/video.script	2004-10-20 21:44:51 UTC (rev 45)
++++ project_src/provirent_hibernate/data/video.script	2004-10-20 21:45:15 UTC (rev 46)
+@@ -54,6 +54,8 @@
+ INSERT INTO IMAGE VALUES(13,NULL,0,NULL,NULL)
+ INSERT INTO IMAGE VALUES(14,NULL,0,NULL,NULL)
+ INSERT INTO IMAGE VALUES(15,NULL,0,NULL,NULL)
++INSERT INTO IMAGE VALUES(16,NULL,0,NULL,NULL)
++INSERT INTO IMAGE VALUES(17,NULL,0,NULL,NULL)
+ INSERT INTO PERSON VALUES(2,'','',NULL,'',NULL,'','','','','','',NULL)
+ INSERT INTO PERSON VALUES(4,'Philipp','Schneider',NULL,'Herr',NULL,'Kastanienring','16','Leipzig','04316','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>','1988-09-10 11:45:05.935')
+ INSERT INTO PERSON VALUES(5,'Max','Meier',NULL,'Herr',NULL,'Kohlgartenstr.','67','Wernigerode','38855','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>',NULL)
+@@ -70,6 +72,9 @@
+ INSERT INTO PERSON VALUES(20,'Philipp','Schneider',NULL,'Herr',NULL,'Kastanienring','16','Leipzig','04316','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>','1988-09-10 13:19:23.457')
+ INSERT INTO PERSON VALUES(21,'Max','Meier',NULL,'Herr',NULL,'Kohlgartenstr.','67','Wernigerode','38855','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>',NULL)
+ INSERT INTO PERSON VALUES(22,'Thomas','Pech',NULL,'Herr',NULL,'Riebeck.','7a','Leipzig','04317','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde3-provirent at phil-schneider.de</A>',NULL)
++INSERT INTO PERSON VALUES(24,'Philipp','Schneider',NULL,'Herr',NULL,'Kastanienring','16','Leipzig','04316','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>','1988-09-10 13:34:08.018')
++INSERT INTO PERSON VALUES(25,'Max','Meier',NULL,'Herr',NULL,'Kohlgartenstr.','67','Wernigerode','38855','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>',NULL)
++INSERT INTO PERSON VALUES(26,'Thomas','Pech',NULL,'Herr',NULL,'Riebeck.','7a','Leipzig','04317','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde3-provirent at phil-schneider.de</A>',NULL)
+ INSERT INTO GENRE VALUES(5,'Action','')
+ INSERT INTO GENRE VALUES(6,'Abenteuer','')
+ INSERT INTO GENRE VALUES(7,'Dokumentation','')
+@@ -102,6 +107,10 @@
+ INSERT INTO GENRE VALUES(34,'Drama','')
+ INSERT INTO GENRE VALUES(35,'Sci-Fi','')
+ INSERT INTO GENRE VALUES(36,'Mystery','')
++INSERT INTO GENRE VALUES(37,'Thriller','')
++INSERT INTO GENRE VALUES(38,'Drama','')
++INSERT INTO GENRE VALUES(39,'Sci-Fi','')
++INSERT INTO GENRE VALUES(40,'Mystery','')
+ INSERT INTO SUBTITLE VALUES(6,'Deutsch','de')
+ INSERT INTO SUBTITLE VALUES(7,'Englisch','en')
+ INSERT INTO SUBTITLE VALUES(8,'Franzoesisch','fr')
+@@ -121,6 +130,8 @@
+ INSERT INTO SUBTITLE VALUES(22,'Englisch','en')
+ INSERT INTO SUBTITLE VALUES(23,'Deutsch','de')
+ INSERT INTO SUBTITLE VALUES(24,'Englisch','en')
++INSERT INTO SUBTITLE VALUES(25,'Deutsch','de')
++INSERT INTO SUBTITLE VALUES(26,'Englisch','en')
+ INSERT INTO MOVIEDIRECTORS VALUES(1,9,0)
+ INSERT INTO MOVIEDIRECTORS VALUES(2,10,0)
+ INSERT INTO MOVIEDIRECTORS VALUES(3,11,0)
+@@ -128,6 +139,8 @@
+ INSERT INTO MOVIEDIRECTORS VALUES(5,13,0)
+ INSERT INTO MOVIEDIRECTORS VALUES(6,14,0)
+ INSERT INTO MOVIEDIRECTORS VALUES(7,15,0)
++INSERT INTO MOVIEDIRECTORS VALUES(8,16,0)
++INSERT INTO MOVIEDIRECTORS VALUES(9,10,0)
+ INSERT INTO MOVIEACTORS VALUES(1,15,0)
+ INSERT INTO MOVIEACTORS VALUES(1,16,1)
+ INSERT INTO MOVIEACTORS VALUES(1,17,2)
+@@ -149,6 +162,12 @@
+ INSERT INTO MOVIEACTORS VALUES(7,33,0)
+ INSERT INTO MOVIEACTORS VALUES(7,34,1)
+ INSERT INTO MOVIEACTORS VALUES(7,35,2)
++INSERT INTO MOVIEACTORS VALUES(8,36,0)
++INSERT INTO MOVIEACTORS VALUES(8,37,1)
++INSERT INTO MOVIEACTORS VALUES(8,38,2)
++INSERT INTO MOVIEACTORS VALUES(9,10,0)
++INSERT INTO MOVIEACTORS VALUES(9,28,1)
++INSERT INTO MOVIEAUDIOFORMATES VALUES(9,30,0)
+ INSERT INTO STATUS VALUES(5,'ausleihbar','')
+ INSERT INTO STATUS VALUES(6,'verliehen','')
+ INSERT INTO STATUS VALUES(7,'in Bearbeitung','')
+@@ -164,6 +183,7 @@
+ INSERT INTO DIRECTOR VALUES(13,'Joseph','Ruben')
+ INSERT INTO DIRECTOR VALUES(14,'Joseph','Ruben')
+ INSERT INTO DIRECTOR VALUES(15,'Joseph','Ruben')
++INSERT INTO DIRECTOR VALUES(16,'Joseph','Ruben')
+ INSERT INTO ACTOR VALUES(8,'Johnny','Depp')
+ INSERT INTO ACTOR VALUES(9,'Geoffrey','Rush')
+ INSERT INTO ACTOR VALUES(10,'Gore','Verbinski ')
+@@ -192,6 +212,9 @@
+ INSERT INTO ACTOR VALUES(33,'Julianne','Moore')
+ INSERT INTO ACTOR VALUES(34,'Christopher','Kovaleski')
+ INSERT INTO ACTOR VALUES(35,'Matthew','Pleszewicz')
++INSERT INTO ACTOR VALUES(36,'Julianne','Moore')
++INSERT INTO ACTOR VALUES(37,'Christopher','Kovaleski')
++INSERT INTO ACTOR VALUES(38,'Matthew','Pleszewicz')
+ INSERT INTO AUDIOFORMAT VALUES(5,'DTS Surround Sound','')
+ INSERT INTO AUDIOFORMAT VALUES(6,'Surround Sound','')
+ INSERT INTO AUDIOFORMAT VALUES(7,'Dolby','')
+@@ -217,6 +240,10 @@
+ INSERT INTO AUDIOFORMAT VALUES(27,'DTS Surround Sound','')
+ INSERT INTO AUDIOFORMAT VALUES(28,'Surround Sound','')
+ INSERT INTO AUDIOFORMAT VALUES(29,'Dolby','')
++INSERT INTO AUDIOFORMAT VALUES(30,'DTS Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(31,'Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(32,'Dolby','')
++INSERT INTO MOVIEVIDEOFORMATES VALUES(9,15,0)
+ INSERT INTO MOVIE VALUES(1,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 11:45:06.086')
+ INSERT INTO MOVIE VALUES(2,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 11:49:41.271')
+ INSERT INTO MOVIE VALUES(3,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 11:51:22.407')
+@@ -224,6 +251,8 @@
+ INSERT INTO MOVIE VALUES(5,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 11:52:31.917')
+ INSERT INTO MOVIE VALUES(6,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 13:19:23.707')
+ INSERT INTO MOVIE VALUES(7,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 13:19:24.017')
++INSERT INTO MOVIE VALUES(8,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 13:34:08.199')
++INSERT INTO MOVIE VALUES(9,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 13:34:08.489')
+ INSERT INTO LANGUAGE VALUES(6,'Deutsch','de')
+ INSERT INTO LANGUAGE VALUES(7,'Englisch','en')
+ INSERT INTO LANGUAGE VALUES(8,'Franzoesisch','fr')
+@@ -243,6 +272,8 @@
+ INSERT INTO LANGUAGE VALUES(22,'Englisch','en')
+ INSERT INTO LANGUAGE VALUES(23,'Deutsch','de')
+ INSERT INTO LANGUAGE VALUES(24,'Englisch','en')
++INSERT INTO LANGUAGE VALUES(25,'Deutsch','de')
++INSERT INTO LANGUAGE VALUES(26,'Englisch','en')
+ INSERT INTO CUSTOMER VALUES(2,'2004-10-12 11:45:05.935','kunde1','kunde1',' ',' ')
+ INSERT INTO CUSTOMER VALUES(3,'2004-10-12 11:45:05.955','kunde2','kunde2',' ',' ')
+ INSERT INTO CUSTOMER VALUES(4,'2004-10-12 11:45:05.965','kunde3','kunde3',' ',' ')
+@@ -258,6 +289,9 @@
+ INSERT INTO CUSTOMER VALUES(18,'2004-10-12 13:19:23.457','kunde1','kunde1',' ',' ')
+ INSERT INTO CUSTOMER VALUES(19,'2004-10-12 13:19:23.557','kunde2','kunde2',' ',' ')
+ INSERT INTO CUSTOMER VALUES(20,'2004-10-12 13:19:23.637','kunde3','kunde3',' ',' ')
++INSERT INTO CUSTOMER VALUES(22,'2004-10-12 13:34:08.018','kunde1','kunde1',' ',' ')
++INSERT INTO CUSTOMER VALUES(23,'2004-10-12 13:34:08.028','kunde2','kunde2',' ',' ')
++INSERT INTO CUSTOMER VALUES(24,'2004-10-12 13:34:08.048','kunde3','kunde3',' ',' ')
+ INSERT INTO CONDITION VALUES(6,'neu','')
+ INSERT INTO CONDITION VALUES(7,'leichte Kratzer','')
+ INSERT INTO CONDITION VALUES(8,'mittlere Kratzer','')
+@@ -277,6 +311,9 @@
+ INSERT INTO MOVIESUBTITLES VALUES(6,22,1)
+ INSERT INTO MOVIESUBTITLES VALUES(7,23,0)
+ INSERT INTO MOVIESUBTITLES VALUES(7,24,1)
++INSERT INTO MOVIESUBTITLES VALUES(8,25,0)
++INSERT INTO MOVIESUBTITLES VALUES(8,26,1)
++INSERT INTO MOVIESUBTITLES VALUES(9,22,0)
+ INSERT INTO MOVIEGENRES VALUES(1,9,0)
+ INSERT INTO MOVIEGENRES VALUES(1,10,1)
+ INSERT INTO MOVIEGENRES VALUES(1,11,2)
+@@ -305,6 +342,11 @@
+ INSERT INTO MOVIEGENRES VALUES(7,34,1)
+ INSERT INTO MOVIEGENRES VALUES(7,35,2)
+ INSERT INTO MOVIEGENRES VALUES(7,36,3)
++INSERT INTO MOVIEGENRES VALUES(8,37,0)
++INSERT INTO MOVIEGENRES VALUES(8,38,1)
++INSERT INTO MOVIEGENRES VALUES(8,39,2)
++INSERT INTO MOVIEGENRES VALUES(8,40,3)
++INSERT INTO MOVIEGENRES VALUES(9,28,0)
+ INSERT INTO VIDEOFORMAT VALUES(4,'2.35:1','')
+ INSERT INTO VIDEOFORMAT VALUES(5,'9:13','')
+ INSERT INTO VIDEOFORMAT VALUES(6,'16:10','')
+@@ -322,6 +364,8 @@
+ INSERT INTO VIDEOFORMAT VALUES(18,'16:10','')
+ INSERT INTO VIDEOFORMAT VALUES(19,'9:13','')
+ INSERT INTO VIDEOFORMAT VALUES(20,'16:10','')
++INSERT INTO VIDEOFORMAT VALUES(21,'9:13','')
++INSERT INTO VIDEOFORMAT VALUES(22,'16:10','')
+ INSERT INTO MOVIELANGUAGES VALUES(1,11,0)
+ INSERT INTO MOVIELANGUAGES VALUES(1,12,1)
+ INSERT INTO MOVIELANGUAGES VALUES(2,13,0)
+@@ -336,3 +380,6 @@
+ INSERT INTO MOVIELANGUAGES VALUES(6,22,1)
+ INSERT INTO MOVIELANGUAGES VALUES(7,23,0)
+ INSERT INTO MOVIELANGUAGES VALUES(7,24,1)
++INSERT INTO MOVIELANGUAGES VALUES(8,25,0)
++INSERT INTO MOVIELANGUAGES VALUES(8,26,1)
++INSERT INTO MOVIELANGUAGES VALUES(9,24,0)
+
+Modified: project_src/provirent_hibernate/src/log4j.properties
+===================================================================
+--- project_src/provirent_hibernate/src/log4j.properties	2004-10-20 21:44:51 UTC (rev 45)
++++ project_src/provirent_hibernate/src/log4j.properties	2004-10-20 21:45:15 UTC (rev 46)
+@@ -17,6 +17,9 @@
+ log4j.logger.net.sf.hibernate=info
+ log4j.logger.test.provirent.hibernate=debug
+ 
++log4j.logger.de.hsharz.provirent.persistence=debug
++log4j.logger.de.hsharz.provirent.managment.gui=debug
++
+ ### log just the SQL
+ #log4j.logger.net.sf.hibernate.SQL=debug
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000046.html">[Provirent-svn-commit] r45 - in project_src/provirent_hibernate/src/de/hsharz/provirent: . managment managment/gui
+</A></li>
+	<LI>Next message: <A HREF="000048.html">[Provirent-svn-commit] r47 - project_src/provirent_hibernate/bin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#47">[ date ]</a>
+              <a href="thread.html#47">[ thread ]</a>
+              <a href="subject.html#47">[ subject ]</a>
+              <a href="author.html#47">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

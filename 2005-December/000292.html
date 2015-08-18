@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r291 - in docu/latex: . images
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r291%20-%20in%20docu/latex%3A%20.%20images&In-Reply-To=%3C200512140933.jBE9XnZR018943%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000291.html">
+   <LINK REL="Next"  HREF="000294.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r291 - in docu/latex: . images</H1>
+    <B>pschneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r291%20-%20in%20docu/latex%3A%20.%20images&In-Reply-To=%3C200512140933.jBE9XnZR018943%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r291 - in docu/latex: . images">pschneider at berlios.de
+       </A><BR>
+    <I>Wed Dec 14 10:33:49 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000291.html">[Provirent-svn-commit] r290 - project_src/customer/WEB-INF/lib
+</A></li>
+        <LI>Next message: <A HREF="000294.html">[Provirent-svn-commit] r292 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#292">[ date ]</a>
+              <a href="thread.html#292">[ thread ]</a>
+              <a href="subject.html#292">[ subject ]</a>
+              <a href="author.html#292">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2005-12-14 10:33:41 +0100 (Wed, 14 Dec 2005)
+New Revision: 291
+
+Added:
+   docu/latex/images/Eclipse-Aufbau.png
+Modified:
+   docu/latex/3-3-Entwicklungsumgebung.tex
+   docu/latex/3-4-GUIJava.tex
+   docu/latex/Provirent-Doku.bib
+Log:
+- Remos Doku hinzugef?\195?\188gt
+
+Modified: docu/latex/3-3-Entwicklungsumgebung.tex
+===================================================================
+--- docu/latex/3-3-Entwicklungsumgebung.tex	2005-12-13 15:17:49 UTC (rev 290)
++++ docu/latex/3-3-Entwicklungsumgebung.tex	2005-12-14 09:33:41 UTC (rev 291)
+@@ -1,14 +1,51 @@
+ \section{Entwicklungsumgebung} \label{sec:tech-Entwicklungsumgebung}
+-		\subsection{JBuilder}
+-		\subsection{Netbeans}
+-		\subsection{Eclipse}
++\subsection{Eclipse}
++Eclipse ist eine Open-Source-Framework, das meist als Entwicklungsumgebung genutzt wird und auf 11 verschiedenen Systemen und Architekturen verwendet werden kann. Darunter befinden sich unter anderem Windows, Linux, MAC OS X, etc. Eclipse ist der Nachfolger von Visual Age for Java von IBM. Der Quellcode von Eclipse wurde 2001 von IBM freigegeben. Eclipse bildet nur den Kern, die Funktionalit&#228;t wird &#252;ber Plug-ins realisiert. Je nach verwendeten Plug-ins stellt sich somit die gesamte Funktionalit&#228;t der Entwicklungsumgebung zusammen. Sowohl Eclipse als auch die Plug-ins sind in Java implementiert. Die Plug-Ins sind teilweise frei verwendbar und teilweise kommerziell. Dabei werden neben Java auch andere Sprachen wie zum Beispiel: C, C++. Perl und PHP  unterst&#252;tzt. Das dynamische Hinzuf&#252;gen und Entfernen von Plug-ins und die daraus entstehende Gesamtfunktionalit&#228;t der Eclipse-Entwicklungsumgebung bezeichnet man als Rich Client Platform, das wiederum auf den OSGi-Standard basiert!
+ .\\
++Der OSGi-Standard (Open Services Gateway Initiative) ist ein Industriekonsortium, das ein  Framework, f&#252;r die Vernetzung von intelligenten Embedded-Ger&#228;ten und das Bereitstellen von Diensten zur Laufzeit erm&#246;glicht, entwickelt hat. Eclipse verwendet das OSGi-Framework au&#223;erhalb dieser Embedded-Ausrichtung.\\
++F&#252;r die GUI-Erstellung wurde in Eclipse SWT verwendet, da SWT auf die nativen GUI-Komponenten des jeweiligen Betriebssystems zugreift ist Eclipse, trotz Java, nicht als plattformunbh&#228;ngig zu betrachten.\\
++Der Aufbau von Eclipse setzt sich dabei aus folgenden Subsystemen zusammen, die teilweise aus einem oder mehreren Plug-ins bestehen wie in \vref{fig:eclipse-aufbau} zu sehen ist.
++\begin{figure}[htbp]
++	\centering
++	\includegraphics[scale=1.0]{images/Eclipse-Aufbau.png}
++	\caption{Aufbau der Eclipse-Plattform}
++	\label{fig:eclipse-aufbau}
++\end{figure}
++Die einzelnen Subsysteme definieren Erweiterungs-Schnittstellen um deren Funktionalit&#228;t der Plattform zug&#228;nglich zu machen, wie in Tabelle 3.1 auf Seite \pageref{tab:eclipse-subsystem} zu sehen ist. 
+ 
++\begin{table}[htbp]
++	\centering
++	
++\begin{longtable}{|c|p{10cm}|}
++\caption{Subsysteme von Eclipse}\\
+ 
++\hline
++\textbf{Subsystem} &amp; \textbf{Funktion} \endhead
++\hline
++Plattform-Runtime &amp; Definiert die Erweiterungs-Schnittstellen und das Plug-in Model. Es findet dynamisch Plug-ins und enth&#228;lt Informationen zu den Plug-ins und deren Schnittstellen in einem Register. Die eingef&#252;gten Plug-ins werden gestartet, wenn der Anwender sie &#252;ber die Plattform aufruft. \\
++\hline
++Resource Management &amp; Definiert die API f&#252;r das Erzeugen und Verwalten von Projekten, Dateien und Verzeichnissen, die von Tools erzeugt wurden und im Dateisystem abgelegt sind.\\
++\hline
++Workbench (UI) &amp; Implementiert das Bedienfeld um mit der Plattform zu arbeiten. Definiert Erweiterungs-Schnittstellen f&#252;r weitere UI-Komponenten, um vorhandene Funktionalit&#228;ten aus bereits bestehenden Ansichten und Men&#252;s zu erweitern oder zu verwenden. Als Grundlage dienen dazu JFace und SWT, die im Kapitel SWT beschrieben sind.\\
++\hline
++Help System &amp; Definiert Erweiterungs-Schnittstellen f&#252;r Plug-ins, um eine Hilfe oder andere Informationen als durchsuchbare B&#252;cher bereitzustellen. \\
++\hline
++Team Support &amp; Definiert ein Team-Programmierungsmodell zum Verwalten von Ressourcen. \\
++\hline
++Debug Support &amp; Definiert ein sprachunabh&#228;ngiges Debug-Modell und UI-Klassen f&#252;r das Erstellen von Debuggern und Launchers.\\
++\hline
++Other Utilities &amp; Andere n&#252;tzliche Plug-ins unterst&#252;tzen Funktionen f&#252;r das Vergleichen von Ressourcen, das Erzeugen von Konfigurationen &#252;ber XML-Files und das dynamische Updaten der Plattform &#252;ber einen Server.\\
++\hline
++			
++\end{longtable}
++\label{tab:eclipse-subsystem}
++\end{table}
+ 
+ 
+ 
+ 
+ 
++\citep[Eclipse]{Wikipedia2005}
++\citep{EclipseISV}
+ 
+ 
+ 
+
+Modified: docu/latex/3-4-GUIJava.tex
+===================================================================
+--- docu/latex/3-4-GUIJava.tex	2005-12-13 15:17:49 UTC (rev 290)
++++ docu/latex/3-4-GUIJava.tex	2005-12-14 09:33:41 UTC (rev 291)
+@@ -1,8 +1,70 @@
+ \section{grafischen Benutzerschnittstellen in Java} \label{sec:tech-Benutzerschnittstellen}
+-		\subsection{Abstract Window Toolkit - AWT}
+-		\subsection{Swing}
+-		\subsection{Standard Widget Toolkit - SWT}
++\subsection{Abstract Window Toolkit - AWT}
++Die Abk&#252;rzung AWT steht f&#252;r Abstract Window Toolkit. AWT stellt eine Standard-API f&#252;r die Erzeugung und Darstellung von plattformunabh&#228;ngigen Benutzerschnittstellen f&#252;r grafische Oberfl&#228;chen in Java zur Verf&#252;gung. AWT verwendet die nativen GUI-Komponenten des jeweiligen Betriebssystem zur Darstellung der grafischen Oberfl&#228;chen. Da diese nativen GUI-Komponenten teilweise mit umfangreichen Betriebssystem Ressourcen verbunden sind, wird AWT auch als Heavyweight-Framework bzw. die einzelnen GUI-Elemenete als Heavyweight-Components bezeichnet.\\ 
++Seit dem JDK ( Java Development Kit ) 1.0 steht AWT als Grafik-Bibliothek f&#252;r die Anwender zur Verf&#252;gung. Dabei l&#228;sst sich AWT in 4 Gruppen unterteilen:
++\begin{itemize}
++	\item Grafische Primitivoperationen zum Zeichen von Linien oder F&#252;llen von Fl&#228;chen und zur Ausgabe von Text
++	\item	Methoden zur Steuerung von des Programmablaufs &#252;ber Nachrichten durch Tastatur-, Maus- oder Fensterereignisse.
++	\item portables Design f&#252;r Dialogboxen f&#252;r Darstellung der Dialogelemente und die Kommunikation mit dem Anwender
++	\item Fortgeschrittene Grafikfunktionen f&#252;r die Bearbeitung und Darstellung von Bitmaps, sowie zur Ausgabe von Sound
++\end{itemize}
++Aufgrund der hohen Performance-Anspr&#252;che von AWT, besonders f&#252;r gro&#223;e GUI-Anwendungen, wurde es im JDK 1.1 von SUN massiv ver&#228;ndert. Dabei wurden viele Fehler behoben und auch viele Methodennamen ver&#228;ndert. Des Weiteren wurde das Event Handling-Modell, also der Transfer von GUI-Ereignissen, komplett &#252;berarbeitet. Dazu wurde AWT die F&#228;higkeit gegeben GUI-Ereignisse an beliebige Objekte zu &#252;bergeben und dort abzuarbeiten. Aufgrund dieser F&#228;higkeit erreicht man eine klare Trennung zwischen Benutzeroberfl&#228;che und Applikationslogik.\citep{Krueger2003}
++
++
++
++
++\subsection{Swing}
++Swing ist eine weitere Grafikbibliothek die im JDK 1.1 als Add-on verf&#252;gbar war und seit Version 1.2 fester Bestandteil des Java Development Kit ist. Swing wurde von SUN entwickelt um die grafische Benutzeroberfl&#228;che von Java Programmen zu verbessern, da man folgende Eigenschaften von AWT als nachteilig ansah:
++\begin{itemize}
++	\item Aufgrund der Verwendung der jeweiligen nativen GUI-Elemente des eingesetzten Betriebssystems, war es sehr schwer einen einheitliches Look-an-Feel ( Aussehen ) zu realisieren.
++	\item Um das Verhalten der verschiedenen GUI-Elemete der einzelnen Betriebssystemen ann&#228;hernd anzugleichen war sehr viel Portierungsaufwand notwendig.
++	\item Des Weiteren gibt es in AWT nur eine Grundmenge an Dialogelementen mit denen sich aufwendige grafische Oberfl&#228;chen nur mit sehr viel Zeitaufwand realisieren lassen.
++\end{itemize}
++Das Ziel der Entwickler war es diese Nachteile mit Swing zu beseitigen.\\
++Der erste Schritt die Nachteile zu beseitigen ist, das mit Swing nur noch eingeschr&#228;nkt auf die jeweiligen nativen GUI-Elemente zugreift. Die restlichen GUI-Elemente werden von Swing selbst erzeugt und gezeichnet.
++\begin{itemize}
++	\item Aufgrund dieser Vorgehensweise entf&#228;llt ein Gro&#223;teil der plattformspezifischen Besonderheiten weg.
++	\item Des Weiteren entf&#228;llt die unterschiedliche Bedienung und Darstellung zwischen den verschiedenen Betriebssystemen, so dass ein Anwender auf allen Betriebssystemen dasselbe Aussehen vorfindet.
++	\item Zus&#228;tzlich ist SWING nicht mehr angewiesen auf den kleinsten gemeinsamen Nenner der GUI-Elemente der Betriebsysteme aufzubauen, sondern kann unabh&#228;ngig davon komplexere GUI-Elemente bereitstellen ohne auf das jeweilige Betriebssystem zu achten. Au&#223;erdem stehen in Swing dem Programmierer viel mehr Dialogelemente zur Verf&#252;gung als das bei AWT der Fall war.
++\end{itemize}
++
++\subsubsection{Leichtgewicht-Komponenten}
++Aus diesem Grund werden die GUI-Elemente in Swing als Lightweight-Components bezeichnet, da sie nicht mehr &#252;ber die betriebssystemspezifische Klassen erstellt werden m&#252;ssen sondern durch Komponenten-Klassen mit Hilfe von Primitivoperationen erzeugt werden.\\
++Mit Hilfe der Leichtgewicht-Komponenten war es zus&#228;tzlich m&#246;glich Tooltips ( kleine Fenster mit n&#252;tzlichen Informationen ) unabh&#228;ngig vom verwendeten Grafiksystem und einen Debug-Modus ( Debug-Grafik ), zum Finden von Fehlern w&#228;hrend der Erzeugung von grafischen Oberfl&#228;chen, zu implementieren.
++
++
++\subsubsection{Pluggable Look-and-Feel}
++Eine der spektakul&#228;rsten Eigenschaften von Swing ist das Look-and-Feel der GUI-Elemente zur  Laufzeit zu ver&#228;ndern. Dabei hat der Anwender die M&#246;glichkeit zwischen einer bestimmte Menge an Look-and-Feels auszuw&#228;hlen. Des Weiteren ist es m&#246;glich auch eigene Look-and-Feels zu erstellen.\\
++Die Entscheidung welches Look-and-Feel verwendet werden soll, muss dazu nicht w&#228;hrend der Design-Phase entschieden werden. Sondern man kann dem Anwender ein Men&#252; zur Verf&#252;gung stellen indem er er w&#228;hrend der Laufzeit das ihm passende Look-and-Feel ausw&#228;hlt. Das Umschalten erfolgt praktisch ohne weiteren Aufwand des Programms, sondern wird von einem User-Interface-Manager erledigt, der alle notwendigen Ma&#223;nahmen ausf&#252;hrt.
++
++
++\subsubsection{Das Model-View-Controller Prinzip}
++Beim Model-View-Controller Prinzip wird nicht die gesamte Funktionalit&#228;t in eine Klasse gepackt sondern in drei Bestandteile zerlegt:
++\begin{itemize}
++	\item Das Modell enth&#228;lt die Daten des Dialogelements und speichert seinen Zustand.
++	\item Der View ist f&#252;r die grafische Darstellung der Komponente verantwortlich.
++	\item Der Controller wirkt als Verbindungsglied zwischen dem Modell und View und st&#246;&#223;t bei Ereignissen die notwendigen Ma&#223;nahmen zur Ver&#228;nderung von Modell und View an.
++\end{itemize}
++Eine wichtige Eigenschaft bei diesem Prinzip ist, dass ein Modell mehrere Views gleichzeitig haben kann. Dazu werden bei Ver&#228;nderungen am Modell die Views benachrichtigt und aktualisieren sich entsprechend.\\
++Bei Swing sind der View und der Controller in einer Klasse untergebracht, dadurch wird die Komplexit&#228;t reduziert. Au&#223;erdem ist in den meisten F&#228;llen der Controller so einfach strukturiert, das es sich gar nicht lohnt ihn in einer zus&#228;tzlichen Klasse zu implementieren.\\
++Die hier genannten Eigenschaften bringen aber auch Nachteile mit sich:
++\begin{itemize}
++	\item Swing-Anwendungen sind ressourcenhungrig. Da alle Komponenten selbst gezeichnet werden m&#252;ssen, erfordert es die dementsprechende CPU-Leistung und Hauptspeicher.
++	\item Im JDK 1.2 gab es Speicherprobleme mit Swing-Elementen, da diese den Speicher den sie belegten nicht wieder komplett freigaben und sich dadurch der verf&#252;gbare Speicher mit der Zeit verringerte.
++	\item F&#252;r Applet-Programmierer gab es keine Browser mit eingebauter Swing- Unterst&#252;tzung und m&#252;ssen dies dem Anwender durch einen zus&#228;tzlichen Download und Installationsschritt zumuten oder auf AWT zur&#252;ckgreifen.
++\end{itemize}
++Aufgrund der steigenden Rechenleistung der PCs und der im JDK 1.3 verbesserten Swing-Grafikbibliothek konnten jedoch viele der Probleme behoben werden. \citep{Krueger2003}
++
++
++\subsection{Standard Widget Toolkit und JFace}
++SWT ist ebenfalls eine Grafikbibliothek f&#252;r Java und steht f&#252;r Standard Widget Toolkit. Im Gegensatz zu den anderen genannten Grafikbibliotheken ist SWT von IBM und nicht von SUN entwickelt wurden. SWT wurde im Jahr 2001 f&#252;r die Entwicklungsumgebung Eclipse entwickelt. Im Gegensatz zu Swing verwendet SWT die nativen grafischen Elemente des Betriebssystems und schlie&#223;t sich damit AWT an.\\
++Des Weiteren ist SWT im Gegensatz zu AWT und Swing nicht als plattformunabh&#228;ngig zu betrachten. Dies resultiert daraus, das  SWT die entsprechende Bibliothek f&#252;r den betriebssystemabh&#228;ngigen Code f&#252;r die GUI-Elemente zur Laufzeit ben&#246;tigt. Zus&#228;tzlich werden die  Java-Klassen der SWT-Bibliothek ben&#246;tigt, die auf die betriebsystemabh&#228;nige Bibliothek zugreifen.\\
++Leider leidet SWT aufgrund des eben beschriebenen Sachverhalts auf einigen nicht Windows-Plattformen an Effizienzproblemen, da bestimmte Funktionalit&#228;ten eventuell nicht verf&#252;gbar sind und dadurch emuliert werden m&#252;ssen.\\
++JFace ist ein UI-Toolkit und setzt aus den gelieferten Basiskomponenten von SWT komplexere Widgets zusammen. JFace kann daher &#252;berall eingesetzt werden wo auch SWT zur Verf&#252;gung steht.\citep[SWT]{Wikipedia2005} \citep{SWTBasic}
+ 		
++Krueger2003
++SWTBasic
++EclipseISV
+ 		
+ 
+ 
+
+Modified: docu/latex/Provirent-Doku.bib
+===================================================================
+--- docu/latex/Provirent-Doku.bib	2005-12-13 15:17:49 UTC (rev 290)
++++ docu/latex/Provirent-Doku.bib	2005-12-14 09:33:41 UTC (rev 291)
+@@ -92,6 +92,15 @@
+   owner = {Philipp Schneider},
+ }
+ 
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at BOOK</A>{Krueger2003,
++  title = {Handbuch der Java Programmierung},
++  publisher = {Addison-Wesley},
++  year = {2003},
++  author = {Guido Kr&#252;ger},
++  number = {3-8273-2120-4},
++  owner = {Philipp Schneider},
++}
++
+ @MANUAL{Price2005,
+   title = {Version Management with CVS},
+   author = {Derek R. Price},
+@@ -117,6 +126,16 @@
+   url = {<A HREF="http://de.wikipedia.org">http://de.wikipedia.org</A>},
+ }
+ 
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at MANUAL</A>{EclipseISV,
++  title = {org.eclipse.platform.doc.isv.3.1.pdf},
++  owner = {Philipp Schneider},
++}
++
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at MANUAL</A>{SWTBasic,
++  title = {2-Basic.pdf},
++  owner = {Philipp Schneider},
++}
++
+ @comment{jabref-meta: selector_journal:Java Spektrum;Javamagazin;}
+ 
+ @comment{jabref-meta: selector_author:D;Olav Maassen;Stephen Stelting;
+
+Added: docu/latex/images/Eclipse-Aufbau.png
+===================================================================
+(Binary files differ)
+
+
+Property changes on: docu/latex/images/Eclipse-Aufbau.png
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000291.html">[Provirent-svn-commit] r290 - project_src/customer/WEB-INF/lib
+</A></li>
+	<LI>Next message: <A HREF="000294.html">[Provirent-svn-commit] r292 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#292">[ date ]</a>
+              <a href="thread.html#292">[ thread ]</a>
+              <a href="subject.html#292">[ subject ]</a>
+              <a href="author.html#292">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

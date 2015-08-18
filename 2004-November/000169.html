@@ -1,0 +1,654 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r168 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r168%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200411251151.iAPBpWXw004744%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000168.html">
+   <LINK REL="Next"  HREF="000170.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r168 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r168%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200411251151.iAPBpWXw004744%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r168 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Thu Nov 25 12:51:32 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000168.html">[Provirent-svn-commit] r167 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+        <LI>Next message: <A HREF="000170.html">[Provirent-svn-commit] r169 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#169">[ date ]</a>
+              <a href="thread.html#169">[ thread ]</a>
+              <a href="subject.html#169">[ subject ]</a>
+              <a href="author.html#169">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-11-25 12:51:25 +0100 (Thu, 25 Nov 2004)
+New Revision: 168
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+Log:
+Composite Movie -Layout beendet !! hoffentlich!!
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-11-25 10:23:53 UTC (rev 167)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-11-25 11:51:25 UTC (rev 168)
+@@ -100,7 +100,11 @@
+     private Label labelMoviesID;
+     private Label labelMoviesTitle;
+     private Label labelMoviesDate;
+-    private Label labelMoviesAdvice;
++    private Label labelMoviesDescription;
++    private Label labelMoviesDirectors;
++    private Label labelMoviesActors;
++    private Label labelMoviesGenres;
++    private Label labelMoviesImages;
+     
+     private Button buttonMoviesNew;
+     private Button buttonMoviesSave;
+@@ -108,19 +112,37 @@
+     private Button buttonMoviesCancel;
+     private Button buttonMoviesDelete;
+     private Button buttonMoviesFill;
++&lt;&lt;&lt;&lt;&lt;&lt;&lt; .mine
++    private Button buttonMoviesAddActors;
++    private Button buttonMoviesDeleteActors;
++    private Button buttonMoviesAddDirectors;
++    private Button buttonMoviesDeleteDirectors;
++    private Button buttonMoviesAddGenres;
++    private Button buttonMoviesDeleteGenres;
++    private Button buttonMoviesAddImages;
++    private Button buttonMoviesDeleteImages;
++=======
+     private Button buttonMoviesEditDirectors;
+     private Button buttonMoviesEditGenres;
+     private Button buttonMoviesEditImages;
++&gt;&gt;&gt;&gt;&gt;&gt;&gt; .r167
+      
+     private SashForm sashForm1;
+     
+     private Composite parent;
+     private Composite compositeButtons;
++&lt;&lt;&lt;&lt;&lt;&lt;&lt; .mine
++    private Composite compositeMoviesEditDirectors;
++    private Composite compositeMoviesEditActors;
++    private Composite compositeMoviesEditGenres;
++    private Composite compositeMoviesEditImages;
++=======
+     private Label label1;
+     private Button button4;
+     private Button button3;
+     private Button button2;
+     private Button button1;
++&gt;&gt;&gt;&gt;&gt;&gt;&gt; .r167
+     private List listMoviesImages;
+     private List listMoviesGenres;
+     private List listMoviesActors;
+@@ -204,7 +226,7 @@
+         }
+ 
+         this.setLayout(new GridLayout());
+-        this.setSize(900, 650);
++        this.setSize(830, 650);
+         {
+             groupMovie = new Group(this, SWT.NONE);
+             GridLayout groupMovieLayout = new GridLayout();
+@@ -256,11 +278,7 @@
+             groupMoviesOverview.setText(l.getString(&quot;movies.groupoverview.label&quot;));
+             
+             {// table Actors Overview
+-                tableMoviesOverview = new Table(
+-                    groupMoviesOverview,
+-                    SWT.SINGLE
+-                        | SWT.FULL_SELECTION
+-                        | SWT.V_SCROLL | SWT.BORDER);
++                tableMoviesOverview = new Table(groupMoviesOverview, SWT.SINGLE | SWT.FULL_SELECTION | SWT.V_SCROLL | SWT.BORDER);
+                 GridData tableMoviesOverviewLData = new GridData();
+                 tableMoviesOverview.setHeaderVisible(true);
+                 tableMoviesOverview.setLinesVisible(true);
+@@ -502,7 +520,7 @@
+     private void initMoviesDetail() {
+         // Group Actors Detail
+         {
+-            groupMoviesDetail = new Group(sashForm1, SWT.NONE);
++            groupMoviesDetail = new Group(sashForm1, SWT.H_SCROLL);
+             GridLayout group2Layout = new GridLayout();
+             GridData group2LData = new GridData();
+             group2Layout.verticalSpacing = 15;
+@@ -590,12 +608,12 @@
+         }
+         //labels and buttons for Detail
+         {
+-    	    labelMoviesAdvice = new Label(groupMoviesDetail, SWT.NONE);
+-    	    labelMoviesAdvice.setText(l.getString(&quot;movies.groupdetail.textdescription&quot;));
++    	    labelMoviesDescription = new Label(groupMoviesDetail, SWT.NONE);
++    	    labelMoviesDescription.setText(l.getString(&quot;movies.groupdetail.labeldescription&quot;));
+     	    GridData formData2 = new GridData();
+     	    //formData2.verticalSpan = 5;
+     	    formData2.horizontalSpan=2;
+-    	    labelMoviesAdvice.setLayoutData(formData2);
++    	    labelMoviesDescription.setLayoutData(formData2);
+     	}
+         {
+             textMoviesDescription = new Text(groupMoviesDetail, SWT.MULTI | SWT.READ_ONLY | SWT.V_SCROLL | SWT.BORDER);
+@@ -606,7 +624,42 @@
+     	    formData2.horizontalAlignment = GridData.FILL;
+     	    textMoviesDescription.setLayoutData(formData2);
+         }
++        //      EditDirectors
+         {
++&lt;&lt;&lt;&lt;&lt;&lt;&lt; .mine
++            compositeMoviesEditDirectors = new Composite(groupMoviesDetail, SWT.NONE);
++            GridLayout composite1Layout = new GridLayout();
++            GridData composite1LData = new GridData();
++            composite1LData.horizontalAlignment = GridData.FILL;
++            composite1LData.horizontalSpan=1;
++            composite1LData.verticalSpan=1;
++            compositeMoviesEditDirectors.setLayoutData(composite1LData);
++            composite1Layout.numColumns = 2;
++            compositeMoviesEditDirectors.setLayout(composite1Layout);
++        }
++        	{
++        	    labelMoviesDirectors = new Label(compositeMoviesEditDirectors, SWT.NONE);
++        	    labelMoviesDirectors.setText(l.getString(&quot;movies.groupdetail.labeldirectors&quot;));
++        	    GridData formData2 = new GridData();
++        	    formData2.horizontalSpan = 2;
++        	    formData2.verticalSpan = 5;
++        	    labelMoviesDirectors.setLayoutData(formData2);
++        	}
++        	{
++        	    buttonMoviesAddDirectors = new Button(compositeMoviesEditDirectors
++        	            , SWT.NONE);
++        	    buttonMoviesAddDirectors.setText(l
++        	            .getString(&quot;movies.button.additem&quot;));
++        	    buttonMoviesAddDirectors.setEnabled(false);
++        	    GridData text1LData2 = new GridData();
++        	    text1LData2.heightHint = 20;
++        	    text1LData2.horizontalSpan =1;
++        	    text1LData2.horizontalAlignment = GridData.BEGINNING;
++        	    buttonMoviesAddDirectors.setLayoutData(text1LData2);        
++        	    buttonMoviesAddDirectors.addSelectionListener(new SelectionAdapter() {
++        	        public void widgetSelected(SelectionEvent evt) {
++        	            // TODO
++=======
+             buttonMoviesEditDirectors = new Button(groupMoviesDetail
+                     , SWT.NONE);
+             buttonMoviesEditDirectors.setText(l
+@@ -622,18 +675,93 @@
+             buttonMoviesEditDirectors.addSelectionListener(new SelectionAdapter() {
+                 public void widgetSelected(SelectionEvent evt) {
+                    // TODO
++&gt;&gt;&gt;&gt;&gt;&gt;&gt; .r167
+                     
+-                }
+-            });  
+-        }
++        	        }
++        	    });  
++        	}
++        	{
++        	    buttonMoviesDeleteDirectors = new Button(compositeMoviesEditDirectors, SWT.NONE);
++        	    buttonMoviesDeleteDirectors.setText(l
++        	            .getString(&quot;movies.button.deleteitem&quot;));
++        	    buttonMoviesDeleteDirectors.setEnabled(false);
++        	    GridData text1LData2 = new GridData();
++        	    text1LData2.horizontalAlignment = GridData.BEGINNING;
++        	    text1LData2.heightHint = 20;
++        	    text1LData2.horizontalSpan =1;
++        	    buttonMoviesDeleteDirectors.setLayoutData(text1LData2);        
++        	    buttonMoviesDeleteDirectors.addSelectionListener(new SelectionAdapter() {
++        	        public void widgetSelected(SelectionEvent evt) {
++        	            // TODO
++                    
++        	        }
++        	    });  
++        	}
+         {
+             listMoviesDirectors = new List(groupMoviesDetail, SWT.BORDER);
+             GridData listMoviesDirectorsLData = new GridData();
+             listMoviesDirectorsLData.horizontalAlignment = GridData.FILL;
+             listMoviesDirectorsLData.horizontalSpan = 10;
+-            listMoviesDirectorsLData.verticalSpan = 2;
++            listMoviesDirectorsLData.verticalSpan = 1;
+             listMoviesDirectors.setLayoutData(listMoviesDirectorsLData);
++        }// EditDirectors
++        // Edit Actors
++        {
++            compositeMoviesEditActors = new Composite(groupMoviesDetail, SWT.NONE);
++            GridLayout composite1Layout = new GridLayout();
++            GridData composite1LData = new GridData();
++            composite1LData.horizontalAlignment = GridData.FILL;
++            composite1LData.horizontalSpan=1;
++            composite1LData.verticalSpan=1;
++            compositeMoviesEditActors.setLayoutData(composite1LData);
++            composite1Layout.numColumns = 2;
++            compositeMoviesEditActors.setLayout(composite1Layout);
+         }
++&lt;&lt;&lt;&lt;&lt;&lt;&lt; .mine
++        	{
++        	    labelMoviesActors = new Label(compositeMoviesEditActors, SWT.NONE);
++        	    labelMoviesActors.setText(l.getString(&quot;movies.groupdetail.labelactors&quot;));
++        	    GridData formData2 = new GridData();
++        	    formData2.horizontalSpan = 2;
++        	    formData2.verticalSpan = 5;
++        	    labelMoviesActors.setLayoutData(formData2);
++        	}
++        	{
++        	    buttonMoviesAddActors = new Button(compositeMoviesEditActors
++        	            , SWT.NONE);
++        	    buttonMoviesAddActors.setText(l
++        	            .getString(&quot;movies.button.additem&quot;));
++        	    buttonMoviesAddActors.setEnabled(false);
++        	    GridData text1LData2 = new GridData();
++        	    text1LData2.heightHint = 20;
++        	    text1LData2.horizontalSpan =1;
++        	    text1LData2.horizontalAlignment = GridData.BEGINNING;
++        	    buttonMoviesAddActors.setLayoutData(text1LData2);        
++        	    buttonMoviesAddActors.addSelectionListener(new SelectionAdapter() {
++        	        public void widgetSelected(SelectionEvent evt) {
++        	            // TODO
++                    
++        	        }
++        	    });  
++        	}
++        	{
++        	    buttonMoviesDeleteActors = new Button(compositeMoviesEditActors, SWT.NONE);
++        	    buttonMoviesDeleteActors.setText(l
++        	            .getString(&quot;movies.button.deleteitem&quot;));
++        	    buttonMoviesDeleteActors.setEnabled(false);
++        	    GridData text1LData2 = new GridData();
++        	    text1LData2.horizontalAlignment = GridData.BEGINNING;
++        	    text1LData2.heightHint = 20;
++        	    text1LData2.horizontalSpan =1;
++        	    buttonMoviesDeleteActors.setLayoutData(text1LData2);        
++        	    buttonMoviesDeleteActors.addSelectionListener(new SelectionAdapter() {
++        	        public void widgetSelected(SelectionEvent evt) {
++        	            // TODO
++                    
++        	        }
++        	    });  
++        	}
++=======
+         {
+             label1 = new Label(groupMoviesDetail, SWT.NONE);
+             label1.setText(&quot;Actors&quot;);
+@@ -642,17 +770,59 @@
+     	    text1LData2.verticalAlignment = GridData.BEGINNING;
+     	    label1.setLayoutData(text1LData2);              
+         }
++&gt;&gt;&gt;&gt;&gt;&gt;&gt; .r167
+    
+         {
+             listMoviesActors = new List(groupMoviesDetail, SWT.BORDER);
+             GridData listMoviesActorsLData = new GridData();
+             listMoviesActorsLData.horizontalAlignment = GridData.FILL;
++&lt;&lt;&lt;&lt;&lt;&lt;&lt; .mine
++            listMoviesActorsLData.horizontalSpan = 5;
++            listMoviesActorsLData.verticalSpan = 1;
++=======
+             listMoviesActorsLData.horizontalSpan = 10;
+             listMoviesActorsLData.verticalSpan = 3;
+             listMoviesActorsLData.grabExcessHorizontalSpace = true;
+             listMoviesActorsLData.verticalAlignment = GridData.FILL;
++&gt;&gt;&gt;&gt;&gt;&gt;&gt; .r167
+             listMoviesActors.setLayoutData(listMoviesActorsLData);
++        }//Edit Actors
++        //Edit Genres
++        {
++            compositeMoviesEditGenres = new Composite(groupMoviesDetail, SWT.NONE);
++            GridLayout composite1Layout = new GridLayout();
++            GridData composite1LData = new GridData();
++            composite1LData.horizontalAlignment = GridData.FILL;
++            composite1LData.horizontalSpan=1;
++            composite1LData.verticalSpan=1;
++            compositeMoviesEditGenres.setLayoutData(composite1LData);
++            composite1Layout.numColumns = 2;
++            compositeMoviesEditGenres.setLayout(composite1Layout);
+         }
++&lt;&lt;&lt;&lt;&lt;&lt;&lt; .mine
++        	{
++        	    labelMoviesGenres = new Label(compositeMoviesEditGenres, SWT.NONE);
++        	    labelMoviesGenres.setText(l.getString(&quot;movies.groupdetail.labelgenres&quot;));
++        	    GridData formData2 = new GridData();
++        	    formData2.horizontalSpan = 2;
++        	    formData2.verticalSpan = 5;
++        	    labelMoviesGenres.setLayoutData(formData2);
++        	}
++        	{
++        	    buttonMoviesAddGenres = new Button(compositeMoviesEditGenres
++        	            , SWT.NONE);
++        	    buttonMoviesAddGenres.setText(l
++        	            .getString(&quot;movies.button.additem&quot;));
++        	    buttonMoviesAddGenres.setEnabled(false);
++        	    GridData text1LData2 = new GridData();
++        	    text1LData2.heightHint = 20;
++        	    text1LData2.horizontalSpan =1;
++        	    text1LData2.horizontalAlignment = GridData.BEGINNING;
++        	    buttonMoviesAddGenres.setLayoutData(text1LData2);        
++        	    buttonMoviesAddGenres.addSelectionListener(new SelectionAdapter() {
++        	        public void widgetSelected(SelectionEvent evt) {
++        	            // TODO
++=======
+         {
+             button3 = new Button(groupMoviesDetail, SWT.PUSH | SWT.CENTER);
+             button3.setText(&quot;add&quot;);
+@@ -705,18 +875,76 @@
+             buttonMoviesEditGenres.addSelectionListener(new SelectionAdapter() {
+                 public void widgetSelected(SelectionEvent evt) {
+                    // TODO
++&gt;&gt;&gt;&gt;&gt;&gt;&gt; .r167
+                     
+-                }
+-            });  
+-        }
++        	        }
++        	    });  
++        	}
++        	{
++        	    buttonMoviesDeleteGenres = new Button(compositeMoviesEditGenres, SWT.NONE);
++        	    buttonMoviesDeleteGenres.setText(l
++        	            .getString(&quot;movies.button.deleteitem&quot;));
++        	    buttonMoviesDeleteGenres.setEnabled(false);
++        	    GridData text1LData2 = new GridData();
++        	    text1LData2.horizontalAlignment = GridData.BEGINNING;
++        	    text1LData2.heightHint = 20;
++        	    text1LData2.horizontalSpan =1;
++        	    buttonMoviesDeleteGenres.setLayoutData(text1LData2);        
++        	    buttonMoviesDeleteGenres.addSelectionListener(new SelectionAdapter() {
++        	        public void widgetSelected(SelectionEvent evt) {
++        	            // TODO
++                    
++        	        }
++        	    });  
++        	}
+         {
+             listMoviesGenres = new List(groupMoviesDetail, SWT.BORDER);
+             GridData listMoviesGenresLData = new GridData();
++&lt;&lt;&lt;&lt;&lt;&lt;&lt; .mine
++            listMoviesGenresLData.horizontalAlignment = GridData.FILL;
++            listMoviesGenresLData.horizontalSpan = 5;
++=======
+             listMoviesGenresLData.horizontalSpan = 10;
+-            listMoviesGenresLData.verticalSpan = 2;
+-            listMoviesGenresLData.horizontalAlignment = GridData.FILL;
++&gt;&gt;&gt;&gt;&gt;&gt;&gt; .r167
++            listMoviesGenresLData.verticalSpan = 1;
+             listMoviesGenres.setLayoutData(listMoviesGenresLData);
++        }// Edit Genre
++        // Edit Images
++        {
++            compositeMoviesEditImages = new Composite(groupMoviesDetail, SWT.NONE);
++            GridLayout composite1Layout = new GridLayout();
++            GridData composite1LData = new GridData();
++            composite1LData.horizontalAlignment = GridData.FILL;
++            composite1LData.horizontalSpan=1;
++            composite1LData.verticalSpan=1;
++            compositeMoviesEditImages.setLayoutData(composite1LData);
++            composite1Layout.numColumns = 2;
++            compositeMoviesEditImages.setLayout(composite1Layout);
+         }
++&lt;&lt;&lt;&lt;&lt;&lt;&lt; .mine
++        	{
++        	    labelMoviesImages = new Label(compositeMoviesEditImages, SWT.NONE);
++        	    labelMoviesImages.setText(l.getString(&quot;movies.groupdetail.labelimages&quot;));
++        	    GridData formData2 = new GridData();
++        	    formData2.horizontalSpan = 2;
++        	    formData2.verticalSpan = 5;
++        	    labelMoviesImages.setLayoutData(formData2);
++        	}
++        	{
++        	    buttonMoviesAddImages = new Button(compositeMoviesEditImages
++        	            , SWT.NONE);
++        	    buttonMoviesAddImages.setText(l
++        	            .getString(&quot;movies.button.additem&quot;));
++        	    buttonMoviesAddImages.setEnabled(false);
++        	    GridData text1LData2 = new GridData();
++        	    text1LData2.heightHint = 20;
++        	    text1LData2.horizontalSpan =1;
++        	    text1LData2.horizontalAlignment = GridData.BEGINNING;
++        	    buttonMoviesAddImages.setLayoutData(text1LData2);        
++        	    buttonMoviesAddImages.addSelectionListener(new SelectionAdapter() {
++        	        public void widgetSelected(SelectionEvent evt) {
++        	            // TODO
++=======
+         {
+             buttonMoviesEditImages = new Button(groupMoviesDetail
+                     , SWT.NONE);
+@@ -732,17 +960,41 @@
+             buttonMoviesEditImages.addSelectionListener(new SelectionAdapter() {
+                 public void widgetSelected(SelectionEvent evt) {
+                    // TODO
++&gt;&gt;&gt;&gt;&gt;&gt;&gt; .r167
+                     
+-                }
+-            });  
+-        }
++        	        }
++        	    });  
++        	}
++        	{
++        	    buttonMoviesDeleteImages = new Button(compositeMoviesEditImages, SWT.NONE);
++        	    buttonMoviesDeleteImages.setText(l
++        	            .getString(&quot;movies.button.deleteitem&quot;));
++        	    buttonMoviesDeleteImages.setEnabled(false);
++        	    GridData text1LData2 = new GridData();
++        	    text1LData2.horizontalAlignment = GridData.BEGINNING;
++        	    text1LData2.heightHint = 20;
++        	    text1LData2.horizontalSpan =1;
++        	    buttonMoviesDeleteImages.setLayoutData(text1LData2);        
++        	    buttonMoviesDeleteImages.addSelectionListener(new SelectionAdapter() {
++        	        public void widgetSelected(SelectionEvent evt) {
++        	            // TODO
++                    
++        	        }
++        	    });  
++        	}
+         {
+             listMoviesImages = new List(groupMoviesDetail, SWT.BORDER);
+             GridData listMoviesImagesLData = new GridData();
++&lt;&lt;&lt;&lt;&lt;&lt;&lt; .mine
++            listMoviesImagesLData.horizontalAlignment = GridData.FILL;
++            listMoviesImagesLData.horizontalSpan = 5;
++=======
+             listMoviesImagesLData.horizontalSpan = 10;
+-            listMoviesImagesLData.horizontalAlignment = GridData.FILL;
++&gt;&gt;&gt;&gt;&gt;&gt;&gt; .r167
++            listMoviesImagesLData.verticalSpan = 1;
+             listMoviesImages.setLayoutData(listMoviesImagesLData);
+-        }
++        }// Edit Images
++        // Composite Buttons 
+         {
+     	    compositeButtons = new Composite(groupMoviesDetail, SWT.EMBEDDED);
+     	    GridLayout composite2Layout = new GridLayout();
+@@ -750,11 +1002,8 @@
+     	    GridData composite2LData = new GridData();
+     	    compositeButtons.setLayout(composite2Layout);
+     	    composite2LData.verticalAlignment = GridData.END;
+-    	    composite2LData.horizontalAlignment = GridData.CENTER;
+-    	    composite2LData.widthHint = 391;
++    	    composite2LData.horizontalAlignment = GridData.FILL;
+     	    composite2LData.horizontalSpan = 12;
+-    	    composite2LData.grabExcessHorizontalSpace = true;
+-        	composite2LData.grabExcessVerticalSpace = true;
+         	composite2LData.heightHint = 35;
+         	compositeButtons.setLayoutData(composite2LData);
+     	}
+@@ -779,10 +1028,21 @@
+                 buttonMoviesNew.setEnabled(false);
+                 buttonMoviesEdit.setEnabled(false);
+                 buttonMoviesDelete.setEnabled(false);
++&lt;&lt;&lt;&lt;&lt;&lt;&lt; .mine
++                buttonMoviesAddDirectors.setEnabled(true);
++                buttonMoviesDeleteDirectors.setEnabled(true);
++                buttonMoviesAddActors.setEnabled(true);
++                buttonMoviesDeleteActors.setEnabled(true);
++                buttonMoviesAddGenres.setEnabled(true);
++                buttonMoviesDeleteGenres.setEnabled(true);
++                buttonMoviesAddImages.setEnabled(true);
++                buttonMoviesDeleteImages.setEnabled(true);
++=======
+                 buttonMoviesEditDirectors.setEnabled(true);
+                // buttonMoviesEditActors.setEnabled(true);
+                 buttonMoviesEditGenres.setEnabled(true);
+                 buttonMoviesEditImages.setEnabled(true);
++&gt;&gt;&gt;&gt;&gt;&gt;&gt; .r167
+                 
+                 textMoviesSearch.setEditable(false);
+                 tableMoviesOverview.setEnabled(false);
+@@ -1042,9 +1302,9 @@
+                 setMoviesGroupButtonSaveCancel();
+             }
+         });
+-    }
++    }//Composite Buttons
+     
+-    }
++  }
+ 
+     /**
+      * 
+@@ -1058,11 +1318,22 @@
+         buttonMoviesSave.setEnabled(false);
+         buttonMoviesNew.setEnabled(true);
+         buttonMoviesEdit.setEnabled(false);
++&lt;&lt;&lt;&lt;&lt;&lt;&lt; .mine
++        buttonMoviesAddDirectors.setEnabled(false);
++        buttonMoviesDeleteDirectors.setEnabled(false);
++        buttonMoviesAddActors.setEnabled(false);
++        buttonMoviesDeleteActors.setEnabled(false);
++        buttonMoviesAddGenres.setEnabled(false);
++        buttonMoviesDeleteGenres.setEnabled(false);
++        buttonMoviesAddImages.setEnabled(false);
++        buttonMoviesDeleteImages.setEnabled(false);
++=======
+         buttonMoviesDelete.setEnabled(false);
+         buttonMoviesEditDirectors.setEnabled(false);
+         //buttonMoviesEditActors.setEnabled(false);
+         buttonMoviesEditGenres.setEnabled(false);
+         buttonMoviesEditImages.setEnabled(false);
++&gt;&gt;&gt;&gt;&gt;&gt;&gt; .r167
+     }
+ 
+     /**
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-25 10:23:53 UTC (rev 167)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-25 11:51:25 UTC (rev 168)
+@@ -94,10 +94,11 @@
+ 
+     public final static int MODE_EDIT = 2;
+ 
+-    private static final int MAIN_WINDOW_WIDTH = 850;
+-
++    private static final int MAIN_WINDOW_WIDTH = 830;
+     private static final int MAIN_WINDOW_HEIGHT = 700;
+-    private static final int MIN_WINDOW_WIDTH = 850;
++    private static final int MAIN_WINDOW_X = 25;
++    private static final int MAIN_WINDOW_Y = 25;
++    private static final int MIN_WINDOW_WIDTH = 830;
+     private static final int MIN_WINDOW_HEIGHT = 700;
+     private static final int MIN_WINDOW_X = 25;
+     private static final int MIN_WINDOW_Y = 25;
+@@ -218,7 +219,7 @@
+ 
+         //set the Site
+         shell.setSize(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
+-
++        shell.setLocation(MAIN_WINDOW_X,MAIN_WINDOW_Y);
+         {
+             //Register as a resource user - SWTResourceManager will
+             //handle the obtaining and disposing of resources
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-11-25 10:23:53 UTC (rev 167)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-11-25 11:51:25 UTC (rev 168)
+@@ -10,9 +10,6 @@
+ movies.groupoverviewdetail.columngenres =Genre
+ movies.groupoverviewdetail.columnactors =Dartsteller
+ movies.groupoverviewdetail.columndirectors =Regisseur
+-movies.groupoverviewdetail.columnvideoformats =Videoformate
+-movies.groupoverviewdetail.columnaudioformats =Audioformate
+-movies.groupoverviewdetail.columnlanguages =Sprachen
+ movies.groupoverviewdetail.columndescription =Beschreibung
+ movies.groupoverviewdetail.columnimages =Bilder
+ 
+@@ -20,25 +17,24 @@
+ movies.groupdetail.labelid =Film ID
+ movies.groupdetail.labeltitle =Titel
+ movies.groupdetail.labeldate =Erscheinungsdatum
+-movies.groupdetail.labeladvice =Um die Elemente zu Bearbeiten bitte entsprechende Schaltfl&#228;che anklicken
++movies.groupdetail.labeldirectors =Liste der Regisseure
++movies.groupdetail.labelactors =Liste der Darsteller
++movies.groupdetail.labelgenres =Liste der Genre
++movies.groupdetail.labelimages =Liste der Bilder
++movies.groupdetail.labeldescription =Beschreibung
+ movies.groupdetail.textdate = (Beispiel: 01.01.2001)
+-movies.groupdetail.textdescription =Beschreibung
+ 
++
+ button.new =Neu
+ button.edit =Bearbeiten
+ button.delete =L&#246;schen
+ button.save =Speichern
+ button.cancel =Abbruch
+ movies.button.editdescription =Beschreibung
+-movies.button.editactors =Darsteller
+-movies.button.editdirectors =Regisseur
+-movies.button.editgenres =Genres
+-movies.button.editlanguages =Sprachen
+-movies.button.editsubtitles =Untertitel
+-movies.button.editaudioformats =Audioformate
+-movies.button.editvideoformats =Videoformate
+-movies.button.editimages =Bilder
++movies.button.additem =Hinzuf&#252;gen
++movies.button.deleteitem =L&#246;schen
+ 
++
+ movies.groupdetail.savebutton.warn.noname.title =Datensatz speichern
+ movies.groupdetail.savebutton.warn.noname.msg =Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie eine volst&#228;ndigen Namen an
+ movies.groupdetail.savebutton.newok =Speichern des neuen Films erfolgreich.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000168.html">[Provirent-svn-commit] r167 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+	<LI>Next message: <A HREF="000170.html">[Provirent-svn-commit] r169 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#169">[ date ]</a>
+              <a href="thread.html#169">[ thread ]</a>
+              <a href="subject.html#169">[ subject ]</a>
+              <a href="author.html#169">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r93 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r93%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200411041959.iA4JxPhm029207%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000093.html">
+   <LINK REL="Next"  HREF="000095.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r93 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r93%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200411041959.iA4JxPhm029207%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r93 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Thu Nov  4 20:59:25 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000093.html">[Provirent-svn-commit] r92 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+        <LI>Next message: <A HREF="000095.html">[Provirent-svn-commit] r94 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#94">[ date ]</a>
+              <a href="thread.html#94">[ thread ]</a>
+              <a href="subject.html#94">[ subject ]</a>
+              <a href="author.html#94">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-04 20:59:24 +0100 (Thu, 04 Nov 2004)
+New Revision: 93
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeArtists.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeArtists.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeArtists.java	2004-11-04 18:56:45 UTC (rev 92)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeArtists.java	2004-11-04 19:59:24 UTC (rev 93)
+@@ -5,12 +5,16 @@
+ import java.util.ResourceBundle;
+ 
+ import org.apache.log4j.Logger;
++import org.eclipse.swt.SWT;
+ import org.eclipse.swt.layout.GridLayout;
++import org.eclipse.swt.widgets.Button;
+ import org.eclipse.swt.widgets.Composite;
+ import org.eclipse.swt.widgets.Display;
+ import org.eclipse.swt.widgets.Shell;
+ 
+ 
++import org.eclipse.swt.widgets.Group;
++import org.eclipse.swt.layout.GridData;
+ /**
+ * This code was generated using CloudGarden's Jigloo
+ * SWT/Swing GUI Builder, which is free for non-commercial
+@@ -37,6 +41,7 @@
+     private final static int MODE_VIEW = 0;
+ 
+     private final static int MODE_ADD = 1;
++    private Group groupArtist;
+ 
+     private final static int MODE_EDIT = 2;
+     
+@@ -105,12 +110,35 @@
+ 	}
+ 
+ 	private void initGUI() {
+-		try {
+-			this.setLayout(new GridLayout());
+-			this.layout();
+-		} catch (Exception e) {
+-			e.printStackTrace();
+-		}
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - start&quot;);
++        }
++
++        this.setLayout(new GridLayout());
++        this.setSize(816, 540);
++        {
++            groupArtist = new Group(this, SWT.NONE);
++            GridLayout groupArtistLayout = new GridLayout();
++            GridData groupArtistLData = new GridData();
++            groupArtistLData.grabExcessHorizontalSpace = true;
++            groupArtistLData.grabExcessVerticalSpace = true;
++            groupArtistLData.horizontalAlignment = GridData.FILL;
++            groupArtistLData.verticalAlignment = GridData.FILL;
++            groupArtist.setLayoutData(groupArtistLData);
++            groupArtistLayout.makeColumnsEqualWidth = true;
++            groupArtist.setLayout(groupArtistLayout);
++            groupArtist.setText(&quot;Artist&quot;);
++        }
++
++        this.layout();
++
++
++        
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - end&quot;);
++        }
+ 	}
+ 
++	
++
+ }
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000093.html">[Provirent-svn-commit] r92 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+	<LI>Next message: <A HREF="000095.html">[Provirent-svn-commit] r94 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#94">[ date ]</a>
+              <a href="thread.html#94">[ thread ]</a>
+              <a href="subject.html#94">[ subject ]</a>
+              <a href="author.html#94">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

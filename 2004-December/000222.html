@@ -1,0 +1,362 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r221 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r221%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20management/gui/language%20persistence&In-Reply-To=%3C200412072323.iB7NNcIh004698%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000221.html">
+   <LINK REL="Next"  HREF="000223.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r221 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r221%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20management/gui/language%20persistence&In-Reply-To=%3C200412072323.iB7NNcIh004698%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r221 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Wed Dec  8 00:23:38 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000221.html">[Provirent-svn-commit] r220 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+        <LI>Next message: <A HREF="000223.html">[Provirent-svn-commit] r222 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#222">[ date ]</a>
+              <a href="thread.html#222">[ thread ]</a>
+              <a href="subject.html#222">[ subject ]</a>
+              <a href="author.html#222">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-12-08 00:23:37 +0100 (Wed, 08 Dec 2004)
+New Revision: 221
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDirectors.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+Log:
+Composite Movie 
+          Actor
+          Director  - Fehler beseitigt
+
+Composite DVD       - angefangen
+ManagenmentGui      - erweitert
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java	2004-12-07 23:21:25 UTC (rev 220)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java	2004-12-07 23:23:37 UTC (rev 221)
+@@ -634,7 +634,7 @@
+                             
+                             // in &#220;bersichtstabelle einf&#252;gen
+                             insertIntoActorsOverviewTable((Actor)o);
+-                            textActorsID.setText( ((Actor)o).getActorId()+&quot;&quot; );
++                            textActorsID.setText( ((Actor)o).getActorId()+&quot;&quot;);
+                             
+                             
+                             //Statusline Nachricht sezten
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDirectors.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDirectors.java	2004-12-07 23:21:25 UTC (rev 220)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDirectors.java	2004-12-07 23:23:37 UTC (rev 221)
+@@ -60,7 +60,7 @@
+      * Logger for this class
+      */
+     private static final Logger logger = Logger
+-            .getLogger(CompositeActors.class);
++            .getLogger(CompositeDirectors.class);
+     
+     
+     private final static int MODE_VIEW = 0;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-07 23:21:25 UTC (rev 220)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-07 23:23:37 UTC (rev 221)
+@@ -71,7 +71,7 @@
+      * Logger for this class
+      */
+     private static final Logger logger = Logger
+-            .getLogger(CompositeActors.class);
++            .getLogger(CompositeMovie.class);
+ 
+     private final static int MODE_VIEW = 0;
+ 
+@@ -385,8 +385,7 @@
+                         }
+                     }
+                 });
+-                textMoviesSearch.addListener(SWT.DefaultSelection,
+-                        new Listener() {
++                textMoviesSearch.addListener(SWT.DefaultSelection,new Listener() {
+                             public void handleEvent(Event e) {
+                                 if (logger.isDebugEnabled()) {
+                                     logger.debug(&quot;handleEvent(Event e = &quot; + e
+@@ -1130,7 +1129,8 @@
+                     textMoviesRuntime.setEditable(true);
+                     textMoviesTitle.setFocus();
+                     textMoviesDescription.setEditable(true);
+-
++                    textMoviesSearch.setEditable(false);
++                    
+                     buttonMoviesCancel.setEnabled(true);
+                     buttonMoviesSave.setEnabled(true);
+                     buttonMoviesNew.setEnabled(false);
+@@ -1145,9 +1145,9 @@
+                     buttonMoviesAddImages.setEnabled(true);
+                     buttonMoviesDeleteImages.setEnabled(true);
+                     buttonMoviesChangeDate.setEnabled(true);
+-
++                    
+                     tableMoviesOverview.setEnabled(false);
+-                    textMoviesSearch.setEnabled(false);
++                    
+                 }
+             });
+ 
+@@ -1194,6 +1194,7 @@
+                         //Detailansicht leeren
+                         textMoviesID.setText(&quot;&quot;);
+                         textMoviesTitle.setText(&quot;&quot;);
++                        textMoviesRuntime.setText(&quot;&quot;);
+                         textMoviesDate.setText(&quot;&quot;);
+                         textMoviesDescription.setText(&quot;&quot;);
+                         tableMoviesDirectorsDetail.removeAll();
+@@ -1338,14 +1339,22 @@
+                     try {
+                         //object speichern
+                         // Fehlerbehandlung
++
++                        if (mode_movie == ManagementGui.MODE_ADD)  {
++                        Object o = Database.saveObject(localmovie);
++
+                         logger.debug(&quot;Objektid: &quot;+localmovie.getMovieId()+&quot; vor speichern&quot;);
+                         Database.saveObject(localmovie);
+                         logger.debug(&quot;Objektid: &quot;+localmovie.getMovieId()+&quot; nach speichern&quot;);
+-
++
++                        
+                         // in &#220;bersichtstabelle einf&#252;gen
+                         insertIntoMoviesOverviewTable(localmovie);
+                         textMoviesID.setText(localmovie.getMovieId() + &quot;&quot;);
+-
++                        }
++                        if (mode_movie == ManagementGui.MODE_EDIT)  {
++                            Object o = Database.updateObject(localmovie);
++                        } 
+                         //Statusline Nachricht sezten
+                         statusLine
+                                 .setStatus(
+@@ -1433,10 +1442,6 @@
+      */
+     private void setMoviesGroupButtonSaveCancel() {
+         tableMoviesOverview.setEnabled(true);
+-        textMoviesTitle.setEditable(false);
+-        textMoviesDescription.setEditable(false);
+-        textMoviesSearch.setEditable(true);
+-        textMoviesRuntime.setEditable(false);
+         buttonMoviesCancel.setEnabled(false);
+         buttonMoviesSave.setEnabled(false);
+         buttonMoviesNew.setEnabled(true);
+@@ -1451,6 +1456,10 @@
+         buttonMoviesAddImages.setEnabled(false);
+         buttonMoviesDeleteImages.setEnabled(false);
+         buttonMoviesChangeDate.setEnabled(false);
++        textMoviesTitle.setEditable(false);
++        textMoviesDescription.setEditable(false);
++        textMoviesSearch.setEditable(true);
++        textMoviesRuntime.setEditable(false);
+     }
+ 
+     /**
+@@ -1525,7 +1534,7 @@
+         for (int i = 0; i &lt; object.getDirector().size(); i++) {
+             Director o = (Director) object.getDirector().get(i);
+             item = new TableItem(tableMoviesDirectorsDetail, SWT.NONE);
+-            item.setText(new String[] { o.getDirectorId() + &quot; &quot;,
++            item.setText(new String[] { o.getDirectorId() + &quot;&quot;,
+                     o.getLastName() + &quot; , &quot; + o.getFirstName() });
+         }
+ 
+@@ -1534,7 +1543,7 @@
+         for (int i = 0; i &lt; object.getActors().size(); i++) {
+             Actor o = (Actor) object.getActors().get(i);
+             item = new TableItem(tableMoviesActorsDetail, SWT.NONE);
+-            item.setText(new String[] { o.getActorId() + &quot; &quot;,
++            item.setText(new String[] { o.getActorId() + &quot;&quot;,
+                     o.getLastName() + &quot; , &quot; + o.getFirstName() });
+         }
+ 
+@@ -1559,7 +1568,7 @@
+         for (int i = 0; i &lt; object.getImages().size(); i++) {
+             Image o = (Image) object.getImages().get(i);
+             item = new TableItem(tableMoviesImagesDetail, SWT.NONE);
+-            item.setText(new String[] { o.getImageId() + &quot; &quot;,
++            item.setText(new String[] { o.getImageId() + &quot;&quot;,
+                     o.getImageFileName() + &quot;&quot; });
+         }
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-12-07 23:21:25 UTC (rev 220)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-12-07 23:23:37 UTC (rev 221)
+@@ -115,6 +115,7 @@
+     private CTabItem tabItemGenre;
+     private CTabItem tabItemImage;
+     private CTabItem tabItemMovie;
++    private CTabItem tabItemDvd;
+     private CTabItem tabItemStatus;
+     private CTabItem tabStatusLanguage;
+         
+@@ -126,6 +127,7 @@
+     private CompositeLanguage compositeLanguage;
+     private CompositeImage compositeImage;
+     private CompositeMovie compositeMovie;
++    private CompositeDVD compositeDvd;
+     private CompositePayment compositePayment;
+     private CompositeStatus compositeStatus;
+     private CompositeCustomer compositeCustomer;
+@@ -575,7 +577,7 @@
+ 				}
+ 				
+ 				cTabFolderMain.setSelection(tabItemMovie);
+-				viewActorMenuItem.setSelection(true);
++				viewMovieMenuItem.setSelection(true);
+ 				cTabFolderMain.showSelection();				
+             
+             }
+@@ -584,7 +586,20 @@
+         viewDvdMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewDvdMenuItem.setText(l.getString(&quot;menu.view.dvd&quot;));
+         viewDvdMenuItem.setSelection(false);
+-
++        viewDvdMenuItem.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++				if(tabItemDvd == null || tabItemDvd.isDisposed()){
++				    initDvdTab();
++				    return;   
++				}
++				
++				cTabFolderMain.setSelection(tabItemDvd);
++				viewDvdMenuItem.setSelection(true);
++				cTabFolderMain.showSelection();				
++            
++            }
++        });         
++        
+         viewBillMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewBillMenuItem.setText(l.getString(&quot;menu.view.bill&quot;));
+         viewBillMenuItem.setSelection(false);
+@@ -890,6 +905,29 @@
+         statusLine.setLayoutData(styledText1LData);
+     }
+ 
++    private void initDvdTab() {
++        tabItemDvd = new CTabItem(cTabFolderMain, SWT.NONE);
++        tabItemDvd.setText(l.getString(&quot;tab.dvd.title&quot;));
++        tabItemDvd.addDisposeListener(new DisposeListener() {
++
++            public void widgetDisposed(DisposeEvent evt) {
++                if(!viewMovieMenuItem.isDisposed()){
++                viewDvdMenuItem.setSelection(false);
++                }
++            }
++            
++        });
++  
++        {
++            compositeDvd = new CompositeDVD(
++                cTabFolderMain,
++                SWT.NONE, statusLine, locale);
++            
++            tabItemDvd.setControl(compositeDvd);
++        }
++        cTabFolderMain.setSelection(tabItemDvd);
++    }
++    
+     /**
+      * Sets a message for the Statusline
+      * 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties	2004-12-07 23:21:25 UTC (rev 220)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties	2004-12-07 23:23:37 UTC (rev 221)
+@@ -47,6 +47,7 @@
+ tab.language.title=Sprache/Untertitel
+ tab.Status.title=Status/Zustand
+ tab.movie.title=Filme
++tab.dvd.title=DVD
+ tab.payment.title=Preisklassen
+ tab.image.title=Bilder
+ status.resizewarn=Fenster kann Mindestgr&#246;&#223;e nicht unterschreiten.
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-12-07 23:21:25 UTC (rev 220)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-12-07 23:23:37 UTC (rev 221)
+@@ -5,7 +5,6 @@
+ movies.groupoverview.searchlabel =Suche nach
+ movies.groupoverview.columnid =ID
+ movies.groupoverview.columntitle =Titel
+-movies.groupoverview.columnsubtitles =Untertitel
+ movies.groupoverview.columndate =Erscheinungsdatum
+ movies.groupoverviewdetail.columngenres =Genre
+ movies.groupoverviewdetail.columnactors =Dartsteller
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-07 23:21:25 UTC (rev 220)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-07 23:23:37 UTC (rev 221)
+@@ -1879,7 +1879,9 @@
+ 	                any.add(Expression.like(&quot;releaseDate&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+ 	                any.add(Expression.like(&quot;description&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+ 	                any.add(Expression.like(&quot;actors&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+-	                any.add(Expression.like(&quot;directors&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;runtime&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;director&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;genres&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+ 	                //any.add(Expression.like(&quot;images&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+ 	                //maybe we are searching for the id?
+ 	                try {
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000221.html">[Provirent-svn-commit] r220 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+	<LI>Next message: <A HREF="000223.html">[Provirent-svn-commit] r222 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#222">[ date ]</a>
+              <a href="thread.html#222">[ thread ]</a>
+              <a href="subject.html#222">[ subject ]</a>
+              <a href="author.html#222">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

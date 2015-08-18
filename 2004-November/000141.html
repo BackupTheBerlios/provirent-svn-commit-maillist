@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r140 - project_src/provirent_hibernate/src/test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r140%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200411152311.iAFNB0Fp004314%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000140.html">
+   <LINK REL="Next"  HREF="000142.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r140 - project_src/provirent_hibernate/src/test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r140%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200411152311.iAFNB0Fp004314%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r140 - project_src/provirent_hibernate/src/test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Tue Nov 16 00:11:00 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000140.html">[Provirent-svn-commit] r139 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+        <LI>Next message: <A HREF="000142.html">[Provirent-svn-commit] r141 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#141">[ date ]</a>
+              <a href="thread.html#141">[ thread ]</a>
+              <a href="subject.html#141">[ subject ]</a>
+              <a href="author.html#141">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-16 00:10:59 +0100 (Tue, 16 Nov 2004)
+New Revision: 140
+
+Added:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/logo.gif
+   project_src/provirent_hibernate/src/test/provirent/hibernate/pic.gif
+Modified:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java
+Log:
+- Bildertest werden jetzt bilder richtig in datenbank gespeichert
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java	2004-11-15 23:05:56 UTC (rev 139)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java	2004-11-15 23:10:59 UTC (rev 140)
+@@ -32,6 +32,9 @@
+  */
+ package test.provirent.hibernate;
+ 
++import java.io.File;
++import java.io.FileInputStream;
++import java.io.InputStream;
+ import java.util.ArrayList;
+ import java.util.Iterator;
+ import java.util.List;
+@@ -100,35 +103,36 @@
+                 assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
+                 assertTrue(&quot;Db Open? &quot;, s.isOpen());
+ 
++
++
++
+                 //cretae new objects
+                 List Images = new ArrayList();
+ 
+                 Image myd1 = new Image();
+-                myd1.setImageFile(new byte[]{1,2,3,4});
++                myd1.setImageFile(new byte[] { 1, 2, 3, 4 });
+                 myd1.setImageFileDescription(&quot;Bild 1&quot;);
+                 myd1.setImageFileName(&quot;image1.jpg&quot;);
+                 myd1.setImageFileSize(123);
+-                
++
+                 Image myd2 = new Image();
+-                myd2.setImageFile(new byte[]{5,6,7,8});
++                myd2.setImageFile(new byte[] { 5, 6, 7, 8 });
+                 myd2.setImageFileDescription(&quot;Bild 2&quot;);
+                 myd2.setImageFileName(&quot;image2.jpg&quot;);
+                 myd2.setImageFileSize(123);
+ 
+                 Image myd3 = new Image();
+-                myd3.setImageFile(new byte[]{9,10,11,12});
++                myd3.setImageFile(new byte[] { 9, 10, 11, 12 });
+                 myd3.setImageFileDescription(&quot;Bild 3&quot;);
+                 myd3.setImageFileName(&quot;image3.jpg&quot;);
+                 myd3.setImageFileSize(123);
+ 
+                 Image myd4 = new Image();
+-                myd4.setImageFile(new byte[]{13,14,15,16});
++                myd4.setImageFile(new byte[] { 13, 14, 15, 16 });
+                 myd4.setImageFileDescription(&quot;Bild 4&quot;);
+                 myd4.setImageFileName(&quot;image4.jpg&quot;);
+                 myd4.setImageFileSize(123);
+ 
+-                
+-                
+                 Images.add(myd1);
+                 Images.add(myd2);
+                 Images.add(myd3);
+@@ -234,38 +238,57 @@
+ 
+                 //cretae new objects
+                 List Images = new ArrayList();
++                File file = new File(this.getClass()
++                        .getResource(&quot;logo.gif&quot;).getFile());
++                
++                InputStream is = new  FileInputStream(file);
+ 
++                long length = file.length();
++                
++                byte[] bytes = new byte[(int)length];
++
++                // Read in the bytes
++                int offset = 0;
++                int numRead = 0;
++                while (offset &lt; bytes.length
++                        &amp;&amp; (numRead = is.read(bytes, offset, bytes.length
++                                - offset)) &gt;= 0) {
++                    offset += numRead;
++                }
++
++                is.close();                
++                
++                System.out.println(&quot;bytes l&#228;nge &quot;+bytes.length );
++                
+                 Image myd1 = new Image();
+-                myd1.setImageFile(new byte[]{1,2,3,4});
++                myd1.setImageFile(bytes);
+                 myd1.setImageFileDescription(&quot;Bild 1&quot;);
+                 myd1.setImageFileName(&quot;image1.jpg&quot;);
+                 myd1.setImageFileSize(123);
+-                
++
+                 Image myd2 = new Image();
+-                myd2.setImageFile(new byte[]{5,6,7,8});
++                myd2.setImageFile(bytes);
+                 myd2.setImageFileDescription(&quot;Bild 2&quot;);
+                 myd2.setImageFileName(&quot;image2.jpg&quot;);
+                 myd2.setImageFileSize(123);
+ 
+                 Image myd3 = new Image();
+-                myd3.setImageFile(new byte[]{9,10,11,12});
++                myd3.setImageFile(bytes);
+                 myd3.setImageFileDescription(&quot;Bild 3&quot;);
+                 myd3.setImageFileName(&quot;image3.jpg&quot;);
+                 myd3.setImageFileSize(123);
+ 
+                 Image myd4 = new Image();
+-                myd4.setImageFile(new byte[]{13,14,15,16});
++                myd4.setImageFile(bytes);
+                 myd4.setImageFileDescription(&quot;Bild 4&quot;);
+                 myd4.setImageFileName(&quot;image4.jpg&quot;);
+                 myd4.setImageFileSize(123);
+ 
+-                
+-                
+                 Images.add(myd1);
+                 Images.add(myd2);
+                 Images.add(myd3);
+                 Images.add(myd4);
+-                
++
+                 List ids = new ArrayList();
+ 
+                 //save objects
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/logo.gif
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/logo.gif
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/pic.gif
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/pic.gif
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000140.html">[Provirent-svn-commit] r139 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+	<LI>Next message: <A HREF="000142.html">[Provirent-svn-commit] r141 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#141">[ date ]</a>
+              <a href="thread.html#141">[ thread ]</a>
+              <a href="subject.html#141">[ subject ]</a>
+              <a href="author.html#141">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

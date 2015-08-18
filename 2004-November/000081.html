@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r79 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r79%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200411021601.iA2G1S2B019219%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000079.html">
+   <LINK REL="Next"  HREF="000080.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r79 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r79%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200411021601.iA2G1S2B019219%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r79 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Tue Nov  2 17:01:28 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000079.html">[Provirent-svn-commit] r78 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+        <LI>Next message: <A HREF="000080.html">[Provirent-svn-commit] r80 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#81">[ date ]</a>
+              <a href="thread.html#81">[ thread ]</a>
+              <a href="subject.html#81">[ subject ]</a>
+              <a href="author.html#81">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-02 17:01:27 +0100 (Tue, 02 Nov 2004)
+New Revision: 79
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java	2004-11-02 16:00:45 UTC (rev 78)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java	2004-11-02 16:01:27 UTC (rev 79)
+@@ -5,8 +5,6 @@
+ import java.util.PropertyResourceBundle;
+ import java.util.ResourceBundle;
+ 
+-import javax.swing.text.TabExpander;
+-
+ import org.apache.log4j.Logger;
+ import org.eclipse.swt.SWT;
+ import org.eclipse.swt.custom.SashForm;
+@@ -14,6 +12,7 @@
+ import org.eclipse.swt.events.FocusEvent;
+ import org.eclipse.swt.events.SelectionAdapter;
+ import org.eclipse.swt.events.SelectionEvent;
++import org.eclipse.swt.graphics.Color;
+ import org.eclipse.swt.layout.FormAttachment;
+ import org.eclipse.swt.layout.FormData;
+ import org.eclipse.swt.layout.FormLayout;
+@@ -54,6 +53,7 @@
+      */
+     private static final Logger logger = Logger
+             .getLogger(CompositeFormate.class);
++    
+ 
+     private SashForm sashForm1;
+ 
+@@ -681,6 +681,8 @@
+         textVideoFormatSearch.setEnabled(true);
+     }
+ 
++
++    
+     /**
+      * rechte Seite des VideoFormates
+      * Detailansicht
+@@ -791,6 +793,7 @@
+ 
+     }
+ 
++    
+     /**
+      * Gruppe f&#252;r das VideoFormat (oben)
+      */
+@@ -839,8 +842,11 @@
+ 
+     }
+ 
++   
++    
+     private void initAudioFormatGroup() {
+         groupAudioFormat = new Group(sashForm1, SWT.NONE);
++        
+         GridLayout group1Layout = new GridLayout();
+         group1Layout.makeColumnsEqualWidth = true;
+         groupAudioFormat.setText(&quot;AudioFormat&quot;);
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000079.html">[Provirent-svn-commit] r78 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+	<LI>Next message: <A HREF="000080.html">[Provirent-svn-commit] r80 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#81">[ date ]</a>
+              <a href="thread.html#81">[ thread ]</a>
+              <a href="subject.html#81">[ subject ]</a>
+              <a href="author.html#81">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

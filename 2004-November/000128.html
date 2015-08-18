@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r127 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r127%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/objects&In-Reply-To=%3C200411111143.iABBhxcf005325%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000127.html">
+   <LINK REL="Next"  HREF="000129.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r127 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r127%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/objects&In-Reply-To=%3C200411111143.iABBhxcf005325%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r127 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Thu Nov 11 12:43:59 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000127.html">[Provirent-svn-commit] r126 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000129.html">[Provirent-svn-commit] r128 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#128">[ date ]</a>
+              <a href="thread.html#128">[ thread ]</a>
+              <a href="subject.html#128">[ subject ]</a>
+              <a href="author.html#128">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-11 12:43:54 +0100 (Thu, 11 Nov 2004)
+New Revision: 127
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Bill.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml
+Log:
+- an Firebord angepasst
+- DVD: unique=&quot;true&quot; enfernt, da firebird probleme hat, muss nun MANUELL ?\195?\188berpr?\195?\188ft werden
+- sql-type=&quot;BINARY&quot; durch sql-type=&quot;BLOB&quot; ersetzt
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Bill.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Bill.hbm.xml	2004-11-11 11:40:14 UTC (rev 126)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Bill.hbm.xml	2004-11-11 11:43:54 UTC (rev 127)
+@@ -30,7 +30,7 @@
+ 
+  
+       &lt;property name=&quot;pdfFile&quot; type=&quot;binary&quot;&gt;
+-      	&lt;column name=&quot;pdffile&quot; sql-type=&quot;binary&quot; /&gt;
++      	&lt;column name=&quot;pdffile&quot; sql-type=&quot;BLOB&quot; /&gt;
+       &lt;/property&gt;
+ 				
+       &lt;property name=&quot;pdfFileSize&quot; type=&quot;int&quot;&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml	2004-11-11 11:40:14 UTC (rev 126)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml	2004-11-11 11:43:54 UTC (rev 127)
+@@ -29,7 +29,7 @@
+       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+       &lt;/property&gt;
+                          
+-      &lt;property name=&quot;password&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      &lt;property name=&quot;userPassword&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+       &lt;/property&gt;
+                          
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java	2004-11-11 11:40:14 UTC (rev 126)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java	2004-11-11 11:43:54 UTC (rev 127)
+@@ -21,7 +21,7 @@
+     private String userName;
+ 
+     /** persistent field */
+-    private String password;
++    private String userPassword;
+ 
+     /** persistent field */
+     private String hiddenQuestion;
+@@ -36,9 +36,9 @@
+     private de.hsharz.provirent.objects.Person person;
+ 
+     /** full constructor */
+-    public Customer(String userName, String password, String hiddenQuestion, String hiddenAnswer, Date dayOfRegistration, de.hsharz.provirent.objects.Person person) {
++    public Customer(String userName, String userPassword, String hiddenQuestion, String hiddenAnswer, Date dayOfRegistration, de.hsharz.provirent.objects.Person person) {
+         this.userName = userName;
+-        this.password = password;
++        this.userPassword = userPassword;
+         this.hiddenQuestion = hiddenQuestion;
+         this.hiddenAnswer = hiddenAnswer;
+         this.dayOfRegistration = dayOfRegistration;
+@@ -50,9 +50,9 @@
+     }
+ 
+     /** minimal constructor */
+-    public Customer(String userName, String password, String hiddenQuestion, String hiddenAnswer) {
++    public Customer(String userName, String userPassword, String hiddenQuestion, String hiddenAnswer) {
+         this.userName = userName;
+-        this.password = password;
++        this.userPassword = userPassword;
+         this.hiddenQuestion = hiddenQuestion;
+         this.hiddenAnswer = hiddenAnswer;
+     }
+@@ -73,12 +73,12 @@
+         this.userName = userName;
+     }
+ 
+-    public String getPassword() {
+-        return this.password;
++    public String getUserPassword() {
++        return this.userPassword;
+     }
+ 
+-    public void setPassword(String password) {
+-        this.password = password;
++    public void setUserPassword(String userPassword) {
++        this.userPassword = userPassword;
+     }
+ 
+     public String getHiddenQuestion() {
+@@ -117,7 +117,7 @@
+         return new ToStringBuilder(this)
+             .append(&quot;customerId&quot;, getCustomerId())
+             .append(&quot;userName&quot;, getUserName())
+-            .append(&quot;password&quot;, getPassword())
++            .append(&quot;userPassword&quot;, getUserPassword())
+             .append(&quot;hiddenQuestion&quot;, getHiddenQuestion())
+             .append(&quot;hiddenAnswer&quot;, getHiddenAnswer())
+             .append(&quot;dayOfRegistration&quot;, getDayOfRegistration())
+@@ -131,7 +131,7 @@
+         return new EqualsBuilder()
+             .append(this.getCustomerId(), castOther.getCustomerId())
+             .append(this.getUserName(), castOther.getUserName())
+-            .append(this.getPassword(), castOther.getPassword())
++            .append(this.getUserPassword(), castOther.getUserPassword())
+             .append(this.getHiddenQuestion(), castOther.getHiddenQuestion())
+             .append(this.getHiddenAnswer(), castOther.getHiddenAnswer())
+             .append(this.getDayOfRegistration(), castOther.getDayOfRegistration())
+@@ -143,7 +143,7 @@
+         return new HashCodeBuilder()
+             .append(getCustomerId())
+             .append(getUserName())
+-            .append(getPassword())
++            .append(getUserPassword())
+             .append(getHiddenQuestion())
+             .append(getHiddenAnswer())
+             .append(getDayOfRegistration())
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml	2004-11-11 11:40:14 UTC (rev 126)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml	2004-11-11 11:43:54 UTC (rev 127)
+@@ -34,7 +34,8 @@
+   	
+   	&lt;many-to-one name=&quot;status&quot; class=&quot;de.hsharz.provirent.objects.Status&quot; column=&quot;STATUS&quot;/&gt;
+   
+-      &lt;property name=&quot;barcode&quot; type=&quot;string&quot; unique=&quot;true&quot;&gt;
++  &lt;!--unique=&quot;true&quot; entfernt, da interbase probleme damit hat--&gt;
++      &lt;property name=&quot;barcode&quot; type=&quot;string&quot; &gt;
+       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+       &lt;/property&gt;
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml	2004-11-11 11:40:14 UTC (rev 126)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml	2004-11-11 11:43:54 UTC (rev 127)
+@@ -22,7 +22,7 @@
+ 
+  
+       &lt;property name=&quot;imageFile&quot; type=&quot;binary&quot;&gt;
+-      	&lt;column name=&quot;pdffile&quot; sql-type=&quot;BINARY&quot; /&gt;
++      	&lt;column name=&quot;pdffile&quot; sql-type=&quot;BLOB&quot; /&gt;
+       &lt;/property&gt;
+ 				
+       &lt;property name=&quot;imageFileSize&quot; type=&quot;int&quot;&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000127.html">[Provirent-svn-commit] r126 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000129.html">[Provirent-svn-commit] r128 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#128">[ date ]</a>
+              <a href="thread.html#128">[ thread ]</a>
+              <a href="subject.html#128">[ subject ]</a>
+              <a href="author.html#128">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

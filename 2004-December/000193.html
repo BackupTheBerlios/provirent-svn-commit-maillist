@@ -1,0 +1,1556 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r192 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r192%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/management/gui/language%20de/hsharz/provirent/objects%20test/provirent/hibernate&In-Reply-To=%3C200412012302.iB1N2Q8x023752%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000192.html">
+   <LINK REL="Next"  HREF="000194.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r192 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects test/provirent/hibernate</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r192%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/management/gui/language%20de/hsharz/provirent/objects%20test/provirent/hibernate&In-Reply-To=%3C200412012302.iB1N2Q8x023752%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r192 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects test/provirent/hibernate">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Thu Dec  2 00:02:26 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000192.html">[Provirent-svn-commit] r191 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000194.html">[Provirent-svn-commit] r193 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#193">[ date ]</a>
+              <a href="thread.html#193">[ thread ]</a>
+              <a href="subject.html#193">[ subject ]</a>
+              <a href="author.html#193">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-12-02 00:02:25 +0100 (Thu, 02 Dec 2004)
+New Revision: 192
+
+Removed:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvdOld.java
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/customer.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.hbm.xml
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java	2004-12-01 22:25:27 UTC (rev 191)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java	2004-12-01 23:02:25 UTC (rev 192)
+@@ -4,12 +4,10 @@
+ import java.text.MessageFormat;
+ import java.text.ParseException;
+ import java.util.Calendar;
+-import java.util.Enumeration;
+ import java.util.Hashtable;
+ import java.util.Locale;
+ import java.util.PropertyResourceBundle;
+ import java.util.ResourceBundle;
+-import java.util.Vector;
+ 
+ import org.apache.log4j.Logger;
+ import org.eclipse.swt.SWT;
+@@ -42,6 +40,7 @@
+ 
+ import de.hsharz.provirent.Util;
+ import de.hsharz.provirent.objects.Customer;
++import de.hsharz.provirent.objects.Person;
+ import de.hsharz.provirent.persistence.DataBaseException;
+ import de.hsharz.provirent.persistence.Database;
+ 
+@@ -100,7 +99,6 @@
+     private Label labelstartdate;
+     
+     private Text textCustomerID;
+-    private Text textCustomerName;
+     private Text textduration1;
+     private Text textduration2;
+     private Text textduration3;
+@@ -236,6 +234,9 @@
+ 
+ 
+     private Text textAnswer;
++
++
++    private Button changeBirthdayDateButton;
+  
+     /*
+      * &#196;ndert die Sprache aller Elemente
+@@ -381,7 +382,7 @@
+         groupCustomerDetail = new Group(sashFormCustomer, SWT.NONE);
+         GridLayout groupCustomerDetailLayout = new GridLayout();
+         groupCustomerDetailLayout.marginHeight = 25;
+-        groupCustomerDetailLayout.numColumns = 6;
++        groupCustomerDetailLayout.numColumns = 4;
+         groupCustomerDetailLayout.verticalSpacing = 15;
+         groupCustomerDetail.setText(l
+                 .getString(&quot;Customer.groupdetail.label&quot;));
+@@ -396,11 +397,10 @@
+             labelCustomerId.setText(l
+                     .getString(&quot;Customer.groupdetail.idlabel&quot;)
+                     + &quot;:&quot;);
+-            labelCustomerId.setSize(125, 15);
++            labelCustomerId.setSize(90, 15);
+             GridData formData2 = new GridData();
+-            formData2.widthHint = 125;
++            formData2.widthHint = 90;
+             formData2.heightHint = 15;
+-            formData2.horizontalSpan = 2;
+             labelCustomerId.setLayoutData(formData2);
+         }        
+         {
+@@ -409,7 +409,7 @@
+             GridData text1LData1 = new GridData();
+             text1LData1.horizontalAlignment = GridData.FILL;
+             text1LData1.heightHint = 13;
+-            text1LData1.horizontalSpan = 4;
++            text1LData1.horizontalSpan = 3;
+             text1LData1.grabExcessHorizontalSpace = true;
+             textCustomerID.setLayoutData(text1LData1);
+         }
+@@ -418,11 +418,10 @@
+             labelUserName.setText(l
+                     .getString(&quot;Customer.groupdetail.usernamelabel&quot;)
+                     + &quot;:&quot;);
+-            labelUserName.setSize(125, 15);
++            labelUserName.setSize(90, 15);
+             GridData formData2 = new GridData();
+-            formData2.widthHint = 125;
++            formData2.widthHint = 90;
+             formData2.heightHint = 15;
+-            formData2.horizontalSpan = 2;
+             labelUserName.setLayoutData(formData2);
+         }
+         {
+@@ -431,7 +430,7 @@
+             GridData text1LData1 = new GridData();
+             text1LData1.horizontalAlignment = GridData.FILL;
+             text1LData1.heightHint = 13;
+-            text1LData1.horizontalSpan = 4;
++            text1LData1.horizontalSpan = 3;
+             text1LData1.grabExcessHorizontalSpace = true;
+             textUserName.setLayoutData(text1LData1);
+         }
+@@ -440,11 +439,10 @@
+             labelLastName.setText(l
+                     .getString(&quot;Customer.groupdetail.lastnamelabel&quot;)
+                     + &quot;:&quot;);
+-            labelLastName.setSize(125, 15);
++            labelLastName.setSize(90, 15);
+             GridData labelLastNameLData = new GridData();
+-            labelLastNameLData.widthHint = 125;
++            labelLastNameLData.widthHint = 90;
+             labelLastNameLData.heightHint = 15;
+-            labelLastNameLData.horizontalSpan = 2;
+             labelLastName.setLayoutData(labelLastNameLData);
+         }
+         {
+@@ -453,7 +451,7 @@
+             GridData text1LData2 = new GridData();
+             text1LData2.horizontalAlignment = GridData.FILL;
+             text1LData2.heightHint = 13;
+-            text1LData2.horizontalSpan = 4;
++            text1LData2.horizontalSpan = 3;
+             text1LData2.grabExcessHorizontalSpace = true;
+             textLastName.setLayoutData(text1LData2);
+         }
+@@ -463,11 +461,10 @@
+             labelFirstName.setText(l
+                     .getString(&quot;Customer.groupdetail.firstnamelabel&quot;)
+                     + &quot;:&quot;);
+-            labelFirstName.setSize(125, 15);
++            labelFirstName.setSize(90, 15);
+             GridData label2LData1 = new GridData();
+-            label2LData1.widthHint = 125;
++            label2LData1.widthHint = 90;
+             label2LData1.heightHint = 15;
+-            label2LData1.horizontalSpan = 2;
+             labelFirstName.setLayoutData(label2LData1);
+         }
+         {
+@@ -476,8 +473,7 @@
+             GridData text1LData3 = new GridData();
+             text1LData3.horizontalAlignment = GridData.FILL;
+             text1LData3.heightHint = 13;
+-            text1LData3.horizontalSpan = 4;
+-            text1LData3.grabExcessHorizontalSpace = true;
++            text1LData3.horizontalSpan = 1;
+             textFirstName.setLayoutData(text1LData3);
+         }
+         {
+@@ -486,21 +482,19 @@
+             labelMiddleName.setText(l
+                     .getString(&quot;Customer.groupdetail.middlenamelabel&quot;)
+                     + &quot;:&quot;);
+-            labelMiddleName.setSize(125, 15);
+-            GridData label1LData1 = new GridData();
+-            label1LData1.widthHint = 125;
+-            label1LData1.heightHint = 15;
+-            label1LData1.horizontalSpan = 2;
+-            labelMiddleName.setLayoutData(label1LData1);
++            labelMiddleName.setSize(70, 15);
++            GridData label2LData1 = new GridData();
++            label2LData1.widthHint = 70;
++            label2LData1.heightHint = 15;
++            labelMiddleName.setLayoutData(label2LData1);
+         }
+         {
+             textMiddleName = new Text(groupCustomerDetail,
+                     SWT.READ_ONLY | SWT.BORDER);
+             GridData text1LData3 = new GridData();
++            text1LData3.heightHint = 13;
+             text1LData3.horizontalAlignment = GridData.FILL;
+-            text1LData3.heightHint = 13;
+-            text1LData3.horizontalSpan = 4;
+-            text1LData3.grabExcessHorizontalSpace = true;
++            text1LData3.horizontalSpan = 1;
+             textMiddleName.setLayoutData(text1LData3);
+         }
+         {
+@@ -509,11 +503,10 @@
+             labelSalutation.setText(l
+                     .getString(&quot;Customer.groupdetail.salutationlabel&quot;)
+                     + &quot;:&quot;);
+-            labelSalutation.setSize(125, 15);
++            labelSalutation.setSize(90, 15);
+             GridData label1LData1 = new GridData();
+-            label1LData1.widthHint = 125;
++            label1LData1.widthHint = 90;
+             label1LData1.heightHint = 15;
+-            label1LData1.horizontalSpan = 2;
+             labelSalutation.setLayoutData(label1LData1);
+         }
+         {
+@@ -522,8 +515,7 @@
+             GridData text1LData3 = new GridData();
+             text1LData3.horizontalAlignment = GridData.FILL;
+             text1LData3.heightHint = 13;
+-            text1LData3.horizontalSpan = 4;
+-            text1LData3.grabExcessHorizontalSpace = true;
++            text1LData3.horizontalSpan = 1;
+             textSalutation.setLayoutData(text1LData3);
+         }
+         {
+@@ -532,11 +524,10 @@
+             labelTitle.setText(l
+                     .getString(&quot;Customer.groupdetail.titlelabel&quot;)
+                     + &quot;:&quot;);
+-            labelTitle.setSize(125, 15);
++            labelTitle.setSize(70, 15);
+             GridData label1LData1 = new GridData();
+-            label1LData1.widthHint = 125;
++            label1LData1.widthHint = 70;
+             label1LData1.heightHint = 15;
+-            label1LData1.horizontalSpan = 2;
+             labelTitle.setLayoutData(label1LData1);
+         }
+         {
+@@ -545,113 +536,159 @@
+             GridData text1LData3 = new GridData();
+             text1LData3.horizontalAlignment = GridData.FILL;
+             text1LData3.heightHint = 13;
+-            text1LData3.horizontalSpan = 4;
+-            text1LData3.grabExcessHorizontalSpace = true;
++            text1LData3.horizontalSpan = 1;
+             textTitle.setLayoutData(text1LData3);
+         }
+         {
+-            labelStreet = new Label(groupCustomerDetail,
++            labelBirthday = new Label(groupCustomerDetail,
+                     SWT.NONE);
+-            labelStreet.setText(l
+-                    .getString(&quot;Customer.groupdetail.streetlabel&quot;)
++            labelBirthday.setText(l
++                    .getString(&quot;Customer.groupdetail.birthdaylabel&quot;)
+                     + &quot;:&quot;);
+-            labelStreet.setSize(125, 15);
++            labelBirthday.setSize(90, 15);
+             GridData label1LData1 = new GridData();
+-            label1LData1.widthHint = 125;
++            label1LData1.widthHint = 90;
+             label1LData1.heightHint = 15;
+-            label1LData1.horizontalSpan = 2;
+-            labelStreet.setLayoutData(label1LData1);
++            labelBirthday.setLayoutData(label1LData1);
+         }
+         {
+-            textStreet = new Text(groupCustomerDetail,
++            textBirthday = new Text(groupCustomerDetail,
+                     SWT.READ_ONLY | SWT.BORDER);
+             GridData text1LData3 = new GridData();
+             text1LData3.horizontalAlignment = GridData.FILL;
+             text1LData3.heightHint = 13;
+-            text1LData3.horizontalSpan = 4;
+-            text1LData3.grabExcessHorizontalSpace = true;
+-            textStreet.setLayoutData(text1LData3);
++            text1LData3.horizontalSpan = 2;
++            textBirthday.setLayoutData(text1LData3);
++            textBirthday.setEnabled(false);
+         }
+         {
+-            labelNumber = new Label(groupCustomerDetail,
++            changeBirthdayDateButton = new Button(groupCustomerDetail, SWT.PUSH
++                | SWT.CENTER);
++            changeBirthdayDateButton.setText(l.getString(&quot;Customer.groupdetail.birthdaybuttonchange&quot;));
++            GridData text1LData3 = new GridData();
++            changeBirthdayDateButton.setEnabled(false);
++            changeBirthdayDateButton.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++
++                    final SWTCalendarDialog cal = new SWTCalendarDialog(getDisplay(),l.getString(&quot;Customer.groupdetail.birthdaybuttonfinish&quot;));
++
++                    cal.addDateChangedListener(new SWTCalendarListener() {
++
++                        public void dateChanged(SWTCalendarEvent calendarEvent) {
++
++                            textRegistrationDate.setText( DateFormat.getDateInstance(DateFormat.LONG).format(calendarEvent.getCalendar().getTime()));
++
++                        }
++
++                    });
++
++
++
++                    if (textRegistrationDate.getText() != null &amp;&amp; textRegistrationDate.getText().length() &gt; 0) {
++
++                        try {
++                               cal.setDate(DateFormat.getDateInstance(DateFormat.LONG).parse(textRegistrationDate.getText()));
++
++                        } catch (ParseException pe) {
++
++
++
++                        }
++
++                    }
++
++                    cal.open();                    
++                    
++                    
++                }
++            });
++            text1LData3.horizontalAlignment = GridData.FILL;          
++            text1LData3.horizontalSpan = 1;
++            changeBirthdayDateButton.setLayoutData(text1LData3);
++        }
++        {
++            labelStreet = new Label(groupCustomerDetail,
+                     SWT.NONE);
+-            labelNumber.setText(l
+-                    .getString(&quot;Customer.groupdetail.numberlabel&quot;)
++            labelStreet.setText(l
++                    .getString(&quot;Customer.groupdetail.streetlabel&quot;)
+                     + &quot;:&quot;);
+-            labelNumber.setSize(125, 15);
++            labelStreet.setSize(90, 15);
+             GridData label1LData1 = new GridData();
+-            label1LData1.widthHint = 125;
++            label1LData1.widthHint = 90;
+             label1LData1.heightHint = 15;
+-            label1LData1.horizontalSpan = 2;
+-            labelNumber.setLayoutData(label1LData1);
++            labelStreet.setLayoutData(label1LData1);
+         }
+         {
+-            textNumber = new Text(groupCustomerDetail,
++            textStreet = new Text(groupCustomerDetail,
+                     SWT.READ_ONLY | SWT.BORDER);
+             GridData text1LData3 = new GridData();
+             text1LData3.horizontalAlignment = GridData.FILL;
+             text1LData3.heightHint = 13;
+-            text1LData3.horizontalSpan = 4;
+-            text1LData3.grabExcessHorizontalSpace = true;
++            text1LData3.horizontalSpan = 2;
++            textStreet.setLayoutData(text1LData3);
++        }
++        {
++            textNumber = new Text(groupCustomerDetail,
++                    SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData3 = new GridData();
++            text1LData3.horizontalAlignment = GridData.END;
++            text1LData3.heightHint = 13;
++            text1LData3.widthHint = 20;
+             textNumber.setLayoutData(text1LData3);
+         }
+         {
+-            labelCity = new Label(groupCustomerDetail,
++            labelZipCode = new Label(groupCustomerDetail,
+                     SWT.NONE);
+-            labelCity.setText(l
+-                    .getString(&quot;Customer.groupdetail.citylabel&quot;)
++            labelZipCode.setText(l
++                    .getString(&quot;Customer.groupdetail.zipcodelabel&quot;)
+                     + &quot;:&quot;);
+-            labelCity.setSize(125, 15);
++            labelZipCode.setSize(90, 15);
+             GridData label1LData1 = new GridData();
+-            label1LData1.widthHint = 125;
++            label1LData1.widthHint = 90;
+             label1LData1.heightHint = 15;
+-            label1LData1.horizontalSpan = 2;
+-            labelCity.setLayoutData(label1LData1);
++            labelZipCode.setLayoutData(label1LData1);
+         }
+         {
+-            textCity = new Text(groupCustomerDetail,
++            textZipCode = new Text(groupCustomerDetail,
+                     SWT.READ_ONLY | SWT.BORDER);
+             GridData text1LData3 = new GridData();
+             text1LData3.horizontalAlignment = GridData.FILL;
+             text1LData3.heightHint = 13;
+-            text1LData3.horizontalSpan = 4;
+-            text1LData3.grabExcessHorizontalSpace = true;
+-            textCity.setLayoutData(text1LData3);
++            text1LData3.horizontalSpan = 1;
++            textZipCode.setLayoutData(text1LData3);
+         }
+         {
+-            labelZipCode = new Label(groupCustomerDetail,
++            labelCity = new Label(groupCustomerDetail,
+                     SWT.NONE);
+-            labelZipCode.setText(l
+-                    .getString(&quot;Customer.groupdetail.zipcodelabel&quot;)
++            labelCity.setText(l
++                    .getString(&quot;Customer.groupdetail.citylabel&quot;)
+                     + &quot;:&quot;);
+-            labelZipCode.setSize(125, 15);
++            labelCity.setSize(70, 15);
+             GridData label1LData1 = new GridData();
+-            label1LData1.widthHint = 125;
++            label1LData1.widthHint = 70;
+             label1LData1.heightHint = 15;
+-            label1LData1.horizontalSpan = 2;
+-            labelZipCode.setLayoutData(label1LData1);
++            labelCity.setLayoutData(label1LData1);
+         }
+         {
+-            textZipCode = new Text(groupCustomerDetail,
++            textCity = new Text(groupCustomerDetail,
+                     SWT.READ_ONLY | SWT.BORDER);
+             GridData text1LData3 = new GridData();
+             text1LData3.horizontalAlignment = GridData.FILL;
+             text1LData3.heightHint = 13;
+-            text1LData3.horizontalSpan = 4;
+-            text1LData3.grabExcessHorizontalSpace = true;
+-            textZipCode.setLayoutData(text1LData3);
++            text1LData3.horizontalSpan = 1;
++            textCity.setLayoutData(text1LData3);
+         }
++        
+         {
+             labelCountry = new Label(groupCustomerDetail,
+                     SWT.NONE);
+             labelCountry.setText(l
+                     .getString(&quot;Customer.groupdetail.countrylabel&quot;)
+                     + &quot;:&quot;);
+-            labelCountry.setSize(125, 15);
++            labelCountry.setSize(90, 15);
+             GridData label1LData1 = new GridData();
+-            label1LData1.widthHint = 125;
++            label1LData1.widthHint = 90;
+             label1LData1.heightHint = 15;
+-            label1LData1.horizontalSpan = 2;
+             labelCountry.setLayoutData(label1LData1);
+         }
+         {
+@@ -660,8 +697,7 @@
+             GridData text1LData3 = new GridData();
+             text1LData3.horizontalAlignment = GridData.FILL;
+             text1LData3.heightHint = 13;
+-            text1LData3.horizontalSpan = 4;
+-            text1LData3.grabExcessHorizontalSpace = true;
++            text1LData3.horizontalSpan = 3;
+             textCountry.setLayoutData(text1LData3);
+         }
+         {
+@@ -670,11 +706,10 @@
+             labelPassword.setText(l
+                     .getString(&quot;Customer.groupdetail.passwordlabel&quot;)
+                     + &quot;:&quot;);
+-            labelPassword.setSize(125, 15);
++            labelPassword.setSize(90, 15);
+             GridData label1LData1 = new GridData();
+-            label1LData1.widthHint = 125;
++            label1LData1.widthHint = 90;
+             label1LData1.heightHint = 15;
+-            label1LData1.horizontalSpan = 2;
+             labelPassword.setLayoutData(label1LData1);
+         }
+         {
+@@ -684,7 +719,6 @@
+             text1LData3.horizontalAlignment = GridData.FILL;
+             text1LData3.heightHint = 13;
+             text1LData3.horizontalSpan = 3;
+-            text1LData3.grabExcessHorizontalSpace = true;
+             textPassword.setLayoutData(text1LData3);
+         }
+         {
+@@ -693,11 +727,10 @@
+             labelEmail.setText(l
+                     .getString(&quot;Customer.groupdetail.emaillabel&quot;)
+                     + &quot;:&quot;);
+-            labelEmail.setSize(125, 15);
++            labelEmail.setSize(90, 15);
+             GridData label1LData1 = new GridData();
+-            label1LData1.widthHint = 125;
++            label1LData1.widthHint = 90;
+             label1LData1.heightHint = 15;
+-            label1LData1.horizontalSpan = 2;
+             labelEmail.setLayoutData(label1LData1);
+         }
+         {
+@@ -707,7 +740,6 @@
+             text1LData3.horizontalAlignment = GridData.FILL;
+             text1LData3.heightHint = 13;
+             text1LData3.horizontalSpan = 3;
+-            text1LData3.grabExcessHorizontalSpace = true;
+             textEmail.setLayoutData(text1LData3);
+         }
+         {
+@@ -716,11 +748,10 @@
+             labelQuestion.setText(l
+                     .getString(&quot;Customer.groupdetail.questionlabel&quot;)
+                     + &quot;:&quot;);
+-            labelQuestion.setSize(125, 15);
++            labelQuestion.setSize(90, 15);
+             GridData label1LData1 = new GridData();
+-            label1LData1.widthHint = 125;
++            label1LData1.widthHint = 90;
+             label1LData1.heightHint = 15;
+-            label1LData1.horizontalSpan = 2;
+             labelQuestion.setLayoutData(label1LData1);
+         }
+         {
+@@ -730,7 +761,6 @@
+             text1LData3.horizontalAlignment = GridData.FILL;
+             text1LData3.heightHint = 13;
+             text1LData3.horizontalSpan = 3;
+-            text1LData3.grabExcessHorizontalSpace = true;
+             textQuestion.setLayoutData(text1LData3);
+         }
+         {
+@@ -739,11 +769,10 @@
+             labelAnswer.setText(l
+                     .getString(&quot;Customer.groupdetail.answerlabel&quot;)
+                     + &quot;:&quot;);
+-            labelAnswer.setSize(125, 15);
++            labelAnswer.setSize(90, 15);
+             GridData label1LData1 = new GridData();
+-            label1LData1.widthHint = 125;
++            label1LData1.widthHint = 90;
+             label1LData1.heightHint = 15;
+-            label1LData1.horizontalSpan = 2;
+             labelAnswer.setLayoutData(label1LData1);
+         }
+         {
+@@ -753,34 +782,9 @@
+             text1LData3.horizontalAlignment = GridData.FILL;
+             text1LData3.heightHint = 13;
+             text1LData3.horizontalSpan = 3;
+-            text1LData3.grabExcessHorizontalSpace = true;
+             textAnswer.setLayoutData(text1LData3);
+-        }
++        }       
+         {
+-            labelBirthday = new Label(groupCustomerDetail,
+-                    SWT.NONE);
+-            labelBirthday.setText(l
+-                    .getString(&quot;Customer.groupdetail.birthdaylabel&quot;)
+-                    + &quot;:&quot;);
+-            labelBirthday.setSize(125, 15);
+-            GridData label1LData1 = new GridData();
+-            label1LData1.widthHint = 125;
+-            label1LData1.heightHint = 15;
+-            label1LData1.horizontalSpan = 2;
+-            labelBirthday.setLayoutData(label1LData1);
+-        }
+-        {
+-            textBirthday = new Text(groupCustomerDetail,
+-                    SWT.READ_ONLY | SWT.BORDER);
+-            GridData text1LData3 = new GridData();
+-            text1LData3.horizontalAlignment = GridData.FILL;
+-            text1LData3.heightHint = 13;
+-            text1LData3.horizontalSpan = 3;
+-            text1LData3.grabExcessHorizontalSpace = true;
+-            textBirthday.setLayoutData(text1LData3);
+-            textBirthday.setEnabled(false);
+-        }
+-        {
+             labelRegistrationDate = new Label(groupCustomerDetail,
+                     SWT.NONE);
+             labelRegistrationDate.setText(l
+@@ -790,7 +794,7 @@
+             GridData label1LData1 = new GridData();
+             label1LData1.widthHint = 125;
+             label1LData1.heightHint = 15;
+-            label1LData1.horizontalSpan = 2;
++            label1LData1.horizontalSpan = 1;
+             labelRegistrationDate.setLayoutData(label1LData1);
+         }
+         {
+@@ -799,8 +803,7 @@
+             GridData text1LData3 = new GridData();
+             text1LData3.horizontalAlignment = GridData.FILL;
+             text1LData3.heightHint = 13;
+-            text1LData3.horizontalSpan = 3;
+-            text1LData3.grabExcessHorizontalSpace = true;
++            text1LData3.horizontalSpan = 2;
+             textRegistrationDate.setLayoutData(text1LData3);
+             textRegistrationDate.setEnabled(false);
+         }
+@@ -848,10 +851,9 @@
+             text1LData3.horizontalAlignment = GridData.FILL;
+             
+             text1LData3.horizontalSpan = 1;
+-            text1LData3.grabExcessHorizontalSpace = true;
+             changeRegistrationDateButton.setLayoutData(text1LData3);
+         }
+-        /*{
++        {
+ 
+             //die Buttons bekommen ein eigenes Composite
+             compositeButtons = new Composite(groupCustomerDetail, SWT.EMBEDDED);
+@@ -871,7 +873,7 @@
+             //init all the Buttons
+             initCustomerDetailButtons();
+ 
+-        }*/
++        }
+ 
+         
+     }
+@@ -879,7 +881,7 @@
+     /**
+      * 
+      */
+-    /*private void initCustomerDetailButtons() {
++    private void initCustomerDetailButtons() {
+         buttonCustomerNew = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
+         buttonCustomerNew.setText(l.getString(&quot;button.new&quot;));
+         buttonCustomerNew.addSelectionListener(new SelectionAdapter() {
+@@ -888,18 +890,43 @@
+             public void widgetSelected(SelectionEvent evt) {
+ 
+                 textCustomerID.setText(&quot;&quot;);
+-                textCustomerName.setText(&quot;&quot;);
+-                textduration1.setText(&quot;&quot;);
+-                textduration2.setText(&quot;&quot;);
+-                textduration3.setText(&quot;&quot;);
+-                textstartdate.setText(&quot;&quot;);
++                textUserName.setText(&quot;&quot;);
++                textLastName.setText(&quot;&quot;);
++                textFirstName.setText(&quot;&quot;);
++                textMiddleName.setText(&quot;&quot;);
++                textSalutation.setText(&quot;&quot;);
++                textTitle.setText(&quot;&quot;);
++                textBirthday.setText(&quot;&quot;);
++                textStreet.setText(&quot;&quot;);
++                textNumber.setText(&quot;&quot;);
++                textZipCode.setText(&quot;&quot;);
++                textCity.setText(&quot;&quot;);
++                textCountry.setText(&quot;&quot;);
++                textEmail.setText(&quot;&quot;);
++                textPassword.setText(&quot;&quot;);
++                textQuestion.setText(&quot;&quot;);
++                textAnswer.setText(&quot;&quot;);
++                textRegistrationDate.setText(&quot;&quot;);
++                
++                
+ 
+-                textCustomerName.setEditable(true);
+-                textduration1.setEditable(true);
+-                textduration2.setEditable(true);
+-                textduration3.setEditable(true);
+-                //textstartdate.setEditable(true);
+-                changeStartDateButton.setEnabled(true);
++                textUserName.setEditable(true);
++                textLastName.setEditable(true);
++                textFirstName.setEditable(true);
++                textMiddleName.setEditable(true);
++                textSalutation.setEditable(true);
++                textTitle.setEditable(true);
++                changeBirthdayDateButton.setEnabled(true);
++                textStreet.setEditable(true);
++                textNumber.setEditable(true);
++                textZipCode.setEditable(true);
++                textCity.setEditable(true);
++                textCountry.setEditable(true);
++                textEmail.setEditable(true);
++                textPassword.setEditable(true);
++                textQuestion.setEditable(true);
++                textAnswer.setEditable(true);
++                changeRegistrationDateButton.setEnabled(true);
+                 
+                 
+                 buttonCustomerCancel.setEnabled(true);
+@@ -925,27 +952,26 @@
+ 
+                 mode_Customer = ManagementGui.MODE_EDIT;
+ 
+-                textCustomerID.setEditable(false);
+-                textCustomerName.setEditable(true);
+-                textduration1.setEditable(true);
+-                textduration2.setEditable(true);                
+-                textduration3.setEditable(true);
+-                //textstartdate.setEditable(true);
+-                changeStartDateButton.setEnabled(true);
++                textUserName.setEditable(true);
++                textUserName.setFocus();
++                textLastName.setEditable(true);
++                textFirstName.setEditable(true);
++                textMiddleName.setEditable(true);
++                textSalutation.setEditable(true);
++                textTitle.setEditable(true);
++                changeBirthdayDateButton.setEnabled(true);
++                textStreet.setEditable(true);
++                textNumber.setEditable(true);
++                textZipCode.setEditable(true);
++                textCity.setEditable(true);
++                textCountry.setEditable(true);
++                textEmail.setEditable(true);
++                textPassword.setEditable(true);
++                textQuestion.setEditable(true);
++                textAnswer.setEditable(true);
++                changeRegistrationDateButton.setEnabled(true);
+                 
+-                textduration1.setFocus();
+-                
+-                buttonCustomerCancel.setEnabled(true);
+-                buttonCustomerSave.setEnabled(true);
+-                buttonCustomerNew.setEnabled(false);
+-                buttonCustomerEdit.setEnabled(false);
+-                buttonCustomerDelete.setEnabled(false);
+ 
+-
+-                tableCustomer.setEnabled(false);
+-                textCustomerSearch.setEnabled(false);
+-                
+-
+             }
+         });
+ 
+@@ -961,11 +987,7 @@
+                 
+                String msg = MessageFormat.format(
+                        l.getString(&quot;Customer.groupdetail.deletebutton.question.text&quot;),
+-                               new Object[]{textCustomerName.getText() + &quot; &quot; + 
+-                               				textduration1.getText() + &quot; &quot; + 
+-                               				textduration2.getText() + &quot; &quot; + 
+-                               				textduration3.getText() + &quot; &quot; +
+-                               				textstartdate.getText()});
++                               new Object[]{textUserName.getText()});
+                 
+                int question = showMsg(msg,
+                        l.getString(&quot;Customer.groupdetail.deletebutton.question.header&quot;), 
+@@ -976,14 +998,28 @@
+                }
+                 try {
+ 	                Customer o = new Customer();
++	                Person p = new Person();
+ 	                o.setCustomerId(new Integer(Integer.parseInt(textCustomerID.getText())));
+-	                o.setUserName(textCustomerName.getText());
+-	                o.setDuration1(Float.parseFloat(textduration1.getText()));
+-	                o.setDuration2(Float.parseFloat(textduration2.getText()));
+-	                o.setDuration3(Float.parseFloat(textduration3.getText()));                
+-	                o.setStartdate(Util.getDateByText(textstartdate.getText()));
+-
+-                    //object speichern
++	                o.setUserName(textUserName.getText());
++	                o.setDayOfRegistration(Util.getDateByText(textRegistrationDate.getText()).getTime());
++	                o.setUserPassword(textPassword.getText());
++	                o.setHiddenQuestion(textQuestion.getText());
++	                o.setHiddenAnswer(textAnswer.getText());
++	                p.setLastName(textLastName.getText());
++	                p.setFirstName(textFirstName.getText());
++	                p.setMiddleName(textMiddleName.getText());
++	                p.setSalutation(textSalutation.getText());
++	                p.setTitle(textTitle.getText());
++	                p.setStreet(textStreet.getText());
++	                p.setStreetNumber(textNumber.getText());
++	                p.setZipCode(textZipCode.getText());
++	                p.setCity(textCity.getText());
++	                p.setCountry(textCountry.getText());
++	                p.setEmailAddress(textEmail.getText());
++	                p.setDayOfBirth(Util.getDateByText(textBirthday.getText()));
++	                o.setPerson(p);
++	                
++                    //object l&#246;schen
+                     // Fehlerbehandlung
+                     Database.deleteObject(o);
+ 
+@@ -992,14 +1028,26 @@
+                     
+                     //Detailansicht leeren
+                     textCustomerID.setText(&quot;&quot;);
+-                    textCustomerName.setText(&quot;&quot;);
+-                    textduration1.setText(&quot;&quot;);
+-                    textduration2.setText(&quot;&quot;);
+-                    textduration3.setText(&quot;&quot;);
+-                    textstartdate.setText(&quot;&quot;);
++                    textUserName.setText(&quot;&quot;);
++                    textLastName.setText(&quot;&quot;);
++                    textFirstName.setText(&quot;&quot;);
++                    textMiddleName.setText(&quot;&quot;);
++                    textSalutation.setText(&quot;&quot;);
++                    textTitle.setText(&quot;&quot;);
++                    textBirthday.setText(&quot;&quot;);
++                    textStreet.setText(&quot;&quot;);
++                    textNumber.setText(&quot;&quot;);
++                    textZipCode.setText(&quot;&quot;);
++                    textCity.setText(&quot;&quot;);
++                    textCountry.setText(&quot;&quot;);
++                    textEmail.setText(&quot;&quot;);
++                    textPassword.setText(&quot;&quot;);
++                    textQuestion.setText(&quot;&quot;);
++                    textAnswer.setText(&quot;&quot;);
++                    textRegistrationDate.setText(&quot;&quot;);
+                     buttonCustomerEdit.setEnabled(false);
+                     buttonCustomerDelete.setEnabled(false);
+-                    //in Tabelle n&#228;chsten ausw&#228;hlen
++                    
+                     try {
+                         tableCustomer.deselectAll();
+                     } catch (Exception ex) {}
+@@ -1050,11 +1098,17 @@
+             public void widgetSelected(SelectionEvent evt) {
+     
+                 //testen ob duration leer ist
+-                if (   textCustomerName.getText().trim().equalsIgnoreCase(&quot;&quot;) ||
+-                       textduration1.getText().trim().equalsIgnoreCase(&quot;&quot;) || 
+-                       textduration2.getText().trim().equalsIgnoreCase(&quot;&quot;) || 
+-                       textduration3.getText().trim().equalsIgnoreCase(&quot;&quot;) ||
+-                       textstartdate.getText().trim().equalsIgnoreCase(&quot;&quot;)) {
++                if (   textUserName.getText().trim().equalsIgnoreCase(&quot;&quot;) ||
++                       textLastName.getText().trim().equalsIgnoreCase(&quot;&quot;) || 
++                       textFirstName.getText().trim().equalsIgnoreCase(&quot;&quot;) || 
++                       textStreet.getText().trim().equalsIgnoreCase(&quot;&quot;) ||
++                       textNumber.getText().trim().equalsIgnoreCase(&quot;&quot;) || 
++                       textZipCode.getText().trim().equalsIgnoreCase(&quot;&quot;) ||
++                       textCity.getText().trim().equalsIgnoreCase(&quot;&quot;) ||
++                       textCountry.getText().trim().equalsIgnoreCase(&quot;&quot;) || 
++                       textEmail.getText().trim().equalsIgnoreCase(&quot;&quot;) ||
++                       textQuestion.getText().trim().equalsIgnoreCase(&quot;&quot;) ||
++                       textAnswer.getText().trim().equalsIgnoreCase(&quot;&quot;)) {
+                     
+                     showMsg(l.getString(&quot;Customer.groupdetail.savebutton.warn.noname.msg&quot;),
+                             l.getString(&quot;Customer.groupdetail.savebutton.warn.noname.title&quot;),
+@@ -1074,25 +1128,38 @@
+                      * @todo eine Exception bekommen wieder leider NOCH nicht mit
+                      * d.h. es muss noch ein r&#252;ckgabewert kommen oder eine Exception 
+                      * &#252;bermitteln werden (aus der DB Klasse)
+-                     /
++                     */
+ 	                    
+                     try {	
+                         
+-                        Calendar tmp_cal = Calendar.getInstance();
+-                        tmp_cal.setTime(DateFormat.getDateInstance(DateFormat.LONG).parse(textstartdate.getText()));
+                     	//neues Objekt erzeugen
+-	                    Customer tmp = new Customer(textCustomerName.getText(), 
+-                            			Float.parseFloat(textduration1.getText()),
+-                            			Float.parseFloat(textduration2.getText()), 
+-                            			Float.parseFloat(textduration3.getText()),
+-                            			tmp_cal);
++                        Customer o = new Customer();
++    	                Person p = new Person();
++    	                o.setUserName(textUserName.getText());
++    	                o.setDayOfRegistration(Util.getDateByText(textRegistrationDate.getText()).getTime());
++    	                o.setUserPassword(textPassword.getText());
++    	                o.setHiddenQuestion(textQuestion.getText());
++    	                o.setHiddenAnswer(textAnswer.getText());
++    	                p.setLastName(textLastName.getText());
++    	                p.setFirstName(textFirstName.getText());
++    	                p.setMiddleName(textMiddleName.getText());
++    	                p.setSalutation(textSalutation.getText());
++    	                p.setTitle(textTitle.getText());
++    	                p.setStreet(textStreet.getText());
++    	                p.setStreetNumber(textNumber.getText());
++    	                p.setZipCode(textZipCode.getText());
++    	                p.setCity(textCity.getText());
++    	                p.setCountry(textCountry.getText());
++    	                p.setEmailAddress(textEmail.getText());
++    	                p.setDayOfBirth(Util.getDateByText(textBirthday.getText()));
++    	                o.setPerson(p);
+                                         
+                         //object speichern
+                         // Fehlerbehandlung
+-                        Object o = Database.saveObject(tmp);
++                        Object newCust = Database.saveObject(o);
+                         
+                         // in &#220;bersichtstabelle einf&#252;gen
+-                        insertIntoCustomerTable((Customer)o);                        
++                        insertIntoCustomerTable((Customer)newCust);                        
+                                                 
+                         //Statusline Nachricht sezten
+                         statusLine.setStatus(1,l.getString(&quot;Customer.groupdetail.savebutton.newok&quot;));
+@@ -1114,10 +1181,6 @@
+                             e.printStackTrace();
+                         }
+                         
+-                    } catch (ParseException pex){
+-                        statusLine.setStatus(3,l.getString(&quot;Customer.groupdetail.savebutton.errorsave&quot;));
+-                        showMsg(l.getString(&quot;Customer.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
+-                        
+                     }
+                     
+                     
+@@ -1129,19 +1192,32 @@
+                 } else if (mode_Customer == ManagementGui.MODE_EDIT) {
+                     try {
+                         
+-                        Calendar tmp_cal = Calendar.getInstance();
+-                        tmp_cal.setTime(DateFormat.getDateInstance(DateFormat.LONG).parse(textstartdate.getText()));
+-                        
+-	                    Customer tmp = new Customer(textCustomerName.getText(), 
+-	                            Float.parseFloat(textduration1.getText()),
+-	                            Float.parseFloat(textduration2.getText()), 
+-	                            Float.parseFloat(textduration3.getText()),
+-	                            tmp_cal);
+-	                    tmp.setCustomerId(new Integer(Integer.parseInt(textCustomerID.getText())));
++                        Customer o = new Customer();
++    	                Person p = new Person();
++    	                o.setCustomerId(new Integer(Integer.parseInt(textCustomerID.getText())));
++    	                o.setUserName(textUserName.getText());
++    	                o.setDayOfRegistration(Util.getDateByText(textRegistrationDate.getText()).getTime());
++    	                o.setUserPassword(textPassword.getText());
++    	                o.setHiddenQuestion(textQuestion.getText());
++    	                o.setHiddenAnswer(textAnswer.getText());
++    	                p.setLastName(textLastName.getText());
++    	                p.setFirstName(textFirstName.getText());
++    	                p.setMiddleName(textMiddleName.getText());
++    	                p.setSalutation(textSalutation.getText());
++    	                p.setTitle(textTitle.getText());
++    	                p.setStreet(textStreet.getText());
++    	                p.setStreetNumber(textNumber.getText());
++    	                p.setZipCode(textZipCode.getText());
++    	                p.setCity(textCity.getText());
++    	                p.setCountry(textCountry.getText());
++    	                p.setEmailAddress(textEmail.getText());
++    	                p.setDayOfBirth(Util.getDateByText(textBirthday.getText()));
++    	                o.setPerson(p);
++	                    o.setCustomerId(new Integer(Integer.parseInt(textCustomerID.getText())));
+ 	                
+ 	                    //object speichern
+ 	                    // Fehlerbehandlung
+-	                    Database.saveObject(tmp);
++	                    Database.saveObject(o);
+ 	                    //&#220;bersichtstabelle aktualisieren
+ 	                    refreshCustomerTable(textCustomerSearch.getText());
+ 	                    
+@@ -1166,10 +1242,6 @@
+ 	                        e.printStackTrace();
+ 	                    }
+                     
+-                    } catch (ParseException pex){
+-                        statusLine.setStatus(3,l.getString(&quot;Customer.groupdetail.savebutton.errorsave&quot;));
+-                        showMsg(l.getString(&quot;Customer.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
+-                        
+                     }
+                     
+                     //alle Buttons auf aktiv setzen
+@@ -1182,7 +1254,7 @@
+                 
+                 /**
+                  * @todo Exception werfen, da nur die zwei Modes sein d&#252;rfen
+-                 /
++                 */
+                 
+             }
+         });
+@@ -1199,18 +1271,18 @@
+             }
+         });
+        
+-    }*/
++    }
+ 
+     /**
+      * 
+      */
+-    /*protected void setCustomerGroupButtonSaveCancel() {
++    protected void setCustomerGroupButtonSaveCancel() {
+         buttonCustomerSave.setEnabled(false);
+         buttonCustomerCancel.setEnabled(false);
+         buttonCustomerEdit.setEnabled(true);
+         buttonCustomerNew.setEnabled(true);
+         buttonCustomerDelete.setEnabled(true);
+-        textCustomerName.setEditable(false);
++        textUserName.setEditable(false);
+         textduration1.setEditable(false);
+         textduration2.setEditable(false);
+         textduration3.setEditable(false);
+@@ -1224,7 +1296,7 @@
+         //CustomerSearch aktivieren
+         textCustomerSearch.setEnabled(true);
+         
+-    }*/
++    }
+ 
+     /**
+      * @param Customer
+@@ -1278,11 +1350,17 @@
+             item = new TableItem(tableCustomer, SWT.NONE);
+             Calendar regdate = Calendar.getInstance();
+             regdate.setTime(o.getDayOfRegistration());
++            String date = null;
++            if (o.getPerson().getDayOfBirth() == null) {
++                date = &quot;&quot;;
++            } else {
++                date = Util.getTextByDate(o.getPerson().getDayOfBirth());
++            }
+             item.setText(new String[] { o.getCustomerId() + &quot;&quot;, 
+                     					o.getUserName(), 
+                     					o.getPerson().getLastName(),
+                     					o.getPerson().getFirstName(),
+-                    					Util.getTextByDate(o.getPerson().getDayOfBirth()),
++                    					date,
+                     					Util.getTextByDate(regdate),              					
+                     					});
+ 
+@@ -1503,27 +1581,48 @@
+ 	            //id ist keine Zahl
+ 	            return;
+ 	        }
+-	
+-	        textCustomerID.setText(object.getCustomerId() + &quot;&quot;);
+-	        textUserName.setText(object.getUserName());
+-	        textLastName.setText(object.getPerson().getLastName());
+-	        textFirstName.setText(object.getPerson().getFirstName());
+-	        textMiddleName.setText(object.getPerson().getMiddleName());
+-	        textSalutation.setText(object.getPerson().getSalutation());
+-	        textTitle.setText(object.getPerson().getTitle());
+-	        textStreet.setText(object.getPerson().getStreet());
+-	        textNumber.setText(object.getPerson().getStreetNumber());
+-	        textCity.setText(object.getPerson().getCity());
+-	        textZipCode.setText(object.getPerson().getZipCode());
+-	        textCountry.setText(object.getPerson().getCountry());
+-	        textPassword.setText(object.getUserPassword());
+-	        textEmail.setText(object.getPerson().getEmailAddress());
+-	        textQuestion.setText(object.getHiddenQuestion());
+-	        textAnswer.setText(object.getHiddenAnswer());
++	        String temp = null;
++	        textCustomerID.setText(object.getCustomerId().toString());
++	        temp = object.getUserName();
++	        textUserName.setText(temp == null ? &quot;&quot; : temp);
++	        temp = object.getPerson().getLastName();
++	        textLastName.setText(temp == null ? &quot;&quot; : temp);
++	        temp = object.getPerson().getFirstName();
++	        textFirstName.setText(temp == null ? &quot;&quot; : temp);
++	        temp = object.getPerson().getMiddleName();
++	        textMiddleName.setText(temp == null ? &quot;&quot; : temp);
++	        temp = object.getPerson().getSalutation();
++	        textSalutation.setText(temp == null ? &quot;&quot; : temp);
++	        temp = object.getPerson().getTitle();
++	        textTitle.setText(temp == null ? &quot;&quot; : temp);
++	        temp = object.getPerson().getStreet();
++	        textStreet.setText(temp == null ? &quot;&quot; : temp);
++	        temp = object.getPerson().getStreetNumber();
++	        textNumber.setText(temp == null ? &quot;&quot; : temp);
++	        temp = object.getPerson().getCity();
++	        textCity.setText(temp == null ? &quot;&quot; : temp);
++	        temp = object.getPerson().getZipCode();
++	        textZipCode.setText(temp == null ? &quot;&quot; : temp);
++	        temp = object.getPerson().getCountry();
++	        textCountry.setText(temp == null ? &quot;&quot; : temp);
++	        temp = object.getUserPassword();
++	        textPassword.setText(temp == null ? &quot;&quot; : temp);
++	        temp = object.getPerson().getEmailAddress();
++	        textEmail.setText(temp == null ? &quot;&quot; : temp);
++	        temp = object.getHiddenQuestion();
++	        textQuestion.setText(temp == null ? &quot;&quot; : temp);
++	        temp = object.getHiddenAnswer();
++	        textAnswer.setText(temp == null ? &quot;&quot; : temp);
+ 	        Calendar regdate = Calendar.getInstance();
+ 	        regdate.setTime(object.getDayOfRegistration());
+ 	        try {
+-                textBirthday.setText(Util.getTextByDate(object.getPerson().getDayOfBirth()));
++	            String date = null;
++	            if (object.getPerson().getDayOfBirth() == null) {
++	                date = &quot;&quot;;
++	            } else {
++	                date = Util.getTextByDate(object.getPerson().getDayOfBirth());
++	            }
++                textBirthday.setText(date);
+             } catch (DataBaseException e1) {
+                 // TODO Auto-generated catch block
+                 e1.printStackTrace();
+@@ -1549,7 +1648,7 @@
+ 	        }*/
+         } else {
+             textCustomerID.setText(&quot;&quot;);
+-            textCustomerName.setText(&quot;&quot;);
++            textUserName.setText(&quot;&quot;);
+             textduration1.setText(&quot;&quot;);
+             textduration2.setText(&quot;&quot;);
+             textduration3.setText(&quot;&quot;);
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/customer.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/customer.properties	2004-12-01 22:25:27 UTC (rev 191)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/customer.properties	2004-12-01 23:02:25 UTC (rev 192)
+@@ -6,7 +6,7 @@
+ button.save=Speichern
+ button.cancel=Abbruch
+ 
+-Customer.group.label=Preisklassen
++Customer.group.label=Benutzer
+ Customer.groupoverview.label=&#220;berblick
+ Customer.groupoverview.columnid=Id
+ Customer.groupoverview.columnusername=Name
+@@ -17,31 +17,32 @@
+ 
+ Customer.groupoverview.searchlabel=Suche nach
+ Customer.groupdetail.label=Detail
+-Customer.groupdetail.idlabel=
+-Customer.groupdetail.usernamelabel=
+-Customer.groupdetail.lastnamelabel=
+-Customer.groupdetail.firstnamelabel=
+-Customer.groupdetail.middlenamelabel=
+-Customer.groupdetail.emaillabel=
+-Customer.groupdetail.birthdaylabel=
+-Customer.groupdetail.questionlabel=
+-Customer.groupdetail.answerlabel=
+-Customer.groupdetail.salutationlabel=
+-Customer.groupdetail.titlelabel=
+-Customer.groupdetail.streetlabel=
+-Customer.groupdetail.numberlabel=
+-Customer.groupdetail.citylabel=
+-Customer.groupdetail.zipcodelabel=
+-Customer.groupdetail.countrylabel=
+-Customer.groupdetail.passwordlabel=
+-Customer.groupdetail.regdatelabel=
++Customer.groupdetail.idlabel=Benutzer ID
++Customer.groupdetail.usernamelabel=Benutzername
++Customer.groupdetail.lastnamelabel=Nachname
++Customer.groupdetail.firstnamelabel=Vorname
++Customer.groupdetail.middlenamelabel=2.Vorname(n)
++Customer.groupdetail.emaillabel=Emailadresse
++Customer.groupdetail.birthdaylabel=Geburtsdatum
++Customer.groupdetail.questionlabel=Geheime Frage
++Customer.groupdetail.answerlabel=Geheime Antwort
++Customer.groupdetail.salutationlabel=Anrede
++Customer.groupdetail.titlelabel=Titel
++Customer.groupdetail.streetlabel=Strasse u. Nummer
++Customer.groupdetail.citylabel=Stadt
++Customer.groupdetail.zipcodelabel=Zip Code
++Customer.groupdetail.countrylabel=Land
++Customer.groupdetail.passwordlabel=Passwort
++Customer.groupdetail.regdatelabel=Registrierdatum
+ Customer.groupdetail.registrationdatebuttonchange=&#196;ndern
+ Customer.groupdetail.registrationdatebuttonfinish=Fertig
++Customer.groupdetail.birthdaybuttonchange=&#196;ndern
++Customer.groupdetail.birthdaybuttonfinish=Fertig
+ 
+ Customer.groupdetail.savebutton.warn.noname.title=Datensatz speichern
+ Customer.groupdetail.savebutton.warn.noname.msg=Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie einen Namen an
+-Customer.groupdetail.savebutton.newok=Speichern der neuen Preisklasse erfolgreich.
+-Customer.groupdetail.savebutton.editok=&#196;ndern der Preisklasse erfolgreich.
++Customer.groupdetail.savebutton.newok=Speichern des neuen Benutzers erfolgreich.
++Customer.groupdetail.savebutton.editok=&#196;ndern des Benutzers erfolgreich.
+ 
+ Customer.groupdetail.savebutton.errorsave=Datenbankfehler beim Speichern.
+ Customer.groupdetail.savebutton.errordb=Datenbankfehler beim Herstellen der Verbindung.(save).
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml	2004-12-01 22:25:27 UTC (rev 191)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml	2004-12-01 23:02:25 UTC (rev 192)
+@@ -16,7 +16,9 @@
+       &lt;id name=&quot;customerId&quot; type=&quot;int&quot; column=&quot;CUSTOMERID&quot;&gt;
+         &lt;meta attribute=&quot;scope-set&quot;&gt;public&lt;/meta&gt;
+         &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+-        &lt;generator class=&quot;native&quot;/&gt;
++        &lt;generator class=&quot;sequence&quot;&gt;
++			&lt;param name=&quot;sequence&quot;&gt;customer_id_sequence&lt;/param&gt;
++		&lt;/generator&gt;
+       &lt;/id&gt;
+  
+  			&lt;timestamp	name=&quot;dayOfRegistration&quot;&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.hbm.xml	2004-12-01 22:25:27 UTC (rev 191)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.hbm.xml	2004-12-01 23:02:25 UTC (rev 192)
+@@ -16,7 +16,9 @@
+       &lt;id name=&quot;personId&quot; type=&quot;int&quot; column=&quot;PERSONID&quot;&gt;
+         &lt;meta attribute=&quot;scope-set&quot;&gt;public&lt;/meta&gt;
+         &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+-        &lt;generator class=&quot;native&quot;/&gt;
++        &lt;generator class=&quot;sequence&quot;&gt;
++			&lt;param name=&quot;sequence&quot;&gt;person_id_sequence&lt;/param&gt;
++		&lt;/generator&gt;
+       &lt;/id&gt;
+ 	  
+ 
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java	2004-12-01 22:25:27 UTC (rev 191)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java	2004-12-01 23:02:25 UTC (rev 192)
+@@ -103,7 +103,7 @@
+     
+ 
+     
+-    
++    /*
+     public void testCustomer() throws Exception{
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCustomer() - start&quot;);
+@@ -237,7 +237,7 @@
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCustomer() - end&quot;);
+         }
+-    }
++    }*/
+ 
+     public void testCreateCustomer() throws Exception{
+         if (logger.isDebugEnabled()) {
+
+Deleted: project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvdOld.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvdOld.java	2004-12-01 22:25:27 UTC (rev 191)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvdOld.java	2004-12-01 23:02:25 UTC (rev 192)
+@@ -1,300 +0,0 @@
+-/*
+- * Created on 07.10.2004
+- *
+- * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
+- * All rights reserved.
+- *
+- * Redistribution and use in source and binary forms, with or without
+- * modification, are permitted provided that the following conditions
+- * are met:
+- *
+- * - Redistributions of source code must retain the above copyright notice,
+- * this list of conditions and the following disclaimer.
+- * - Redistributions in binary form must reproduce the above copyright notice,
+- * this list of conditions and the following disclaimer in the documentation
+- * and/or other materials provided with the distribution.
+- * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
+- * the names of its contributors may be used to endorse or promote products
+- * derived from this software without specific prior written permission.
+- *
+- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
+- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+- * POSSIBILITY OF SUCH DAMAGE.
+- *
+- */
+-package test.provirent.hibernate;
+-
+-import java.util.ArrayList;
+-
+-import net.sf.hibernate.Session;
+-import net.sf.hibernate.SessionFactory;
+-import net.sf.hibernate.Transaction;
+-import net.sf.hibernate.cfg.Configuration;
+-import de.hsharz.provirent.objects.Actor;
+-import de.hsharz.provirent.objects.AudioFormat;
+-import de.hsharz.provirent.objects.Condition;
+-import de.hsharz.provirent.objects.Director;
+-import de.hsharz.provirent.objects.Dvd;
+-import de.hsharz.provirent.objects.Genre;
+-import de.hsharz.provirent.objects.Language;
+-import de.hsharz.provirent.objects.Movie;
+-import de.hsharz.provirent.objects.Status;
+-import de.hsharz.provirent.objects.Subtitle;
+-import de.hsharz.provirent.objects.VideoFormat;
+-
+-
+-/**
+- * @author Philipp Schneider
+- *  
+- */
+-public class TestDvdOld {
+-
+-    public static void main(String args[]) throws Exception {
+-        TestDvdOld th = new TestDvdOld();
+-        //th.saveObjects();
+-        th.getObjects();
+-    }
+-    
+-
+-        
+-
+-
+-
+-    public void getObjects() throws Exception {
+-        Configuration config = new Configuration();
+-
+-        // Tell it about the classes we want mapped, taking advantage
+-        // of
+-        // the way we've named their mapping documents.
+-        config.addClass(Movie.class).addClass(Actor.class)
+-        .addClass(AudioFormat.class).addClass(Condition.class)
+-        .addClass(Director.class).addClass(Dvd.class)
+-.addClass(Genre.class).addClass(Language.class)
+-.addClass(Status.class)
+-.addClass(Subtitle.class).addClass(VideoFormat.class);
+-
+-        // Get the session factory we can use for persistence
+-        SessionFactory sessionFactory = config.buildSessionFactory();
+-
+-        // Ask for a session using the JDBC information we've
+-        // configured
+-        Session session = sessionFactory.openSession();
+-        try {
+-            int id = 1;
+-            Dvd movie = (Dvd) session.get(Dvd.class, new Integer(id));
+-            if (movie == null) {
+-                System.out.println(&quot;Keine Dvd mit id &quot; + id + &quot;gefunden&quot;);
+-                return;
+-            }
+-            System.out.println(&quot;DVD gefunden: &quot; + movie.toString());
+-            
+-
+-        } finally {
+-            // No matter what, close the session
+-            session.close();
+-        }
+-
+-        // Clean up after ourselves
+-        sessionFactory.close();
+-    }
+-
+-    public void saveObjects() throws Exception {
+-        // Create a configuration based on the properties file we've put
+-        // in the standard place.
+-        Configuration config = new Configuration();
+-
+-        // Tell it about the classes we want mapped, taking advantage of
+-        // the way we've named their mapping documents.
+-        config.addClass(Movie.class).addClass(Actor.class)
+-        .addClass(AudioFormat.class).addClass(Condition.class)
+-        .addClass(Director.class).addClass(Dvd.class)
+-.addClass(Genre.class).addClass(Language.class)
+-.addClass(Status.class)
+-.addClass(Subtitle.class).addClass(VideoFormat.class);
+-
+-        // Get the session factory we can use for persistence
+-        SessionFactory sessionFactory = config.buildSessionFactory();
+-
+-        // Ask for a session using the JDBC information we've configured
+-        Session s = sessionFactory.openSession();
+-        Transaction tx = null;
+-        try {
+-            // Create some data and persist it
+-            tx = s.beginTransaction();
+-            
+-            Movie movie = new Movie();
+-            movie.setTitle(&quot;Fluch der Karibik&quot;);
+-            movie.setDescription(&quot;eine interaktive Geschichte eines Piraten&quot;);
+-
+-            Actor actor1 = new Actor(&quot;Johnny&quot;, &quot;Depp&quot;);
+-            Actor actor2 = new Actor(&quot;Geoffrey&quot;, &quot;Rush&quot;);
+-            Actor actor3 = new Actor(&quot;Gore&quot;, &quot;Verbinski &quot;);
+-            Actor actor4 = new Actor(&quot;Julianne&quot;, &quot;Moore &quot;);
+-            Actor actor5 = new Actor(&quot;Anthony&quot;, &quot;Edwards &quot;);
+-            Actor actor6 = new Actor(&quot;Matthew&quot;, &quot;Pleszewicz &quot;);
+-            Actor actor7 = new Actor(&quot;Christopher&quot;, &quot;Kovaleski &quot;);
+-            s.save(actor1);
+-            s.save(actor2);
+-            s.save(actor3);
+-            s.save(actor4);
+-            s.save(actor5);
+-            s.save(actor6);
+-            s.save(actor7);
+-            s.flush();
+-
+-            ArrayList actors = new ArrayList();
+-            actors.add(actor1);
+-            actors.add(actor2);
+-            movie.setActors(actors);
+-            
+-            
+-
+-            Director d1 = new Director(&quot;Bibo&quot;,&quot;Bergeron&quot;);
+-            Director d2 = new Director(&quot;Vicky&quot;,&quot;Jenson&quot;);
+-            Director d3 = new Director(&quot;Jay&quot;,&quot;Russell&quot;);
+-            Director d4 = new Director(&quot;Joseph&quot;,&quot;Ruben&quot;);
+-            s.save(d1);
+-            s.save(d2);
+-            s.save(d3);
+-            s.save(d4);
+-            s.flush();
+-
+-			movie.setDirector(new ArrayList());
+-            movie.getDirector().add(d1);
+-
+-            Language l1 = new Language(&quot;Deutsch&quot;, &quot;de&quot;);
+-            Language l2 = new Language(&quot;Englisch&quot;, &quot;en&quot;);
+-            Language l3 = new Language(&quot;Franzoesisch&quot;, &quot;fr&quot;);
+-            Language l4 = new Language(&quot;Spanisch&quot;, &quot;es&quot;);
+-            Language l5 = new Language(&quot;Japanisch&quot;, &quot;jp&quot;);
+-            s.save(l1);
+-            s.save(l2);
+-            s.save(l3);
+-            s.save(l4);
+-            s.save(l5);
+-            s.flush();
+-
+-            movie.setLanguages(new ArrayList());
+-            movie.getLanguages().add(l1);
+-            movie.getLanguages().add(l2);
+-            
+-            Subtitle s1 = new Subtitle(&quot;Deutsch&quot;, &quot;de&quot;);
+-            Subtitle s2 = new Subtitle(&quot;Englisch&quot;, &quot;en&quot;);
+-            Subtitle s3 = new Subtitle(&quot;Franzoesisch&quot;, &quot;fr&quot;);
+-            Subtitle s4 = new Subtitle(&quot;Spanisch&quot;, &quot;es&quot;);
+-            Subtitle s5 = new Subtitle(&quot;Japanisch&quot;, &quot;jp&quot;);        
+-            s.save(s1);
+-            s.save(s2);
+-            s.save(s3);
+-            s.save(s4);
+-            s.save(s5);
+-            s.flush();
+-
+-            movie.setSubtitles(new ArrayList());
+-            movie.getSubtitles().add(s1);
+-            movie.getSubtitles().add(s2);
+-            
+-            Genre g1 = new Genre(&quot;Action&quot;,&quot;&quot;);
+-            Genre g2 = new Genre(&quot;Abenteuer&quot;,&quot;&quot;);
+-            Genre g3 = new Genre(&quot;Dokumentation&quot;,&quot;&quot;);
+-            s.save(g1);
+-            s.save(g2);
+-            s.save(g3);
+-            s.flush();
+-       
+-            movie.setGenres(new ArrayList());
+-            movie.getGenres().add(g1);
+-            
+-            AudioFormat a1 = new AudioFormat(&quot;DTS Surround Sound&quot;,&quot;&quot;);
+-            AudioFormat a2 = new AudioFormat(&quot;Surround Sound&quot;,&quot;&quot;);
+-            AudioFormat a3 = new AudioFormat(&quot;Dolby&quot;,&quot;&quot;);
+-            AudioFormat a4 = new AudioFormat(&quot;Stereo&quot;,&quot;&quot;);
+-            s.save(a1);
+-            s.save(a2);
+-            s.save(a3);
+-            s.save(a4);
+-            s.flush();
+-             
+-            movie.setAudioFormats(new ArrayList());
+-            movie.getAudioFormats().add(a1);
+-            movie.getAudioFormats().add(a4);
+-            
+-            VideoFormat v1 = new VideoFormat(&quot;2.35:1&quot;,&quot;&quot;);
+-            s.save(v1);
+-            s.flush();
+-          
+-            movie.setVideoFormats(new ArrayList());
+-            movie.getVideoFormats().add(v1);
+-            
+-          
+-            s.save(movie);
+-
+-            System.out.println(&quot;MovieID: &quot; + movie.getMovieId());
+-            System.out.println(&quot;Movie Actors vor: &quot; + movie.getActors());
+-            s.flush();
+-            System.out.println(&quot;Movie Actors nach: &quot; + movie.getActors());
+-
+-
+-            
+-
+-            Dvd dvd = new Dvd();
+-            dvd.setMovie(movie);
+-            
+-            Status status1 = new Status(&quot;ausleihbar&quot;,&quot;&quot;);
+-            Status status2 = new Status(&quot;verliehen&quot;,&quot;&quot;);
+-            Status status3 = new Status(&quot;in Bearbeitung&quot;,&quot;&quot;);
+-            s.save(status1);
+-            s.save(status2);
+-            s.save(status3);
+-            s.flush();
+-
+-            dvd.setStatus(status1);
+-            
+-            Condition con1 = new Condition(&quot;neu&quot;,&quot;&quot;);
+-            Condition con2 = new Condition(&quot;leichte Kratzer&quot;,&quot;&quot;);
+-            Condition con3 = new Condition(&quot;mittlere Kratzer&quot;,&quot;&quot;);
+-            Condition con4 = new Condition(&quot;schwere Kratzer&quot;,&quot;&quot;);
+-            Condition con5 = new Condition(&quot;nicht lesbar&quot;,&quot;&quot;);
+-            s.save(con1);
+-            s.save(con2);
+-            s.save(con3);
+-            s.save(con4);
+-            s.save(con5);
+-            s.flush();
+-            
+-            dvd.setCondition(con1);
+-            dvd.setBarcode(&quot;01246682&quot;);
+-            
+-            s.save(dvd);
+-            s.flush();
+-            System.out.println(&quot;DVD ID: &quot; + dvd.getDvdId());
+-
+-            
+-            
+-            // We're done; make our changes permanent
+-            tx.commit();
+-
+-        } catch (Exception e) {
+-            if (tx != null) {
+-                // Something went wrong; discard all partial changes
+-                tx.rollback();
+-            }
+-            throw e;
+-        } finally {
+-            // No matter what, close the session
+-            HibernateUtil.closeSession();
+-        }
+-
+-        // Clean up after ourselves
+-        sessionFactory.close();
+-    }
+-
+-}
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000192.html">[Provirent-svn-commit] r191 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000194.html">[Provirent-svn-commit] r193 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#193">[ date ]</a>
+              <a href="thread.html#193">[ thread ]</a>
+              <a href="subject.html#193">[ subject ]</a>
+              <a href="author.html#193">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

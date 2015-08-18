@@ -1,0 +1,403 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r48 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r48%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/persistence&In-Reply-To=%3C200410212006.i9LK6wKO027835%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000048.html">
+   <LINK REL="Next"  HREF="000050.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r48 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r48%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/persistence&In-Reply-To=%3C200410212006.i9LK6wKO027835%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r48 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Thu Oct 21 22:06:58 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000048.html">[Provirent-svn-commit] r47 - project_src/provirent_hibernate/bin
+</A></li>
+        <LI>Next message: <A HREF="000050.html">[Provirent-svn-commit] r49 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#49">[ date ]</a>
+              <a href="thread.html#49">[ thread ]</a>
+              <a href="subject.html#49">[ subject ]</a>
+              <a href="author.html#49">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-21 22:06:54 +0200 (Thu, 21 Oct 2004)
+New Revision: 48
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+Log:
+-  Methode f?\195?\188r liste von VideoObjects hinzugef?\195?\188gt
+- Methode f?\195?\188r genau ein Videoobject; id ?\195?\188bergabe
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-10-20 21:45:42 UTC (rev 47)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-10-21 20:06:54 UTC (rev 48)
+@@ -45,7 +45,7 @@
+ 
+ import org.apache.log4j.Logger;
+ 
+-import de.hsharz.provirent.objects.Director;
++import de.hsharz.provirent.objects.*;
+ 
+ 
+ 
+@@ -60,45 +60,50 @@
+     private static final Logger logger = Logger.getLogger(Database.class);
+ 
+ 
++    /**
++     * This method gets all Directors from the database.
++     * searches for firstname or lastname or id
++     * @param filter 
++     * @return List of Director objects, or an empty List
++     */
+     public static List getDirectors(final String filter){
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;getDirectors() - start. String filter= &quot;+filter);
+         }
++        //init the returnlist
++        List returnlist = new ArrayList();
+ 
+-        List returnlist = new ArrayList();
+-        //get new Session and begin Transaction
+         Session s = null;
+         Transaction tx = null;
+         try {
++            //get new Session and begin Transaction
+             s = HibernateUtil.currentSession();
+             tx = s.beginTransaction();
+ 
+             try {
+                 
++                //init the criteria
+                 Criteria criteria = s.createCriteria(Director.class);
++                //any of the criteria 
+                 Disjunction any = Expression.disjunction();
+-                
+-                
+-                
+-                if (filter == null || filter.equalsIgnoreCase(&quot;&quot;)) {
+-                	
+-                } else {
++
++                //if filter not empty
++                if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
+                     any.add(Expression.like(&quot;lastName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+                     any.add(Expression.like(&quot;firstName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+                     
++                    //maybe we are searching for the id?
+                     try {
+                         any.add(Expression.eq(&quot;directorId&quot;, new Integer(Integer.parseInt(filter))));
+                     } catch (Exception e) {
+                     }
+                     
+                 }
+-
++                //add all criteria
+                 criteria.add(any);
++                //get the results
+                 returnlist = criteria.list();
+ 
+-                
+-                
+-                tx.commit();
+ 
+             } catch (Exception e) {
+                 if (tx != null) {
+@@ -116,7 +121,7 @@
+ 
+         } catch (Exception e) {
+             logger.error(
+-                    &quot;getDirectors() - Error while trying to beginTransaction&quot;,
++                    &quot;getDirectors() - Error while trying to do Transaction&quot;,
+                     e);
+             returnlist = new ArrayList();
+         } finally {
+@@ -124,21 +129,242 @@
+                 // No matter what, close the session
+                 HibernateUtil.closeSession();
+             } catch (HibernateException e1) {
+-                logger.error(&quot;getDirectors()&quot;, e1);
++                logger.error(&quot;getDirectors() - Could not Close the Session&quot;, e1);
++            }
++        }
+ 
+-                // TODO Auto-generated catch block
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;getDirectors() - end&quot;);
++        }
++        return returnlist;
++        
+ 
++    }
++
++    
++    
++    
++    
++    /**
++     * This method gets all VideoFormats from the database.
++     * searches for firstname or lastname or id
++     * @param filter 
++     * @return List of Director objects, or an empty List
++     */
++    public static List getVideoFormat(final String filter){
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;getVideoFormat() - start. String filter= &quot;+filter);
++        }
++        //init the returnlist
++        List returnlist = new ArrayList();
++
++        Session s = null;
++        Transaction tx = null;
++        try {
++            //get new Session and begin Transaction
++            s = HibernateUtil.currentSession();
++            tx = s.beginTransaction();
++
++            try {
++                
++                //init the criteria
++                Criteria criteria = s.createCriteria(VideoFormat.class);
++                //any of the criteria 
++                Disjunction any = Expression.disjunction();
++
++                //if filter not empty
++                if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++                    any.add(Expression.like(&quot;name&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++                    any.add(Expression.like(&quot;shortname&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++                    
++                    //maybe we are searching for the id?
++                    try {
++                        any.add(Expression.eq(&quot;videoFormatId&quot;, new Integer(Integer.parseInt(filter))));
++                    } catch (Exception e) {
++                    }
++                    
++                }
++                //add all criteria
++                criteria.add(any);
++                //get the results
++                returnlist = criteria.list();
++
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;getVideoFormat() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++
++		                
+             }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;getVideoFormat() - Error while trying to do Transaction&quot;,
++                    e);
++            returnlist = new ArrayList();
++        } finally {
++            try {
++                // No matter what, close the session
++                HibernateUtil.closeSession();
++            } catch (HibernateException e1) {
++                logger.error(&quot;getVideoFormat() - Could not Close the Session&quot;, e1);
++            }
+         }
+ 
+         if (logger.isDebugEnabled()) {
+-            logger.debug(&quot;getDirectors() - end&quot;);
++            logger.debug(&quot;getVideoFormat() - end&quot;);
+         }
+         return returnlist;
+         
+ 
+     }
+ 
++    
++    public static VideoFormat getSingleVideoFormat(final int id){
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;getSingleVideoFormat() - start. int filter= &quot;+id);
++        }
++        //init the returnlist
++        VideoFormat returnobject = null;
++
++        Session s = null;
++        Transaction tx = null;
++        try {
++            //get new Session and begin Transaction
++            s = HibernateUtil.currentSession();
++            tx = s.beginTransaction();
++
++            try {
++
++                returnobject = (VideoFormat)s.get(VideoFormat.class, new Integer(id));
++                
++
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;getSingleVideoFormat() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++
++		                
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;getSingleVideoFormat() - Error while trying to do Transaction&quot;,
++                    e);
++            
++        } finally {
++            try {
++                // No matter what, close the session
++                HibernateUtil.closeSession();
++            } catch (HibernateException e1) {
++                logger.error(&quot;getSingleVideoFormat() - Could not Close the Session&quot;, e1);
++            }
++        }
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;getSingleVideoFormat() - end&quot;);
++        }
++        return returnobject;
++        
++
++    }
++    
++    
++    /**
++     * This method gets all AudioFormats from the database.
++     * searches for firstname or lastname or id
++     * @param filter 
++     * @return List of Director objects, or an empty List
++     */
++    public static List getAudioFormat(final String filter){
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;getAudioFormat() - start. String filter= &quot;+filter);
++        }
++        //init the returnlist
++        List returnlist = new ArrayList();
++
++        Session s = null;
++        Transaction tx = null;
++        try {
++            //get new Session and begin Transaction
++            s = HibernateUtil.currentSession();
++            tx = s.beginTransaction();
++
++            try {
++                
++                //init the criteria
++                Criteria criteria = s.createCriteria(AudioFormat.class);
++                //any of the criteria 
++                Disjunction any = Expression.disjunction();
++
++                //if filter not empty
++                if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++                    any.add(Expression.like(&quot;name&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++                    any.add(Expression.like(&quot;shortname&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++                    
++                    //maybe we are searching for the id?
++                    try {
++                        any.add(Expression.eq(&quot;audioFormatId&quot;, new Integer(Integer.parseInt(filter))));
++                    } catch (Exception e) {
++                    }
++                    
++                }
++                //add all criteria
++                criteria.add(any);
++                //get the results
++                returnlist = criteria.list();
++
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;getAudioFormat() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++
++		                
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;getAudioFormat() - Error while trying to do Transaction&quot;,
++                    e);
++            returnlist = new ArrayList();
++        } finally {
++            try {
++                // No matter what, close the session
++                HibernateUtil.closeSession();
++            } catch (HibernateException e1) {
++                logger.error(&quot;getAudioFormat() - Could not Close the Session&quot;, e1);
++            }
++        }
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;getAudioFormat() - end&quot;);
++        }
++        return returnlist;
++        
++
++    }
++
+      /**
+      * Constructor for TestActor.
+      * @param arg0
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000048.html">[Provirent-svn-commit] r47 - project_src/provirent_hibernate/bin
+</A></li>
+	<LI>Next message: <A HREF="000050.html">[Provirent-svn-commit] r49 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#49">[ date ]</a>
+              <a href="thread.html#49">[ thread ]</a>
+              <a href="subject.html#49">[ subject ]</a>
+              <a href="author.html#49">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

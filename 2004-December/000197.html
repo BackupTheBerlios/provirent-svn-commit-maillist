@@ -1,0 +1,631 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r196 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r196%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20persistence&In-Reply-To=%3C200412021803.iB2I3Ve8028883%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000196.html">
+   <LINK REL="Next"  HREF="000198.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r196 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r196%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20persistence&In-Reply-To=%3C200412021803.iB2I3Ve8028883%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r196 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Thu Dec  2 19:03:31 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000196.html">[Provirent-svn-commit] r195 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+        <LI>Next message: <A HREF="000198.html">[Provirent-svn-commit] r197 - in project_src/provirent_hibernate/src/de/hsharz/provirent: . management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#197">[ date ]</a>
+              <a href="thread.html#197">[ thread ]</a>
+              <a href="subject.html#197">[ subject ]</a>
+              <a href="author.html#197">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-12-02 19:03:30 +0100 (Thu, 02 Dec 2004)
+New Revision: 196
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/SWTCalendarDialog.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java	2004-12-02 17:36:29 UTC (rev 195)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java	2004-12-02 18:03:30 UTC (rev 196)
+@@ -4,6 +4,7 @@
+ import java.text.MessageFormat;
+ import java.text.ParseException;
+ import java.util.Calendar;
++import java.util.Date;
+ import java.util.Hashtable;
+ import java.util.Locale;
+ import java.util.PropertyResourceBundle;
+@@ -90,23 +91,7 @@
+     private Group groupCustomerOverview;
+ 
+     private Group groupCustomerDetail;
+-
+-    private Label labelCustomerId;   
+-    private Label labelCustomerName;
+-    private Label labelduration1;
+-    private Label labelduration2;
+-    private Label labelduration3;
+-    private Label labelstartdate;
+     
+-    private Text textCustomerID;
+-    private Text textduration1;
+-    private Text textduration2;
+-    private Text textduration3;
+-    private Text textstartdate;
+-    
+-    private Text textCustomerSearch;
+-    private Label labelCustomerSearch;
+-    
+     private Button buttonCustomerCancel;
+     private Button buttonCustomerSave;
+     private Button buttonCustomerFill;
+@@ -117,7 +102,6 @@
+     private Table tableCustomer;
+     private TableColumn tableColumn;
+ 
+-    Hashtable list = null;
+ 
+     private final static int MODE_EDIT = 2;
+     
+@@ -125,118 +109,66 @@
+ 
+     private ResourceBundle l;
+     
+-    protected int mode_Customer;
++    private int mode_Customer;
++    
++    private Text textCustomerSearch;
++    private Label labelCustomerSearch;
++    
++    private Label labelCustomerId;       
++    private Text textCustomerID;
+ 
+-
+     private Label labelUserName;
+-
+-
+     private Text textUserName;
+ 
+-
+     private Label labelLastName;
+-
+-
+     private Text textLastName;
+ 
+-
+     private Label labelFirstName;
+-
+-
+     private Text textFirstName;
+ 
+-
+     private Label labelMiddleName;
+-
+-
+     private Text textMiddleName;
+ 
+-
+     private Label labelPassword;
+-
+-
+     private Text textPassword;
+ 
+-
+     private Label labelRegistrationDate;
+-
+-
+     private Text textRegistrationDate;
+-
+-
+     private Button changeRegistrationDateButton;
+-
+-
++    
+     private Label labelBirthday;
+-
+-
+     private Text textBirthday;
+-
+-
++    private Button changeBirthdayDateButton;
++    
+     private Label labelSalutation;
+-
+-
+     private Text textSalutation;
+-
+-
++    
+     private Label labelTitle;
+-
+-
+     private Text textTitle;
+-
+-
++    
+     private Label labelStreet;
+-
+-
+     private Text textStreet;
+-
+-
+-    private Label labelNumber;
+-
+-
+     private Text textNumber;
+ 
+-
+     private Label labelZipCode;
+-
+-
+     private Text textZipCode;
+ 
+-
+     private Label labelCountry;
+-
+-
+     private Text textCountry;
+ 
+-
+-    private Label labelCityr;
+-
+-
+     private Label labelCity;
+-
+-
+     private Text textCity;
+ 
+-
+     private Label labelEmail;
+-
+-
+     private Text textEmail;
+ 
+-
+     private Label labelQuestion;
+-
+-
+     private Text textQuestion;
+ 
+-
+     private Label labelAnswer;
+-
+-
+     private Text textAnswer;
+ 
+-
+-    private Button changeBirthdayDateButton;
++    private Customer localCustomer;
+  
+     /*
+      * &#196;ndert die Sprache aller Elemente
+@@ -575,31 +507,25 @@
+                     cal.addDateChangedListener(new SWTCalendarListener() {
+ 
+                         public void dateChanged(SWTCalendarEvent calendarEvent) {
+-
+-                            textRegistrationDate.setText( DateFormat.getDateInstance(DateFormat.LONG).format(calendarEvent.getCalendar().getTime()));
+-
++                            String date;
++                            try {
++                                date = Util.getTextByDate(calendarEvent.getCalendar());
++                                textBirthday.setText(date);
++                            } catch (DataBaseException e) {
++                                // TODO Auto-generated catch block
++                                e.printStackTrace();
++                            }                     
+                         }
+-
+                     });
+-
+-
+-
+-                    if (textRegistrationDate.getText() != null &amp;&amp; textRegistrationDate.getText().length() &gt; 0) {
+-
++                    if (textBirthday.getText() != null &amp;&amp; textBirthday.getText().length() &gt; 0) {
+                         try {
+-                               cal.setDate(DateFormat.getDateInstance(DateFormat.LONG).parse(textRegistrationDate.getText()));
++                            Date date = Util.getDateByText(textBirthday.getText()).getTime();
++                            cal.setDate(date);
++                        } catch (DataBaseException dbe) {
+ 
+-                        } catch (ParseException pe) {
+-
+-
+-
+                         }
+-
+                     }
+-
+-                    cal.open();                    
+-                    
+-                    
++                    cal.open();                                                          
+                 }
+             });
+             text1LData3.horizontalAlignment = GridData.FILL;          
+@@ -821,31 +747,25 @@
+                     cal.addDateChangedListener(new SWTCalendarListener() {
+ 
+                         public void dateChanged(SWTCalendarEvent calendarEvent) {
+-
+-                            textRegistrationDate.setText( DateFormat.getDateInstance(DateFormat.LONG).format(calendarEvent.getCalendar().getTime()));
+-
++                            String date = null;
++                            try {
++                                date = Util.getTextByDate(calendarEvent.getCalendar());
++                                textRegistrationDate.setText(date);
++                            } catch (DataBaseException e) {
++                                // TODO Auto-generated catch block
++                                e.printStackTrace();
++                            }                          
+                         }
+-
+                     });
+-
+-
+-
+                     if (textRegistrationDate.getText() != null &amp;&amp; textRegistrationDate.getText().length() &gt; 0) {
+-
+                         try {
+-                               cal.setDate(DateFormat.getDateInstance(DateFormat.LONG).parse(textRegistrationDate.getText()));
++                            Date date = Util.getDateByText(textRegistrationDate.getText()).getTime();
++                            cal.setDate(date);
++                        } catch (DataBaseException dbe) {
+ 
+-                        } catch (ParseException pe) {
+-
+-
+-
+                         }
+-
+                     }
+-
+-                    cal.open();                    
+-                    
+-                    
++                    cal.open();                                                          
+                 }
+             });
+             text1LData3.horizontalAlignment = GridData.FILL;
+@@ -970,7 +890,12 @@
+                 textQuestion.setEditable(true);
+                 textAnswer.setEditable(true);
+                 changeRegistrationDateButton.setEnabled(true);
++                buttonCustomerCancel.setEnabled(true);
++                buttonCustomerSave.setEnabled(true);
++                buttonCustomerDelete.setEnabled(false);
++                buttonCustomerEdit.setEnabled(false);
+                 
++                
+ 
+             }
+         });
+@@ -1001,7 +926,11 @@
+ 	                Person p = new Person();
+ 	                o.setCustomerId(new Integer(Integer.parseInt(textCustomerID.getText())));
+ 	                o.setUserName(textUserName.getText());
+-	                o.setDayOfRegistration(Util.getDateByText(textRegistrationDate.getText()).getTime());
++	                Date regdate = null;
++	                if (textRegistrationDate.getText() != null) {
++	                    regdate = Util.getDateByText(textRegistrationDate.getText()).getTime();
++	                }
++	                o.setDayOfRegistration(regdate);
+ 	                o.setUserPassword(textPassword.getText());
+ 	                o.setHiddenQuestion(textQuestion.getText());
+ 	                o.setHiddenAnswer(textAnswer.getText());
+@@ -1016,13 +945,19 @@
+ 	                p.setCity(textCity.getText());
+ 	                p.setCountry(textCountry.getText());
+ 	                p.setEmailAddress(textEmail.getText());
+-	                p.setDayOfBirth(Util.getDateByText(textBirthday.getText()));
++	                Calendar birthday = null;
++	                if (textBirthday.getText() != &quot;&quot;) {
++	                    birthday = Util.getDateByText(textBirthday.getText());
++	                }
++	                p.setDayOfBirth(birthday);
+ 	                o.setPerson(p);
+ 	                
+                     //object l&#246;schen
+                     // Fehlerbehandlung
+-                    Database.deleteObject(o);
+-
++	                
++                   // Database.deleteObject(o);
++	                Database.deleteObject(localCustomer);
++	                
+                     //&#220;bersichtsTabelle aktualisieren
+                     refreshCustomerTable(textCustomerSearch.getText());
+                     
+@@ -1136,7 +1071,11 @@
+                         Customer o = new Customer();
+     	                Person p = new Person();
+     	                o.setUserName(textUserName.getText());
+-    	                o.setDayOfRegistration(Util.getDateByText(textRegistrationDate.getText()).getTime());
++    	                Date regdate = null;
++    	                if (textRegistrationDate.getText() != &quot;&quot;) {
++    	                    regdate = Util.getDateByText(textRegistrationDate.getText()).getTime();
++    	                }   	          
++    	                o.setDayOfRegistration(regdate);
+     	                o.setUserPassword(textPassword.getText());
+     	                o.setHiddenQuestion(textQuestion.getText());
+     	                o.setHiddenAnswer(textAnswer.getText());
+@@ -1151,7 +1090,11 @@
+     	                p.setCity(textCity.getText());
+     	                p.setCountry(textCountry.getText());
+     	                p.setEmailAddress(textEmail.getText());
+-    	                p.setDayOfBirth(Util.getDateByText(textBirthday.getText()));
++    	                Calendar birthday = null;
++    	                if (textBirthday.getText() != &quot;&quot;) {
++    	                    birthday = Util.getDateByText(textRegistrationDate.getText());
++    	                }
++    	                p.setDayOfBirth(birthday);
+     	                o.setPerson(p);
+                                         
+                         //object speichern
+@@ -1192,14 +1135,15 @@
+                 } else if (mode_Customer == ManagementGui.MODE_EDIT) {
+                     try {
+                         
+-                        Customer o = new Customer();
+-    	                Person p = new Person();
++                        Customer o = localCustomer;
++    	                Person p = o.getPerson();
+     	                o.setCustomerId(new Integer(Integer.parseInt(textCustomerID.getText())));
+     	                o.setUserName(textUserName.getText());
+     	                o.setDayOfRegistration(Util.getDateByText(textRegistrationDate.getText()).getTime());
+     	                o.setUserPassword(textPassword.getText());
+     	                o.setHiddenQuestion(textQuestion.getText());
+     	                o.setHiddenAnswer(textAnswer.getText());
++    	                p.setPersonId(localCustomer.getPerson().getPersonId());
+     	                p.setLastName(textLastName.getText());
+     	                p.setFirstName(textFirstName.getText());
+     	                p.setMiddleName(textMiddleName.getText());
+@@ -1213,7 +1157,6 @@
+     	                p.setEmailAddress(textEmail.getText());
+     	                p.setDayOfBirth(Util.getDateByText(textBirthday.getText()));
+     	                o.setPerson(p);
+-	                    o.setCustomerId(new Integer(Integer.parseInt(textCustomerID.getText())));
+ 	                
+ 	                    //object speichern
+ 	                    // Fehlerbehandlung
+@@ -1283,11 +1226,22 @@
+         buttonCustomerNew.setEnabled(true);
+         buttonCustomerDelete.setEnabled(true);
+         textUserName.setEditable(false);
+-        textduration1.setEditable(false);
+-        textduration2.setEditable(false);
+-        textduration3.setEditable(false);
+-        //textstartdate.setEditable(false);
+-        changeStartDateButton.setEnabled(false);
++        textLastName.setEditable(false);
++        textFirstName.setEditable(false);
++        textMiddleName.setEditable(false);
++        textSalutation.setEditable(false);
++        textTitle.setEditable(false);
++        changeBirthdayDateButton.setEnabled(false);
++        textStreet.setEditable(false);
++        textNumber.setEditable(false);
++        textZipCode.setEditable(false);
++        textCity.setEditable(false);
++        textCountry.setEditable(false);
++        textEmail.setEditable(false);
++        textPassword.setEditable(false);
++        textQuestion.setEditable(false);
++        textAnswer.setEditable(false);
++        changeRegistrationDateButton.setEnabled(false);
+         textCustomerSearch.setEditable(true);
+ 
+         // CustomerTabelle aktivieren
+@@ -1302,16 +1256,23 @@
+      * @param Customer
+      * @throws DataBaseException
+      */
+-    protected void insertIntoCustomerTable(Customer Customer) throws DataBaseException {
++    protected void insertIntoCustomerTable(Customer customer) throws DataBaseException {
+         TableItem item = new TableItem(tableCustomer, SWT.NONE);
+-        Calendar regdate = Calendar.getInstance();
+-        regdate.setTime(Customer.getDayOfRegistration());
+-        item.setText(new String[] { Customer.getCustomerId() + &quot;&quot;, 
+-                					Customer.getUserName(), 
+-                					Customer.getPerson().getLastName(),
+-                					Customer.getPerson().getFirstName(),
+-                					Util.getTextByDate(Customer.getPerson().getDayOfBirth()),
+-                					Util.getTextByDate(regdate),              					
++        String birthday = &quot;&quot;;
++        if (customer.getPerson().getDayOfBirth() != null) {
++            birthday = Util.getTextByDate(customer.getPerson().getDayOfBirth());
++        }
++        String regdate = &quot;&quot;;
++        if (customer.getDayOfRegistration() != null) {
++            Calendar cal = Calendar.getInstance();
++            cal.setTime(customer.getDayOfRegistration());
++            birthday = Util.getTextByDate(cal);            
++        }
++        item.setText(new String[] { customer.getCustomerId() + &quot;&quot;, 
++                					customer.getUserName(), 
++                					customer.getPerson().getLastName(),
++                					customer.getPerson().getFirstName(),
++                					birthday,              					
+                 					});
+         
+         tableCustomer.deselectAll();
+@@ -1485,15 +1446,7 @@
+         tableCustomer.setHeaderVisible(true);
+         tableCustomer.setLinesVisible(true);
+         GridData table2LData = new GridData();
+-        tableCustomer.addFocusListener(new FocusAdapter() {
+-            public void focusLost(FocusEvent evt) {
+-                System.out.println(&quot;tableCustomer.focusLost, event=&quot; + evt);
+-            }
+-            public void focusGained(FocusEvent evt) {
+-                System.out
+-                    .println(&quot;tableCustomer.focusGained, event=&quot; + evt);
+-            }
+-        });
++
+         tableCustomer.addSelectionListener(new SelectionAdapter() {
+             public void widgetSelected(SelectionEvent evt) {
+                 if (logger.isDebugEnabled()) {
+@@ -1581,6 +1534,8 @@
+ 	            //id ist keine Zahl
+ 	            return;
+ 	        }
++	        localCustomer = object;
++	        
+ 	        String temp = null;
+ 	        textCustomerID.setText(object.getCustomerId().toString());
+ 	        temp = object.getUserName();
+@@ -1613,46 +1568,55 @@
+ 	        textQuestion.setText(temp == null ? &quot;&quot; : temp);
+ 	        temp = object.getHiddenAnswer();
+ 	        textAnswer.setText(temp == null ? &quot;&quot; : temp);
+-	        Calendar regdate = Calendar.getInstance();
+-	        regdate.setTime(object.getDayOfRegistration());
++	        
+ 	        try {
+ 	            String date = null;
++	            String regdate = null;
+ 	            if (object.getPerson().getDayOfBirth() == null) {
+ 	                date = &quot;&quot;;
+ 	            } else {
+ 	                date = Util.getTextByDate(object.getPerson().getDayOfBirth());
+ 	            }
+                 textBirthday.setText(date);
++                if (object.getDayOfRegistration() == null) {
++                    regdate = &quot;&quot;;
++                } else {
++                    Calendar cal = Calendar.getInstance();
++        	        cal.setTime(object.getDayOfRegistration());
++        	        regdate = Util.getTextByDate(cal);
++                }
++                textRegistrationDate.setText(regdate);
+             } catch (DataBaseException e1) {
+                 // TODO Auto-generated catch block
+                 e1.printStackTrace();
+             }
+ 	        
+ 	        //Buttons zum l&#246;schen und editieren aktivieren
+-	        /*
+-	        buttonCustomerEdit.setEnabled(false);
++	        
++	        buttonCustomerEdit.setEnabled(true);
+ 	        buttonCustomerDelete.setEnabled(true);
+-	        Vector vec = (Vector) list.get(object.getName());
+ 	        
+-	        for (int i = 0; i &lt; vec.size(); i++) {
+-	            Calendar date = (Calendar) vec.get(i);
+-	            try {
+-	                if (Util.getTextByDate(date).equals(Util.getTextByDate(object.getStartdate()))) {
+-	                    buttonCustomerEdit.setEnabled(true);
+-	                    
+-	                }
+-	            } catch (DataBaseException e1) {
+-	                // TODO Auto-generated catch block
+-	                e1.printStackTrace();
+-	            }
+-	        }*/
+         } else {
++//          Detailansicht leeren
+             textCustomerID.setText(&quot;&quot;);
+             textUserName.setText(&quot;&quot;);
+-            textduration1.setText(&quot;&quot;);
+-            textduration2.setText(&quot;&quot;);
+-            textduration3.setText(&quot;&quot;);
+-            textstartdate.setText(&quot;&quot;);
++            textLastName.setText(&quot;&quot;);
++            textFirstName.setText(&quot;&quot;);
++            textMiddleName.setText(&quot;&quot;);
++            textSalutation.setText(&quot;&quot;);
++            textTitle.setText(&quot;&quot;);
++            textBirthday.setText(&quot;&quot;);
++            textStreet.setText(&quot;&quot;);
++            textNumber.setText(&quot;&quot;);
++            textZipCode.setText(&quot;&quot;);
++            textCity.setText(&quot;&quot;);
++            textCountry.setText(&quot;&quot;);
++            textEmail.setText(&quot;&quot;);
++            textPassword.setText(&quot;&quot;);
++            textQuestion.setText(&quot;&quot;);
++            textAnswer.setText(&quot;&quot;);
++            textRegistrationDate.setText(&quot;&quot;);
++            
+             buttonCustomerEdit.setEnabled(false);
+             buttonCustomerDelete.setEnabled(false);
+         }
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/SWTCalendarDialog.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/SWTCalendarDialog.java	2004-12-02 17:36:29 UTC (rev 195)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/SWTCalendarDialog.java	2004-12-02 18:03:30 UTC (rev 196)
+@@ -1,6 +1,6 @@
+ package de.hsharz.provirent.management.gui;
+ 
+-import java.text.DateFormat;import java.util.Calendar;import java.util.Date;import org.eclipse.swt.SWT;import org.eclipse.swt.events.SelectionAdapter;import org.eclipse.swt.events.SelectionEvent;import org.eclipse.swt.layout.GridData;import org.eclipse.swt.layout.GridLayout;import org.eclipse.swt.layout.RowLayout;import org.eclipse.swt.widgets.Button;import org.eclipse.swt.widgets.Display;import org.eclipse.swt.widgets.Shell;import org.vafada.swtcalendar.SWTCalendar;import org.vafada.swtcalendar.SWTCalendarEvent;import org.vafada.swtcalendar.SWTCalendarListener;
++import java.util.Calendar;import java.util.Date;import org.eclipse.swt.SWT;import org.eclipse.swt.events.SelectionAdapter;import org.eclipse.swt.events.SelectionEvent;import org.eclipse.swt.layout.GridData;import org.eclipse.swt.layout.GridLayout;import org.eclipse.swt.widgets.Button;import org.eclipse.swt.widgets.Display;import org.eclipse.swt.widgets.Shell;import org.vafada.swtcalendar.SWTCalendar;import org.vafada.swtcalendar.SWTCalendarListener;
+ 
+ /*** This code was generated using CloudGarden's Jigloo* SWT/Swing GUI Builder, which is free for non-commercial* use. If Jigloo is being used commercially (ie, by a corporation,* company or business for any purpose whatever) then you* should purchase a license for each developer using Jigloo.* Please visit www.cloudgarden.com for details.* Use of Jigloo implies acceptance of these licensing terms.* ************************************** A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED* for this machine, so Jigloo or this code cannot be used legally* for any corporate or commercial purpose.* **************************************/public class SWTCalendarDialog {
+     private Shell shell;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-02 17:36:29 UTC (rev 195)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-02 18:03:30 UTC (rev 196)
+@@ -314,7 +314,9 @@
+                 tx = s.beginTransaction();
+                 
+                 try{
++                    
+                     s.delete(o);
++                    
+                 
+                 } catch (HibernateException e) {
+                     logger.error(&quot;deleteObject(). Fehler beim Speichern/Updaten &quot;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000196.html">[Provirent-svn-commit] r195 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+	<LI>Next message: <A HREF="000198.html">[Provirent-svn-commit] r197 - in project_src/provirent_hibernate/src/de/hsharz/provirent: . management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#197">[ date ]</a>
+              <a href="thread.html#197">[ thread ]</a>
+              <a href="subject.html#197">[ subject ]</a>
+              <a href="author.html#197">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

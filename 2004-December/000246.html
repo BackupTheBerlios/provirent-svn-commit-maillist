@@ -1,0 +1,437 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r245 - in project_src/provirent_hibernate/src: com/cloudgarden/resource de/hsharz/provirent/management/gui de/hsharz/provirent/storehouse/gui test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r245%20-%20in%20project_src/provirent_hibernate/src%3A%20com/cloudgarden/resource%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/storehouse/gui%20test/provirent/hibernate&In-Reply-To=%3C200412132232.iBDMWwvZ028966%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000245.html">
+   <LINK REL="Next"  HREF="000247.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r245 - in project_src/provirent_hibernate/src: com/cloudgarden/resource de/hsharz/provirent/management/gui de/hsharz/provirent/storehouse/gui test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r245%20-%20in%20project_src/provirent_hibernate/src%3A%20com/cloudgarden/resource%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/storehouse/gui%20test/provirent/hibernate&In-Reply-To=%3C200412132232.iBDMWwvZ028966%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r245 - in project_src/provirent_hibernate/src: com/cloudgarden/resource de/hsharz/provirent/management/gui de/hsharz/provirent/storehouse/gui test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Mon Dec 13 23:32:58 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000245.html">[Provirent-svn-commit] r244 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+        <LI>Next message: <A HREF="000247.html">[Provirent-svn-commit] r246 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#246">[ date ]</a>
+              <a href="thread.html#246">[ thread ]</a>
+              <a href="subject.html#246">[ subject ]</a>
+              <a href="author.html#246">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-12-13 23:32:57 +0100 (Mon, 13 Dec 2004)
+New Revision: 245
+
+Modified:
+   project_src/provirent_hibernate/src/com/cloudgarden/resource/SWTResourceManager.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/storehouse/gui/NewSWTApp.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/com/cloudgarden/resource/SWTResourceManager.java
+===================================================================
+--- project_src/provirent_hibernate/src/com/cloudgarden/resource/SWTResourceManager.java	2004-12-13 21:32:37 UTC (rev 244)
++++ project_src/provirent_hibernate/src/com/cloudgarden/resource/SWTResourceManager.java	2004-12-13 22:32:57 UTC (rev 245)
+@@ -15,7 +15,7 @@
+ import org.eclipse.swt.widgets.Display;
+ import org.eclipse.swt.widgets.Widget;
+ 
+-/** 
++/**
+  * Class to manage SWT resources (Font, Color, Image and Cursor)
+  * There are no restrictions on the use of this code.
+  */
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java	2004-12-13 21:32:37 UTC (rev 244)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java	2004-12-13 22:32:57 UTC (rev 245)
+@@ -467,7 +467,7 @@
+             labelDVDMovie.setLayoutData(labelDVDMovieLData);
+         }
+         {
+-            comboDVDMovie = new Combo(groupDVDDetail, SWT.NONE);
++            comboDVDMovie = new Combo(groupDVDDetail, SWT.READ_ONLY);
+             comboDVDMovie.setText(&quot;comboDVDMovie&quot;);
+             GridData combo1LData1 = new GridData();
+             combo1LData1.horizontalAlignment = GridData.FILL;
+@@ -486,7 +486,7 @@
+             labelDVDPayment.setLayoutData(labelDVDPaymentLData);
+         }
+         {
+-            comboDVDPayment = new Combo(groupDVDDetail, SWT.NONE);
++            comboDVDPayment = new Combo(groupDVDDetail, SWT.READ_ONLY);
+             comboDVDPayment.setText(&quot;comboDVDPayment&quot;);
+             GridData combo1LData = new GridData();
+             combo1LData.horizontalAlignment = GridData.FILL;
+@@ -505,7 +505,7 @@
+             labelDVDStatus.setLayoutData(labelDVDStatusLData);
+         }
+         {
+-            comboDVDStatus = new Combo(groupDVDDetail, SWT.NONE);
++            comboDVDStatus = new Combo(groupDVDDetail, SWT.READ_ONLY);
+             comboDVDStatus.setText(&quot;comboDVDStatus&quot;);
+             GridData combo1LData2 = new GridData();
+             combo1LData2.horizontalSpan = 5;
+@@ -525,7 +525,7 @@
+             labelDVDCondition.setLayoutData(labelDVDConditionLData);
+         }
+         {
+-            comboDVDCondition = new Combo(groupDVDDetail, SWT.NONE);
++            comboDVDCondition = new Combo(groupDVDDetail, SWT.READ_ONLY);
+             comboDVDCondition.setText(&quot;comboDVDCondition&quot;);
+             GridData combo1LData3 = new GridData();
+             combo1LData3.horizontalAlignment = GridData.FILL;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java	2004-12-13 21:32:37 UTC (rev 244)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java	2004-12-13 22:32:57 UTC (rev 245)
+@@ -30,6 +30,21 @@
+ import de.hsharz.provirent.objects.Movie;
+ import de.hsharz.provirent.persistence.Database;
+ 
++
++/**
++* This code was generated using CloudGarden's Jigloo
++* SWT/Swing GUI Builder, which is free for non-commercial
++* use. If Jigloo is being used commercially (ie, by a corporation,
++* company or business for any purpose whatever) then you
++* should purchase a license for each developer using Jigloo.
++* Please visit www.cloudgarden.com for details.
++* Use of Jigloo implies acceptance of these licensing terms.
++* *************************************
++* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED
++* for this machine, so Jigloo or this code cannot be used legally
++* for any corporate or commercial purpose.
++* *************************************
++*/
+ public class DialogMovie extends org.eclipse.swt.widgets.Dialog {
+     /**
+      * Logger for this class
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/storehouse/gui/NewSWTApp.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/storehouse/gui/NewSWTApp.java	2004-12-13 21:32:37 UTC (rev 244)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/storehouse/gui/NewSWTApp.java	2004-12-13 22:32:57 UTC (rev 245)
+@@ -73,10 +73,10 @@
+ 	private MenuItem fileMenuItem;
+ 
+ 	//private Button button1;
+-	private Label labelMainHead, labelSendStartHead, labelStartHeader;
++	private Label labelMainHead, labelSendStartHead, labelStartHeader,labelSendDetailsHeader;
++	private Label labelSendDetailsCustomer,labelSendDetailsCustomerD,labelSendDetailsDate,labelSendDetailsDateD;
++	private Button buttonMainMenue,buttonPrintBill,buttonPrintLabel;
+ 
+-	private Button buttonMainMenue;
+-
+ 	private Label labelMainHeader;
+ 
+ 	//private Composite composite1 ;
+@@ -84,11 +84,12 @@
+ 	private Button buttonReceive, buttonSend;
+ 
+ 	//private Composite composite3;
+-	private Table tableOrders;
++	private Table tableOrders,tableOrderDetails;
+ 
+ 	private TableColumn tableStart_ColumnID, tableStart_ColumnDate,
+ 			tableStart_ColumnQuantity;
+ 
++	private TableColumn tableOrderDetails_ColumnDvdBarcode, tableOrderDetails_ColumnDvdName, tableOrderDetails_ColumnID;
+ 	
+ 	StackLayout stacklayout;
+ 	Group[] groups;
+@@ -108,7 +109,7 @@
+ 	 */
+ 	private void initGUI() {
+ 		try {
+-			this.setSize(new org.eclipse.swt.graphics.Point(400, 300));
++			this.setSize(new org.eclipse.swt.graphics.Point(800, 600));
+ 			this.setBackground(SWTResourceManager.getColor(192, 192, 192));
+ 
+ 			this.setLayout(new GridLayout());
+@@ -193,7 +194,7 @@
+ 			stacklayout = new StackLayout();
+ 			parent.setLayout(stacklayout);
+ 
+-			groups = new Group[2];
++			groups = new Group[3];
+ 
+ 			{
+ 				groups[0] = new Group(parent, SWT.NONE);
+@@ -302,7 +303,14 @@
+ 					public void widgetSelected(SelectionEvent evt) {
+ 						System.out.println(&quot;table1.widgetSelected, event=&quot;
+ 							+ evt);
++	
+ 						
++						
++
++
++						refreshOrderDetails(tableOrders.getItem(tableOrders.getSelectionIndex()).getText(0));
++						stacklayout.topControl = groups[2];
++						parent.layout();
+ 					}
+ 				});
+ 
+@@ -352,9 +360,146 @@
+ 						
+ 					}
+ 				});
++
++			}
++			
++			{
+ 				
++				// OrderDetails
++				groups[2] = new Group(parent, SWT.NONE);
++				GridLayout gridLayout = new GridLayout();
++				gridLayout.numColumns = 2;
++				groups[2].setLayout(gridLayout);
+ 				
++				
++				labelSendDetailsHeader = new Label(groups[2], SWT.NONE);
++				labelSendDetailsHeader.setText(&quot;Bestellung:&quot;);
++				labelSendDetailsHeader.setFont(SWTResourceManager.getFont(&quot;Tahoma&quot;, 20, 0, false, true));
++				GridData labelLData = new GridData();
++				labelLData.grabExcessHorizontalSpace = true;
++				labelLData.horizontalAlignment = GridData.FILL;
++				labelLData.horizontalSpan = 2;
++				labelSendDetailsHeader.setLayoutData(labelLData);
++				
++				
++				
++				labelSendDetailsCustomer = new Label(groups[2], SWT.NONE);
++				labelSendDetailsCustomer.setText(&quot;Kundennummer:&quot;);
++				labelSendDetailsCustomer.setFont(SWTResourceManager.getFont(&quot;Tahoma&quot;, 15, 0, false, true));
++
++				labelSendDetailsCustomerD = new Label(groups[2], SWT.NONE);
++				labelSendDetailsCustomerD.setText(&quot;&quot;);
++				labelSendDetailsCustomerD.setFont(SWTResourceManager.getFont(&quot;Tahoma&quot;, 15, 0, false, false));
++
++				labelSendDetailsDate = new Label(groups[2], SWT.NONE);
++				labelSendDetailsDate.setText(&quot;Bestelldatum:&quot;);
++				labelSendDetailsDate.setFont(SWTResourceManager.getFont(&quot;Tahoma&quot;, 15, 0, false, true));
++
++				labelSendDetailsDateD = new Label(groups[2], SWT.NONE);
++				labelSendDetailsDateD.setText(&quot;&quot;);
++				labelSendDetailsDateD.setFont(SWTResourceManager.getFont(&quot;Tahoma&quot;, 15, 0, false, false));
++
++				
++				tableOrderDetails =  new Table(groups[2], SWT.SINGLE | SWT.FULL_SELECTION);
++				tableOrderDetails.setLinesVisible(true);
++				tableOrderDetails.setHeaderVisible(true);
++				
++				
++				tableOrderDetails.setFont(SWTResourceManager.getFont(&quot;Tahoma&quot;, 20, 0, false, false));
++				
++				GridData table1LData = new GridData();
++				table1LData.horizontalAlignment = GridData.FILL;
++				table1LData.grabExcessHorizontalSpace = true;
++				table1LData.grabExcessVerticalSpace = true;
++				table1LData.horizontalSpan = 2;
++				table1LData.verticalAlignment = GridData.FILL;
++				tableOrderDetails.setLayoutData(table1LData);
++				
++				
++				tableOrderDetails.addSelectionListener(new SelectionAdapter() {
++					public void widgetSelected(SelectionEvent evt) {
++						System.out.println(&quot;table1.widgetSelected, event=&quot;
++							+ evt);
++						
++					}
++				});
++
++				
++				{
++                    tableOrderDetails_ColumnID = new TableColumn(
++                    		tableOrderDetails,
++                            SWT.CENTER);
++                    tableOrderDetails_ColumnID.setText(&quot;ID&quot;);
++                    tableOrderDetails_ColumnID.setWidth(50);
++				}
++				{
++					tableOrderDetails_ColumnDvdName = new TableColumn(
++                    		tableOrderDetails,
++                            SWT.CENTER);
++					tableOrderDetails_ColumnDvdName.setText(&quot;Name&quot;);
++					tableOrderDetails_ColumnDvdName.setWidth(300);
++				}
++				{
++					tableOrderDetails_ColumnDvdBarcode = new TableColumn(
++                    		tableOrderDetails,
++                            SWT.CENTER);
++					tableOrderDetails_ColumnDvdBarcode.setText(&quot;Barcode&quot;);
++					tableOrderDetails_ColumnDvdBarcode.setWidth(200);
++				}
++				
++				buttonPrintBill = new Button(groups[2], SWT.PUSH | SWT.CENTER);
++				buttonPrintBill.setFont(SWTResourceManager.getFont(&quot;Tahoma&quot;, 20, 0,
++						false, false));
++				buttonPrintBill.setText(&quot;Drucke Rechnung&quot;);
++				GridData button5LData = new GridData();
++				button5LData.widthHint = 273;
++				button5LData.heightHint = 50;
++				button5LData.horizontalAlignment = GridData.CENTER;
++				button5LData.grabExcessHorizontalSpace = true;
++				buttonPrintBill.setLayoutData(button5LData);
++				
++				
++				buttonPrintLabel = new Button(groups[2], SWT.PUSH | SWT.CENTER);
++				buttonPrintLabel.setFont(SWTResourceManager.getFont(&quot;Tahoma&quot;, 20, 0,
++						false, false));
++				buttonPrintLabel.setText(&quot;Drucke Rechnung&quot;);
++				GridData button4LData = new GridData();
++				button4LData.widthHint = 273;
++				button4LData.heightHint = 50;
++				button4LData.horizontalAlignment = GridData.CENTER;
++				button4LData.grabExcessHorizontalSpace = true;
++				buttonPrintLabel.setLayoutData(button4LData);
++				
++			
++			
++				//back to the mainmenue
++				buttonMainMenue = new Button(groups[2], SWT.PUSH | SWT.CENTER);
++				buttonMainMenue.setFont(SWTResourceManager.getFont(&quot;Tahoma&quot;, 20, 0,
++						false, false));
++				buttonMainMenue.setText(&quot;Hauptmen&#252;&quot;);
++				GridData button1LData = new GridData();
++				button1LData.widthHint = 273;
++				button1LData.heightHint = 50;
++				button1LData.horizontalSpan = 2;
++				button1LData.horizontalAlignment = GridData.CENTER;
++				button1LData.grabExcessHorizontalSpace = true;
++				buttonMainMenue.setLayoutData(button1LData);
++
++				buttonMainMenue.addSelectionListener(new SelectionAdapter() {
++					public void widgetSelected(SelectionEvent evt) {
++						System.out.println(&quot;buttonSend .widgetSelected, event=&quot;
++							+ evt);
++						
++						stacklayout.topControl = groups[0];
++						parent.layout();
++						
++					}
++				});
++				
+ 			}
++			
++			
++			
+ 			stacklayout.topControl = groups[0];
+ 
+ 			
+@@ -397,6 +542,7 @@
+ 		List orders = Database.getOrder(&quot;&quot;);
+ 		System.out.println(&quot;List: &quot;+orders);
+ 		
++		tableOrders.removeAll();
+ 		TableItem item;
+ 		for (int i = 0; i &lt; orders.size(); i++) {
+ 			MovieOrder o = (MovieOrder)orders.get(i);
+@@ -405,16 +551,30 @@
+ 				item = new TableItem(tableOrders, SWT.NONE);
+ 				String date = DateFormat.getDateInstance(DateFormat.LONG).format(((OrderItem)o.getMovieOrderItems().get(0)).getOrderTime().getTime());
+ 				item.setText(new String[]{o.getMovieOrderId()+&quot;&quot;,date,o.getMovieOrderItems().size()+&quot;&quot;  });
+-			}else {
+-				continue;
+ 			}
++					}
++	}
++
++	private void refreshOrderDetails(final String orderid){
++		
++		MovieOrder order = Database.getSingleOrder(Integer.parseInt(orderid));
++		
++		
++		labelSendDetailsCustomerD.setText(order.getCustomer().getCustomerId()+&quot;&quot;);
++		labelSendDetailsCustomerD.redraw();
++		if (order.getMovieOrderItems().size() &gt; 0){
++			labelSendDetailsDateD.setText(DateFormat.getDateInstance(DateFormat.LONG).format(((OrderItem)order.getMovieOrderItems().get(0)).getOrderTime().getTime()));
++			labelSendDetailsDateD.redraw();
++		}
++		tableOrderDetails.removeAll();
++		
++		TableItem item ;
++		for (int i = 0; i &lt; order.getMovieOrderItems().size(); i++) {
++			item = new TableItem(tableOrderDetails, SWT.NONE);
+ 			
++			item.setText(new String[]{((OrderItem)order.getMovieOrderItems().get(i)).getOrderItemId()+&quot;&quot;,  ((OrderItem)order.getMovieOrderItems().get(i)).getDvd().getMovie().getTitle(), ((OrderItem)order.getMovieOrderItems().get(i)).getDvd().getBarcode()});
+ 			
+ 		}
+ 		
+-
+-
+-		
+ 	}
+-	
+ }
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java	2004-12-13 21:32:37 UTC (rev 244)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java	2004-12-13 22:32:57 UTC (rev 245)
+@@ -120,14 +120,14 @@
+                 List orderItems = new ArrayList();
+ 
+                 
+-                for (int j = 0; j &lt; 3; j++) {
++                for (int j = 0; j &lt; dvds.size(); j++) {
+ 
+                     OrderItem orderItem = new OrderItem();
+                     orderItem.setCustomer(customer);
+                     orderItem.setDuration(2);
+ 
+                     
+-                    Dvd dvd = (Dvd)dvds.get(j % dvds.size());
++                    Dvd dvd = (Dvd)dvds.get(j);
+                     orderItem.setDvd(dvd);
+                     
+                     orderItem.setOrderTime(Calendar.getInstance());
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000245.html">[Provirent-svn-commit] r244 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+	<LI>Next message: <A HREF="000247.html">[Provirent-svn-commit] r246 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#246">[ date ]</a>
+              <a href="thread.html#246">[ thread ]</a>
+              <a href="subject.html#246">[ subject ]</a>
+              <a href="author.html#246">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r305 - project_src/customer/jsp
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r305%20-%20project_src/customer/jsp&In-Reply-To=%3C200512191053.jBJArpIb024098%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000306.html">
+   <LINK REL="Next"  HREF="000308.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r305 - project_src/customer/jsp</H1>
+    <B>pschneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r305%20-%20project_src/customer/jsp&In-Reply-To=%3C200512191053.jBJArpIb024098%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r305 - project_src/customer/jsp">pschneider at berlios.de
+       </A><BR>
+    <I>Mon Dec 19 11:53:51 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000306.html">[Provirent-svn-commit] r304 - docu/latex
+</A></li>
+        <LI>Next message: <A HREF="000308.html">[Provirent-svn-commit] r306 - in project_src/customer/WEB-INF/src/de/hsharz/provirent/customer: action form
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#307">[ date ]</a>
+              <a href="thread.html#307">[ thread ]</a>
+              <a href="subject.html#307">[ subject ]</a>
+              <a href="author.html#307">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2005-12-19 11:53:28 +0100 (Mon, 19 Dec 2005)
+New Revision: 305
+
+Modified:
+   project_src/customer/jsp/main_index.jsp
+   project_src/customer/jsp/main_members.jsp
+   project_src/customer/jsp/main_navigation.jsp
+   project_src/customer/jsp/main_template.jsp
+   project_src/customer/jsp/movie_list.jsp
+Log:
+
+
+Modified: project_src/customer/jsp/main_index.jsp
+===================================================================
+--- project_src/customer/jsp/main_index.jsp	2005-12-19 09:42:24 UTC (rev 304)
++++ project_src/customer/jsp/main_index.jsp	2005-12-19 10:53:28 UTC (rev 305)
+@@ -1,5 +1,5 @@
+-&lt;%@ taglib uri=&quot;/tags/struts-bean.tld&quot;  prefix=&quot;bean&quot;  %&gt;
+-&lt;%@ taglib uri=&quot;/tags/struts-html.tld&quot;  prefix=&quot;html&quot;  %&gt;
++&lt;%@ taglib uri=&quot;/WEB-INF/struts-html.tld&quot;  prefix=&quot;html&quot;  %&gt;
++&lt;%@ taglib uri=&quot;/WEB-INF/struts-bean.tld&quot;  prefix=&quot;bean&quot;  %&gt;
+ 
+ 
+ 			&lt;br&gt;
+
+Modified: project_src/customer/jsp/main_members.jsp
+===================================================================
+--- project_src/customer/jsp/main_members.jsp	2005-12-19 09:42:24 UTC (rev 304)
++++ project_src/customer/jsp/main_members.jsp	2005-12-19 10:53:28 UTC (rev 305)
+@@ -1,10 +1,11 @@
+-&lt;%@ taglib uri=&quot;/tags/struts-html.tld&quot;  prefix=&quot;html&quot;  %&gt;
+-&lt;%@ taglib uri=&quot;/tags/struts-bean.tld&quot;  prefix=&quot;bean&quot;  %&gt;
++&lt;%@ taglib uri=&quot;/WEB-INF/struts-html.tld&quot;  prefix=&quot;html&quot;  %&gt;
++&lt;%@ taglib uri=&quot;/WEB-INF/struts-bean.tld&quot;  prefix=&quot;bean&quot;  %&gt;
++&lt;%@ taglib uri=&quot;<A HREF="http://java.sun.com/jsp/jstl/core">http://java.sun.com/jsp/jstl/core</A>&quot; prefix=&quot;c&quot; %&gt;
+ 
+-&lt;!--
++
+ &lt;c:choose&gt;
+     &lt;c:when test=&quot;${empty sessionScope.sessionuser}&quot;&gt;
+---&gt;
++
+ 				  &lt;div align=&quot;right&quot;&gt;
+ 					&lt;table cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; border=&quot;0&quot;&gt;
+ 					&lt;html:form action=&quot;/Login&quot; method=&quot;post&quot;&gt;
+@@ -24,7 +25,7 @@
+ 				  &lt;/html:form&gt;
+ 				  &lt;/table&gt;
+ 				  &lt;/div&gt;
+-&lt;!--
++
+     &lt;/c:when&gt;
+ 	&lt;c:otherwise&gt;
+ 
+@@ -32,7 +33,7 @@
+ 
+     &lt;/c:otherwise&gt;	
+ &lt;/c:choose&gt;
+---&gt;
++
+ &lt;!--
+                   &lt;/td&gt;
+ 				  &lt;/tr&gt;
+
+Modified: project_src/customer/jsp/main_navigation.jsp
+===================================================================
+--- project_src/customer/jsp/main_navigation.jsp	2005-12-19 09:42:24 UTC (rev 304)
++++ project_src/customer/jsp/main_navigation.jsp	2005-12-19 10:53:28 UTC (rev 305)
+@@ -1,5 +1,5 @@
+-&lt;%@ taglib uri=&quot;/tags/struts-bean.tld&quot;  prefix=&quot;bean&quot;  %&gt;
+-&lt;%@ taglib uri=&quot;/tags/struts-html.tld&quot;  prefix=&quot;html&quot;  %&gt;
++&lt;%@ taglib uri=&quot;/WEB-INF/struts-html.tld&quot;  prefix=&quot;html&quot;  %&gt;
++&lt;%@ taglib uri=&quot;/WEB-INF/struts-bean.tld&quot;  prefix=&quot;bean&quot;  %&gt;
+ 
+ 
+             &lt;table class=&quot;menue_tbl&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+@@ -56,7 +56,7 @@
+               &lt;/tr&gt;
+               &lt;/thead&gt; &lt;tbody  class=&quot;menue_tbl&quot;&gt;
+                 &lt;tr&gt;
+-                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;html:link action=&quot;genre/action.do&quot;&gt; Action &lt;/html:link&gt;&lt;/td&gt;
++                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;html:link action=&quot;Genre/Action.do&quot;&gt; Action &lt;/html:link&gt;&lt;/td&gt;
+                 &lt;/tr&gt;
+                 &lt;tr&gt;
+                   &lt;td class=&quot;menue_tbl&quot;&gt;&lt;a href=&quot;#&quot;&gt; Drama &lt;/a&gt;&lt;/td&gt;
+@@ -68,4 +68,4 @@
+                   &lt;td class=&quot;menue_tbl&quot;&gt;&lt;a href=&quot;#&quot;&gt; Thriller &lt;/a&gt;&lt;/td&gt;
+                 &lt;/tr&gt;
+               &lt;/tbody&gt;
+-            &lt;/table&gt;
+\ No newline at end of file
++            &lt;/table&gt;
+
+Modified: project_src/customer/jsp/main_template.jsp
+===================================================================
+--- project_src/customer/jsp/main_template.jsp	2005-12-19 09:42:24 UTC (rev 304)
++++ project_src/customer/jsp/main_template.jsp	2005-12-19 10:53:28 UTC (rev 305)
+@@ -1,14 +1,13 @@
+-&lt;%@ taglib uri=&quot;/tags/struts-tiles.tld&quot;  prefix=&quot;tiles&quot;  %&gt;
+-&lt;%@ taglib uri=&quot;/tags/struts-html.tld&quot;  prefix=&quot;html&quot;  %&gt;
+-&lt;%@ taglib uri=&quot;/tags/struts-bean.tld&quot;  prefix=&quot;bean&quot;  %&gt;
+-&lt;%@ taglib uri=&quot;/tags/struts-logic.tld&quot;  prefix=&quot;logic&quot;  %&gt;
+-&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;<A HREF="http://www.w3.org/TR/html4/loose.dtd">http://www.w3.org/TR/html4/loose.dtd</A>&quot;&gt;
++&lt;%@ taglib uri=&quot;/WEB-INF/struts-tiles.tld&quot;  prefix=&quot;tiles&quot;  %&gt;
++&lt;%@ taglib uri=&quot;/WEB-INF/struts-html.tld&quot;  prefix=&quot;html&quot;  %&gt;
++&lt;%@ taglib uri=&quot;/WEB-INF/struts-bean.tld&quot;  prefix=&quot;bean&quot;  %&gt;
++&lt;%@ taglib uri=&quot;<A HREF="http://java.sun.com/jsp/jstl/core">http://java.sun.com/jsp/jstl/core</A>&quot; prefix=&quot;c&quot; %&gt;
++&lt;%@ taglib uri=&quot;/WEB-INF/struts-logic.tld&quot;  prefix=&quot;logic&quot;  %&gt;
+ &lt;html:html&gt;
+ &lt;head&gt;
+ 	&lt;html:base/&gt;
+ 	&lt;META HTTP-EQUIV=&quot;Pragma&quot; CONTENT=&quot;no-cache&quot;&gt;
+-  &lt;title&gt;PROfessional VIdeo RENTalStore&lt;/title&gt;
+-  &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot;&gt;
++  &lt;title&gt;PROfessional VIdeo RENTalStore &lt;/title&gt;
+   &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;&lt;html:rewrite page='/css/style.css' /&gt;&quot; title=&quot;externe Styles&quot;&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+@@ -143,4 +142,4 @@
+   &lt;/tbody&gt;
+ &lt;/table&gt;
+ &lt;/body&gt;
+-&lt;/html:html&gt;
+\ No newline at end of file
++&lt;/html:html&gt;
+
+Modified: project_src/customer/jsp/movie_list.jsp
+===================================================================
+--- project_src/customer/jsp/movie_list.jsp	2005-12-19 09:42:24 UTC (rev 304)
++++ project_src/customer/jsp/movie_list.jsp	2005-12-19 10:53:28 UTC (rev 305)
+@@ -1,5 +1,5 @@
+-&lt;%@ taglib uri=&quot;/tags/struts-bean.tld&quot;  prefix=&quot;bean&quot;  %&gt;
+-&lt;%@ taglib uri=&quot;/tags/struts-html.tld&quot;  prefix=&quot;html&quot;  %&gt;
++&lt;%@ taglib uri=&quot;/WEB-INF/struts-html.tld&quot;  prefix=&quot;html&quot;  %&gt;
++&lt;%@ taglib uri=&quot;/WEB-INF/struts-bean.tld&quot;  prefix=&quot;bean&quot;  %&gt;
+ &lt;%@ taglib uri=&quot;<A HREF="http://displaytag.sf.net">http://displaytag.sf.net</A>&quot;  prefix=&quot;display&quot;  %&gt;
+ 
+ 
+@@ -37,8 +37,5 @@
+               &lt;/tbody&gt;
+             &lt;/table&gt;
+ 
+-&lt;display:table name=&quot;sessiongenrelist&quot;  pagesize=&quot;2&quot; class=&quot;list&quot;&gt;
+-	&lt;display:column property=&quot;id&quot; /&gt;
+ 
+-&lt;/display:table&gt; 
+-
++&lt;display:table name=&quot;sessionScope.sessiongenrelist&quot; /&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000306.html">[Provirent-svn-commit] r304 - docu/latex
+</A></li>
+	<LI>Next message: <A HREF="000308.html">[Provirent-svn-commit] r306 - in project_src/customer/WEB-INF/src/de/hsharz/provirent/customer: action form
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#307">[ date ]</a>
+              <a href="thread.html#307">[ thread ]</a>
+              <a href="subject.html#307">[ subject ]</a>
+              <a href="author.html#307">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

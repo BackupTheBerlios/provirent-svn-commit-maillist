@@ -1,0 +1,1118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r149 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r149%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/management/gui/language%20de/hsharz/provirent/objects%20de/hsharz/provirent/persistence%20test/provirent/hibernate&In-Reply-To=%3C200411222153.iAMLrKmY009260%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000149.html">
+   <LINK REL="Next"  HREF="000151.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r149 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r149%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/management/gui/language%20de/hsharz/provirent/objects%20de/hsharz/provirent/persistence%20test/provirent/hibernate&In-Reply-To=%3C200411222153.iAMLrKmY009260%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r149 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Mon Nov 22 22:53:20 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000149.html">[Provirent-svn-commit] r148 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+        <LI>Next message: <A HREF="000151.html">[Provirent-svn-commit] r150 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#150">[ date ]</a>
+              <a href="thread.html#150">[ thread ]</a>
+              <a href="subject.html#150">[ subject ]</a>
+              <a href="author.html#150">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-11-22 22:53:19 +0100 (Mon, 22 Nov 2004)
+New Revision: 149
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeFormate.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/formate.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/AudioFormat.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeFormate.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeFormate.java	2004-11-22 21:39:02 UTC (rev 148)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeFormate.java	2004-11-22 21:53:19 UTC (rev 149)
+@@ -31,6 +31,9 @@
+ import org.eclipse.swt.widgets.TableItem;
+ import org.eclipse.swt.widgets.Text;
+ 
++import de.hsharz.provirent.objects.AudioFormat;
++import de.hsharz.provirent.objects.AudioFormat;
++import de.hsharz.provirent.objects.AudioFormat;
+ import de.hsharz.provirent.objects.VideoFormat;
+ import de.hsharz.provirent.persistence.DataBaseException;
+ import de.hsharz.provirent.persistence.Database;
+@@ -69,15 +72,25 @@
+     private Label labelVideoFormatName;
+ 
+     private Text textVideoFormatID;
++    
++    private Group groupAudioFormatOverview;
+ 
++    private Group groupAudioFormatDetail;
++
++    private Label labelAudioFormatId;
++
++    private Label labelAudioFormatShortname;
++
++    private Text textAudioFormatName;
++
++    private Label labelAudioFormatName;
++
++    private Text textAudioFormatID;
++
+     private Composite composite2;
+ 
+-    private Group groupAudioFormatOverview;
+-
+     private List list1;
+ 
+-    private Group groupAudioFormatDetail;
+-
+     private Text textAudioFormatSearch;
+ 
+     private Label labelAudioFormatSearch;
+@@ -103,13 +116,29 @@
+     private Button buttonVideoFormatEdit;
+ 
+     private Button buttonVideoFormatNew;
++    
++    private Button buttonAudioFormatCancel;
+ 
++    private Button buttonAudioFormatSave;
++
++    private Button buttonAudioFormatFill;
++
++    private Button buttonAudioFormatDelete;
++
++    private Button buttonAudioFormatEdit;
++
++    private Button buttonAudioFormatNew;
++
++
+     private Text textVideoFormatShortname;
+ 
+     private Text textVideoFormatSearch;
+ 
+     private Label labelVideoFormatSearch;
++    
++    private Text textAudioFormatShortname;
+ 
++
+     private Table tableVideoFormat;
+ 
+     private SashForm sashFormVideoFormat;
+@@ -207,6 +236,7 @@
+         
+         //die VideoFormattabelle wird gef&#252;llt
+         refreshVideoFormatTable(&quot;&quot;);
++        refreshAudioFormatTable(&quot;&quot;);
+         
+     }
+ 
+@@ -836,141 +866,669 @@
+    
+     
+     private void initAudioFormatGroup() {
++        //init a group for the AudioFormat
+         groupAudioFormat = new Group(sashForm1, SWT.NONE);
+-        
+-        GridLayout group1Layout = new GridLayout();
+-        group1Layout.makeColumnsEqualWidth = true;
+-        groupAudioFormat.setText(&quot;AudioFormat&quot;);
+-        FormData group1LData = new FormData();
+-        groupAudioFormat.setLayout(group1Layout);
+-        group1LData.height = 240;
+-        group1LData.width = 750;
+-        groupAudioFormat.setLayoutData(group1LData);
++        GridLayout group2Layout = new GridLayout();
++        group2Layout.makeColumnsEqualWidth = true;
++        groupAudioFormat.setText(l.getString(&quot;AudioFormat.group.label&quot;));
++        groupAudioFormat.setSize(758, 284);
++        FormData group2LData = new FormData();
++        groupAudioFormat.addFocusListener(new FocusAdapter() {
++            public void focusLost(FocusEvent evt) {
++                System.out.println(&quot;groupAudioFormat.focusLost, event=&quot;
++                    + evt);
++                buttonAudioFormatCancel.setEnabled(false);
++                buttonAudioFormatDelete.setEnabled(false);
++                buttonAudioFormatEdit.setEnabled(false);
++                buttonAudioFormatNew.setEnabled(false);
++                buttonAudioFormatSave.setEnabled(false);
++                
++            }
++        });
++        groupAudioFormat.setLayout(group2Layout);
++        groupAudioFormat.setLayoutData(group2LData);
+         {
+             sashFormAudioFormat = new SashForm(groupAudioFormat, SWT.NONE);
+-            FormLayout sashForm1Layout = new FormLayout();
+-            GridData sashForm1LData = new GridData();
+-            sashFormAudioFormat.setLayout(sashForm1Layout);
+-            sashForm1LData.verticalAlignment = GridData.FILL;
+-            sashForm1LData.horizontalAlignment = GridData.FILL;
+-            sashForm1LData.horizontalSpan = 6;
+-            sashForm1LData.grabExcessHorizontalSpace = true;
+-            sashForm1LData.grabExcessVerticalSpace = true;
+-            sashFormAudioFormat.setLayoutData(sashForm1LData);
+-            {
+-                groupAudioFormatOverview = new Group(sashFormAudioFormat,
+-                        SWT.NONE);
+-                GridLayout group3Layout = new GridLayout();
+-                group3Layout.numColumns = 6;
+-                groupAudioFormatOverview.setText(&quot;&#220;bersicht&quot;);
+-                FormData group3LData = new FormData();
+-                groupAudioFormatOverview.setLayout(group3Layout);
+-                group3LData.right = new FormAttachment(100, 100, -5);
+-                group3LData.top = new FormAttachment(0, 100, 5);
+-                group3LData.bottom = new FormAttachment(100, 100, -5);
+-                groupAudioFormatOverview.setLayoutData(group3LData);
+-                {
+-                    tableAudioFormat = new Table(groupAudioFormatOverview,
+-                            SWT.SINGLE | SWT.FULL_SELECTION | SWT.V_SCROLL
+-                                    | SWT.BORDER);
+-                    tableAudioFormat.setHeaderVisible(true);
+-                    tableAudioFormat.setLinesVisible(true);
+-                    GridData table1LData = new GridData();
+-                    tableAudioFormat
+-                            .addSelectionListener(new SelectionAdapter() {
+-                                public void widgetSelected(SelectionEvent evt) {
++            FormLayout sashForm2Layout = new FormLayout();
++            sashFormAudioFormat.setSize(748, 300);
++            GridData sashForm2LData = new GridData();
++            sashFormAudioFormat.setLayout(sashForm2Layout);
++            sashForm2LData.verticalAlignment = GridData.FILL;
++            sashForm2LData.horizontalAlignment = GridData.FILL;
++            sashForm2LData.grabExcessHorizontalSpace = true;
++            sashForm2LData.grabExcessVerticalSpace = true;
++            sashFormAudioFormat.setLayoutData(sashForm2LData);
+ 
+-                                    int index = tableDirector
+-                                            .getSelectionIndex();
+-                                    System.out.println(&quot;Table select. id: &quot;
+-                                            + index
+-                                            + &quot; TableItem:&quot;
+-                                            + tableDirector.getItem(index)
+-                                            + &quot; id: &quot;
+-                                            + tableDirector.getItem(index)
+-                                                    .getText(0));
+-                                }
+-                            });
+-                    table1LData.verticalAlignment = GridData.FILL;
+-                    table1LData.horizontalAlignment = GridData.FILL;
+-                    table1LData.horizontalSpan = 6;
+-                    table1LData.grabExcessHorizontalSpace = true;
+-                    table1LData.grabExcessVerticalSpace = true;
+-                    tableAudioFormat.setLayoutData(table1LData);
+-                    {
+-                        tableColumn1 = new TableColumn(tableAudioFormat,
+-                                SWT.CENTER);
+-                        tableColumn1.setText(&quot;id&quot;);
+-                        tableColumn1.setWidth(100);
++            //init die Gruppe f&#252;r AudioFormat &#220;berblick
++            initAudioFormatGroupOverview();
++            //init die Detailansicht
++            initAudioFormatGroupDetail();
++        }
++    }
++
++    /**
++     * 
++     */
++    private void initAudioFormatGroupDetail() {
++        groupAudioFormatDetail = new Group(sashFormAudioFormat, SWT.NONE);
++        GridLayout groupAudioFormatDetailLayout = new GridLayout();
++        groupAudioFormatDetailLayout.marginHeight = 25;
++        groupAudioFormatDetailLayout.numColumns = 6;
++        groupAudioFormatDetailLayout.verticalSpacing = 15;
++        groupAudioFormatDetail.setText(l
++                .getString(&quot;AudioFormat.groupdetail.label&quot;));
++        FormData formData = new FormData();
++        groupAudioFormatDetail.setLayout(groupAudioFormatDetailLayout);
++        formData.right = new FormAttachment(100, 100, -5);
++        formData.top = new FormAttachment(0, 100, 5);
++        formData.bottom = new FormAttachment(100, 100, -5);
++        groupAudioFormatDetail.setLayoutData(formData);
++        {
++            labelAudioFormatId = new Label(groupAudioFormatDetail, SWT.NONE);
++            labelAudioFormatId.setText(l
++                    .getString(&quot;AudioFormat.groupdetail.idlabel&quot;)
++                    + &quot;:&quot;);
++            labelAudioFormatId.setSize(125, 15);
++            GridData formData2 = new GridData();
++            formData2.widthHint = 125;
++            formData2.heightHint = 15;
++            formData2.horizontalSpan = 2;
++            labelAudioFormatId.setLayoutData(formData2);
++        }
++        {
++            textAudioFormatID = new Text(groupAudioFormatDetail, SWT.READ_ONLY
++                    | SWT.BORDER);
++            GridData text1LData1 = new GridData();
++            text1LData1.horizontalAlignment = GridData.FILL;
++            text1LData1.heightHint = 13;
++            text1LData1.horizontalSpan = 4;
++            text1LData1.grabExcessHorizontalSpace = true;
++            textAudioFormatID.setLayoutData(text1LData1);
++        }
++        {
++            labelAudioFormatName = new Label(groupAudioFormatDetail, SWT.NONE);
++            labelAudioFormatName.setText(l
++                    .getString(&quot;AudioFormat.groupdetail.namelabel&quot;)
++                    + &quot;:&quot;);
++            labelAudioFormatName.setSize(125, 15);
++            GridData labelAudioFormatNameLData = new GridData();
++            labelAudioFormatNameLData.widthHint = 125;
++            labelAudioFormatNameLData.heightHint = 15;
++            labelAudioFormatNameLData.horizontalSpan = 2;
++            labelAudioFormatName.setLayoutData(labelAudioFormatNameLData);
++        }
++        {
++            textAudioFormatName = new Text(groupAudioFormatDetail,
++                    SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData2 = new GridData();
++            text1LData2.horizontalAlignment = GridData.FILL;
++            text1LData2.heightHint = 13;
++            text1LData2.horizontalSpan = 4;
++            text1LData2.grabExcessHorizontalSpace = true;
++            textAudioFormatName.setLayoutData(text1LData2);
++        }
++        {
++            labelAudioFormatShortname = new Label(groupAudioFormatDetail,
++                    SWT.NONE);
++            labelAudioFormatShortname.setText(l
++                    .getString(&quot;AudioFormat.groupdetail.shortcutlabel&quot;)
++                    + &quot;:&quot;);
++            labelAudioFormatShortname.setSize(125, 15);
++            GridData label1LData1 = new GridData();
++            label1LData1.widthHint = 125;
++            label1LData1.heightHint = 15;
++            label1LData1.horizontalSpan = 2;
++            labelAudioFormatShortname.setLayoutData(label1LData1);
++        }
++        {
++            textAudioFormatShortname = new Text(groupAudioFormatDetail,
++                    SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData3 = new GridData();
++            text1LData3.horizontalAlignment = GridData.FILL;
++            text1LData3.heightHint = 13;
++            text1LData3.horizontalSpan = 4;
++            text1LData3.grabExcessHorizontalSpace = true;
++            textAudioFormatShortname.setLayoutData(text1LData3);
++        }
++        {
++
++//          die Buttons bekommen ein eigenes Composite
++            composite2 = new Composite(groupAudioFormatDetail, SWT.EMBEDDED);
++            GridLayout composite2Layout = new GridLayout();
++            composite2Layout.numColumns = 6;
++            GridData composite2LData = new GridData();
++            composite2.setLayout(composite2Layout);
++            composite2LData.verticalAlignment = GridData.END;
++            composite2LData.horizontalAlignment = GridData.CENTER;
++            composite2LData.widthHint = 391;
++            composite2LData.horizontalSpan = 6;
++            composite2LData.grabExcessHorizontalSpace = true;
++            composite2LData.grabExcessVerticalSpace = true;
++            composite2LData.heightHint = 35;
++            composite2.setLayoutData(composite2LData);
++
++            //init all the Buttons
++            initAudioFormatDetailButtons();
++
++        }
++    }
++
++    /**
++     * 
++     */
++    private void initAudioFormatDetailButtons() {
++        buttonAudioFormatNew = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonAudioFormatNew.setText(l.getString(&quot;button.new&quot;));
++        buttonAudioFormatNew.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++
++                textAudioFormatID.setText(&quot;&quot;);
++                textAudioFormatName.setText(&quot;&quot;);
++                textAudioFormatShortname.setText(&quot;&quot;);
++                
++
++                textAudioFormatName.setEditable(true);
++                textAudioFormatShortname.setEditable(true);
++                buttonAudioFormatCancel.setEnabled(true);
++                buttonAudioFormatSave.setEnabled(true);
++                buttonAudioFormatNew.setEnabled(false);
++                buttonAudioFormatEdit.setEnabled(false);
++                buttonAudioFormatDelete.setEnabled(false);
++                
++                textAudioFormatSearch.setEditable(false);
++                tableAudioFormat.setEnabled(false);
++
++                mode_AudioFormat = ManagementGui.MODE_ADD;
++
++            }
++        });
++
++        buttonAudioFormatEdit = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonAudioFormatEdit.setText(l.getString(&quot;button.edit&quot;));
++        buttonAudioFormatEdit.setEnabled(false);
++        buttonAudioFormatEdit.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++
++                mode_AudioFormat = ManagementGui.MODE_EDIT;
++
++
++                textAudioFormatID.setEditable(false);
++
++                textAudioFormatName.setEditable(true);
++                textAudioFormatName.setFocus();
++                textAudioFormatShortname.setEditable(true);
++                buttonAudioFormatCancel.setEnabled(true);
++                buttonAudioFormatSave.setEnabled(true);
++                buttonAudioFormatNew.setEnabled(false);
++                buttonAudioFormatEdit.setEnabled(false);
++                buttonAudioFormatDelete.setEnabled(false);
++
++
++                tableAudioFormat.setEnabled(false);
++                textAudioFormatSearch.setEnabled(false);
++                
++
++            }
++        });
++
++        buttonAudioFormatDelete = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonAudioFormatDelete.setText(l.getString(&quot;button.delete&quot;));
++        buttonAudioFormatDelete.setEnabled(false);
++        buttonAudioFormatDelete.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonAudioFormatDelete.widgetSelected, event=&quot;
++                                + evt);
++                
++                
++               String msg = MessageFormat.format(
++                       l.getString(&quot;AudioFormat.groupdetail.deletebutton.question.text&quot;),
++                               new Object[]{textAudioFormatName.getText()+&quot; &quot;+textAudioFormatShortname.getText()});
++                
++               int question = showMsg(msg,
++                       l.getString(&quot;AudioFormat.groupdetail.deletebutton.question.header&quot;), 
++                       SWT.ICON_QUESTION | SWT.YES | SWT.NO);
++               
++               if (question != SWT.YES){
++                   return;
++               }
++                
++                AudioFormat o = new AudioFormat();
++                o.setAudioFormatId(new Integer(Integer.parseInt(textAudioFormatID.getText())));
++                o.setName(textAudioFormatName.getText());
++                o.setShortname(textAudioFormatShortname.getText());
++                
++                try {
++                    //object speichern
++                    // Fehlerbehandlung
++                    Database.deleteObject(o);
++
++                    //&#220;bersichtsTabelle aktualisieren
++                    refreshAudioFormatTable(textAudioFormatSearch.getText());
++                    
++                    //Detailansicht leeren
++                    textAudioFormatID.setText(&quot;&quot;);
++                    textAudioFormatName.setText(&quot;&quot;);
++                    textAudioFormatShortname.setText(&quot;&quot;);
++                    
++                    //in Tabelle n&#228;chsten ausw&#228;hlen
++                    try {
++                        tableAudioFormat.select(0);
++                    } catch (Exception ex) {}
++                    
++                    //Statusline Nachricht sezten
++                    statusLine.setStatus(1,l.getString(&quot;AudioFormat.groupdetail.deletebutton.newok&quot;));
++
++                } catch (DataBaseException e) {
++                    if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                        //Fehler beim Speichern des Objectes
++
++                        statusLine.setStatus(3,l.getString(&quot;AudioFormat.groupdetail.deletebutton.errorsave&quot;));
++                        showMsg(l.getString(&quot;AudioFormat.groupdetail.deletebutton.errorsave&quot;),
++                                l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                        //fehler beim db aufbau
++                        statusLine.setStatus(3,l.getString(&quot;AudioFormat.groupdetail.deletebutton.errordb&quot;));
++                        showMsg(l.getString(&quot;AudioFormat.groupdetail.deletebutton.errordb&quot;),
++                                l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else {
++                        //@todo
++                        e.printStackTrace();
+                     }
+-                    {
+-                        tableColumn2 = new TableColumn(tableAudioFormat,
+-                                SWT.CENTER);
+-                        tableColumn2.setText(&quot;Name&quot;);
+-                        tableColumn2.setWidth(100);
++                    
++                }                
++                
++
++                }
++
++            }
++        );
++
++        //leerer nicht sichtbarer Button
++        buttonAudioFormatFill = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        GridData buttonAudioFormatFillLData = new GridData();
++        buttonAudioFormatFill.setVisible(false);
++        buttonAudioFormatFill.setEnabled(false);
++        buttonAudioFormatFillLData.widthHint = 30;
++        buttonAudioFormatFillLData.heightHint = 23;
++        buttonAudioFormatFill.setLayoutData(buttonAudioFormatFillLData);
++
++        buttonAudioFormatSave = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonAudioFormatSave.setText(l.getString(&quot;button.save&quot;));
++        buttonAudioFormatSave.setEnabled(false);
++        buttonAudioFormatSave.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonAudioFormatSave.widgetSelected, event=&quot;
++                                + evt);
++
++                
++                //testen ob Name leer ist
++                if (textAudioFormatName.getText().trim().equalsIgnoreCase(&quot;&quot;)) {
++                    
++                    showMsg(l.getString(&quot;AudioFormat.groupdetail.savebutton.warn.noname.msg&quot;),
++                            l.getString(&quot;AudioFormat.groupdetail.savebutton.warn.noname.title&quot;),
++                            SWT.ICON_WARNING | SWT.YES);
++
++                    	return;
++                }
++                
++                //testen welcher mode
++                
++                if (mode_AudioFormat == ManagementGui.MODE_ADD) {
++                    
++                    /**
++                     * @todo eine Exception bekommen wieder leider NOCH nicht mit
++                     * d.h. es muss noch ein r&#252;ckgabewert kommen oder eine Exception 
++                     * &#252;bermitteln werden (aus der DB Klasse)
++                     */
++                    //neues Objekt erzeugen
++                    AudioFormat tmp = new AudioFormat(textAudioFormatName.getText(),
++                            textAudioFormatShortname.getText());
++                    
++                    try {
++                        //object speichern
++                        // Fehlerbehandlung
++                        Object o = Database.saveObject(
++                                new AudioFormat(textAudioFormatName.getText(),
++                                        textAudioFormatShortname.getText()));
++                        
++                        // in &#220;bersichtstabelle einf&#252;gen
++                        insertIntoAudioFormatTable((AudioFormat)o);
++                        textAudioFormatID.setText( ((AudioFormat)o).getAudioFormatId()+&quot;&quot; );
++                        
++                        
++                        //Statusline Nachricht sezten
++                        statusLine.setStatus(1,l.getString(&quot;AudioFormat.groupdetail.savebutton.newok&quot;));
++
++                    } catch (DataBaseException e) {
++                        if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                            //Fehler beim Speichern des Objectes
++
++                            statusLine.setStatus(3,l.getString(&quot;AudioFormat.groupdetail.savebutton.errorsave&quot;));
++                            showMsg(l.getString(&quot;AudioFormat.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                            //fehler beim db aufbau
++                            statusLine.setStatus(3,l.getString(&quot;AudioFormat.groupdetail.savebutton.errordb&quot;));
++                            showMsg(l.getString(&quot;AudioFormat.groupdetail.savebutton.errordb&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else {
++                            //@todo
++                            e.printStackTrace();
++                        }
++                        
+                     }
+-                    {
+-                        tableColumn3 = new TableColumn(tableAudioFormat,
+-                                SWT.CENTER);
+-                        tableColumn3.setText(&quot;vorname&quot;);
+-                        tableColumn3.setWidth(100);
++                    
++                    
++                    //alle Buttons auf aktiv setzen
++                    setVideoGroupButtonSaveCancel();
++                    
++                } else if (mode_AudioFormat == ManagementGui.MODE_EDIT) {
++                    
++                    AudioFormat tmp = new AudioFormat(textAudioFormatName.getText(),
++                                    textAudioFormatShortname.getText());
++        		tmp.setAudioFormatId( new Integer (Integer.parseInt(textAudioFormatID.getText())) );
++                try {
++                    //object speichern
++                    // Fehlerbehandlung
++                    Database.saveObject(tmp);
++                    //&#220;bersichtstabelle aktualisieren
++                    refreshAudioFormatTable(textAudioFormatSearch.getText());
++                    
++                    //Statusline Nachricht sezten
++                    statusLine.setStatus(1,l.getString(&quot;AudioFormat.groupdetail.savebutton.editok&quot;));
++                   
++
++                } catch (DataBaseException e) {
++                    if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                        //Fehler beim Speichern des Objectes
++
++                        statusLine.setStatus(3,l.getString(&quot;AudioFormat.groupdetail.savebutton.errorsave&quot;));
++                        showMsg(l.getString(&quot;AudioFormat.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                        //fehler beim db aufbau
++                        statusLine.setStatus(3,l.getString(&quot;AudioFormat.groupdetail.savebutton.errordb&quot;));
++                        showMsg(l.getString(&quot;AudioFormat.groupdetail.savebutton.errordb&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else {
++                        //@todo
++                        e.printStackTrace();
+                     }
++                    
+                 }
+-                {
+-                    labelAudioFormatSearch = new Label(
+-                            groupAudioFormatOverview, SWT.NONE);
+-                    labelAudioFormatSearch.setText(&quot;Suche nach:&quot;);
+-                    GridData label1LData = new GridData();
+-                    label1LData.horizontalSpan = 2;
+-                    labelAudioFormatSearch.setLayoutData(label1LData);
++                    
++ 
++                    //alle Buttons auf aktiv setzen
++                    setVideoGroupButtonSaveCancel();
++                    
+                 }
+-                {
+-                    textAudioFormatSearch = new Text(groupAudioFormatOverview,
+-                            SWT.BORDER);
+-                    GridData text1LData = new GridData();
+-                    text1LData.horizontalAlignment = GridData.FILL;
+-                    text1LData.horizontalSpan = 4;
+-                    text1LData.grabExcessHorizontalSpace = true;
+-                    textAudioFormatSearch.setLayoutData(text1LData);
++                
++                
++                
++                /**
++                 * @todo Exception werfen, da nur die zwei Modes sein d&#252;rfen
++                 */
++                
++            }
++        });
++
++        buttonAudioFormatCancel = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonAudioFormatCancel.setText(l.getString(&quot;button.cancel&quot;));
++        buttonAudioFormatCancel.setEnabled(false);
++        buttonAudioFormatCancel.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonAudioFormatCancel.widgetSelected, event=&quot;
++                                + evt);
++                setVideoGroupButtonSaveCancel();
++            }
++        });
++
++    }
++
++    /**
++     * @param format
++     */
++    protected void insertIntoAudioFormatTable(AudioFormat format) {
++        TableItem item = new TableItem(tableAudioFormat, SWT.NONE);
++        item.setText(new String[] { format.getAudioFormatId() + &quot;&quot;, format.getName(),
++                format.getShortname() });
++    }
++
++    /**
++     * @param text
++     */
++    protected void refreshAudioFormatTable(final String filter) {
++        if (tableAudioFormat == null) {
++            System.out
++                    .println(&quot;Konnte AudioFormattable nicht refreshen, da diese null ist!&quot;);
++            return;
++        }
++        System.out.println(&quot;Versuche nun VideoListe zu refreshen. Filter: &quot;
++                + filter);
++        tableAudioFormat.removeAll();
++        TableItem item;
++        java.util.List AudioFormatlist = Database.getAudioFormat(filter);
++
++        for (int i = 0; i &lt; AudioFormatlist.size(); i++) {
++
++            AudioFormat o = (AudioFormat) AudioFormatlist.get(i);
++            item = new TableItem(tableAudioFormat, SWT.NONE);
++            item.setText(new String[] { o.getAudioFormatId() + &quot;&quot;, o.getName(),
++                    o.getShortname() });
++
++        }
++
++    }
++
++    /**
++     * 
++     */
++    private void initAudioFormatGroupOverview() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initAudioFormatGroupOverview() - start&quot;);
++        }
++
++        groupAudioFormatOverview = new Group(sashFormAudioFormat, SWT.NONE);
++        GridLayout group5Layout = new GridLayout();
++        group5Layout.numColumns = 8;
++        groupAudioFormatOverview.setText(l
++                .getString(&quot;AudioFormat.groupoverview.label&quot;));
++        FormData group5LData = new FormData();
++        groupAudioFormatOverview.setLayout(group5Layout);
++        group5LData.left = new FormAttachment(0, 100, 0);
++        group5LData.top = new FormAttachment(0, 100, 0);
++        groupAudioFormatOverview.setLayoutData(group5LData);
++
++        //Tabelle anzeigen
++        initTableAudioFormat();
++        //Suche darunter anzeigen
++        initAudioFormatSearch();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initAudioFormatGroupOverview() - end&quot;);
++        }
++    }
++
++    /**
++     * 
++     */
++    private void initAudioFormatSearch() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initAudioFormatSearch() - start&quot;);
++        }
++
++        //label f&#252;r die Suche
++        labelAudioFormatSearch = new Label(groupAudioFormatOverview, SWT.NONE);
++        labelAudioFormatSearch.setText(l
++                .getString(&quot;AudioFormat.groupoverview.searchlabel&quot;)
++                + &quot;:&quot;);
++        GridData label2LData = new GridData();
++        label2LData.horizontalSpan = 3;
++        labelAudioFormatSearch.setLayoutData(label2LData);
++
++        //das Suchfeld
++        textAudioFormatSearch = new Text(groupAudioFormatOverview, SWT.BORDER);
++        GridData text2LData = new GridData();
++        textAudioFormatSearch.addFocusListener(new FocusAdapter() {
++            public void focusLost(FocusEvent evt) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;focusLost(FocusEvent evt = &quot; + evt + &quot; &quot;
++                            + textAudioFormatSearch.getText() + &quot;) - start&quot;);
+                 }
++
++                refreshAudioFormatTable(textAudioFormatSearch.getText());
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;focusLost(FocusEvent) - end&quot;);
++                }
+             }
+-            {
+-                groupAudioFormatDetail = new Group(sashFormAudioFormat,
+-                        SWT.NONE);
+-                GridLayout group4Layout = new GridLayout();
+-                group4Layout.numColumns = 2;
+-                groupAudioFormatDetail.setText(&quot;Detail&quot;);
+-                FormData group4LData = new FormData();
+-                groupAudioFormatDetail.setLayout(group4Layout);
+-                group4LData.left = new FormAttachment(0, 100, 5);
+-                group4LData.top = new FormAttachment(0, 100, 5);
+-                group4LData.bottom = new FormAttachment(100, 100, -5);
+-                groupAudioFormatDetail.setLayoutData(group4LData);
+-                {
+-                    list1 = new List(groupAudioFormatDetail, SWT.SINGLE
+-                            | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
+-                    GridData list1LData = new GridData();
+-                    list1.addSelectionListener(new SelectionAdapter() {
+-                        public void widgetSelected(SelectionEvent evt) {
+-                            System.out.println(&quot;list1.widgetSelected, event=&quot;
+-                                    + evt);
++        });
+ 
+-                            //TODO add your
+-                            // code for
+-                            // list1.widgetSelected
+-                        }
+-                    });
+-                    list1LData.verticalAlignment = GridData.FILL;
+-                    list1LData.horizontalAlignment = GridData.FILL;
+-                    list1LData.grabExcessHorizontalSpace = true;
+-                    list1LData.grabExcessVerticalSpace = true;
+-                    list1.setLayoutData(list1LData);
++        textAudioFormatSearch.addListener(SWT.DefaultSelection, new Listener() {
++            public void handleEvent(Event e) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;handleEvent(Event e = &quot; + e + &quot; &quot;
++                            + textAudioFormatSearch.getText() + &quot;) - start&quot;);
+                 }
++
++                refreshAudioFormatTable(textAudioFormatSearch.getText());
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;handleEvent(Event) - end&quot;);
++                }
+             }
++        });
++
++        text2LData.horizontalAlignment = GridData.FILL;
++        text2LData.horizontalSpan = 5;
++        text2LData.grabExcessHorizontalSpace = true;
++        textAudioFormatSearch.setLayoutData(text2LData);
++
++
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initAudioFormatSearch() - end&quot;);
+         }
++    }
+ 
++    /**
++     * 
++     */
++    private void initTableAudioFormat() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initTableAudioFormat() - start&quot;);
++        }
++
++        tableAudioFormat = new Table(groupAudioFormatOverview, SWT.SINGLE
++                | SWT.FULL_SELECTION | SWT.V_SCROLL | SWT.BORDER);
++        tableAudioFormat.setHeaderVisible(true);
++        tableAudioFormat.setLinesVisible(true);
++        GridData table2LData = new GridData();
++        tableAudioFormat.addFocusListener(new FocusAdapter() {
++            public void focusLost(FocusEvent evt) {
++                System.out.println(&quot;tableAudioFormat.focusLost, event=&quot; + evt);
++                
++            }
++            public void focusGained(FocusEvent evt) {
++                System.out
++                    .println(&quot;tableAudioFormat.focusGained, event=&quot; + evt);
++                
++            }
++        });
++        tableAudioFormat.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;widgetSelected(SelectionEvent evt = &quot;
++                        + evt
++                        + &quot;) - start&quot;);
++                }
++
++                int index = tableAudioFormat.getSelectionIndex();
++
++                System.out.println(&quot;Table select. id: &quot;
++                    + index
++                    + &quot; TableItem:&quot;
++                    + tableAudioFormat.getItem(index)
++                    + &quot; id: &quot;
++                    + tableAudioFormat.getItem(index).getText(0));
++
++                //es wurde ein Element aus Tabelle ausgewaehlt jetzt muss die
++                //Detailansicht aktualisiert werden
++                refreshAudioFormatDetail(tableAudioFormat.getItem(index)
++                    .getText(0));
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;widgetSelected(SelectionEvent) - end&quot;);
++                }
++            }
++        });
++        table2LData.verticalAlignment = GridData.FILL;
++        table2LData.horizontalAlignment = GridData.FILL;
++        table2LData.horizontalSpan = 8;
++        table2LData.grabExcessHorizontalSpace = true;
++        table2LData.grabExcessVerticalSpace = true;
++        tableAudioFormat.setLayoutData(table2LData);
++
++        //einzelne Spalten hinzuf&#252;gen
++        tableColumn = new TableColumn(tableAudioFormat, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;AudioFormat.groupoverview.columnid&quot;));
++        tableColumn.setWidth(50);
++
++        tableColumn = new TableColumn(tableAudioFormat, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;AudioFormat.groupoverview.columnname&quot;));
++        tableColumn.setWidth(200);
++
++        tableColumn = new TableColumn(tableAudioFormat, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;AudioFormat.groupoverview.columnshortname&quot;));
++        tableColumn.setWidth(75);
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initTableAudioFormat() - end&quot;);
++        }
+     }
+ 
++    /**
++     * @param text
++     */
++    protected void refreshAudioFormatDetail(final String id) {
++        AudioFormat object;
++        try {
++            //since we only can get a String value from the table, we
++            //need to convert this
++            object = Database.getSingleAudioFormat(Integer.parseInt(id));
++
++            if (object == null) {
++
++                /*
++                 * 
++                 * @TODO Statusbar aktualiseren
++                 */
++                return;
++            }
++        } catch (Exception e) {
++            
++            //id ist keine Zahl
++            return;
++        }
++
++        textAudioFormatID.setText(object.getAudioFormatId() + &quot;&quot;);
++        textAudioFormatName.setText(object.getName());
++        textAudioFormatShortname.setText(object.getShortname());
++
++        //Buttons zum l&#246;schen und editieren aktivieren
++        buttonAudioFormatEdit.setEnabled(true);
++        buttonAudioFormatDelete.setEnabled(true);
++
++        //Mode auf view setzen
++        mode_AudioFormat = ManagementGui.MODE_VIEW;
++
++    }
++
+     private void initGUI() {
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;initGUI() - start&quot;);
+@@ -1052,7 +1610,6 @@
+                 return;
+             }
+         } catch (Exception e) {
+-            // TODO: handle exception
+             //id ist keine Zahl
+             return;
+         }
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-22 21:39:02 UTC (rev 148)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-22 21:53:19 UTC (rev 149)
+@@ -408,7 +408,7 @@
+ 
+         viewVideoFormatMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewVideoFormatMenuItem.setText(l.getString(&quot;menu.view.format&quot;));
+-        viewVideoFormatMenuItem.setSelection(true);
++        viewVideoFormatMenuItem.setSelection(false);
+         viewVideoFormatMenuItem.addSelectionListener(new SelectionAdapter() {
+             public void widgetSelected(SelectionEvent evt) {
+ 				if(tabItemFormat == null || tabItemFormat.isDisposed()){
+@@ -524,7 +524,7 @@
+         
+         viewMovieMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewMovieMenuItem.setText(l.getString(&quot;menu.view.movie&quot;));
+-        viewMovieMenuItem.setSelection(false);
++        viewMovieMenuItem.setSelection(true);
+         viewMovieMenuItem.addSelectionListener(new SelectionAdapter() {
+             public void widgetSelected(SelectionEvent evt) {
+ 				if(tabItemMovie == null || tabItemMovie.isDisposed()){
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/formate.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/formate.properties	2004-11-22 21:39:02 UTC (rev 148)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/formate.properties	2004-11-22 21:53:19 UTC (rev 149)
+@@ -32,3 +32,30 @@
+ videoformat.groupdetail.deletebutton.newok=Datensatz wurde erfolgreich gel&#246;scht.
+ videoformat.groupdetail.deletebutton.errorsave=Datenbankfehler beim L&#246;schen.
+ videoformat.groupdetail.deletebutton.errordb=Datenbankfehler beim Herstellen der Verbindung(del).
++
++AudioFormat.group.label=AudioFormat
++AudioFormat.groupoverview.label=&#220;berblick
++AudioFormat.groupoverview.columnid=Id
++AudioFormat.groupoverview.columnname=Name
++AudioFormat.groupoverview.columnshortname=Abk.
++
++
++AudioFormat.groupoverview.searchlabel=Suche nach
++AudioFormat.groupdetail.label=Detail
++AudioFormat.groupdetail.idlabel=Audioformat ID
++AudioFormat.groupdetail.namelabel=Audioformat Name
++AudioFormat.groupdetail.shortcutlabel=Audioformat Abk&#252;rzung
++
++AudioFormat.groupdetail.savebutton.warn.noname.title=Datensatz speichern
++AudioFormat.groupdetail.savebutton.warn.noname.msg=Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie einen Namen an
++AudioFormat.groupdetail.savebutton.newok=Speichern des neuen AudioFormates erfolgreich.
++AudioFormat.groupdetail.savebutton.editok=&#196;ndern des AudioFormates erfolgreich.
++
++AudioFormat.groupdetail.savebutton.errorsave=Datenbankfehler beim Speichern.
++AudioFormat.groupdetail.savebutton.errordb=Datenbankfehler beim Herstellen der Verbindung.(save).
++
++AudioFormat.groupdetail.deletebutton.question.header=Wirklich l&#246;schen?
++AudioFormat.groupdetail.deletebutton.question.text=Wollen Sie den Datensatz {0} wirklich l&#246;schen?
++AudioFormat.groupdetail.deletebutton.newok=Datensatz wurde erfolgreich gel&#246;scht.
++AudioFormat.groupdetail.deletebutton.errorsave=Datenbankfehler beim L&#246;schen.
++AudioFormat.groupdetail.deletebutton.errordb=Datenbankfehler beim Herstellen der Verbindung(del).
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/AudioFormat.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/AudioFormat.hbm.xml	2004-11-22 21:39:02 UTC (rev 148)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/AudioFormat.hbm.xml	2004-11-22 21:53:19 UTC (rev 149)
+@@ -17,7 +17,9 @@
+       &lt;id name=&quot;audioFormatId&quot; type=&quot;int&quot; column=&quot;AUIOFORMATID&quot;&gt;
+         &lt;meta attribute=&quot;scope-set&quot;&gt;public&lt;/meta&gt;
+         &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+-        &lt;generator class=&quot;native&quot;/&gt;
++        &lt;generator class=&quot;sequence&quot;&gt;
++			&lt;param name=&quot;sequence&quot; &gt;audio_format_id_sequence&lt;/param&gt;
++		&lt;/generator&gt;
+       &lt;/id&gt;
+  
+       &lt;property name=&quot;name&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml	2004-11-22 21:39:02 UTC (rev 148)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml	2004-11-22 21:53:19 UTC (rev 149)
+@@ -17,7 +17,9 @@
+       &lt;id name=&quot;movieId&quot; type=&quot;int&quot; column=&quot;MOVIEID&quot;&gt;
+         &lt;meta attribute=&quot;scope-set&quot;&gt;public&lt;/meta&gt;
+         &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+-        &lt;generator class=&quot;native&quot;/&gt;
++        &lt;generator class=&quot;sequence&quot;&gt;
++			&lt;param name=&quot;sequence&quot;&gt;movie_id_sequence&lt;/param&gt;
++		&lt;/generator&gt;
+       &lt;/id&gt;
+  
+       &lt;property name=&quot;title&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-22 21:39:02 UTC (rev 148)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-22 21:53:19 UTC (rev 149)
+@@ -1304,6 +1304,43 @@
+      */
+     public Database(String arg0) {
+ 
+-    }
++    }	
++	
++	public static AudioFormat getSingleAudioFormat(final int id){
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getSingleAudioFormat() - start. int filter= &quot;+id);
++	    }
++	    //init the returnlist
++	    AudioFormat returnobject = null;
++	
++	    Session s = null;
++	    Transaction tx = null;
++	    try {
++	        //get new Session and begin Transaction
++	        s = HibernateUtil.currentSession();
++	
++	            returnobject = (AudioFormat)s.get(AudioFormat.class, new Integer(id));
++	
++	    } catch (Exception e) {
++	        logger.error(
++	                &quot;getSingleAudioFormat() - Error while trying to do Transaction&quot;,
++	                e);
++	        
++	    } finally {
++	        try {
++	            // No matter what, close the session
++	            HibernateUtil.closeSession();
++	        } catch (HibernateException e1) {
++	            logger.error(&quot;getSingleAudioFormat() - Could not Close the Session&quot;, e1);
++	        }
++	    }
++	
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getSingleAudioFormat() - end&quot;);
++	    }
++	    return returnobject;
++	    
++	
++	}
+ 
+ }
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java	2004-11-22 21:39:02 UTC (rev 148)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java	2004-11-22 21:53:19 UTC (rev 149)
+@@ -84,7 +84,7 @@
+         }
+     }
+ 
+-    public void testAudioFormat() throws Exception {
++    /*public void testAudioFormat() throws Exception {
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - start&quot;);
+         }
+@@ -192,7 +192,7 @@
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+-    }
++    }*/
+ 
+     public void testSaveAudioFormat() throws Exception {
+         if (logger.isDebugEnabled()) {
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000149.html">[Provirent-svn-commit] r148 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+	<LI>Next message: <A HREF="000151.html">[Provirent-svn-commit] r150 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#150">[ date ]</a>
+              <a href="thread.html#150">[ thread ]</a>
+              <a href="subject.html#150">[ subject ]</a>
+              <a href="author.html#150">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

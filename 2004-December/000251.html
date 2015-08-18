@@ -1,0 +1,717 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r250 - html
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r250%20-%20html&In-Reply-To=%3C200412271722.iBRHM3G3026896%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000250.html">
+   <LINK REL="Next"  HREF="000252.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r250 - html</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r250%20-%20html&In-Reply-To=%3C200412271722.iBRHM3G3026896%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r250 - html">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Mon Dec 27 18:22:03 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000250.html">[Provirent-svn-commit] r249 - project_src/website/web/WEB-INF/lib
+</A></li>
+        <LI>Next message: <A HREF="000252.html">[Provirent-svn-commit] r251 - project_src
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#251">[ date ]</a>
+              <a href="thread.html#251">[ thread ]</a>
+              <a href="subject.html#251">[ subject ]</a>
+              <a href="author.html#251">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-12-27 18:21:59 +0100 (Mon, 27 Dec 2004)
+New Revision: 250
+
+Added:
+   html/style.css
+Modified:
+   html/border.gif
+   html/border_bl.gif
+   html/border_br.gif
+   html/border_r.gif
+   html/border_tr.gif
+   html/test.html
+Log:
+
+
+Modified: html/border.gif
+===================================================================
+(Binary files differ)
+
+Modified: html/border_bl.gif
+===================================================================
+(Binary files differ)
+
+Modified: html/border_br.gif
+===================================================================
+(Binary files differ)
+
+Modified: html/border_r.gif
+===================================================================
+(Binary files differ)
+
+Modified: html/border_tr.gif
+===================================================================
+(Binary files differ)
+
+Added: html/style.css
+===================================================================
+--- html/style.css	2004-12-27 13:10:09 UTC (rev 249)
++++ html/style.css	2004-12-27 17:21:59 UTC (rev 250)
+@@ -0,0 +1,146 @@
++.body{
++	background-color: #F9EFD2;
++}
++a:hover, a:active, a:focus, a:link, a:visited  {
++	color: Black;
++	text-decoration: none;
++}
++
++a:link{
++	text-decoration: underline;
++}
++
++.head_menue {
++	font-family: Verdana, Arial, Helvetica, sans-serif;
++	font-size: 12px;
++}
++.copyright {
++	font-family: &quot;Courier New&quot;, Courier, monospace;
++	font-size: 12px;
++	font-weight: bold;
++	text-align: center;
++}
++.menue_tbl, .menue_suche{
++	font-size: 12px;
++	background-color: #CCDDCE;
++	margin: 5px;
++	width: 90%;
++	
++}
++a.menue_tbl:hover, a.menue_suche:hover{
++
++}
++
++thead.menue_tbl {
++	background-color: #B0CAB1;
++	text-align: center;
++	margin: 5px;
++
++
++}
++
++tbody.menue_tbl{
++background-color: #CCDDCE;
++	font-weight: bolder;
++	margin: 10px;
++}
++
++a:hover.menue_tbl{
++	text-decoration: underline;
++
++}
++
++td.menue_tbl{
++	display: block;
++	height: 10px;
++}
++
++
++
++.head_menue{
++	
++}
++
++a.head_menue{
++	text-decoration: underline;
++}
++a:hover.head_menue{
++	
++	text-decoration: none;
++}
++
++input{
++ background-color: #F9EFD2;
++	border-top: #BABABA 2px solid;
++	border-left: #BABABA 2px solid;
++	border-right: #AFAFAF 3px solid;
++	border-bottom: #AFAFAF 3px solid;
++}
++
++#submit_search{
++	background-color: #8CB390;
++	border-top: #558059 2px solid;
++	border-left: #558059 2px solid;
++	border-right: #558059 3px solid;
++	border-bottom: #558059 3px solid;
++
++}
++
++#select_search{
++	background-color: #F9EFD2;
++	border-top: #BABABA 2px solid;
++	border-left: #BABABA 2px solid;
++	border-right: #AFAFAF 3px solid;
++	border-bottom: #AFAFAF 3px solid;
++}
++
++td.prev_page_browse{
++	text-align: left; 
++	width: 20%;
++	padding-left: 5px;
++}
++.prev_page_browse, .next_page_browse{
++	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
++	font-size: 11px;
++}
++
++.next_page_browse{
++	text-align: right; width: 20%;
++}
++
++td.overview_page_browse{
++	text-align: center;
++}
++.overview_page_browse{
++		font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
++		font-size: 11px;
++}
++
++a.single_page_browse{
++	text-decoration: underline;
++}
++a:hover.single_page_browse{
++	text-decoration: line-through;
++}
++
++
++
++.list_title{
++	
++}
++
++.list_summary{
++	
++}
++
++.detail_title, .detail_artist, .detail_hartist, .detail_describ,
++.detail_genre, .detail_hartist, .detail_artist, .detail_hdir, .detail_dir,
++.detail_haudio, .detail_audio, .detail_hvideo, .detail_video, .detail_hpicture, .detail_picture  {
++	
++}
++
++
++.basket_head, .basket_item{
++	
++	
++}
+\ No newline at end of file
+
+Modified: html/test.html
+===================================================================
+--- html/test.html	2004-12-27 13:10:09 UTC (rev 249)
++++ html/test.html	2004-12-27 17:21:59 UTC (rev 250)
+@@ -1,122 +1,345 @@
+-&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;
+-&quot;<A HREF="http://www.w3.org/TR/html4/loose.dtd">http://www.w3.org/TR/html4/loose.dtd</A>&quot;&gt;
++&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;<A HREF="http://www.w3.org/TR/html4/loose.dtd">http://www.w3.org/TR/html4/loose.dtd</A>&quot;&gt;
+ &lt;html&gt;
+ &lt;head&gt;
+-&lt;title&gt;Unbenanntes Dokument&lt;/title&gt;
+-&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot;&gt;
+-&lt;style type=&quot;text/css&quot;&gt;
+-&lt;!--
+-.Stil5 {
+-	font-family: Verdana, Arial, Helvetica, sans-serif;
+-	font-size: 12px;
+-}
+-.Stil6 {
+-	font-family: &quot;Courier New&quot;, Courier, mono;
+-	font-size: 12px;
+-}
+---&gt;
+-&lt;/style&gt;
++  &lt;title&gt;PROfessional VIdeo RENTalStore&lt;/title&gt;
++  &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot;&gt;
++  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;style.css&quot; title=&quot;externe Styles&quot;&gt;
+ &lt;/head&gt;
+-
+-&lt;body bgcolor=&quot;#F9EFD2&quot;&gt;
+-&lt;table width=&quot;100%&quot; border=&quot;0&quot; align=&quot;center&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+-  &lt;tr&gt;
+-    &lt;td width=&quot;10%&quot; &gt;&nbsp;&lt;/td&gt;
+-    &lt;td&gt;&nbsp;&lt;/td&gt;
+-    &lt;td width=&quot;10%&quot;&gt;&nbsp;&lt;/td&gt;
+-  &lt;/tr&gt;
+-  &lt;tr&gt;
+-    &lt;td&gt;&nbsp;&lt;/td&gt;
+-    &lt;td&gt;
+-
+-&lt;table width=&quot;100%&quot;  border=&quot;0&quot; bgcolor=&quot;#C2D9C1&quot;  align=&quot;center&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+-&lt;tr&gt;
+-    &lt;td colspan=&quot;7&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-    &lt;td background=border_r.gif&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;10px&quot; height=&quot;1px&quot;&gt;&lt;/td&gt;
+-&lt;/tr&gt;
+-&lt;tr&gt;
+-	&lt;td width=&quot;1px&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td colspan=&quot;5&quot; height=&quot;70px&quot;&gt;Logo&lt;/td&gt;
+-	&lt;td width=&quot;1px&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td background=border_r.gif&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;10px&quot; &gt;&lt;/td&gt;
+-&lt;/tr&gt;
+-&lt;tr&gt;
+-    &lt;td colspan=&quot;7&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-    &lt;td background=border_r.gif&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;10px&quot;  height=&quot;1px&quot;&gt;&lt;/td&gt;
+-&lt;/tr&gt;
+-&lt;tr&gt;
+-	&lt;td width=&quot;1px&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td colspan=&quot;5&quot; height=&quot;20px&quot; valign=&quot;middle&quot;&gt;&lt;span class=&quot;Stil5&quot;&gt;Home | Suche | &#220;bersicht | Hilfe | Impressum&lt;/span&gt;&lt;/td&gt;
+-	&lt;td width=&quot;1px&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td background=border_r.gif&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;10px&quot;&gt;&lt;/td&gt;
+-&lt;/tr&gt;
+-&lt;tr&gt;
+-    &lt;td colspan=&quot;7&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-    &lt;td background=border_r.gif&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;10px&quot; height=&quot;1px&quot;&gt;&lt;/td&gt;
+-&lt;/tr&gt;
+-&lt;tr&gt;
+-	&lt;td colspan=&quot;7&quot; bgcolor=&quot;#F9EFD2&quot; height=&quot;2px&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td bgcolor=&quot;#F9EFD2&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;1px&quot; height=&quot;1px&quot;&gt;&lt;/td&gt;
+-&lt;/tr&gt;
+-&lt;tr&gt;
+-    &lt;td colspan=&quot;3&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td colspan=&quot;1&quot; bgcolor=&quot;#F9EFD2&quot; width=&quot;2px&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td colspan=&quot;3&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td background=border_r.gif&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;10px&quot; height=&quot;1px&quot;&gt;&lt;/td&gt;
+-&lt;/tr&gt;
+-&lt;tr&gt;
+-    &lt;td width=&quot;1px&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td height=&quot;300px&quot;&gt;Menue&lt;/td&gt;
+-	&lt;td width=&quot;1px&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td bgcolor=&quot;#F9EFD2&quot; width=&quot;2px&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td width=&quot;1px&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td width=&quot;85%&quot;&gt;Main&lt;/td&gt;
+-	&lt;td width=&quot;1px&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td background=border_r.gif&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;10px&quot;&gt;&lt;/td&gt;
+-&lt;/tr&gt;
+-&lt;tr&gt;
+-    &lt;td colspan=&quot;3&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td colspan=&quot;1&quot; bgcolor=&quot;#F9EFD2&quot; width=&quot;2px&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td colspan=&quot;3&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td background=border_r.gif&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;10px&quot; height=&quot;1px&quot;&gt;&lt;/td&gt;
+-&lt;/tr&gt;
+-&lt;tr&gt;
+-    &lt;td colspan=&quot;7&quot; bgcolor=&quot;#F9EFD2&quot; height=&quot;2px&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-    &lt;td bgcolor=&quot;#F9EFD2&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;1px&quot; height=&quot;1px&quot;&gt;&lt;/td&gt;
+-&lt;/tr&gt;
+-&lt;tr&gt;
+-    &lt;td colspan=&quot;7&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-    &lt;td background=border_r.gif&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;10px&quot; height=&quot;1px&quot;&gt;&lt;/td&gt;
+-&lt;/tr&gt;
+-&lt;tr&gt;
+-	&lt;td width=&quot;1px&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td colspan=&quot;5&quot;&gt;&lt;div align=&quot;center&quot; class=&quot;Stil6&quot;&gt;Impressum&lt;/div&gt;&lt;/td&gt;
+-	&lt;td width=&quot;1px&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-	&lt;td background=border_r.gif&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;10px&quot;&gt;&lt;/td&gt;
+-&lt;/tr&gt;
+-&lt;tr&gt;
+-    &lt;td colspan=&quot;7&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
+-    &lt;td background=border_r.gif&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;10px&quot; height=&quot;1px&quot;&gt;&lt;/td&gt;
+-&lt;/tr&gt;
+-
+-&lt;tr&gt;
+-    &lt;td colspan=&quot;7&quot; background=border.gif&gt;&lt;img src=&quot;border_bl.gif&quot; height=&quot;10px&quot;&gt;&lt;/td&gt;
+-    &lt;td background=border_br.gif&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;4px&quot; height=&quot;1px&quot;&gt;&lt;/td&gt;
+-&lt;/tr&gt;
+-
++&lt;body&gt;
++&lt;table align=&quot;center&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
++  &lt;tbody&gt;
++    &lt;tr&gt;
++      &lt;td width=&quot;10%&quot;&gt;&nbsp;&lt;/td&gt;
++      &lt;td&gt;&nbsp;&lt;/td&gt;
++      &lt;td width=&quot;10%&quot;&gt;&nbsp;&lt;/td&gt;
++    &lt;/tr&gt;
++    &lt;tr&gt;
++      &lt;td&gt;&nbsp;&lt;/td&gt;
++      &lt;td&gt;
++      &lt;table align=&quot;center&quot; bgcolor=&quot;#c2d9c1&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
++        &lt;tbody&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;7&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td background=&quot;border_r.gif&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td colspan=&quot;5&quot; height=&quot;70&quot;&gt;Logo&lt;/td&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td background=&quot;border_r.gif&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;3&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;7&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td background=&quot;border_r.gif&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td colspan=&quot;5&quot; height=&quot;20&quot; valign=&quot;middle&quot;&gt;
++            &lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
++              &lt;tbody&gt;
++                &lt;tr&gt;
++&lt;!--head start--&gt; 
++				  &lt;td width=&quot;53%&quot;&gt;
++                  &lt;div align=&quot;left&quot;&gt;
++                  &lt;form id=&quot;login&quot; action=&quot;&quot; method=&quot;post&quot; name=&quot;LoginForm&quot;&gt;
++                  &lt;label class=&quot;login_label&quot;&gt;Benutzername:&lt;/label&gt;
++                  &lt;input class=&quot;login&quot; style=&quot;font-weight: bold;&quot; name=&quot;username&quot; size=&quot;13&quot; type=&quot;text&quot;&gt;
++                  &lt;label class=&quot;login_label&quot;&gt;Password:&lt;/label&gt;
++                  &lt;input class=&quot;login&quot; name=&quot;userpassword&quot; size=&quot;14&quot; type=&quot;password&quot;&gt;
++                  &lt;input id=&quot;submit_search&quot; type=&quot;submit&quot; value=&quot;login&quot; &gt;
++                  &lt;/form&gt;
++                  &lt;span class=&quot;pref&quot;&gt;Meine Daten&nbsp;&lt;/span&gt;
++                  &lt;/div&gt;
++                  &lt;/td&gt;
++                  &lt;td width=&quot;50%&quot;&gt;
++                  &lt;div class=&quot;head_menue&quot; align=&quot;right&quot;&gt;
++                  	&lt;a href=&quot;index.jsp&quot; class=&quot;head_menue&quot;&gt;&Uuml;bersicht&lt;/a&gt;&nbsp;|&nbsp;&lt;a href=&quot;index.jsp&quot; class=&quot;head_menue&quot;&gt;Impressum&lt;/a&gt;&nbsp;|&nbsp;&lt;a href=&quot;index.jsp&quot; class=&quot;head_menue&quot;&gt;Hilfe&lt;/a&gt;&nbsp;
++                  &lt;/div&gt;
++                  &lt;/td&gt;
++&lt;!--head end--&gt; &lt;/tr&gt;
++              &lt;/tbody&gt;
++            &lt;/table&gt;
++            &lt;/td&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td background=&quot;border_r.gif&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;3&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;7&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td background=&quot;border_r.gif&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;7&quot; bgcolor=&quot;#f9efd2&quot; height=&quot;2&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td bgcolor=&quot;#f9efd2&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;3&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td colspan=&quot;1&quot; bgcolor=&quot;#f9efd2&quot; width=&quot;2&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td colspan=&quot;3&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td background=&quot;border_r.gif&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td valign=&quot;top&quot;&gt;
++&lt;!--menue start--&gt;
++            &lt;table class=&quot;menue_tbl&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
++              &lt;thead class=&quot;menue_tbl&quot;&gt; &lt;tr&gt;
++                &lt;th&gt;Aktuelles&lt;/th&gt;
++              &lt;/tr&gt;
++              &lt;/thead&gt; &lt;tbody class=&quot;menue_tbl&quot;&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;a href=&quot;#&quot;&gt;Neuheiten&lt;/a&gt;&lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;a href=&quot;<A HREF="http://www.web.de">http://www.web.de</A>&quot; class=&quot;menue_tbl&quot;&gt;Top 10 Monat&lt;/a&gt;&lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;a href=&quot;#&quot;&gt;Top 100 Jahr&lt;/a&gt;&lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;a href=&quot;#&quot;&gt;Vorschau&lt;/a&gt;&lt;/td&gt;
++                &lt;/tr&gt;
++              &lt;/tbody&gt;
++            &lt;/table&gt;
++            &lt;br&gt;
++            &lt;table class=&quot;menue_suche&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
++              &lt;thead class=&quot;menue_tbl&quot;&gt; &lt;tr&gt;
++                &lt;th colspan=&quot;2&quot;&gt;Suche&lt;/th&gt;
++              &lt;/tr&gt;
++              &lt;/thead&gt; &lt;tbody&gt;
++                &lt;tr&gt;
++                	&lt;td colspan=&quot;2&quot;&gt;
++                  		&lt;form id=&quot;search&quot; action=&quot;&quot; method=&quot;post&quot; name=&quot;SearchForm&quot;&gt;
++	                  	&lt;input name=&quot;searchfor&quot; size=&quot;16&quot; type=&quot;text&quot;&gt;
++    	            &lt;/td&gt;
++    	        &lt;/tr&gt;
++    	        &lt;tr&gt;
++					&lt;td&gt;
++        	            &lt;select name=&quot;selectName&quot; size=&quot;1&quot; id=&quot;select_search&quot;&gt;
++		                    &lt;option value=&quot;0&quot;&gt;all&lt;/option&gt;
++		                    &lt;option value=&quot;1&quot;&gt;Movie&lt;/option&gt;
++        		            &lt;option value=&quot;2&quot;&gt;Artist&lt;/option&gt;
++                		    &lt;option value=&quot;3&quot;&gt;genre&lt;/option&gt;
++	                    &lt;/select&gt;
++                    &lt;/td&gt;
++                    &lt;td&gt;
++    	                &lt;input value=&quot;Suche&quot; id=&quot;submit_search&quot; type=&quot;submit&quot;&gt;
++    	                &lt;/form&gt;
++                  &lt;/td&gt;
++                &lt;/tr&gt;
++              &lt;/tbody&gt;
++            &lt;/table&gt;
++            &lt;br&gt;
++            &lt;table class=&quot;menue_tbl&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
++              &lt;thead class=&quot;menue_tbl&quot;&gt; &lt;tr&gt;
++                &lt;th&gt;Genre&lt;/th&gt;
++              &lt;/tr&gt;
++              &lt;/thead&gt; &lt;tbody  class=&quot;menue_tbl&quot;&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;a href=&quot;#&quot;&gt; Action &lt;/a&gt;&lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;a href=&quot;#&quot;&gt; Drama &lt;/a&gt;&lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;a href=&quot;#&quot;&gt; Comedy &lt;/a&gt;&lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;a href=&quot;#&quot;&gt; Thriller &lt;/a&gt;&lt;/td&gt;
++                &lt;/tr&gt;
++              &lt;/tbody&gt;
++            &lt;/table&gt;
++&lt;!--menue end--&gt; &lt;/td&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td bgcolor=&quot;#f9efd2&quot; width=&quot;2&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td valign=&quot;top&quot; width=&quot;85%&quot;&gt;
++&lt;!--main start--&gt;
++			&lt;br&gt;
++            &lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
++              &lt;tbody&gt;
++                &lt;tr&gt;
++                  &lt;td align=&quot;center&quot; width=&quot;20%&quot;&gt;&lt;img style=&quot;width: 75px; height: 75px;&quot; src=&quot;&quot; alt=&quot;&quot; border=&quot;0&quot;&gt;&lt;/td&gt;
++                  &lt;td&gt;
++                  &lt;span class=&quot;list_title&quot;&gt;Titel des Films &lt;/span&gt;
++&lt;span class=&quot;list_summary&quot;&gt;Hier kommt ein ganz kurzer Text rein&lt;br&gt;
++ganz lang &lt;br&gt;
++und dann drei Punkte . . . &lt;a href=&quot;#&quot;&gt;&gt;&gt;mehr&lt;&lt;&lt;/a&gt; &lt;/span&gt;&lt;/td&gt;
++                  &lt;td width=&quot;10%&quot;&gt;
++Bestellen &lt;/td&gt;
++                &lt;/tr&gt;
++              &lt;/tbody&gt;
++            &lt;/table&gt;
++            &lt;br&gt;
++&nbsp; &lt;br&gt;
++            &lt;table style=&quot;width: 95%; text-align: left;&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; align=&quot;center&quot;&gt;
++              &lt;tbody&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;prev_page_browse&quot;&gt;&nbsp;&nbsp; &lt;a href=&quot;&quot;&gt;&lt;&lt; zur&uuml;ck &lt;&lt;&lt;/a&gt;&lt;br&gt;
++													&lt;/td&gt;
++                  &lt;td class=&quot;overview_page_browse&quot; style=&quot;&quot;&gt;&nbsp;Seite 1 / 5 &lt;br&gt;
++                  &lt;a href=&quot;&quot; class=&quot;single_page_browse&quot;&gt;1&lt;/a&gt;&nbsp;&nbsp;
++                  &lt;a href=&quot;&quot; class=&quot;single_page_browse&quot;&gt;2&lt;/a&gt;&nbsp;&nbsp;
++                  &lt;a href=&quot;&quot; class=&quot;single_page_browse&quot;&gt;3&lt;/a&gt;&nbsp;&nbsp;
++                  &lt;a href=&quot;&quot; class=&quot;single_page_browse&quot;&gt;4&lt;/a&gt;&nbsp;&nbsp;
++                  &lt;a href=&quot;&quot; class=&quot;single_page_browse&quot;&gt;5&lt;/a&gt;&nbsp;&nbsp;
++                  &lt;/td&gt;
++                  &lt;td class=&quot;next_page_browse&quot;&gt;&nbsp;&lt;a href=&quot;&quot;&gt;&gt;&gt; vor &gt;&gt;&lt;/a&gt;&nbsp;&nbsp;&lt;br&gt;
++                  &lt;/td&gt;
++                &lt;/tr&gt;
++              &lt;/tbody&gt;
++            &lt;/table&gt;
++            &lt;br&gt;
++            &lt;br&gt;
++            &lt;br&gt;
++            &lt;table style=&quot;width: 95%;&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; align=&quot;center&quot;&gt;
++              &lt;tbody&gt;
++                &lt;tr&gt;
++                  &lt;td align=&quot;center&quot; width=&quot;20%&quot;&gt;&lt;img style=&quot;width: 156px; height: 180px;&quot; src=&quot;&quot; alt=&quot;Mainpicture&quot; title=&quot;Mainpicture&quot;&gt;&lt;/td&gt;
++                  &lt;td&gt;
++                  &lt;span class=&quot;detail_title&quot;&gt;Titel des Films Over &lt;/span&gt;&lt;br/&gt;
++&lt;span class=&quot;detail_genre&quot;&gt;Genre1, Genre2&lt;/span&gt;&lt;br&gt;
++&lt;span class=&quot;detail_describ&quot;&gt;ganz lang &lt;/span&gt;
++und dann drei Punkte . . .&lt;br&gt;
++Vorhanden: 3 DVD's&lt;br&gt;
++                  &lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td style=&quot;width: 100%;&quot; colspan=&quot;2&quot;&gt; &lt;span class=&quot;detail_hartist&quot;&gt;Darsteller&lt;/span&gt;&lt;br/&gt;
++                  										&lt;span class=&quot;detail_artist&quot;&gt;Max Schmeling&lt;/span&gt;
++				  &lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td style=&quot;width: 100%;&quot; colspan=&quot;2&quot;&gt; &lt;span class=&quot;detail_hdir&quot;&gt;Regie &lt;/span&gt;&lt;br/&gt;
++                  										&lt;span class=&quot;detail_dir&quot;&gt;&nbsp;&lt;/span&gt;
++                  &lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td style=&quot;width: 100%;&quot; colspan=&quot;2&quot;&gt; &lt;span class=&quot;detail_haudio&quot;&gt;AudioFormate&lt;/span&gt;&lt;br/&gt;
++                  										&lt;span class=&quot;detail_audio&quot;&gt;&nbsp;&lt;/span&gt;
++                  &lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td style=&quot;width: 100%;&quot; colspan=&quot;2&quot;&gt; &lt;span class=&quot;detail_hvideo&quot;&gt;VideoFormate&lt;/span&gt;&lt;br/&gt;
++                  										&lt;span class=&quot;detail_video&quot;&gt;&nbsp;&lt;/span&gt;
++                  &lt;/td&gt;
++                &lt;/tr&gt;
++              &lt;/tbody&gt;
++            &lt;/table&gt;
++            &lt;table border=&quot;1&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;width: 90%;&quot; align=&quot;center&quot;&gt;
++              &lt;tbody&gt;
++                &lt;tr&gt;
++                  &lt;th colspan=&quot;4&quot; class=&quot;detail_hpicture&quot; style=&quot;text-align:left;&quot;&gt;Weitere Bilder &lt;/th&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;detail_picture&quot;&gt;Bild 1&lt;/td&gt;
++                  &lt;td class=&quot;detail_picture&quot;&gt;Bild 2&lt;/td&gt;
++                  &lt;td class=&quot;detail_picture&quot;&gt;Bild 3&lt;/td&gt;
++                  &lt;td class=&quot;detail_picture&quot;&gt;Bild 4&lt;/td&gt;
++                &lt;/tr&gt;
++              &lt;/tbody&gt;
++            &lt;/table&gt;
++&nbsp; &lt;br&gt;
++            &lt;table style=&quot;width: 90%; text-align: left;&quot; align=&quot;center&quot; border=&quot;1&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
++			&lt;thead class=&quot;basket_head&quot;&gt;
++                &lt;tr&gt;
++                  &lt;th style=&quot;width: 10%; text-align: center;&quot;&gt;Pos&lt;br&gt;
++                  &lt;/th&gt;
++                  &lt;th style=&quot;width: 44%; text-align: left;&quot;&gt;DVD - Name&lt;br&gt;
++                  &lt;/th&gt;
++                  &lt;th style=&quot;width: 15%; text-align: center;&quot;&gt;Tage&lt;br&gt;
++                  &lt;/th&gt;
++                  &lt;th style=&quot;width: 15%; text-align: center;&quot;&gt;Vorhanden&lt;br&gt;
++                  &lt;/th&gt;
++                  &lt;th style=&quot;width: 1%;&quot;&gt;&lt;br&gt;
++                  &lt;/th&gt;
++                  &lt;th style=&quot;width: 15%; text-align: center;&quot;&gt;Preis&lt;br&gt;
++                  &lt;/th&gt;
++                &lt;/tr&gt;
++             &lt;/thead&gt;
++			&lt;tbody class=&quot;basket_item&quot;&gt;
++                &lt;tr&gt;
++                  &lt;td&gt;&lt;br&gt;
++                  &lt;/td&gt;
++                  &lt;td&gt;&lt;br&gt;
++                  &lt;/td&gt;
++                  &lt;td&gt;&lt;br&gt;
++                  &lt;/td&gt;
++                  &lt;td&gt;&lt;br&gt;
++                  &lt;/td&gt;
++                  &lt;td&gt;&lt;br&gt;
++                  &lt;/td&gt;
++                  &lt;td&gt;&lt;br&gt;
++                  &lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td&gt;&lt;br&gt;
++                  &lt;/td&gt;
++                  &lt;td&gt;&lt;br&gt;
++                  &lt;/td&gt;
++                  &lt;td&gt;&lt;br&gt;
++                  &lt;/td&gt;
++                  &lt;td&gt;&lt;br&gt;
++                  &lt;/td&gt;
++                  &lt;td&gt;&lt;br&gt;
++                  &lt;/td&gt;
++                  &lt;td&gt;&lt;br&gt;
++                  &lt;/td&gt;
++                &lt;/tr&gt;
++              &lt;/tbody&gt;
++            &lt;/table&gt;
++            &lt;br&gt;
++            &lt;br&gt;
++            &lt;br&gt;
++            &lt;br&gt;
++            &lt;br&gt;
++&lt;!--main end--&gt; &lt;/td&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td background=&quot;border_r.gif&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;3&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;3&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td colspan=&quot;1&quot; bgcolor=&quot;#f9efd2&quot; width=&quot;2&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td colspan=&quot;3&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td background=&quot;border_r.gif&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;7&quot; bgcolor=&quot;#f9efd2&quot; height=&quot;2&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td bgcolor=&quot;#f9efd2&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;1&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;7&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td background=&quot;border_r.gif&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td colspan=&quot;5&quot;&gt;
++            &lt;div class=&quot;copyright&quot;&gt;&copy;
++Remo Griesch,
++Stefan Forstner, Philipp Schneider&lt;br&gt;
++            &lt;/div&gt;
++            &lt;/td&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td background=&quot;border_r.gif&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot; width=&quot;3&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;7&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot;&gt;&lt;/td&gt;
++            &lt;td background=&quot;border_r.gif&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;7&quot; background=&quot;border.gif&quot;&gt;&lt;img src=&quot;border_bl.gif&quot; height=&quot;7&quot;&gt;&lt;/td&gt;
++            &lt;td background=&quot;border_br.gif&quot;&gt;&lt;img src=&quot;1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++        &lt;/tbody&gt;
++      &lt;/table&gt;
++      &lt;/td&gt;
++      &lt;td&gt;&nbsp;&lt;/td&gt;
++    &lt;/tr&gt;
++    &lt;tr&gt;
++      &lt;td&gt;&nbsp;&lt;/td&gt;
++      &lt;td&gt;&nbsp;&lt;/td&gt;
++      &lt;td&gt;&nbsp;&lt;/td&gt;
++    &lt;/tr&gt;
++  &lt;/tbody&gt;
+ &lt;/table&gt;
+-
+-	
+-	
+-	
+-	&lt;/td&gt;
+-    &lt;td&gt;&nbsp;&lt;/td&gt;
+-  &lt;/tr&gt;
+-  &lt;tr&gt;
+-    &lt;td&gt;&nbsp;&lt;/td&gt;
+-    &lt;td&gt;&nbsp;&lt;/td&gt;
+-    &lt;td&gt;&nbsp;&lt;/td&gt;
+-  &lt;/tr&gt;
+-&lt;/table&gt;
+ &lt;/body&gt;
+ &lt;/html&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000250.html">[Provirent-svn-commit] r249 - project_src/website/web/WEB-INF/lib
+</A></li>
+	<LI>Next message: <A HREF="000252.html">[Provirent-svn-commit] r251 - project_src
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#251">[ date ]</a>
+              <a href="thread.html#251">[ thread ]</a>
+              <a href="subject.html#251">[ subject ]</a>
+              <a href="author.html#251">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

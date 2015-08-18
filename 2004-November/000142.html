@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r141 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r141%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411152315.iAFNF4tw004490%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000141.html">
+   <LINK REL="Next"  HREF="000143.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r141 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r141%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411152315.iAFNF4tw004490%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r141 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Tue Nov 16 00:15:04 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000141.html">[Provirent-svn-commit] r140 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000143.html">[Provirent-svn-commit] r142 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#142">[ date ]</a>
+              <a href="thread.html#142">[ thread ]</a>
+              <a href="subject.html#142">[ subject ]</a>
+              <a href="author.html#142">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-16 00:15:02 +0100 (Tue, 16 Nov 2004)
+New Revision: 141
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java
+Log:
+- Bilder werden in Tabelle?\195?\188bersicht angezeigt
+- wenn kein bild vorhanden wird bildanzeige geleert
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java	2004-11-15 23:10:59 UTC (rev 140)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java	2004-11-15 23:15:02 UTC (rev 141)
+@@ -147,7 +147,7 @@
+ 
+     private Label labelImagesFName;
+ 
+-    private Label labelImagesLName;
++    private Label labelImagesDescription;
+ 
+     protected int mode_image;
+ 
+@@ -433,21 +433,22 @@
+             textImagesName.setLayoutData(text1LData2);
+         }
+         {
+-            labelImagesLName = new Label(groupImagesDetail, SWT.NONE);
+-            labelImagesLName.setText(l
++            labelImagesDescription = new Label(groupImagesDetail, SWT.NONE);
++            labelImagesDescription.setText(l
+                     .getString(&quot;images.groupdetail.labeldescription&quot;)
+                     + &quot;:&quot;);
+-            labelImagesLName.setSize(125, 15);
++            labelImagesDescription.setSize(125, 15);
+             GridData labelImagesFileLData1 = new GridData();
+             labelImagesFileLData1.widthHint = 125;
+             labelImagesFileLData1.heightHint = 15;
+             labelImagesFileLData1.horizontalSpan = 2;
+             labelImagesFileLData1.verticalAlignment = GridData.BEGINNING;
+-            labelImagesLName.setLayoutData(labelImagesFileLData1);
++            labelImagesDescription.setLayoutData(labelImagesFileLData1);
+         }
+         {
+             textImagesDescription = new Text(groupImagesDetail, SWT.MULTI
+                     | SWT.V_SCROLL | SWT.BORDER);
++            textImagesDescription.setEnabled(false);
+             GridData text1LData3 = new GridData();
+             text1LData3.horizontalAlignment = GridData.FILL;
+             text1LData3.heightHint = 36;
+@@ -469,8 +470,6 @@
+         }
+         {
+             textFileUrl = new Text(groupImagesDetail, SWT.NONE);
+-            textFileUrl.setText(l
+-                    .getString(&quot;images.groupdetail.labelselecteddatabase&quot;));
+             textFileUrl.setEditable(false);
+             GridData text1LData = new GridData();
+             text1LData.widthHint = 105;
+@@ -648,10 +647,14 @@
+                         textImagesID.setText(&quot;&quot;);
+                         textImagesName.setText(&quot;&quot;);
+                         textImagesDescription.setText(&quot;&quot;);
++                        
+                         textImagesName.setEditable(true);
+                         textImagesDescription.setEditable(true);
+                         buttonSelectFile.setEnabled(true);
+-
++                        
++                        ideaImage=scaledImage = null;
++                        canvasImg.redraw();
++                        
+                         buttonImageCancel.setEnabled(true);
+                         buttonImageSave.setEnabled(true);
+                         buttonImageNew.setEnabled(false);
+@@ -674,14 +677,14 @@
+                         mode_image = ManagementGui.MODE_EDIT;
+ 
+                         textImagesID.setEditable(false);
+-                        textImagesName.setText(&quot;&quot;);
+                         textImagesName.setEditable(true);
+-                        textImagesDescription.setText(&quot;&quot;);
++                        
+                         textImagesDescription.setEditable(true);
+                         textImagesName.setFocus();
+ 
+                         buttonImageCancel.setEnabled(true);
+                         buttonImageSave.setEnabled(true);
++                        
+                         buttonImageNew.setEnabled(false);
+                         buttonImageEdit.setEnabled(false);
+                         buttonImageDelete.setEnabled(false);
+@@ -1134,11 +1137,19 @@
+         textImagesID.setText(object.getImageId() + &quot;&quot;);
+         textImagesName.setText(object.getImageFileName());
+         textImagesDescription.setText(object.getImageFileDescription());
+-
++        
++        textFileUrl.setText(l
++                .getString(&quot;images.groupdetail.labelselecteddatabase&quot;));
++        
+         if (object.getImageFile() != null &amp;&amp; object.getImageFile().length &gt; 0) {
++            System.out.println(&quot;Versuche zu zeichnen&quot;);
+             scaledImage = ideaImage = new Image(getDisplay(),
+                     new ByteArrayInputStream(object.getImageFile()));
+             canvasImg.redraw();
++        }else{
++            statusLine.setStatus(StatusLineStyledText.STATUS_WARN,&quot;Bilddaten k&#246;nnen f&#252;r Bild &quot;+ object.getImageFileName() +&quot;nicht geladen werden.&quot;);
++            scaledImage = ideaImage = null;
++            canvasImg.redraw();
+         }
+ 
+         canvasImg.redraw();
+@@ -1185,18 +1196,14 @@
+                     .get(i);
+             item = new TableItem(tableImagesOverview, SWT.NONE);
+             
+-            /*
++            
+             if (o.getImageFile() != null &amp;&amp; o.getImageFile().length &gt; 0) {
+-            System.out.println(&quot;id&quot;+o.getImageId()+&quot; byte:&quot;+o.getImageFile().toString());
+-            ImageData imgdata = new ImageData(new ByteArrayInputStream((o.getImageFile())));
+-            imgdata.scaledTo(10,10);
+- 
+-            Image img = new Image(getDisplay(),imgdata);
+-            System.out.println(&quot;Gr&#246;&#223;e: &quot;+img.getBounds());
++                System.out.println(&quot;id&quot;+o.getImageId()+&quot; byte:&quot;+o.getImageFile().toString());
++                
+             
+-                item.setImage(0, new Image(getDisplay(),imgdata));
++                item.setImage(0, createThumbnailImage(o.getImageFile()));
+             }            
+-            */
++            
+             item.setText(new String[] { o.getImageId() + &quot;&quot;,
+                     o.getImageFileName(), o.getImageFileDescription() });
+ 
+@@ -1204,15 +1211,33 @@
+     }
+     
+     private Image createThumbnailImage(byte[] data){
+-        ImageData imgdata = new ImageData(new ByteArrayInputStream(data));
+-        int maxheight = 10;
+-        int maxwidth = 10;
+-        imgdata.scaledTo(maxwidth,maxheight);
+-            /**
+-             * @todo hier noch einen algorithmus zum verkleinern
+-             */
++        
++        int maxheight = 75;
++        int maxwidth = 75;
+ 
+-        return new Image(getDisplay(),imgdata);
++        final Image image = new Image(getDisplay(),new ByteArrayInputStream(data));
++        final int width = image.getBounds().width;
++        final int height = image.getBounds().height;
++        float scalefactor = 1;
+         
++        if (width &gt; maxwidth) {
++            scalefactor = (float)maxwidth/width;
++        }
++        if (height &gt; maxheight) {
++            if ( ((float)maxheight/height)&lt; scalefactor ){
++                scalefactor = ((float)maxheight/height);
++            }
++            
++        }
++        
++        final Image scaledtemp = new Image(getDisplay(),
++                image.getImageData().scaledTo((int)(width*scalefactor),(int)(height*scalefactor)));
++        
++
++        System.out.println(&quot;Gr&#246;&#223;e: &quot;+scaledtemp.getBounds());
++        
++        
++        return scaledtemp;
++        
+     }
+ }
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000141.html">[Provirent-svn-commit] r140 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000143.html">[Provirent-svn-commit] r142 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#142">[ date ]</a>
+              <a href="thread.html#142">[ thread ]</a>
+              <a href="subject.html#142">[ subject ]</a>
+              <a href="author.html#142">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

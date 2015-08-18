@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r321 - docu/latex
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r321%20-%20docu/latex&In-Reply-To=%3C200512200703.jBK73jTT016056%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000322.html">
+   <LINK REL="Next"  HREF="000324.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r321 - docu/latex</H1>
+    <B>sforstner at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r321%20-%20docu/latex&In-Reply-To=%3C200512200703.jBK73jTT016056%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r321 - docu/latex">sforstner at berlios.de
+       </A><BR>
+    <I>Tue Dec 20 08:03:45 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000322.html">[Provirent-svn-commit] r320 - docu/latex
+</A></li>
+        <LI>Next message: <A HREF="000324.html">[Provirent-svn-commit] r322 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#323">[ date ]</a>
+              <a href="thread.html#323">[ thread ]</a>
+              <a href="subject.html#323">[ subject ]</a>
+              <a href="author.html#323">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2005-12-20 08:03:10 +0100 (Tue, 20 Dec 2005)
+New Revision: 321
+
+Added:
+   docu/latex/5-Fazit.tex
+Modified:
+   docu/latex/3-6-Persistenzschichten.tex
+Log:
+Fazit Struts/Hibernate hinzugef?\195?\188gt
+
+Modified: docu/latex/3-6-Persistenzschichten.tex
+===================================================================
+--- docu/latex/3-6-Persistenzschichten.tex	2005-12-19 22:18:35 UTC (rev 320)
++++ docu/latex/3-6-Persistenzschichten.tex	2005-12-20 07:03:10 UTC (rev 321)
+@@ -11,7 +11,7 @@
+ 	\label{fig:architecture_hibernate}
+ \end{figure}
+ 
+-\vref{fig:architecture_hibernate} stellt die Rollen der wichtigsten Schnittstellen der Business- und Persistenzschicht von Hibernate dar. Dabei agiert die Businessschicht als ein Client der Persistenzschicht. In manchen Anwendungen werden diese beiden Schichten aber auch nicht getrennt dargestellt. Hibernate erm&#246;glicht nach \citep{Bauer2004} auch die Verwendung von bestehenden Java APIs, wie z.B. JDBC, JTA oder JNDI. JDBC bietet abstrakte Funktionalit&#228;ten analog zu relationalen Datenbanken und erlaubt es, fast jede Datenbank &#252;ber einen JDBC Treiber mit Hibernate verwenden zu k&#246;nnen. JNDI und JTA erm&#246;glichen Hibernate die Integration in J2EE Applikationsservern.\\
++\vref{fig:architecture_hibernate} stellt die Rollen der wichtigsten Schnittstellen der Business- und Persistenzschicht von Hibernate dar. Dabei agiert die Businessschicht als ein Client der Persistenzschicht. In manchen Anwendungen werden diese beiden Schichten aber auch nicht getrennt dargestellt. Hibernate erm&#246;glicht nach \citep{Bauer2004} auch die Verwendung von bestehenden Java APIs, wie z.B. JDBC\footnote{Java Database Connectivity}, JTA\footnote{Java Transaction API} oder JNDI\footnote{Java Naming Directory Interface}. JDBC bietet abstrakte Funktionalit&#228;ten analog zu relationalen Datenbanken und erlaubt es, fast jede Datenbank &#252;ber einen JDBC Treiber mit Hibernate verwenden zu k&#246;nnen. JNDI und JTA erm&#246;glichen Hibernate die Integration in J2EE Applikationsservern.\\
+ 
+ &#220;ber XML-basierte Mapping-Dateien wird das objektrelationale Abbilden der Java-klassen f&#252;r Hibernate-Anwendungen definiert. Eine solche Mapping-Datei wird mit dem Dateinamen-Suffix \textit{.hbm.xml} versehen und wird generell f&#252;r jede persistente Klasse erzeugt. In \vref{code:mapping_hibernate} wird das Prinzip der Mapping-Dateien dargestellt.
+ 
+
+Added: docu/latex/5-Fazit.tex
+===================================================================
+--- docu/latex/5-Fazit.tex	2005-12-19 22:18:35 UTC (rev 320)
++++ docu/latex/5-Fazit.tex	2005-12-20 07:03:10 UTC (rev 321)
+@@ -0,0 +1,13 @@
++\chapter{Fazit} \label{sec:Fazit}
++Mit Hilfe dieses Projektes wurde bei allen Projektmitglieder Erfahrungen im Bereich Softwareentwicklung und Softwareplanung gesammelt. Bei diesem Projekt wurde eine eigenst&#228;ndige Idee in die Realit&#228;t umgesetzt, wobei alle Projektmitglieder Ihren Teil dazu beitrugen.
++
++Technologisch gesehen haben sich die Projektmitglieder in Themengebiete gewagt, die ihnen bis dahin zum Teil relativ fremd waren. So wurden im Bereich vom objektrelationalen Mapping &#252;berhaupt die ersten Erfahrungen gesammelt. Dazu wurde die Erkenntnis gewonnen, dass Hibernate ein sehr vorteilhaftes und umfassendes Werkzeug ist, um die Persistenzschicht von der Businessschicht unabh&#228;ngig zu gestalten.\\
++So wurde erreicht, dass diese Persistenzschicht vollst&#228;ndig implementiert werden konnte und f&#252;r den Zugriff aus dem Kundenmodul und dem Verwaltungsmodul zur Verf&#252;gung steht.
++
++Weiterhin ist festzustellen, dass die Implementierung des Projekts noch nicht abgeschlossen ist, so dass z.B. noch grundlegende Funktionalit&#228;ten des Kundenmoduls umgesetzt werden m&#252;ssen. Trotzdem konnte und kann hier die Verwendung des Webframeworks Apache Struts dazu beitragen, dass mit relativ wenig Aufwand und Entwicklungszeit die Entwicklung einer 3-schichtigen Webanwendung erm&#246;glicht wird. Dies hat den Vorteil, dass Design, Businesslogik und Daten von einander getrennt dargestellt und umgesetzt werden konnten. 
++
++
++
++
++Dieses Projekt k&#246;nnte auch als Grundlage f&#252;r andere Studentenprojekte dienen. Dabei m&#252;ssen die Studenten sich nicht in dieses spezielle Projekt einarbeiten, sondern k&#246;nnen ein selbst&#228;ndiges Modul entwickeln. So k&#246;nnten Studenten bspw. ein Suchmodul mit Apache Lucence oder ein Barcodemodul zur Verarbeitung von Barcodes entwickeln. Weiterhin k&#246;nnte ein Modul zur Erstellung von Rechnungen oder anderen Reports mit Eclipse Birt erstellt werden, ein Modul zur Verwaltung der Standorte/Lagerorte der DVD's oder ein Modul zur Berechnung der k&#252;rzesten Wegstrecke bei der Zusammenstellung einer bzw. mehrerer Bestellungen.
++
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000322.html">[Provirent-svn-commit] r320 - docu/latex
+</A></li>
+	<LI>Next message: <A HREF="000324.html">[Provirent-svn-commit] r322 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#323">[ date ]</a>
+              <a href="thread.html#323">[ thread ]</a>
+              <a href="subject.html#323">[ subject ]</a>
+              <a href="author.html#323">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r132 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r132%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411121231.iACCV51O018478%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000132.html">
+   <LINK REL="Next"  HREF="000134.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r132 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r132%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411121231.iACCV51O018478%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r132 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Fri Nov 12 13:31:05 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000132.html">[Provirent-svn-commit] r131 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui project_src/provirent_hibernate/src/de/hsharz/provirent/persistence project_src/provirent_hibernate/src/test/provirent/hibernate timetable
+</A></li>
+        <LI>Next message: <A HREF="000134.html">[Provirent-svn-commit] r133 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#133">[ date ]</a>
+              <a href="thread.html#133">[ thread ]</a>
+              <a href="subject.html#133">[ subject ]</a>
+              <a href="author.html#133">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-11-12 13:31:04 +0100 (Fri, 12 Nov 2004)
+New Revision: 132
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+Log:
+FormateTab wird gleich beim Starten geladen und angezeigt
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-11 21:26:45 UTC (rev 131)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-12 12:31:04 UTC (rev 132)
+@@ -334,8 +334,9 @@
+             cTabFolder1LData.grabExcessVerticalSpace = true;
+             cTabFolder1LData.verticalAlignment = GridData.FILL;
+             cTabFolderMain.setLayoutData(cTabFolder1LData);
+-
++            
+             initFormatTab();
++            
+ 
+         } catch (Exception e) {
+             e.printStackTrace();
+@@ -400,8 +401,7 @@
+         viewVideoFormatMenuItem.addSelectionListener(new SelectionAdapter() {
+             public void widgetSelected(SelectionEvent evt) {
+ 				if(tabItemFormat == null || tabItemFormat.isDisposed()){
+-				    initFormatTab();
+-				    cTabFolderMain.setSelection(tabItemFormat);
++				    initFormatTab();				    
+ 				 return;   
+ 				}
+ 				
+@@ -418,7 +418,6 @@
+             public void widgetSelected(SelectionEvent evt) {
+ 				if(tabItemDirector == null || tabItemDirector.isDisposed()){
+ 				    initDirectorTab();
+-				    cTabFolderMain.setSelection(tabItemDirector);
+ 				    return;   
+ 				}
+ 				
+@@ -435,7 +434,6 @@
+             public void widgetSelected(SelectionEvent evt) {
+ 				if(tabItemActor == null || tabItemActor.isDisposed()){
+ 				    initActorTab();
+-				    cTabFolderMain.setSelection(tabItemActor);
+ 				    return;   
+ 				}
+ 				
+@@ -453,7 +451,6 @@
+             public void widgetSelected(SelectionEvent evt) {
+ 				if(tabItemGenre == null || tabItemGenre.isDisposed()){
+ 				    initGenreTab();
+-				    cTabFolderMain.setSelection(tabItemGenre);
+ 				    return;   
+ 				}
+ 				
+@@ -471,7 +468,6 @@
+             public void widgetSelected(SelectionEvent evt) {
+ 				if(tabItemLanguage == null || tabItemLanguage.isDisposed()){
+ 				    initLanguageTab();
+-				    cTabFolderMain.setSelection(tabItemLanguage);
+ 				    return;   
+ 				}
+ 				
+@@ -489,7 +485,6 @@
+             public void widgetSelected(SelectionEvent evt) {
+ 				if(tabItemStatus == null || tabItemStatus.isDisposed()){
+ 				    initStatusTab();
+-				    cTabFolderMain.setSelection(tabItemStatus);
+ 				    return;   
+ 				}
+ 				
+@@ -535,7 +530,7 @@
+             
+             tabItemStatus.setControl(compositeStatus);
+         }
+-        
++        cTabFolderMain.setSelection(tabItemStatus);
+     }
+ 
+ 
+@@ -565,7 +560,7 @@
+     
+     
+     private void initFormatTab() {
+-        tabItemFormat = new CTabItem(cTabFolderMain, SWT.NONE);
++        tabItemFormat = new CTabItem(cTabFolderMain, SWT.NONE);        
+         tabItemFormat.setText(l.getString(&quot;tab.format.title&quot;));
+         tabItemFormat.addDisposeListener(new DisposeListener() {
+             public void widgetDisposed(DisposeEvent evt) {
+@@ -583,6 +578,7 @@
+             
+             tabItemFormat.setControl(compositeFormate);
+         }
++        cTabFolderMain.setSelection(tabItemFormat);
+         
+     }
+     
+@@ -607,7 +603,7 @@
+             
+             tabItemDirector.setControl(compositeDirector);
+         }
+-        
++        cTabFolderMain.setSelection(tabItemDirector);
+     }    
+     
+     private void initActorTab() {
+@@ -629,7 +625,7 @@
+             
+             tabItemActor.setControl(compositeActor);
+         }
+-        
++        cTabFolderMain.setSelection(tabItemActor);
+     }
+ 
+     private void initGenreTab() {
+@@ -652,7 +648,7 @@
+             
+             tabItemGenre.setControl(compositeGenre);
+         }
+-        
++        cTabFolderMain.setSelection(tabItemGenre);
+     }
+ 
+     private void initLanguageTab() {
+@@ -661,9 +657,9 @@
+         tabItemLanguage.addDisposeListener(new DisposeListener() {
+ 
+             public void widgetDisposed(DisposeEvent evt) {
+-if(!viewLanguageMenuItem.isDisposed()){
+-                viewLanguageMenuItem.setSelection(false);
+-}
++                if(!viewLanguageMenuItem.isDisposed()){
++                    viewLanguageMenuItem.setSelection(false);
++                }
+             }
+             
+         });
+@@ -674,6 +670,7 @@
+             
+             tabItemLanguage.setControl(compositeLanguage);
+         }
++        cTabFolderMain.setSelection(tabItemLanguage);
+     }    
+     
+     private void initStatusLine() {
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000132.html">[Provirent-svn-commit] r131 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui project_src/provirent_hibernate/src/de/hsharz/provirent/persistence project_src/provirent_hibernate/src/test/provirent/hibernate timetable
+</A></li>
+	<LI>Next message: <A HREF="000134.html">[Provirent-svn-commit] r133 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#133">[ date ]</a>
+              <a href="thread.html#133">[ thread ]</a>
+              <a href="subject.html#133">[ subject ]</a>
+              <a href="author.html#133">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

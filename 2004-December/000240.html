@@ -1,0 +1,521 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r239 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r239%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/management/gui/language%20de/hsharz/provirent/objects%20test/provirent/hibernate&In-Reply-To=%3C200412130105.iBD15nwx003649%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000239.html">
+   <LINK REL="Next"  HREF="000241.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r239 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects test/provirent/hibernate</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r239%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/management/gui/language%20de/hsharz/provirent/objects%20test/provirent/hibernate&In-Reply-To=%3C200412130105.iBD15nwx003649%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r239 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects test/provirent/hibernate">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Mon Dec 13 02:05:49 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000239.html">[Provirent-svn-commit] r238 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+</A></li>
+        <LI>Next message: <A HREF="000241.html">[Provirent-svn-commit] r240 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#240">[ date ]</a>
+              <a href="thread.html#240">[ thread ]</a>
+              <a href="subject.html#240">[ subject ]</a>
+              <a href="author.html#240">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-12-13 02:05:29 +0100 (Mon, 13 Dec 2004)
+New Revision: 239
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeOrder.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/order.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.hbm.xml
+   project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsComplexObjects.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsSimpleObjects.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeOrder.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeOrder.java	2004-12-12 19:12:42 UTC (rev 238)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeOrder.java	2004-12-13 01:05:29 UTC (rev 239)
+@@ -117,6 +117,28 @@
+     private Group groupOrderDetail;
+ 
+     private MovieOrder localCustomer;
++
++    private SashForm sashFormOrderDetail;
++
++    private Group groupOrderDetails;
++
++    private Group groupOrderItemDetails;
++
++    private Label labelOrderId;
++
++    private Label labelOrderCustomerName;
++
++    private Text textOrderId;
++
++    private Text textOrderCustomerName;
++
++    private Label labelOrderCustomerLastName;
++
++    private Text textOrderCustomerLastName;
++
++    private Label labelOrderCustomerFirstName;
++
++    private Text textOrderCustomerFirstName;
+     
+     /**
+      * @param p
+@@ -204,9 +226,9 @@
+             item = new TableItem(tableOrder, SWT.NONE);
+                         
+             item.setText(new String[] { o.getMovieOrderId() + &quot;&quot;,
+-                    o.getCustomer().getUserName(), o.getCustomer().getPerson().getLastName(),
+-                    o.getCustomer().getPerson().getFirstName()});
+-
++                    					o.getCustomer() == null ? &quot;&quot; : o.getCustomer().getUserName(), 
++                    					o.getCustomer() == null ? &quot;&quot; : o.getCustomer().getPerson().getLastName(),
++                    					o.getCustomer() == null ? &quot;&quot; : o.getCustomer().getPerson().getFirstName()});
+         }
+     }
+     
+@@ -256,7 +278,7 @@
+ 	            String orderdate = &quot;&quot;;
+ 	            if (o.getOrderTime() != null) {
+ 	                orderdate = DateFormat.getDateInstance(DateFormat.SHORT).format(
+-	                    o.getOrderTime());
++	                    o.getOrderTime().getTime());
+ 	            }
+ 	           
+ 	            String senddate = &quot;&quot;;
+@@ -276,10 +298,10 @@
+ 	                    orderdate, 
+ 	                    senddate, 
+ 	                    receivingdate,
+-	                    o.getPayment().getPaymentCategory().getName(),
++	                    o.getPayment() == null ? &quot;&quot; : o.getPayment().getPaymentCategory().getName(),
+ 	                    Integer.toString(o.getDuration()),
+-	                    o.getConditionSend().getConditionName(),
+-	                    o.getConditionReceiving().getConditionName()});
++	                    o.getConditionSend() == null ? &quot;&quot; : o.getConditionSend().getConditionName(),
++	                    o.getConditionReceiving() == null ? &quot;&quot; : o.getConditionReceiving().getConditionName()});
+ 	
+ 	        }
+         }
+@@ -356,11 +378,139 @@
+         formData.top = new FormAttachment(0, 100, 5);
+         formData.bottom = new FormAttachment(100, 100, -5);
+         groupOrderDetail.setLayoutData(formData);
++        {
++            sashFormOrderDetail = new SashForm(groupOrderDetail, SWT.VERTICAL | SWT.V_SCROLL);
++            GridData sashForm2LData = new GridData();
++            sashForm2LData.verticalAlignment = GridData.FILL;
++            sashForm2LData.horizontalAlignment = GridData.FILL;
++            sashForm2LData.grabExcessHorizontalSpace = true;
++            sashForm2LData.grabExcessVerticalSpace = true;
++            sashFormOrderDetail.setLayoutData(sashForm2LData);
++
++        }
++        initOrderDetails();
++        
++        initOrderItemDetails();
+     }
+ 
+     /**
+      * 
+      */
++    private void initOrderItemDetails() {
++        groupOrderItemDetails = new Group(sashFormOrderDetail, SWT.NONE);
++        GridLayout groupOrderDetailLayout = new GridLayout();
++        groupOrderDetailLayout.marginHeight = 25;
++        groupOrderDetailLayout.numColumns = 4;
++        groupOrderDetailLayout.verticalSpacing = 15;
++        groupOrderItemDetails.setText(l.getString(&quot;Order.groupdetail.orderitems.label&quot;));
++        FormData formData = new FormData();
++        groupOrderItemDetails.setLayout(groupOrderDetailLayout);
++        groupOrderItemDetails.setLayoutData(formData);
++    }
++
++    /**
++     * 
++     */
++    private void initOrderDetails() {
++        groupOrderDetails = new Group(sashFormOrderDetail, SWT.NONE);
++        GridLayout groupOrderDetailLayout = new GridLayout();
++        groupOrderDetailLayout.marginHeight = 25;
++        groupOrderDetailLayout.numColumns = 4;
++        groupOrderDetailLayout.verticalSpacing = 15;
++        groupOrderDetails.setText(l.getString(&quot;Order.groupdetail.order.label&quot;));
++        FormData formData = new FormData();
++        groupOrderDetails.setLayout(groupOrderDetailLayout);
++        groupOrderDetails.setLayoutData(formData);
++        {
++            labelOrderId = new Label(groupOrderDetails, SWT.NONE);
++            labelOrderId.setText(l
++                    .getString(&quot;order.groupdetail.order.idlabel&quot;)
++                    + &quot;:&quot;);
++            labelOrderId.setSize(125, 15);
++            GridData formData2 = new GridData();
++            formData2.widthHint = 125;
++            formData2.heightHint = 15;
++            formData2.horizontalSpan = 2;
++            labelOrderId.setLayoutData(formData2);
++        }
++        {
++            textOrderId = new Text(groupOrderDetails, SWT.READ_ONLY
++                    | SWT.BORDER);
++            GridData text1LData1 = new GridData();
++            text1LData1.horizontalAlignment = GridData.FILL;
++            text1LData1.heightHint = 13;
++            text1LData1.horizontalSpan = 2;
++            text1LData1.grabExcessHorizontalSpace = true;
++            textOrderId.setLayoutData(text1LData1);
++        }
++        {
++            labelOrderCustomerName = new Label(groupOrderDetails, SWT.NONE);
++            labelOrderCustomerName.setText(l
++                    .getString(&quot;order.groupdetail.order.customernamelabel&quot;)
++                    + &quot;:&quot;);
++            labelOrderCustomerName.setSize(125, 15);
++            GridData formData2 = new GridData();
++            formData2.widthHint = 125;
++            formData2.heightHint = 15;
++            formData2.horizontalSpan = 2;
++            labelOrderCustomerName.setLayoutData(formData2);
++        }
++        {
++            textOrderCustomerName = new Text(groupOrderDetails, SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData1 = new GridData();
++            text1LData1.horizontalAlignment = GridData.FILL;
++            text1LData1.heightHint = 13;
++            text1LData1.horizontalSpan = 2;
++            text1LData1.grabExcessHorizontalSpace = true;
++            textOrderCustomerName.setLayoutData(text1LData1);
++        }
++        {
++            labelOrderCustomerLastName = new Label(groupOrderDetails, SWT.NONE);
++            labelOrderCustomerLastName.setText(l
++                    .getString(&quot;order.groupdetail.order.customerlastnamelabel&quot;)
++                    + &quot;:&quot;);
++            labelOrderCustomerLastName.setSize(125, 15);
++            GridData formData2 = new GridData();
++            formData2.widthHint = 125;
++            formData2.heightHint = 15;
++            formData2.horizontalSpan = 2;
++            labelOrderCustomerLastName.setLayoutData(formData2);
++        }
++        {
++            textOrderCustomerLastName = new Text(groupOrderDetails, SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData1 = new GridData();
++            text1LData1.horizontalAlignment = GridData.FILL;
++            text1LData1.heightHint = 13;
++            text1LData1.horizontalSpan = 2;
++            text1LData1.grabExcessHorizontalSpace = true;
++            textOrderCustomerLastName.setLayoutData(text1LData1);
++        }
++        {
++            labelOrderCustomerFirstName = new Label(groupOrderDetails, SWT.NONE);
++            labelOrderCustomerFirstName.setText(l
++                    .getString(&quot;order.groupdetail.order.customerfirstnamelabel&quot;)
++                    + &quot;:&quot;);
++            labelOrderCustomerFirstName.setSize(125, 15);
++            GridData formData2 = new GridData();
++            formData2.widthHint = 125;
++            formData2.heightHint = 15;
++            formData2.horizontalSpan = 2;
++            labelOrderCustomerFirstName.setLayoutData(formData2);
++        }
++        {
++            textOrderCustomerFirstName = new Text(groupOrderDetails, SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData1 = new GridData();
++            text1LData1.horizontalAlignment = GridData.FILL;
++            text1LData1.heightHint = 13;
++            text1LData1.horizontalSpan = 2;
++            text1LData1.grabExcessHorizontalSpace = true;
++            textOrderCustomerFirstName.setLayoutData(text1LData1);
++        }
++    }
++
++    /**
++     * 
++     */
+     private void initOrderGroupOverview() {
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;initOrderGroupOverview() - start&quot;);
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/order.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/order.properties	2004-12-12 19:12:42 UTC (rev 238)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/order.properties	2004-12-13 01:05:29 UTC (rev 239)
+@@ -26,6 +26,12 @@
+ 
+ Order.groupoverview.searchlabel=Suche nach
+ Order.groupdetail.label=Detail
++Order.groupdetail.order.label=Bestellung
++order.groupdetail.order.idlabel=Bestellungs-Id
++order.groupdetail.order.customernamelabel=Benutzername
++order.groupdetail.order.customerlastnamelabel=Nachname
++order.groupdetail.order.customerfirstnamelabel=Vorname
++Order.groupdetail.orderitems.label=Bestellartikel
+ Order.groupdetail.idlabel=Benutzer ID
+ Order.groupdetail.usernamelabel=Benutzername
+ Order.groupdetail.lastnamelabel=Nachname
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml	2004-12-12 19:12:42 UTC (rev 238)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml	2004-12-13 01:05:29 UTC (rev 239)
+@@ -17,7 +17,9 @@
+       &lt;id name=&quot;dvdId&quot; type=&quot;int&quot; column=&quot;DVDID&quot;&gt;
+         &lt;meta attribute=&quot;scope-set&quot;&gt;public&lt;/meta&gt;
+         &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+-        &lt;generator class=&quot;native&quot;/&gt;
++        &lt;generator class=&quot;sequence&quot;&gt;
++					&lt;param name=&quot;sequence&quot;&gt;dvd_id_sequence&lt;/param&gt;
++		&lt;/generator&gt;
+       &lt;/id&gt;
+  
+  
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml	2004-12-12 19:12:42 UTC (rev 238)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml	2004-12-13 01:05:29 UTC (rev 239)
+@@ -17,7 +17,9 @@
+       &lt;id name=&quot;imageId&quot; type=&quot;int&quot; column=&quot;IMAGEID&quot;&gt;
+         &lt;meta attribute=&quot;scope-set&quot;&gt;public&lt;/meta&gt;
+         &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+-        &lt;generator class=&quot;native&quot;/&gt;
++        &lt;generator class=&quot;sequence&quot;&gt;
++					&lt;param name=&quot;sequence&quot;&gt;image_id_sequence&lt;/param&gt;
++		&lt;/generator&gt;
+       &lt;/id&gt;
+ 
+  
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.hbm.xml	2004-12-12 19:12:42 UTC (rev 238)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.hbm.xml	2004-12-13 01:05:29 UTC (rev 239)
+@@ -17,7 +17,9 @@
+       &lt;id name=&quot;movieOrderId&quot; type=&quot;int&quot; column=&quot;MOVIEORDERID&quot;&gt;
+         &lt;meta attribute=&quot;scope-set&quot;&gt;public&lt;/meta&gt;
+         &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+-        &lt;generator class=&quot;native&quot;/&gt;
++        &lt;generator class=&quot;sequence&quot;&gt;
++			&lt;param name=&quot;sequence&quot;&gt;movieorder_id_sequence&lt;/param&gt;
++		&lt;/generator&gt;
+       &lt;/id&gt;
+ 
+ 		 &lt;many-to-one
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.hbm.xml	2004-12-12 19:12:42 UTC (rev 238)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.hbm.xml	2004-12-13 01:05:29 UTC (rev 239)
+@@ -17,7 +17,9 @@
+       &lt;id name=&quot;orderItemId&quot; type=&quot;int&quot; column=&quot;ORDERITEMID&quot;&gt;
+         &lt;meta attribute=&quot;scope-set&quot;&gt;public&lt;/meta&gt;
+         &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+-        &lt;generator class=&quot;native&quot;/&gt;
++        &lt;generator class=&quot;sequence&quot;&gt;
++			&lt;param name=&quot;sequence&quot;&gt;orderitem_id_sequence&lt;/param&gt;
++		&lt;/generator&gt;
+       &lt;/id&gt;
+ 
+ 			&lt;property	name=&quot;orderTime&quot; type=&quot;calendar&quot;&gt;
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsComplexObjects.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsComplexObjects.java	2004-12-12 19:12:42 UTC (rev 238)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsComplexObjects.java	2004-12-13 01:05:29 UTC (rev 239)
+@@ -44,7 +44,6 @@
+     public static Test suite() {
+         TestSuite suite = new TestSuite(&quot;Test for test.provirent.hibernate&quot;);
+         //$JUnit-BEGIN$
+-        suite.addTestSuite(TestCustomer.class);
+         suite.addTestSuite(TestMovie.class);
+         suite.addTestSuite(TestDvd.class);
+         //$JUnit-END$
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsSimpleObjects.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsSimpleObjects.java	2004-12-12 19:12:42 UTC (rev 238)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsSimpleObjects.java	2004-12-13 01:05:29 UTC (rev 239)
+@@ -54,7 +54,7 @@
+         suite.addTestSuite(TestStatus.class);
+         suite.addTestSuite(TestVideoFormat.class);
+         suite.addTestSuite(TestLanguage.class);
+-        suite.addTestSuite(TestPerson.class);
++        suite.addTestSuite(TestCustomer.class);
+         
+         suite.addTestSuite(TestPaymentCategory.class);
+         suite.addTestSuite(TestPayment.class);
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java	2004-12-12 19:12:42 UTC (rev 238)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java	2004-12-13 01:05:29 UTC (rev 239)
+@@ -83,7 +83,8 @@
+             logger.debug(&quot;tearDown() - end&quot;);
+         }
+     }
+-
++    
++    /*
+     public void testCondition() throws Exception {
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - start&quot;);
+@@ -194,7 +195,7 @@
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+-    }
++    }*/
+ 
+     public void testSaveCondition() throws Exception {
+         if (logger.isDebugEnabled()) {
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java	2004-12-12 19:12:42 UTC (rev 238)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java	2004-12-13 01:05:29 UTC (rev 239)
+@@ -109,7 +109,7 @@
+                     dvds.size() &gt; 0);          
+             
+             //for each movie 
+-            for (int i = 0; i &lt; 1; i++) {
++            for (int i = 0; i &lt; 2; i++) {
+ 
+                 Customer customer = (Customer) customers.get(i);
+ 
+@@ -120,14 +120,14 @@
+                 List orderItems = new ArrayList();
+ 
+                 
+-                for (int j = 0; j &lt; 1; j++) {
++                for (int j = 0; j &lt; 3; j++) {
+ 
+                     OrderItem orderItem = new OrderItem();
+                     orderItem.setCustomer(customer);
+                     orderItem.setDuration(2);
+ 
+                     
+-                    Dvd dvd = (Dvd)dvds.get(0);
++                    Dvd dvd = (Dvd)dvds.get(j % dvds.size());
+                     orderItem.setDvd(dvd);
+                     
+                     orderItem.setOrderTime(Calendar.getInstance());
+@@ -171,7 +171,9 @@
+ 
+                 //save the movieOrder
+                 logger.debug(&quot;MovieOrder: &quot;+movieOrder);
+-                //s.save(movieOrder);
++                s.save(movieOrder);
++                s.flush();
++                tx.commit();
+             }
+         } catch (HibernateException e) {
+             // TODO Auto-generated catch block
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java	2004-12-12 19:12:42 UTC (rev 238)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java	2004-12-13 01:05:29 UTC (rev 239)
+@@ -146,24 +146,10 @@
+                 logger.debug(&quot;Test    Test&quot;);
+                 logger.debug(&quot;Cat&quot;+categorys.size());
+                 logger.debug(&quot;pay&quot;+payments.size());
+-                
+-                RandomRange randomRange;
+ 
+-                for (int i = 0; i &lt; payments.size(); i++) {
+-
+-                     
+-                    
+-                    randomRange = new RandomRange(0, (categorys.size() - 1));
+-
+-                    logger.debug(i + &quot; Randomnum:&quot;
+-                            + randomRange.getNumbers(1).get(0));
+-                    
+-                    PaymentCategory prop = (PaymentCategory) categorys
+-                            .get(((Integer) randomRange.getNumbers(
+-                                    1 ).get(0)).intValue());
+-
++                for (int i = 0; i &lt; payments.size(); i++) {                    
++                    PaymentCategory prop = (PaymentCategory) categorys.get(i % 5);
+                     ((Payment) payments.get(i)).setPaymentCategory(prop);
+-
+                 }
+ 
+                 //save objects
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java	2004-12-12 19:12:42 UTC (rev 238)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java	2004-12-13 01:05:29 UTC (rev 239)
+@@ -84,7 +84,7 @@
+         }
+     }
+ 
+-   
++   /*
+     public void testStatus() throws Exception {
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - start&quot;);
+@@ -193,7 +193,7 @@
+       if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+-    }
++    }*/
+ 
+     public void testSaveStatus() throws Exception {
+         if (logger.isDebugEnabled()) {
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000239.html">[Provirent-svn-commit] r238 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+</A></li>
+	<LI>Next message: <A HREF="000241.html">[Provirent-svn-commit] r240 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#240">[ date ]</a>
+              <a href="thread.html#240">[ thread ]</a>
+              <a href="subject.html#240">[ subject ]</a>
+              <a href="author.html#240">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,378 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r314 - in docu/latex: . images
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r314%20-%20in%20docu/latex%3A%20.%20images&In-Reply-To=%3C200512191615.jBJGFXV3002031%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000315.html">
+   <LINK REL="Next"  HREF="000317.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r314 - in docu/latex: . images</H1>
+    <B>pschneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r314%20-%20in%20docu/latex%3A%20.%20images&In-Reply-To=%3C200512191615.jBJGFXV3002031%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r314 - in docu/latex: . images">pschneider at berlios.de
+       </A><BR>
+    <I>Mon Dec 19 17:15:33 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000315.html">[Provirent-svn-commit] r313 - project_src/customer/jsp
+</A></li>
+        <LI>Next message: <A HREF="000317.html">[Provirent-svn-commit] r315 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#316">[ date ]</a>
+              <a href="thread.html#316">[ thread ]</a>
+              <a href="subject.html#316">[ subject ]</a>
+              <a href="author.html#316">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2005-12-19 17:15:30 +0100 (Mon, 19 Dec 2005)
+New Revision: 314
+
+Added:
+   docu/latex/images/svn-wechselnzu.jpg
+Modified:
+   docu/latex/1-Einfuehrung.tex
+   docu/latex/2-Aufbau.tex
+   docu/latex/3-2-Versionsverwaltung.tex
+   docu/latex/3-6-Persistenzschichten.tex
+   docu/latex/4-1-Versionsverwaltung.tex
+   docu/latex/Provirent-Doku.tex
+Log:
+- Fehler korrigiert
+- kapitel impl-Versionsverwaltung vervollst?\195?\164ndigt
+
+Modified: docu/latex/1-Einfuehrung.tex
+===================================================================
+--- docu/latex/1-Einfuehrung.tex	2005-12-19 14:03:52 UTC (rev 313)
++++ docu/latex/1-Einfuehrung.tex	2005-12-19 16:15:30 UTC (rev 314)
+@@ -94,17 +94,17 @@
+ 
+ 
+ \section{Motivation} \label{sec:Motivation}
+-Im Rahmen des Studiums an der Fachhochschule Harz in Wernigerode muss jeder Student des Studiengangs Kommunikationsinformatik eine Projektarbeit abgeben. Dies bedeutet, da&#223; der Student eine Aufgabe (meist Programmieraufgabe) alleine oder in einem kleinen Team bew&#228;ltigen muss. Die Professoren der Hochschule bieten dabei viele interessante Projektarbeiten an, sind jedoch auf offen f&#252;r eigene Vorschl&#228;ge der Studenten.\\
+-Da schon in den Teamprojekten\footnote{Auch das Teamprojekt ist Bestandteil des Studiums. Beim Teamprojekt m&#252;&#223;en mehrere Studenten (7-15) gemeinsam eine Programmieraufgabe umsetzen.} \emph{Labmin}\footnote{\url{<A HREF="http://labmin.de.vu">http://labmin.de.vu</A>}} und \emph{German Team Sony Aibo}\footnote{\url{<A HREF="http://www.der-baer.com/projects.htm">http://www.der-baer.com/projects.htm</A>}} eine interessante Aufgabe von den Studenten gel&#246;st wurde, sollte das dort erlernte Wissen vertieft und weiter ausgebaut werden.
++Im Rahmen des Studiums an der Fachhochschule Harz in Wernigerode muss jeder Student des Studiengangs \emph{Kommunikationsinformatik} eine Projektarbeit abgeben. Dies bedeutet, da&#223; der Student eine Aufgabe (meist Programmieraufgabe) alleine oder in einem kleinen Team bew&#228;ltigen muss. Die Professoren der Hochschule bieten dabei viele interessante Projektarbeiten an, sind jedoch auf offen f&#252;r eigene Vorschl&#228;ge der Studenten.\\
++Da in den Teamprojekten\footnote{Auch das Teamprojekt ist Bestandteil des Studiums. Beim Teamprojekt m&#252;&#223;en mehrere Studenten (7-15) gemeinsam eine Programmieraufgabe umsetzen.} \emph{Labmin}\footnote{\url{<A HREF="http://labmin.de.vu">http://labmin.de.vu</A>}} und \emph{German Team Sony Aibo}\footnote{\url{<A HREF="http://www.der-baer.com/projects.htm">http://www.der-baer.com/projects.htm</A>}} eine interessante Aufgabe von den Studenten gel&#246;st wurde, sollte das dort erlernte Wissen vertieft und weiter ausgebaut werden.
+ 
+ 
+ \section{Ideen zur Projektarbeit} \label{sec:Ideen}
+ \subsection{Tippspiel}\label{sec:Tippspiel}
+-Die erste Idee dieser Projektarbeit war die Umsetzung eines Tippspiels in Java, passend zu den damaligen Fussball-Europameisterschaft in Portugal. Diese Idee wurde im JavaMagazin\footnote{\citep{Frotscher2004}\citep{Frotscher2004a}\citep{Frotscher2004b}} in mehreren Ausgaben aufgegriffen und verschiedene Ansatzm&#246;glichkeiten diskutiert. Die Idee unseres Tippspiel war dabei eine Webanwendung mit Datenbankanbindung. Nutzer dieses Systems sollten sich in verschiedenen Tippgemeinschaften, mit je einem Tippgemeinschaftverwalter, zusammen tun und gemeinsam die EM 2004 tippen. Das Tippspiel sollte jedoch nicht nur auf die EM 2004 zugeschnitten sein, sondern auch f&#252;r andere Fu&#223;ballereignisse tauglich sein. Zus&#228;tzlich kam von unserer Seite die Idee, eine Webanwendung zur Verwaltung der Bundesligaergebnisse. Ein Tippspiel System sollte dann auf diese Daten zur&#252;ckgreifen und so ein Bundesligatippspiel darstellen k&#246;nnen.\\
++Die erste Idee dieser Projektarbeit war die Umsetzung eines Tippspiels in Java, passend zu den damaligen Fussball-Europameisterschaft in Portugal. Diese Idee wurde im JavaMagazin\footnote{\citep{Frotscher2004}\citep{Frotscher2004a}\citep{Frotscher2004b}} in mehreren Ausgaben aufgegriffen und verschiedene Ansatzm&#246;glichkeiten diskutiert. Die Idee unseres Tippspiel war dabei eine Webanwendung mit Datenbankanbindung. Nutzer dieses Systems sollten sich in verschiedenen Tippgemeinschaften, mit je einem Tippgemeinschaftsverwalter, zusammen finden und gemeinsam die EM 2004 tippen. Das Tippspiel sollte jedoch nicht nur auf die EM 2004 zugeschnitten sein, sondern auch f&#252;r andere Fu&#223;ballereignisse tauglich sein. Zus&#228;tzlich kam von unserer Seite die Idee, eine Webanwendung zur Verwaltung der Bundesligaergebnisse. Ein Tippspielsystem sollte dann auf diese Daten zur&#252;ckgreifen und so ein Bundesligatippspiel darstellen k&#246;nnen.\\
+ Dieser Gedanke wurde jedoch aus verschiedenen Gr&#252;nden verworfen. Zum einen war es nicht unsere Idee, sondern die des Javamagazin's und zum anderen wussten wir nicht sofort was bei diesem System alles zu realisieren war. Die grobe Funktionsweise war allen klar, jedoch fehlte bei diesem System das gewisse etwas. 
+ %===========================================
+ \subsection{Videosoftware} \label{sec:Videosoftware}
+-Da jeder von uns schon einmal ein Video in einer Videothek ausgeliehen, kam uns der Gedanke einer Onlinevideothek. Solche Videotheken gibt es mittlerweile schon wie bspw. Amango\footnote{\url{<A HREF="http://www.amango.de">http://www.amango.de</A>}}, Netleih\footnote{\url{<A HREF="http://www.netleih.de">http://www.netleih.de</A>}},  Invdeo\footnote{\url{<A HREF="http://www.invdeo.de/">http://www.invdeo.de/</A>}} und Verleihshop \footnote{\url{<A HREF="http://www.verleihshop.de">http://www.verleihshop.de</A>}}. Bei genauer Betrachtung dieser Onlinevideotheken, fragten wir uns wie solch eine Videothek technisch funktioniert. Da wir gerade auf der Suche nach einem idealen Projekt waren, hatten wir damit eins gefunden.\\
++Da jeder von uns schon einmal ein Video in einer Videothek ausgeliehen, kam uns der Gedanke einer Onlinevideothek. Solche Videotheken gibt es mittlerweile wie bspw. Amango\footnote{\url{<A HREF="http://www.amango.de">http://www.amango.de</A>}}, Netleih\footnote{\url{<A HREF="http://www.netleih.de">http://www.netleih.de</A>}},  Invdeo\footnote{\url{<A HREF="http://www.invdeo.de/">http://www.invdeo.de/</A>}} und Verleihshop \footnote{\url{<A HREF="http://www.verleihshop.de">http://www.verleihshop.de</A>}}. Bei genauer Betrachtung dieser Onlinevideotheken, fragten wir uns wie solch eine Videothek technisch funktioniert. Da wir gerade auf der Suche nach einem idealen Projekt waren, hatten wir damit eins gefunden.\\
+ Es solle versucht werden eine Online-Videothek mit entsprechenden Modulen zu realisieren.
+ 
+ 
+
+Modified: docu/latex/2-Aufbau.tex
+===================================================================
+--- docu/latex/2-Aufbau.tex	2005-12-19 14:03:52 UTC (rev 313)
++++ docu/latex/2-Aufbau.tex	2005-12-19 16:15:30 UTC (rev 314)
+@@ -2,9 +2,9 @@
+ %===========================================
+ \section{Aufbau}\label{sec:Aufbau}
+ \subsection{Beschreibung des Gesamtsystems}\label{sec:ersteGedanken}
+-Bei einer klassischen Videothek besucht der Kunde das Ladengesch&#228;ft der Videothek und st&#246;bert dabei nach Videos, die er gerne an diesen Abend schauen m&#246;chte. Dabei muss die Videothek eine m&#246;glichst gr&#246;&#223;e Ladenfl&#228;che besitzen um die Videos dem Kunden zu pr&#228;sentieren. Nachdem der Kunde sich f&#252;r ein Video entschieden hat, nimmt er entweder die leere Verpackung oder ein Plastikschild mit einer Nummer zum Verleihschalter der Videothek. Nachdem der Kunde seine Kundenkarte vorzeigt und durch sein Passwort oder seine Unterschrift verifiziert wurde, sucht der Mitarbeiter anhand einer Nummer in der Leerverpackung oder des Plastikschilds das entsprechende Video heraus, markiert dieses Video im System und gibt es dem Kunden. Dies ist der klasische Ablauf in einer Videothek.\\
+-Bei einer Online-Videothek kann der Kunde, durch den Versand der Videos, keine Videos f&#252;r den gleichen Abend ausleihen. Er ist gezwungen, sich einige Tage vorher f&#252;r ein oder mehrere Videos zu entscheiden. Der Ablauf unterscheidet sich von einer klasischen Videothek. Der Kunden &quot;`besucht&quot;' die Webseite der Videothek und sucht im Angebot nach Filmen die er sich ausleihen m&#246;chte. Nachdem die Verf&#252;gbarkeit &#252;berpr&#252;ft wurde, legt er Videos in seinem Warenkorb ab. Durch Eingabe seines Benutzernamens und das zugeh&#246;rige Passwort wird der Kunde verifiziert. In dem Lager der Videothek nimmt ein Mitarbeiter die Bestellung &#252;ber einen Monitor oder eine ausgedruckte Liste entgegeben und bearbeitet die Bestellung. Dabei sucht dieser die Videos f&#252;r den Kunden heraus, nimmt die Videos in das System auf und versendet die Videos zu dem Kunden per Post. Der Kunde erh&#228;lt seine gew&#252;nschten Videos, kann diese sich anschauen und schickt diese nach einer bestimmten Zeit an die Videothek zur&#252;ck.\\
+-Das hier gew&#252;nschte System soll dabei eine komplette Videothek ersetzen. Die Online-Videothek ben&#246;tigt nur noch ein Lager f&#252;r die zu verleihenden Videos und wenige Mitarbeiter f&#252;r den Versand der Videos und die Verwaltung der Videothek. Die Software wird  dabei wie in \vref{fig:erstegedanken} zu sehen ist, von zwei verschiedenen Personenkreisen benutzt, dem Kunden und dem Mitarbeiter. Der Kunde kann die in der Abbildung dargestellten Aktionen ausf&#252;hren, wie bspw. betrachten und bestellen von Videos. Der Mitarbeiter kann dabei das System verwalten und Bestellungen der Kunden bearbeiten.\\
++Bei einer klassischen Videothek besucht der Kunde das Ladengesch&#228;ft der Videothek und st&#246;bert dabei nach Videos, die er gerne an diesen Abend schauen m&#246;chte. Dabei muss die Videothek eine m&#246;glichst gr&#246;&#223;e Ladenfl&#228;che besitzen um die Videos dem Kunden zu pr&#228;sentieren. Nachdem der Kunde sich f&#252;r ein Video entschieden hat, nimmt er entweder die leere Verpackung oder ein Plastikschild mit einer Nummer zum Verleihschalter der Videothek. Nachdem der Kunde seine Kundenkarte vorzeigt und durch sein Passwort oder seine Unterschrift verifiziert wurde, sucht der Mitarbeiter anhand einer Nummer in der Leerverpackung oder des Plastikschildes das entsprechende Video heraus, markiert dieses Video im System und gibt es dem Kunden. Dies ist der klasische Ablauf in einer Videothek.\\
++Bei einer Online-Videothek kann der Kunde, durch den Versand der Videos, keine Videos f&#252;r den gleichen Abend ausleihen. Er ist gezwungen, sich einige Tage vorher f&#252;r ein oder mehrere Videos zu entscheiden. Der Ablauf unterscheidet sich von einer klassischen Videothek. Der Kunden &quot;`besucht&quot;' die Webseite der Videothek und sucht im Angebot nach Filmen die er sich ausleihen m&#246;chte. Nachdem die Verf&#252;gbarkeit &#252;berpr&#252;ft wurde, legt er Videos in seinem Warenkorb ab. Durch Eingabe seines Benutzernamens und das zugeh&#246;rige Passwort wird der Kunde verifiziert. In dem Lager der Videothek nimmt ein Mitarbeiter die Bestellung &#252;ber einen Monitor oder eine ausgedruckte Liste entgegeben und bearbeitet die Bestellung. Dabei sucht dieser die Videos f&#252;r den Kunden heraus, nimmt die Videos in das System auf und versendet die Videos zu dem Kunden per Post. Der Kunde erh&#228;lt seine gew&#252;nschten Videos, kann diese sich anschauen und schickt diese nach einer bestimmten Zeit an die Videothek zur&#252;ck.\\
++Das hier gew&#252;nschte System soll eine komplette Videothek ersetzen. Die Online-Videothek ben&#246;tigt nur noch ein Lager f&#252;r die zu verleihenden Videos und wenige Mitarbeiter f&#252;r den Versand der Videos und die Verwaltung der Videothek. Die Software wird  dabei wie in \vref{fig:erstegedanken} zu sehen ist, von zwei verschiedenen Personenkreisen benutzt, dem Kunden und dem Mitarbeiter. Der Kunde kann die in der Abbildung dargestellten Aktionen ausf&#252;hren, wie bspw. betrachten und bestellen von Videos. Der Mitarbeiter kann dabei das System verwalten und Bestellungen der Kunden bearbeiten.\\
+ %===========================================
+ \begin{figure}[p]
+ 	\rotatebox{90}{
+@@ -14,7 +14,7 @@
+ 	\label{fig:erstegedanken}
+ \end{figure}
+ %===========================================
+-Nach einiger &#220;berlegung wurde festgestellt, das die Software aus drei anstatt zwei Modulen bestehen muss, wie in \vref{fig:dreimodule} zu sehen ist. Bei den Mitarbeitern der Online-Videothek muss in Verwaltung und Versand/Lagen unterschieden werden, da diese unterschiedlichen Aufgaben von unterschiedlichen Mitarbeitern bearbeitet werden. Das \textbf{Kundenmodul} ist die Internetpr&#228;senz der Videothek und repr&#228;sentiert das Unternehmen nach aussen. Auf dieser dynamischen Webseite kann der Kunde die vorhanden Videos durchst&#246;bern und detaillierte Informationen zu den Videos erhalten. Nach erfolgreicher Anmeldung im System kann der Kunde die Verf&#252;gbarkeit des jeweiligen Videos kontrollieren und auf Wunsch Videos ausleihen. In einem zus&#228;tzlichen Men&#252;punkt kann er seine bestellten Videos betrachten und sich ggf. Rechnungen ausdrucken. Das \textbf{Versandmodul} stellt die ben&#246;tigte Software f&#252;r das Lager und den Versand zur Verf&#252;gung. Mit deren Hilfe kann ein Mitarbeiter der Online-!
+ Videothek Videos f&#252;r den Versand vorbereiten. D.h. der Mitarbeiter bekommt eine Liste mit Bestellungen von Kunden (elektronisch oder auf Papier) und arbeitet diese ab. Damit der Mitarbeiter nicht jedes mal die Kundennummer und Nummern der Videos eintippen muss, wird seine Arbeit durch Barcodes und Barcodescanner unterst&#252;tzt. Mit dessen Hilfe markiert er Videos f&#252;r einen bestimmten Kunden und eine bestimmte Bestellung und versendet diese. Dem System teilt der Mitarbeiter dadurch mit, das bestimmte Videos nicht mehr verf&#252;gbar sind und von einem bestimmten Kunden ausgeliehen wurde. Rechnungen, Versandetiketten und eventuelle Lieferscheine werden dabei automatisch mit Hilfe eines Druckers erstellt. Zus&#228;tzlich bietet das Versandmodul die M&#246;glichkeit, zur&#252;ckgekommene Videos der Kunden wieder in das System aufzunehmen. Somit wurde das Video wieder vom Kunden zur&#252;ckgegeben und es kann im System als vorhanden/ausleihbar markiert werden oder gleich an den n&#228;chsten Kunden weitergeschi!
+ ckt werden. Das \textbf{Verwaltungsmodul} hilft den Mitarbeite!
+ rn in de
+r Verwaltung bei der Organisation der Online-Videothek. Es k&#246;nnen Kundendaten und Rechnungen betrachtet und ggf. gedruckt werden. Das Videosortiment kann bearbeitet und inhaltliche &#196;nderungen (z.B. Sonderangebote) an dem Kundenmodul vorgenommen werden. Weiterhin besteht die M&#246;glichkeit ausf&#252;hrliche Reports \&amp; Statistiken zu erstellen und zu betrachten.\\
++Nach einiger &#220;berlegung wurde festgestellt, das die Software aus drei anstatt zwei Modulen bestehen muss, wie in \vref{fig:dreimodule} zu sehen ist. Bei den Mitarbeitern der Online-Videothek muss in Verwaltung und Versand/Lager unterschieden werden, da diese unterschiedlichen Aufgaben von unterschiedlichen Mitarbeitern bearbeitet werden. Das \textbf{Kundenmodul} ist die Internetpr&#228;senz der Videothek und repr&#228;sentiert das Unternehmen nach aussen. Auf dieser dynamischen Webseite kann der Kunde die vorhanden Videos durchst&#246;bern und detaillierte Informationen zu den Videos erhalten. Nach erfolgreicher Anmeldung im System kann der Kunde die Verf&#252;gbarkeit des jeweiligen Videos kontrollieren und auf Wunsch Videos ausleihen. In einem zus&#228;tzlichen Men&#252;punkt kann er seine bestellten Videos betrachten und sich ggf. Rechnungen ausdrucken. Das \textbf{Versandmodul} stellt die ben&#246;tigte Software f&#252;r das Lager und den Versand zur Verf&#252;gung. Mit deren Hilfe kann ein Mitarbeiter der Online-!
+ Videothek Videos f&#252;r den Versand vorbereiten. D.h. der Mitarbeiter bekommt eine Liste mit Bestellungen von Kunden (elektronisch oder auf Papier) und arbeitet diese ab. Damit der Mitarbeiter nicht jedes mal die Kundennummer und Nummern der Videos eintippen muss, wird seine Arbeit durch Barcodes und Barcodescanner unterst&#252;tzt. Mit dessen Hilfe markiert er Videos f&#252;r einen bestimmten Kunden und eine bestimmte Bestellung und versendet diese. Dem System teilt der Mitarbeiter dadurch mit, das bestimmte Videos nicht mehr verf&#252;gbar sind und von einem bestimmten Kunden ausgeliehen wurde. Rechnungen, Versandetiketten und eventuelle Lieferscheine werden dabei automatisch mit Hilfe eines Druckers erstellt. Zus&#228;tzlich bietet das Versandmodul die M&#246;glichkeit, zur&#252;ck gekommene Videos der Kunden wieder in das System aufzunehmen. Somit wurde das Video wieder vom Kunden zur&#252;ckgegeben und es kann im System als vorhanden/ausleihbar markiert werden oder gleich an den n&#228;chsten Kunden weitergesch!
+ ickt werden. Das \textbf{Verwaltungsmodul} hilft den Mitarbeit!
+ ern in d
+er Verwaltung bei der Organisation der Online-Videothek. Es k&#246;nnen Kundendaten und Rechnungen betrachtet und ggf. gedruckt werden. Das Videosortiment kann bearbeitet und inhaltliche &#196;nderungen (z.B. Sonderangebote) an dem Kundenmodul vorgenommen werden. Weiterhin besteht die M&#246;glichkeit ausf&#252;hrliche Reports \&amp; Statistiken zu erstellen und zu betrachten.\\
+ %===========================================
+ \begin{figure}[tbp]
+ 	\centering
+@@ -27,7 +27,7 @@
+ 
+ %===========================================
+ \subsection{das Kundenmodul im Detail} \label{sec:Kundenmodul}
+-Das Kundenmodul ist das wichtigste Element der Anwendung, denn dieses Modul wird vom Kunden verwendet und dieser bestimmt &#252;ber Erfolg oder Misserfolg der Online-Videothek und damit &#252;ber die Anwendung. Das Kundenmodul wird, wie bereits erkl&#228;rt, als Webanwendung entwickelt. Somit muss der Nutzer keine spezielle Software auf seinem Rechner verwenden und kann die Software somit &#252;berall verwenden. Grunds&#228;tzlich wird bei der Anwendung zwischen zwei verschiedenen Kundengruppen unterschieden: dem \emph{Interessenten} und dem \emph{angemeldeten Kunden}. Ein \emph{Interessent} ist ein Websurfer, der sich &#252;ber das Angebot der Online-Videothek interessiert, ohne bisher ein Video ausgeliehen zu haben. Ist der Interessent von dem Angebot &#252;berzeugt und m&#246;chte ein Video ausleihen, muss er sich im System registrieren (siehe 1. \vref{fig:usecasekundeninteressenten}). Dazu geh&#246;rt neben einem Benutzernamen und Passwort auch seine vollst&#228;ndige Adresse, f&#252;r den Versand der Videos bzw. Rechnungen!
+ , und seine Bankverbindung bzw. Kreditkartendaten, f&#252;r die Bezahlung. Ist Kunde in das System eingeloggt, ist er ein angemeldeter Kunde. Je nach Kundengruppe pr&#228;sentiert sich die Webseite mit anderen Funktionalit&#228;ten. Zuerst sollen die Funktionen und M&#246;glichkeiten eines Interessenten erkl&#228;rt werden. Der Interessent hat kann sich auf der Webseite der Online-Videothek sowohl &#252;ber das Angebot an Videos (siehe 2. \vref{fig:usecasekundeninteressenten}), als auch &#252;ber die Online-Videothek informieren. &#220;ber verschiedene Webseiten erh&#228;lt er Einblick in die f&#252;r ihn interessante Funktionsweise der Online-Videothek und allgemeinen Daten, wie Impressum, Kontaktdaten und Allgemeine Gesch&#228;ftsbedingungen (siehe 3. \vref{fig:usecasekundeninteressenten}). &#220;ber eine intelligente Suche, Navigationselementen und den Top-Listen (siehe 5. \vref{fig:usecasekundeninteressenten}) kann er nach Videos suchen bzw. st&#246;bern (siehe 4. \vref{fig:usecasekundeninteressenten}). Die Videos sind kategorisiert !
+ bzw. geordnet. Der Interessent kann auch detaillierte Informat!
+ ionen &#252;b
+er einzelne Filme erhalten (siehe 2. \vref{fig:usecasekundeninteressenten}). Dabei kann er sich &#252;ber die Features des Filmes informieren, Kommentare bzw. Bewertungen lesen und &#228;hnliche Filme betrachten. Die dabei verwendete Suche wird als intelligente Suche bezeichnet, weil diese Suche auch &#228;hnliche bzw. verwandte Filme findet und sowohl im Titel, als auch in der Beschreibung der Filme nach dem Stichwort sucht. Es k&#246;nnte auch realisiert werden, das die Suchergebnisse nach Trefferquoten geordnet werden bzw. das Suchfeld automatisch das Wort nach h&#228;ufigen Suchbegriffen erg&#228;nzt.\\
++Das Kundenmodul ist das wichtigste Element der Anwendung, denn dieses Modul wird vom Kunden verwendet und dieser bestimmt &#252;ber Erfolg oder Misserfolg der Online-Videothek und damit &#252;ber die Anwendung. Das Kundenmodul wird, wie bereits erkl&#228;rt, als Webanwendung entwickelt. Somit muss der Nutzer keine spezielle Software auf seinem Rechner verwenden und kann die Software somit &#252;berall verwenden. Grunds&#228;tzlich wird bei der Anwendung zwischen zwei verschiedenen Kundengruppen unterschieden: dem \emph{Interessenten} und dem \emph{angemeldeten Kunden}. Ein \emph{Interessent} ist ein Internetnutzer, der sich &#252;ber das Angebot der Online-Videothek interessiert, ohne bisher ein Video ausgeliehen zu haben. Ist der Interessent von dem Angebot &#252;berzeugt und m&#246;chte ein Video ausleihen, muss er sich im System registrieren (siehe 1. \vref{fig:usecasekundeninteressenten}). Dazu geh&#246;rt neben einem Benutzernamen und Passwort auch seine vollst&#228;ndige Adresse, f&#252;r den Versand der Videos bzw. Rechn!
+ ungen, und seine Bankverbindung bzw. Kreditkartendaten, f&#252;r die Bezahlung. Ist der Kunde in das System eingeloggt, ist er ein angemeldeter Kunde. Je nach Kundengruppe pr&#228;sentiert sich die Webseite mit anderen Funktionalit&#228;ten. Zuerst sollen die Funktionen und M&#246;glichkeiten eines Interessenten erkl&#228;rt werden. Der Interessent kann sich auf der Webseite der Online-Videothek sowohl &#252;ber das Angebot an Videos (siehe 2. \vref{fig:usecasekundeninteressenten}), als auch &#252;ber die Online-Videothek informieren. &#220;ber verschiedene Webseiten erh&#228;lt er Einblick in die f&#252;r ihn interessante Funktionsweise der Online-Videothek und allgemeinen Daten, wie Impressum, Kontaktdaten und Allgemeine Gesch&#228;ftsbedingungen (siehe 3. \vref{fig:usecasekundeninteressenten}). &#220;ber eine intelligente Suche, Navigationselementen und den Top-Listen (siehe 5. \vref{fig:usecasekundeninteressenten}) kann er nach Videos suchen bzw. st&#246;bern (siehe 4. \vref{fig:usecasekundeninteressenten}). Die Videos sind kategoris!
+ iert bzw. geordnet. Der Interessent kann auch detaillierte Inf!
+ ormation
+en &#252;ber einzelne Filme erhalten (siehe 2. \vref{fig:usecasekundeninteressenten}). Dabei kann er sich &#252;ber die Features des Filmes informieren, Kommentare bzw. Bewertungen lesen und &#228;hnliche Filme betrachten. Die dabei verwendete Suche wird als intelligente Suche bezeichnet, weil diese Suche auch &#228;hnliche bzw. verwandte Filme findet und sowohl im Titel, als auch in der Beschreibung der Filme nach dem Stichwort sucht. Es k&#246;nnte auch realisiert werden, das die Suchergebnisse nach Trefferquoten geordnet werden bzw. das Suchfeld automatisch das Wort nach h&#228;ufigen Suchbegriffen erg&#228;nzt.\\
+ Ist der User eingeloggt hat er die gleiche Funktionsweise wie ein Interessent, nur mit erweiterten Funktionen. In der Ergebnissliste der Suche oder der Anzeigeliste der Kategorien, welche beide gleich aufgebaut sind, befinden sind neben jedem Video Elemente zum Bestellen (siehe 1. \vref{fig:usecasekundenangemeldet}) und zum &#220;berpr&#252;fen der Verf&#252;gbarkeit (siehe 2. \vref{fig:usecasekundenangemeldet}). Jedes Video, also jeder Film, ist in einer gewissen Anzahl vorhanden. Mit Hilfe der &#220;berpr&#252;fung der Verf&#252;gbarkeit kann der Kunde &#252;berpr&#252;fen, ob noch ein Video dieses Filmes f&#252;r ihn zum Ausleihen vorhanden ist, bzw. wann das n&#228;chste Video wieder verf&#252;gbar ist. Je nach Status der Verf&#252;gbarkeit kann der Kunde das Video in seinem Warenkorb legen und damit ausleihen, oder vormerken lassen. Bei einer Vormerkung wird er entweder per Email informiert, dass das Video vorhanden ist, oder das Video wird schnellstm&#246;glich an den Kunden versendet. Hat der Kunden Videos in seinen Warenkorb abge!
+ legt, kann dieser am Ende seiner Bestellung zur Kasse gehen und somit die Videos ausleihen. Weiterhin hat der Kunde die M&#246;glichkeit eine so genannte \emph{Wunschliste} zu Erstellen (siehe 3. \vref{fig:usecasekundenangemeldet}). Diese Liste kann eine bestimmte Anzahl an Videos anschauen, die der Kunde schauen m&#246;chte. Das System arbeitet diese Liste automatisch ab, indem es dem Kunden eine bestimmte Anzahl an Videos mit einmal zusendet und bei R&#252;cksendung durch den Kunden die n&#228;chsten Filme automatisch an den Kunden sendet. Somit hat der Kunden z.B. die M&#246;glichkeit 50 Filme zu bestimmen, die er gerne anschauen m&#246;chte. Das System sendet ihm immer zwei Filme mit einmal zu, die er sich anschauen kann. Sendet er diese zwei Filme zur&#252;ck, bekommt er die n&#228;chsten zwei Filme, bis die Liste abgearbeitet wurde. Weiterhin bietet das Kundenmodul dem Kunden die M&#246;glichkeiten, &#228;ltere und aktuelle Bestellungen bzw. Vorbestellungen zu betrachten (siehe 4. \vref{fig:usecasekundenangemeldet}),!
+  Rechnungen auszudrucken (siehe 5.) und allgemeine Einstellung!
+ en an se
+inem Profil vorzunehmen (siehe 6.). Das Kundenmodul soll dabei einfach und ohne Bedienungsanleitung zu bedienen sein, der Kunden soll sich schnell zu recht finden und schnell zu seinem Ziel, einer Bestellung, kommen.\\
+ \begin{figure}[tbp]
+ 	\centering
+
+Modified: docu/latex/3-2-Versionsverwaltung.tex
+===================================================================
+--- docu/latex/3-2-Versionsverwaltung.tex	2005-12-19 14:03:52 UTC (rev 313)
++++ docu/latex/3-2-Versionsverwaltung.tex	2005-12-19 16:15:30 UTC (rev 314)
+@@ -38,7 +38,7 @@
+ Bei CVS handelt es sich um eine Versionsverwaltung mit einer Client-Server Architektur. Die Entwicklung von CSV begann mit Ansammlung von Shell-Skripten, die in einer Newsgroup 1986 von Dick Grune ver&#246;ffentlicht wurden. Im Jahre 1989 begann Brian Berliner mit sp&#228;terer Hilfe von Jeff Polk mit der eigentlichen Entwicklung von CVS. Das Concurrent Versions System ist ein Kommandozeilen orientiertes System, auf das mit Hilfe verschiedener Client-Interfaces zugegriffen werden kann. Im Laufe der zeit hat sich CVS zu \emph{der} Versionsverwaltung von Open-Source Projekten entwickelt und wird bspw. von sourceforge.net eingesetzt. Innerhalb des Archiv/Repository existieren mehrerer \emph{Module}, die eine Sammlung von Dateien sind und dabei meist ein einzelnes Projekt darstellen. Dadurch, dass jede Datei eine eigene fortlaufende Revisionsnummer besitzt, wurde das \emph{Tagging} eingef&#252;hrt. Mit Hilfe des \emph{Tagging} kann jeder Datei zu einem definierten Zeitpunkt ein einheitliches !
+ Tag vergeben werden. Zu einem Zeitpunkt X, besitzt bspw. \texttt{DateiA.txt} die Revision \emph{1.13} und \texttt{DateiB.txt} die Revision \emph{1.78}. Mit Hilfe eines Tag mit bspw. dem Namen \emph{Alpha 0.18} erhalten beide Dateien dieses zus&#228;tzliche Tag, auf das zu einer sp&#228;teren Version zur&#252;ckgegriffen werden kann. Das Tagging bietet in der Softwareentwicklung eine gute M&#246;glichkeit wichtige Abschnitte des Quellcodes zu markieren, jedoch kann es vorkommen, dass diese Abschnitte separat weiterentwickelt werden m&#252;ssen. Dies ist z.B. der Fall, wenn eine Software ausgeliefert wird, an dieser jedoch weiterentwickelt wird. Dabei ist es notwendig zwei getrennte  Entwicklungszweige fortzuf&#252;hren. Einen Zweig um bei der ausgelieferten Version Fehler zu beheben und kleinere Folgeversionen zu ver&#246;ffentlichen und einen Zweig um die Software weiter zuentwickeln. Diese Vorgehensweise wird als \emph{Branching} bezeichnet und hilft den Entwicklern bei der Entwicklung seinen Produktes auf !
+ unterschiedlichen Entwicklungszweigen. Der Hauptzweig eines Mo!
+ duls wir
+d als \emph{trunk}\footnote{engl. Stamm} bezeichnet und besitzt die Revision \emph{HEAD}. \emph{Merging} bezeichnet das Zusammenf&#252;hren zweier Entwicklungszweige zu einem einzigen Zweig. Dies kann notwendig sein, um bspw. den Wartungszweig einer ausgelieferten Software mit dem Tag \emph{Version 1.0} mit dem Entwicklungszweig zur Version mit dem Tag \emph{Version 2.0} zusammen zuf&#252;hren. Mit Hilfe verschiedener \emph{Trigger} k&#246;nnen Skripte oder Programme im Repository ausgef&#252;hrt werden. Die Trigger k&#246;nnen vor und/oder nach dem Speichern der Dateien aufgef&#252;hrt werden und dabei Einfluss auf das Speichern nehmen. So kann bspw. vor dem Speichern der Quellcode nach bekannten Bugs mit Hilfe verschiedener Programme\footnote{Checkstyle -- \url{<A HREF="http://checkstyle.sourceforge.net/">http://checkstyle.sourceforge.net/</A>} \\Findbugs -- \url{<A HREF="http://findbugs.sourceforge.net/">http://findbugs.sourceforge.net/</A>}} gesucht werden. Im Fehlerfall wird der Quellcode nicht gespeichert und der Entwickler erh&#228;lt eine Fehlermeldung. Nach dem Speichern der Dateien k&#246;nnte ein !
+ weiteres Skript eine automatische Email an alle Projektmitglieder schicken und diese &#252;ber die gespeicherten &#196;nderungen informieren. CVS hat jedoch einige Nachteile: Zum einen k&#246;nnen Dateien nicht umbenannt werden. Um den Dateinamen zu ver&#228;ndern, muss diese Datei aus dem Modul entfernt und mit dem neuen Namen hinzugef&#252;gt werden. Dabei beginnt jedoch die Revision von vorne zu z&#228;hlen und somit kann auch nicht einfach auf die &#228;ltere Version zur&#252;ckgegriffen werden. Zum anderen k&#246;nnen auch Verzeichnisse nicht verschoben bzw. umbenannt werden. Um ein Verzeichniss zu verschieden, muss jede einzelne Datei in dem Verzeichnis aus dem Modul gel&#246;scht und an neuer Stelle als neue Datei neu hinzugef&#252;gt werden. Diese Mi&#223;st&#228;nde f&#252;hrten dazu, dass engachierte Softwareentwickler mit der Entwicklung einer neuer Versionsverwaltung mit dem Namen \emph{Subversion} begonnen haben.\citep{Wikipedia2005,Fogel2002,Price2005}
+ 
+ %====================================
+-\subsection{Subversion - SVN}
++\subsection{Subversion - SVN} \label{tech-svn}
+ &quot;`Subversion (SVN) ist eine Open-Source-Software zur Versionsverwaltung&quot;', die oft als Nachfolger von CVS bezeichnet wird\citep{Wikipedia2005}. SVN ist ein von CVS unabh&#228;ngigs Projekts und wird seit Anfang 2000 bei CoolabNet entwickelt. Seit dem 31.August 2001 ist Subversion &quot;`self-hosting&quot;', d.h. der Quellcode zu Subversion wird mit Subversion verwaltet. Am 23.Februar 2004 wurde die erste stabile Version 1.0 ver&#246;ffentlicht. Bei der Entwicklung von Subversion wurde auf eine &#228;hnliche Bedienung wie CVS geachtet, damit der Umstieg von CVS auf SVN f&#252;r viele Entwickler einfach ist. Weiterhin unterst&#252;tzt Subversion fast alle Funktionen von CVS, versucht jedoch dessen Nachteile zu vermeiden. In Subversion hat nicht jede Datei eine eigene Revison, sondern das gesamte Projekt eine einheitliche Versionsnummer, &#228;hnlich einem Tag in CVS. &#196;nderungen an einem Projekt werden meist an mehreren Dateien vorgenommen, die nun alle die gleiche Revision besitzen. Im Unterschied zu CVS ben&#246;tigt S!
+ ubversion neben der lokalen Arbeitskopie noch eine weitere zweite Kopie. Dadurch verdoppelt sich der ben&#246;tigte Speicherbedarf bei dem Client, jedoch hat dies zum Vorteil, dass Subversion dadurch weniger Netzwerkzugriffe ben&#246;tigt und bei einem \emph{commit} nur die Unterschiede zur Vorg&#228;ngerversion &#252;bertr&#228;gt und nicht wie CVS die kompletten Dateien. Weiterhin ist das umbenennen und verschieben von Dateien m&#246;glich, die Verwaltung von Verzeichnissen und Metadaten. Die \emph{commits} sind bei SVN atomar, d.h. &#196;nderungen werden entweder komplett oder gar nicht ins Repository aufgenommen und Verbindungsabbr&#252;che f&#252;hren nicht zu inkonsistenten Zust&#228;nden. Der Zugriff auf den Subversionserver, der das Repository in einer Berkeley Datenbank oder seit Version 1.1 im Dateisystem speichert, kann &#252;ber ein eigenen Protokoll, &#252;ber die Secure shell oder &#252;ber ein WebDav-Modul f&#252;r den Apach2 Webserver erfolgen. \Vref{fig:svnarchitekur} verdeutlicht nochmal die gesamte Subversion Architektur. D!
+ abei ist zu sehen, dass &#252;ber Kommandozeilenparameter oder eine!
+ r grafis
+chen Oberfl&#228;che auf die Client-Bibliothek zugegriffen werden kann. Diese Bibliothek kann &#252;ber verschiedene Methoden auf das SVN Repository zugreifen. Dabei gibt es die direkte lokal Zugriffsart oder der Zugriff &#252;ber ein Netzwerk/Internet. Das Repository speichert die Dateien bzw. die Unterschiede der Dateien letztendlich in einer Berkeley Datenbank oder auf dem Dateisystem. Subversion bietet somit fast die gleiche Funktionalit&#228;t die CVS, behebt dessen Nachteile und bietet dazu noch einige Extrafunktionen. \citep{Wikipedia2005,Collins-Sussman2005}
+ \begin{figure}[tbp]
+ 	\centering
+
+Modified: docu/latex/3-6-Persistenzschichten.tex
+===================================================================
+--- docu/latex/3-6-Persistenzschichten.tex	2005-12-19 14:03:52 UTC (rev 313)
++++ docu/latex/3-6-Persistenzschichten.tex	2005-12-19 16:15:30 UTC (rev 314)
+@@ -11,7 +11,7 @@
+ 
+ \begin{figure}[h]
+ 	\centering
+-	%\includegraphics[scale=1]{images/Architektur-JDO.jpg}
++	\includegraphics[scale=1]{images/Architektur-JDO.jpg}
+ 	\caption{Architektur von JDO \citep[Bild 2.0]{JDO2003}}
+ 	\label{fig:architecture_jdo}
+ \end{figure}
+@@ -58,7 +58,7 @@
+ 
+ \begin{figure}[h]
+ 	\centering
+-	%\includegraphics[scale=1]{images/Architektur-Hibernate.jpg}
++	\includegraphics[scale=1]{images/Architektur-Hibernate.jpg}
+ 	\caption{Architektur von Hibernate \citep[Bild 2.1]{Bauer2004}}
+ 	\label{fig:architecture_hibernate}
+ \end{figure}
+@@ -142,7 +142,5 @@
+ 
+ 
+ 
+-
+-
+ %Hier danach nicht mehr schreiben
+ \label{sec:tech-Persistenzschichten-ende}
+\ No newline at end of file
+
+Modified: docu/latex/4-1-Versionsverwaltung.tex
+===================================================================
+--- docu/latex/4-1-Versionsverwaltung.tex	2005-12-19 14:03:52 UTC (rev 313)
++++ docu/latex/4-1-Versionsverwaltung.tex	2005-12-19 16:15:30 UTC (rev 314)
+@@ -1,20 +1,107 @@
++\chapter{Implementierung} \label{sec:Implementierung}
+ \section{Versionsverwaltung mit Subversion} \label{sec:impl-Versionsverwaltung}
+-Als Versionsverwaltung wurde Subversion verwendet. Dies hat mehrere Gr&#252;nde: Zum einen war Subversion zu diesem Zeitpunkt eine neue und z.T. auch unbekannte Technologie, die somit ihren Reiz hatte. Zum anderen wurde Subversion als Nachfolger von CVS angepriesen und sollte viele Nachteile eliminieren. Eins der wichtigen Vorteile von Subversion ist die geringe Netzwerklast. Bei einem &quot;`Commit&quot;' werden nur die Unterschiede zur Vorg&#228;ngerversion &#252;bertragen und nicht wie bei CVS jede Datei komplett. Um Subversion verwenden zu k&#246;nnen, wurde ein Rechner mit einem installieren Subversion Server ben&#246;tigt, der m&#246;glichst 24h im Internet verf&#252;gbar ist. Um mit einem Client auf einen Subversion Server zuzugreifen, gibt es verschiedene &#220;bertragungsprotokolle: Ein eigenes Subversion protokoll (svn), eine Kombination aus Secure Shell und dem eigenen Protokoll (ssh+svn), &#252;ber http oder &#252;ber https. Die sicherste Methode &#252;ber ssh+svn, jedoch erfordert diese die Installation eines SSH Server, was!
+  unter Linux, dank verschiedener Anleitungen, einfach geht, jedoch unter Windows nicht so einfach zu realisieren ist. Unter Windows wurde zu Testzwecken ein Apache2 Webserver mit einem Zertifikat zur &#220;bertragung von Daten per https installiert. Dieser Webserver wurde mit dem Subversion Server kombiniert und jeglicher Datentransfer f&#252;r Subversion erfolgte &#252;ber https und dessen eingestellen Port. Der Nachteil war jedoch, dass keiner die M&#246;glichkeit hatte, einen PC 24h online zur Verf&#252;gung zu stellen. So wurde nach einiger Suche im Internet der Open Source Anbieter berlios.de entdeckt. Dort konnten Open-Source Projekte ihre Quellcodes in einer Subversion Versionsverwaltung mittels ssh+svn kostenlos hosten.\\
++Als Versionsverwaltung wurde Subversion verwendet. Dies hat mehrere Gr&#252;nde: Zum einen war Subversion zu diesem Zeitpunkt eine neue und z.T. auch unbekannte Technologie, die somit ihren Reiz hatte. Zum anderen wurde Subversion als Nachfolger von CVS angepriesen und sollte viele Nachteile eliminieren. Eins der wichtigen Vorteile von Subversion ist die geringe Netzwerklast. Bei einem &quot;`Commit&quot;' werden nur die Unterschiede zur Vorg&#228;ngerversion &#252;bertragen und nicht wie bei CVS jede Datei komplett. Um Subversion verwenden zu k&#246;nnen, wurde ein Rechner mit einem installieren Subversion Server ben&#246;tigt, der m&#246;glichst 24h im Internet verf&#252;gbar ist. Um mit einem Client auf einen Subversion Server zuzugreifen, gibt es verschiedene &#220;bertragungsprotokolle: Ein eigenes Subversion protokoll (svn), eine Kombination aus Secure Shell und dem eigenen Protokoll (ssh+svn), &#252;ber http oder &#252;ber https. Die sicherste Methode &#252;ber ssh+svn, jedoch erfordert diese die Installation eines SSH Server, was!
+  unter Linux, dank verschiedener Anleitungen, einfach geht, jedoch unter Windows nicht so einfach zu realisieren ist. Unter Windows wurde zu Testzwecken ein Apache2 Webserver mit einem Zertifikat zur &#220;bertragung von Daten per https installiert. Dieser Webserver wurde mit dem Subversion Server kombiniert und jeglicher Datentransfer f&#252;r Subversion erfolgte &#252;ber https und dessen eingestellen Port. Der Nachteil war jedoch, dass keiner die M&#246;glichkeit hatte, einen PC 24h online zur Verf&#252;gung zu stellen. So wurde nach einiger Suche im Internet der Open Source Anbieter Berlios Developer\footnote{\url{<A HREF="http://developer.berlios.de/">http://developer.berlios.de/</A>}} entdeckt. Dort k&#246;nnen Open-Source Projekte ihre Quellcodes in einer Subversion Versionsverwaltung mittels ssh+svn kostenlos speichern. Bei Berlios ist das Repository bereits erstellt, bei unseren Testsystem musste dies mit einem einfachen Befehl manuell erfolgen:
++\begin{verbatim}
++svnadmin create f:/subversion/phil/daten
++\end{verbatim}
++Durch diesen Befehl wurde in dem angegebenen Verzeichniss durch den Befehl \texttt{svadmin create} ein neues Repository erzeugt, das im Dateisystem auf dem Server die folgende Verzeichnissstruktur wie in \vref{fig:svnverzeichniss} zu sehen ist, besitzt.
++\begin{figure}[htbp]
++	\centering
++	\includegraphics[scale=1.0]{images/svn-verzeichniss-struktur.jpg}
++	\caption{Verzeichnissstruktur des Repository auf dem Server}
++	\label{fig:svnverzeichniss}
++\end{figure}
++Im Verzeichniss \texttt{conf} befinden sich zwei wichtige Dateien. In der svnserve.conf, wie in \vref{code:svnserve} zu sehen, sind grundlegende Eigenschaften wie Zugangsberechntigungen, Begr&#252;&#223;ung und Passwortdatei festgelegt. In der Passwortdatei, wie in \vref{code:svnuser} zu sehen, werden Benutzernamen und Passw&#246;rter f&#252;r die Benutzer dieses Repository vergeben. Diese Methode der Authentisierung ist jedoch nicht zu empfehlen, da die Passw&#246;rter in diesen Dateien lesbar sind und diese Datei, zus&#228;tzlich zu anderen bereits vorhandenen Zugangslisten, aktuell gehalten werden muss.
++\begin{lstlisting}[language=Java, showstringspaces=false, caption={Datei /conf/svnserve.conf},label=code:svnserve]
++[general]
++anon-access = none
++auth-access = write
++realm = Repository for my personal diplomarbeit
++password-db = user
++\end{lstlisting}
++\begin{lstlisting}[language=Java, showstringspaces=false, caption={/conf/user},label=code:svnuser]
++[users]
++pschneider = geheim
++\end{lstlisting}
++Eine bessere M&#246;glichkeit der Authentisierung w&#228;re die &#220;berpr&#252;fung, bevor der Benutzer Zugang zum System erh&#228;lt. Bei einer ssh+svn erfolgt die Authensisierung durch ssh und bei https erfolgt diese &#252;ber htaccess, in beiden F&#228;llen wird dabei wahrscheinlich auf einen vorhandenen Authentisierungsinfrastruktur zur&#252;ckgegriffen.\\
++\begin{figure}[htbp]
++	\centering
++	\includegraphics[scale=0.75]{images/svn-verzeichniss-client.jpg}
++	\caption{Ansicht des Clients TortoiseSVN}
++	\label{fig:svnclient}
++\end{figure}
++In unserem Projekt wurde als Client f&#252;r den Zugriff auf das Subversionrepository TortoiseSvn\footnote{\url{<A HREF="http://tortoisesvn.tigris.org/">http://tortoisesvn.tigris.org/</A>}} verwendet. Dabei handelt es sich wie in \vref{fig:svnclient} zu sehen, um eine Windows-Shellerweiterung, die sich in den Explorer integriert. Ist ein Verzeichniss oder eine Datei Teil eines Projektes, das in einer Subversionversionsverwaltung gespeichert wird, sind diese durch kleine farbige Symbole markiert. Diese Symbole geben den Zustand der Dateien an, ob diese aktuell sind, ver&#228;ndert wurde oder ob eventuelle Konflikte bestehen. Weiterhin k&#246;nnen damit auch alle anderen Aktionen wie Log Datei betrachten, R&#252;ckg&#228;nging, Tagging/Merging und Verschiebungen wie in \vref{fig:svnclient} zu sehen, vorgenommen werden. Mit TortoiseSVN ist auch m&#246;glich nur ein bestimmtes Verzeichnis des meist sehr strukturiertes Projektes auszuchecken und zu bearbeiten. Dazu wird 
++\texttt{TortoiseSVN $\Rightarrow$ Wechseln zu }
++wie in \vref{fig:svnwechselnzu} zu sehen ausgew&#228;hlt. In dem sich &#246;ffnenden Dialog wird das entsprechende Verzeichnis im Repository gew&#228;hlt und die lokale Arbeitskopie wird automatisch auf die entsprechenden Verzeichnisse und Dateien aktualisiert.\\
++\begin{figure}[htbp]
++	\centering
++	\includegraphics[scale=0.75]{images/svn-wechselnzu.jpg}
++	\caption{Ansicht des Fensters zum wechseln der Arbeitskopie}
++	\label{fig:svnwechselnzu}
++\end{figure}
++In den Einstellungen des Subversionservers k&#246;nnen auch wie in \vref{tech-svn} bereits beschrieben, automatisch Email verschickt werden. Die in \vref{code:emailcommit} gezeigte Email soll verdeutlichen, welche Informationen mit diesem Mechanismus verschickt werden k&#246;nnen. Im Betreff der Email befindet sich die neue Revisionnummer und das Verzeichnis in dem die &#196;nderungen stattgefunden haben. Am Anfang der Email ist der Name des Authors, das Datum, eine Auflistung der ge&#228;nderten Dateien und die Logmeldung zu sehen. Am Ende befinden sich die kompletten &#196;nderungen als Text.
+ 
+ 
++\begin{lstlisting}[language=Java, showstringspaces=false, caption={Auszug aus einer automatisch erzeugten Email},label=code:emailcommit]
++Author: rgriesch
++Date: 2005-12-02 21:04:22 +0100 (Fri, 02 Dec 2005)
++New Revision: 276
+ 
++Modified:
++   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
++Log:
++Menu Rechnung fehlt  - sollte aber aus Zeitgr?\195?\188nden                                nicht mehr implementiert                                   werden !!
++ManagementGui        - Reiter Film war aktiv, obwohl
++                       Fenster kunden angezeigt wurde
++                       ( Fehler behoben )
++ManagementGui        - Button Beenden im Menu &quot;Datei&quot;
++                       wurde Funktionalit?\195?\164t eingef?\195?\188gt   
+ 
++Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
++===================================================================
++--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2005-11-30 15:04:55 UTC (rev 275)
+++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2005-12-02 20:04:22 UTC (rev 276)
++@@ -412,9 +412,12 @@
++ 
++ 		exitMenuItem = new MenuItem(fileMenu, SWT.CASCADE);
++ 		exitMenuItem.setText(l.getString(&quot;menu.file.exit&quot;));
++-
+++		exitMenuItem.addSelectionListener(new SelectionAdapter() {
+++			public void widgetSelected(SelectionEvent evt) {
+++			    shell.close();
+++			}
+++		});
++ 	}
++-
++ 	/**
++ 	 * init the View Menu
++ 	 */
++@@ -484,7 +487,7 @@
++ 
++ 		viewCustomerMenuItem = new MenuItem(viewMenu, SWT.CHECK);
++ 		viewCustomerMenuItem.setText(l.getString(&quot;menu.view.customer&quot;));
++-		viewCustomerMenuItem.setSelection(false);
+++		viewCustomerMenuItem.setSelection(true);
++ 		viewCustomerMenuItem.addSelectionListener(new SelectionAdapter() {
++ 			public void widgetSelected(SelectionEvent evt) {
++ 				if (tabItemCustomer == null || tabItemCustomer.isDisposed()) {
++@@ -599,7 +602,7 @@
++ 
++ 		viewMovieMenuItem = new MenuItem(viewMenu, SWT.CHECK);
++ 		viewMovieMenuItem.setText(l.getString(&quot;menu.view.movie&quot;));
++-		viewMovieMenuItem.setSelection(true);
+++		viewMovieMenuItem.setSelection(false);
++ 		viewMovieMenuItem.addSelectionListener(new SelectionAdapter() {
++ 			public void widgetSelected(SelectionEvent evt) {
++ 				if (tabItemMovie == null || tabItemMovie.isDisposed()) {
+ 
+-\texttt{\textbf{maximal zwei Seiten}}
++_______________________________________________
++Provirent-svn-commit mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+Provirent-svn-commit at lists.berlios.de</A>
++<A HREF="http://lists.berlios.de/mailman/listinfo/provirent-svn-commit">http://lists.berlios.de/mailman/listinfo/provirent-svn-commit</A>
++\end{lstlisting}
+ 
+ 
+-Befehl zum Erzeugen eines neues Repository.
+-Zugangsbeschr&#228;nkungen
+-Clientauswahl und Verwendung mit Screenshoots.
+-Typischer Aufbau eines Root-Verzeichnisses (trink,branches,tags)
+-Tags erstellen
+-mit TortoiseSVn nur ein bestimmtes Verzeichniss auschecken, sichbar machen.
+-automatischer Versand von Emails, nach dem Commit.
+ 
+ 
+ 
+@@ -22,5 +109,11 @@
+ 
+ 
+ 
++
++
++
++
++
++
+ %Hier danach nicht mehr schreiben
+-\label{sec:impl-Versionsverwaltung-ende}
+\ No newline at end of file
++\label{sec:impl-Versionsverwaltung-ende}
+
+Modified: docu/latex/Provirent-Doku.tex
+===================================================================
+--- docu/latex/Provirent-Doku.tex	2005-12-19 14:03:52 UTC (rev 313)
++++ docu/latex/Provirent-Doku.tex	2005-12-19 16:15:30 UTC (rev 314)
+@@ -134,7 +134,7 @@
+ \include{3-5-JavaWebanwendungen}
+ \include{3-6-Persistenzschichten}
+ %====================================
+-\include{4-0-Implementierung}
++%\include{4-0-Implementierung}
+ \include{4-1-Versionsverwaltung}
+ %\include{4-2-Entwicklungsumgebung}
+ \include{4-3-GUIJava}
+
+Added: docu/latex/images/svn-wechselnzu.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: docu/latex/images/svn-wechselnzu.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000315.html">[Provirent-svn-commit] r313 - project_src/customer/jsp
+</A></li>
+	<LI>Next message: <A HREF="000317.html">[Provirent-svn-commit] r315 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#316">[ date ]</a>
+              <a href="thread.html#316">[ thread ]</a>
+              <a href="subject.html#316">[ subject ]</a>
+              <a href="author.html#316">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

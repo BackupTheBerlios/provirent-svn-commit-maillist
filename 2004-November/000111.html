@@ -1,0 +1,274 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r110 - project_src/provirent_hibernate/src/test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r110%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200411100054.iAA0smuj004128%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000110.html">
+   <LINK REL="Next"  HREF="000112.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r110 - project_src/provirent_hibernate/src/test/provirent/hibernate</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r110%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200411100054.iAA0smuj004128%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r110 - project_src/provirent_hibernate/src/test/provirent/hibernate">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Wed Nov 10 01:54:48 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000110.html">[Provirent-svn-commit] r109 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence
+</A></li>
+        <LI>Next message: <A HREF="000112.html">[Provirent-svn-commit] r111 - project_src/provirent_hibernate/src
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#111">[ date ]</a>
+              <a href="thread.html#111">[ thread ]</a>
+              <a href="subject.html#111">[ subject ]</a>
+              <a href="author.html#111">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-11-10 01:54:28 +0100 (Wed, 10 Nov 2004)
+New Revision: 110
+
+Modified:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/RandomRange.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestLanguage.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestVideoFormat.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/RandomRange.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/RandomRange.java	2004-11-10 00:49:41 UTC (rev 109)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/RandomRange.java	2004-11-10 00:54:28 UTC (rev 110)
+@@ -32,8 +32,6 @@
+  */
+ package test.provirent.hibernate;
+ 
+-import org.apache.log4j.Logger;
+-
+ import java.util.ArrayList;
+ import java.util.HashMap;
+ import java.util.List;
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java	2004-11-10 00:49:41 UTC (rev 109)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java	2004-11-10 00:54:28 UTC (rev 110)
+@@ -83,7 +83,7 @@
+             logger.debug(&quot;tearDown() - end&quot;);
+         }
+     }
+-
++    /*
+     public void testGenre() throws Exception {
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - start&quot;);
+@@ -103,15 +103,23 @@
+                 //cretae new objects
+                 List Genres = new ArrayList();
+ 
+-                Genre myd1 = new Genre(&quot;Action&quot;,&quot;&quot;);
+-                Genre myd2 = new Genre(&quot;Abenteuer&quot;,&quot;&quot;);
+-                Genre myd3 = new Genre(&quot;Dokumentation&quot;,&quot;&quot;);
+-                Genre myd4 = new Genre(&quot;Horror&quot;,&quot;&quot;);
++                Genre myd1 = null;
++                Genre myd2 = null;
++                Genre myd3 = null;
++                Genre myd4 = null;
++                
++                s.clear();
+ 
+-                Genres.add(myd1);
+-                Genres.add(myd2);
+-                Genres.add(myd3);
+-                Genres.add(myd4);
++                for (int i = 1; i &lt;= 10; i++) {
++                    myd1 = new Genre(&quot;Action&quot;,&quot;&quot;);
++                    myd2 = new Genre(&quot;Abenteuer&quot;,&quot;&quot;);
++                    myd3 = new Genre(&quot;Dokumentation&quot;,&quot;&quot;);
++                    myd4 = new Genre(&quot;Horror&quot;,&quot;&quot;);
++                    Genres.add(myd1);
++                    Genres.add(myd2);
++                    Genres.add(myd3);
++                    Genres.add(myd4);
++                }             
+                 
+ 
+                 List ids = new ArrayList();
+@@ -195,7 +203,7 @@
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+-    }
++    }*/
+ 
+     public void testSaveGenre() throws Exception {
+         if (logger.isDebugEnabled()) {
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestLanguage.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestLanguage.java	2004-11-10 00:49:41 UTC (rev 109)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestLanguage.java	2004-11-10 00:54:28 UTC (rev 110)
+@@ -43,7 +43,6 @@
+ import org.apache.log4j.Logger;
+ 
+ import de.hsharz.provirent.objects.Language;
+-import de.hsharz.provirent.objects.Subtitle;
+ 
+ /**
+  * @author Philipp Schneider
+@@ -85,7 +84,7 @@
+         }
+     }
+ 
+-    public void testLanguage() throws Exception {
++    /*public void testLanguage() throws Exception {
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - start&quot;);
+         }
+@@ -104,17 +103,23 @@
+                 //cretae new objects
+                 List Languages = new ArrayList();
+ 
+-                Language myd1 = new Language(&quot;Deutsch&quot;, &quot;de&quot;);
+-                Language myd2 = new Language(&quot;Englisch&quot;, &quot;en&quot;);
+-                Language myd3 = new Language(&quot;Franzoesisch&quot;, &quot;fr&quot;);
+-                Language myd4 = new Language(&quot;Spanisch&quot;, &quot;es&quot;);
+-                Language myd5 = new Language(&quot;Japanisch&quot;, &quot;jp&quot;);  
++                Language myd1 = null;
++                Language myd2 = null;
++                Language myd3 = null;
++                Language myd4 = null;
++                
++                s.clear();
+ 
+-                Languages.add(myd1);
+-                Languages.add(myd2);
+-                Languages.add(myd3);
+-                Languages.add(myd4);
+-                Languages.add(myd5);
++                for (int i = 1; i &lt;= 10; i++) {
++                    myd1 = new Language(&quot;Action&quot;,&quot;&quot;);
++                    myd2 = new Language(&quot;Abenteuer&quot;,&quot;&quot;);
++                    myd3 = new Language(&quot;Dokumentation&quot;,&quot;&quot;);
++                    myd4 = new Language(&quot;Horror&quot;,&quot;&quot;);
++                    Languages.add(myd1);
++                    Languages.add(myd2);
++                    Languages.add(myd3);
++                    Languages.add(myd4);
++                }
+ 
+                 List ids = new ArrayList();
+ 
+@@ -198,7 +203,7 @@
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+-    }
++    }*/
+ 
+     public void testSaveLanguage() throws Exception {
+         if (logger.isDebugEnabled()) {
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestVideoFormat.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestVideoFormat.java	2004-11-10 00:49:41 UTC (rev 109)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestVideoFormat.java	2004-11-10 00:54:28 UTC (rev 110)
+@@ -84,7 +84,7 @@
+         }
+     }
+ 
+-    public void testVideoFormat() throws Exception {
++    /*public void testVideoFormat() throws Exception {
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - start&quot;);
+         }
+@@ -102,14 +102,23 @@
+ 
+                 //cretae new objects
+                 List VideoFormats = new ArrayList();
+-
+-                VideoFormat myd1 = new VideoFormat(&quot;2.35:1&quot;,&quot;&quot;);
+-                VideoFormat myd2 = new VideoFormat(&quot;9:13&quot;,&quot;&quot;);
+-                VideoFormat myd3 = new VideoFormat(&quot;16:10&quot;, &quot;&quot;);
+                 
++                VideoFormat myd1 = null;
++                VideoFormat myd2 = null;
++                VideoFormat myd3 = null;
++                
++                myd1 = new VideoFormat(&quot;2.35:1&quot;,&quot;&quot;);
++                myd2 = new VideoFormat(&quot;9:13&quot;,&quot;&quot;);
++                myd3 = new VideoFormat(&quot;16:10&quot;, &quot;&quot;);
++                
++                s.clear();
++                
++                
++                    
+                 VideoFormats.add(myd1);
+                 VideoFormats.add(myd2);
+                 VideoFormats.add(myd3);
++     
+ 
+ 
+                 List ids = new ArrayList();
+@@ -191,7 +200,7 @@
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+-    }
++    }*/
+ 
+     public void testSaveVideoFormat() throws Exception {
+         if (logger.isDebugEnabled()) {
+@@ -222,13 +231,14 @@
+                 
+ 
+                 List ids = new ArrayList();
+-
++                
+                 //save objects
+                 for (Iterator iter = VideoFormats.iterator(); iter.hasNext();) {
+                     VideoFormat dir = (VideoFormat) iter.next();
+                     ids.add((Integer) s.save(dir));
+ 
+                 }
++                
+                 s.flush();
+ 
+                 tx.commit();
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000110.html">[Provirent-svn-commit] r109 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence
+</A></li>
+	<LI>Next message: <A HREF="000112.html">[Provirent-svn-commit] r111 - project_src/provirent_hibernate/src
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#111">[ date ]</a>
+              <a href="thread.html#111">[ thread ]</a>
+              <a href="subject.html#111">[ subject ]</a>
+              <a href="author.html#111">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

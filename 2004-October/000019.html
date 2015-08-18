@@ -1,0 +1,536 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r18 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r18%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/objects&In-Reply-To=%3C200410091217.i99CHDQb021625%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000018.html">
+   <LINK REL="Next"  HREF="000020.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r18 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r18%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/objects&In-Reply-To=%3C200410091217.i99CHDQb021625%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r18 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Sat Oct  9 14:17:13 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000018.html">[Provirent-svn-commit] r17 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+        <LI>Next message: <A HREF="000020.html">[Provirent-svn-commit] r19 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#19">[ date ]</a>
+              <a href="thread.html#19">[ thread ]</a>
+              <a href="subject.html#19">[ subject ]</a>
+              <a href="author.html#19">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-09 14:17:13 +0200 (Sat, 09 Oct 2004)
+New Revision: 18
+
+Added:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.java
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java
+Log:
+- ein Customer besteht jetzt aus einer Person + zusaetzliche Eigenschaften
+- damit kann Person auch bei Lagerarbeiter/Verwaltungsarbeiter verwendet werden
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml	2004-10-09 11:51:28 UTC (rev 17)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml	2004-10-09 12:17:13 UTC (rev 18)
+@@ -20,7 +20,7 @@
+  
+  			&lt;timestamp	name=&quot;dayOfRegistration&quot; /&gt;
+  
+- 
++ 			&lt;one-to-one name=&quot;person&quot; class=&quot;de.hsharz.provirent.objects.Person&quot; cascade=&quot;all&quot;/&gt;
+       
+       &lt;property name=&quot;userName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java	2004-10-09 11:51:28 UTC (rev 17)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java	2004-10-09 12:17:13 UTC (rev 18)
+@@ -19,39 +19,6 @@
+     private Integer customerId;
+ 
+     /** persistent field */
+-    private String firstName;
+-
+-    /** persistent field */
+-    private String lastName;
+-
+-    /** nullable persistent field */
+-    private String middleName;
+-
+-    /** nullable persistent field */
+-    private String salutation;
+-
+-    /** nullable persistent field */
+-    private String title;
+-
+-    /** persistent field */
+-    private String street;
+-
+-    /** persistent field */
+-    private String streetNumber;
+-
+-    /** persistent field */
+-    private String city;
+-
+-    /** persistent field */
+-    private String zipCode;
+-
+-    /** persistent field */
+-    private String country;
+-
+-    /** persistent field */
+-    private String emailAddress;
+-
+-    /** persistent field */
+     private String userName;
+ 
+     /** persistent field */
+@@ -69,25 +36,18 @@
+     /** nullable persistent field */
+     private Date dayOfRegistration;
+ 
++    /** nullable persistent field */
++    private de.hsharz.provirent.objects.Person person;
++
+     /** full constructor */
+-    public Customer(String firstName, String lastName, String middleName, String salutation, String title, String street, String streetNumber, String city, String zipCode, String country, String emailAddress, String userName, String password, String hiddenQuestion, String hiddenAnswer, Calendar dayOfBirth, Date dayOfRegistration) {
+-        this.firstName = firstName;
+-        this.lastName = lastName;
+-        this.middleName = middleName;
+-        this.salutation = salutation;
+-        this.title = title;
+-        this.street = street;
+-        this.streetNumber = streetNumber;
+-        this.city = city;
+-        this.zipCode = zipCode;
+-        this.country = country;
+-        this.emailAddress = emailAddress;
++    public Customer(String userName, String password, String hiddenQuestion, String hiddenAnswer, Calendar dayOfBirth, Date dayOfRegistration, de.hsharz.provirent.objects.Person person) {
+         this.userName = userName;
+         this.password = password;
+         this.hiddenQuestion = hiddenQuestion;
+         this.hiddenAnswer = hiddenAnswer;
+         this.dayOfBirth = dayOfBirth;
+         this.dayOfRegistration = dayOfRegistration;
++        this.person = person;
+     }
+ 
+     /** default constructor */
+@@ -95,15 +55,7 @@
+     }
+ 
+     /** minimal constructor */
+-    public Customer(String firstName, String lastName, String street, String streetNumber, String city, String zipCode, String country, String emailAddress, String userName, String password, String hiddenQuestion, String hiddenAnswer) {
+-        this.firstName = firstName;
+-        this.lastName = lastName;
+-        this.street = street;
+-        this.streetNumber = streetNumber;
+-        this.city = city;
+-        this.zipCode = zipCode;
+-        this.country = country;
+-        this.emailAddress = emailAddress;
++    public Customer(String userName, String password, String hiddenQuestion, String hiddenAnswer) {
+         this.userName = userName;
+         this.password = password;
+         this.hiddenQuestion = hiddenQuestion;
+@@ -118,94 +70,6 @@
+         this.customerId = customerId;
+     }
+ 
+-    public String getFirstName() {
+-        return this.firstName;
+-    }
+-
+-    public void setFirstName(String firstName) {
+-        this.firstName = firstName;
+-    }
+-
+-    public String getLastName() {
+-        return this.lastName;
+-    }
+-
+-    public void setLastName(String lastName) {
+-        this.lastName = lastName;
+-    }
+-
+-    public String getMiddleName() {
+-        return this.middleName;
+-    }
+-
+-    public void setMiddleName(String middleName) {
+-        this.middleName = middleName;
+-    }
+-
+-    public String getSalutation() {
+-        return this.salutation;
+-    }
+-
+-    public void setSalutation(String salutation) {
+-        this.salutation = salutation;
+-    }
+-
+-    public String getTitle() {
+-        return this.title;
+-    }
+-
+-    public void setTitle(String title) {
+-        this.title = title;
+-    }
+-
+-    public String getStreet() {
+-        return this.street;
+-    }
+-
+-    public void setStreet(String street) {
+-        this.street = street;
+-    }
+-
+-    public String getStreetNumber() {
+-        return this.streetNumber;
+-    }
+-
+-    public void setStreetNumber(String streetNumber) {
+-        this.streetNumber = streetNumber;
+-    }
+-
+-    public String getCity() {
+-        return this.city;
+-    }
+-
+-    public void setCity(String city) {
+-        this.city = city;
+-    }
+-
+-    public String getZipCode() {
+-        return this.zipCode;
+-    }
+-
+-    public void setZipCode(String zipCode) {
+-        this.zipCode = zipCode;
+-    }
+-
+-    public String getCountry() {
+-        return this.country;
+-    }
+-
+-    public void setCountry(String country) {
+-        this.country = country;
+-    }
+-
+-    public String getEmailAddress() {
+-        return this.emailAddress;
+-    }
+-
+-    public void setEmailAddress(String emailAddress) {
+-        this.emailAddress = emailAddress;
+-    }
+-
+     public String getUserName() {
+         return this.userName;
+     }
+@@ -254,20 +118,17 @@
+         this.dayOfRegistration = dayOfRegistration;
+     }
+ 
++    public de.hsharz.provirent.objects.Person getPerson() {
++        return this.person;
++    }
++
++    public void setPerson(de.hsharz.provirent.objects.Person person) {
++        this.person = person;
++    }
++
+     public String toString() {
+         return new ToStringBuilder(this)
+             .append(&quot;customerId&quot;, getCustomerId())
+-            .append(&quot;firstName&quot;, getFirstName())
+-            .append(&quot;lastName&quot;, getLastName())
+-            .append(&quot;middleName&quot;, getMiddleName())
+-            .append(&quot;salutation&quot;, getSalutation())
+-            .append(&quot;title&quot;, getTitle())
+-            .append(&quot;street&quot;, getStreet())
+-            .append(&quot;streetNumber&quot;, getStreetNumber())
+-            .append(&quot;city&quot;, getCity())
+-            .append(&quot;zipCode&quot;, getZipCode())
+-            .append(&quot;country&quot;, getCountry())
+-            .append(&quot;emailAddress&quot;, getEmailAddress())
+             .append(&quot;userName&quot;, getUserName())
+             .append(&quot;password&quot;, getPassword())
+             .append(&quot;hiddenQuestion&quot;, getHiddenQuestion())
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.java	2004-10-09 11:51:28 UTC (rev 17)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.java	2004-10-09 12:17:13 UTC (rev 18)
+@@ -0,0 +1,225 @@
++package de.hsharz.provirent.objects;
++
++import java.io.Serializable;
++import java.util.Calendar;
++import org.apache.commons.lang.builder.EqualsBuilder;
++import org.apache.commons.lang.builder.HashCodeBuilder;
++import org.apache.commons.lang.builder.ToStringBuilder;
++
++
++/** 
++ *         Represents a single Person.
++ *         @author Philipp Schneider
++ *       
++*/
++public class Person implements Serializable {
++
++    /** identifier field */
++    private Integer personId;
++
++    /** persistent field */
++    private String firstName;
++
++    /** persistent field */
++    private String lastName;
++
++    /** nullable persistent field */
++    private String middleName;
++
++    /** nullable persistent field */
++    private String salutation;
++
++    /** nullable persistent field */
++    private String title;
++
++    /** persistent field */
++    private String street;
++
++    /** persistent field */
++    private String streetNumber;
++
++    /** persistent field */
++    private String city;
++
++    /** persistent field */
++    private String zipCode;
++
++    /** persistent field */
++    private String country;
++
++    /** persistent field */
++    private String emailAddress;
++
++    /** nullable persistent field */
++    private Calendar dayOfBirth;
++
++    /** full constructor */
++    public Person(String firstName, String lastName, String middleName, String salutation, String title, String street, String streetNumber, String city, String zipCode, String country, String emailAddress, Calendar dayOfBirth) {
++        this.firstName = firstName;
++        this.lastName = lastName;
++        this.middleName = middleName;
++        this.salutation = salutation;
++        this.title = title;
++        this.street = street;
++        this.streetNumber = streetNumber;
++        this.city = city;
++        this.zipCode = zipCode;
++        this.country = country;
++        this.emailAddress = emailAddress;
++        this.dayOfBirth = dayOfBirth;
++    }
++
++    /** default constructor */
++    public Person() {
++    }
++
++    /** minimal constructor */
++    public Person(String firstName, String lastName, String street, String streetNumber, String city, String zipCode, String country, String emailAddress) {
++        this.firstName = firstName;
++        this.lastName = lastName;
++        this.street = street;
++        this.streetNumber = streetNumber;
++        this.city = city;
++        this.zipCode = zipCode;
++        this.country = country;
++        this.emailAddress = emailAddress;
++    }
++
++    public Integer getPersonId() {
++        return this.personId;
++    }
++
++    protected void setPersonId(Integer personId) {
++        this.personId = personId;
++    }
++
++    public String getFirstName() {
++        return this.firstName;
++    }
++
++    public void setFirstName(String firstName) {
++        this.firstName = firstName;
++    }
++
++    public String getLastName() {
++        return this.lastName;
++    }
++
++    public void setLastName(String lastName) {
++        this.lastName = lastName;
++    }
++
++    public String getMiddleName() {
++        return this.middleName;
++    }
++
++    public void setMiddleName(String middleName) {
++        this.middleName = middleName;
++    }
++
++    public String getSalutation() {
++        return this.salutation;
++    }
++
++    public void setSalutation(String salutation) {
++        this.salutation = salutation;
++    }
++
++    public String getTitle() {
++        return this.title;
++    }
++
++    public void setTitle(String title) {
++        this.title = title;
++    }
++
++    public String getStreet() {
++        return this.street;
++    }
++
++    public void setStreet(String street) {
++        this.street = street;
++    }
++
++    public String getStreetNumber() {
++        return this.streetNumber;
++    }
++
++    public void setStreetNumber(String streetNumber) {
++        this.streetNumber = streetNumber;
++    }
++
++    public String getCity() {
++        return this.city;
++    }
++
++    public void setCity(String city) {
++        this.city = city;
++    }
++
++    public String getZipCode() {
++        return this.zipCode;
++    }
++
++    public void setZipCode(String zipCode) {
++        this.zipCode = zipCode;
++    }
++
++    public String getCountry() {
++        return this.country;
++    }
++
++    public void setCountry(String country) {
++        this.country = country;
++    }
++
++    public String getEmailAddress() {
++        return this.emailAddress;
++    }
++
++    public void setEmailAddress(String emailAddress) {
++        this.emailAddress = emailAddress;
++    }
++
++    public Calendar getDayOfBirth() {
++        return this.dayOfBirth;
++    }
++
++    public void setDayOfBirth(Calendar dayOfBirth) {
++        this.dayOfBirth = dayOfBirth;
++    }
++
++    public String toString() {
++        return new ToStringBuilder(this)
++            .append(&quot;personId&quot;, getPersonId())
++            .append(&quot;firstName&quot;, getFirstName())
++            .append(&quot;lastName&quot;, getLastName())
++            .append(&quot;middleName&quot;, getMiddleName())
++            .append(&quot;salutation&quot;, getSalutation())
++            .append(&quot;title&quot;, getTitle())
++            .append(&quot;street&quot;, getStreet())
++            .append(&quot;streetNumber&quot;, getStreetNumber())
++            .append(&quot;city&quot;, getCity())
++            .append(&quot;zipCode&quot;, getZipCode())
++            .append(&quot;country&quot;, getCountry())
++            .append(&quot;emailAddress&quot;, getEmailAddress())
++            .append(&quot;dayOfBirth&quot;, getDayOfBirth())
++            .toString();
++    }
++
++    public boolean equals(Object other) {
++        if ( (this == other ) ) return true;
++        if ( !(other instanceof Person) ) return false;
++        Person castOther = (Person) other;
++        return new EqualsBuilder()
++            .append(this.getPersonId(), castOther.getPersonId())
++            .isEquals();
++    }
++
++    public int hashCode() {
++        return new HashCodeBuilder()
++            .append(getPersonId())
++            .toHashCode();
++    }
++
++}
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000018.html">[Provirent-svn-commit] r17 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+	<LI>Next message: <A HREF="000020.html">[Provirent-svn-commit] r19 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#19">[ date ]</a>
+              <a href="thread.html#19">[ thread ]</a>
+              <a href="subject.html#19">[ subject ]</a>
+              <a href="author.html#19">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

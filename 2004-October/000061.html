@@ -1,0 +1,376 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r60 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r60%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200410251848.i9PImms8022139%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000060.html">
+   <LINK REL="Next"  HREF="000062.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r60 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r60%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200410251848.i9PImms8022139%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r60 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Mon Oct 25 20:48:48 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000060.html">[Provirent-svn-commit] r59 - in project_src/provirent_hibernate/src: . com com/cloudgarden com/cloudgarden/resource
+</A></li>
+        <LI>Next message: <A HREF="000062.html">[Provirent-svn-commit] r61 - in project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#61">[ date ]</a>
+              <a href="thread.html#61">[ thread ]</a>
+              <a href="subject.html#61">[ subject ]</a>
+              <a href="author.html#61">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-25 20:48:47 +0200 (Mon, 25 Oct 2004)
+New Revision: 60
+
+Added:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/AbstractComposite.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/StatusLineStyledText.java
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java
+Log:
+- StatusLeite muss jetzt vom Typ StatusLineStyledText sein, in dieser wird z.B. definiert wie lange eine Meldung sichtbar ist und die farben
+- jedes Composite das als eigenes Composit entwickelt wird, muss von AbstractComposite abgeleitet werden, damit muessen methoden wie changelanguage und setStatusline implementiert werden
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/AbstractComposite.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/AbstractComposite.java	2004-10-25 12:37:00 UTC (rev 59)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/AbstractComposite.java	2004-10-25 18:48:47 UTC (rev 60)
+@@ -0,0 +1,43 @@
++package de.hsharz.provirent.managment.gui;
++
++import java.util.Locale;
++
++import org.eclipse.swt.custom.StyledText;
++import org.eclipse.swt.layout.GridLayout;
++
++
++/**
++* This code was generated using CloudGarden's Jigloo
++* SWT/Swing GUI Builder, which is free for non-commercial
++* use. If Jigloo is being used commercially (ie, by a corporation,
++* company or business for any purpose whatever) then you
++* should purchase a license for each developer using Jigloo.
++* Please visit www.cloudgarden.com for details.
++* Use of Jigloo implies acceptance of these licensing terms.
++* *************************************
++* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED
++* for this machine, so Jigloo or this code cannot be used legally
++* for any corporate or commercial purpose.
++* *************************************
++*/
++abstract public class AbstractComposite extends org.eclipse.swt.widgets.Composite {
++
++    abstract public void changeLanguage(Locale l);
++    abstract public void setStatusLine(StatusLineStyledText status);
++
++
++	public AbstractComposite(org.eclipse.swt.widgets.Composite parent, int style) {
++		super(parent, style);
++		initGUI();
++	}
++
++	private void initGUI() {
++		try {
++			this.setLayout(new GridLayout());
++			this.layout();
++		} catch (Exception e) {
++			e.printStackTrace();
++		}
++	}
++
++}
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java	2004-10-25 12:37:00 UTC (rev 59)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java	2004-10-25 18:48:47 UTC (rev 60)
+@@ -1,5 +1,7 @@
+ package de.hsharz.provirent.managment.gui;
+ 
++import java.util.Locale;
++
+ import org.eclipse.swt.SWT;
+ import org.eclipse.swt.custom.SashForm;
+ import org.eclipse.swt.custom.StyledText;
+@@ -7,9 +9,6 @@
+ import org.eclipse.swt.events.FocusEvent;
+ import org.eclipse.swt.events.SelectionAdapter;
+ import org.eclipse.swt.events.SelectionEvent;
+-import org.eclipse.swt.graphics.Point;
+-import org.eclipse.swt.graphics.Rectangle;
+-import org.eclipse.swt.layout.FillLayout;
+ import org.eclipse.swt.layout.FormAttachment;
+ import org.eclipse.swt.layout.FormData;
+ import org.eclipse.swt.layout.FormLayout;
+@@ -44,7 +43,7 @@
+ * for any corporate or commercial purpose.
+ * *************************************
+ */
+-public class CompositeFormate extends org.eclipse.swt.widgets.Composite {
++public class CompositeFormate extends AbstractComposite {
+ 	private SashForm sashForm1;
+ 	private Group groupVideoFormatOverview;
+ 	private Group groupVideoFormatDetail;
+@@ -95,52 +94,18 @@
+ 
+     private int mode_AudioFormat = 0;
+ 	
+-    private StyledText statusLine;
++    private StatusLineStyledText statusLine;
+     
+-    public void setStatusObject(StyledText status){
+-        statusLine = status;
+-    }
+-	
+-    private void setStatus(final int mode, final String message) {
+-        /**
+-         * mode values 0 normal message 1 information message 2 warn message 3
+-         * error message
+-         *  
+-         */
+-        if (mode == 0) {
+-            statusLine.setBackground(ColorDef.STATUS_B_STANDARD);
+-            statusLine.setForeground(ColorDef.STATUS_F_STANDARD);
+-        } else if (mode == 1) {
+-            statusLine.setBackground(ColorDef.STATUS_B_INFO);
+-            statusLine.setForeground(ColorDef.STATUS_F_INFO);
+-        } else if (mode == 2) {
+-            statusLine.setBackground(ColorDef.STATUS_B_WARN);
+-            statusLine.setForeground(ColorDef.STATUS_F_WARN);
+-        } else if (mode == 3) {
+-            statusLine.setBackground(ColorDef.STATUS_B_ERROR);
+-            statusLine.setForeground(ColorDef.STATUS_F_ERROR);
+-        }
+ 
+-        statusLine.setText(message);
+-
+-		new Thread() {
+-			public void run() {
+-				
+-				try {Thread.sleep (1000 *5);} catch (Throwable th) {}
+-					if (Display.getDefault().isDisposed()) return;
+-					Display.getDefault().asyncExec(new Runnable() {
+-						public void run() {
+-				            statusLine.setBackground(ColorDef.STATUS_B_STANDARD);
+-				            statusLine.setForeground(ColorDef.STATUS_F_STANDARD);
+-						}
+-					});
+-				
+-			}
+-		}.start();
+-
++    public void changeLanguage(Locale l){
++        
+     }
+     
++    public void setStatusLine(StatusLineStyledText status){
++        statusLine = status;
++    }
+     
++    
+ 	/**
+ 	* Auto-generated main method to display this 
+ 	* org.eclipse.swt.widgets.Composite inside a new Shell.
+@@ -156,6 +121,7 @@
+ 	public static void showGUI() {
+ 		Display display = Display.getDefault();
+ 		Shell shell = new Shell(display);
++		/*
+ 		CompositeFormate inst = new CompositeFormate(shell, SWT.NULL);
+ 		Point size = inst.getSize();
+ 		shell.setLayout(new FillLayout());
+@@ -170,6 +136,7 @@
+ 				shellBounds.height -= MENU_HEIGHT;
+ 			shell.setSize(shellBounds.width, shellBounds.height);
+ 		}
++		*/
+ 		shell.open();
+ 		while (!shell.isDisposed()) {
+ 			if (!display.readAndDispatch())
+@@ -396,7 +363,7 @@
+                                             //TODO add your
+                                             // code for
+                                             // buttonVideoFormatNew.widgetSelected
+-                                            setStatus(3, &quot;Test&quot;);
++                                            statusLine.setStatus(3, &quot;Test&quot;);
+                                         }
+                                         });
+                                 }
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java	2004-10-25 12:37:00 UTC (rev 59)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java	2004-10-25 18:48:47 UTC (rev 60)
+@@ -184,7 +184,7 @@
+ 
+     private TableColumn tableColumn4;
+ 
+-    private StyledText statusLine;
++    private StatusLineStyledText statusLine;
+ 
+     private Composite compositeStatusLine;
+ 
+@@ -600,7 +600,7 @@
+                 {
+                     //init the Composite for statusline
+                     initStatusComposite();
+-                    compositeFormate.setStatusObject(statusLine);
++                    compositeFormate.setStatusLine(statusLine);
+ 
+                 }
+             }
+@@ -633,7 +633,7 @@
+     }
+ 
+     private void initStatusLine() {
+-        statusLine = new StyledText(compositeStatusLine, SWT.READ_ONLY);
++        statusLine = new StatusLineStyledText(compositeStatusLine, SWT.READ_ONLY);
+         statusLine.setText(&quot;&quot;);
+         statusLine
+                 .setToolTipText(&quot;Hier finden Sie wichtige Statusinformationen&quot;);
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/StatusLineStyledText.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/StatusLineStyledText.java	2004-10-25 12:37:00 UTC (rev 59)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/StatusLineStyledText.java	2004-10-25 18:48:47 UTC (rev 60)
+@@ -0,0 +1,97 @@
++/*
++ * Created on 25.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.managment.gui;
++
++import org.eclipse.swt.custom.StyledText;
++import org.eclipse.swt.widgets.Composite;
++import org.eclipse.swt.widgets.Display;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class StatusLineStyledText extends StyledText {
++
++    private static final int SLEEP_TIME = 5;
++    
++    
++    
++    public void setStatus(final int mode, final String message) {
++        /**
++         * mode values 0 normal message 1 information message 2 warn message 3
++         * error message
++         *  
++         */
++        if (mode == 0) {
++            this.setBackground(ColorDef.STATUS_B_STANDARD);
++            this.setForeground(ColorDef.STATUS_F_STANDARD);
++        } else if (mode == 1) {
++            this.setBackground(ColorDef.STATUS_B_INFO);
++            this.setForeground(ColorDef.STATUS_F_INFO);
++        } else if (mode == 2) {
++            this.setBackground(ColorDef.STATUS_B_WARN);
++            this.setForeground(ColorDef.STATUS_F_WARN);
++        } else if (mode == 3) {
++            this.setBackground(ColorDef.STATUS_B_ERROR);
++            this.setForeground(ColorDef.STATUS_F_ERROR);
++        }
++
++        this.setText(message);
++
++		new Thread() {
++			public void run() {
++				
++				try {Thread.sleep (1000 * SLEEP_TIME);} catch (Throwable th) {}
++					if (Display.getDefault().isDisposed()) return;
++					Display.getDefault().asyncExec(new Runnable() {
++						public void run() {
++						    setBackground(ColorDef.STATUS_B_STANDARD);
++						    setForeground(ColorDef.STATUS_F_STANDARD);
++						}
++					});
++				
++			}
++		}.start();
++
++    }    
++    
++    /**
++     * @param parent
++     * @param style
++     */
++    public StatusLineStyledText(Composite parent, int style) {
++        super(parent, style);
++        // TODO Auto-generated constructor stub
++    }
++
++}
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000060.html">[Provirent-svn-commit] r59 - in project_src/provirent_hibernate/src: . com com/cloudgarden com/cloudgarden/resource
+</A></li>
+	<LI>Next message: <A HREF="000062.html">[Provirent-svn-commit] r61 - in project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#61">[ date ]</a>
+              <a href="thread.html#61">[ thread ]</a>
+              <a href="subject.html#61">[ subject ]</a>
+              <a href="author.html#61">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

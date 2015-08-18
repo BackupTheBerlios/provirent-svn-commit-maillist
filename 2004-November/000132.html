@@ -1,0 +1,257 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r131 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui project_src/provirent_hibernate/src/de/hsharz/provirent/persistence project_src/provirent_hibernate/src/test/provirent/hibernate timetable
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r131%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%20project_src/provirent_hibernate/src/de/hsharz/provirent/persistence%20project_src/provirent_hibernate/src/test/provirent/hibernate%20timetable&In-Reply-To=%3C200411112126.iABLQk7Z007521%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000131.html">
+   <LINK REL="Next"  HREF="000133.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r131 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui project_src/provirent_hibernate/src/de/hsharz/provirent/persistence project_src/provirent_hibernate/src/test/provirent/hibernate timetable</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r131%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%20project_src/provirent_hibernate/src/de/hsharz/provirent/persistence%20project_src/provirent_hibernate/src/test/provirent/hibernate%20timetable&In-Reply-To=%3C200411112126.iABLQk7Z007521%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r131 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui project_src/provirent_hibernate/src/de/hsharz/provirent/persistence project_src/provirent_hibernate/src/test/provirent/hibernate timetable">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Thu Nov 11 22:26:46 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000131.html">[Provirent-svn-commit] r130 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+        <LI>Next message: <A HREF="000133.html">[Provirent-svn-commit] r132 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#132">[ date ]</a>
+              <a href="thread.html#132">[ thread ]</a>
+              <a href="subject.html#132">[ subject ]</a>
+              <a href="author.html#132">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-11 22:26:45 +0100 (Thu, 11 Nov 2004)
+New Revision: 131
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java
+   timetable/pschneider.txt
+Log:
+- tabs werden beim ?\195?\182ffnen jetzt auch sofort angezeigt
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-11 21:16:38 UTC (rev 130)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-11 21:26:45 UTC (rev 131)
+@@ -401,6 +401,7 @@
+             public void widgetSelected(SelectionEvent evt) {
+ 				if(tabItemFormat == null || tabItemFormat.isDisposed()){
+ 				    initFormatTab();
++				    cTabFolderMain.setSelection(tabItemFormat);
+ 				 return;   
+ 				}
+ 				
+@@ -417,6 +418,7 @@
+             public void widgetSelected(SelectionEvent evt) {
+ 				if(tabItemDirector == null || tabItemDirector.isDisposed()){
+ 				    initDirectorTab();
++				    cTabFolderMain.setSelection(tabItemDirector);
+ 				    return;   
+ 				}
+ 				
+@@ -433,6 +435,7 @@
+             public void widgetSelected(SelectionEvent evt) {
+ 				if(tabItemActor == null || tabItemActor.isDisposed()){
+ 				    initActorTab();
++				    cTabFolderMain.setSelection(tabItemActor);
+ 				    return;   
+ 				}
+ 				
+@@ -450,6 +453,7 @@
+             public void widgetSelected(SelectionEvent evt) {
+ 				if(tabItemGenre == null || tabItemGenre.isDisposed()){
+ 				    initGenreTab();
++				    cTabFolderMain.setSelection(tabItemGenre);
+ 				    return;   
+ 				}
+ 				
+@@ -467,6 +471,7 @@
+             public void widgetSelected(SelectionEvent evt) {
+ 				if(tabItemLanguage == null || tabItemLanguage.isDisposed()){
+ 				    initLanguageTab();
++				    cTabFolderMain.setSelection(tabItemLanguage);
+ 				    return;   
+ 				}
+ 				
+@@ -484,6 +489,7 @@
+             public void widgetSelected(SelectionEvent evt) {
+ 				if(tabItemStatus == null || tabItemStatus.isDisposed()){
+ 				    initStatusTab();
++				    cTabFolderMain.setSelection(tabItemStatus);
+ 				    return;   
+ 				}
+ 				
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-11 21:16:38 UTC (rev 130)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-11 21:26:45 UTC (rev 131)
+@@ -239,20 +239,27 @@
+                 //get new Session and begin Transaction
+                 s = HibernateUtil.currentSession();
+                 tx = s.beginTransaction();
++                
+                 try{
+                     s.delete(o);
++                
+                 } catch (HibernateException e) {
+                     logger.error(&quot;saveObject(). Fehler beim Speichern/Updaten &quot;
+                             + &quot;des Objectes:&quot; + o + &quot; Exception: &quot; + e);
+                     exception = 1;
+                 }
++               
+                 
+-                s.flush();
+-               
++
++                //s.flush();
++                
+                 tx.commit();
+                 
++                o= null;
++                
+             } catch (HibernateException e) {
+                 exception = 2;
++                logger.error(&quot;Message &quot;+  e.getMessages().toString()); 
+                 logger
+                         .error(
+                                 &quot;deleteObject(Object) - Something went wrong here; discard all partial changes&quot;,
+@@ -1193,4 +1200,4 @@
+ 
+     }
+ 
+-}
+\ No newline at end of file
++}
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java	2004-11-11 21:16:38 UTC (rev 130)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java	2004-11-11 21:26:45 UTC (rev 131)
+@@ -84,7 +84,7 @@
+         }
+     }
+ 
+-    /*public void testCondition() throws Exception {
++    public void testCondition() throws Exception {
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - start&quot;);
+         }
+@@ -194,7 +194,7 @@
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+-    }*/
++    }
+ 
+     public void testSaveCondition() throws Exception {
+         if (logger.isDebugEnabled()) {
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java	2004-11-11 21:16:38 UTC (rev 130)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java	2004-11-11 21:26:45 UTC (rev 131)
+@@ -159,6 +159,15 @@
+                     s.delete(myd);
+                     s.flush();
+ 
++                    logger.debug(&quot;L&#246;sche eins per Hand&quot;);
++                    Genre o = new Genre();
++                    o.setGenreId(new Integer(0));
++                    o.setName(&quot;&quot;);
++                    o.setShortname(&quot;&quot;);
++                    s.delete(o);
++                    s.flush();
++                    
++                    
+                     dbd = myd = null;
+ 
+                     Object obj = s.get(Genre.class, new Integer(id));
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java	2004-11-11 21:16:38 UTC (rev 130)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java	2004-11-11 21:26:45 UTC (rev 131)
+@@ -83,7 +83,8 @@
+             logger.debug(&quot;tearDown() - end&quot;);
+         }
+     }
+-    /*
++
++   
+     public void testStatus() throws Exception {
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - start&quot;);
+@@ -192,7 +193,7 @@
+       if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+-    }*/
++    }
+ 
+     public void testSaveStatus() throws Exception {
+         if (logger.isDebugEnabled()) {
+
+Modified: timetable/pschneider.txt
+===================================================================
+--- timetable/pschneider.txt	2004-11-11 21:16:38 UTC (rev 130)
++++ timetable/pschneider.txt	2004-11-11 21:26:45 UTC (rev 131)
+@@ -8,4 +8,10 @@
+ 12.10.2004	3,5	SWT erster Versuch
+ 
+ 20.10.2004	4	SWT Managment
+-21.10.2004	4	SWTDual VideoFormat als erstes richtiges Element
+\ No newline at end of file
++21.10.2004	4	SWTDual VideoFormat als erstes richtiges Element
++
++
++
++
++10.11.2004	3	Auf Firebird umstellen und Fehler gesucht
++11.11.2004	1,5	tests, gui probleme
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000131.html">[Provirent-svn-commit] r130 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+	<LI>Next message: <A HREF="000133.html">[Provirent-svn-commit] r132 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#132">[ date ]</a>
+              <a href="thread.html#132">[ thread ]</a>
+              <a href="subject.html#132">[ subject ]</a>
+              <a href="author.html#132">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r162 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r162%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411242337.iAONbVmY022276%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000162.html">
+   <LINK REL="Next"  HREF="000164.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r162 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r162%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411242337.iAONbVmY022276%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r162 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Thu Nov 25 00:37:31 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000162.html">[Provirent-svn-commit] r161 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+        <LI>Next message: <A HREF="000164.html">[Provirent-svn-commit] r163 - in project_src/provirent_hibernate: . lib src/de/hsharz/provirent src/de/hsharz/provirent/management/gui src/de/hsharz/provirent/objects
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#163">[ date ]</a>
+              <a href="thread.html#163">[ thread ]</a>
+              <a href="subject.html#163">[ subject ]</a>
+              <a href="author.html#163">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-11-25 00:37:19 +0100 (Thu, 25 Nov 2004)
+New Revision: 162
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java
+Log:
+Composite Movie -textMoviesDescription (MULTI,SCROLL)
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-11-24 10:14:27 UTC (rev 161)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-11-24 23:37:19 UTC (rev 162)
+@@ -93,7 +93,7 @@
+     private Text textMoviesSearch;
+     private Text textMoviesID;
+     private Text textMoviesTitle;
+-    private StyledText textMoviesDescription;
++    private Text textMoviesDescription;
+     
+     private Label labelMoviesSearch;
+     private Label labelMoviesID;
+@@ -586,15 +586,14 @@
+     	    labelMoviesAdvice.setLayoutData(formData2);
+     	}
+         {
+-            textMoviesDescription = new StyledText(groupMoviesDetail,SWT.BORDER);
++            textMoviesDescription = new Text(groupMoviesDetail, SWT.MULTI 
++                    | SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
+             GridData formData2 = new GridData();
+     	    formData2.horizontalSpan = 5;
+     	    formData2.verticalSpan = 5;
+     	    formData2.verticalAlignment = GridData.FILL;
+     	    formData2.horizontalAlignment = GridData.FILL;
+     	    textMoviesDescription.setLayoutData(formData2);
+-    	    textMoviesDescription.setEnabled(false);
+-    	    //textMoviesDescription.setBackground();
+         }
+         {
+             buttonMoviesEditDirectors = new Button(groupMoviesDetail
+@@ -700,7 +699,7 @@
+                 textMoviesDescription.setText(&quot;&quot;);
+                 textMoviesTitle.setEditable(true);
+                 textMoviesDate.setEditable(true);
+-                textMoviesDescription.setEnabled(true);
++                textMoviesDescription.setEditable(true);
+                 
+                 buttonMoviesCancel.setEnabled(true);
+                 buttonMoviesSave.setEnabled(true);
+@@ -981,7 +980,7 @@
+         tableMoviesOverview.setEnabled(true);
+         textMoviesTitle.setEditable(false);
+         textMoviesDate.setEditable(false);
+-        textMoviesDescription.setEnabled(false);
++        textMoviesDescription.setEditable(false);
+         buttonMoviesCancel.setEnabled(false);
+         buttonMoviesSave.setEnabled(false);
+         buttonMoviesNew.setEnabled(true);
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java	2004-11-24 10:14:27 UTC (rev 161)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java	2004-11-24 23:37:19 UTC (rev 162)
+@@ -94,7 +94,7 @@
+ 
+             Shell shell = new Shell(display);
+             DialogMovie inst = new DialogMovie(shell, SWT.NULL, Locale.GERMAN,
+-                    film, TYPE_IMAGE);
++                    film, TYPE_ACTOR);
+             inst.open();
+         } catch (Exception e) {
+             e.printStackTrace();
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000162.html">[Provirent-svn-commit] r161 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+	<LI>Next message: <A HREF="000164.html">[Provirent-svn-commit] r163 - in project_src/provirent_hibernate: . lib src/de/hsharz/provirent src/de/hsharz/provirent/management/gui src/de/hsharz/provirent/objects
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#163">[ date ]</a>
+              <a href="thread.html#163">[ thread ]</a>
+              <a href="subject.html#163">[ subject ]</a>
+              <a href="author.html#163">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

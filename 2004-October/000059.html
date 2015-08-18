@@ -1,0 +1,267 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r58 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r58%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200410251235.i9PCZPAD030793%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000058.html">
+   <LINK REL="Next"  HREF="000060.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r58 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r58%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200410251235.i9PCZPAD030793%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r58 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Mon Oct 25 14:35:25 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000058.html">[Provirent-svn-commit] r57 - in project_src/provirent_hibernate/src/de/hsharz/provirent/managment: . exceptions
+</A></li>
+        <LI>Next message: <A HREF="000060.html">[Provirent-svn-commit] r59 - in project_src/provirent_hibernate/src: . com com/cloudgarden com/cloudgarden/resource
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#59">[ date ]</a>
+              <a href="thread.html#59">[ thread ]</a>
+              <a href="subject.html#59">[ subject ]</a>
+              <a href="author.html#59">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-25 14:35:24 +0200 (Mon, 25 Oct 2004)
+New Revision: 58
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java
+Log:
+- Button Abbrechen implementiert
+- eigene Composite koennen nun Meldungen an die Statusleiste senden
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java	2004-10-23 17:59:21 UTC (rev 57)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java	2004-10-25 12:35:24 UTC (rev 58)
+@@ -2,6 +2,7 @@
+ 
+ import org.eclipse.swt.SWT;
+ import org.eclipse.swt.custom.SashForm;
++import org.eclipse.swt.custom.StyledText;
+ import org.eclipse.swt.events.FocusAdapter;
+ import org.eclipse.swt.events.FocusEvent;
+ import org.eclipse.swt.events.SelectionAdapter;
+@@ -84,6 +85,9 @@
+     private final static int MODE_VIEW = 0;
+ 
+     private final static int MODE_ADD = 1;
++    private TableColumn tableColumn6;
++    private TableColumn tableColumn5;
++    private TableColumn tableColumn4;
+ 
+     private final static int MODE_EDIT = 2;
+ 
+@@ -91,7 +95,52 @@
+ 
+     private int mode_AudioFormat = 0;
+ 	
++    private StyledText statusLine;
++    
++    public void setStatusObject(StyledText status){
++        statusLine = status;
++    }
+ 	
++    private void setStatus(final int mode, final String message) {
++        /**
++         * mode values 0 normal message 1 information message 2 warn message 3
++         * error message
++         *  
++         */
++        if (mode == 0) {
++            statusLine.setBackground(ColorDef.STATUS_B_STANDARD);
++            statusLine.setForeground(ColorDef.STATUS_F_STANDARD);
++        } else if (mode == 1) {
++            statusLine.setBackground(ColorDef.STATUS_B_INFO);
++            statusLine.setForeground(ColorDef.STATUS_F_INFO);
++        } else if (mode == 2) {
++            statusLine.setBackground(ColorDef.STATUS_B_WARN);
++            statusLine.setForeground(ColorDef.STATUS_F_WARN);
++        } else if (mode == 3) {
++            statusLine.setBackground(ColorDef.STATUS_B_ERROR);
++            statusLine.setForeground(ColorDef.STATUS_F_ERROR);
++        }
++
++        statusLine.setText(message);
++
++		new Thread() {
++			public void run() {
++				
++				try {Thread.sleep (1000 *5);} catch (Throwable th) {}
++					if (Display.getDefault().isDisposed()) return;
++					Display.getDefault().asyncExec(new Runnable() {
++						public void run() {
++				            statusLine.setBackground(ColorDef.STATUS_B_STANDARD);
++				            statusLine.setForeground(ColorDef.STATUS_F_STANDARD);
++						}
++					});
++				
++			}
++		}.start();
++
++    }
++    
++    
+ 	/**
+ 	* Auto-generated main method to display this 
+ 	* org.eclipse.swt.widgets.Composite inside a new Shell.
+@@ -136,6 +185,7 @@
+ 	private void initGUI() {
+ 		try {
+ 			this.setLayout(new GridLayout());
++			this.setSize(660, 421);
+             {
+                 sashForm1 = new SashForm(this, SWT.VERTICAL | SWT.V_SCROLL);
+                 GridData sashForm1LData1 = new GridData();
+@@ -207,6 +257,21 @@
+                                 table2LData.grabExcessHorizontalSpace = true;
+                                 table2LData.grabExcessVerticalSpace = true;
+                                 tableVideoFormat.setLayoutData(table2LData);
++                                {
++                                    tableColumn4 = new TableColumn(tableVideoFormat, SWT.CENTER);
++                                    tableColumn4.setText(&quot;id&quot;);
++                                    tableColumn4.setWidth(100);
++                                }
++                                {
++                                    tableColumn5 = new TableColumn(tableVideoFormat, SWT.CENTER);
++                                    tableColumn5.setText(&quot;Name&quot;);
++                                    tableColumn5.setWidth(100);
++                                }
++                                {
++                                    tableColumn6 = new TableColumn(tableVideoFormat, SWT.CENTER);
++                                    tableColumn6.setText(&quot;vorname&quot;);
++                                    tableColumn6.setWidth(100);
++                                }
+                             }
+                             {
+                                 labelVideoFormatSearch = new Label(groupVideoFormatOverview, SWT.NONE);
+@@ -331,6 +396,7 @@
+                                             //TODO add your
+                                             // code for
+                                             // buttonVideoFormatNew.widgetSelected
++                                            setStatus(3, &quot;Test&quot;);
+                                         }
+                                         });
+                                 }
+@@ -388,9 +454,7 @@
+                                             System.out
+                                                 .println(&quot;buttonVideoFormatEdit.widgetSelected, event=&quot;
+                                                     + evt);
+-                                            //TODO add your
+-                                            // code for
+-                                            // buttonVideoFormatEdit.widgetSelected
++                                          
+                                         }
+                                         });
+                                 }
+@@ -448,9 +512,21 @@
+                                             System.out
+                                                 .println(&quot;buttonVideoFormatCancel.widgetSelected, event=&quot;
+                                                     + evt);
+-                                            //TODO add your
+-                                            // code for
+-                                            // buttonVideoFormatCancel.widgetSelected
++                                            buttonVideoFormatCancel.setEnabled(false);
++                                            buttonVideoFormatEdit.setEnabled(true);
++                                            buttonVideoFormatNew.setEnabled(true);
++                                            buttonVideoFormatDelete.setEnabled(true);
++                                            textVideoFormatName.setEditable(false);
++                                            textVideoFormatShortname.setEditable(false);
++                                            
++//                                          VideoTabelle
++                                            // aktivieren
++                                            tableVideoFormat.setEnabled(true);
++
++                                            //VideoSearch
++                                            // aktivieren
++                                            textVideoFormatSearch
++                                                .setEnabled(true);
+                                         }
+                                         });
+                                 }
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java	2004-10-23 17:59:21 UTC (rev 57)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java	2004-10-25 12:35:24 UTC (rev 58)
+@@ -442,6 +442,7 @@
+                                 compositeFormate = new CompositeFormate(
+                                     cTabFolderMain,
+                                     SWT.NONE);
++                                
+                                 tabItemFormat.setControl(compositeFormate);
+                             }
+                         }
+@@ -599,6 +600,7 @@
+                 {
+                     //init the Composite for statusline
+                     initStatusComposite();
++                    compositeFormate.setStatusObject(statusLine);
+ 
+                 }
+             }
+@@ -675,9 +677,20 @@
+ 
+         statusLine.setText(message);
+ 
+-        /**
+-         * @todo hier jetzt nach ca. 10 sec. wieder normale Farbe einblenden
+-         */
++		new Thread() {
++			public void run() {
++				
++				try {Thread.sleep (1000 *5);} catch (Throwable th) {}
++					if (display.isDisposed()) return;
++					display.asyncExec(new Runnable() {
++						public void run() {
++				            statusLine.setBackground(ColorDef.STATUS_B_STANDARD);
++				            statusLine.setForeground(ColorDef.STATUS_F_STANDARD);
++						}
++					});
++				
++			}
++		}.start();
+ 
+     }
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000058.html">[Provirent-svn-commit] r57 - in project_src/provirent_hibernate/src/de/hsharz/provirent/managment: . exceptions
+</A></li>
+	<LI>Next message: <A HREF="000060.html">[Provirent-svn-commit] r59 - in project_src/provirent_hibernate/src: . com com/cloudgarden com/cloudgarden/resource
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#59">[ date ]</a>
+              <a href="thread.html#59">[ thread ]</a>
+              <a href="subject.html#59">[ subject ]</a>
+              <a href="author.html#59">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

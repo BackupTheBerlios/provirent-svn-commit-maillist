@@ -1,0 +1,952 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r175 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r175%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/objects%20de/hsharz/provirent/persistence%20test/provirent/hibernate&In-Reply-To=%3C200411291829.iATITQf3027299%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000175.html">
+   <LINK REL="Next"  HREF="000177.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r175 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r175%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/objects%20de/hsharz/provirent/persistence%20test/provirent/hibernate&In-Reply-To=%3C200411291829.iATITQf3027299%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r175 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Mon Nov 29 19:29:26 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000175.html">[Provirent-svn-commit] r174 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+        <LI>Next message: <A HREF="000177.html">[Provirent-svn-commit] r176 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#176">[ date ]</a>
+              <a href="thread.html#176">[ thread ]</a>
+              <a href="subject.html#176">[ subject ]</a>
+              <a href="author.html#176">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-29 19:29:26 +0100 (Mon, 29 Nov 2004)
+New Revision: 175
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java	2004-11-29 10:18:58 UTC (rev 174)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java	2004-11-29 18:29:26 UTC (rev 175)
+@@ -75,10 +75,8 @@
+      */
+     private static final Logger logger = Logger.getLogger(CompositeImage.class);
+ 
+-    private byte[] imagebytedata;
+-    
+-    private ImageData imagedata;
+ 
++
+     private Label labelImagesResize;
+ 
+     private Scale scaleResize;
+@@ -93,7 +91,10 @@
+ 
+     private SashForm sashForm2;
+ 
+-    private Image ideaImage, scaledImage;
++    //private Image ideaImage, scaledImage;
++    //private byte[] imagebytedata;
++    private ImageData original_imagedata;    
++    private ImageData scaled_imagedata;
+ 
+     private int iy, ix = 0;
+ 
+@@ -519,9 +520,7 @@
+                     String selectedFile = fileDialog.open();
+                     if (selectedFile != null) {
+ 
+-                        imagedata = new ImageData(selectedFile);
+-                        scaledImage = ideaImage = new Image(getDisplay(),
+-                                imagedata);
++                        original_imagedata = scaled_imagedata = new ImageData(selectedFile);
+ 
+                         canvasImg.redraw();
+                         textFileUrl.setText(fileDialog.getFilterPath()
+@@ -566,7 +565,7 @@
+             canvasImg.setLayoutData(canvasImgLData);
+             canvasImg.addPaintListener(new PaintListener() {
+                 public void paintControl(PaintEvent e) {
+-                    if (ideaImage != null &amp;&amp; !ideaImage.isDisposed()) {
++                    if (scaled_imagedata != null ) {
+                         paintImage(e);
+                         //e.gc.drawImage(scaledImage, 0, 0);
+                         e.gc.dispose();
+@@ -622,8 +621,8 @@
+                     //skale the image
+                     float scaleFaktor = (float) scaleResize.getSelection() / 100;
+ 
+-                    int newwidth = (int) (imagedata.width * scaleFaktor);
+-                    int newheight = (int) (imagedata.height * scaleFaktor);
++                    int newwidth = (int) (original_imagedata.width * scaleFaktor);
++                    int newheight = (int) (original_imagedata.height * scaleFaktor);
+ 
+                     if(newwidth== 0){
+                         newwidth = 1;
+@@ -631,12 +630,15 @@
+                     if (newheight == 0){
+                         newheight = 1;
+                     }
+-                    System.out.println(&quot;newwidth: &quot;+newwidth+&quot; newheight: &quot;+newheight);
+-                    ImageData newdata = imagedata.scaledTo(
++                    if (logger.isDebugEnabled()) {
++                        logger
++                                .debug(&quot;widgetSelected(SelectionEvent) - newwidth: &quot;
++                                        + newwidth + &quot; newheight: &quot; + newheight);
++                    }
++                    scaled_imagedata = original_imagedata.scaledTo(
+                             newwidth, newheight);
+-                    imagedata = newdata;
+-                    scaledImage = new Image(getDisplay(), newdata);
+ 
++
+                     //redraw the image
+                     canvasImg.redraw();
+                     resizeScrollBars();
+@@ -685,7 +687,7 @@
+ 
+                         buttonSelectFile.setEnabled(true);
+ 
+-                        ideaImage = scaledImage = null;
++                        original_imagedata = scaled_imagedata = null;
+                         canvasImg.redraw();
+ 
+                         buttonImageCancel.setEnabled(true);
+@@ -726,6 +728,17 @@
+                         textImagesSearch.setEnabled(false);
+                         buttonSelectFile.setEnabled(true);
+ 
++                        scaleResize.setEnabled(true);
++                        scaleResize.setSelection(100);
++                        scaleResize.setToolTipText(l
++                                .getString(&quot;images.groupdetail.resize.size&quot;)
++                                + &quot;: 100%&quot;);
++
++                        //reset and resize the scrollbars
++                        resetScrollBars();
++                        resizeScrollBars();
++                        
++
+                     }
+                 });
+ 
+@@ -749,7 +762,7 @@
+                                 l
+                                         .getString(&quot;images.groupdetail.deletebutton.question.header&quot;),
+                                 SWT.ICON_QUESTION | SWT.YES | SWT.NO);
+-
++                        
+                         if (question != SWT.YES) {
+                             return;
+                         }
+@@ -849,7 +862,7 @@
+                         logger.debug(&quot;buttonImageSave.widgetSelected, event=&quot;
+                                 + evt);
+ 
+-                        if (scaledImage == null) {
++                        if (scaled_imagedata == null) {
+                             statusLine
+                                     .setStatus(
+                                             StatusLineStyledText.STATUS_WARN,
+@@ -890,14 +903,20 @@
+                                     .getText());
+ 
+                             ImageLoader imageLoader = new ImageLoader();
+-                            imageLoader.data = new ImageData[] { imagedata };
++                            imageLoader.data = new ImageData[] { scaled_imagedata };
+                             ByteArrayOutputStream bos = new ByteArrayOutputStream();
+ 
+-                            System.out.println(imagedata.type);
+-                            System.out.println(SWT.IMAGE_JPEG);
++                            if (logger.isDebugEnabled()) {
++                                logger.debug(&quot;widgetSelected(SelectionEvent)&quot;
++                                        + scaled_imagedata.type);
++                            }
++                            if (logger.isDebugEnabled()) {
++                                logger.debug(&quot;widgetSelected(SelectionEvent)&quot;
++                                        + SWT.IMAGE_JPEG);
++                            }
+ 
+                             imageLoader.save(bos,
+-                                    imagedata.type);
++                                    scaled_imagedata.type);
+ 
+                             tmp.setImageFile(bos.toByteArray());
+ 
+@@ -957,7 +976,10 @@
+ 
+                                 } else {
+                                     //@todo
+-                                    e.printStackTrace();
++                                    logger
++                                            .error(
++                                                    &quot;widgetSelected(SelectionEvent)&quot;,
++                                                    e);
+                                 }
+ 
+                             }
+@@ -1071,7 +1093,7 @@
+         ScrollBar horizontal = canvasImg.getHorizontalBar();
+         ScrollBar vertical = canvasImg.getVerticalBar();
+         Rectangle canvasBounds = canvasImg.getClientArea();
+-        int width = Math.round(scaledImage.getImageData().width);
++        int width = Math.round(scaled_imagedata.width);
+         if (width &gt; canvasBounds.width) {
+             // The image is wider than the canvas.
+             horizontal.setEnabled(true);
+@@ -1084,7 +1106,7 @@
+ 
+             canvasImg.redraw();
+         }
+-        int height = Math.round(scaledImage.getImageData().height);
++        int height = Math.round(scaled_imagedata.height);
+         if (height &gt; canvasBounds.height) {
+             // The image is taller than the canvas.
+             vertical.setEnabled(true);
+@@ -1100,11 +1122,11 @@
+     }
+ 
+     void scrollHorizontally(ScrollBar scrollBar) {
+-        if (scaledImage == null)
++        if (scaled_imagedata == null)
+             return;
+         Rectangle canvasBounds = canvasImg.getClientArea();
+-        int width = Math.round(scaledImage.getImageData().width);
+-        int height = Math.round(scaledImage.getImageData().height);
++        int width = Math.round(scaled_imagedata.width);
++        int height = Math.round(scaled_imagedata.height);
+         if (width &gt; canvasBounds.width) {
+             // Only scroll if the image is bigger than the canvas.
+             int x = -scrollBar.getSelection();
+@@ -1119,11 +1141,11 @@
+     }
+ 
+     void scrollVertically(ScrollBar scrollBar) {
+-        if (scaledImage == null)
++        if (scaled_imagedata == null)
+             return;
+         Rectangle canvasBounds = canvasImg.getClientArea();
+-        int width = Math.round(scaledImage.getImageData().width);
+-        int height = Math.round(scaledImage.getImageData().height);
++        int width = Math.round(scaled_imagedata.width);
++        int height = Math.round(scaled_imagedata.height);
+         if (height &gt; canvasBounds.height) {
+             // Only scroll if the image is bigger than the canvas.
+             int y = -scrollBar.getSelection();
+@@ -1138,8 +1160,6 @@
+ 
+     // Reset the scroll bars to 0.
+     void resetScrollBars() {
+-        if (scaledImage == null)
+-            return;
+         ix = 0;
+         iy = 0;
+         resizeScrollBars();
+@@ -1149,16 +1169,15 @@
+     }
+ 
+     void paintImage(PaintEvent event) {
+-        Image paintImage = scaledImage;
++        Image paintImage = new Image(getDisplay(),scaled_imagedata);
+ 
+-        int w = Math.round(scaledImage.getImageData().width);
+-        int h = Math.round(scaledImage.getImageData().height);
+-        event.gc.drawImage(paintImage, 0, 0, scaledImage.getImageData().width,
+-                scaledImage.getImageData().height, ix
+-                        + scaledImage.getImageData().x, iy
+-                        + scaledImage.getImageData().y, w, h);
++        int w = Math.round(scaled_imagedata.width);
++        int h = Math.round(scaled_imagedata.height);
++        event.gc.drawImage(paintImage, 0, 0, scaled_imagedata.width,
++                scaled_imagedata.height, ix
++                        + scaled_imagedata.x, iy
++                        + scaled_imagedata.y, w, h);
+         event.gc.dispose();
+-        //paintImage.dispose();
+     }
+ 
+     /**
+@@ -1194,15 +1213,17 @@
+                 .getString(&quot;images.groupdetail.labelselecteddatabase&quot;));
+ 
+         if (object.getImageFile() != null &amp;&amp; object.getImageFile().length &gt; 0) {
+-            System.out.println(&quot;Versuche zu zeichnen&quot;);
+-            scaledImage = ideaImage = new Image(getDisplay(),
+-                    new ByteArrayInputStream(object.getImageFile()));
++            if (logger.isDebugEnabled()) {
++                logger
++                        .debug(&quot;refreshImagesDetail(String) - Versuche zu zeichnen&quot;);
++            }
++            scaled_imagedata = original_imagedata = new ImageData(new ByteArrayInputStream(object.getImageFile()));
+             canvasImg.redraw();
+         } else {
+             statusLine.setStatus(StatusLineStyledText.STATUS_WARN,
+                     &quot;Bilddaten k&#246;nnen f&#252;r Bild &quot; + object.getImageFileName()
+                             + &quot;nicht geladen werden.&quot;);
+-            scaledImage = ideaImage = null;
++            scaled_imagedata = original_imagedata = null;
+             canvasImg.redraw();
+         }
+ 
+@@ -1265,7 +1286,6 @@
+         int maxwidth = 75;
+         
+         final ImageData imgdata = new ImageData(new ByteArrayInputStream(data));
+-
+         
+         final int width = imgdata.width;
+         final int height = imgdata.height;
+@@ -1281,15 +1301,9 @@
+ 
+         }
+ 
+-        final Image scaledtemp = new Image(getDisplay(), imgdata
++        return new Image(getDisplay(), imgdata
+                 .scaledTo((int) (width * scalefactor),
+                         (int) (height * scalefactor)));
+ 
+-        System.out.println(&quot;Type:&quot; + imgdata.type);
+-
+-        
+-
+-        return scaledtemp;
+-
+     }
+ }
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-11-29 10:18:58 UTC (rev 174)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-11-29 18:29:26 UTC (rev 175)
+@@ -941,13 +941,9 @@
+ 
+                 movie = new Movie();
+                 movie.setActors(new ArrayList());
+-                movie.setAudioFormats(new ArrayList());
+                 movie.setDirector(new ArrayList());
+                 movie.setGenres(new ArrayList());
+                 movie.setImages(new ArrayList());
+-                movie.setLanguages(new ArrayList());
+-                movie.setSubtitles(new ArrayList());
+-                movie.setVideoFormats(new ArrayList());
+             }
+         });
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-29 10:18:58 UTC (rev 174)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-29 18:29:26 UTC (rev 175)
+@@ -122,7 +122,7 @@
+     private CompositeGenre compositeGenre;
+     private CompositeLanguage compositeLanguage;
+     private CompositeImage compositeImage;
+-    private CompositeMovie compositeMovie;
++    private CopyOfCompositeMovie compositeMovie;
+     private CompositePayment compositePayment;
+     private CompositeStatus compositeStatus;   
+ 
+@@ -189,6 +189,7 @@
+     public void run() {
+         shell.layout();
+         shell.open();
++
+         while (!shell.isDisposed()) {
+             if (!display.readAndDispatch())
+                 display.sleep();
+@@ -777,7 +778,7 @@
+         });
+   
+         {
+-            compositeMovie = new CompositeMovie(
++            compositeMovie = new CopyOfCompositeMovie(
+                 cTabFolderMain,
+                 SWT.NONE, statusLine, locale);
+             
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml	2004-11-29 10:18:58 UTC (rev 174)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml	2004-11-29 18:29:26 UTC (rev 175)
+@@ -30,6 +30,44 @@
+ 						&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+ 				&lt;/many-to-one&gt;
+   
++  
++   			&lt;list	name=&quot;languages&quot;
++ 						table=&quot;MOVIELANGUAGES&quot;
++ 						 &gt;
++				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++				&lt;key column=&quot;MOVIEID&quot;/&gt;
++				&lt;index column=&quot;POS&quot;/&gt;
++				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Language&quot; column=&quot;LANGUAGEID&quot; /&gt;			
++ 			&lt;/list&gt; 			
++
++ 			&lt;list	name=&quot;subtitles&quot;
++ 						table=&quot;DVDSUBTITLES&quot;
++ 						 &gt;
++				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++				&lt;key column=&quot;DVDID&quot;/&gt;
++				&lt;index column=&quot;POS&quot;/&gt;
++				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Subtitle&quot; column=&quot;SUBTITLEID&quot; /&gt;			
++ 			&lt;/list&gt; 
++			
++ 			&lt;list	name=&quot;audioFormats&quot;
++ 						table=&quot;DVDAUDIOFORMATES&quot;
++ 						 &gt;
++				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++				&lt;key column=&quot;DVDID&quot;/&gt;
++				&lt;index column=&quot;POS&quot;/&gt;
++				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.AudioFormat&quot; column=&quot;AUDIOFORMATID&quot; /&gt;			
++ 			&lt;/list&gt;  
++
++ 			&lt;list	name=&quot;videoFormats&quot;
++ 						table=&quot;DVDVIDEOFORMATES&quot;
++ 						 &gt;
++				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++				&lt;key column=&quot;DVDID&quot;/&gt;
++				&lt;index column=&quot;POS&quot;/&gt;
++				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.VideoFormat&quot; column=&quot;VIDEOFORMATID&quot; /&gt;			
++ 			&lt;/list&gt; 			
++  
++  
+   	&lt;many-to-one name=&quot;condition&quot; class=&quot;de.hsharz.provirent.objects.Condition&quot; column=&quot;CONDITION&quot;/&gt;
+   	
+   	&lt;many-to-one name=&quot;status&quot; class=&quot;de.hsharz.provirent.objects.Status&quot; column=&quot;STATUS&quot;/&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.java	2004-11-29 10:18:58 UTC (rev 174)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.java	2004-11-29 18:29:26 UTC (rev 175)
+@@ -1,6 +1,7 @@
+ package de.hsharz.provirent.objects;
+ 
+ import java.io.Serializable;
++import java.util.List;
+ import org.apache.commons.lang.builder.EqualsBuilder;
+ import org.apache.commons.lang.builder.HashCodeBuilder;
+ import org.apache.commons.lang.builder.ToStringBuilder;
+@@ -28,18 +29,42 @@
+     /** nullable persistent field */
+     private de.hsharz.provirent.objects.Status status;
+ 
++    /** persistent field */
++    private List languages;
++
++    /** persistent field */
++    private List subtitles;
++
++    /** persistent field */
++    private List audioFormats;
++
++    /** persistent field */
++    private List videoFormats;
++
+     /** full constructor */
+-    public Dvd(String barcode, de.hsharz.provirent.objects.Movie movie, de.hsharz.provirent.objects.Condition condition, de.hsharz.provirent.objects.Status status) {
++    public Dvd(String barcode, de.hsharz.provirent.objects.Movie movie, de.hsharz.provirent.objects.Condition condition, de.hsharz.provirent.objects.Status status, List languages, List subtitles, List audioFormats, List videoFormats) {
+         this.barcode = barcode;
+         this.movie = movie;
+         this.condition = condition;
+         this.status = status;
++        this.languages = languages;
++        this.subtitles = subtitles;
++        this.audioFormats = audioFormats;
++        this.videoFormats = videoFormats;
+     }
+ 
+     /** default constructor */
+     public Dvd() {
+     }
+ 
++    /** minimal constructor */
++    public Dvd(List languages, List subtitles, List audioFormats, List videoFormats) {
++        this.languages = languages;
++        this.subtitles = subtitles;
++        this.audioFormats = audioFormats;
++        this.videoFormats = videoFormats;
++    }
++
+     public Integer getDvdId() {
+         return this.dvdId;
+     }
+@@ -80,11 +105,47 @@
+         this.status = status;
+     }
+ 
++    public List getLanguages() {
++        return this.languages;
++    }
++
++    public void setLanguages(List languages) {
++        this.languages = languages;
++    }
++
++    public List getSubtitles() {
++        return this.subtitles;
++    }
++
++    public void setSubtitles(List subtitles) {
++        this.subtitles = subtitles;
++    }
++
++    public List getAudioFormats() {
++        return this.audioFormats;
++    }
++
++    public void setAudioFormats(List audioFormats) {
++        this.audioFormats = audioFormats;
++    }
++
++    public List getVideoFormats() {
++        return this.videoFormats;
++    }
++
++    public void setVideoFormats(List videoFormats) {
++        this.videoFormats = videoFormats;
++    }
++
+     public String toString() {
+         return new ToStringBuilder(this)
+             .append(&quot;dvdId&quot;, getDvdId())
+             .append(&quot;barcode&quot;, getBarcode())
+             .append(&quot;movie&quot;, getMovie())
++            .append(&quot;languages&quot;, getLanguages())
++            .append(&quot;subtitles&quot;, getSubtitles())
++            .append(&quot;audioFormats&quot;, getAudioFormats())
++            .append(&quot;videoFormats&quot;, getVideoFormats())
+             .toString();
+     }
+ 
+@@ -98,6 +159,10 @@
+             .append(this.getMovie(), castOther.getMovie())
+             .append(this.getCondition(), castOther.getCondition())
+             .append(this.getStatus(), castOther.getStatus())
++            .append(this.getLanguages(), castOther.getLanguages())
++            .append(this.getSubtitles(), castOther.getSubtitles())
++            .append(this.getAudioFormats(), castOther.getAudioFormats())
++            .append(this.getVideoFormats(), castOther.getVideoFormats())
+             .isEquals();
+     }
+ 
+@@ -108,6 +173,10 @@
+             .append(getMovie())
+             .append(getCondition())
+             .append(getStatus())
++            .append(getLanguages())
++            .append(getSubtitles())
++            .append(getAudioFormats())
++            .append(getVideoFormats())
+             .toHashCode();
+     }
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml	2004-11-29 10:18:58 UTC (rev 174)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml	2004-11-29 18:29:26 UTC (rev 175)
+@@ -78,24 +78,8 @@
+ 				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Director&quot; column=&quot;DIRECTORID&quot; /&gt;			
+  			&lt;/list&gt; 			
+ 
+- 			&lt;list	name=&quot;languages&quot;
+- 						table=&quot;MOVIELANGUAGES&quot;
+- 						 &gt;
+-				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-				&lt;key column=&quot;MOVIEID&quot;/&gt;
+-				&lt;index column=&quot;POS&quot;/&gt;
+-				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Language&quot; column=&quot;LANGUAGEID&quot; /&gt;			
+- 			&lt;/list&gt; 			
++	
+ 
+- 			&lt;list	name=&quot;subtitles&quot;
+- 						table=&quot;MOVIESUBTITLES&quot;
+- 						 &gt;
+-				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-				&lt;key column=&quot;MOVIEID&quot;/&gt;
+-				&lt;index column=&quot;POS&quot;/&gt;
+-				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Subtitle&quot; column=&quot;SUBTITLEID&quot; /&gt;			
+- 			&lt;/list&gt; 	
+-
+  			&lt;list	name=&quot;genres&quot;
+  						table=&quot;MOVIEGENRES&quot;
+  						 &gt;
+@@ -105,23 +89,7 @@
+ 				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Genre&quot; column=&quot;GENREID&quot; /&gt;			
+  			&lt;/list&gt;  			
+ 
+- 			&lt;list	name=&quot;audioFormats&quot;
+- 						table=&quot;MOVIEAUDIOFORMATES&quot;
+- 						 &gt;
+-				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-				&lt;key column=&quot;MOVIEID&quot;/&gt;
+-				&lt;index column=&quot;POS&quot;/&gt;
+-				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.AudioFormat&quot; column=&quot;AUDIOFORMATID&quot; /&gt;			
+- 			&lt;/list&gt;  
+ 
+- 			&lt;list	name=&quot;videoFormats&quot;
+- 						table=&quot;MOVIEVIDEOFORMATES&quot;
+- 						 &gt;
+-				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-				&lt;key column=&quot;MOVIEID&quot;/&gt;
+-				&lt;index column=&quot;POS&quot;/&gt;
+-				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.VideoFormat&quot; column=&quot;VIDEOFORMATID&quot; /&gt;			
+- 			&lt;/list&gt; 
+  			
+ 
+  			
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.java	2004-11-29 10:18:58 UTC (rev 174)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.java	2004-11-29 18:29:26 UTC (rev 175)
+@@ -43,22 +43,10 @@
+     private List director;
+ 
+     /** persistent field */
+-    private List languages;
+-
+-    /** persistent field */
+-    private List subtitles;
+-
+-    /** persistent field */
+     private List genres;
+ 
+-    /** persistent field */
+-    private List audioFormats;
+-
+-    /** persistent field */
+-    private List videoFormats;
+-
+     /** full constructor */
+-    public Movie(String title, String description, int runtime, Calendar releaseDate, de.hsharz.provirent.objects.Image mainImage, List images, List actors, List director, List languages, List subtitles, List genres, List audioFormats, List videoFormats) {
++    public Movie(String title, String description, int runtime, Calendar releaseDate, de.hsharz.provirent.objects.Image mainImage, List images, List actors, List director, List genres) {
+         this.title = title;
+         this.description = description;
+         this.runtime = runtime;
+@@ -67,11 +55,7 @@
+         this.images = images;
+         this.actors = actors;
+         this.director = director;
+-        this.languages = languages;
+-        this.subtitles = subtitles;
+         this.genres = genres;
+-        this.audioFormats = audioFormats;
+-        this.videoFormats = videoFormats;
+     }
+ 
+     /** default constructor */
+@@ -79,17 +63,13 @@
+     }
+ 
+     /** minimal constructor */
+-    public Movie(String title, String description, List images, List actors, List director, List languages, List subtitles, List genres, List audioFormats, List videoFormats) {
++    public Movie(String title, String description, List images, List actors, List director, List genres) {
+         this.title = title;
+         this.description = description;
+         this.images = images;
+         this.actors = actors;
+         this.director = director;
+-        this.languages = languages;
+-        this.subtitles = subtitles;
+         this.genres = genres;
+-        this.audioFormats = audioFormats;
+-        this.videoFormats = videoFormats;
+     }
+ 
+     public Integer getMovieId() {
+@@ -170,22 +150,6 @@
+         this.director = director;
+     }
+ 
+-    public List getLanguages() {
+-        return this.languages;
+-    }
+-
+-    public void setLanguages(List languages) {
+-        this.languages = languages;
+-    }
+-
+-    public List getSubtitles() {
+-        return this.subtitles;
+-    }
+-
+-    public void setSubtitles(List subtitles) {
+-        this.subtitles = subtitles;
+-    }
+-
+     public List getGenres() {
+         return this.genres;
+     }
+@@ -194,22 +158,6 @@
+         this.genres = genres;
+     }
+ 
+-    public List getAudioFormats() {
+-        return this.audioFormats;
+-    }
+-
+-    public void setAudioFormats(List audioFormats) {
+-        this.audioFormats = audioFormats;
+-    }
+-
+-    public List getVideoFormats() {
+-        return this.videoFormats;
+-    }
+-
+-    public void setVideoFormats(List videoFormats) {
+-        this.videoFormats = videoFormats;
+-    }
+-
+     public String toString() {
+         return new ToStringBuilder(this)
+             .append(&quot;movieId&quot;, getMovieId())
+@@ -221,11 +169,7 @@
+             .append(&quot;images&quot;, getImages())
+             .append(&quot;actors&quot;, getActors())
+             .append(&quot;director&quot;, getDirector())
+-            .append(&quot;languages&quot;, getLanguages())
+-            .append(&quot;subtitles&quot;, getSubtitles())
+             .append(&quot;genres&quot;, getGenres())
+-            .append(&quot;audioFormats&quot;, getAudioFormats())
+-            .append(&quot;videoFormats&quot;, getVideoFormats())
+             .toString();
+     }
+ 
+@@ -243,11 +187,7 @@
+             .append(this.getImages(), castOther.getImages())
+             .append(this.getActors(), castOther.getActors())
+             .append(this.getDirector(), castOther.getDirector())
+-            .append(this.getLanguages(), castOther.getLanguages())
+-            .append(this.getSubtitles(), castOther.getSubtitles())
+             .append(this.getGenres(), castOther.getGenres())
+-            .append(this.getAudioFormats(), castOther.getAudioFormats())
+-            .append(this.getVideoFormats(), castOther.getVideoFormats())
+             .isEquals();
+     }
+ 
+@@ -262,11 +202,7 @@
+             .append(getImages())
+             .append(getActors())
+             .append(getDirector())
+-            .append(getLanguages())
+-            .append(getSubtitles())
+             .append(getGenres())
+-            .append(getAudioFormats())
+-            .append(getVideoFormats())
+             .toHashCode();
+     }
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.java	2004-11-29 10:18:58 UTC (rev 174)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.java	2004-11-29 18:29:26 UTC (rev 175)
+@@ -17,12 +17,6 @@
+     /** identifier field */
+     private Integer movieOrderId;
+ 
+-    /** persistent field */
+-    private String name;
+-
+-    /** persistent field */
+-    private String shortname;
+-
+     /** nullable persistent field */
+     private de.hsharz.provirent.objects.Customer customer;
+ 
+@@ -30,9 +24,7 @@
+     private List movieOrderItems;
+ 
+     /** full constructor */
+-    public MovieOrder(String name, String shortname, de.hsharz.provirent.objects.Customer customer, List movieOrderItems) {
+-        this.name = name;
+-        this.shortname = shortname;
++    public MovieOrder(de.hsharz.provirent.objects.Customer customer, List movieOrderItems) {
+         this.customer = customer;
+         this.movieOrderItems = movieOrderItems;
+     }
+@@ -42,9 +34,7 @@
+     }
+ 
+     /** minimal constructor */
+-    public MovieOrder(String name, String shortname, List movieOrderItems) {
+-        this.name = name;
+-        this.shortname = shortname;
++    public MovieOrder(List movieOrderItems) {
+         this.movieOrderItems = movieOrderItems;
+     }
+ 
+@@ -56,22 +46,6 @@
+         this.movieOrderId = movieOrderId;
+     }
+ 
+-    public String getName() {
+-        return this.name;
+-    }
+-
+-    public void setName(String name) {
+-        this.name = name;
+-    }
+-
+-    public String getShortname() {
+-        return this.shortname;
+-    }
+-
+-    public void setShortname(String shortname) {
+-        this.shortname = shortname;
+-    }
+-
+     public de.hsharz.provirent.objects.Customer getCustomer() {
+         return this.customer;
+     }
+@@ -91,8 +65,6 @@
+     public String toString() {
+         return new ToStringBuilder(this)
+             .append(&quot;movieOrderId&quot;, getMovieOrderId())
+-            .append(&quot;name&quot;, getName())
+-            .append(&quot;shortname&quot;, getShortname())
+             .append(&quot;customer&quot;, getCustomer())
+             .append(&quot;movieOrderItems&quot;, getMovieOrderItems())
+             .toString();
+@@ -104,8 +76,6 @@
+         MovieOrder castOther = (MovieOrder) other;
+         return new EqualsBuilder()
+             .append(this.getMovieOrderId(), castOther.getMovieOrderId())
+-            .append(this.getName(), castOther.getName())
+-            .append(this.getShortname(), castOther.getShortname())
+             .append(this.getCustomer(), castOther.getCustomer())
+             .append(this.getMovieOrderItems(), castOther.getMovieOrderItems())
+             .isEquals();
+@@ -114,8 +84,6 @@
+     public int hashCode() {
+         return new HashCodeBuilder()
+             .append(getMovieOrderId())
+-            .append(getName())
+-            .append(getShortname())
+             .append(getCustomer())
+             .append(getMovieOrderItems())
+             .toHashCode();
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-29 10:18:58 UTC (rev 174)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-29 18:29:26 UTC (rev 175)
+@@ -1451,13 +1451,15 @@
+ 	            Criteria criteria = s.createCriteria(Payment.class);
+ 	            //any of the criteria 
+ 	            Disjunction any = Expression.disjunction();
++	          
++	            /*
+ 	            any.add(Expression.sql(&quot;Select * from PAYMENT where name like '&quot; + 
+ 	                    		name + 
+ 	                    		&quot;' and startdate = (select startdate from PAYMENT where name like '&quot; + 
+ 	                    		name +
+ 	                    						   &quot;')&quot;));
+ 	            
+-	            
++	            */
+ 	
+ 	            //if filter not empty
+ 	            if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java	2004-11-29 10:18:58 UTC (rev 174)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java	2004-11-29 18:29:26 UTC (rev 175)
+@@ -37,6 +37,7 @@
+ import java.util.List;
+ 
+ import junit.framework.TestCase;
++import net.sf.hibernate.AssertionFailure;
+ import net.sf.hibernate.Session;
+ import net.sf.hibernate.Transaction;
+ 
+@@ -202,7 +203,6 @@
+         //get new Session and begin Transaction
+         Session s = HibernateUtil.currentSession();
+         Transaction tx = null;
+-        try {
+             tx = s.beginTransaction();
+ 
+             try {
+@@ -235,24 +235,7 @@
+ 
+                 tx.commit();
+ 
+-            } catch (Exception e) {
+-                if (tx != null) {
+-                    logger
+-                            .error(
+-                                    &quot;testSaveAudioFormat() - Something went wrong here; discard all partial changes&quot;,
+-                                    e);
+ 
+-                    // Something went wrong; discard all partial changes
+-                    tx.rollback();
+-                }
+-
+-            }
+-
+-        } catch (Exception e) {
+-            logger.error(
+-                    &quot;testSaveAudioFormat() - Error while trying to beginTransaction&quot;,
+-                    e);
+-            throw e;
+         } finally {
+             // No matter what, close the session
+             HibernateUtil.closeSession();
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000175.html">[Provirent-svn-commit] r174 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+	<LI>Next message: <A HREF="000177.html">[Provirent-svn-commit] r176 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#176">[ date ]</a>
+              <a href="thread.html#176">[ thread ]</a>
+              <a href="subject.html#176">[ subject ]</a>
+              <a href="author.html#176">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

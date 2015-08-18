@@ -1,0 +1,681 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r97 - in project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui: . language
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r97%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui%3A%20.%20language&In-Reply-To=%3C200411081528.iA8FSuXL026282%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000097.html">
+   <LINK REL="Next"  HREF="000099.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r97 - in project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui: . language</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r97%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui%3A%20.%20language&In-Reply-To=%3C200411081528.iA8FSuXL026282%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r97 - in project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui: . language">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Mon Nov  8 16:28:56 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000097.html">[Provirent-svn-commit] r96 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+        <LI>Next message: <A HREF="000099.html">[Provirent-svn-commit] r98 - timetable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#98">[ date ]</a>
+              <a href="thread.html#98">[ thread ]</a>
+              <a href="subject.html#98">[ subject ]</a>
+              <a href="author.html#98">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-08 16:28:54 +0100 (Mon, 08 Nov 2004)
+New Revision: 97
+
+Added:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeGenre.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeLanguage.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/actors.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/genre.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/language.properties
+Removed:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/artists.properties
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeActors.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/main.properties
+Log:
+- composite genre und language hinzugef?\195?\188gt
+- sprachdateien
+- in ManagmentGui implementiert
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeActors.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeActors.java	2004-11-08 14:58:30 UTC (rev 96)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeActors.java	2004-11-08 15:28:54 UTC (rev 97)
+@@ -77,7 +77,7 @@
+     public void initLanguage(Locale locale) {
+ 
+         l = PropertyResourceBundle.getBundle(
+-                &quot;de.hsharz.provirent.managment.gui.language.Actors&quot;, locale);
++                &quot;de.hsharz.provirent.managment.gui.language.actors&quot;, locale);
+ 
+     }
+     
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeGenre.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeGenre.java	2004-11-08 14:58:30 UTC (rev 96)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeGenre.java	2004-11-08 15:28:54 UTC (rev 97)
+@@ -0,0 +1,163 @@
++package de.hsharz.provirent.managment.gui;
++
++import java.util.Locale;
++import java.util.PropertyResourceBundle;
++import java.util.ResourceBundle;
++
++import org.apache.log4j.Logger;
++import org.eclipse.swt.SWT;
++import org.eclipse.swt.layout.GridLayout;
++import org.eclipse.swt.widgets.Button;
++import org.eclipse.swt.widgets.Composite;
++import org.eclipse.swt.widgets.Display;
++import org.eclipse.swt.widgets.Shell;
++
++
++import org.eclipse.swt.widgets.Group;
++import org.eclipse.swt.layout.GridData;
++import com.cloudgarden.resource.SWTResourceManager;
++import org.eclipse.swt.widgets.Text;
++/**
++* This code was generated using CloudGarden's Jigloo
++* SWT/Swing GUI Builder, which is free for non-commercial
++* use. If Jigloo is being used commercially (ie, by a corporation,
++* company or business for any purpose whatever) then you
++* should purchase a license for each developer using Jigloo.
++* Please visit www.cloudgarden.com for details.
++* Use of Jigloo implies acceptance of these licensing terms.
++* *************************************
++* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED
++* for this machine, so Jigloo or this code cannot be used legally
++* for any corporate or commercial purpose.
++* *************************************
++*/
++public class CompositeGenre extends AbstractComposite{
++
++    {
++        //Register as a resource user - SWTResourceManager will
++        //handle the obtaining and disposing of resources
++        SWTResourceManager.registerResourceUser(this);
++    }
++
++
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger
++            .getLogger(CompositeGenre.class);
++    
++    
++    private final static int MODE_VIEW = 0;
++
++    private final static int MODE_ADD = 1;
++    private Text text1;
++    private Group groupGenre;
++
++    private final static int MODE_EDIT = 2;
++    
++    private StatusLineStyledText statusLine;
++
++    private ResourceBundle l;
++    
++    private Composite parent;
++    
++    /*
++     * &#196;ndert die Sprache aller Elemente
++     * 
++     * @see de.hsharz.provirent.managment.gui.AbstractComposite#changeLanguage(java.util.Locale)
++     */
++    public void changeLanguage(Locale locale) {
++
++    }
++
++    /* 
++     * Init die Sprache (properties Datei)
++     * @see de.hsharz.provirent.managment.gui.AbstractComposite#initLanguage(java.util.Locale)
++     */
++    public void initLanguage(Locale locale) {
++
++        l = PropertyResourceBundle.getBundle(
++                &quot;de.hsharz.provirent.managment.gui.language.genre&quot;, locale);
++
++    }
++    
++    
++	/**
++	* Auto-generated main method to display this 
++	* org.eclipse.swt.widgets.Composite inside a new Shell.
++	*/
++	public static void main(String[] args) {
++		showGUI();
++	}
++		
++	/**
++	* Auto-generated method to display this 
++	* org.eclipse.swt.widgets.Composite inside a new Shell.
++	*/
++	public static void showGUI() {
++		Display display = Display.getDefault();
++		Shell shell = new Shell(display);
++
++		shell.open();
++		while (!shell.isDisposed()) {
++			if (!display.readAndDispatch())
++				display.sleep();
++		}
++	}
++
++	public CompositeGenre(Composite p, int style,
++            StatusLineStyledText status, Locale l) {
++	    super(p, style, status, l);
++        parent = p;
++        //Statusline wird gestzt
++        statusLine = status;
++        
++        //sprache wird init
++        initLanguage(l);
++	    
++	    
++		initGUI();
++	}
++
++	private void initGUI() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - start&quot;);
++        }
++
++        this.setLayout(new GridLayout());
++        this.setSize(816, 540);
++        {
++            groupGenre = new Group(this, SWT.NONE);
++            GridLayout groupGenreLayout = new GridLayout();
++            GridData groupGenreLData = new GridData();
++            groupGenreLData.grabExcessHorizontalSpace = true;
++            groupGenreLData.grabExcessVerticalSpace = true;
++            groupGenreLData.horizontalAlignment = GridData.FILL;
++            groupGenreLData.verticalAlignment = GridData.FILL;
++            groupGenre.setLayoutData(groupGenreLData);
++            groupGenreLayout.makeColumnsEqualWidth = true;
++            groupGenre.setLayout(groupGenreLayout);
++            groupGenre.setText(&quot;Genre&quot;);
++            {
++                text1 = new Text(groupGenre, SWT.MULTI | SWT.WRAP);
++                text1.setText(&quot;text1&quot;);
++                GridData text1LData = new GridData();
++                text1.setBackground(SWTResourceManager.getColor(150, 50, 0));
++                text1LData.widthHint = 336;
++                text1LData.heightHint = 173;
++                text1.setLayoutData(text1LData);
++            }
++        }
++
++        this.layout();
++
++
++        
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - end&quot;);
++        }
++	}
++
++	
++
++}
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeLanguage.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeLanguage.java	2004-11-08 14:58:30 UTC (rev 96)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeLanguage.java	2004-11-08 15:28:54 UTC (rev 97)
+@@ -0,0 +1,163 @@
++package de.hsharz.provirent.managment.gui;
++
++import java.util.Locale;
++import java.util.PropertyResourceBundle;
++import java.util.ResourceBundle;
++
++import org.apache.log4j.Logger;
++import org.eclipse.swt.SWT;
++import org.eclipse.swt.layout.GridLayout;
++import org.eclipse.swt.widgets.Button;
++import org.eclipse.swt.widgets.Composite;
++import org.eclipse.swt.widgets.Display;
++import org.eclipse.swt.widgets.Shell;
++
++
++import org.eclipse.swt.widgets.Group;
++import org.eclipse.swt.layout.GridData;
++import com.cloudgarden.resource.SWTResourceManager;
++import org.eclipse.swt.widgets.Text;
++/**
++* This code was generated using CloudGarden's Jigloo
++* SWT/Swing GUI Builder, which is free for non-commercial
++* use. If Jigloo is being used commercially (ie, by a corporation,
++* company or business for any purpose whatever) then you
++* should purchase a license for each developer using Jigloo.
++* Please visit www.cloudgarden.com for details.
++* Use of Jigloo implies acceptance of these licensing terms.
++* *************************************
++* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED
++* for this machine, so Jigloo or this code cannot be used legally
++* for any corporate or commercial purpose.
++* *************************************
++*/
++public class CompositeLanguage extends AbstractComposite{
++
++    {
++        //Register as a resource user - SWTResourceManager will
++        //handle the obtaining and disposing of resources
++        SWTResourceManager.registerResourceUser(this);
++    }
++
++
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger
++            .getLogger(CompositeLanguage.class);
++    
++    
++    private final static int MODE_VIEW = 0;
++
++    private final static int MODE_ADD = 1;
++    private Text text1;
++    private Group groupLanguage;
++
++    private final static int MODE_EDIT = 2;
++    
++    private StatusLineStyledText statusLine;
++
++    private ResourceBundle l;
++    
++    private Composite parent;
++    
++    /*
++     * &#196;ndert die Sprache aller Elemente
++     * 
++     * @see de.hsharz.provirent.managment.gui.AbstractComposite#changeLanguage(java.util.Locale)
++     */
++    public void changeLanguage(Locale locale) {
++
++    }
++
++    /* 
++     * Init die Sprache (properties Datei)
++     * @see de.hsharz.provirent.managment.gui.AbstractComposite#initLanguage(java.util.Locale)
++     */
++    public void initLanguage(Locale locale) {
++
++        l = PropertyResourceBundle.getBundle(
++                &quot;de.hsharz.provirent.managment.gui.language.language&quot;, locale);
++
++    }
++    
++    
++	/**
++	* Auto-generated main method to display this 
++	* org.eclipse.swt.widgets.Composite inside a new Shell.
++	*/
++	public static void main(String[] args) {
++		showGUI();
++	}
++		
++	/**
++	* Auto-generated method to display this 
++	* org.eclipse.swt.widgets.Composite inside a new Shell.
++	*/
++	public static void showGUI() {
++		Display display = Display.getDefault();
++		Shell shell = new Shell(display);
++
++		shell.open();
++		while (!shell.isDisposed()) {
++			if (!display.readAndDispatch())
++				display.sleep();
++		}
++	}
++
++	public CompositeLanguage(Composite p, int style,
++            StatusLineStyledText status, Locale l) {
++	    super(p, style, status, l);
++        parent = p;
++        //Statusline wird gestzt
++        statusLine = status;
++        
++        //sprache wird init
++        initLanguage(l);
++	    
++	    
++		initGUI();
++	}
++
++	private void initGUI() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - start&quot;);
++        }
++
++        this.setLayout(new GridLayout());
++        this.setSize(816, 540);
++        {
++            groupLanguage = new Group(this, SWT.NONE);
++            GridLayout groupLanguageLayout = new GridLayout();
++            GridData groupLanguageLData = new GridData();
++            groupLanguageLData.grabExcessHorizontalSpace = true;
++            groupLanguageLData.grabExcessVerticalSpace = true;
++            groupLanguageLData.horizontalAlignment = GridData.FILL;
++            groupLanguageLData.verticalAlignment = GridData.FILL;
++            groupLanguage.setLayoutData(groupLanguageLData);
++            groupLanguageLayout.makeColumnsEqualWidth = true;
++            groupLanguage.setLayout(groupLanguageLayout);
++            groupLanguage.setText(&quot;Language&quot;);
++            {
++                text1 = new Text(groupLanguage, SWT.MULTI | SWT.WRAP);
++                text1.setText(&quot;text1&quot;);
++                GridData text1LData = new GridData();
++                text1.setBackground(SWTResourceManager.getColor(150, 255, 50));
++                text1LData.widthHint = 336;
++                text1LData.heightHint = 173;
++                text1.setLayoutData(text1LData);
++            }
++        }
++
++        this.layout();
++
++
++        
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - end&quot;);
++        }
++	}
++
++	
++
++}
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java	2004-11-08 14:58:30 UTC (rev 96)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java	2004-11-08 15:28:54 UTC (rev 97)
+@@ -115,11 +115,13 @@
+ 
+     private CTabFolder cTabFolderMain;
+ 
+-    private CTabItem tabItemFormat,tabItemActor,tabItemDirector;
++    private CTabItem tabItemFormat,tabItemActor,tabItemDirector,tabItemLanguage,tabItemGenre;
+ 
+     private CompositeFormate compositeFormate;
+     private CompositeActors compositeActor;
+     private CompositeDirectors compositeDirector;
++    private CompositeGenre compositeGenre;
++    private CompositeLanguage compositeLanguage;
+     
+ 
+     private MenuItem aboutMenuItem;
+@@ -197,6 +199,7 @@
+ 
+ 
+     public void run() {
++        shell.layout();
+         shell.open();
+         while (!shell.isDisposed()) {
+             if (!display.readAndDispatch())
+@@ -209,7 +212,6 @@
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;ManagmentGui() Locale: &quot; + Locale.getDefault());
+         }
+-
+         
+         locale = Locale.getDefault();
+         
+@@ -248,7 +250,7 @@
+         //init the rest
+         initGUI();
+         
+-        shell.layout();
++        //shell.layout();
+ 
+     }
+ 
+@@ -439,16 +441,40 @@
+         
+         viewGenreMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewGenreMenuItem.setText(l.getString(&quot;menu.view.genre&quot;));
+-        viewActorMenuItem.setSelection(false);
++        viewGenreMenuItem.setSelection(false);
++        viewGenreMenuItem.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++				if(tabItemGenre == null || tabItemGenre.isDisposed()){
++				    initGenreTab();
++				    return;   
++				}
++				
++				cTabFolderMain.setSelection(tabItemGenre);
++				viewGenreMenuItem.setSelection(true);
++            
++            }
++        }); 
+ 
+-        viewSubtitleMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+-        viewSubtitleMenuItem.setText(l.getString(&quot;menu.view.subtitle&quot;));
+-        viewSubtitleMenuItem.setSelection(false);
+-        
+         viewLanguageMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewLanguageMenuItem.setText(l.getString(&quot;menu.view.language&quot;));
+         viewLanguageMenuItem.setSelection(false);
++        viewLanguageMenuItem.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++				if(tabItemLanguage == null || tabItemLanguage.isDisposed()){
++				    initLanguageTab();
++				    return;   
++				}
++				
++				cTabFolderMain.setSelection(tabItemLanguage);
++				viewGenreMenuItem.setSelection(true);
++            
++            }
++        });         
+ 
++        viewSubtitleMenuItem = new MenuItem(viewMenu, SWT.CHECK);
++        viewSubtitleMenuItem.setText(l.getString(&quot;menu.view.subtitle&quot;));
++        viewSubtitleMenuItem.setSelection(false);        
++        
+         viewStatusMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewStatusMenuItem.setText(l.getString(&quot;menu.view.status&quot;));
+         viewStatusMenuItem.setSelection(false);
+@@ -499,6 +525,7 @@
+     private void initFormatTab() {
+         tabItemFormat = new CTabItem(cTabFolderMain, SWT.NONE);
+         tabItemFormat.setText(l.getString(&quot;tab.format.title&quot;));
++        /*
+         tabItemFormat.addDisposeListener(new DisposeListener() {
+             public void widgetDisposed(DisposeEvent evt) {
+                 viewFormatMenuItem.setSelection(false);
+@@ -511,12 +538,14 @@
+             
+             tabItemFormat.setControl(compositeFormate);
+         }
++        */
+     }
+     
+     
+     private void initDirectorTab() {
+         tabItemDirector = new CTabItem(cTabFolderMain, SWT.NONE);
+-        tabItemDirector.setText(l.getString(&quot;tab.actor.title&quot;));
++        tabItemDirector.setText(l.getString(&quot;tab.director.title&quot;));
++        /*
+         tabItemDirector.addDisposeListener(new DisposeListener() {
+             public void widgetDisposed(DisposeEvent evt) {
+                 viewDirectorMenuItem.setSelection(false);
+@@ -529,11 +558,13 @@
+             
+             tabItemDirector.setControl(compositeDirector);
+         }
++        */
+     }    
+     
+     private void initActorTab() {
+         tabItemActor = new CTabItem(cTabFolderMain, SWT.NONE);
+-        tabItemActor.setText(l.getString(&quot;tab.director.title&quot;));
++        tabItemActor.setText(l.getString(&quot;tab.actor.title&quot;));
++        /*
+         tabItemActor.addDisposeListener(new DisposeListener() {
+             public void widgetDisposed(DisposeEvent evt) {
+                 viewActorMenuItem.setSelection(false);
+@@ -546,10 +577,45 @@
+             
+             tabItemActor.setControl(compositeActor);
+         }
++        */
+     }
+ 
++    private void initGenreTab() {
++        tabItemGenre = new CTabItem(cTabFolderMain, SWT.NONE);
++        tabItemGenre.setText(l.getString(&quot;tab.genre.title&quot;));
++        /*
++        tabItemGenre.addDisposeListener(new DisposeListener() {
++            public void widgetDisposed(DisposeEvent evt) {
++                viewGenreMenuItem.setSelection(false);
++           }
++        });      
++        {
++            compositeGenre = new CompositeGenre(
++                cTabFolderMain,
++                SWT.NONE, statusLine, locale);
++            
++            tabItemGenre.setControl(compositeGenre);
++        }
++        */
++    }
+ 
+-
++    private void initLanguageTab() {
++        tabItemLanguage = new CTabItem(cTabFolderMain, SWT.NONE);
++        tabItemLanguage.setText(l.getString(&quot;tab.language.title&quot;));
++        tabItemLanguage.addDisposeListener(new DisposeListener() {
++            public void widgetDisposed(DisposeEvent evt) {
++                viewLanguageMenuItem.setSelection(false);
++           }
++        });      
++        {
++            compositeLanguage = new CompositeLanguage(
++                cTabFolderMain,
++                SWT.NONE, statusLine, locale);
++            
++            tabItemLanguage.setControl(compositeLanguage);
++        }
++    }    
++    
+     private void initStatusLine() {
+         statusLine = new StatusLineStyledText(compositeStatusLine, SWT.READ_ONLY);
+         statusLine.setText(&quot;&quot;);
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/actors.properties
+===================================================================
+
+Deleted: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/artists.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/artists.properties	2004-11-08 14:58:30 UTC (rev 96)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/artists.properties	2004-11-08 15:28:54 UTC (rev 97)
+@@ -1,34 +0,0 @@
+-
+-error=Fehler
+-button.new=Neu
+-button.edit=Bearbeiten
+-button.delete=L&#246;schen
+-button.save=Speichern
+-button.cancel=Abbruch
+-
+-videoformat.group.label=VideoFormat
+-videoformat.groupoverview.label=&#220;berblick
+-videoformat.groupoverview.columnid=id
+-videoformat.groupoverview.columnname=Name
+-videoformat.groupoverview.columnshortname=Abk.
+-
+-
+-videoformat.groupoverview.searchlabel=Suche nach
+-videoformat.groupdetail.label=Detail
+-videoformat.groupdetail.idlabel=VideoFormat ID
+-videoformat.groupdetail.namelabel=VideoFormat Name
+-videoformat.groupdetail.shortcutlabel=VideoFormat Abk&#252;rzung
+-
+-videoformat.groupdetail.savebutton.warn.noname.title=Datensatz speichern
+-videoformat.groupdetail.savebutton.warn.noname.msg=Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie einen Namen an
+-videoformat.groupdetail.savebutton.newok=Speichern des neuen VideoFormates erfolgreich.
+-videoformat.groupdetail.savebutton.editok=&#196;ndern des VideoFormates erfolgreich.
+-
+-videoformat.groupdetail.savebutton.errorsave=Datenbankfehler beim Speichern.
+-videoformat.groupdetail.savebutton.errordb=Datenbankfehler beim Herstellen der Verbindung.(save).
+-
+-videoformat.groupdetail.deletebutton.question.header=Wirklich l&#246;schen?
+-videoformat.groupdetail.deletebutton.question.text=Wollen Sie den Datensatz {0} wirklich l&#246;schen?
+-videoformat.groupdetail.deletebutton.newok=Datensatz wurde erfolgreich gel&#246;scht.
+-videoformat.groupdetail.deletebutton.errorsave=Datenbankfehler beim L&#246;schen.
+-videoformat.groupdetail.deletebutton.errordb=Datenbankfehler beim Herstellen der Verbindung(del).
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/genre.properties
+===================================================================
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/language.properties
+===================================================================
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/main.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/main.properties	2004-11-08 14:58:30 UTC (rev 96)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/main.properties	2004-11-08 15:28:54 UTC (rev 97)
+@@ -33,12 +33,11 @@
+ menu.help=Hilfe
+ 
+ tab.format.title=Video-/AudioFormate
+-tab.actor.title=Schauspieler
++tab.actor.title=Darsteller
+ tab.director.title=Regie
+-tab.actor.title=
+-tab.genre.title=
++tab.genre.title=Genre
+ tab.subtitle.title=
+-tab.language.title=
++tab.language.title=Sprache
+ tab.status.title=
+ tab.condition.title=
+ tab.movie.title=
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000097.html">[Provirent-svn-commit] r96 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+	<LI>Next message: <A HREF="000099.html">[Provirent-svn-commit] r98 - timetable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#98">[ date ]</a>
+              <a href="thread.html#98">[ thread ]</a>
+              <a href="subject.html#98">[ subject ]</a>
+              <a href="author.html#98">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

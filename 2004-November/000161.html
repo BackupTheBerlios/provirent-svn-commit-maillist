@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r160 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r160%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/objects%20de/hsharz/provirent/persistence%20test/provirent/hibernate&In-Reply-To=%3C200411240948.iAO9mGAj026079%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000160.html">
+   <LINK REL="Next"  HREF="000162.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r160 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r160%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/objects%20de/hsharz/provirent/persistence%20test/provirent/hibernate&In-Reply-To=%3C200411240948.iAO9mGAj026079%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r160 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Wed Nov 24 10:48:16 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000160.html">[Provirent-svn-commit] r159 - in project_src/provirent_hibernate/src: de/hsharz/provirent de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000162.html">[Provirent-svn-commit] r161 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#161">[ date ]</a>
+              <a href="thread.html#161">[ thread ]</a>
+              <a href="subject.html#161">[ subject ]</a>
+              <a href="author.html#161">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-24 10:48:12 +0100 (Wed, 24 Nov 2004)
+New Revision: 160
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Payment.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Payment.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/HibernateUtil.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsSimpleObjects.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java
+Log:
+- Fehler beseitig
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java	2004-11-24 02:13:27 UTC (rev 159)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java	2004-11-24 09:48:12 UTC (rev 160)
+@@ -801,7 +801,7 @@
+                     					Double.toString(o.getDuration1()),
+                     					Double.toString(o.getDuration2()), 
+                     					Double.toString(o.getDuration3()),
+-                    					o.getStartdate().toString()});
++                    					((o.getStartdate()== null)?&quot;&quot;:o.getStartdate().toString())});
+ 
+         }
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Payment.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Payment.hbm.xml	2004-11-24 02:13:27 UTC (rev 159)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Payment.hbm.xml	2004-11-24 09:48:12 UTC (rev 160)
+@@ -38,7 +38,7 @@
+ 
+       &lt;/property&gt;
+ 	  
+-	  &lt;property name=&quot;startdate&quot; type=&quot;calendar&quot;&gt;
++	  &lt;property name=&quot;startdate&quot; type=&quot;calendar&quot; not-null=&quot;true&quot;&gt;
+       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+       &lt;/property&gt;
+ 	  
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Payment.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Payment.java	2004-11-24 02:13:27 UTC (rev 159)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Payment.java	2004-11-24 09:48:12 UTC (rev 160)
+@@ -29,7 +29,7 @@
+     /** persistent field */
+     private double duration3;
+ 
+-    /** nullable persistent field */
++    /** persistent field */
+     private Calendar startdate;
+ 
+     /** full constructor */
+@@ -45,14 +45,6 @@
+     public Payment() {
+     }
+ 
+-    /** minimal constructor */
+-    public Payment(String name, double duration1, double duration2, double duration3) {
+-        this.name = name;
+-        this.duration1 = duration1;
+-        this.duration2 = duration2;
+-        this.duration3 = duration3;
+-    }
+-
+     public Integer getPaymentId() {
+         return this.paymentId;
+     }
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-24 02:13:27 UTC (rev 159)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-24 09:48:12 UTC (rev 160)
+@@ -1446,7 +1446,7 @@
+ 	        s = HibernateUtil.currentSession();
+ 	            
+ 	            //init the criteria
+-	            Criteria criteria = s.createCriteria(Condition.class);
++	            Criteria criteria = s.createCriteria(Payment.class);
+ 	            //any of the criteria 
+ 	            Disjunction any = Expression.disjunction();
+ 	
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/HibernateUtil.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/HibernateUtil.java	2004-11-24 02:13:27 UTC (rev 159)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/HibernateUtil.java	2004-11-24 09:48:12 UTC (rev 160)
+@@ -55,6 +55,7 @@
+ import de.hsharz.provirent.objects.Movie;
+ import de.hsharz.provirent.objects.MovieOrder;
+ import de.hsharz.provirent.objects.OrderItem;
++import de.hsharz.provirent.objects.Payment;
+ import de.hsharz.provirent.objects.Person;
+ import de.hsharz.provirent.objects.Status;
+ import de.hsharz.provirent.objects.Subtitle;
+@@ -86,7 +87,7 @@
+             .addClass(Subtitle.class).addClass(VideoFormat.class)
+             .addClass(Customer.class).addClass(Image.class)
+             .addClass(MovieOrder.class).addClass(OrderItem.class)
+-            .addClass(Person.class);
++            .addClass(Person.class).addClass(Payment.class);
+ 
+ 
+             sessionFactory = cfg.buildSessionFactory();
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsSimpleObjects.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsSimpleObjects.java	2004-11-24 02:13:27 UTC (rev 159)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsSimpleObjects.java	2004-11-24 09:48:12 UTC (rev 160)
+@@ -55,6 +55,7 @@
+         suite.addTestSuite(TestVideoFormat.class);
+         suite.addTestSuite(TestLanguage.class);
+         suite.addTestSuite(TestPerson.class);
++        suite.addTestSuite(TestPayment.class);
+         //$JUnit-END$
+         return suite;
+     }
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java	2004-11-24 02:13:27 UTC (rev 159)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java	2004-11-24 09:48:12 UTC (rev 160)
+@@ -32,8 +32,6 @@
+  */
+ package test.provirent.hibernate;
+ 
+-import org.apache.log4j.Logger;
+-
+ import net.sf.hibernate.HibernateException;
+ import net.sf.hibernate.Session;
+ import net.sf.hibernate.SessionFactory;
+@@ -41,6 +39,7 @@
+ 
+ import org.apache.commons.logging.Log;
+ import org.apache.commons.logging.LogFactory;
++import org.apache.log4j.Logger;
+ 
+ import de.hsharz.provirent.objects.Actor;
+ import de.hsharz.provirent.objects.AudioFormat;
+@@ -55,6 +54,7 @@
+ import de.hsharz.provirent.objects.Movie;
+ import de.hsharz.provirent.objects.MovieOrder;
+ import de.hsharz.provirent.objects.OrderItem;
++import de.hsharz.provirent.objects.Payment;
+ import de.hsharz.provirent.objects.Person;
+ import de.hsharz.provirent.objects.Status;
+ import de.hsharz.provirent.objects.Subtitle;
+@@ -86,7 +86,7 @@
+             .addClass(Subtitle.class).addClass(VideoFormat.class)
+             .addClass(Customer.class).addClass(Image.class)
+             .addClass(MovieOrder.class).addClass(OrderItem.class)
+-            .addClass(Person.class);
++            .addClass(Person.class).addClass(Payment.class);
+ 
+ 
+             sessionFactory = cfg.buildSessionFactory();
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java	2004-11-24 02:13:27 UTC (rev 159)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java	2004-11-24 09:48:12 UTC (rev 160)
+@@ -35,6 +35,7 @@
+ import java.util.ArrayList;
+ import java.util.Iterator;
+ import java.util.List;
++import java.util.Calendar;
+ 
+ import junit.framework.TestCase;
+ import net.sf.hibernate.Session;
+@@ -233,14 +234,15 @@
+                 assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
+                 assertTrue(&quot;Db Open? &quot;, s.isOpen());
+ 
+-                //cretae new objects
++                //create new objects
+                 List Payments = new ArrayList();
+ 
+-                Payment myp1 = new Payment(&quot;A&quot;, 2.00d, 4.00d, 8.00d);
+-                Payment myp2 = new Payment(&quot;B&quot;, 3.00d, 6.00d, 12.00d);
+-                Payment myp3 = new Payment(&quot;C&quot;, 4.00d, 8.00d, 14.00d);
+-                Payment myp4 = new Payment(&quot;D&quot;, 5.00d, 10.00d, 20.00d);
++                Payment myp1 = new Payment(&quot;A&quot;, 2.00d, 4.00d, 8.00d,Calendar.getInstance());
++                Payment myp2 = new Payment(&quot;B&quot;, 3.00d, 6.00d, 12.00d,Calendar.getInstance());
++                Payment myp3 = new Payment(&quot;C&quot;, 4.00d, 8.00d, 14.00d,Calendar.getInstance());
++                Payment myp4 = new Payment(&quot;D&quot;, 5.00d, 10.00d, 20.00d,Calendar.getInstance());
+ 
++                
+                 Payments.add(myp1);
+                 Payments.add(myp2);
+                 Payments.add(myp3);
+@@ -250,8 +252,8 @@
+ 
+                 //save objects
+                 for (Iterator iter = Payments.iterator(); iter.hasNext();) {
+-                    Payment dir = (Payment) iter.next();
+-                    ids.add((Integer) s.save(dir));
++                    Payment pay = (Payment) iter.next();
++                    ids.add((Integer) s.save(pay));
+ 
+                 }
+                 s.flush();
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000160.html">[Provirent-svn-commit] r159 - in project_src/provirent_hibernate/src: de/hsharz/provirent de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000162.html">[Provirent-svn-commit] r161 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#161">[ date ]</a>
+              <a href="thread.html#161">[ thread ]</a>
+              <a href="subject.html#161">[ subject ]</a>
+              <a href="author.html#161">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

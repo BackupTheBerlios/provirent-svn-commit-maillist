@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r139 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r139%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200411152305.iAFN5vFa004193%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000139.html">
+   <LINK REL="Next"  HREF="000141.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r139 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r139%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200411152305.iAFN5vFa004193%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r139 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Tue Nov 16 00:05:57 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000139.html">[Provirent-svn-commit] r138 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+        <LI>Next message: <A HREF="000141.html">[Provirent-svn-commit] r140 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#140">[ date ]</a>
+              <a href="thread.html#140">[ thread ]</a>
+              <a href="subject.html#140">[ subject ]</a>
+              <a href="author.html#140">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-11-16 00:05:56 +0100 (Tue, 16 Nov 2004)
+New Revision: 139
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/actors.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/directors.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+Log:
+Properties -ge?\195?\164ndert
+CompositeMovie -erweitert 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-11-15 21:29:01 UTC (rev 138)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-11-15 23:05:56 UTC (rev 139)
+@@ -72,9 +72,19 @@
+     
+     private Table tableMoviesOverview;
+     private TableColumn tableMoviesOverview_ColumnID;
+-    private TableColumn tableMoviesOverview_ColumnFName;
+-    private TableColumn tableMoviesOverview_ColumnLName;
+-        
++    private TableColumn tableMoviesOverview_ColumnTitle;
++    private TableColumn tableMoviesOverview_ColumnSubtitles;
++    private TableColumn tableMoviesOverview_ColumnGenres;
++    private TableColumn tableMoviesOverview_ColumnActors;
++    private TableColumn tableMoviesOverview_ColumnDescription;
++    private TableColumn tableMoviesOverview_ColumnDate;
++    private TableColumn tableMoviesOverview_ColumnVideoformats;
++    private TableColumn tableMoviesOverview_ColumnAudioformats;
++    
++    private TableColumn tableMoviesOverview_Column;
++    
++    
++    
+     private Group groupMovie;
+     private Group groupMoviesOverview;
+     private Group groupMoviesDetail;
+@@ -219,7 +229,7 @@
+      * 
+      */
+     private void initMoviesOverview() {
+-	    //	  Group Actors Overview 
++	    //	  Group Movies Overview 
+         {
+             groupMoviesOverview = new Group(sashForm1,SWT.NONE);
+             GridLayout group1Layout = new GridLayout();
+@@ -294,23 +304,31 @@
+                     tableMoviesOverview_ColumnID.setWidth(40);
+                 }
+                 {
+-                    tableMoviesOverview_ColumnFName = new TableColumn(
++                    tableMoviesOverview_ColumnTitle = new TableColumn(
+                         tableMoviesOverview,
+                         SWT.CENTER);
+-                    tableMoviesOverview_ColumnFName.setText(l
+-                        .getString(&quot;movies.groupoverview.columnfirstname&quot;));
+-                    tableMoviesOverview_ColumnFName.setWidth(120);
++                    tableMoviesOverview_ColumnTitle.setText(l
++                        .getString(&quot;movies.groupoverview.columntitle&quot;));
++                    tableMoviesOverview_ColumnTitle.setWidth(120);
+                 }
+                 {
+-                    tableMoviesOverview_ColumnLName = new TableColumn(
++                    tableMoviesOverview_ColumnSubtitles = new TableColumn(
+                         tableMoviesOverview,
+                         SWT.CENTER);
+-                    tableMoviesOverview_ColumnLName.setText(l
+-                        .getString(&quot;movies.groupoverview.columnlastname&quot;));
+-                    tableMoviesOverview_ColumnLName.setWidth(120);
++                    tableMoviesOverview_ColumnSubtitles.setText(l
++                        .getString(&quot;movies.groupoverview.columnsubtitles&quot;));
++                    tableMoviesOverview_ColumnSubtitles.setWidth(120);
+                 }
++                {
++                    tableMoviesOverview_ColumnDate = new TableColumn(
++                        tableMoviesOverview,
++                        SWT.CENTER);
++                    tableMoviesOverview_ColumnDate.setText(l
++                        .getString(&quot;movies.groupoverview.columndate&quot;));
++                    tableMoviesOverview_ColumnDate.setWidth(120);
++                }
+             }
+-            // table Actors Overview
++            // table Movies Overview
+             // Search
+             {
+                 //label for Search
+@@ -367,8 +385,21 @@
+      * 
+      */
+     private void initMoviesDetail() {
+-        // TODO Auto-generated method stub
+-        
++        // Group Actors Detail
++        {
++            groupMoviesDetail = new Group(sashForm1, SWT.NONE);
++            GridLayout group2Layout = new GridLayout();
++            GridData group2LData = new GridData();
++            group2Layout.verticalSpacing = 15;
++            group2Layout.numColumns = 6;
++            groupMoviesDetail.setText(l.getString(&quot;movies.groupdetail.label&quot;));   
++            FormData formData = new FormData();
++            groupMoviesDetail.setLayout(group2Layout);
++            formData.right = new FormAttachment(100, 100, -5);
++            formData.top = new FormAttachment(0, 100, 5);
++            formData.bottom = new FormAttachment(100, 100, -5);
++            groupMoviesDetail.setLayoutData(formData);
++        }
+     }
+ 
+     /**
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/actors.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/actors.properties	2004-11-15 21:29:01 UTC (rev 138)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/actors.properties	2004-11-15 23:05:56 UTC (rev 139)
+@@ -21,8 +21,8 @@
+ 
+ actors.groupdetail.savebutton.warn.noname.title=Datensatz speichern
+ actors.groupdetail.savebutton.warn.noname.msg=Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie eine volst&#228;ndigen Namen an
+-actors.groupdetail.savebutton.newok=Speichern des neuen VideoFormates erfolgreich.
+-actors.groupdetail.savebutton.editok=&#196;ndern des VideoFormates erfolgreich.
++actors.groupdetail.savebutton.newok=Speichern des neuen Darstellers erfolgreich.
++actors.groupdetail.savebutton.editok=&#196;ndern des Darstellers erfolgreich.
+ actors.groupdetail.savebutton.errorsave=Datenbankfehler beim Speichern.
+ actors.groupdetail.savebutton.errordb=Datenbankfehler beim Herstellen der Verbindung.(save).
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/directors.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/directors.properties	2004-11-15 21:29:01 UTC (rev 138)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/directors.properties	2004-11-15 23:05:56 UTC (rev 139)
+@@ -21,8 +21,8 @@
+ 
+ directors.groupdetail.savebutton.warn.noname.title=Datensatz speichern
+ directors.groupdetail.savebutton.warn.noname.msg=Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie eine volst&#228;ndigen Namen an
+-directors.groupdetail.savebutton.newok=Speichern des neuen VideoFormates erfolgreich.
+-directors.groupdetail.savebutton.editok=&#196;ndern des VideoFormates erfolgreich.
++directors.groupdetail.savebutton.newok=Speichern des neuen Regisseurs erfolgreich.
++directors.groupdetail.savebutton.editok=&#196;ndern des Regisseurs erfolgreich.
+ directors.groupdetail.savebutton.errorsave=Datenbankfehler beim Speichern.
+ directors.groupdetail.savebutton.errordb=Datenbankfehler beim Herstellen der Verbindung.(save).
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-11-15 21:29:01 UTC (rev 138)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-11-15 23:05:56 UTC (rev 139)
+@@ -1,11 +1,12 @@
+ error=Fehler
+-movies.group.label=Darsteller
++movies.group.label=Filme
+ 
+ movies.groupoverview.label =&#220;berblick
+ movies.groupoverview.searchlabel =Suche nach
+ movies.groupoverview.columnid =ID
+-movies.groupoverview.columnfirstname =Vorname
+-movies.groupoverview.columnlastname =Nachname
++movies.groupoverview.columntitle =Titel
++movies.groupoverview.columnsubtitles =Untertitel
++movies.groupoverview.columndate =Erscheinungsdatum
+ 
+ 
+ movies.groupdetail.label =Detail
+@@ -21,8 +22,8 @@
+ 
+ movies.groupdetail.savebutton.warn.noname.title=Datensatz speichern
+ movies.groupdetail.savebutton.warn.noname.msg=Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie eine volst&#228;ndigen Namen an
+-movies.groupdetail.savebutton.newok=Speichern des neuen VideoFormates erfolgreich.
+-movies.groupdetail.savebutton.editok=&#196;ndern des VideoFormates erfolgreich.
++movies.groupdetail.savebutton.newok=Speichern des neuen Films erfolgreich.
++movies.groupdetail.savebutton.editok=&#196;ndern des Films erfolgreich.
+ movies.groupdetail.savebutton.errorsave=Datenbankfehler beim Speichern.
+ movies.groupdetail.savebutton.errordb=Datenbankfehler beim Herstellen der Verbindung.(save).
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000139.html">[Provirent-svn-commit] r138 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+	<LI>Next message: <A HREF="000141.html">[Provirent-svn-commit] r140 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#140">[ date ]</a>
+              <a href="thread.html#140">[ thread ]</a>
+              <a href="subject.html#140">[ subject ]</a>
+              <a href="author.html#140">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

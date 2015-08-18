@@ -1,0 +1,1337 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r40 - in project_src: . clienttest clienttest/lib clienttest/src
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r40%20-%20in%20project_src%3A%20.%20clienttest%20clienttest/lib%20clienttest/src&In-Reply-To=%3C200410121903.i9CJ3GIp032483%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000040.html">
+   <LINK REL="Next"  HREF="000042.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r40 - in project_src: . clienttest clienttest/lib clienttest/src</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r40%20-%20in%20project_src%3A%20.%20clienttest%20clienttest/lib%20clienttest/src&In-Reply-To=%3C200410121903.i9CJ3GIp032483%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r40 - in project_src: . clienttest clienttest/lib clienttest/src">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Tue Oct 12 21:03:16 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000040.html">[Provirent-svn-commit] r39 - in project_src/provirent_hibernate: . data src/de/hsharz/provirent/objects
+</A></li>
+        <LI>Next message: <A HREF="000042.html">[Provirent-svn-commit] r41 - timetable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#41">[ date ]</a>
+              <a href="thread.html#41">[ thread ]</a>
+              <a href="subject.html#41">[ subject ]</a>
+              <a href="author.html#41">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-12 21:03:14 +0200 (Tue, 12 Oct 2004)
+New Revision: 40
+
+Added:
+   project_src/clienttest/
+   project_src/clienttest/.classpath
+   project_src/clienttest/.project
+   project_src/clienttest/bin/
+   project_src/clienttest/build.xml
+   project_src/clienttest/lib/
+   project_src/clienttest/lib/hsqldb.jar
+   project_src/clienttest/src/
+   project_src/clienttest/src/Client.java
+   project_src/clienttest/src/ClientGui.java
+   project_src/clienttest/src/Test.java
+   project_src/clienttest/src/video2.gif
+   project_src/clienttest/video2.gif
+Log:
+- swt erster Versuch einer kleiner Anwendung
+
+Added: project_src/clienttest/.classpath
+===================================================================
+--- project_src/clienttest/.classpath	2004-10-12 11:39:59 UTC (rev 39)
++++ project_src/clienttest/.classpath	2004-10-12 19:03:14 UTC (rev 40)
+@@ -0,0 +1,8 @@
++&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
++&lt;classpath&gt;
++	&lt;classpathentry kind=&quot;src&quot; path=&quot;src&quot;/&gt;
++	&lt;classpathentry kind=&quot;con&quot; path=&quot;org.eclipse.jdt.launching.JRE_CONTAINER&quot;/&gt;
++	&lt;classpathentry kind=&quot;var&quot; path=&quot;ECLIPSE_HOME/plugins/org.eclipse.swt.win32_3.0.1/ws/win32/swt.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;lib/hsqldb.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;output&quot; path=&quot;bin&quot;/&gt;
++&lt;/classpath&gt;
+
+Added: project_src/clienttest/.project
+===================================================================
+--- project_src/clienttest/.project	2004-10-12 11:39:59 UTC (rev 39)
++++ project_src/clienttest/.project	2004-10-12 19:03:14 UTC (rev 40)
+@@ -0,0 +1,17 @@
++&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
++&lt;projectDescription&gt;
++	&lt;name&gt;clienttest&lt;/name&gt;
++	&lt;comment&gt;&lt;/comment&gt;
++	&lt;projects&gt;
++	&lt;/projects&gt;
++	&lt;buildSpec&gt;
++		&lt;buildCommand&gt;
++			&lt;name&gt;org.eclipse.jdt.core.javabuilder&lt;/name&gt;
++			&lt;arguments&gt;
++			&lt;/arguments&gt;
++		&lt;/buildCommand&gt;
++	&lt;/buildSpec&gt;
++	&lt;natures&gt;
++		&lt;nature&gt;org.eclipse.jdt.core.javanature&lt;/nature&gt;
++	&lt;/natures&gt;
++&lt;/projectDescription&gt;
+
+Added: project_src/clienttest/build.xml
+===================================================================
+--- project_src/clienttest/build.xml	2004-10-12 11:39:59 UTC (rev 39)
++++ project_src/clienttest/build.xml	2004-10-12 19:03:14 UTC (rev 40)
+@@ -0,0 +1,100 @@
++&lt;?xml version=&quot;1.0&quot;?&gt;
++ &lt;project name=&quot;Provirent&quot;
++          default=&quot;schema&quot; basedir=&quot;.&quot;&gt;
++   &lt;!-- schema Set up properties containing important project directories --&gt;
++   &lt;property name=&quot;source.root&quot; value=&quot;src&quot;/&gt;
++   &lt;property name=&quot;class.root&quot; value=&quot;bin&quot;/&gt;
++   &lt;property name=&quot;lib.dir&quot; value=&quot;lib&quot;/&gt;
++   &lt;property name=&quot;data.dir&quot; value=&quot;data&quot;/&gt;
++
++   &lt;!-- Set up the class path for compilation and execution --&gt;
++   &lt;path id=&quot;project.class.path&quot;&gt;
++      &lt;!-- Include our own classes, of course --&gt;
++      &lt;pathelement location=&quot;${class.root}&quot;/&gt;
++      &lt;!-- Include jars in the project library directory --&gt;
++      &lt;fileset dir=&quot;${lib.dir}&quot;&gt;
++        &lt;include name=&quot;**/*.jar&quot;/&gt;
++      &lt;/fileset&gt;
++      &lt;/path&gt;
++
++      &lt;target name=&quot;db&quot; description=&quot;Runs HSQLDB database management UI
++    against the database file--use when application is not running&quot;&gt;
++         &lt;java classname=&quot;org.hsqldb.util.DatabaseManager&quot;
++               fork=&quot;yes&quot;&gt;
++            &lt;classpath refid=&quot;project.class.path&quot;/&gt;
++            &lt;arg value=&quot;-driver&quot;/&gt;
++            &lt;arg value=&quot;org.hsqldb.jdbcDriver&quot;/&gt;
++            &lt;arg value=&quot;-url&quot;/&gt;
++            &lt;arg value=&quot;jdbc:hsqldb:${data.dir}/video&quot;/&gt;
++            &lt;arg value=&quot;-user&quot;/&gt;
++            &lt;arg value=&quot;sa&quot;/&gt;
++         &lt;/java&gt;
++    &lt;/target&gt;
++    
++    &lt;!-- Teach Ant how to use Hibernate's code generation tool --&gt;
++    &lt;taskdef name=&quot;hbm2java&quot;
++             classname=&quot;net.sf.hibernate.tool.hbm2java.Hbm2JavaTask&quot;
++             classpathref=&quot;project.class.path&quot;/&gt;
++
++    &lt;!-- Generate the java code for all mapping files in our source tree --&gt;
++    &lt;target name=&quot;codegen&quot;
++             description=&quot;Generate Java source from the O/R mapping files&quot;&gt;
++        &lt;hbm2java output=&quot;${source.root}&quot;&gt;
++          &lt;fileset dir=&quot;${source.root}&quot;&gt;
++            &lt;include name=&quot;**/*.hbm.xml&quot;/&gt;
++          &lt;/fileset&gt;
++        &lt;/hbm2java&gt;
++    &lt;/target&gt;
++    
++    
++    &lt;!-- Create our runtime subdirectories and copy resources into them --&gt;
++    &lt;target name=&quot;prepare&quot; depends=&quot;codegen&quot; description=&quot;Sets up build structures&quot;&gt;
++
++      &lt;!-- Copy our property files and O/R mappings for use at runtime --&gt;
++      &lt;copy todir=&quot;${class.root}&quot; &gt;
++        &lt;fileset dir=&quot;${source.root}&quot; &gt;
++          &lt;include name=&quot;**/*.properties&quot;/&gt;
++          &lt;include name=&quot;**/*.hbm.xml&quot;/&gt;
++          &lt;include name=&quot;**/*.cfg.xml&quot;/&gt;
++        &lt;/fileset&gt;
++      &lt;/copy&gt;
++    &lt;/target&gt;
++
++    &lt;!-- Compile the java source of the project --&gt;
++    &lt;target name=&quot;compile&quot; depends=&quot;prepare&quot;
++            description=&quot;Compiles all Java classes&quot;&gt;
++      &lt;javac srcdir=&quot;${source.root}&quot;
++             destdir=&quot;${class.root}&quot;
++             debug=&quot;on&quot;
++             optimize=&quot;off&quot;
++             deprecation=&quot;on&quot;&gt;
++        &lt;classpath refid=&quot;project.class.path&quot;/&gt;
++      &lt;/javac&gt;
++    &lt;/target&gt;
++
++    &lt;!-- Generate the schemas for all mapping files in our class tree --&gt;
++    &lt;target name=&quot;schema&quot; depends=&quot;compile&quot;
++            description=&quot;Generate DB schema from the O/R mapping files&quot;&gt;
++
++      &lt;!-- Teach Ant how to use Hibernate's schema generation tool --&gt;
++      &lt;taskdef name=&quot;schemaexport&quot;
++               classname=&quot;net.sf.hibernate.tool.hbm2ddl.SchemaExportTask&quot;
++               classpathref=&quot;project.class.path&quot;/&gt;
++
++      &lt;schemaexport properties=&quot;${class.root}/hibernate.properties&quot;
++                    quiet=&quot;no&quot; text=&quot;no&quot; drop=&quot;no&quot; delimiter=&quot;;&quot;&gt;
++        &lt;fileset dir=&quot;${class.root}&quot;&gt;
++          &lt;include name=&quot;**/*.hbm.xml&quot;/&gt;
++        &lt;/fileset&gt;
++      &lt;/schemaexport&gt;
++    &lt;/target&gt;
++    
++        &lt;target name=&quot;ctest&quot; description=&quot;Creates and persists some sample data&quot;
++              depends=&quot;compile&quot;&gt;
++         &lt;java classname=&quot;test.provirent.hibernate.TestHibernate&quot; fork=&quot;true&quot;&gt;
++              &lt;classpath refid=&quot;project.class.path&quot;/&gt;
++         &lt;/java&gt;
++      &lt;/target&gt;
++  
++    
++&lt;/project&gt;
+
+Added: project_src/clienttest/lib/hsqldb.jar
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/clienttest/lib/hsqldb.jar
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/clienttest/src/Client.java
+===================================================================
+--- project_src/clienttest/src/Client.java	2004-10-12 11:39:59 UTC (rev 39)
++++ project_src/clienttest/src/Client.java	2004-10-12 19:03:14 UTC (rev 40)
+@@ -0,0 +1,45 @@
++/*
++ * Created on 12.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class Client {
++
++    //Start the application
++    public static void main(String[] args) {
++        ClientGui instance = new ClientGui();
++        instance.run();
++    }
++}
+
+Added: project_src/clienttest/src/ClientGui.java
+===================================================================
+--- project_src/clienttest/src/ClientGui.java	2004-10-12 11:39:59 UTC (rev 39)
++++ project_src/clienttest/src/ClientGui.java	2004-10-12 19:03:14 UTC (rev 40)
+@@ -0,0 +1,952 @@
++/*
++ * Created on 12.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++
++import org.eclipse.swt.SWT;
++import org.eclipse.swt.events.DisposeEvent;
++import org.eclipse.swt.events.DisposeListener;
++import org.eclipse.swt.events.FocusAdapter;
++import org.eclipse.swt.events.FocusEvent;
++import org.eclipse.swt.events.PaintEvent;
++import org.eclipse.swt.events.PaintListener;
++import org.eclipse.swt.events.SelectionAdapter;
++import org.eclipse.swt.events.SelectionEvent;
++import org.eclipse.swt.graphics.Color;
++import org.eclipse.swt.graphics.GC;
++import org.eclipse.swt.graphics.Image;
++import org.eclipse.swt.layout.FillLayout;
++import org.eclipse.swt.layout.FormAttachment;
++import org.eclipse.swt.layout.FormData;
++import org.eclipse.swt.layout.FormLayout;
++import org.eclipse.swt.layout.GridData;
++import org.eclipse.swt.layout.GridLayout;
++import org.eclipse.swt.widgets.Button;
++import org.eclipse.swt.widgets.Composite;
++import org.eclipse.swt.widgets.Display;
++import org.eclipse.swt.widgets.Event;
++import org.eclipse.swt.widgets.Group;
++import org.eclipse.swt.widgets.Label;
++import org.eclipse.swt.widgets.List;
++import org.eclipse.swt.widgets.Listener;
++import org.eclipse.swt.widgets.Menu;
++import org.eclipse.swt.widgets.MenuItem;
++import org.eclipse.swt.widgets.Shell;
++import org.eclipse.swt.widgets.TabFolder;
++import org.eclipse.swt.widgets.TabItem;
++import org.eclipse.swt.widgets.Text;
++
++
++
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class ClientGui {
++    
++	//Size constants
++	private static final int SHELL_HEIGHT = 480;
++	private static final int SHELL_WIDTH = 640;
++
++	private Display display;
++	private Shell shell;
++    
++	private TabFolder folder;
++	private TabItem administrationItem, employeeItem, movieItem;
++	private Composite administrationPane, employeePane, moviePane;
++	private Group employeeListComp, projectListComp, currentEmployeeComp;
++	private Group administrationInfo, employeeInfo, movieInfo;
++
++	//Employee modification buttons
++	private Button newEmployeeButton;
++	private Button editEmployeeButton;
++	private Button delEmployeeButton;
++	private Button saveEmployeeButton;
++	private Button cancelEmployeeButton;
++	private Button printTransButton;
++
++	
++	//Employee page widgets
++	private Text acctIDText;
++	private Text addressText;
++	private Text fnameText;
++	private Text snameText;
++	private Text dobText;
++	private Text phoneText;
++	private Text miscInfoText;
++	private Text emailText;
++	
++	
++	//Employee List
++	private List employeeList;
++	private Text employeeFilterText;
++	private Button employeeNameRadio;
++	private Button employeeNumRadio;
++	
++    public ClientGui(){
++        display = new Display();
++        shell = new Shell(display);
++     
++        shell.setSize(SHELL_WIDTH,SHELL_HEIGHT);
++        /**
++         * @todo Dynamisch mit Resourcenbundle
++         */
++		shell.setText(&quot;ProViRent Managment Tool&quot;);
++		Image image1 = new Image(null, &quot;video2.gif&quot;);
++
++		shell.setImage(image1);
++		shell.setLayout(new FormLayout());
++
++		setupFolders();
++		setupFileMenu();
++    }
++	
++	private void setupFolders() {
++
++	    //creates a new TabFolder with no Border
++		folder = new TabFolder(shell, SWT.NONE);
++		
++		//sets the layout
++		FormLayout folderLayout = new FormLayout();
++		folderLayout.marginHeight = 0;
++		folderLayout.marginWidth = 0;
++		folder.setLayout(folderLayout);
++		
++		//spec. where the tabfolders should be
++		FormData data = new FormData();
++		data.top = new FormAttachment(0, 0);
++		data.right = new FormAttachment(100, 0);
++		data.left = new FormAttachment(0, 0);
++		data.bottom = new FormAttachment(100, 0);
++		folder.setLayoutData(data);
++
++		
++
++		
++
++		setupAdministrationPane();
++		setupMoviePane();
++
++		//setupProjectManagerPane();
++	}
++    
++
++	private void setupEmployeeList() {
++		//Create employee list.
++		employeeListComp = new Group(administrationPane, SWT.NONE);
++		employeeListComp.setText(&quot;Employees:&quot;);
++
++		//Form layout data for composite
++		FormData formData = new FormData();
++		formData.top = new FormAttachment(0, 5);
++		formData.left = new FormAttachment(0, 5);
++		formData.bottom = new FormAttachment(100, -5);
++		formData.right = new FormAttachment(33, -5);
++		employeeListComp.setLayoutData(formData);
++
++		//Composite has a grid layout
++		GridLayout gridLayout = new GridLayout();
++		gridLayout.numColumns = 2;
++		employeeListComp.setLayout(gridLayout);
++
++		employeeList =
++			new List(
++				employeeListComp,
++				SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
++		employeeList.add(&quot;1 - Max Meier&quot;);
++		employeeList.add(&quot;2 - Stefan Forstner&quot;);
++		employeeList.add(&quot;3 - Remo Griesch&quot;);
++		employeeList.add(&quot;4 - Philipp Schneider&quot;);
++		
++		GridData data = new GridData(GridData.FILL_BOTH);
++		data.horizontalSpan = 2;
++		employeeList.setLayoutData(data);
++
++		employeeList.addSelectionListener(new SelectionAdapter() {
++			public void widgetSelected(SelectionEvent arg0) {
++				//setTransMode(VIEW_MODE);
++				//setEmployeeMode(VIEW_MODE);
++				//processor.setActiveEmployee(employeeList.getSelectionIndex());
++				//refreshEmployeeData();
++			}
++		});
++
++		//Create the filter text field and its listeners.
++		Label filterLabel = new Label(employeeListComp, SWT.NONE);
++		filterLabel.setText(&quot;Filter:&quot;);
++		employeeFilterText = new Text(employeeListComp, SWT.BORDER);
++		GridData data1 = new GridData();
++		data1.widthHint = 26;
++		filterLabel.setLayoutData(data1);
++		GridData data2 = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
++		data2.widthHint = 48;
++		employeeFilterText.setLayoutData(data2);
++
++		employeeFilterText.addFocusListener(new FocusAdapter() {
++			public void focusLost(FocusEvent arg0) {
++				//processor.setEmployeeFilter(employeeFilterText.getText());
++				//refreshEmployeeData();
++			}
++		});
++
++		employeeFilterText.addListener(SWT.DefaultSelection, new Listener() {
++			public void handleEvent(Event e) { //check for &quot;enter&quot; key
++				//processor.setEmployeeFilter(employeeFilterText.getText());
++				//refreshEmployeeData();
++			}
++		});
++
++		//Create radio buttons to switch viewing mode.
++		employeeNameRadio = new Button(employeeListComp, SWT.RADIO);
++		employeeNameRadio.setText(&quot;View by name&quot;);
++		data = new GridData();
++		data.horizontalSpan = 2;
++		employeeNameRadio.setLayoutData(data);
++
++		employeeNumRadio = new Button(employeeListComp, SWT.RADIO);
++		employeeNumRadio.setText(&quot;View by ID&quot;);
++		data = new GridData();
++		data.horizontalSpan = 2;
++		employeeNumRadio.setLayoutData(data);
++
++		employeeNameRadio.setSelection(true);
++		employeeNameRadio.addSelectionListener(new SelectionAdapter() {
++			public void widgetSelected(SelectionEvent arg0) {
++				//processor.setEmployeeView(TimeTrackerProc.VIEW_BY_NAME);
++				//refreshEmployeeData();
++			}
++		});
++
++		employeeNumRadio.addSelectionListener(new SelectionAdapter() {
++			public void widgetSelected(SelectionEvent arg0) {
++				//processor.setEmployeeView(TimeTrackerProc.VIEW_BY_ID);
++				//refreshEmployeeData();
++			}
++		});
++	}
++
++
++	
++	private void setupAdministrationPane() {
++
++		administrationItem = new TabItem(folder, SWT.NONE);
++		administrationItem.setText(&quot;&amp;Kunden&quot;);
++		administrationPane = new Composite(folder, SWT.NONE);
++		administrationItem.setControl(administrationPane);
++		administrationItem.setToolTipText(&quot;Ihre Kunden&quot;);
++		
++		
++		
++		//administrationPane has a FormLayout
++		administrationPane.setLayout(new FormLayout());
++
++		setupEmployeeList();
++		
++		//administrationInfo has a FormLayout
++		administrationInfo = new Group(administrationPane, SWT.NONE);
++		administrationInfo.setText(&quot;Employee Information:&quot;);
++
++		FormLayout administrationLayout = new FormLayout();
++		administrationLayout.marginHeight = 10;
++		administrationLayout.marginWidth = 10;
++		administrationInfo.setLayout(administrationLayout);
++
++		FormData formData = new FormData();
++		formData.left = new FormAttachment(33, 5);
++		formData.right = new FormAttachment(100, -5);
++		formData.top = new FormAttachment(0, 5);
++		formData.bottom = new FormAttachment(100, -5);
++		administrationInfo.setLayoutData(formData);
++
++		Label acctIDLabel = new Label(administrationInfo, SWT.NONE);
++		acctIDLabel.setText(&quot;Employee ID:&quot;);
++		acctIDText = new Text(administrationInfo, SWT.BORDER);
++		acctIDText.setEditable(false);
++
++		FormData formData2 = new FormData();
++		formData2.left = new FormAttachment(0, 5);
++		formData2.right = new FormAttachment(0, 135);
++		formData2.top = new FormAttachment(0, 10);
++		formData2.height = 15;
++		acctIDLabel.setLayoutData(formData2);
++
++		FormData formData2b = new FormData();
++		formData2b.left = new FormAttachment(acctIDLabel, 10, SWT.DEFAULT);
++		formData2b.right = new FormAttachment(100, -5);
++		formData2b.top = new FormAttachment(acctIDLabel, -5, SWT.TOP);
++		formData2b.height = 15;
++		acctIDText.setLayoutData(formData2b);
++
++		Label fnameLabel = new Label(administrationInfo, SWT.NONE);
++		fnameLabel.setText(&quot;First name:&quot;);
++		fnameText = new Text(administrationInfo, SWT.BORDER);
++		fnameText.setEditable(false);
++
++		FormData formData3 = new FormData();
++		formData3.left = new FormAttachment(0, 5);
++		formData3.right = new FormAttachment(0, 135);
++		formData3.top = new FormAttachment(0, 35);
++		formData3.height = 15;
++		fnameLabel.setLayoutData(formData3);
++
++		FormData formData3b = new FormData();
++		formData3b.left = new FormAttachment(fnameLabel, 10, SWT.DEFAULT);
++		formData3b.right = new FormAttachment(100, -5);
++		formData3b.top = new FormAttachment(fnameLabel, -5, SWT.TOP);
++		formData3b.height = 15;
++		fnameText.setLayoutData(formData3b);
++
++		Label snameLabel = new Label(administrationInfo, SWT.NONE);
++		snameLabel.setText(&quot;Surname:&quot;);
++		snameText = new Text(administrationInfo, SWT.BORDER);
++		snameText.setEditable(false);
++
++		FormData formData4 = new FormData();
++		formData4.left = new FormAttachment(0, 5);
++		formData4.right = new FormAttachment(0, 135);
++		formData4.top = new FormAttachment(0, 60);
++		formData4.height = 15;
++		snameLabel.setLayoutData(formData4);
++
++		FormData formData4b = new FormData();
++		formData4b.left = new FormAttachment(snameLabel, 10, SWT.DEFAULT);
++		formData4b.right = new FormAttachment(100, -5);
++		formData4b.top = new FormAttachment(snameLabel, -5, SWT.TOP);
++		formData4b.height = 15;
++		snameText.setLayoutData(formData4b);
++
++		Label dobLabel = new Label(administrationInfo, SWT.NONE);
++		dobLabel.setText(&quot;Date of birth:&quot;);
++		dobText = new Text(administrationInfo, SWT.BORDER);
++		dobText.setEditable(false);
++
++		FormData formData5 = new FormData();
++		formData5.left = new FormAttachment(0, 5);
++		formData5.right = new FormAttachment(0, 135);
++		formData5.top = new FormAttachment(0, 85);
++		formData5.height = 15;
++		dobLabel.setLayoutData(formData5);
++
++		FormData formData5b = new FormData();
++		formData5b.left = new FormAttachment(dobLabel, 10, SWT.DEFAULT);
++		formData5b.right = new FormAttachment(100, -5);
++		formData5b.top = new FormAttachment(dobLabel, -5, SWT.TOP);
++		formData5b.height = 15;
++		dobText.setLayoutData(formData5b);
++
++		Label phoneLabel = new Label(administrationInfo, SWT.NONE);
++		phoneLabel.setText(&quot;Phone number:&quot;);
++		phoneText = new Text(administrationInfo, SWT.BORDER);
++		phoneText.setEditable(false);
++
++		FormData formData6 = new FormData();
++		formData6.left = new FormAttachment(0, 5);
++		formData6.right = new FormAttachment(0, 135);
++		formData6.top = new FormAttachment(0, 110);
++		formData6.height = 15;
++		phoneLabel.setLayoutData(formData6);
++
++		FormData formData6b = new FormData();
++		formData6b.left = new FormAttachment(phoneLabel, 10, SWT.DEFAULT);
++		formData6b.right = new FormAttachment(100, -5);
++		formData6b.top = new FormAttachment(phoneLabel, -5, SWT.TOP);
++		formData6b.height = 15;
++		phoneText.setLayoutData(formData6b);
++
++		Label emailLabel = new Label(administrationInfo, SWT.NONE);
++		emailLabel.setText(&quot;Email address:&quot;);
++		emailText = new Text(administrationInfo, SWT.BORDER);
++		emailText.setEditable(false);
++
++		FormData formData7 = new FormData();
++		formData7.left = new FormAttachment(0, 5);
++		formData7.right = new FormAttachment(0, 135);
++		formData7.top = new FormAttachment(0, 135);
++		formData7.height = 15;
++		emailLabel.setLayoutData(formData7);
++
++		FormData formData7b = new FormData();
++		formData7b.left = new FormAttachment(emailLabel, 10, SWT.DEFAULT);
++		formData7b.right = new FormAttachment(100, -5);
++		formData7b.top = new FormAttachment(emailLabel, -5, SWT.TOP);
++		formData7b.height = 15;
++		emailText.setLayoutData(formData7b);
++
++		Label addressLabel = new Label(administrationInfo, SWT.NONE);
++		addressLabel.setText(&quot;Address:&quot;);
++		addressText =
++			new Text(
++				administrationInfo,
++				SWT.WRAP | SWT.MULTI | SWT.BORDER | SWT.V_SCROLL);
++		addressText.setEditable(false);
++
++		FormData formData8 = new FormData();
++		formData8.left = new FormAttachment(0, 8);
++		formData8.right = new FormAttachment(0, 135);
++		formData8.top = new FormAttachment(0, 180);
++		formData8.height = 15;
++		addressLabel.setLayoutData(formData8);
++
++		FormData formData8b = new FormData();
++		formData8b.bottom = new FormAttachment(0, 230);
++		formData8b.left = new FormAttachment(addressLabel, 10, SWT.DEFAULT);
++		formData8b.right = new FormAttachment(100, -5);
++		formData8b.top = new FormAttachment(emailLabel, 5, SWT.BOTTOM);
++		formData8b.height = 15;
++		addressText.setLayoutData(formData8b);
++
++		Label miscInfoLabel = new Label(administrationInfo, SWT.NONE);
++		miscInfoLabel.setText(&quot;Miscellaneous information:&quot;);
++		miscInfoText =
++			new Text(
++				administrationInfo,
++				SWT.WRAP | SWT.MULTI | SWT.BORDER | SWT.V_SCROLL);
++		miscInfoText.setEditable(false);
++
++		FormData formData9 = new FormData();
++		formData9.left = new FormAttachment(0, 8);
++		formData9.right = new FormAttachment(0, 135);
++		formData9.top = new FormAttachment(0, 260);
++		formData9.height = 15;
++		miscInfoLabel.setLayoutData(formData9);
++
++		FormData formData9b = new FormData();
++		formData9b.bottom = new FormAttachment(0, 310);
++		formData9b.left = new FormAttachment(miscInfoLabel, 10, SWT.DEFAULT);
++		formData9b.right = new FormAttachment(100, -5);
++		formData9b.top = new FormAttachment(addressText, 5, SWT.BOTTOM);
++		formData9b.height = 15;
++		miscInfoText.setLayoutData(formData9b);
++
++		//buttonGrp has a FillLayout
++		Composite buttonGrp = new Composite(administrationInfo, SWT.NONE);
++		buttonGrp.setLayout(new FillLayout());
++
++		FormData data3 = new FormData();
++		data3.bottom = new FormAttachment(100, 0);
++		data3.left = new FormAttachment(0, 0);
++		data3.right = new FormAttachment(100, 0);
++		data3.top = new FormAttachment(100, -25);
++		buttonGrp.setLayoutData(data3);
++
++		newEmployeeButton = new Button(buttonGrp, SWT.PUSH);
++		newEmployeeButton.setText(&quot;&amp;New&quot;);
++		newEmployeeButton.addSelectionListener(new SelectionAdapter() {
++			public void widgetSelected(SelectionEvent arg0) {
++				//setEmployeeMode(ADD_MODE);
++			}
++		});
++
++		delEmployeeButton = new Button(buttonGrp, SWT.PUSH);
++		delEmployeeButton.setText(&quot;&amp;Delete&quot;);
++		delEmployeeButton.addSelectionListener(new SelectionAdapter() {
++			public void widgetSelected(SelectionEvent arg0) {
++				/*
++			    Employee c = processor.getActiveEmployee();
++				
++				//Can't delete an employee if it is the manager of a project.
++				for (int i = 0; i &lt; processor.getNumAllProjects(); i++) {
++					if (processor.getAllProjectByIndex(i).managerID == c.employeeID) {
++						MessageBox msgBox =
++								new MessageBox(shell, SWT.APPLICATION_MODAL | SWT.OK);
++							msgBox.setText(&quot;Error&quot;);
++							msgBox.setMessage(
++								&quot;Cannot delete selected employee because selected &quot;
++								+ &quot;employee is the manager of a project.&quot;);
++							msgBox.open();
++							return;
++					}
++				}
++				
++				MessageBox msgBox =
++					new MessageBox(
++						shell,
++						SWT.APPLICATION_MODAL | SWT.YES | SWT.NO);
++				msgBox.setText(&quot;Confirm Deletion&quot;);
++				msgBox.setMessage(
++					&quot;Are you certain you wish to delete the selected employee?\n&quot;
++						+ &quot;(All related transactions will also  be deleted.)&quot;);
++
++				if (msgBox.open() == SWT.YES) {
++					processor.deleteEmployee(employeeList.getSelectionIndex());
++					refreshEmployeeData();
++					setEmployeeMode(VIEW_MODE);
++				}
++				*/
++			}
++		});
++
++		editEmployeeButton = new Button(buttonGrp, SWT.PUSH);
++		editEmployeeButton.setText(&quot;&amp;Edit&quot;);
++		editEmployeeButton.addSelectionListener(new SelectionAdapter() {
++
++			public void widgetSelected(SelectionEvent arg0) {
++				//setEmployeeMode(EDIT_MODE);
++			}
++		});
++
++		//filler
++		Label fill = new Label(buttonGrp, SWT.NONE);
++
++		saveEmployeeButton = new Button(buttonGrp, SWT.PUSH);
++		saveEmployeeButton.setText(&quot;&amp;Save&quot;);
++		saveEmployeeButton.setEnabled(false);
++		//saveEmployeeButton.addSelectionListener(new SaveEmployeeButtonListener());
++
++		cancelEmployeeButton = new Button(buttonGrp, SWT.PUSH);
++		cancelEmployeeButton.setText(&quot;&amp;Cancel&quot;);
++		cancelEmployeeButton.setEnabled(false);
++		cancelEmployeeButton.addSelectionListener(new SelectionAdapter() {
++			public void widgetSelected(SelectionEvent arg0) {
++				//setEmployeeMode(VIEW_MODE);
++				//refreshEmployeeData();
++			}
++		});
++
++
++	}
++
++	private void setupMoviePane() {
++
++		movieItem = new TabItem(folder, SWT.NONE);
++		movieItem.setText(&quot;&amp;Filme&quot;);
++		moviePane = new Composite(folder, SWT.NONE);
++		movieItem.setControl(moviePane);
++		
++		
++		
++		
++		//administrationPane has a FormLayout
++		moviePane.setLayout(new FormLayout());
++
++		setupEmployeeList();
++		
++		//administrationInfo has a FormLayout
++		movieInfo = new Group(moviePane, SWT.NONE);
++		movieInfo.setText(&quot;Employee Information:&quot;);
++
++		movieInfo.setBackground(new Color(null,250,100,200));
++		
++		FormLayout movieLayout = new FormLayout();
++		movieLayout.marginHeight = 10;
++		movieLayout.marginWidth = 10;
++		movieInfo.setLayout(movieLayout);
++
++		FormData formData = new FormData();
++		formData.left = new FormAttachment(33, 5);
++		formData.right = new FormAttachment(100, -5);
++		formData.top = new FormAttachment(0, 5);
++		formData.bottom = new FormAttachment(100, -5);
++		movieInfo.setLayoutData(formData);
++
++		Label acctIDLabel = new Label(movieInfo, SWT.NONE);
++		acctIDLabel.setText(&quot;Employee ID:&quot;);
++		acctIDText = new Text(movieInfo, SWT.BORDER);
++		acctIDText.setEditable(false);
++
++		FormData formData2 = new FormData();
++		formData2.left = new FormAttachment(0, 5);
++		formData2.right = new FormAttachment(0, 135);
++		formData2.top = new FormAttachment(0, 10);
++		formData2.height = 15;
++		acctIDLabel.setLayoutData(formData2);
++
++		FormData formData2b = new FormData();
++		formData2b.left = new FormAttachment(acctIDLabel, 10, SWT.DEFAULT);
++		formData2b.right = new FormAttachment(100, -5);
++		formData2b.top = new FormAttachment(acctIDLabel, -5, SWT.TOP);
++		formData2b.height = 15;
++		acctIDText.setLayoutData(formData2b);
++
++		Label fnameLabel = new Label(movieInfo, SWT.NONE);
++		fnameLabel.setText(&quot;First name:&quot;);
++		fnameText = new Text(movieInfo, SWT.BORDER);
++		fnameText.setEditable(false);
++
++		FormData formData3 = new FormData();
++		formData3.left = new FormAttachment(0, 5);
++		formData3.right = new FormAttachment(0, 135);
++		formData3.top = new FormAttachment(0, 35);
++		formData3.height = 15;
++		fnameLabel.setLayoutData(formData3);
++
++		FormData formData3b = new FormData();
++		formData3b.left = new FormAttachment(fnameLabel, 10, SWT.DEFAULT);
++		formData3b.right = new FormAttachment(100, -5);
++		formData3b.top = new FormAttachment(fnameLabel, -5, SWT.TOP);
++		formData3b.height = 15;
++		fnameText.setLayoutData(formData3b);
++
++		Label snameLabel = new Label(movieInfo, SWT.NONE);
++		snameLabel.setText(&quot;Surname:&quot;);
++		snameText = new Text(movieInfo, SWT.BORDER);
++		snameText.setEditable(false);
++
++		FormData formData4 = new FormData();
++		formData4.left = new FormAttachment(0, 5);
++		formData4.right = new FormAttachment(0, 135);
++		formData4.top = new FormAttachment(0, 60);
++		formData4.height = 15;
++		snameLabel.setLayoutData(formData4);
++
++		FormData formData4b = new FormData();
++		formData4b.left = new FormAttachment(snameLabel, 10, SWT.DEFAULT);
++		formData4b.right = new FormAttachment(100, -5);
++		formData4b.top = new FormAttachment(snameLabel, -5, SWT.TOP);
++		formData4b.height = 15;
++		snameText.setLayoutData(formData4b);
++
++		Label dobLabel = new Label(movieInfo, SWT.NONE);
++		dobLabel.setText(&quot;Date of birth:&quot;);
++		dobText = new Text(movieInfo, SWT.BORDER);
++		dobText.setEditable(false);
++
++		FormData formData5 = new FormData();
++		formData5.left = new FormAttachment(0, 5);
++		formData5.right = new FormAttachment(0, 135);
++		formData5.top = new FormAttachment(0, 85);
++		formData5.height = 15;
++		dobLabel.setLayoutData(formData5);
++
++		FormData formData5b = new FormData();
++		formData5b.left = new FormAttachment(dobLabel, 10, SWT.DEFAULT);
++		formData5b.right = new FormAttachment(100, -5);
++		formData5b.top = new FormAttachment(dobLabel, -5, SWT.TOP);
++		formData5b.height = 15;
++		dobText.setLayoutData(formData5b);
++
++		Label phoneLabel = new Label(movieInfo, SWT.NONE);
++		phoneLabel.setText(&quot;Phone number:&quot;);
++		phoneText = new Text(movieInfo, SWT.BORDER);
++		phoneText.setEditable(false);
++
++		FormData formData6 = new FormData();
++		formData6.left = new FormAttachment(0, 5);
++		formData6.right = new FormAttachment(0, 135);
++		formData6.top = new FormAttachment(0, 110);
++		formData6.height = 15;
++		phoneLabel.setLayoutData(formData6);
++
++		FormData formData6b = new FormData();
++		formData6b.left = new FormAttachment(phoneLabel, 10, SWT.DEFAULT);
++		formData6b.right = new FormAttachment(100, -5);
++		formData6b.top = new FormAttachment(phoneLabel, -5, SWT.TOP);
++		formData6b.height = 15;
++		phoneText.setLayoutData(formData6b);
++
++		Label emailLabel = new Label(movieInfo, SWT.NONE);
++		emailLabel.setText(&quot;Email address:&quot;);
++		emailText = new Text(movieInfo, SWT.BORDER);
++		emailText.setEditable(false);
++
++		FormData formData7 = new FormData();
++		formData7.left = new FormAttachment(0, 5);
++		formData7.right = new FormAttachment(0, 135);
++		formData7.top = new FormAttachment(0, 135);
++		formData7.height = 15;
++		emailLabel.setLayoutData(formData7);
++
++		FormData formData7b = new FormData();
++		formData7b.left = new FormAttachment(emailLabel, 10, SWT.DEFAULT);
++		formData7b.right = new FormAttachment(100, -5);
++		formData7b.top = new FormAttachment(emailLabel, -5, SWT.TOP);
++		formData7b.height = 15;
++		emailText.setLayoutData(formData7b);
++
++		Label addressLabel = new Label(movieInfo, SWT.NONE);
++		addressLabel.setText(&quot;Address:&quot;);
++		addressText =
++			new Text(
++			        movieInfo,
++				SWT.WRAP | SWT.MULTI | SWT.BORDER | SWT.V_SCROLL);
++		addressText.setEditable(false);
++
++		FormData formData8 = new FormData();
++		formData8.left = new FormAttachment(0, 8);
++		formData8.right = new FormAttachment(0, 135);
++		formData8.top = new FormAttachment(0, 180);
++		formData8.height = 15;
++		addressLabel.setLayoutData(formData8);
++
++		FormData formData8b = new FormData();
++		formData8b.bottom = new FormAttachment(0, 230);
++		formData8b.left = new FormAttachment(addressLabel, 10, SWT.DEFAULT);
++		formData8b.right = new FormAttachment(100, -5);
++		formData8b.top = new FormAttachment(emailLabel, 5, SWT.BOTTOM);
++		formData8b.height = 15;
++		addressText.setLayoutData(formData8b);
++
++		Label miscInfoLabel = new Label(movieInfo, SWT.NONE);
++		miscInfoLabel.setText(&quot;Miscellaneous information:&quot;);
++		miscInfoText =
++			new Text(
++			        movieInfo,
++				SWT.WRAP | SWT.MULTI | SWT.BORDER | SWT.V_SCROLL);
++		miscInfoText.setEditable(false);
++
++		FormData formData9 = new FormData();
++		formData9.left = new FormAttachment(0, 8);
++		formData9.right = new FormAttachment(0, 135);
++		formData9.top = new FormAttachment(0, 260);
++		formData9.height = 15;
++		miscInfoLabel.setLayoutData(formData9);
++
++		FormData formData9b = new FormData();
++		formData9b.bottom = new FormAttachment(0, 310);
++		formData9b.left = new FormAttachment(miscInfoLabel, 10, SWT.DEFAULT);
++		formData9b.right = new FormAttachment(100, -5);
++		formData9b.top = new FormAttachment(addressText, 5, SWT.BOTTOM);
++		formData9b.height = 15;
++		miscInfoText.setLayoutData(formData9b);
++
++		//buttonGrp has a FillLayout
++		Composite buttonGrp = new Composite(movieInfo, SWT.NONE);
++		buttonGrp.setLayout(new FillLayout());
++
++		FormData data3 = new FormData();
++		data3.bottom = new FormAttachment(100, 0);
++		data3.left = new FormAttachment(0, 0);
++		data3.right = new FormAttachment(100, 0);
++		data3.top = new FormAttachment(100, -25);
++		buttonGrp.setLayoutData(data3);
++
++		newEmployeeButton = new Button(buttonGrp, SWT.PUSH);
++		newEmployeeButton.setText(&quot;&amp;New&quot;);
++		newEmployeeButton.addSelectionListener(new SelectionAdapter() {
++			public void widgetSelected(SelectionEvent arg0) {
++				//setEmployeeMode(ADD_MODE);
++			}
++		});
++
++		delEmployeeButton = new Button(buttonGrp, SWT.PUSH);
++		delEmployeeButton.setText(&quot;&amp;Delete&quot;);
++		delEmployeeButton.addSelectionListener(new SelectionAdapter() {
++			public void widgetSelected(SelectionEvent arg0) {
++				/*
++			    Employee c = processor.getActiveEmployee();
++				
++				//Can't delete an employee if it is the manager of a project.
++				for (int i = 0; i &lt; processor.getNumAllProjects(); i++) {
++					if (processor.getAllProjectByIndex(i).managerID == c.employeeID) {
++						MessageBox msgBox =
++								new MessageBox(shell, SWT.APPLICATION_MODAL | SWT.OK);
++							msgBox.setText(&quot;Error&quot;);
++							msgBox.setMessage(
++								&quot;Cannot delete selected employee because selected &quot;
++								+ &quot;employee is the manager of a project.&quot;);
++							msgBox.open();
++							return;
++					}
++				}
++				
++				MessageBox msgBox =
++					new MessageBox(
++						shell,
++						SWT.APPLICATION_MODAL | SWT.YES | SWT.NO);
++				msgBox.setText(&quot;Confirm Deletion&quot;);
++				msgBox.setMessage(
++					&quot;Are you certain you wish to delete the selected employee?\n&quot;
++						+ &quot;(All related transactions will also  be deleted.)&quot;);
++
++				if (msgBox.open() == SWT.YES) {
++					processor.deleteEmployee(employeeList.getSelectionIndex());
++					refreshEmployeeData();
++					setEmployeeMode(VIEW_MODE);
++				}
++				*/
++			}
++		});
++
++		editEmployeeButton = new Button(buttonGrp, SWT.PUSH);
++		editEmployeeButton.setText(&quot;&amp;Edit&quot;);
++		editEmployeeButton.addSelectionListener(new SelectionAdapter() {
++
++			public void widgetSelected(SelectionEvent arg0) {
++				//setEmployeeMode(EDIT_MODE);
++			}
++		});
++
++		//filler
++		Label fill = new Label(buttonGrp, SWT.NONE);
++
++		saveEmployeeButton = new Button(buttonGrp, SWT.PUSH);
++		saveEmployeeButton.setText(&quot;&amp;Save&quot;);
++		saveEmployeeButton.setEnabled(false);
++		//saveEmployeeButton.addSelectionListener(new SaveEmployeeButtonListener());
++
++		cancelEmployeeButton = new Button(buttonGrp, SWT.PUSH);
++		cancelEmployeeButton.setText(&quot;&amp;Cancel&quot;);
++		cancelEmployeeButton.setEnabled(false);
++		cancelEmployeeButton.addSelectionListener(new SelectionAdapter() {
++			public void widgetSelected(SelectionEvent arg0) {
++				//setEmployeeMode(VIEW_MODE);
++				//refreshEmployeeData();
++			}
++		});
++
++
++	}
++
++
++
++	/**
++	 * Creates the FileMenu
++	 */
++	private void setupFileMenu() {
++		//create the menu bar
++		Menu menu = new Menu(shell, SWT.BAR);
++		shell.setMenuBar(menu);
++
++		//add the File option to it
++		MenuItem file = new MenuItem(menu, SWT.CASCADE);
++		file.setText(&quot;File&quot;);
++
++		//create a menu for the File option
++		Menu filemenu = new Menu(shell, SWT.DROP_DOWN);
++		file.setMenu(filemenu);
++
++
++
++		MenuItem quitItem = new MenuItem(filemenu, SWT.PUSH);
++		quitItem.setText(&quot;Quit&quot;);
++
++
++		//add the View option to it
++		MenuItem view = new MenuItem(menu, SWT.CASCADE);
++		view.setText(&quot;Ansicht&quot;);
++		//create a menu for the View option
++		Menu viewmenu = new Menu(shell, SWT.DROP_DOWN);
++		view.setMenu(viewmenu);
++		//add MenuItems to the View menu
++		MenuItem customerItem = new MenuItem(viewmenu, SWT.PUSH);
++		customerItem.setText(&quot;Kunden&quot;);		
++		//add a listener for the action
++		customerItem.addListener(SWT.Selection, new Listener() {
++			public void handleEvent(Event e) {
++				folder.setSelection(0);
++			}
++		});
++		MenuItem movieItem = new MenuItem(viewmenu, SWT.PUSH);
++		movieItem.setText(&quot;Filme&quot;);		
++		//add a listener for the action
++		movieItem.addListener(SWT.Selection, new Listener() {
++			public void handleEvent(Event e) {
++				folder.setSelection(1);
++			}
++		});
++		
++		
++		//add the Help option to it
++		MenuItem help = new MenuItem(menu, SWT.CASCADE);
++		help.setText(&quot;?&quot;);
++		//create a menu for the Help option
++		Menu helpmenu = new Menu(shell, SWT.DROP_DOWN);
++		help.setMenu(helpmenu);		
++		//add MenuItems to the Help menu
++		MenuItem helpItem = new MenuItem(helpmenu, SWT.PUSH);
++		helpItem.setText(&quot;Help&quot;);		
++		MenuItem hpItem = new MenuItem(helpmenu, SWT.PUSH);
++		hpItem.setText(&quot;Homepage&quot;);
++		MenuItem versionItem = new MenuItem(helpmenu, SWT.PUSH);
++		versionItem.setText(&quot;Versionshinweis&quot;);				
++		MenuItem aboutItem = new MenuItem(helpmenu, SWT.PUSH);
++		aboutItem.setText(&quot;About...&quot;);		
++		
++		
++		
++		//add a listener for the action
++		quitItem.addListener(SWT.Selection, new Listener() {
++			public void handleEvent(Event e) {
++				shell.dispose();
++			}
++		});
++
++		aboutItem.addListener(SWT.Selection, new Listener() {
++			private Image aboutImage;
++			private Shell aboutShell;
++
++			public void handleEvent(Event e) {
++
++				aboutShell = new Shell(shell, SWT.DIALOG_TRIM);
++				aboutShell.setSize(200, 250);
++				aboutShell.setText(&quot;About...&quot;);
++
++				//load an Image
++				aboutImage = new Image(display, &quot;video2.gif&quot;);
++				
++				aboutShell.addPaintListener(new PaintListener() {
++					public void paintControl(PaintEvent e) {
++						//Get the graphics context
++						GC gc = new GC(aboutShell);
++						//Write a string to the shell
++						gc.drawString(
++							&quot;TimeTracker Application &quot; ,
++							30,
++							10);
++
++						//draw a blue rectangle
++						Color blue = display.getSystemColor(SWT.COLOR_BLUE);
++						gc.setForeground(blue);
++						gc.drawRectangle(30, 30, 135, 165);
++
++						//draw an image
++						gc.drawImage(aboutImage, 70, 70);
++					}
++				});
++
++				aboutShell.addDisposeListener(new DisposeListener() {
++					public void widgetDisposed(DisposeEvent e) {
++						//when the shell is closed, dispose of the Image
++						aboutImage.dispose();
++						shell.setEnabled(true);
++					}
++				});
++
++				shell.setEnabled(false);
++				aboutShell.open();
++			}
++		});
++	}
++    
++	     
++    public void run(){
++		shell.open();
++		while (!shell.isDisposed()) {
++			if (!display.readAndDispatch()) {
++				display.sleep();
++			}
++		}
++
++		display.dispose();
++    }
++}
++
+
+Added: project_src/clienttest/src/Test.java
+===================================================================
+--- project_src/clienttest/src/Test.java	2004-10-12 11:39:59 UTC (rev 39)
++++ project_src/clienttest/src/Test.java	2004-10-12 19:03:14 UTC (rev 40)
+@@ -0,0 +1,67 @@
++import org.eclipse.swt.SWT;
++import org.eclipse.swt.widgets.Button;
++import org.eclipse.swt.widgets.Display;
++import org.eclipse.swt.widgets.Shell;
++import org.eclipse.swt.widgets.TabFolder;
++import org.eclipse.swt.widgets.TabItem;
++
++/*
++ * Created on 12.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class Test {
++
++    public static void main (String [] args) {
++    	Display display = new Display ();
++    	final Shell shell = new Shell (display);
++    	final TabFolder tabFolder = new TabFolder (shell, SWT.NONE);
++    	for (int i=0; i&lt;6; i++) {
++    		TabItem item = new TabItem (tabFolder, SWT.NULL);
++    		item.setText (&quot;TabItem &quot; + i);
++    		Button button = new Button (tabFolder, SWT.PUSH);
++    		button.setText (&quot;Page &quot; + i);
++    		item.setControl (button);
++    	}
++    	tabFolder.setSize (400, 200);
++    	shell.pack ();
++    	shell.open ();
++    	while (!shell.isDisposed ()) {
++    		if (!display.readAndDispatch ()) display.sleep ();
++    	}
++    	display.dispose ();
++    }
++    
++}
+
+Added: project_src/clienttest/src/video2.gif
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/clienttest/src/video2.gif
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/clienttest/video2.gif
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/clienttest/video2.gif
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000040.html">[Provirent-svn-commit] r39 - in project_src/provirent_hibernate: . data src/de/hsharz/provirent/objects
+</A></li>
+	<LI>Next message: <A HREF="000042.html">[Provirent-svn-commit] r41 - timetable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#41">[ date ]</a>
+              <a href="thread.html#41">[ thread ]</a>
+              <a href="subject.html#41">[ subject ]</a>
+              <a href="author.html#41">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

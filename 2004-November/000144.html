@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r143 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r143%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200411162325.iAGNP3wD012274%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000143.html">
+   <LINK REL="Next"  HREF="000145.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r143 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r143%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200411162325.iAGNP3wD012274%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r143 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Wed Nov 17 00:25:03 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000143.html">[Provirent-svn-commit] r142 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+        <LI>Next message: <A HREF="000145.html">[Provirent-svn-commit] r144 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#144">[ date ]</a>
+              <a href="thread.html#144">[ thread ]</a>
+              <a href="subject.html#144">[ subject ]</a>
+              <a href="author.html#144">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-11-17 00:24:58 +0100 (Wed, 17 Nov 2004)
+New Revision: 143
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+Log:
+Composite Move - weiter bearbeitet
+               - die ersten labels und textfelder eingef.
+properties     - um entsprechende Eintr?\195?\164ge erweitert
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java	2004-11-16 21:27:03 UTC (rev 142)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java	2004-11-16 23:24:58 UTC (rev 143)
+@@ -368,7 +368,7 @@
+             formData.bottom = new FormAttachment(100, 100, -5);
+             groupActorsDetail.setLayoutData(formData);
+         }
+-        	// labels and buttons for detail
++        	// labels and text for detail
+         	{
+         	    labelActorsID = new Label(groupActorsDetail, SWT.NONE);
+         	    labelActorsID.setText(l
+@@ -439,7 +439,7 @@
+         	    text1LData3.horizontalSpan = 4;
+         	    text1LData3.grabExcessHorizontalSpace = true;
+         	    textActorsLName.setLayoutData(text1LData3);
+-        	}// label and buttons for detail      
++        	}// label and text for detail      
+         	// buttons for detail
+         	{
+         	    compositeButtons = new Composite(groupActorsDetail, SWT.EMBEDDED);
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-11-16 21:27:03 UTC (rev 142)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-11-16 23:24:58 UTC (rev 143)
+@@ -92,13 +92,11 @@
+     
+     private Text textMoviesSearch;
+     private Text textMoviesID;
+-    private Text textMoviesFName;
+-    private Text textMoviesLName;
++    private Text textMoviesTitle;
+     
+     private Label labelMoviesSearch;
+     private Label labelMoviesID;
+-    private Label labelMoviesFName;
+-    private Label labelMoviesLName;
++    private Label labelMoviesTitle;
+     
+     private Button buttonMoviesNew;
+     private Button buttonMoviesSave;
+@@ -514,6 +512,55 @@
+             formData.bottom = new FormAttachment(100, 100, -5);
+             groupMoviesDetail.setLayoutData(formData);
+         }
++//      labels and text for detail
++    	{
++    	    labelMoviesID = new Label(groupMoviesDetail, SWT.NONE);
++    	    labelMoviesID.setText(l
++    	            .getString(&quot;movies.groupdetail.labelid&quot;)
++    	            + &quot;:&quot;);
++    	    labelMoviesID.setSize(125, 15);
++    	    GridData formData2 = new GridData();
++    	    formData2.widthHint = 125;
++    	    formData2.heightHint = 15;
++    	    formData2.horizontalSpan = 2;
++    	    labelMoviesID.setLayoutData(formData2);
++    	}
++    	{
++    	    textMoviesID = new Text(
++    	            groupMoviesDetail,
++    	            SWT.READ_ONLY | SWT.BORDER);
++    	    GridData text1LData1 = new GridData();
++    	    text1LData1.horizontalAlignment = GridData.FILL;
++    	    text1LData1.heightHint = 13;
++    	    text1LData1.horizontalSpan = 4;
++    	    text1LData1.grabExcessHorizontalSpace = true;
++    	    textMoviesID.setLayoutData(text1LData1);
++    	}
++    	{
++            labelMoviesTitle = new Label(
++                groupMoviesDetail,
++                SWT.NONE);
++            labelMoviesTitle.setText(l
++                .getString(&quot;movies.groupdetail.labeltitle&quot;)
++                + &quot;:&quot;);
++            labelMoviesTitle.setSize(125, 15);
++            GridData labelActorNameLData = new GridData();
++            labelActorNameLData.widthHint = 125;
++            labelActorNameLData.heightHint = 15;
++            labelActorNameLData.horizontalSpan = 2;
++            labelMoviesTitle
++                .setLayoutData(labelActorNameLData);
++        }
++        {
++    	    textMoviesTitle = new Text(groupMoviesDetail,
++    	            SWT.READ_ONLY | SWT.BORDER);
++    	    GridData text1LData2 = new GridData();
++    	    text1LData2.horizontalAlignment = GridData.FILL;
++    	    text1LData2.heightHint = 13;
++    	    text1LData2.horizontalSpan = 4;
++    	    text1LData2.grabExcessHorizontalSpace = true;
++    	    textMoviesTitle.setLayoutData(text1LData2);        
++    	}// label and buttons for detail      
+     }
+ 
+     /**
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-11-16 21:27:03 UTC (rev 142)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-11-16 23:24:58 UTC (rev 143)
+@@ -16,10 +16,10 @@
+ movies.groupoverviewdetail.columnimages =Bilder
+ 
+ movies.groupdetail.label =Detail
+-movies.groupdetail.labelid =Darsteller ID
+-movies.groupdetail.labelfirstname =Vorname
+-movies.groupdetail.labellastname =Nachname
++movies.groupdetail.labelid =Film ID
++movies.groupdetail.labeltitle =Titel
+ 
++
+ button.new=Neu
+ button.edit=Bearbeiten
+ button.delete=L&#246;schen
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000143.html">[Provirent-svn-commit] r142 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+	<LI>Next message: <A HREF="000145.html">[Provirent-svn-commit] r144 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#144">[ date ]</a>
+              <a href="thread.html#144">[ thread ]</a>
+              <a href="subject.html#144">[ subject ]</a>
+              <a href="author.html#144">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

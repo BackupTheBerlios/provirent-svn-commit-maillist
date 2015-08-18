@@ -1,0 +1,392 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r186 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r186%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/management/gui/language%20de/hsharz/provirent/objects%20de/hsharz/provirent/persistence%20test/provirent/hibernate&In-Reply-To=%3C200412011023.iB1ANwn4012951%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000186.html">
+   <LINK REL="Next"  HREF="000188.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r186 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r186%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/management/gui/language%20de/hsharz/provirent/objects%20de/hsharz/provirent/persistence%20test/provirent/hibernate&In-Reply-To=%3C200412011023.iB1ANwn4012951%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r186 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Wed Dec  1 11:23:58 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000186.html">[Provirent-svn-commit] r185 - /
+</A></li>
+        <LI>Next message: <A HREF="000188.html">[Provirent-svn-commit] r187 - in project_src/provirent_hibernate/src: de/hsharz/provirent/objects test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#187">[ date ]</a>
+              <a href="thread.html#187">[ thread ]</a>
+              <a href="subject.html#187">[ subject ]</a>
+              <a href="author.html#187">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-12-01 11:23:57 +0100 (Wed, 01 Dec 2004)
+New Revision: 186
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestHibernate.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java	2004-12-01 09:47:06 UTC (rev 185)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java	2004-12-01 10:23:57 UTC (rev 186)
+@@ -781,6 +781,19 @@
+             textBirthday.setEnabled(false);
+         }
+         {
++            labelRegistrationDate = new Label(groupCustomerDetail,
++                    SWT.NONE);
++            labelRegistrationDate.setText(l
++                    .getString(&quot;Customer.groupdetail.regdatelabel&quot;)
++                    + &quot;:&quot;);
++            labelRegistrationDate.setSize(125, 15);
++            GridData label1LData1 = new GridData();
++            label1LData1.widthHint = 125;
++            label1LData1.heightHint = 15;
++            label1LData1.horizontalSpan = 2;
++            labelRegistrationDate.setLayoutData(label1LData1);
++        }
++        {
+             textRegistrationDate = new Text(groupCustomerDetail,
+                     SWT.READ_ONLY | SWT.BORDER);
+             GridData text1LData3 = new GridData();
+@@ -1259,6 +1272,9 @@
+         for (int i = 0; i &lt; Customerlist.size(); i++) {
+ 
+             Customer o = (Customer) Customerlist.get(i);
++            
++            logger.debug(&quot;Customer &quot; + i + &quot; aus DB:&quot;+o+&quot; Person: &quot;+o.getPerson());
++            
+             item = new TableItem(tableCustomer, SWT.NONE);
+             Calendar regdate = Calendar.getInstance();
+             regdate.setTime(o.getDayOfRegistration());
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-12-01 09:47:06 UTC (rev 185)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-12-01 10:23:57 UTC (rev 186)
+@@ -110,6 +110,7 @@
+     private CTabItem tabItemActor;
+     private CTabItem tabItemDirector;
+     private CTabItem tabItemLanguage;
++    private CTabItem tabItemCustomer;
+     private CTabItem tabItemGenre;
+     private CTabItem tabItemImage;
+     private CTabItem tabItemMovie;
+@@ -124,7 +125,8 @@
+     private CompositeImage compositeImage;
+     private CompositeMovie compositeMovie;
+     private CompositePayment compositePayment;
+-    private CompositeStatus compositeStatus;   
++    private CompositeStatus compositeStatus;
++    private CompositeCustomer compositeCustomer;
+ 
+     private Menu rootMenu;
+     
+@@ -141,6 +143,7 @@
+     private MenuItem viewDirectorMenuItem;
+     private MenuItem viewVideoFormatMenuItem;
+     private MenuItem viewActorMenuItem;
++    private MenuItem viewCustomerMenuItem;
+     private MenuItem viewGenreMenuItem;
+     private MenuItem viewLanguageMenuItem;
+     private MenuItem viewStatusMenuItem;
+@@ -333,7 +336,8 @@
+             
+             //initFormatTab();
+             //initMovieTab();
+-            initImageTab();
++            //initImageTab();
++            initCustomerTab();
+ 
+         } catch (Exception e) {
+             e.printStackTrace();
+@@ -439,8 +443,25 @@
+ 				cTabFolderMain.showSelection();				
+             
+             }
+-        });         
++        });  
+         
++        viewCustomerMenuItem = new MenuItem(viewMenu, SWT.CHECK);
++        viewCustomerMenuItem.setText(l.getString(&quot;menu.view.customer&quot;));
++        viewCustomerMenuItem.setSelection(false);
++        viewCustomerMenuItem.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++				if(tabItemCustomer == null || tabItemCustomer.isDisposed()){
++				    initCustomerTab();
++				    return;   
++				}
++				
++				cTabFolderMain.setSelection(tabItemCustomer);
++				viewCustomerMenuItem.setSelection(true);
++				cTabFolderMain.showSelection();				
++            
++            }
++        });
++        
+         viewGenreMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewGenreMenuItem.setText(l.getString(&quot;menu.view.genre&quot;));
+         viewGenreMenuItem.setSelection(false);
+@@ -650,7 +671,30 @@
+         
+     }
+     
++    private void initCustomerTab() {
++        tabItemCustomer = new CTabItem(cTabFolderMain, SWT.NONE);        
++        tabItemCustomer.setText(l.getString(&quot;tab.customer.title&quot;));
++        tabItemCustomer.addDisposeListener(new DisposeListener() {
++            public void widgetDisposed(DisposeEvent evt) {
++
++                if (!viewCustomerMenuItem.isDisposed()){
++                    viewCustomerMenuItem.setSelection(false);
++                }
++            }
++        });
++
++        {
++            compositeCustomer = new CompositeCustomer(
++                cTabFolderMain,
++                SWT.NONE, statusLine, locale);
++            
++            tabItemCustomer.setControl(compositeCustomer);
++        }
++        cTabFolderMain.setSelection(tabItemCustomer);
++        
++    }
+     
++    
+     private void initDirectorTab() {
+         tabItemDirector = new CTabItem(cTabFolderMain, SWT.NONE);
+         tabItemDirector.setText(l.getString(&quot;tab.director.title&quot;));
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties	2004-12-01 09:47:06 UTC (rev 185)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties	2004-12-01 10:23:57 UTC (rev 186)
+@@ -15,6 +15,8 @@
+ 
+ menu.view.director=Regie
+ 
++menu.view.customer=Kunden
++
+ menu.view.payment=Preisklassen
+ 
+ menu.view.genre=Genre
+@@ -36,6 +38,7 @@
+ 
+ tab.format.title=Video-/AudioFormate
+ tab.actor.title=Darsteller
++tab.customer.title=Kunden
+ tab.director.title=Regie
+ tab.genre.title=Genre
+ tab.language.title=Sprache/Untertitel
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml	2004-12-01 09:47:06 UTC (rev 185)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml	2004-12-01 10:23:57 UTC (rev 186)
+@@ -23,7 +23,9 @@
+  				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+  			&lt;/timestamp&gt;
+  
+- 			&lt;one-to-one name=&quot;person&quot; class=&quot;de.hsharz.provirent.objects.Person&quot; cascade=&quot;all&quot;/&gt;
++	  &lt;property name=&quot;person&quot; type=&quot;int&quot; not-null=&quot;true&quot;&gt;
++		&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++	  &lt;/property&gt;
+       
+       &lt;property name=&quot;userName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.hbm.xml	2004-12-01 09:47:06 UTC (rev 185)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.hbm.xml	2004-12-01 10:23:57 UTC (rev 186)
+@@ -18,6 +18,10 @@
+         &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+         &lt;generator class=&quot;native&quot;/&gt;
+       &lt;/id&gt;
++	  
++	  &lt;one-to-one name=&quot;customer&quot; cascade=&quot;all&quot; constrained=&quot;true&quot; foreign-key=&quot;&quot;&gt;
++		
++	  &lt;/one-to-one&gt;
+  
+  			
+  
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-01 09:47:06 UTC (rev 185)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-01 10:23:57 UTC (rev 186)
+@@ -54,6 +54,7 @@
+ import de.hsharz.provirent.objects.Language;
+ import de.hsharz.provirent.objects.Movie;
+ import de.hsharz.provirent.objects.Payment;
++import de.hsharz.provirent.objects.Person;
+ import de.hsharz.provirent.objects.Status;
+ import de.hsharz.provirent.objects.Subtitle;
+ import de.hsharz.provirent.objects.VideoFormat;
+@@ -1626,14 +1627,14 @@
+ 	            Criteria criteria = s.createCriteria(Customer.class);
+ 	            //any of the criteria 
+ 	            Disjunction any = Expression.disjunction();
++	            //Disjunction any2 = Expression.disjunction();
+ 
+-
+ 	            if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
+ 	                any.add(Expression.like(&quot;userName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+ 	                any.add(Expression.like(&quot;dayOfRegistration&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+-	                any.add(Expression.like(&quot;duration2&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+-	                any.add(Expression.like(&quot;duration3&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+-	                any.add(Expression.like(&quot;startdate&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                //any2.add(Expression.like(&quot;lastName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                //any2.add(Expression.like(&quot;firstName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                //any2.add(Expression.like(&quot;dayOfBirth&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+ 	                //maybe we are searching for the id?
+ 	                try {
+ 	                    any.add(Expression.eq(&quot;CustomerId&quot;, new Integer(Integer.parseInt(filter))));
+@@ -1643,11 +1644,14 @@
+ 	            }
+ 	            
+ 	            //add all criteria
++	            
+ 	            criteria.add(any);
++	            //criteria.createCriteria(&quot;person&quot;).add(any2);
++	            
+ 	            //get the results
+ 	            returnlist = criteria.list();
+ 	            
+-	            
++	            logger.debug(&quot;Anzahl der Elemente in R&#252;ckgabeliste: &quot; + returnlist.size());
+ 	            int i = 0;
+ 	
+ 	
+@@ -1784,7 +1788,7 @@
+ 	}
+ 	
+ 	
+-	public static Movie getSingleMovie(final int id){
++	public static Movie getSingleMovie(final int id) {
+ 	    if (logger.isDebugEnabled()) {
+ 	        logger.debug(&quot;getSingleMovie() - start. int filter= &quot;+id);
+ 	    }
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java	2004-12-01 09:47:06 UTC (rev 185)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java	2004-12-01 10:23:57 UTC (rev 186)
+@@ -176,7 +176,7 @@
+                         &quot;Select: Customer aus DB nicht gleich meiner. DB: &quot;
+                                 + dbc + &quot; My:&quot; + c, c, dbc); 
+ 
+-                //Update
++                logger.debug(&quot;Customer: &quot;+dbc+ &quot;Person: &quot;+dbc.getPerson());
+ 
+                 //delete the object
+                 s.delete(c);
+@@ -357,6 +357,8 @@
+                         }
+                         return;
+                     }
++                    logger.debug(&quot;Customer: &quot;+dbc+&quot; Person:&quot;+dbc.getPerson());
++                    
+                     Customer myc = (Customer)customer.get(i);
+                     //are both equal?
+                     assertEquals(
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestHibernate.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestHibernate.java	2004-12-01 09:47:06 UTC (rev 185)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestHibernate.java	2004-12-01 10:23:57 UTC (rev 186)
+@@ -182,10 +182,10 @@
+             s.save(l5);
+             s.flush();
+ 
+-            movie.setLanguages(new ArrayList());
+-            movie.getLanguages().add(l1);
+-            movie.getLanguages().add(l2);
+             
++            
++            
++            
+             Subtitle s1 = new Subtitle(&quot;Deutsch&quot;, &quot;de&quot;);
+             Subtitle s2 = new Subtitle(&quot;Englisch&quot;, &quot;en&quot;);
+             Subtitle s3 = new Subtitle(&quot;Franzoesisch&quot;, &quot;fr&quot;);
+@@ -198,9 +198,6 @@
+             s.save(s5);
+             s.flush();
+ 
+-            movie.setSubtitles(new ArrayList());
+-            movie.getSubtitles().add(s1);
+-            movie.getSubtitles().add(s2);
+             
+             Genre g1 = new Genre(&quot;Action&quot;,&quot;&quot;);
+             Genre g2 = new Genre(&quot;Abenteuer&quot;,&quot;&quot;);
+@@ -223,17 +220,11 @@
+             s.save(a4);
+             s.flush();
+              
+-            movie.setAudioFormats(new ArrayList());
+-            movie.getAudioFormats().add(a1);
+-            movie.getAudioFormats().add(a4);
+             
+             VideoFormat v1 = new VideoFormat(&quot;2.35:1&quot;,&quot;&quot;);
+             s.save(v1);
+             s.flush();
+           
+-            movie.setVideoFormats(new ArrayList());
+-            movie.getVideoFormats().add(v1);
+-            
+           
+             s.save(movie);
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000186.html">[Provirent-svn-commit] r185 - /
+</A></li>
+	<LI>Next message: <A HREF="000188.html">[Provirent-svn-commit] r187 - in project_src/provirent_hibernate/src: de/hsharz/provirent/objects test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#187">[ date ]</a>
+              <a href="thread.html#187">[ thread ]</a>
+              <a href="subject.html#187">[ subject ]</a>
+              <a href="author.html#187">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

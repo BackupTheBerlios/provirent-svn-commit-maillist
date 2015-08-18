@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r233 - project_src/provirent_hibernate/src/test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r233%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200412102048.iBAKmapI019452%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000233.html">
+   <LINK REL="Next"  HREF="000235.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r233 - project_src/provirent_hibernate/src/test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r233%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200412102048.iBAKmapI019452%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r233 - project_src/provirent_hibernate/src/test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Fri Dec 10 21:48:36 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000233.html">[Provirent-svn-commit] r232 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000235.html">[Provirent-svn-commit] r234 - in project_src/provirent_hibernate/src: de/hsharz/provirent/objects test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#234">[ date ]</a>
+              <a href="thread.html#234">[ thread ]</a>
+              <a href="subject.html#234">[ subject ]</a>
+              <a href="author.html#234">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-12-10 21:48:35 +0100 (Fri, 10 Dec 2004)
+New Revision: 233
+
+Added:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java
+Removed:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestOrder.java
+Modified:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java	2004-12-10 14:22:04 UTC (rev 232)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java	2004-12-10 20:48:35 UTC (rev 233)
+@@ -239,7 +239,8 @@
+                     s.save(dvd);
+                 }
+             }
+-tx.commit();
++            tx.commit();
++            
+         } catch (HibernateException hex) {
+             fail(&quot;Fehler beim Session oder Transaction aufbau&quot;);
+             logger.error(&quot;Fehler beim Session oder Transaction aufbau&quot;, hex);
+
+Copied: project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java (from rev 231, project_src/provirent_hibernate/src/test/provirent/hibernate/TestOrder.java)
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestOrder.java	2004-12-09 19:55:57 UTC (rev 231)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java	2004-12-10 20:48:35 UTC (rev 233)
+@@ -0,0 +1,65 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import junit.framework.TestCase;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestMovieOrder extends TestCase {
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
++
++    /**
++     * Constructor for TestOrder.
++     * @param arg0
++     */
++    public TestMovieOrder(String arg0) {
++        super(arg0);
++    }
++
++}
+
+Deleted: project_src/provirent_hibernate/src/test/provirent/hibernate/TestOrder.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestOrder.java	2004-12-10 14:22:04 UTC (rev 232)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestOrder.java	2004-12-10 20:48:35 UTC (rev 233)
+@@ -1,65 +0,0 @@
+-/*
+- * Created on 09.10.2004
+- *
+- * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
+- * All rights reserved.
+- *
+- * Redistribution and use in source and binary forms, with or without
+- * modification, are permitted provided that the following conditions
+- * are met:
+- *
+- * - Redistributions of source code must retain the above copyright notice,
+- * this list of conditions and the following disclaimer.
+- * - Redistributions in binary form must reproduce the above copyright notice,
+- * this list of conditions and the following disclaimer in the documentation
+- * and/or other materials provided with the distribution.
+- * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
+- * the names of its contributors may be used to endorse or promote products
+- * derived from this software without specific prior written permission.
+- *
+- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
+- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+- * POSSIBILITY OF SUCH DAMAGE.
+- *
+- */
+-package test.provirent.hibernate;
+-
+-import junit.framework.TestCase;
+-
+-/**
+- * @author Philipp Schneider
+- *
+- */
+-public class TestOrder extends TestCase {
+-
+-    /*
+-     * @see TestCase#setUp()
+-     */
+-    protected void setUp() throws Exception {
+-        super.setUp();
+-    }
+-
+-    /*
+-     * @see TestCase#tearDown()
+-     */
+-    protected void tearDown() throws Exception {
+-        super.tearDown();
+-    }
+-
+-    /**
+-     * Constructor for TestOrder.
+-     * @param arg0
+-     */
+-    public TestOrder(String arg0) {
+-        super(arg0);
+-    }
+-
+-}
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000233.html">[Provirent-svn-commit] r232 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000235.html">[Provirent-svn-commit] r234 - in project_src/provirent_hibernate/src: de/hsharz/provirent/objects test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#234">[ date ]</a>
+              <a href="thread.html#234">[ thread ]</a>
+              <a href="subject.html#234">[ subject ]</a>
+              <a href="author.html#234">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

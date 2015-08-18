@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r285 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r285%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/objects&In-Reply-To=%3C200512121601.jBCG1xVC028882%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000285.html">
+   <LINK REL="Next"  HREF="000287.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r285 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects</H1>
+    <B>pschneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r285%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/objects&In-Reply-To=%3C200512121601.jBCG1xVC028882%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r285 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects">pschneider at berlios.de
+       </A><BR>
+    <I>Mon Dec 12 17:01:59 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000285.html">[Provirent-svn-commit] r284 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+        <LI>Next message: <A HREF="000287.html">[Provirent-svn-commit] r286 - in project_src/provirent_hibernate: . src/de/hsharz/provirent/objects
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#286">[ date ]</a>
+              <a href="thread.html#286">[ thread ]</a>
+              <a href="subject.html#286">[ subject ]</a>
+              <a href="author.html#286">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2005-12-12 17:01:58 +0100 (Mon, 12 Dec 2005)
+New Revision: 285
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Actor.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Actor.java
+Log:
+- Emailadressen aus Actor.hbm.xml entfernt, keine Ahnung wie die dort reingekommen sind und was die dort sollten
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Actor.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Actor.hbm.xml	2005-12-12 15:48:26 UTC (rev 284)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Actor.hbm.xml	2005-12-12 16:01:58 UTC (rev 285)
+@@ -29,14 +29,7 @@
+       	
+       &lt;/property&gt;
+              
+-      &lt;property name=&quot;externEmail&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+-      	
+-      &lt;/property&gt;
+ 
+-      &lt;property name=&quot;internEmail&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+-      	
+-      &lt;/property&gt;
+-
+  
+     &lt;/class&gt;
+   &lt;/hibernate-mapping&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Actor.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Actor.java	2005-12-12 15:48:26 UTC (rev 284)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Actor.java	2005-12-12 16:01:58 UTC (rev 285)
+@@ -22,18 +22,10 @@
+     /** persistent field */
+     private String lastName;
+ 
+-    /** persistent field */
+-    private String externEmail;
+-
+-    /** persistent field */
+-    private String internEmail;
+-
+     /** full constructor */
+-    public Actor(String firstName, String lastName, String externEmail, String internEmail) {
++    public Actor(String firstName, String lastName) {
+         this.firstName = firstName;
+         this.lastName = lastName;
+-        this.externEmail = externEmail;
+-        this.internEmail = internEmail;
+     }
+ 
+     /** default constructor */
+@@ -64,22 +56,6 @@
+         this.lastName = lastName;
+     }
+ 
+-    public String getExternEmail() {
+-        return this.externEmail;
+-    }
+-
+-    public void setExternEmail(String externEmail) {
+-        this.externEmail = externEmail;
+-    }
+-
+-    public String getInternEmail() {
+-        return this.internEmail;
+-    }
+-
+-    public void setInternEmail(String internEmail) {
+-        this.internEmail = internEmail;
+-    }
+-
+     public String toString() {
+         return new ToStringBuilder(this)
+             .append(&quot;actorId&quot;, getActorId())
+@@ -94,8 +70,6 @@
+             .append(this.getActorId(), castOther.getActorId())
+             .append(this.getFirstName(), castOther.getFirstName())
+             .append(this.getLastName(), castOther.getLastName())
+-            .append(this.getExternEmail(), castOther.getExternEmail())
+-            .append(this.getInternEmail(), castOther.getInternEmail())
+             .isEquals();
+     }
+ 
+@@ -104,8 +78,6 @@
+             .append(getActorId())
+             .append(getFirstName())
+             .append(getLastName())
+-            .append(getExternEmail())
+-            .append(getInternEmail())
+             .toHashCode();
+     }
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000285.html">[Provirent-svn-commit] r284 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+	<LI>Next message: <A HREF="000287.html">[Provirent-svn-commit] r286 - in project_src/provirent_hibernate: . src/de/hsharz/provirent/objects
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#286">[ date ]</a>
+              <a href="thread.html#286">[ thread ]</a>
+              <a href="subject.html#286">[ subject ]</a>
+              <a href="author.html#286">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

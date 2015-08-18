@@ -1,0 +1,384 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r232 - project_src/provirent_hibernate/src/test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r232%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200412101422.iBAEM8fu014170%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000232.html">
+   <LINK REL="Next"  HREF="000234.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r232 - project_src/provirent_hibernate/src/test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r232%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200412101422.iBAEM8fu014170%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r232 - project_src/provirent_hibernate/src/test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Fri Dec 10 15:22:08 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000232.html">[Provirent-svn-commit] r231 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000234.html">[Provirent-svn-commit] r233 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#233">[ date ]</a>
+              <a href="thread.html#233">[ thread ]</a>
+              <a href="subject.html#233">[ subject ]</a>
+              <a href="author.html#233">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-12-10 15:22:04 +0100 (Fri, 10 Dec 2004)
+New Revision: 232
+
+Modified:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java
+Log:
+- TestDVD vervollst?\195?\164ndigt
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java	2004-12-09 19:55:57 UTC (rev 231)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java	2004-12-10 14:22:04 UTC (rev 232)
+@@ -1,6 +1,7 @@
+ package test.provirent.hibernate;
+ 
+ import java.util.ArrayList;
++import java.util.List;
+ 
+ import junit.framework.TestCase;
+ import net.sf.hibernate.HibernateException;
+@@ -9,10 +10,12 @@
+ 
+ import org.apache.log4j.Logger;
+ 
+-import de.hsharz.provirent.objects.Condition;
++import de.hsharz.provirent.objects.AudioFormat;
+ import de.hsharz.provirent.objects.Dvd;
++import de.hsharz.provirent.objects.Language;
+ import de.hsharz.provirent.objects.Movie;
+-import de.hsharz.provirent.objects.Status;
++import de.hsharz.provirent.objects.Subtitle;
++import de.hsharz.provirent.objects.VideoFormat;
+ 
+ /*
+  * Created on 09.10.2004
+@@ -49,7 +52,7 @@
+ 
+ /**
+  * @author Philipp Schneider
+- *
++ *  
+  */
+ public class TestDvd extends TestCase {
+     /**
+@@ -57,90 +60,199 @@
+      */
+     private static final Logger logger = Logger.getLogger(TestDvd.class);
+ 
+-	/*
+-	 * @see TestCase#setUp()
+-	 */
+-	protected void setUp() throws Exception {
+-		super.setUp();
+-	}
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
+ 
+-	/*
+-	 * @see TestCase#tearDown()
+-	 */
+-	protected void tearDown() throws Exception {
+-		super.tearDown();
+-	}
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
+ 
+-	/**
+-	 * Constructor for TestDvd.
+-	 * @param arg0
+-	 */
+-	public TestDvd(String arg0) {
+-		super(arg0);
+-	}
++    /**
++     * Constructor for TestDvd.
++     * 
++     * @param arg0
++     */
++    public TestDvd(String arg0) {
++        super(arg0);
++    }
+ 
+-	
+-	public void testCreateDvd(){
+-	    
++    public void testCreateDvd() {
++
+         Session s = null;
+         Transaction tx = null;
+-        RandomRange random;
+-        
+-	    
+-	    try{
+-	        //s= HibernateUtil.currentSession();
+-	        //tx = s.beginTransaction();
+-	        if(false)
+-	            throw new HibernateException(&quot;&quot;);
+-	        
++
++        RandomRange randomRange;
++        List random;
++        List dbprops;
++        int anzahl = 0;
++        List dvdprops;
++
++        try {
++            s= HibernateUtil.currentSession();
++            tx = s.beginTransaction();
++            if (false)
++                throw new HibernateException(&quot;&quot;);
++
+             //is DB open and connected
+-            //assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
+-            //assertTrue(&quot;Db Open? &quot;, s.isOpen());
+-	        
+-            
+-            Dvd dvd = new Dvd();
+-            
+-            
+-            random = new RandomRange(1205, 4523682);
+-            
+-            dvd.setBarcode(random.getNumbers(1).get(0)+&quot;&quot;);
+-            
+-            if (HibernateUtil.getCondition(&quot;neu&quot;,s) != null){
+-                dvd.setCondition(HibernateUtil.getCondition(&quot;neu&quot;,s));
+-            } else {
+-                fail(&quot;Konnte keine Condition neu aus DB bekommen&quot;);
++            assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++            assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++            //create a DVD for EACH Movie
++            //try to get Languages from db
++            List movies = s.find(&quot;from Movie as movie&quot;);
++            assertNotNull(&quot;testCreateDvd(): Can't get Movie from DB. Null&quot;,
++                    movies);
++            assertTrue(&quot;testCreateDvd(): Can not find Movie in DB&quot;, movies
++                    .size() &gt; 0);
++
++            for (int i = 0; i &lt; movies.size(); i++) {
++
++                Movie movie = (Movie) movies.get(i);
++
++                List properties = new ArrayList();
++                properties.add(new String[] { &quot;neu&quot;, &quot;ausleihbar&quot; });
++                properties.add(new String[] { &quot;neu&quot;, &quot;verliehen&quot; });
++                properties.add(new String[] { &quot;leichte Kratzer&quot;, &quot;ausleihbar&quot; });
++                properties.add(new String[] { &quot;mittlere Kratzer&quot;, &quot;ausleihbar&quot; });
++                properties.add(new String[] { &quot;leichte Kratzer&quot;, &quot;verliehen&quot; });
++                properties.add(new String[] { &quot;mittlere Kratzer&quot;, &quot;verliehen&quot; });
++                
++                
++                
++                for (int j = 0; j &lt; properties.size(); j++) {
++
++                    //create new object
++                    Dvd dvd = new Dvd();
++
++                    //set the movie
++                    dvd.setMovie(movie);
++
++                    //set the random barcode
++                    randomRange = new RandomRange(1205, 4523682);
++                    dvd.setBarcode(randomRange.getNumbers(1).get(0) + &quot;&quot;);
++
++                    //set the condition
++                    if (HibernateUtil.getCondition( ((String[])properties.get(j))[0], s) != null) {
++                        dvd.setCondition(HibernateUtil.getCondition(((String[])properties.get(j))[0], s));
++                    } else {
++                        fail(&quot;Konnte keine Condition neu aus DB bekommen&quot;);
++                    }
++
++                    //set the status
++                    if (HibernateUtil.getStatus( ((String[])properties.get(j))[1], s) != null) {
++                        dvd.setStatus(HibernateUtil.getStatus(((String[])properties.get(j))[1], s));
++                    } else {
++                        fail(&quot;Konnte keinen Status ausleihbar aus DB bekommen&quot;);
++                    }
++
++                    //try to get Languages from db
++                    dbprops = s.find(&quot;from Language as language&quot;);
++                    assertNotNull(
++                            &quot;testCreateDvd(): Can't get Languages from DB. Null&quot;,
++                            dbprops);
++                    assertTrue(&quot;testCreateDvd(): Can not find Languages in DB&quot;,
++                            dbprops.size() &gt; 0);
++
++                    anzahl = 2;
++                    dvdprops = new ArrayList();
++                    randomRange = new RandomRange(0, (dbprops.size() - 1));
++                    random = randomRange.getNumbers(anzahl);
++
++                    for (int k = 0; k &lt; anzahl; k++) {
++                        Language prop = (Language) dbprops
++                                .get(((Integer) random.get(k)).intValue());
++                        dvdprops.add(prop);
++                    }
++                    dvd.setLanguages(dvdprops);
++
++                    //try to get Subtitle from db
++                    dbprops = s.find(&quot;from Subtitle as subtitle&quot;);
++                    assertNotNull(
++                            &quot;testCreateDvd(): Can't get Subtitle from DB. Null&quot;,
++                            dbprops);
++                    assertTrue(&quot;testCreateDvd(): Can not find Subtitle in DB&quot;,
++                            dbprops.size() &gt; 0);
++
++                    anzahl = 2;
++                    dvdprops = new ArrayList();
++                    randomRange = new RandomRange(0, (dbprops.size() - 1));
++                    random = randomRange.getNumbers(anzahl);
++
++                    for (int k = 0; k &lt; anzahl; k++) {
++                        Subtitle prop = (Subtitle) dbprops
++                                .get(((Integer) random.get(k)).intValue());
++                        dvdprops.add(prop);
++                    }
++                    dvd.setSubtitles(dvdprops);
++
++                    //try to get AudioFormat from db
++                    dbprops = s.find(&quot;from AudioFormat as audioFormat&quot;);
++                    assertNotNull(
++                            &quot;testCreateDvd(): Can't get AudioFormat from DB. Null&quot;,
++                            dbprops);
++                    assertTrue(
++                            &quot;testCreateDvd(): Can not find AudioFormat in DB&quot;,
++                            dbprops.size() &gt; 0);
++
++                    anzahl = 2;
++                    dvdprops = new ArrayList();
++                    randomRange = new RandomRange(0, (dbprops.size() - 1));
++                    random = randomRange.getNumbers(anzahl);
++
++                    for (int k = 0; k &lt; anzahl; k++) {
++                        AudioFormat prop = (AudioFormat) dbprops
++                                .get(((Integer) random.get(k)).intValue());
++                        dvdprops.add(prop);
++                    }
++                    dvd.setAudioFormats(dvdprops);
++
++                    //try to get VideoFormat from db
++                    dbprops = s.find(&quot;from VideoFormat as videoFormat&quot;);
++                    assertNotNull(
++                            &quot;testCreateDvd(): Can't get VideoFormat from DB. Null&quot;,
++                            dbprops);
++                    assertTrue(
++                            &quot;testCreateDvd(): Can not find VideoFormat in DB&quot;,
++                            dbprops.size() &gt; 0);
++
++                    anzahl = 2;
++                    dvdprops = new ArrayList();
++                    randomRange = new RandomRange(0, (dbprops.size() - 1));
++                    random = randomRange.getNumbers(anzahl);
++
++                    for (int k = 0; k &lt; anzahl; k++) {
++                        VideoFormat prop = (VideoFormat) dbprops
++                                .get(((Integer) random.get(k)).intValue());
++                        dvdprops.add(prop);
++                    }
++                    dvd.setVideoFormats(dvdprops);
++
++                    //save the dvd
++                    logger.debug(i+&quot; &quot;+j+&quot; DVD:&quot;+dvd);
++                    s.save(dvd);
++                }
+             }
+-            
+-            if (HibernateUtil.getStatus(&quot;ausleihbar&quot;,s) != null){
+-                dvd.setStatus(HibernateUtil.getStatus(&quot;ausleihbar&quot;,s));
+-            } else {
+-                fail(&quot;Konnte keinen Status ausleihbar aus DB bekommen&quot;);
++tx.commit();
++        } catch (HibernateException hex) {
++            fail(&quot;Fehler beim Session oder Transaction aufbau&quot;);
++            logger.error(&quot;Fehler beim Session oder Transaction aufbau&quot;, hex);
++
++        } finally {
++            try {
++                // No matter what, close the session
++                HibernateUtil.closeSession();
++            } catch (HibernateException e) {
++                // TODO Auto-generated catch block
++                e.printStackTrace();
+             }
+-            
+-            
+-            dvd.setMovie(new Movie());
+-            
+-            
+-            dvd.setLanguages(new ArrayList());
+-            dvd.setSubtitles(new ArrayList());
+-            
+-            dvd.setAudioFormats(new ArrayList());
+-            dvd.setVideoFormats(new ArrayList());
+-	        
+-	        
+-	    }  catch (HibernateException hex){
+-	        fail(&quot;Fehler beim Session oder Transaction aufbau&quot;);
+-	        logger.error(&quot;Fehler beim Session oder Transaction aufbau&quot;,hex);
+-	        
+-    } finally {
+-        try {
+-            // No matter what, close the session
+-            HibernateUtil.closeSession();
+-        } catch (HibernateException e) {
+-            // TODO Auto-generated catch block
+-            e.printStackTrace();
+         }
++
+     }
+-	    
+-	}
+ }
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000232.html">[Provirent-svn-commit] r231 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000234.html">[Provirent-svn-commit] r233 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#233">[ date ]</a>
+              <a href="thread.html#233">[ thread ]</a>
+              <a href="subject.html#233">[ subject ]</a>
+              <a href="author.html#233">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

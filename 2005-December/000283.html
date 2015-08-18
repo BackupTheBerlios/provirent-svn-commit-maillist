@@ -1,0 +1,593 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r282 - in docu/latex: . images zeichnungen
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r282%20-%20in%20docu/latex%3A%20.%20images%20zeichnungen&In-Reply-To=%3C200512111854.jBBIskE6020185%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000282.html">
+   <LINK REL="Next"  HREF="000284.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r282 - in docu/latex: . images zeichnungen</H1>
+    <B>pschneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r282%20-%20in%20docu/latex%3A%20.%20images%20zeichnungen&In-Reply-To=%3C200512111854.jBBIskE6020185%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r282 - in docu/latex: . images zeichnungen">pschneider at berlios.de
+       </A><BR>
+    <I>Sun Dec 11 19:54:46 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000282.html">[Provirent-svn-commit] r281 - docu/latex/images
+</A></li>
+        <LI>Next message: <A HREF="000284.html">[Provirent-svn-commit] r283 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#283">[ date ]</a>
+              <a href="thread.html#283">[ thread ]</a>
+              <a href="subject.html#283">[ subject ]</a>
+              <a href="author.html#283">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2005-12-11 19:54:29 +0100 (Sun, 11 Dec 2005)
+New Revision: 282
+
+Added:
+   docu/latex/images/kontinuierlicheGenerationsfolge.pdf
+   docu/latex/zeichnungen/kontinuierlicheGenerationsfolge.VSD
+Modified:
+   docu/latex/2-Aufbau.tex
+   docu/latex/3-2-Versionsverwaltung.tex
+   docu/latex/Provirent-Doku.tex
+   docu/latex/images/vv-personen.jpg
+   docu/latex/images/vv-speicherbedarf.jpg
+Log:
+Versionsverwaltung begonnen
+
+Modified: docu/latex/2-Aufbau.tex
+===================================================================
+--- docu/latex/2-Aufbau.tex	2005-12-11 18:16:50 UTC (rev 281)
++++ docu/latex/2-Aufbau.tex	2005-12-11 18:54:29 UTC (rev 282)
+@@ -79,10 +79,9 @@
+ 
+ %===========================================
+ \section{geplante Module und Versionen}
+-Da dieses Projekt nach ersten &#220;berlegungen und Planungen nicht nur ein kleiner Projekt ist, wurde beschlossen, zuerst das Verwaltungsmodul, dann das Kundenmodul und danach das Versandmodul zu implementieren. Das Verwaltungsmodul ist das Herzst&#252;ck der Online-Videothek. Hier werden die Daten erstellt und verwaltet, die von den beiden anderen Modulen verwendet werden. Das Verwaltungsmodul und das Versandmodul, soll dabei eine Anwendung auf einem beliebigen Rechner innerhalb des Firmennetzwerks sein. Das Kundenmodul hingegen soll eine weltweit verwendbare Webanwendung sein. Mit der Realisierung des Verwaltungsmodul wurde zuerst begonnen.\\
++Da dieses Projekt nach ersten &#220;berlegungen und Planungen nicht nur ein kleiner Projekt ist, wurde beschlossen, zuerst das Verwaltungsmodul, dann das Kundenmodul und danach das Versandmodul zu implementieren. Das Verwaltungsmodul ist das Herzst&#252;ck der Online-Videothek. Hier werden die Daten erstellt und verwaltet, die von den beiden anderen Modulen verwendet werden. Das Verwaltungsmodul und das Versandmodul, soll dabei eine Anwendung auf einem beliebigen Rechner innerhalb des Firmennetzwerks sein. Das Kundenmodul hingegen soll eine weltweit verwendbare Webanwendung sein. Mit der Realisierung des Verwaltungsmodul wurde zuerst begonnen. Im Laufe der Entwicklung des Verwaltungsmoduls wurde das Ausma&#223;e des Projektes sichtbar. Der Umfang des Projektes war gr&#246;&#223;er als angenommen. Die Einarbeitungszeit in die Technologien, die Koordination der Zusammenarbeit und die gr&#246;&#223;e des Projektes f&#252;hrten zu einer sehr langen Entwicklungszeit des Verwaltungsmoduls. Das Kundenmodul wurde dadurch!
+  nur teilweise und anschaulich realisiert werden. Auf eine Realisierung des Versandmoduls wurde komplett verzichtet.
+ 
+ 
+-Das Kundenmodul und das Versandmodul konnten aus Zeitgr&#252;nden nicht mehr realisiert werden.\\
+ 
+ 
+ %Hier danach nicht mehr schreiben
+
+Modified: docu/latex/3-2-Versionsverwaltung.tex
+===================================================================
+--- docu/latex/3-2-Versionsverwaltung.tex	2005-12-11 18:16:50 UTC (rev 281)
++++ docu/latex/3-2-Versionsverwaltung.tex	2005-12-11 18:54:29 UTC (rev 282)
+@@ -1,15 +1,55 @@
+ \section{Versionsverwaltung} \label{sec:tech-Versionsverwaltung}
+-Eine Versionsverwaltung 
++Eine Versionsverwaltung ist ein System der Softwareentwicklung zur Versionierung und Kontrolle des gemeinsamen Zugriff's auf Quelltexte. Mit Hilfe einer solchen Software werden laufende &#196;nderungen an Quelltexten oder &#228;hnlichen Dateien erfasst und in einem Archiv mit Zeitstempel und Benutzerkennung erfasst. Ein Archiv, auch Repository genannt, ist dabei meist einen Datenbank oder ein systemabh&#228;ngiges Dateiformat. Mit Hilfe einer Versionsverwaltung k&#246;nnen mehrere Benutzer (Entwickler) einem einem Projekt, sogar an einer Datei gleichzeitig arbeiten. Ohne des Einsatz einer Versionsverwaltung ist es sehr schwierig in einem Team eine Software zu entwickeln. Jeder Entwickler muss immer den aktuellen Stand der Quelltexte besitzen und m&#252;sste sich mit den anderen Entwickler absprechen, welche Dateien von wem bearbeitet werden, eine gleichzeitige Bearbeitung einer Datei w&#228;re nur mit gro&#223;em Aufwand m&#246;glich, wie in \vref{fig:vv-personen} beispielhaft zu sehen ist. Weiterhin ist es in Fe!
+ hlerf&#228;llen schwierig auf &#228;ltere Projektst&#228;nde zur&#252;ckzugreifen. Da in der heutigen zeit viele Projekte global, von mehreren Entwicklern weltweit, unter Zeitdruck entwickelt werden, ist der Einsatz einer Versionsverwaltung zwingend notwendig. Eine Versionsverwaltung &#252;bernimmt dabei folgende Aufgaben:
++\begin{itemize}[itemsep=.5cm]
++	\item fr&#252;here Versionen reproduzierbar
++	\item kontinuierliche Generationsfolge sicherstellen
++	\item Platzsparende Speicherung
++	\item Schutz vor unberechtigtem Zugriff
++	\item Kostenreduzierung
++\end{itemize}
++\begin{figure}[tbp]
++	\centering
++	\includegraphics[scale=0.45]{images/vv-personen.jpg}
++	\caption{Softwareentwicklungs-Praxis \citep[Bild 2.1]{Herold1995}}
++	\label{fig:vv-personen}
++\end{figure}
++Jeder Entwickler muss eine \emph{Arbeitskopie} des Projektes vom Repository anfordern. Dieser Vorgang wird als \emph{&quot;`Checking out&quot;'} bezeichnet und einmalig am Anfang erfolgen. Danach aktualisiert er seine Arbeitskopie auf den aktuellsten Stand des Repository. Bei der Speicherung (\emph{&quot;`Commit&quot;'}) der neuen Zus&#228;nde der Quelltexte in dem Repository werden den einzelnen Dateien oder dem aktuellen Projektstand eine aufsteigende Nummer vergeben. Somit wei&#223; der Entwickler, dass der sich gerade in \emph{Revision} 13.2 befindet. Da jede Revision in dem Repository gespeichert wird, ist es dem Entwickler m&#246;glich, auf &#228;ltere Revisionen zur&#252;ckzugreifen und somit &#228;ltere Dateien betrachten. Dies ist bspw. notwendig um &#196;nderungen nach zu vollziehen bei eventuellen aktuellen Fehlern. Weiterhin m&#252;ssen wichtige z.Z. nicht nben&#246;tigte Teile des Quelltextes nicht auskommentiert werden, sondern k&#246;nnen gel&#246;scht werden. Somit k&#246;nnen \emph{fr&#252;here Versionen reproduziert} werden. Durch die auto!
+ matische Vergabe der Revisionsnummern, wird weiterhin die \emph{kontinuerliche Generationsfolge} sichergestellt. Der Entwickler ist gezwungen vor dem Speichern seiner Quelltexte in dem Repository, die aktuelle Revision aus dem Repository zu laden. Denn nur dadurch wird sichergestellt, dass nach der Speicherung der Revision 13.2 die Revision 13.3 folgt. M&#246;chten bspw. zwei Entwickler eine Datei editieren und letztendlich zum Repository hinzuf&#252;gen, m&#252;ssen beide vor dem Speichern die aktuellste Version laden. \Vref{fig:kontinuerlicheEntwicklung} veranschaulicht den dargestellten Sachverhalt. Dabei m&#246;chten sowohl \emph{EntwicklerA} als auch \emph{EntwicklerB} eine Datei \emph{QuellcodeA.txt} zu bearbeiten. Zum gleichen Zeitpunkt aktualisieren beide ihre lokale Arbeitskopie zur aktuellen Revision \emph{13.2} und beginnen die Datei zu ver&#228;ndern. EntwicklerB ist nach einer kurzen Zeit mit seinen &#196;nderungen fertig und m&#246;chte diese im Repository speichern. Diese Aktion wird erfolgrei!
+ ch vom Versionsverwaltungsserver quittiert, indem die Revision!
+  13.3 ve
+rgeben wird und somit die aktuelle Revision der Datei \emph{QuellcodeA.txt} ist. EntwicklerB ist mit seiner Arbeit an dieser Datei fertig. Nach einer Weile m&#246;chte EntwicklerA seine &#196;nderungen im Repository speichern und versucht dies. Der Versionsverwaltungsserver wird dem EntwicklerA mitteilen, dass seine lokale Kopie mit der Versionsnummer 13.2 nicht mehr die aktuellste ist und zwingt den EntwicklerA zuerst die aktuelle Revision der zu speichernden Datei zu laden. Nachdem der EntwicklerA dies getan hat, muss er eventuelle Konflikte zwischen beiden Dateien beheben und kann danach die Datei im Repository mit der Revisionnummer 13.4 speichern.
++\begin{figure}[tbp]
++	\centering
++	\includegraphics[scale=1.0]{images/kontinuierlicheGenerationsfolge.pdf}
++	\caption{Kontinuierliche Entwicklung}
++	\label{fig:kontinuerlicheEntwicklung}
++\end{figure}
++Da im Laufe der Projektzeit viele &#196;nderungen an dem Projekt im Repository gespeichert werden, ist der Speicherplatz enorm. Der Versionsverwaltungsserver speichert jedoch nicht jede Revision komplett in seinem Repository. Die erste Revision einer Datei muss komplett gespeichert werden, f&#252;r alle darauf folgenden Revisionsst&#228;nde werden nur die Unterschiede zur Vorg&#228;ngerversion gespeichert, siehe auch \vref{fig:vvspeicherbedarf}. Der Versionsverwaltungsserver kann aus diesen Informationen jeden Revisionsstand wieder herstellen und bietet somit eine \emph{platzsparende M&#246;glichkeit zur Speicherung} der Revisionen.
++\begin{figure}[tbp]
++	\centering
++	\includegraphics[scale=0.75]{images/vv-speicherbedarf.jpg}
++	\caption{Speicherbedarf einer Versionsverwaltung \citep[Bild 2.2]{Herold1995}}
++	\label{fig:vvspeicherbedarf}
++\end{figure}
++Ein Versionsverwaltungsserver bietet &#252;ber verschiedene Sicherheitsmechanismen \emph{Schutz vor unberechtigtem Zugriff}. Dabei muss sich jeder Entwickler &#252;ber einen definierten Mechanismus authentisieren, meist anhand eines Benutzernamens mit einem dazugeh&#246;ren Passwort. Dazu werden abgestufte Zugriffsrechte f&#252;r verschiedene Projektmitglieder auf einzelne Projektteile vergeben, meist anhand der Zust&#228;ndigkeit der Projektmitglieder. Bei der Speicherung eines neues Versionsstandes im Repository wird immer der Benutzer mit gespeichert, damit ist es m&#246;glich, nachzuvollziehen, welcher Benutzer welche &#196;nderungen vorgenommen hat. Ein weitere wichtige Aufgabe einer Versionsverwaltung ist die \emph{Kostenreduzierung}. Durch die bereits erw&#228;hnten Aufgaben einer Versionsverwaltung verringert sich der organisatorische Aufwand des Projektes, Fehler werden vermieden und ein weltweit aktives Team kann gleichzeitig an dem Projekt arbeiten \citep{Fogel2002,Herold1995,Rechenberger1994,Wikipedia!
+ 2005}. \\
++In den folgenden zwei Unterabschnitten werden zwei verschiedene Versionsverwaltungen beschrieben.
+ 
+ 
+-\url{<A HREF="http://better-scm.berlios.de/comparison/comparison.html">http://better-scm.berlios.de/comparison/comparison.html</A>}
+-\citep[Versionsverwaltung]{Wikipedia2005}
+ 
++
++
++
++
++%====================================
+ \subsection{Concurrent Versions System - CVS}
+-		
+-		
+-\subsection{Subversion}
+ 
++
++
++
++
++
++%====================================
++\subsection{Subversion - SVN}
++
++
++
++
+ \begin{figure}[htbp]
+ 	\centering
+ 	\includegraphics[scale=0.65]{images/subversion-architektur.png}
+@@ -17,24 +57,11 @@
+ 	\label{fig:svnarchitekur}
+ \end{figure}
+ 
++\url{<A HREF="http://better-scm.berlios.de/comparison/comparison.html">http://better-scm.berlios.de/comparison/comparison.html</A>}
+ 
+-\begin{figure}[htbp]
+-	\centering
+-	\includegraphics[scale=1.0]{images/vv-personen.jpg}
+-	\caption{Softwareentwicklungs-Praxis \citep[Bild 2.1]{Herold1995}}
+-	\label{fig:vv-personen}
+-\end{figure}
+ 
+ 
+ 
+-\begin{figure}[htbp]
+-	\centering
+-	\includegraphics[scale=1.0]{images/vv-speicherbedarf.jpg}
+-	\caption{Speicherbedarf einer Versionsverwaltung \citep[Bild 2.2]{Herold1995}}
+-	\label{fig:vv-speicherbedarf}
+-\end{figure}
+ 
+-
+-
+ %Hier danach nicht mehr schreiben
+ \label{sec:tech-Versionsverwaltung-ende}
+\ No newline at end of file
+
+Modified: docu/latex/Provirent-Doku.tex
+===================================================================
+--- docu/latex/Provirent-Doku.tex	2005-12-11 18:16:50 UTC (rev 281)
++++ docu/latex/Provirent-Doku.tex	2005-12-11 18:54:29 UTC (rev 282)
+@@ -13,7 +13,7 @@
+ 
+ 
+ \usepackage{enumitem}
+-\setlist{noitemsep,topsep=0.5cm}
++\setlist{noitemsep,topsep=0.25cm}
+ 
+ \definecolor{dunkelgrau}{gray}{0.55}
+ \definecolor{hellgrau}{gray}{0.90}
+
+Added: docu/latex/images/kontinuierlicheGenerationsfolge.pdf
+===================================================================
+--- docu/latex/images/kontinuierlicheGenerationsfolge.pdf	2005-12-11 18:16:50 UTC (rev 281)
++++ docu/latex/images/kontinuierlicheGenerationsfolge.pdf	2005-12-11 18:54:29 UTC (rev 282)
+@@ -0,0 +1,359 @@
++%PDF-1.4%&#226;&#227;&#207;&#211;
++63 0 obj &lt;&lt;/Linearized 1/L 26012/O 65/E 19055/N 1/T 24705/H [ 936 230]&gt;&gt;endobj                  
++xref
++63 32
++0000000016 00000 n
++0000001333 00000 n
++0000001623 00000 n
++0000002204 00000 n
++0000002238 00000 n
++0000002282 00000 n
++0000003038 00000 n
++0000003394 00000 n
++0000003721 00000 n
++0000004528 00000 n
++0000005249 00000 n
++0000005600 00000 n
++0000006386 00000 n
++0000006975 00000 n
++0000007141 00000 n
++0000007827 00000 n
++0000008562 00000 n
++0000009277 00000 n
++0000009961 00000 n
++0000012630 00000 n
++0000013596 00000 n
++0000014314 00000 n
++0000016338 00000 n
++0000017245 00000 n
++0000017802 00000 n
++0000018029 00000 n
++0000018270 00000 n
++0000018508 00000 n
++0000018729 00000 n
++0000018979 00000 n
++0000001166 00000 n
++0000000936 00000 n
++trailer
++&lt;&lt;/Size 95/Prev 24694/XRefStm 1166/Root 64 0 R/Info 9 0 R/ID[&lt;D328999B0662F4535D95FA9DED3BF6C2&gt;&lt;AEE93084522A3F4C962079467AB94FFC&gt;]&gt;&gt;
++startxref
++0
++%%EOF
++ 
++94 0 obj&lt;&lt;/Length 132/C 143/Filter/FlateDecode/I 165/L 127/O 111/S 41&gt;&gt;stream
++x&#218;b``&#144;a``-d
++endstreamendobj93 0 obj&lt;&lt;/Length 20/Filter/FlateDecode/W[1 1 1]/Index[10 53]/DecodeParms&lt;&lt;/Columns 3/Predictor 12&gt;&gt;/Size 63/Type/XRef&gt;&gt;stream
++x&#218;bbba`b``N &#192;
++endstreamendobj64 0 obj&lt;&lt;/MarkInfo&lt;&lt;/LetterspaceFlags 0/UserProperties true/Marked true&gt;&gt;/Outlines 1 0 R/Metadata 8 0 R/PieceInfo&lt;&lt;/MarkedPDF&lt;&lt;/LastModified(D:20051211144850)&gt;&gt;&gt;&gt;/Pages 7 0 R/PageLayout/SinglePage/StructTreeRoot 10 0 R/Type/Catalog/LastModified(D:20051211144850)/PageLabels 5 0 R&gt;&gt;endobj65 0 obj&lt;&lt;/CropBox[0.0 0.0 595.276 841.89]/Parent 7 0 R/StructParents 0/Contents[68 0 R 71 0 R 72 0 R 74 0 R 77 0 R 78 0 R 79 0 R 80 0 R]/Rotate 90/VP[&lt;&lt;/Measure&lt;&lt;/Subtype/RL/A[&lt;&lt;/C 1.0/U(sq. l&#136;)&gt;&gt;]/D[&lt;&lt;/C 1.0/U(mm.)&gt;&gt;]/R(1:1)/X[&lt;&lt;/C 0.352509/U(&#254;&#255;
++H&#137;&#236;U&#203;nSA&#221;&#223;&#175;&#152;5R{&#222;&#150;&#170;.H*R(&#136;E&#170;jx.&#248;}&#142;g&#230;&#222;4&#168;b$D&#163;&#220;&#244;&#140;&#199;&#246;&#241;&#243;&#174;_\&#223;&#222;&#184;&#139;&#139;&#245;ns&#181;u&#236;./o7nz&#178;&#195;c&#189;w&#253;&#249;$&#148;_	&#253;,&#252;2	q&#142;&#165;&#132;s&#236;Nh%J&#146;&#147;&#250;(&#253;&#255;&#148;&#131;&#207;&#193;&#142;S&#201;&#163;&#139;&#194;T\&#136;T&#128;&#152;&#216;&#187;&#175;7&#211;&#171;G&#238;&#163;&#153;&#229;L	w2iwV&#202;&#222;EHD&#190;&#228;&#161;&#160;6&#160;@p&#189;&#136;;L&#203;&#129;&#146;O&amp;gJ&#128;Q(Bn&#198;&#140;AS&#191;&#206; &#139;&#131;8&#172;3&#249;
++&#152;HB&#191;^M&#154;&#137;C&#187;&#206;&#149;&#212;
++&#169;Y&#231;B&#193;&#204;i3'&#156;(&#194;YB|&#205;&#186;z*y&#193;wS&#205;$&#237;&#182;&quot;&#252;&#186;&#184;*&#176;]J&#187;
++&#218;&#177;y*-^&#188;&#155;
++&#242;h&#153;K&#196;&#163;&#226;&#167;&#182;&lt;V&#144;V&#161;zH&#170;$1=an&#140;aO&#134;&#164;&#173;&#154;&#218;&#195;&#139;d8&#140;&#203;&#145;&#146;Y&#198;O&#232;&#208;Rq$#&#181;T&#219;&#129;&#154;&lt;[%&#173;r:&lt;&#213;&#241;0&#151;WU&#184;H&#149;&#178;Zy-~&#193;Y[qG&#190;B&#169;&#187;&#195;&#129;&#193;&#167;&#148;&#158;?h&quot;&quot;&#171;&#220;&#176;;&#144;&#145;+t&#194;&quot;&#149;B]Tg&#184;X&#158;&#226;&#204;&#189;)R&#231;&#148;&#151;H&#214;O&#247;&#236;n&#191;Ml-&#236;&#181;xF2Vhj-&#170;m,Z&#179;h*&#173;&#190;p&#146;Rm&#214;WGv&#219;O&#211;&#203;&#241;&#249;&#173;<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">yZo at a</A>&#179;w&#176;&#140;&#202;&#204;Ok&#183;&#223;&lt;&#159;&#196;&#189;&#204;&#232;&#171;&#239;&#201;&#237;0&#218;&#240;}&#230;^&#191;a&#247;&#214;-&#252;&#185;&#230;i&#255;&#151;&#203;p6&#242;&#199;`&#228;-&#161;&#189;D&#194;&#189;DN&#180;&#185;D&#139;&#162;&#240;&#172;&#247;&#223;!X&#201;z&#164;y&#156;rh&#172;6V&#247;&#210;B&#158;&#147;&#182;&#197;1&#176;&#143;&#144;&#246;&#161;i&#222;&#250;z2&#187;aI&#167;vw&#224;&#138;1&#168;&#139;&#230;@&#139;&#221;w&#175;Cs0:&#231;{&#248;9&#140;&#210;&#150;&#194;&#224;&#214;&#235;&#167;@lR[+:&#133;&#209;1&#186;)M&#148;h	&#163;#&#132;&#129;&#205;&#150;&#140;&#137;&#185;&#167;9&#208;)&#140;|&#223;&#235;&#208;&#140;&#206;&#249;&gt;&#176;(-5&#176;$&#146;[&#161;f&#169;2&#254;
++_&#173;;&#177;'&#139;&#237;I&#204;;&#250;&#140;&#177;3&#251;&#158;&#219;&#147;&#238;&#135;
++endstreamendobj69 0 obj&lt;&lt;/Subtype/TrueType/FontDescriptor 87 0 R/LastChar 119/Widths[278 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 722 722 0 0 667 611 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 556 0 556 0 0 611 278 0 556 278 0 611 0 0 0 389 0 333 0 0 778]/BaseFont/Arial-BoldMT/FirstChar 32/Encoding/WinAnsiEncoding/Type/Font&gt;&gt;endobj70 0 obj&lt;&lt;/Subtype/TrueType/FontDescriptor 88 0 R/LastChar 120/Widths[250 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 722 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 722 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 444 500 444 0 0 0 0 0 0 278 0 0 500 0 0 0 0 278 500 0 0 500]/BaseFont/TimesNewRomanPSMT/FirstChar 46/Encoding/WinAnsiEncoding/Type/Font&gt;&gt;endobj71 0 obj&lt;&lt;/Length 738/Filter/FlateDecode&gt;&gt;stream
++H&#137;&#204;UMOA&#189;&#247;&#175;&#168;&#163;&#168;&#237;&#239;&#143;&#132;p`!FL&#200;&#206;&#205;x0#&#200;eMH&#252;&#245;&#190;&#170;ifA1&#145;Lvw^wuu&#213;&#171;W&#181;&#199;&#230;X&#159;&#175;&#198;&#177;&#205;&#177;&#148;&#144;&#201;&#226;&#217;&#162;&#215;&#216;&#229;&#212;|t&#211;{&#202;&#193;&#231;@&#227;&#218;,&#150;+K&#203;Y&#246;.&#207;&#223;19&#162;&#213;&#242;&#173;qt&#152;K&#166;r&#150;&#142;&#200;&#209;&gt;o&#232;&#221;{K&#201;,^&#225;&#248;&#167;&#141;&#201;&#141;S&#164;=&#151;&#230;hmr`&#231;g&#156;
++&#183;L1Nn&#139;,7&#160;&#209;t&#236;#&#135;&#226;&#168;&#159;D&#148;'&#187;&#223;&#142;FS&#146;&#218;v\&#187;:&#159;&#236;h&#246;{&#139;&#167;[&#251;&#201;&#209;&#253;xGsfV`&#240;&#240;h&#137;&#148;Vg&#190;&#156;&#208;&#238;&#238;&#226;h&#249;&#250;&#128;&quot;&#237;&#237;&#237;`&#253;&#210;&#235;l&#196;&#200;;q&#194;o&#203;/&#145;-|&#213;&#202;&#173;&#234;n@&#166;&#213;&#179;&#191;C&#217;C&#137;&#165;&#231;&#145;X&#227;(&#133;zv&#141;&#199;Y&quot;{&#132;&#223;&#215;i;K&#189;3{Q&#149;&#227;&#226;K-?&#135;&#212;J&#230;&#128;`&#189;&#235;%&#131;&#163;`&#169;i&#145;&#180;&#233;&#185;b&#179;T&#206;&#210;U&#171;	&#149;W
++&#147;l&#162;=&#162;&#162;&#150;%uS&#201;?LA&#249;7&#232;3&#167;&#237;&#184;&#150;&#242;&#231;&#180;&#211;&#157;&#172;KS1&amp;v&#128;5&#177;&#157;Z&#248;Am&#225;NA&#212;&#164;[S &#189;z	&#192;&amp;&#207;&#206;z&#228;8$A&#129;&#139;&#168;&#255;&#182;{&#165;=&#135;n&#149;#4&#135;&#240;&#247;S&#239;&#136;u&#154;F&#154;&#236;g&#182;&#241;&amp;&#152;&#181;n&#221;8K&#221;0&#151;&#196;9b&#240;Q&#167;&#140;&#237;P|&#152;k=&#230;&#228;-&#161;J&#147;dc&#231;&#247;&#228;.&#230;V&#131;&#131;&#220;'&#239;&#144;B&#143;_b.,&#196;)4	&#166;NS&#172;&#168;&#156;-&#196;]Sw&#146;&#152;H,Y&#165;	&#148;&#181;&#238;&#248;&#210;&#160;&#234;&#180;/&#196;T+&#164;&#193;&#183;&#155;tU&#178;&#134;=&#145;&#180;&#197;AR&#130;&#212;q+9q&#173;[&#228;T&#232;&#221;&#243;|&#186;%D&#206;&#216;&#237;&#200;&#205;Hleb{&#173;&#212;h&#224;)Jm&#170;&#202;&#185;8&#245;&#235;
++W&#230;&#158;&#146;nG44&#166;R&#156;&#245;&#182;?&#152;&#197;0@&#215;4&#156;&#154;T&#197;&#218;B&#195;H&#242;+7&quot;&#224;ar&#228;&#247;;&#208;p-m&#224;Q?+M&#208;_&#176;&#253;4&#219;p'&#244;eSm4&#172;&#205;&#139;&#195;&#171;o7&#231;&#227;&#231;&#203;&#147;k&#218;9\&#152;&#195;&#225;&#183;&#253;V&#159;&#222;o&#227;A'p&#247;&#155;6&#227;&#149;q&#152;&#141;|F&#128;5&#221;&#160;&#235;s&#250;&#244;&#255;&#253;_n&#148;n)&#254;&#161;NwSk&#142;f&#253;Ht&#171;&#191;&#141;&#142;~0
++endstreamendobj72 0 obj&lt;&lt;/Length 652/Filter/FlateDecode&gt;&gt;stream
++H&#137;&#236;UMkA&#189;&#207;&#175;&#208;&#177;-D&#150;4&#223;&#141;&#147;C
++)/&#244;Pz(&#135;&#236;&#164;mR&#210;&#159;_ifmcH[Z&#223;JY&#188;&#246;&#211;&#204;HOO&#210;x6_&#204;@K&#217;{&#195;b&#254;&#214;	&#146;dx&amp;&#184;&#134;[&#253;&#188;&#129;	&#174;&#192;q, I01&#195;&#218;&#221;&#184;&#133;{&#231;&#190;8FJ!g&#159;&#128;&#244;&#217;&#161;#&#174;&#200;)V	&#220;&#199;&#228;%y&#215;nf,&#198;&#141;\R&#222;{&#195;&#195;x&#231;X&#134;
++&#141;&#254;&#173;&#227;&#158;&#213;&#129;$&#198;D&#207;&#173;&#221;&#139;w&#223;&#150;&#171;&#213;x&#181;|&#141;&#143;&#223;_&#183;&#238;|p&#231;&#151;sp&#179;&#197;&#205;&#167;&#207;K8&gt;&#158;]&#206;/&#206;&#160;&#194;&#201;&#201;&#233;&#153;&#218;&#159;[T&#218;&#211;&#234;_	&#146;&#147;i&#204;%&#160;&#152;&#198;A&#233;A&#208;&#140;&#196;d~&#255;
++&#238;&#204;-%&#140;&#192;&#149;0&#215;V&#170;&#152;DI&#179;R&#152;QT$&#242;X&amp;&#200;&#194;&#218;^&#158;at[&#131;G&#253;&#169;&#235;&#218;&#253;#z]7gVe&#206;&#232;&#185;o'%&#219;&#221;;&#161;&#232;&#168;&#152;&#181;&#246;&#237;&#197;V&#245;&#171;&#182;&#237;&#164;j&#198;b&#222;)&#183;&#138;&#137;o&#238;&#152;&quot;&#166;&#173;$&#205;{&#204;i&#139;W&#174;$&#228;&#182;&#187;h&#250;e
++U1&#170;&#239;&#156;&#219;V&#165;--R&#238;*&#196;W.&#171;&#142;&#166;&#156;&#134;&#215;4JD*M&#199;&#164;&#164;&#171;&#146;i&#160;&#167;Tk&#217;&#206;1&#217;&#220;mL:&#221;&#138;b#&#196;*b6&#175;	S&#236;&#233;&#233;(&#206;&#211;&#230;&#160;7G&#234;k&#135;l&#135;&#235;D&#209;&#210;U&#169;&#205;&#224;&#163;&#173;'&#171;&#164;&#193;:&#193;]&#199;My&#171;&amp;&#175;&#138;y&#193;&#216;z&#220;T&#144;-N&#181;w&#210;{B&#183;&#236;&#216;&#248;$&#223;&#245;&#211;p9&#182;&#202;u&#191;d&#228;2&#238;0kA}&#217;&#157;&#224;&#206;&#243;&#198;0&#238;&#135;7&#164;&#246;)o3!k]&#169;YHE8&#210;f&#174;&#185;&#214;&#218;Z&#147;*&#168;17&#233;&#217;SI&#237;N&#184;X&#156;&#221;&#235;\&#247;&#231;&#176;&#139;E&#203;&#152;&#182;&#239;&#160;&#236;&#218;%C&#218;&#233;g&#151;&#204;&#255;&#241;&#178;&#163;&#135;&#223;&#233;.&#253;&#222;H&#175;&#255;&#129;&#145;6&#159;&#253;&#151;&#224;&#131;&#254;%&#224;&#135;
++endstreamendobj73 0 obj&lt;&lt;/Subtype/TrueType/FontDescriptor 89 0 R/LastChar 115/Widths[600 0 0 0 0 0 0 0 0 0 0 0 0 0 600 0 0 600 600 600 600 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 600 0 0 0 0 0 0 0 0 0 0 0 0 0 0 600 0 0 0 600 0 0 0 0 600 600 0 0 600 600]/BaseFont/CourierNewPS-BoldMT/FirstChar 32/Encoding/WinAnsiEncoding/Type/Font&gt;&gt;endobj74 0 obj&lt;&lt;/Length 717/Filter/FlateDecode&gt;&gt;stream
++H&#137;&#212;U&#205;j&#155;A&#188;O&#161;s&#193;&#242;j&#255;!&#135;8=&#164;&#144;B&#177;&#161;&#135;&#210;CqSBI&#218;&#166;&#151;&#188;~GZ&#251;&#179;HN&#165;&#161;11&#158;&#149;V&#171;&#145;f&#181;&#165;&#177;&#146;h&#228;&#174;B1q&#202;&#246;&#221;#&#253;&#190;&#153;&gt;&#190;&#161;&#211;&#195;T&#149;V&#165;r-B&#247;SM,q&#198;*&#144;pj3
++&#153;&#208;vX&#180;sLBc&#167;&#157;&#166;&#216;9&#226;&#238;&#209;vje&#248;&#220;&#133;&#165;&#207;;:&#196;&#221;&#225;&#221;&#169;c&#231;&gt;&#163;&#211;|&#183;OhD&#225;&#154;&#156;F&#224;g\&#219;&#148;Y&#232;@&#195;&#177;h&#225;&lt;vJ7&#153;i&#236;ht&#174;u&#198;&#189;&#239;&#232;&#136;F=&gt;u&#236;&#220;gt&#154;&#239;L#P&#204;&#156;$&#197;&quot;&#133;&#232;U&#233;&#137;&#130;)Um&#205;&#171;&#216;Z(1+m&#239;&#167;&#229;&#213;&#189;&#208;&#229;&#207;&#233;&#195;&#238;&#243;0	&#135;&#154;[K&#251;&#208;B&#148;&#165;&#141;Y&#198;&#239;RS&#172;&#201;&#131;&#172;&#214;&#129;Vk
++&#140;&#218;&#206;&#223;5&#166;&#245;&#234;&#253;&#184;&#182;J&#143;$&#129;&#174;I&#232;;&#254;&#223;&#209;&#167;&#207;&#129;&#190;&#210;/&#161;&#219;i&#141;&#170;&#189;&#189;^&#209;&#180;\&#223;~&#249;uCgg&#203;&#235;&#213;&#213;%!&#153;&#243;&#243;&#139;K&#254;uML&#196;&#132;&#166;&#213;&#138;&#170;&#245;X&#136;&#189;&#179;v&#183;&#138;	/r&lt;&#170;&#211;&#179;l&#210;&#235;&#177;Q&#206;V&#242;q	&#190;-t&#156; &#164;J&#195;\&#138;&#223;&#163;h&#250;)\&#218;&#139;|&#242;k&#241;i&#149;S&#244;{?&#154;&#181;&#217;&#204;P4&#171;x;
++&#164;y&#233;|&#237;!&#196;y&#128;$&#192;&#200;&#201;&#140;&#232;fv&#212;&#197;Q1&#205;&amp;W&#244;&#188;&#203;&#223;&#225;&#237;&#231;*&#220;1V&#158;&#229;Z&#142;&#168;65&#173;&#153;&#254;
++endstreamendobj75 0 obj&lt;&lt;/Subtype/TrueType/FontDescriptor 90 0 R/LastChar 228/Widths[278 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 667 667 0 0 667 0 0 0 0 0 0 0 0 0 0 0 0 0 667 0 0 0 0 0 0 0 0 0 0 0 0 0 556 556 500 556 556 278 556 556 222 0 500 222 0 556 0 556 0 333 500 278 556 0 722 0 0 500 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 556]/BaseFont/ArialMT/FirstChar 32/Encoding/WinAnsiEncoding/Type/Font&gt;&gt;endobj76 0 obj&lt;&lt;/Subtype/TrueType/FontDescriptor 91 0 R/LastChar 51/Widths[600]/BaseFont/CourierNewPS-BoldItalicMT/FirstChar 51/Encoding/WinAnsiEncoding/Type/Font&gt;&gt;endobj77 0 obj&lt;&lt;/Length 617/Filter/FlateDecode&gt;&gt;stream
++H&#137;&#196;U&#203;nSA&#221;&#207;Wx	Hq&#198;&#246;&lt;&#165;&#170;M&#178;(R&#144;P&#174;&#216;
++q&#128;=&#144;&#133;)&#220;&#233;&#239;|&#250;b&#225;qD&#155;&#128;b&#196;&#224;	&#214;F&#244;I)&#180;+33&#254;&#130;&#201;|&#215;2&#217;&#205;7
++&#238;1+xb&#244;Te&#203;]:&#202;&#214;~c&gt;^hBV&#230;&#246;&#141;&#234;l\lwU&#152;aQ&#176;&#214;Y&#220;&#139;&#214;&#178;&#135;b&#174;$&#138;&#189;^&#178;&#226;)&#195;As&#215;j&#188;&#199;&#192;Q&#193;&#161;&#139;&quot;&#149;\&#247;&#187;F&#166;S&#188;&gt;&#128;&#156;&#208;q&#170;&#150;&#219;&#205;s&#227;&#131;&#150;&#175;&#141;&#215;*E&#219;&#161;z&#148;&#241;$g&#135;g&#175;&#233;&#131;&#171;&#194;&#145;&#251;L&#150;&#254;&#131;&#201;&#156;&#215;[%;G&#139;&#241;&#176;&#240;oM&#198;!&#163;gp&#129;0&#213;&#217;&#146;C:J&#214;~&#224;Y&#145;&#142;&#154;&#136;&gt;&#143;&#229;n&#143;u{&#130;t&#251;&#131;&#163;&#132;62=&#154;j&#185;=&#195;V5&#132;wh%&#132;
++&#226;S&#169;$\&#217;&#253;&#152;cc&#170;^_&#176;}~}&#133;]N&#132;&#156;&#233;6M &#214;#&#187;&#198;&#181;&#186;i&#224;w&#233;E&#189;&#155;&#148;&#166;6&#211;&#161;Hi&#166;&#230;]&#231;V&#142;&#173;s;Y&#242;&#203;&#178;&#228;&#202;&#193;N0&#228;&#154;f&#189;&#160;&#141;&#251;y&#202;&#169;&#226;r&#152;&#154;&#229;*&#167;f&#215;'&#229;&#231;s5&#177;2'_&#137;&#183;&#250;,&#206;&#221;&lt;&#244;i&#231;:&#179;&#202;t&#218;&#144;&#167;&#211;d&#235;ubpF-2&#210;&#157;&#184;&#173;%&#223;&#143;!	&#181;&#253;&#245;&#144;&#237;g&#235;v&#131;&#211;&#253;mbR_&#139;J&#233;&#203;T:p&#178;&#158;V&#142;&#156;&#158;)&#170;&#171;&#132;&#156;&#197;U&#186;^&#175;&#198;&#219;j&#220;uB*_-&#208;&#199;&gt;&#200;&#228;uz&#165;&#220; J&#141;&#216;YBx&#186;&#225;&#229;L&#154;&#252;`
++endstreamendobj78 0 obj&lt;&lt;/Length 666/Filter/FlateDecode&gt;&gt;stream
++H&#137;&#188;UMoA&#189;&#239;&#175;&#240;q&#198;&#246;|JUM{
++&#151;
++&#198;&#178;&#249;_\N&#160;Oo&#174;gpr2&#190;&#156;&#188;;pzzv&#174;&#191;:&#229;&#237;m&#146;&#145;km&#141;(!yed&#169;&#142;&#157;&#246;&#195;}7&#158;LL&#166;&#197;&#193;
++ =)uKCh&#154; &#249;gw&#214;jR&#176;&#197;7&#188;&#237;&#202;{G
++&#214;&quot;*&#136;&#138; &#251;&#244;&#144;6&#243;&#220;&#212;6*&#137;&#230;r&#138;&#142;t&#238;&#182;*&#144;u&#172;F*I&#208;&#164;&#214;G&#211;&#199;&#131;%&#188;(&#141;Ur`6n&#142;&#128;&#224;&#164;u&#167;Z&#247;&#217;&#225;&#173;&#248;`Z	5&#136;%\&#221;-&#246;&#164;N&#204;&#171;&#182;&#146;&#181;H&#173;&#212;&amp;&#254;&#218;JB&#187;KlR.q&#202;&#238;&quot;&#187;&#132;b.2a&#178;&#173;&#200;&#203;&#231;&#249;&#240;&#227;n&#246;g[S&#173;&#160;zv&#234;N&#228;&#160;2u&#249;#B&#231;*&#240;&#245;&#225;&#224;&#139;&#191;&#222;&#194;&#174;u&#204;&#211;&#242;&#255;&#136;I\&#149;&#206;&#252;&#201;&#252;[&#195;}&#223;&#167;~U&#213;&#232;&#187;&#160;&#247;y&#139;&quot;E5mB&#142;&#180;_5&#178;&#226;&#185;u&#213;&#254;&#195;B&#153;&#204;&#247;&#180;&#190;b6,&#134;&#135;&#142;&#189;U&#189;1r&#165;&#235;E1t&quot;&#247;%{6&#219;&#132;1&#155;&#170;K&#207;e5:&#130;A&#163;&#139;&#249;ya&#151;_&#212;&#188;&#176;&#192;i&#207;&#132;l&#198;&#226;&#237;J&#219;&#238;&#145;3&#186;U&#237;P&#249;3&#151;&#245;@T&#220;&#156;/ 1&#212;&#237;&#130;&#140;m&#235;&#194;&#197;L&#238;3&#169;&#234;v&#165;&#165;&#148;&#181;&#180;a3g&#210;e&#207;&#152;&#168;&#154;N&#169;y&#183;&#162;&#158;c&#202;&#161;&#174;&#202;&#219;S&#233;&#238;&#156;[&#205;$y;&#252;`
++endstreamendobj79 0 obj&lt;&lt;/Length 646/Filter/FlateDecode&gt;&gt;stream
++H&#137;&#236;U]kSA}&#223;_&#177;&#143;*t&#178;&#159;&#179;&#187;P&#250;&#208;&#180;&#130;B&#201;}$&#166;&#150;&#210;&#136;&#218;&#135;&#254;}&#207;&#204;&#238;5	&#196;*&#248; B&#238;&#153;&#175;&#157;9g&#178;7dO-&#217;P&#165;&#236;m&#200;&#145;P&#162;&#230;e&#138;&#152;)&#174;&#141;&#184;8&#138;&#159;&#201;&#133;[&#135;&#177;&#254;&#130;{&#225;&#133;&#156;&#225;&#226;&#175;T&#244;&#172;BA&#178;&#229;&#216;&#195;&#213;nh&#234;&#175;&#148;&#209;Zu&#228;&#138;&#192;F&#221;YGt&#165;C&#228;rwG&#129;&#169;&#183;&#198;&#158;&#130;$&#231;&#185;8&#242;&#221;&#160;&#197;9&#146;&#223;C&#135;&#161;@9P
++b&#227;N*j$&#162;&#140;&lt;=s&#156;&#130;j&#185;*}&#188;+Zu&#193;&#198;&#177;X&#251;X&#253;~c&#248;}p&#213;&#157;&#131;@s&#235;&#187;&#177;&#254;&#246;&#240;&#175;&#179;&#249;&#200;z&#242;&#188;&#158;G6&#237;|2&#139;i&#239;v&#186;6'&#248;&#135;9\*&#211;Z&#148;&#192;Y0&#214;&#201;&#252;&#224;lt&#184;D&#184;6&#189;M2n&#202;ik^&#188;&#222;&#220;&#188;&#156;n&#205;&#229;tX&#235;&#137;r&#249;R&#181;&#194;&#221;3&#242;&#193;&#159;k&#169;&#231;o&#158;&#147;_&#168;&#151;5&#255;&#199;&#200;?J^&#249;&#243;&#255;&#246;&#225;&#166;&#226;&#141;&#131;w&#196;&#241;M&#141;h5XQ&#163;&#190;&#174;n&#232;&#186;&#136;&#200;&#191;&#149;&#184;&#206;]&#245;&#182;&#217;&#235;&#236;&#151;&#193;R&#220;S&#220;&#169;&#226;]|;=&#200;l`&#215;;&#153;l&lt;8e,
++&#227;&#161;F*54&#161;&#206;&#254;`
++endstreamendobj80 0 obj&lt;&lt;/Length 615/Filter/FlateDecode&gt;&gt;stream
++H&#137;&#164;&#149;&#203;N&#219;P&#134;&#247;~&#138;Y&#210;E&amp;3s&#238;B&#130;&#192;&#162;&#149;&#168;T&#197;&#234;&#166;&#234;&quot;&#164;&#166;JCR&#159;&#190;&#227;[JZ'&#224;t&#251;&#216;&#209;|s&#230;&#255;g&#142;&#143;N&#239;&#214;O&#179;&#197;&#187;&#252;6&#187;&#200;&#179;&#179;&lt;&#231;&#185;&#134;&#252;:#`Ab&#242;0&#234;&#154;d#H)Y&#200;&#151;&#217;Q&#249;X&#171;5&#252;zj9&#151;&#200;&#198;&#211;&#155;&#217;C&#199;&#199;&#227;&#203;&#201;&#251;s&#176;''g&#231;&#250;G&#147;E&#218;,H$&#242;&#185;&#194;&#243;g&#189;$L&#222;&#181;wM#&#138;s$%dv&#161;N&#249;&#185;X=n&#237;&#186;&#227;&#237;1H&#129;@&#249;&#227;&#254;&#141;&#241;&#134;&#197;&#187;&#164;&#139;&#136;,F&#234;x6&#131;&#195;E&#139;&#245;1&#214;&#225;&#184;m&#187;&#232;Z&#135;}&#175;&#184;Fu&#179;Om~U&#237;^&#157;&#130;&#247;8Y&#148;7:&#147;*&#159;@&#200;&#160;D&#231;[&#169;W&#219;@&#132;&#209;&#251;&#215;&#171;&#149;&#237;j&#219;U&#229;&#178;&#169;&#211;&#232;&#170;&#146;&#173;&#234;&#176;&#222;&#182;v&#232;&#172;0p$&#244;&#228;&#129;&#167;&#198;b&#209;;u&#170;&#138;(&#202;&#249;M1&quot;&#218;&#167;)&#145;&#169;!&#171;C&#226;&amp;&#199;Mk&#152;-&#247;ig&#156;Kc&#172;N&#131;&#150;&#202;&#201;#&#235;l&#210;/&#182;&#234;g&#205;#&#228;&#148;M&#215;/v&#223;&#142;&#237;&#186;mD&#147;qT&#179;&#173;K&lt;&#208;&#236;Mx&quot;t&#253;!^w&#209;{&#180;C&#157;&#254;&#157;0&#146;&#229;&#183;&#237;:&#217;~f&#172;&#145;&#193;T0&#205;&#176;y&#177;&#177;z&#208;&#136;2&#235;&#181;&#243;z&#228;&#152;/&#179;&#241;dJ0&#153;&#214;0&#157;|T
++&#139;&#135;g`&#130;K&#221;&#237;&#173;&#254;&gt;&#192;&#151;&#175;&#223; 3N&#197;Q&#141;&#188;Ec&#150;&#155;*Z
++&#139;l&#154;}&#234;&#223;&#167;&#223;m/&#217;&#202;&#222;fw&#251;&#163;N1pHjp;&#205;&#247;&#235;&#231;r~&#183;(Vp&#218;&#167;tC&#149;-&#223;&#135;&#142;&#197;8-C&#197;&#209;	&#168;&#201;&#215;&#250;&#241;+&#191;&#191;&#148;&#254;_&#176;&#212;&#141;&#169;&#151;U&#135;s&#181;&#144;&#182;&#152;&#136;&#206;&#233;a&#199;1&#160;&#218;&#209;&#152;z&#213;&#219;R;UW$&#155;&#182;	&#179;&#213;&#213;
++endstreamendobj81 0 obj&lt;&lt;/Length 2575/Filter/FlateDecode/N 3/Alternate/DeviceRGB&gt;&gt;stream
++H&#137;&#156;&#150;yTSw&#199;o&#201;&#158;&#144;&#149;&#176;&#195;c[&#128;&#176;&#144;5la&#145;QIBH&#216;ADED&#132;&#170;&#149;2&#214;mtFOE&#157;.&#174;c&#173;&#214;}&#234;&#210;&#245;0&#234;&#232;8&#180;&#215;&#142;&#157;8G&#157;Ng&#166;&#211;&#239;&#239;&#247;9&#247;w&#239;&#239;&#221;&#223;&#189;&#247;&#157;&#243;
++ 
++&#141;V&#129;&#179;)g&#157;B&#163;0&#241;i&#156;W&#215;&#149;8#&#169;8w&#213;&#169;&#149;&#245;8_&#197;&#217;&#165;&#202;&#168;Q&#227;&#252;&#220;&#171;Q&#202;j@&#233;&amp;&#187;A)/&#199;&#217;g&#186;&gt;'K&#130;&#243;
++&#128;x&#175;&#205;&#250;&#183;&#182;&#210;-
++&#168;&#234;&#135;&#134;&#161;&#208;n&#232;&#247;&#208;Q&#232;t&#186;}MA&#160;&#239;&#160;&#151;0&#211;al&#187;&#193;&#190;&#176;&#142;&#129;S&#224;x	&#172;&#130;k&#224;&amp;&#184;^&#193;&#163;&#240;&gt;&#248;0|&gt;_&#131;'&#225;&#135;&#240;,&#194;G!&quot;F$H:R&#136;&#148;!z&#164;&#233;F&#145;Qd?r9&#139;\A&amp;&#145;G&#200;&#148;&#136;rQ&#162;&#225;h&#154;&#139;&#202;&#209;&#180;&#237;E&#135;&#209;]&#232;a&#244;4z&#157;Bg&#208;&#215;&#193;&#150;&#224;E#H	&#139;*B=&#161;&#139;0H&#216;I&#248;&#136;p&#134;p&#141;0MxJ$&#249;D1&#132;&#152;D, V&#155;&#137;&#189;&#196;&#173;&#196;&#196;&#227;&#196;K&#196;&#187;&#196;Y&#137;dE&#242;&quot;E&#144;&#210;I2&#146;&#129;&#212;E&#218;B&#218;G&#250;&#140;t&#153;4MzN&#166;&#145;&#200;&#254;&#228;r!YK&#238; &#146;&#247;&#144;?%_&amp;&#223;#&#191;&#162;&#176;(&#174;&#148;0J:EAi&#164;&#244;Q&#198;(&#199;()&#211;&#148;WT6U@&#141;&#160;&#230;P+&#168;&#237;&#212;!&#234;~&#234;&#234;m&#234;&#141;&#230;D&#165;e&#210;&#212;&#180;&#229;&#180;!&#218;&#239;h&#159;&#211;&#166;h/&#232;&#186;']B/&#162;&#233;&#235;&#232;&#210;&#143;&#211;&#191;&#162;?a0n&#140;hF!&#195;&#192;X&#199;&#216;&#205;8&#197;&#248;&#154;&#241;&#220;&#140;k&#230;c&amp;5S&#152;&#181;&#153;&#141;&#152;6&#187;l&#246;&#152;Ia&#186;2c&#152;K&#153;M&#204;A&#230;!&#230;E&#230;#&#133;&#229;&#198;&#146;&#176;d&#172;V&#214;&#235;(&#235;k&#150;&#205;e&#139;&#216;&#233;l&#187;&#151;&#189;&#135;}&#142;}&#159;C&#226;&#184;q&#226;9
++N'&#231;&#206;)&#206;].&#194;u&#230;J&#184;r&#238;
++&#238;&#247;w&#154;G&#228;	xR^&#175;&#135;&#247;[&#222;o&#198;&#156;ch&#158;g&#222;`&gt;b&#254;&#137;&#249;$&#225;&#187;&#241;&#165;&#252;*~&#255; &#255;:&#255;&#165;&#133;&#157;E&#140;&#133;&#210;b&#141;&#197;~&#139;&#203;&#207;,m,&#163;-&#149;&#150;&#221;&#150;,&#175;Y&#190;&#180;&#194;&#172;&#226;&#173;*&#173;6X&#141;[&#221;&#177;F&#173;=&#173;3&#173;&#235;&#173;&#183;Y&#159;&#177;~d&#195;&#179;	&#183;&#145;&#219;t&#219;&#180;&#185;i&#219;z&#218;f&#217;6&#219;~`{&#193;v&#214;&#206;&#222;.&#209;Ng&#183;&#197;&#238;&#148;&#221;#{&#190;}&#180;}&#133;&#253;&#128;&#253;&#167;&#246;&#184;&#145;j&#135;&#135;&#207;&#254;&#138;&#153;c1X6&#132;&#157;&#198;fm&#147;&#141;&#142;;'_9	&#156;r&#157;:&#156;8&#221;q&#166;:&#139;&#157;&#203;&#156;&#156;O:&#207;&#184;8&#184;&#164;&#185;&#180;&#184;&#236;u&#185;&#233;Jq&#187;&#150;&#187;nv=&#235;&#250;&#204;M&#224;&#150;&#239;&#182;&#202;m&#220;&#237;&#190;&#192;R 4	&#246;
++n&#187;3&#220;&#163;&#220;k&#220;G&#221;&#175;z=&#196;&#149;[=&#190;&#244;&#132;=&#131;&lt;&#203;=G&lt;/z&#193;^&#193;^j&#175;&#173;^&#151;&#188;	&#222;&#161;&#222;Z&#239;Q&#239;B&#186;0FX'&#220;+&#156;&#242;&#225;&#251;&#164;&#250;t&#248;&#140;&#251;&lt;&#246;u&#241;-&#244;&#221;&#224;{&#214;&#247;&#181;_&#144;_&#149;&#223;&#152;&#223;-G&#148;,&#234;}&#231;&#239;&#233;/&#247;&#241;&#191;&#192;Hh8&#240;m&#160;W&#160;2p[&#224;&#159;&#131;&#184;AiA&#171;&#130;N&#253;#8$X&#188;?&#248;A&#136;KHI&#200;{!7&#196;&lt;q&#134;&#184;W&#252;y(!46&#180;-&#244;&#227;&#208;a&#193;a&#134;&#176;&#131;a&#134;W&#134;&#239;	&#191;&#191;@&#176;@&#185;`l&#193;&#221;&#167;Y&#196;&#142;&#136;&#201;H,&#178;$&#242;&#253;&#200;&#201;(&#199;(Y&#212;h&#212;7&#209;&#206;&#209;&#138;&#232;&#157;&#209;&#247;b&lt;b*b&#246;&#197;&lt;&#142;&#245;&#139;&#213;&#199;~&#251;L&amp;Y&amp;9&#135;&#196;%&#198;u&#199;M&#196;s&#226;s&#227;&#135;&#227;&#191;NpJP%&#236;M&#152;IJlN&lt;&#158;DHJI&#218;&#144;tCj'&#149;KwKg&#146;C&#146;&#151;%&#159;N&#161;&#167;d&#167;&#167;|&#147;&#234;&#153;&#170;O=&#150;&#167;%&#167;mL&#187;&#189;&#208;u&#161;v&#225;x:H&#151;&#166;oL&#191;&#147;!&#200;&#168;&#201;&#248;C&amp;13#s$&#243;/Y&#162;&#172;&#150;&#172;&#179;&#217;&#220;&#236;&#226;&#236;=&#217;Osbs&#250;rn&#229;&#186;&#231;sO&#230;1&#243;&#138;&#242;v&#231;=&#203;&#143;&#203;&#239;&#207;&#159;\&#228;&#187;h&#217;&#162;&#243;&#214;&#234;&#130;#&#133;&#164;&#194;&#188;&#194;&#157;&#133;&#179;&#139;&#227;oZ&lt;]T&#212;Ut}&#137;`I&#195;&#146;sK&#173;&#151;V-&#253;&#164;&#152;Y,+&gt;TB(&#201;/&#217;S&#242;&#131;,]6*&#155;-&#149;&#150;&#190;W:#&#151;&#200;7&#203;*&#162;&#138;&#202;e&#191;&#242;^YDY&#217;}U&#132;j&#163;&#234;AyT&#249;`&#249;#&#181;D=&#172;&#254;&#182;&quot;&#169;b{&#197;&#179;&#202;&#244;&#202;+&#172;&#202;&#175;:&#160;!kJ4G&#181;m&#165;&#246;t&#181;}uC&#245;%&#157;&#151;&#174;K7YV&#179;&#169;fF&#159;&#162;&#223;Y&#213;.&#169;=b&#224;&#225;?S&#140;&#238;&#198;&#149;&#198;&#169;&#186;&#200;&#186;&#145;&#186;&#231;&#245;y&#245;&#135;&#216;&#218;&#134;&#141;&#158;&#141;k&#239;5%4&#253;&#166;m&#150;7&#159;lqlio&#153;Z&#179;lG+&#212;Z&#218;z&#178;&#205;&#185;&#173;&#179;mzy&#226;&#242;]&#237;&#212;&#246;&#202;&#246;?u&#248;u&#244;w|&#191;&quot;&#197;&#177;N&#187;&#206;&#229;&#157;wW&amp;&#174;&#220;&#219;e&#214;&#165;&#239;&#186;&#177;*|&#213;&#246;&#213;&#232;j&#245;&#234;&#137;5k&#182;&#172;y&#221;&#173;&#232;&#254;&#162;&#199;&#175;g&#176;&#231;&#135;^y&#239;kEk&#135;&#214;&#254;&#184;&#174;l&#221;D_p&#223;&#182;&#245;&#196;&#245;&#218;&#245;&#215;7Dm&#216;&#213;&#207;&#238;o&#234;&#191;&#187;1m&#227;&#225;l&#160;{&#224;&#251;M&#197;&#155;&#206;n&#223;L&#221;l&#220;&lt;9&#148;&#250;O
++&#190;&#132;&#190;&#255;&#191;z&#191;&#245;&#192;p&#192;&#236;&#193;g&#193;&#227;&#194;_&#194;&#219;&#195;X&#195;&#212;&#196;Q&#196;&#206;&#197;K&#197;&#200;&#198;F&#198;&#195;&#199;A&#199;&#191;&#200;=&#200;&#188;&#201;:&#201;&#185;&#202;8&#202;&#183;&#203;6&#203;&#182;&#204;5&#204;&#181;&#205;5&#205;&#181;&#206;6&#206;&#182;&#207;7&#207;&#184;&#208;9&#208;&#186;&#209;&lt;&#209;&#190;&#210;?&#210;&#193;&#211;D&#211;&#198;&#212;I&#212;&#203;&#213;N&#213;&#209;&#214;U&#214;&#216;&#215;\&#215;&#224;&#216;d&#216;&#232;&#217;l&#217;&#241;&#218;v&#218;&#251;&#219;&#128;&#220;&#220;&#138;&#221;&#221;&#150;&#222;&#222;&#162;&#223;)&#223;&#175;&#224;6&#224;&#189;&#225;D&#225;&#204;&#226;S&#226;&#219;&#227;c&#227;&#235;&#228;s&#228;&#252;&#229;&#132;&#230;&#230;&#150;&#231;&#231;&#169;&#232;2&#232;&#188;&#233;F&#233;&#208;&#234;[&#234;&#229;&#235;p&#235;&#251;&#236;&#134;&#237;&#237;&#156;&#238;(&#238;&#180;&#239;@&#239;&#204;&#240;X&#240;&#229;&#241;r&#241;&#255;&#242;&#140;&#243;&#243;&#167;&#244;4&#244;&#194;&#245;P&#245;&#222;&#246;m&#246;&#251;&#247;&#138;&#248;&#248;&#168;&#249;8&#249;&#199;&#250;W&#250;&#231;&#251;w&#252;&#252;&#152;&#253;)&#253;&#186;&#254;K&#254;&#220;&#255;m&#255;&#255;
++
++endstreamendobj82 0 obj&lt;&lt;/Subtype/Image/Length 816/Filter/DCTDecode/BitsPerComponent 8/ColorSpace 66 0 R/Width 77/Height 80/Type/XObject&gt;&gt;stream
++&#255;&#216;&#255;&#238;
++$$''$$53335;;;;;;;;;;%% ## ((%%((22022;;;;;;;;;;&#255;&#192;
++
++
++&#238;&amp;v=V&#177;&#201;&#223;b&#143;RD,&#148;&#145;&#216;&#229;^}&#202;v9H&#140;$&#234;&#164;&#237;t&amp;I9&#134;X&#138;&#219; HS&amp;&#152;&#174;nz&#169;U_U1&#177;&#241;'u&#136;/&#177;@&#188;&#149;@A&#146;&#137;&#148;&#146;I9k&#255;&#217;
++
++endstreamendobj83 0 obj&lt;&lt;/Length 649/Filter/FlateDecode&gt;&gt;stream
++H&#137;&#146;&#213;R
++&#143;&#201;&#224;q2!G&amp;&#229;&#200;2&#165;D&#167;&#149;&#232;&#140;
++&#157;U&#161;cRxN&#141;&#205;&#171;&#177;&#182;&#168;&#193;&#135;&#196;&#208;&#132;&#153;Ua&#243;lI&#139;/&#235;&#240;U&#177;&#170;'~&#234;&#137;&gt;0 Wt&#248;&#175;gb&#205;@&#174;&#200;#&#185;i$D&#208;&#136;&#154;Q&#162;k&#207;&#228;&#134;&#129;&#228;&#153;&#168;&#223;&amp;j&#203;Lmw&#177;&#208;;z\/&#168;&#177;e-&#190;g&#165;&#247;&#173;&#185;&#131;&#151;&#220;&#225;KnJ&#129;&#252;&#210;&lt;#&#181;k&#161;m&#185;c[&#238;&#196;&#206;&#156;:&#152;33,&#134;5&#216;&#190;&#149;&gt;&#182;3&#231;N&#246;&#194;&#197;&#254;q&#177;&#151;&#238;|&#159;&#220;2QN&#246;&#202;&#147;&#255;&#235;&#201;&#223;x&#183;&#222;&#194;&#174;&#149;&#190;t&#177;&#215;&#158;&#252;&#157;&#175;&#240;&#224;&#231;&#220;S&#128;&#155;R&#160;s*l&#207;B_&#185;&#187;Z&#254;&#209;&#207;&#241;&#131;&#156;0X&#133;&#138;&#226;piD
++&#175;&#234;&#240;uqjg&#248;N*J#%Y&#180;,&#143;&#150;&#177;&#242;&#129;5'&#232;&#154;&#225;&#146;,RRD&#203;&#170;xY&#175;hm&#162;rd&#203;&#241;&#131;EY&#180;&#164;&#140;&#149;u&#201;&#234;s&#170;jH&#215;&#140;&#233;&#218;&#142;&#153;~
++r&#162;pQ&#175;h&#147;&#227;k&#205;&#156;&#169;Y3uk&#182;&#190;&#162;&#197;&#207;&#156;&#140;!]5&#191;&#214;^&#178;u&#251;[&#195;&#249;&#222;p&#141;c{&#238;&#222;W&#176;e&#235;n&#176;&#233;&#133;Z&gt;&#168;&#181;m&#166;/&#221;&#236;&#141;&#167;&#160;OUM&#175;5&#216;&#192;&#173;&#210;&#163;&#237; &#143;&#149;&#169;&#170;%Sw&#188;5bx'&#129;w&#206;&#156;&#172;$\
++&#161;&#237;&#249;&#145;&#161;&gt;&#175;&#221;y&#208;&#244;&#195;&#173;&#218;N&#128;&#249;&#234;&#128;&lt;ydc$&#145;&#146;l&amp;&#137;N&#134;&#254;&#153;/'&#208;&#140;&#227;&#157;4&#245;&#145;&#165;?&#151;&#180;&#152;&#227;&#189;&#193;&#218;I&#226;&#163;_-j&#177;M#&#229;&#133;&#154;A&#164;&#245;&#224;/&#216;&#222;.&#160;q&#238;dxFr&#199;B&#221;&#251;9&#219;[&#253;!&#192;i&#147;&#213;[_A&#222;&#237;/&#143;J&#224;;o&#225;&#222;&#199;&#245;&#242;&#129;9U&#247;&#226;&#196;&#193;&#156;;&#216;1(&#130;6M&#212;&#180;
++&#157;T &#255;
++
++endstreamendobj84 0 obj&lt;&lt;/Subtype/Image/Length 1871/Filter/FlateDecode/BitsPerComponent 8/ColorSpace 67 0 R/Width 50/Height 50/Type/XObject&gt;&gt;stream
++H&#137;&#164;&#150;&#251;_Z&#245;&#199;&#167;&#158;3&#228;r8rc&#202;&#228;&#161;A &#134;0 %a&#137;\v&#210;D&#219;&#152;]Dt6&#181;U&#147;\Zn&#243;&#146;.[&#179;&#166;&#174;&#155;&#235;&#178;j&#203;&#238;&#173;&#203;&#214;&#221;j&#181;?&#228;&#251;a&#218;ek&#235;&#219;&#227;&#209;&#235;&#231;&#207;&#243;&#241;&#190;&#156;&#247;&#251;&#245;&gt;6&#252;wee&#231;@&#188;q#A9&#217;Y&#255;&#255;y.&#231;&#145;&#200;&#148;| 
++&#153;&#148;C&#185;&#255;e&#229;&#192;$2&#149;Fg &#147;&#137; :&#141;J&amp;&#193;97g&#192;&#251;|AXl6&#135;&#195;f&#179;
++P&#132;A&#203;&#204;M@&#164;&#252;Be&#177;&#185;&lt;&gt;_
++~&#219;&#189;JS&#213;7&#225;m&#220;	&#239;k&#239;&#136;F;&#218;&#247;&#133;#{&#189;&#132;{O&#149;Iyo_&#193;l&#149;g&#175;UAru&#174;&#190;&#207;&#226;
++&#232;d&#144;Da&#176;@R&#170;&#154;'w6&#140;&#198;&#194;&#209;x&#239;&#240;&#216;&#200;SO&#143;&#143;?&#253;&#212;&#200;&#216;po&lt;&#142;&#141;6&#236;|&#178;F&#210;b1(&#160;[0a$&#248;&#131;&#245;&#232;&#177;&#166;H&#207;&#192;&#196;dzdj&#250;&#153;&#153;&#153;g&#166;&#167;F&#210;&#147;=&#145;&#166;cG&#173;&#134;#&#184;D&#192;F&#168;&#240;&#134;Y&#208;[&#142;&#216;X&#173;1&#219;\&#222;&#192;&#129;&#227;&#241;g&#231;&#158;&#155;&#154;&#158;9&#241;&#252;&#243;'f&#166;&#167;&#158;&#155;{6~&#252;@&#192;&#235;&#178;&#153;5&#213;F1&#244;wvVNCC:&#172;&#194;d&gt;I&#248;&#246;&#206;G&#187;&#134;&#210;&#135;&#199;_8&#241;&#226;&#169;S/&#158;xa&#252;pz&#168;+:&#191;&#215;G&#156;4&#155;*0(}&#141;&#224;f&#136;&#132;c&#193;&#215;=&#159;LM&#166;&#151;N&#191;t&#234;&#229;&#151;O&#189;tzi1=&#153;J&#206;w&#251;&#137;&#193;&#205;&#175;&#172;&#175;&#154;^s&#190;&#238;&#229;qf&#233;&#244;&#235;o&#188;&#249;&#230;&#175;&#159;^:&#147;!&#150;&#187;}&#132;&#227;5&#211;&#171;k&#196;+d&#149;
++&#248;G/&#213;nkB&#175;&#190;
++#&#248;&#163;&#189;mW&#153;&#137;&#159;~v&#187;&#162;&#161;&#129; \&#238;&#159;JL*|&#181;&#205;&#254;#&#200;	&#254;&#225;O&#167;&#150;W&#217;Y&#197;&#149;&#253;zC&#194;b&#181;&#157;t8N&#218;&#172;&#150;&#132;A&#223;&#175;&#196;W&#177;&#135;&#128;#^&#254;&#171;&#185;&#231;&#144;hH0d&#151;e&#184;&#170;&#223;Tc0'&#128;&#204;&#134;S&#191;
++&#151;&#165;&#246;P&#161;&#145;&#174;&#189;&#134;&#137;&#182;	&#220;]&amp;&#195;&#149;&#170;#&#144;&#230;&#136;J&#137;&#203;&#176;&quot;&#184;&#155;h$h&#195;&#181;&#130;.S&#181;&#168;&#130;k&#215;We&#165;&#191;V
++&#152;&#140;V2&#156;{ s&#208;&#229;dA&#131;&#191;&#177;E&#162;PH$b&#255;D:&#141;,&#191;&#225;9_&#235;2$RiZ&#185;rE&#175;\A-&#141;*&#148;C&#191;&#229;eja&#146;&#144;Bm&#165;&#181;R)B\&#251;&#143;&#239;&#175;&#230;&#150;]&#193;+r&#160;&#170;&#253;&#191;K&#235;&#216;,&#208;M&#255;O&#128;
++
++endstreamendobj85 0 obj&lt;&lt;/Subtype/Image/Length 719/Filter/CCITTFaxDecode/ImageMask true/BitsPerComponent 1/Width 104/DecodeParms&lt;&lt;/K -1/Columns 104&gt;&gt;/Height 1236/Type/XObject&gt;&gt;stream
++&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#254;M@&#240;l&#255;&#255;&#255;&#255;!a&#154;F
++&#136;&#160;A&#160;TJ&#149;&#170;Z&#174;&#169;}W_&#210;&#255;&#255;&#255;&#251;&#247;&#223;&#223;&#183;&#189;&#219;&#221;&#189;&#225;&#219;&#176;xvC4
++&#200;i'&#198;&#238;&#238;&#225;&#221;&#195;&#135;&#239;&#129;&#166;v@&#255;&#206;&#244;'~3&#184;PP&#160;&#161;T*&#133;UUUD3,&#131;&#230;@&#188;&#228;&#237;&#193;&#208;[&#174;&#130;&#233;z&#233;z&#245;&#210;&#255;K&#254;&#191;&#210;&#255;&#175;&#255;&#175;&#175;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#247;&#223;&#255;&#247;&#254;&#223;&#253;&#255;&#183;&#239;&#191;&#190;&#223;&#190;&#195;&#247;&#216;~`&#251;!&#153;{&#239;&#239;{&#222;;&#224;&#209;; ?&#255;&#206;&#197;Y4&#193;JQ
++&#160;&#161;Bj&#170;UUWUU^&#213;u^&#130;&#193;UXIk&#160;&#171;^&#146;&#175;&#170;&#215;&#250;&#174;&#171;&#255;&#254;&#186;&#254;&#186;&#255;&#255;&#255;&#175;&#245;&#255;&#255;&#186;&#255;_&#239;&#245;k&#253;&#214;&#253;&#173;&#186;&#223;&#134;&#182;@&#193;&#209;&#209;&#196;{&#239;&#190;&#238;&#238;&#238;89JS&#178;&#144;&#223;&#255;&#255;&#252;&#139;&#247;&#255;&#255;&#255;&#149;08
++&#136;e&#129;&#132;A@&#170;!&#160;&#165;&#132;*T&#171;&#170;_&#210;&#255;&#255;&#254;&#253;&#247;&#247;}&#216;,&#133;&#130;&#176;Q&#255;&#201;&#168;&#159;&#255;&#255;&#255;&#228;,3H&#193;Q&#227;T4
++&#130;&#160;&#169;R&#160;&#181;KU&#213;/&#170;&#235;&#250;_&#255;&#255;&#255;~&#251;&#251;&#246;&#247;&#187;{&#183;&#188;;v&#200;f&#129;Y$&#248;&#221;&#221;&#220;;&#184;p&#225;&#195;&#131;&#131;&#157;&#240;4&#206;&#200;#&#255;&#243;&#189;
++&#161;UUUQ&#203; &#249;&#144;/9;@&#176;t&#235;&#160;&#186;^&#186;^&#189;t&#191;&#210;&#255;&#175;&#244;&#191;&#235;&#255;&#235;&#235;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#253;&#247;&#255;&#253;&#255;&#183;&#255;&#237;&#251;&#239;&#239;&#183;&#239;&#176;&#253;&#246;&#135;&#216;&gt;&#200;f^&#199;{&#251;&#195;&#222;&#247;&#135;&#135;&#135;&#135;&#135;&#131;&#206;&#248;4N&#200;&#143;&#255;&#255;&#147;P &#140;&#239;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#243;&#178;&#144;&#223;&#255;&#228;X&#255;&#255;&#255;&#255;!&#129;&#225;&#150;&#171;&#174;&#171;&#174;&#186;&#174;&#164;X&#255;&#255;&#255;&#255;&#255;&#241;&#255;&#231;z&#191;&#153;&#220;&#168;(PP&#170;B&#170;&#170;&#170;&#162;&#150;A&#243; ^rv&#129;`&#232;-&#215;At&#189;t&#189;z&#233;&#165;&#255;_&#233;&#215;&#255;&#215;&#215;&#255;&#255;&#255;&#255;&#255;&#255;&#255;&#251;&#239;&#255;&#251;&#255;o&#254;&#255;&#219;&#247;&#223;&#223;o&#223;a&#251;&#236;?&#176;}&#144;&#204;&#189;&#142;&#247;&#247;&#135;&#189;&#239;&#157;&#240;h&#157;&#144;&#249;&#255;&#255;&#255;&#255;&#200;`xe&#170;&#235;&#170;&#235;&#174;&#171;&#169;&#255;&#255;&#255;&#255;&#255;&#252;p
++
++endstreamendobj86 0 obj&lt;&lt;/Subtype/Image/Length 406/Filter/FlateDecode/ImageMask true/BitsPerComponent 1/Width 32/Height 1236/Type/XObject&gt;&gt;stream
++H&#137;&#236;&#149;Mn&#132;0&#133;&#131;&#178;&#200;2G&#200;Q8Z&#210;&#155;e&#215;kp&#186;cAq&#159;&#237;&#208;&#201;@G&#237;&#148;&#209;&#136;&#145;b&#233;&#219;@&#136;&#158;m&#136;&#154;5k&#214;&#172;Y&#179;&#231;&#154;1&#166;;N&#192;=&#158;&#178;&#177;4&#154;&#142;fc&#248;&#226;H&#201;&#244;x&#240;0&#208;&#132;&#179;q&#194;&#130;&#131;$tD&#169;&#144;&#205;&#133;&#225;&#143;&#212;&#223;&#164;&#130;:&#135;D&#153;$0&#139;O,&#142;8&#188;v&#158;&#248;
++
++endstreamendobj87 0 obj&lt;&lt;/StemV 138/FontName/Arial-BoldMT/FontStretch/Normal/FontWeight 700/Flags 32/Descent -211/FontBBox[-628 -376 2000 1010]/Ascent 905/FontFamily(Arial)/CapHeight 718/XHeight 515/Type/FontDescriptor/ItalicAngle 0&gt;&gt;endobj88 0 obj&lt;&lt;/StemV 82/FontName/TimesNewRomanPSMT/FontStretch/Normal/FontWeight 400/Flags 34/Descent -216/FontBBox[-568 -307 2000 1007]/Ascent 891/FontFamily(Times New Roman)/CapHeight 656/XHeight 453/Type/FontDescriptor/ItalicAngle 0&gt;&gt;endobj89 0 obj&lt;&lt;/StemV 100/FontName/CourierNewPS-BoldMT/FontStretch/Normal/FontWeight 700/Flags 34/Descent -300/FontBBox[-46 -710 702 1221]/Ascent 832/FontFamily(Courier New)/CapHeight 593/XHeight 437/Type/FontDescriptor/ItalicAngle 0&gt;&gt;endobj90 0 obj&lt;&lt;/StemV 88/FontName/ArialMT/FontStretch/Normal/FontWeight 400/Flags 32/Descent -211/FontBBox[-665 -325 2000 1006]/Ascent 905/FontFamily(Arial)/CapHeight 718/XHeight 515/Type/FontDescriptor/ItalicAngle 0&gt;&gt;endobj91 0 obj&lt;&lt;/StemV 97.937/FontName/CourierNewP!
+ S-BoldItalicMT/FontStretch/Normal/FontWeight 700/Flags 98/Descent -300/FontBBox[-103 -377 836 1004]/Ascent 832/FontFamily(Courier New)/CapHeight 593/XHeight 437/Type/FontDescriptor/ItalicAngle -15&gt;&gt;endobj92 0 obj&lt;&lt;/OPM 1/OP false/op false/Type/ExtGState/SA false/SM 0.02&gt;&gt;endobj1 0 obj&lt;&lt;/First 2 0 R/Count 1/Last 2 0 R/Type/Outlines&gt;&gt;endobj2 0 obj&lt;&lt;/Parent 1 0 R/A 3 0 R/Title(&#254;&#255;
++x&#218;&#236;V&#219;n7&#229;&#167;&#240;&#177;
++//C.	bm&#181;&#174;`&#187;}&#252;&#160;&#184;&#199;&#136;-&#210;&#170;&#136;&#253;&#189;&#253;&#142;6&#135;KI&#142;&#134;&#244;:y&#203;C&#161;]&#205;y&#206;&#225;&#240;2$&#181;&#146;Jj-&#181;2Ri&gt;&#173;&#180;-
++	&#229;&#202;J&#237;&#146;m&#165;&#246;(&#178;&#176;xb&#170;&#176;&#245;Q&#170;Qx&#188;&#150;&amp;=&#138;&#180;C&#165;&#197;&#167;
++&#210;,yi&#156;4&#173;&#129;&#197;&#211;&#182;&#233;O&#154;&#144;@B&#242;A&#137;&#240;-$&quot;|&#171;&#241;&#153;|D&#167;&#188;&#147;&#225;&#165;&#184;,&#193;*Q&#164;&#219;(m&#130; 8&#132;h&#141;Ca&#128;&#141;&#192;&#161;&#202;B&#132;,&#250;&#149;(&#164;&#162;$&#232;II*&#180;&#146;&#160;&#231;&#208;&#129;&#234;&#208;B&#181;^&#145;$&#232;y&#128;
++e&#202;*&#148;U(&#171;PVq&#153;&#224;2&#193;e&#136;&#203;&#183;&#133;&#228;&#134;|n&#200;]5S&#172;&#238;&#161;c&#205;O&#183;7&#155;U&#215;Lo&#164;w&#251;&#142;&#159;m&#238;&#215;&#169;&#203;C&#201;&#213;Pt&#241;&#161;&#235;&#250;&#163;V&#237;[_3&#223;0&#223;2&#159;&#152;&#253;&#192;&#244;&#211;L&#223;0=&#227;&#152;&#239;&#153;&#223;2?0&#159;&#197;Y&lt;&#150;&#249;&#145;&#197;g&#185;&#207;&#226;&#141;l&lt;,&#247;Y,&#235;&#143;e&#253;&#177;,~&#203;&#226;'/&#177;&#248;&#136;&#197;G,&#226;&#227;&#203;&#170;yx&#172;&#154;E&#203;&#196;&#153;&#129;&#217;L&#237;;zrw&#219;?&#237;&#157;n&#177;&#233;&#159;&#186;&#247;&#143;Z60&#158;&#169;&#251;&#221;@&#165;&#197;}|&lt;&#203;&#219;&#201;.&#201;u&#206;!&#157;sH&#231;29&#135;LFS&#217;LNV&#179;&#221;*&#178;&#138;&#201;*&amp;&#171;X&#245;l&#148;U\Vq&#186;&#182;&#155;d&#231;&#190;qoI&#219;&amp;&#222;&#223;&#155;?&#214;&#221;j&#186;Z&gt;t&#171;&#254;&#182;[7&#211;Y&#218;W~&#248;&#247;?q&amp;&#230;&#226;^tB&#188;i&#254;L&#190;?&#226;&#205;?&#241;&amp;&#239;?&#169;&#252;B&#244;@.&#196;_b)V&#248;~&#255;34&#223;&#139;&#196;&#140;&#215;&#213;&#207;&#161;&#189;A&#175;&#225;&#222;A&#179;&#135;&#222;&#173;&#184;~!n&#198;&#191;H*&#221;.&#252;h&#226;&#212;SP&#231;b&#141;&#223;&#142;:A&#151;&#248;u&#226;#&#196;o&#197;&#223;x{&#132;&#222;&#143;]&#138;&#199;&#193;&#238;dN&#240;&#189;@T&#189;x&#194;&#215;j c&#183;nN&#159;&#243;b2&#211;_&#191;&#154;&#135;&#131;Ao&#134;&#189;&#196;&#225;&#209;&#240;&#165;&#182;4&#137;&#224;&#183;&#132;}b&#141;lI&#192;&#145;2B&#160;
++A&#143;\&#133;`&#198;&#190;B&#176;c&#132;&#182;B F&#152;&#200;&#240;&#229;X&#238;&#247;&#160;C&#212;&#255;&#137;&#242;=%J&#252;&#250;&#237;&#187;&#154;(&#233;&#204;Y6&#235;|{N&lt;&#175;&#155;&#209;d&#209;&#186;d&#132;&#209;l&#209;&#166;&#194;Mm+&#140;&#209;|&#209;T2&#226;xT&#174;&#194;&#208;E&#198;h_&#166;L&#180;%&#172;-a&#166;DU&#242;&#175;&#162;KT&#153;&#202;F&#149;(W&#162;t%&#227;K&#148;)Qm&#137;&#178;%*&#148;(&#170;&#140;D%|W&#129;U&#226;&#175;&#191;&#169;t&#160;6&#252;&#149;T&#198;&#223;T&#186;P&#153;
++endstreamendobj5 0 obj&lt;&lt;/Nums[0 6 0 R]&gt;&gt;endobj6 0 obj&lt;&lt;/S/D&gt;&gt;endobj7 0 obj&lt;&lt;/Count 1/Type/Pages/Kids[65 0 R]&gt;&gt;endobj8 0 obj&lt;&lt;/Subtype/XML/Length 3789/Type/Metadata&gt;&gt;stream
++&lt;?xpacket begin=&quot;&#239;&#187;&#191;&quot; id=&quot;W5M0MpCehiHzreSzNTczkc9d&quot;?&gt;
++&lt;x:xmpmeta xmlns:x=&quot;adobe:ns:meta/&quot; x:xmptk=&quot;3.1-701&quot;&gt;
++   &lt;rdf:RDF xmlns:rdf=&quot;<A HREF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">http://www.w3.org/1999/02/22-rdf-syntax-ns#</A>&quot;&gt;
++      &lt;rdf:Description rdf:about=&quot;&quot;
++            xmlns:pdf=&quot;<A HREF="http://ns.adobe.com/pdf/1.3/">http://ns.adobe.com/pdf/1.3/</A>&quot;&gt;
++         &lt;pdf:Producer&gt;Acrobat Distiller 7.0 (Windows)&lt;/pdf:Producer&gt;
++      &lt;/rdf:Description&gt;
++      &lt;rdf:Description rdf:about=&quot;&quot;
++            xmlns:xap=&quot;<A HREF="http://ns.adobe.com/xap/1.0/">http://ns.adobe.com/xap/1.0/</A>&quot;&gt;
++         &lt;xap:CreateDate&gt;2005-12-11T14:48:47+01:00&lt;/xap:CreateDate&gt;
++         &lt;xap:CreatorTool&gt;Acrobat PDFMaker 7.0 for Microsoft Visio&lt;/xap:CreatorTool&gt;
++         &lt;xap:ModifyDate&gt;2005-12-11T14:48:50+01:00&lt;/xap:ModifyDate&gt;
++         &lt;xap:MetadataDate&gt;2005-12-11T14:48:50+01:00&lt;/xap:MetadataDate&gt;
++      &lt;/rdf:Description&gt;
++      &lt;rdf:Description rdf:about=&quot;&quot;
++            xmlns:dc=&quot;<A HREF="http://purl.org/dc/elements/1.1/">http://purl.org/dc/elements/1.1/</A>&quot;&gt;
++         &lt;dc:format&gt;application/pdf&lt;/dc:format&gt;
++         &lt;dc:title&gt;
++            &lt;rdf:Alt&gt;
++               &lt;rdf:li xml:lang=&quot;x-default&quot;&gt;Visio-kontinuierlicheGenerationsfolge.VSD&lt;/rdf:li&gt;
++            &lt;/rdf:Alt&gt;
++         &lt;/dc:title&gt;
++         &lt;dc:creator&gt;
++            &lt;rdf:Seq&gt;
++               &lt;rdf:li&gt;.&lt;/rdf:li&gt;
++            &lt;/rdf:Seq&gt;
++         &lt;/dc:creator&gt;
++      &lt;/rdf:Description&gt;
++      &lt;rdf:Description rdf:about=&quot;&quot;
++            xmlns:xapMM=&quot;<A HREF="http://ns.adobe.com/xap/1.0/mm/">http://ns.adobe.com/xap/1.0/mm/</A>&quot;&gt;
++         &lt;xapMM:DocumentID&gt;uuid:8792a724-889f-47f1-9204-52fb11cf5752&lt;/xapMM:DocumentID&gt;
++         &lt;xapMM:InstanceID&gt;uuid:dcfabdce-9af0-4cfb-a44f-f4423c271b1b&lt;/xapMM:InstanceID&gt;
++      &lt;/rdf:Description&gt;
++      &lt;rdf:Description rdf:about=&quot;&quot;
++            xmlns:pdfx=&quot;<A HREF="http://ns.adobe.com/pdfx/1.3/">http://ns.adobe.com/pdfx/1.3/</A>&quot;&gt;
++         &lt;pdfx:Company&gt;.&lt;/pdfx:Company&gt;
++      &lt;/rdf:Description&gt;
++   &lt;/rdf:RDF&gt;
++&lt;/x:xmpmeta&gt;
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                           
++&lt;?xpacket end=&quot;w&quot;?&gt;
++endstreamendobj9 0 obj&lt;&lt;/CreationDate(D:20051211144847+01'00')/Author(.)/Creator(Acrobat PDFMaker 7.0 for Microsoft Visio)/Producer(Acrobat Distiller 7.0 \(Windows\))/ModDate(D:20051211144850+01'00')/Company(.)/Title(Visio-kontinuierlicheGenerationsfolge.VSD)&gt;&gt;endobjxref
++0 63
++0000000000 65535 f
++0000019055 00000 n
++0000019119 00000 n
++0000019199 00000 n
++0000019239 00000 n
++0000020468 00000 n
++0000020501 00000 n
++0000020524 00000 n
++0000020575 00000 n
++0000024440 00000 n
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++0000000000 65535 f
++trailer
++&lt;&lt;/Size 63&gt;&gt;
++startxref
++116
++%%EOF
++96 0 obj&lt;&lt;/Length 14/Root 64 0 R/ID[&lt;D328999B0662F4535D95FA9DED3BF6C2&gt;&lt;60D63CD38505F74583CD14A81D212E10&gt;]/Info 9 0 R/Filter/FlateDecode/W[1 2 0]/Index[96 1]/DecodeParms&lt;&lt;/Columns 3/Predictor 12&gt;&gt;/Size 97/Type/XRef&gt;&gt;stream
++x&#218;bbL&#157;`
++endstreamendobj9 0 obj&lt;&lt;/CreationDate(D:20051211144847+01'00')/Author(.)/Creator(Acrobat PDFMaker 7.0 for Microsoft Visio)/Producer(Acrobat Distiller 7.0 \(Windows\))/ModDate(D:20051211145030+01'00')/Company(.)/Title(Visio-kontinuierlicheGenerationsfolge.VSD)&gt;&gt;endobj64 0 obj&lt;&lt;/MarkInfo&lt;&lt;/LetterspaceFlags 0/UserProperties true/Marked true&gt;&gt;/Outlines 1 0 R/Metadata 95 0 R/PieceInfo&lt;&lt;/MarkedPDF&lt;&lt;/LastModified(D:20051211144850)&gt;&gt;&gt;&gt;/Pages 7 0 R/PageLayout/SinglePage/StructTreeRoot 10 0 R/Type/Catalog/LastModified(D:20051211144850)/PageLabels 5 0 R&gt;&gt;endobj65 0 obj&lt;&lt;/CropBox[36.0 153.0 397.276 481.89]/Parent 7 0 R/StructParents 0/Contents[68 0 R 71 0 R 72 0 R 74 0 R 77 0 R 78 0 R 79 0 R 80 0 R]/Rotate 90/VP[&lt;&lt;/Measure&lt;&lt;/Subtype/RL/A[&lt;&lt;/C 1.0/U(sq. l&#136;)&gt;&gt;]/D[&lt;&lt;/C 1.0/U(mm.)&gt;&gt;]/R(1:1)/X[&lt;&lt;/C 0.352509/U(&#254;&#255;
++&lt;?xpacket begin=&quot;&#239;&#187;&#191;&quot; id=&quot;W5M0MpCehiHzreSzNTczkc9d&quot;?&gt;
++&lt;x:xmpmeta xmlns:x=&quot;adobe:ns:meta/&quot; x:xmptk=&quot;3.1-701&quot;&gt;
++   &lt;rdf:RDF xmlns:rdf=&quot;<A HREF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">http://www.w3.org/1999/02/22-rdf-syntax-ns#</A>&quot;&gt;
++      &lt;rdf:Description rdf:about=&quot;&quot;
++            xmlns:pdf=&quot;<A HREF="http://ns.adobe.com/pdf/1.3/">http://ns.adobe.com/pdf/1.3/</A>&quot;&gt;
++         &lt;pdf:Producer&gt;Acrobat Distiller 7.0 (Windows)&lt;/pdf:Producer&gt;
++      &lt;/rdf:Description&gt;
++      &lt;rdf:Description rdf:about=&quot;&quot;
++            xmlns:xap=&quot;<A HREF="http://ns.adobe.com/xap/1.0/">http://ns.adobe.com/xap/1.0/</A>&quot;&gt;
++         &lt;xap:CreateDate&gt;2005-12-11T14:48:47+01:00&lt;/xap:CreateDate&gt;
++         &lt;xap:CreatorTool&gt;Acrobat PDFMaker 7.0 for Microsoft Visio&lt;/xap:CreatorTool&gt;
++         &lt;xap:ModifyDate&gt;2005-12-11T14:50:30+01:00&lt;/xap:ModifyDate&gt;
++         &lt;xap:MetadataDate&gt;2005-12-11T14:50:30+01:00&lt;/xap:MetadataDate&gt;
++      &lt;/rdf:Description&gt;
++      &lt;rdf:Description rdf:about=&quot;&quot;
++            xmlns:dc=&quot;<A HREF="http://purl.org/dc/elements/1.1/">http://purl.org/dc/elements/1.1/</A>&quot;&gt;
++         &lt;dc:format&gt;application/pdf&lt;/dc:format&gt;
++         &lt;dc:title&gt;
++            &lt;rdf:Alt&gt;
++               &lt;rdf:li xml:lang=&quot;x-default&quot;&gt;Visio-kontinuierlicheGenerationsfolge.VSD&lt;/rdf:li&gt;
++            &lt;/rdf:Alt&gt;
++         &lt;/dc:title&gt;
++         &lt;dc:creator&gt;
++            &lt;rdf:Seq&gt;
++               &lt;rdf:li&gt;.&lt;/rdf:li&gt;
++            &lt;/rdf:Seq&gt;
++         &lt;/dc:creator&gt;
++      &lt;/rdf:Description&gt;
++      &lt;rdf:Description rdf:about=&quot;&quot;
++            xmlns:xapMM=&quot;<A HREF="http://ns.adobe.com/xap/1.0/mm/">http://ns.adobe.com/xap/1.0/mm/</A>&quot;&gt;
++         &lt;xapMM:DocumentID&gt;uuid:8792a724-889f-47f1-9204-52fb11cf5752&lt;/xapMM:DocumentID&gt;
++         &lt;xapMM:InstanceID&gt;uuid:d3f5bcbf-554f-4124-ba63-3211633157a5&lt;/xapMM:InstanceID&gt;
++      &lt;/rdf:Description&gt;
++      &lt;rdf:Description rdf:about=&quot;&quot;
++            xmlns:pdfx=&quot;<A HREF="http://ns.adobe.com/pdfx/1.3/">http://ns.adobe.com/pdfx/1.3/</A>&quot;&gt;
++         &lt;pdfx:Company&gt;.&lt;/pdfx:Company&gt;
++      &lt;/rdf:Description&gt;
++   &lt;/rdf:RDF&gt;
++&lt;/x:xmpmeta&gt;
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                                                                                                    
++                           
++&lt;?xpacket end=&quot;w&quot;?&gt;
++endstreamendobjxref
++9 1
++0000026268 00000 n
++64 2
++0000026522 00000 n
++0000026813 00000 n
++95 2
++0000027397 00000 n
++0000000000 65535 f
++trailer
++&lt;&lt;/Size 97/Prev 116/Root 64 0 R/Info 9 0 R/ID[&lt;D328999B0662F4535D95FA9DED3BF6C2&gt;&lt;60D63CD38505F74583CD14A81D212E10&gt;]&gt;&gt;
++xref
++0 0
++trailer
++&lt;&lt;/Size 97/Prev 31263/XRefStm 26012/Root 64 0 R/Info 9 0 R/ID[&lt;D328999B0662F4535D95FA9DED3BF6C2&gt;&lt;60D63CD38505F74583CD14A81D212E10&gt;]&gt;&gt;
++startxref
++31514
++%%EOF
+
+Modified: docu/latex/images/vv-personen.jpg
+===================================================================
+(Binary files differ)
+
+Modified: docu/latex/images/vv-speicherbedarf.jpg
+===================================================================
+(Binary files differ)
+
+Added: docu/latex/zeichnungen/kontinuierlicheGenerationsfolge.VSD
+===================================================================
+(Binary files differ)
+
+
+Property changes on: docu/latex/zeichnungen/kontinuierlicheGenerationsfolge.VSD
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000282.html">[Provirent-svn-commit] r281 - docu/latex/images
+</A></li>
+	<LI>Next message: <A HREF="000284.html">[Provirent-svn-commit] r283 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#283">[ date ]</a>
+              <a href="thread.html#283">[ thread ]</a>
+              <a href="subject.html#283">[ subject ]</a>
+              <a href="author.html#283">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

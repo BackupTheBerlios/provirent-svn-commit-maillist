@@ -1,0 +1,2728 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r318 - in project_src/customer/WEB-INF/src/de/hsharz/provirent: . persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r318%20-%20in%20project_src/customer/WEB-INF/src/de/hsharz/provirent%3A%20.%20persistence&In-Reply-To=%3C200512191854.jBJIsq0Q025150%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000319.html">
+   <LINK REL="Next"  HREF="000321.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r318 - in project_src/customer/WEB-INF/src/de/hsharz/provirent: . persistence</H1>
+    <B>sforstner at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r318%20-%20in%20project_src/customer/WEB-INF/src/de/hsharz/provirent%3A%20.%20persistence&In-Reply-To=%3C200512191854.jBJIsq0Q025150%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r318 - in project_src/customer/WEB-INF/src/de/hsharz/provirent: . persistence">sforstner at berlios.de
+       </A><BR>
+    <I>Mon Dec 19 19:54:52 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000319.html">[Provirent-svn-commit] r317 - docu/latex project_src/customer project_src/customer/WEB-INF project_src/customer/WEB-INF/lib project_src/customer/WEB-INF/src project_src/customer/WEB-INF/src/de/hsharz/provirent/customer/action project_src/customer/jsp
+</A></li>
+        <LI>Next message: <A HREF="000321.html">[Provirent-svn-commit] r319 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#320">[ date ]</a>
+              <a href="thread.html#320">[ thread ]</a>
+              <a href="subject.html#320">[ subject ]</a>
+              <a href="author.html#320">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2005-12-19 19:53:58 +0100 (Mon, 19 Dec 2005)
+New Revision: 318
+
+Added:
+   project_src/customer/WEB-INF/src/de/hsharz/provirent/persistence/
+   project_src/customer/WEB-INF/src/de/hsharz/provirent/persistence/DataBaseException.java
+   project_src/customer/WEB-INF/src/de/hsharz/provirent/persistence/Database.java
+   project_src/customer/WEB-INF/src/de/hsharz/provirent/persistence/HibernateUtil.java
+Log:
+
+
+Added: project_src/customer/WEB-INF/src/de/hsharz/provirent/persistence/DataBaseException.java
+===================================================================
+--- project_src/customer/WEB-INF/src/de/hsharz/provirent/persistence/DataBaseException.java	2005-12-19 18:29:17 UTC (rev 317)
++++ project_src/customer/WEB-INF/src/de/hsharz/provirent/persistence/DataBaseException.java	2005-12-19 18:53:58 UTC (rev 318)
+@@ -0,0 +1,74 @@
++/*
++ * Created on 26.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.persistence;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class DataBaseException extends Exception {
++
++    /**
++     * 
++     */
++    public DataBaseException() {
++        super();
++        // TODO Auto-generated constructor stub
++    }
++
++    /**
++     * @param arg0
++     */
++    public DataBaseException(String arg0) {
++        super(arg0);
++        // TODO Auto-generated constructor stub
++    }
++
++    /**
++     * @param arg0
++     */
++    public DataBaseException(Throwable arg0) {
++        super(arg0);
++        // TODO Auto-generated constructor stub
++    }
++
++    /**
++     * @param arg0
++     * @param arg1
++     */
++    public DataBaseException(String arg0, Throwable arg1) {
++        super(arg0, arg1);
++        // TODO Auto-generated constructor stub
++    }
++
++}
+
+Added: project_src/customer/WEB-INF/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/customer/WEB-INF/src/de/hsharz/provirent/persistence/Database.java	2005-12-19 18:29:17 UTC (rev 317)
++++ project_src/customer/WEB-INF/src/de/hsharz/provirent/persistence/Database.java	2005-12-19 18:53:58 UTC (rev 318)
+@@ -0,0 +1,2428 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.persistence;
++
++import java.text.DateFormat;
++import java.text.ParseException;
++import java.util.ArrayList;
++import java.util.Calendar;
++import java.util.List;
++
++import de.hsharz.provirent.persistence.HibernateUtil;
++
++import net.sf.hibernate.Criteria;
++import net.sf.hibernate.HibernateException;
++import net.sf.hibernate.Session;
++import net.sf.hibernate.Transaction;
++import net.sf.hibernate.expression.Disjunction;
++import net.sf.hibernate.expression.Expression;
++import net.sf.hibernate.expression.Order;
++
++import org.apache.log4j.Logger;
++
++import de.hsharz.provirent.objects.Actor;
++import de.hsharz.provirent.objects.AudioFormat;
++import de.hsharz.provirent.objects.Condition;
++import de.hsharz.provirent.objects.Customer;
++import de.hsharz.provirent.objects.Director;
++import de.hsharz.provirent.objects.Dvd;
++import de.hsharz.provirent.objects.Genre;
++import de.hsharz.provirent.objects.Image;
++import de.hsharz.provirent.objects.Language;
++import de.hsharz.provirent.objects.Movie;
++import de.hsharz.provirent.objects.MovieOrder;
++import de.hsharz.provirent.objects.Payment;
++import de.hsharz.provirent.objects.PaymentCategory;
++import de.hsharz.provirent.objects.Status;
++import de.hsharz.provirent.objects.Subtitle;
++import de.hsharz.provirent.objects.VideoFormat;
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class Database {
++	/**
++	 * Logger for this class
++	 */
++	private static final Logger logger = Logger.getLogger(Database.class);
++	
++	public static void initDB() {
++		try {
++			HibernateUtil.currentSession();
++		} catch (HibernateException e) {
++			e.printStackTrace();
++		} finally {
++			try {
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				e1.printStackTrace();
++			}
++		}
++
++	}
++
++	/**
++	 * This method gets all Directors from the database.
++	 * searches for firstname or lastname or id
++	 * @param filter 
++	 * @return List of Director objects, or an empty List
++	 */
++	public static List getDirectors(final String filter) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getDirectors() - start. String filter= &quot; + filter);
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++			tx = s.beginTransaction();
++
++			try {
++
++				//init the criteria
++				Criteria criteria = s.createCriteria(Director.class);
++				//any of the criteria 
++				Disjunction any = Expression.disjunction();
++
++				//if filter not empty
++				if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++					any.add(Expression.like(&quot;lastName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++					any.add(Expression.like(&quot;firstName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++					//maybe we are searching for the id?
++					try {
++						any.add(Expression.eq(&quot;directorId&quot;, new Integer(Integer
++								.parseInt(filter))));
++					} catch (Exception e) {
++					}
++
++				}
++				//add all criteria
++				criteria.add(any);
++				//get the results
++				returnlist = criteria.list();
++
++			} catch (Exception e) {
++				if (tx != null) {
++					logger
++							.error(
++									&quot;getDirectors() - Something went wrong here; discard all partial changes&quot;,
++									e);
++
++					// Something went wrong; discard all partial changes
++					tx.rollback();
++				}
++
++			}
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getDirectors() - Error while trying to do Transaction&quot;, e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger
++						.error(&quot;getDirectors() - Could not Close the Session&quot;,
++								e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getDirectors() - end&quot;);
++		}
++		return returnlist;
++
++	}
++
++	public static Object saveObject(Object o) throws DataBaseException {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;saveObject(Object o = &quot; + o + &quot;) - start&quot;);
++		}
++		int exception = 0;
++
++		Session s = null;
++		Transaction tx = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++			tx = s.beginTransaction();
++			try {
++
++				//s.saveOrUpdate(o);
++				s.save(o);
++			} catch (HibernateException e) {
++				logger.error(&quot;saveObject(). Fehler beim Speichern/Updaten &quot;
++						+ &quot;des Objectes:&quot; + o + &quot; Exception: &quot; + e);
++				exception = 1;
++			}
++			tx.commit();
++			s.flush();
++
++		} catch (HibernateException e) {
++			//exception = 2;
++			logger
++					.error(
++							&quot;saveObject() - Something went wrong here; discard all partial changes&quot;,
++							e);
++
++			if (tx != null) {
++				try {
++					// Something went wrong; discard all partial changes
++					tx.rollback();
++				} catch (HibernateException e1) {
++					e1.printStackTrace();
++				}
++			}
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++
++				logger.error(&quot;saveObject() - Could not Close the Session&quot;, e1);
++
++			}
++		}
++
++		if (exception &gt; 0) {
++			throw new DataBaseException(&quot;exception&quot;);
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;saveObject(VideoFormat) - end&quot;);
++		}
++		return o;
++	}
++
++	public static Object updateObject(Object o) throws DataBaseException {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;updateObject(Object o = &quot; + o + &quot;) - start&quot;);
++		}
++		int exception = 0;
++
++		Session s = null;
++		Transaction tx = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++			tx = s.beginTransaction();
++			try {
++				logger.debug(&quot;Object &quot; + o.getClass().getName() + &quot; String:&quot;
++						+ o);
++				s.update(o);
++			} catch (HibernateException e) {
++				logger.error(&quot;updateObject(). Fehler beim Updaten &quot;
++						+ &quot;des Objectes:&quot; + o + &quot; Exception: &quot; + e);
++				exception = 1;
++			}
++			tx.commit();
++			s.flush();
++
++		} catch (HibernateException e) {
++			//exception = 2;
++			logger
++					.error(
++							&quot;updateObject() - Something went wrong here; discard all partial changes&quot;,
++							e);
++
++			if (tx != null) {
++				try {
++					// Something went wrong; discard all partial changes
++					tx.rollback();
++				} catch (HibernateException e1) {
++					e1.printStackTrace();
++				}
++			}
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++
++				logger
++						.error(&quot;updateObject() - Could not Close the Session&quot;,
++								e1);
++
++			}
++		}
++
++		if (exception &gt; 0) {
++			throw new DataBaseException(&quot;exception&quot;);
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;updateObject(VideoFormat) - end&quot;);
++		}
++		return o;
++	}
++
++	public static void deleteObject(Object o) throws DataBaseException {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;deleteObject(Object o = &quot; + o + &quot;) - start&quot;);
++		}
++		int exception = 0;
++
++		Session s = null;
++		Transaction tx = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++			tx = s.beginTransaction();
++
++			try {
++
++				s.delete(o);
++
++			} catch (HibernateException e) {
++				logger.error(&quot;deleteObject(). Fehler beim L&#246;schen &quot;
++						+ &quot;des Objectes:&quot; + o + &quot; Exception: &quot; + e);
++				exception = 1;
++			}
++
++			//s.flush();
++
++			tx.commit();
++
++			o = null;
++
++		} catch (HibernateException e) {
++			exception = 2;
++			logger.error(&quot;Message &quot; + e.getMessages().toString());
++			logger
++					.error(
++							&quot;deleteObject(Object) - Something went wrong here; discard all partial changes&quot;,
++							e);
++			if (tx != null) {
++				try {
++					// Something went wrong; discard all partial changes
++					tx.rollback();
++				} catch (HibernateException e1) {
++					e1.printStackTrace();
++				}
++			}
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++
++				logger.error(
++						&quot;deleteObject(Object) - Could not Close the Session&quot;,
++						e1);
++
++			}
++		}
++
++		if (exception &gt; 0) {
++			throw new DataBaseException(&quot;exception&quot;);
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;deleteObject(Object) - end&quot;);
++		}
++	}
++
++	/**
++	 * This method gets all VideoFormats from the database.
++	 * searches for firstname or lastname or id
++	 * @param filter 
++	 * @return List of Director objects, or an empty List
++	 */
++	public static List getVideoFormat(final String filter) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getVideoFormat() - start. String filter= &quot; + filter);
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(VideoFormat.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;name&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;shortname&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;videoFormatId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getVideoFormat() - Error while trying to do Transaction&quot;,
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getVideoFormat() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getVideoFormat() - end&quot;);
++		}
++		return returnlist;
++
++	}
++
++	public static List getVideoformatExcept(final String filter, List videoformat) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getVideoformatExcept() - start. String filter= &quot; + filter);
++		}
++
++		//check if elements in list are Genre Objects
++		if (videoformat.size() &gt; 0) {
++			if (!(videoformat.get(0) instanceof VideoFormat)) {
++				logger.error(&quot;Elemente in Liste sind keine Videoformate&quot;);
++				return new ArrayList();
++			}
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(VideoFormat.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;name&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;shortname&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;videoFormatId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			logger.debug(&quot;Anzahl der Videoformate:&quot; + videoformat.size());
++			for (int i = 0; i &lt; videoformat.size(); i++) {
++			    VideoFormat tmp = (VideoFormat) videoformat.get(i);
++				criteria.add(Expression.not(Expression.eq(&quot;videoFormatId&quot;, tmp
++						.getVideoFormatId())));
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getVideoformatExcept() - Error while trying to do Transaction&quot;,
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getVideoformatExcept() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getVideoformatExcept() - end&quot;);
++		}
++		return returnlist;
++
++	}
++	
++	public static VideoFormat getSingleVideoFormat(final int id) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleVideoFormat() - start. int filter= &quot; + id);
++		}
++		//init the returnlist
++		VideoFormat returnobject = null;
++
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			returnobject = (VideoFormat) s.get(VideoFormat.class, new Integer(
++					id));
++
++		} catch (Exception e) {
++			logger
++					.error(
++							&quot;getSingleVideoFormat() - Error while trying to do Transaction&quot;,
++							e);
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(
++						&quot;getSingleVideoFormat() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleVideoFormat() - end&quot;);
++		}
++		return returnobject;
++
++	}
++
++	/**
++	 * This method gets all AudioFormats from the database.
++	 * searches for firstname or lastname or id
++	 * @param filter 
++	 * @return List of Director objects, or an empty List
++	 */
++	public static List getAudioFormat(final String filter) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getAudioFormat() - start. String filter= &quot; + filter);
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(AudioFormat.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;name&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;shortname&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;audioFormatId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getAudioFormat() - Error while trying to do Transaction&quot;,
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getAudioFormat() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getAudioFormat() - end&quot;);
++		}
++		return returnlist;
++
++	}
++
++	public static List getAudioformatExcept(final String filter, List audioformat) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getAudioformatExcept() - start. String filter= &quot; + filter);
++		}
++
++		//check if elements in list are Genre Objects
++		if (audioformat.size() &gt; 0) {
++			if (!(audioformat.get(0) instanceof AudioFormat)) {
++				logger.error(&quot;Elemente in Liste sind keine Audioformate&quot;);
++				return new ArrayList();
++			}
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(AudioFormat.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;name&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;shortname&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;audioFormatId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			logger.debug(&quot;Anzahl der Audioformate:&quot; + audioformat.size());
++			for (int i = 0; i &lt; audioformat.size(); i++) {
++			    AudioFormat tmp = (AudioFormat) audioformat.get(i);
++				criteria.add(Expression.not(Expression.eq(&quot;audioFormatId&quot;, tmp
++						.getAudioFormatId())));
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getAudioformatExcept() - Error while trying to do Transaction&quot;,
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getAudioformatExcept() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getAudioformatExcept() - end&quot;);
++		}
++		return returnlist;
++
++	}
++	
++	/**
++	 * This method gets all Genres from the database.
++	 * searches for firstname or lastname or id
++	 * @param filter 
++	 * @return List of Director objects, or an empty List
++	 */
++	public static List getGenre(final String filter) {
++		return getGenreExcept(filter, new ArrayList());
++	}
++
++	public static List getGenreExcept(final String filter, List genre) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getGenreExcept() - start. String filter= &quot; + filter);
++		}
++
++		//check if elements in list are Genre Objects
++		if (genre.size() &gt; 0) {
++			if (!(genre.get(0) instanceof Genre)) {
++				logger.error(&quot;Elemente in Liste sind keine Genre&quot;);
++				return new ArrayList();
++			}
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Genre.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;name&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;shortname&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;genreId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			logger.debug(&quot;Anzahl der Genre:&quot; + genre.size());
++			for (int i = 0; i &lt; genre.size(); i++) {
++				Genre tmp = (Genre) genre.get(i);
++				criteria.add(Expression.not(Expression.eq(&quot;genreId&quot;, tmp
++						.getGenreId())));
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getGenreExcept() - Error while trying to do Transaction&quot;,
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getGenreExcept() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getGenreExcept() - end&quot;);
++		}
++		return returnlist;
++
++	}
++
++	public static Genre getSingleGenre(final int id) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleGenre() - start. int filter= &quot; + id);
++		}
++		//init the returnlist
++		Genre returnobject = null;
++
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			returnobject = (Genre) s.get(Genre.class, new Integer(id));
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getSingleGenre() - Error while trying to do Transaction&quot;,
++					e);
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getSingleGenre() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleGenre() - end&quot;);
++		}
++		return returnobject;
++
++	}
++
++	/**
++	 * This method gets all Languages from the database.
++	 * searches for firstname or lastname or id
++	 * @param filter 
++	 * @return List of Director objects, or an empty List
++	 */
++	public static List getLanguage(final String filter) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getLanguage() - start. String filter= &quot; + filter);
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Language.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;name&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;shortname&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;languageId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getLanguage() - Error while trying to do Transaction&quot;, e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getLanguage() - Could not Close the Session&quot;, e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getLanguage() - end&quot;);
++		}
++		return returnlist;
++
++	}
++
++	public static List getLanguageExcept(final String filter, List language) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getAudioformatExcept() - start. String filter= &quot; + filter);
++		}
++
++		//check if elements in list are Genre Objects
++		if (language.size() &gt; 0) {
++			if (!(language.get(0) instanceof Language)) {
++				logger.error(&quot;Elemente in Liste sind keine Sprachen&quot;);
++				return new ArrayList();
++			}
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Language.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;name&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;shortname&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;languageId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			logger.debug(&quot;Anzahl der Sprachen:&quot; + language.size());
++			for (int i = 0; i &lt; language.size(); i++) {
++			    Language tmp = (Language) language.get(i);
++				criteria.add(Expression.not(Expression.eq(&quot;languageId&quot;, tmp
++						.getLanguageId())));
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getLanguageExcept() - Error while trying to do Transaction&quot;,
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getLanguageExcept() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getLanguageExcept() - end&quot;);
++		}
++		return returnlist;
++
++	}
++	
++	public static Language getSingleLanguage(final int id) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleLanguage() - start. int filter= &quot; + id);
++		}
++		//init the returnlist
++		Language returnobject = null;
++
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			returnobject = (Language) s.get(Language.class, new Integer(id));
++
++		} catch (Exception e) {
++			logger
++					.error(
++							&quot;getSingleLanguage() - Error while trying to do Transaction&quot;,
++							e);
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger
++						.error(
++								&quot;getSingleLanguage() - Could not Close the Session&quot;,
++								e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleLanguage() - end&quot;);
++		}
++		return returnobject;
++
++	}
++
++	/**
++	 * This method gets all Images from the database.
++	 * searches for firstname or lastname or id
++	 * @param filter 
++	 * @return List of Image objects, or an empty List
++	 */
++	public static List getImages(final String filter) {
++		return getImagesExcept(filter, new ArrayList());
++	}
++
++	public static List getImagesExcept(final String filter, List images) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getImagesExcept() - start. String filter= &quot; + filter);
++		}
++		//check if elements in list are Director Objects
++		if (images.size() &gt; 0) {
++			if (!(images.get(0) instanceof Image)) {
++				logger.error(&quot;Elemente in Liste sind keine Image&quot;);
++				return new ArrayList();
++			}
++		}
++
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Image.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;imageFileName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;imageFileDescription&quot;, &quot;%&quot; + filter
++						+ &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;imageId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++			}
++
++			for (int i = 0; i &lt; images.size(); i++) {
++				Image tmp = (Image) images.get(i);
++				criteria.add(Expression.not(Expression.eq(&quot;imageId&quot;, tmp
++						.getImageId())));
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getImagesExcept() - Error while trying to do Transaction&quot;,
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getImagesExcept() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getImagesExcept() - end&quot;);
++		}
++		return returnlist;
++
++	}
++
++	public static Object getSingleObject(final Class gclass, final int id) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleObject() - start. int filter= &quot; + id);
++		}
++		//init the returnlist
++		Object returnobject = null;
++
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			returnobject = (Object) s.get(gclass, new Integer(id));
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getSingleObject() - Error while trying to do Transaction&quot;,
++					e);
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getSingleObject() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleObject() - end&quot;);
++		}
++		return returnobject;
++
++	}
++
++	/**
++	 * This method gets all Subtitles from the database.
++	 * searches for name or shortname or id
++	 * @param filter 
++	 * @return List of Subtitle objects, or an empty List
++	 */
++	public static List getSubtitle(final String filter) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSubtitle() - start. String filter= &quot; + filter);
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Subtitle.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;name&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;shortname&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;subtitleId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getSubtitle() - Error while trying to do Transaction&quot;, e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getSubtitle() - Could not Close the Session&quot;, e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSubtitle() - end&quot;);
++		}
++		return returnlist;
++
++	}
++
++	public static List getSubtitleExcept(final String filter, List subtitle) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSubtitleExcept() - start. String filter= &quot; + filter);
++		}
++
++		//check if elements in list are Genre Objects
++		if (subtitle.size() &gt; 0) {
++			if (!(subtitle.get(0) instanceof Subtitle)) {
++				logger.error(&quot;Elemente in Liste sind keine Untertitel&quot;);
++				return new ArrayList();
++			}
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Subtitle.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;name&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;shortname&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;subtitleId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			logger.debug(&quot;Anzahl der Untertitel:&quot; + subtitle.size());
++			for (int i = 0; i &lt; subtitle.size(); i++) {
++			    Subtitle tmp = (Subtitle) subtitle.get(i);
++				criteria.add(Expression.not(Expression.eq(&quot;subtitleId&quot;, tmp
++						.getSubtitleId())));
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getSubtitleExcept() - Error while trying to do Transaction&quot;,
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getSubtitleExcept() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSubtitleExcept() - end&quot;);
++		}
++		return returnlist;
++
++	}
++	
++	public static Subtitle getSingleSubtitle(final int id) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleSubtitle() - start. int filter= &quot; + id);
++		}
++		//init the returnlist
++		Subtitle returnobject = null;
++
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			returnobject = (Subtitle) s.get(Subtitle.class, new Integer(id));
++
++		} catch (Exception e) {
++			logger
++					.error(
++							&quot;getSingleSubtitle() - Error while trying to do Transaction&quot;,
++							e);
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger
++						.error(
++								&quot;getSingleSubtitle() - Could not Close the Session&quot;,
++								e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleSubtitle() - end&quot;);
++		}
++		return returnobject;
++
++	}
++
++	/**
++	 * This method gets all Status from the database.
++	 * searches for name or shortname or id
++	 * @param filter 
++	 * @return List of Status objects, or an empty List
++	 */
++	public static List getStatus(final String filter) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getStatus() - start. String filter= &quot; + filter);
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Status.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;statusName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;statusShortname&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;statusId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(&quot;getStatus() - Error while trying to do Transaction&quot;,
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getStatus() - Could not Close the Session&quot;, e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getStatus() - end&quot;);
++		}
++		return returnlist;
++
++	}
++
++	public static Status getSingleStatus(final int id) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleStatus() - start. int filter= &quot; + id);
++		}
++		//init the returnlist
++		Status returnobject = null;
++
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			returnobject = (Status) s.get(Status.class, new Integer(id));
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getSingleStatus() - Error while trying to do Transaction&quot;,
++					e);
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getSingleStatus() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleStatus() - end&quot;);
++		}
++		return returnobject;
++
++	}
++
++	/**
++	 * This method gets all Conditions from the database.
++	 * searches for name or shortname or id
++	 * @param filter 
++	 * @return List of Condition objects, or an empty List
++	 */
++	public static List getCondition(final String filter) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getCondition() - start. String filter= &quot; + filter);
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Condition.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;conditionName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;conditionshortname&quot;, &quot;%&quot; + filter
++						+ &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;conditionId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getCondition() - Error while trying to do Transaction&quot;, e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger
++						.error(&quot;getCondition() - Could not Close the Session&quot;,
++								e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getCondition() - end&quot;);
++		}
++		return returnlist;
++
++	}
++
++	public static Condition getSingleCondition(final int id) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleCondition() - start. int filter= &quot; + id);
++		}
++		//init the returnlist
++		Condition returnobject = null;
++
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			returnobject = (Condition) s.get(Condition.class, new Integer(id));
++
++		} catch (Exception e) {
++			logger
++					.error(
++							&quot;getSingleCondition() - Error while trying to do Transaction&quot;,
++							e);
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(
++						&quot;getSingleCondition() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleCondition() - end&quot;);
++		}
++		return returnobject;
++
++	}
++
++	/**
++	 * This method gets all Directors from the database.
++	 * searches for firstname or lastname or id
++	 * @param filter 
++	 * @return List of Director objects, or an empty List
++	 */
++	public static List getDirector(final String filter) {
++		return getDirectorExcept(filter, new ArrayList());
++
++	}
++
++	public static List getDirectorExcept(final String filter, List directors) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getDirectorExcept() - start. String filter= &quot;
++					+ filter);
++		}
++
++		//check if elements in list are Director Objects
++		if (directors.size() &gt; 0) {
++			if (!(directors.get(0) instanceof Director)) {
++				logger.error(&quot;Elemente in Liste sind keine Director&quot;);
++				return new ArrayList();
++			}
++		}
++
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Director.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;firstName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;lastName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;directorId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++
++			logger.debug(&quot;Anzahl der Directors:&quot; + directors.size());
++			for (int i = 0; i &lt; directors.size(); i++) {
++				Director tmp = (Director) directors.get(i);
++				criteria.add(Expression.not(Expression.eq(&quot;directorId&quot;, tmp
++						.getDirectorId())));
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger
++					.error(
++							&quot;getDirectorExcept() - Error while trying to do Transaction&quot;,
++							e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger
++						.error(
++								&quot;getDirectorExcept() - Could not Close the Session&quot;,
++								e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getDirectorExcept() - end&quot;);
++		}
++		return returnlist;
++
++	}
++
++	public static Director getSingleDirector(final int id) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleDirector() - start. int filter= &quot; + id);
++		}
++		//init the returnlist
++		Director returnobject = null;
++
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			returnobject = (Director) s.get(Director.class, new Integer(id));
++
++		} catch (Exception e) {
++			logger
++					.error(
++							&quot;getSingleDirector() - Error while trying to do Transaction&quot;,
++							e);
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger
++						.error(
++								&quot;getSingleDirector() - Could not Close the Session&quot;,
++								e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleDirector() - end&quot;);
++		}
++		return returnobject;
++
++	}
++
++	/**
++	 * This method gets all Actor from the database.
++	 * searches for firstname or lastname or id
++	 * @param filter 
++	 * @return List of Actors objects, or an empty List
++	 */
++	public static List getActor(final String filter) {
++		return getActorExcept(filter, new ArrayList());
++	}
++
++	/**
++	 * This method gets all Actor from the database.
++	 * searches for firstname or lastname or id
++	 * @param filter 
++	 * @return List of Actors objects, or an empty List
++	 */
++	public static List getActorExcept(final String filter, List actors) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getActor() - start. String filter= &quot; + filter);
++		}
++		//check if elements in list are Actor Objects
++		if (actors.size() &gt; 0) {
++			if (!(actors.get(0) instanceof Actor)) {
++				logger.error(&quot;Elemente in Liste sind keine Actors&quot;);
++				return new ArrayList();
++			}
++		}
++
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Actor.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;firstName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;lastName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;actorId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			logger.debug(&quot;Anzahl der Actors:&quot; + actors.size());
++			for (int i = 0; i &lt; actors.size(); i++) {
++				Actor tmp = (Actor) actors.get(i);
++				logger.debug(&quot;Actor: &quot; + tmp.getActorId());
++				criteria.add(Expression.not(Expression.eq(&quot;actorId&quot;, tmp
++						.getActorId())));
++			}
++
++			//add all filter criteria
++			criteria.add(any);
++
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger
++					.error(&quot;getActor() - Error while trying to do Transaction&quot;,
++							e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getActor() - Could not Close the Session&quot;, e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getActor() - end&quot;);
++		}
++		return returnlist;
++
++	}
++
++	public static Actor getSingleActor(final int id) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleActor() - start. int filter= &quot; + id);
++		}
++		//init the returnlist
++		Actor returnobject = null;
++
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			returnobject = (Actor) s.get(Actor.class, new Integer(id));
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getSingleActor() - Error while trying to do Transaction&quot;,
++					e);
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getSingleActor() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleActor() - end&quot;);
++		}
++		return returnobject;
++
++	}
++
++	/**
++	 * Constructor for TestActor.
++	 * @param arg0
++	 */
++	public Database(String arg0) {
++
++	}
++
++	public static AudioFormat getSingleAudioFormat(final int id) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleAudioFormat() - start. int filter= &quot; + id);
++		}
++		//init the returnlist
++		AudioFormat returnobject = null;
++
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			returnobject = (AudioFormat) s.get(AudioFormat.class, new Integer(
++					id));
++
++		} catch (Exception e) {
++			logger
++					.error(
++							&quot;getSingleAudioFormat() - Error while trying to do Transaction&quot;,
++							e);
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(
++						&quot;getSingleAudioFormat() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleAudioFormat() - end&quot;);
++		}
++		return returnobject;
++
++	}
++
++	/**
++	 * This method gets all Payments from the database.
++	 * searches for name,duration1, duration2, duration3, startdate or id
++	 * @param filter 
++	 * @return List of Payment objects, or an empty List
++	 */
++	public static List getPayment(final String filter) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getPayment() - start. String filter= &quot; + filter);
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Payment.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;name&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;duration1&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;duration2&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;duration3&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;startdate&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;paymentId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++			int i = 0;
++
++		} catch (Exception e) {
++			logger.error(&quot;getPayment() - Error while trying to do Transaction&quot;,
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getPayment() - Could not Close the Session&quot;, e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getPayment() - end&quot;);
++		}
++		return returnlist;
++
++	}
++
++	public static Payment getSinglePayment(final int id) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSinglePayment() - start. int filter= &quot; + id);
++		}
++		//init the returnlist
++		Payment returnobject = null;
++
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			returnobject = (Payment) s.get(Payment.class, new Integer(id));
++
++		} catch (Exception e) {
++			logger
++					.error(
++							&quot;getSinglePayment() - Error while trying to do Transaction&quot;,
++							e);
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(
++						&quot;getSinglePayment() - Could not Close the Session&quot;, e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSinglePayment() - end&quot;);
++		}
++		return returnobject;
++
++	}
++
++	/**
++	 * This method gets all Customers from the database
++	 * @param filter 
++	 * @return List of Customer objects, or an empty List
++	 */
++	public static List getCustomer(final String filter) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getCustomer() - start. String filter= &quot; + filter);
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Customer.class).createAlias(
++					&quot;person&quot;, &quot;p&quot;);
++			//Criteria personCriteria = criteria.createCriteria(&quot;person&quot;);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//Disjunction anyPerson = Expression.disjunction();
++
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;userName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				any.add(Expression.like(&quot;p.lastName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;p.firstName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				// TODO Criteria for Birthday and Registration Date
++				//any.add(Expression.like(&quot;p.dayOfBirth&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++
++				try {
++					Calendar cal = Calendar.getInstance();
++					cal.setTime(DateFormat.getDateInstance(DateFormat.SHORT)
++							.parse(filter));
++					any.add(Expression.like(&quot;p.dayOfBirth&quot;, cal));
++				} catch (ParseException pex) {
++					logger.debug(&quot;Fehler beim Parsen des Datums&quot;, pex);
++				}
++				//any.add(Expression.like(&quot;dayOfRegistration&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;customerId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++
++			//add all criteria
++
++			criteria.add(any);
++			// personCriteria.add(anyPerson);
++
++			//get the results
++			returnlist = criteria.list();
++
++			/*
++			 returnlist = s.createCriteria(Customer.class)
++			 .createAlias(&quot;person&quot;, &quot;p&quot;)
++			 .add( Expression.like(&quot;p.lastName&quot;,&quot;%&quot;+filter+&quot;%&quot;) )
++			 .list();
++			 */
++			logger.debug(&quot;Anzahl der Elemente in R&#252;ckgabeliste: &quot;
++					+ returnlist.size());
++			int i = 0;
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getCustomer() - Error while trying to do Transaction&quot;, e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getCustomer() - Could not Close the Session&quot;, e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getCustomer() - end&quot;);
++		}
++		return returnlist;
++
++	}
++
++	public static Customer getSingleCustomer(final int id) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleCustomer() - start. int filter= &quot; + id);
++		}
++		//init the returnlist
++		Customer returnobject = null;
++
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			returnobject = (Customer) s.get(Customer.class, new Integer(id));
++
++		} catch (Exception e) {
++			logger
++					.error(
++							&quot;getSingleCustomer() - Error while trying to do Transaction&quot;,
++							e);
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger
++						.error(
++								&quot;getSingleCustomer() - Could not Close the Session&quot;,
++								e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleCustomer() - end&quot;);
++		}
++		return returnobject;
++
++	}
++
++	/**
++	 * This method gets all Customers from the database
++	 * @param filter 
++	 * @return List of Customer objects, or an empty List
++	 */
++	public static List getOrder(final String filter) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getOrder() - start. String filter= &quot; + filter);
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(MovieOrder.class).createAlias(
++					&quot;customer&quot;, &quot;c&quot;).createAlias(&quot;c.person&quot;, &quot;p&quot;);
++			//Criteria personCriteria = criteria.createCriteria(&quot;person&quot;);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;c.userName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;p.lastName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;p.firstName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;movieOrderId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++
++			//add all criteria
++			criteria.addOrder(Order.asc(&quot;movieOrderId&quot;));
++			criteria.add(any);
++
++			//get the results
++			returnlist = criteria.list();
++
++			logger.debug(&quot;Anzahl der Elemente in R&#252;ckgabeliste: &quot;
++					+ returnlist.size());
++			int i = 0;
++
++		} catch (Exception e) {
++			logger
++					.error(&quot;getOrder() - Error while trying to do Transaction&quot;,
++							e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getOrder() - Could not Close the Session&quot;, e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getOrder() - end&quot;);
++		}
++		return returnlist;
++	}
++
++	public static MovieOrder getSingleOrder(final int id) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleOrder() - start. int filter= &quot; + id);
++		}
++		//init the returnlist
++		MovieOrder returnobject = null;
++
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			returnobject = (MovieOrder) s
++					.get(MovieOrder.class, new Integer(id));
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getSingleOrder() - Error while trying to do Transaction&quot;,
++					e);
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getSingleOrder() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleOrder() - end&quot;);
++		}
++		return returnobject;
++
++	}
++
++	/**
++	 * This method gets all Movies from the database.
++	 * searches for ID,Title,Date,Description,Actor,Director...
++	 * @param filter 
++	 * @return List of Movie objects, or an empty List
++	 */
++	public static List getMovie(final String filter) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getMovie() - start. String filter= &quot; + filter);
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Movie.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				criteria.createAlias(&quot;actors&quot;, &quot;a&quot;);
++				criteria.createAlias(&quot;director&quot;, &quot;d&quot;);
++				any.add(Expression.like(&quot;title&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				//any.add(Expression.like(&quot;releaseDate&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++				any.add(Expression.like(&quot;description&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				//any.add(Expression.like(&quot;runtime&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++
++				any.add(Expression.like(&quot;a.lastName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;a.firstName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;d.lastName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				any.add(Expression.like(&quot;d.firstName&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				//any.add(Expression.like(&quot;director&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++				//any.add(Expression.like(&quot;genres&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++				//any.add(Expression.like(&quot;images&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;movieId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger
++					.error(&quot;getMovie() - Error while trying to do Transaction&quot;,
++							e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getMovie() - Could not Close the Session&quot;, e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getMovie() - end&quot;);
++		}
++		return returnlist;
++
++	}
++
++	public static Movie getSingleMovie(final int id) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleMovie() - start. int filter= &quot; + id);
++		}
++		//init the returnlist
++		Movie returnobject = null;
++
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			returnobject = (Movie) s.get(Movie.class, new Integer(id));
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getSingleMovie() - Error while trying to do Transaction&quot;,
++					e);
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getSingleMovie() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleMovie() - end&quot;);
++		}
++		return returnobject;
++
++	}
++	
++	/**
++	 * This method gets all PaymentCategory from the database.
++	 * searches for ID
++	 * @param filter 
++	 * @return List of PaymentCategory objects, or an empty List
++	 */
++	public static List getPaymentCategory() {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getPaymentCategory() - start. &quot;);
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			returnlist = s.createCriteria(PaymentCategory.class).list();
++
++		} catch (Exception e) {
++			logger
++					.error(&quot;getPaymentCategory() - Error while trying to do Transaction&quot;,
++							e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getPaymentCategory() - Could not Close the Session&quot;, e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getPaymentCategory() - end&quot;);
++		}
++		return returnlist;
++
++	}
++	
++	/**
++	 * This method gets all DVDs from the database.
++	 * searches for ID,Title,...
++	 * @param filter 
++	 * @return List of Dvd objects, or an empty List
++	 */
++	public static List getDVD(final String filter) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getDVD() - start. String filter= &quot; + filter);
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Dvd.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;barcode&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;dvdId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger
++					.error(&quot;getDVD() - Error while trying to do Transaction&quot;,
++							e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getDVD() - Could not Close the Session&quot;, e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getDVD() - end&quot;);
++		}
++		return returnlist;
++
++	}
++
++	public static Dvd getSingleDVD(final int id) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleDVD) - start. int filter= &quot; + id);
++		}
++		//init the returnlist
++		Dvd returnobject = null;
++
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			returnobject = (Dvd) s.get(Dvd.class, new Integer(id));
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getSingleDVD() - Error while trying to do Transaction&quot;,
++					e);
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getSingleDVD() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleDVD() - end&quot;);
++		}
++		return returnobject;
++
++	}
++
++	public static List getUsersByLogin(String aktUsername, String aktPassword) throws DataBaseException {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getUsersByLogin() - start&quot;);
++		}
++		
++		int ex = 0;
++		
++		//init the returnlist
++		List returnlist = new ArrayList();
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++			tx = s.beginTransaction();
++			try {
++				returnlist = s.createCriteria(Customer.class).add(Expression.and(Expression.eq(&quot;userName&quot;, aktUsername), Expression.eq(&quot;userPassword&quot;,aktPassword))).list();
++				s.flush();s.clear();s.getSessionFactory().evictQueries();
++			} catch (Exception e) {
++				if (tx != null) {
++					logger.error(&quot;getUsersByLogin() - Fehler beim Selektieren, Transaktion wird r&#252;ckg&#228;ngig gemacht&quot;, e);
++					tx.rollback();
++					ex++;
++				}
++			}
++		} catch (Exception e) {
++			logger.error(&quot;getUsersByLogin() - Fehler w&#228;hrend der Transaktion&quot;, e);
++			returnlist = new ArrayList();
++			ex++;
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getUsersByLogin() - Session konnte nicht geschlossen werden&quot;, e1);
++				ex++;
++			}
++		}
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getUsersByLogin() - end&quot;);
++		}
++
++		if (ex &gt; 0) {
++			throw new DataBaseException(&quot;Fehler beim Laden der Benutzer&quot;);
++		}
++		
++		return returnlist;
++	}
++}
++
+
+Added: project_src/customer/WEB-INF/src/de/hsharz/provirent/persistence/HibernateUtil.java
+===================================================================
+--- project_src/customer/WEB-INF/src/de/hsharz/provirent/persistence/HibernateUtil.java	2005-12-19 18:29:17 UTC (rev 317)
++++ project_src/customer/WEB-INF/src/de/hsharz/provirent/persistence/HibernateUtil.java	2005-12-19 18:53:58 UTC (rev 318)
+@@ -0,0 +1,134 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.persistence;
++
++import org.apache.log4j.Logger;
++
++import net.sf.hibernate.HibernateException;
++import net.sf.hibernate.Session;
++import net.sf.hibernate.SessionFactory;
++import net.sf.hibernate.cfg.Configuration;
++
++import de.hsharz.provirent.objects.Actor;
++import de.hsharz.provirent.objects.AudioFormat;
++import de.hsharz.provirent.objects.Bill;
++import de.hsharz.provirent.objects.Condition;
++import de.hsharz.provirent.objects.Customer;
++import de.hsharz.provirent.objects.Director;
++import de.hsharz.provirent.objects.Dvd;
++import de.hsharz.provirent.objects.Genre;
++import de.hsharz.provirent.objects.Image;
++import de.hsharz.provirent.objects.Language;
++import de.hsharz.provirent.objects.Movie;
++import de.hsharz.provirent.objects.MovieOrder;
++import de.hsharz.provirent.objects.OrderItem;
++import de.hsharz.provirent.objects.Payment;
++import de.hsharz.provirent.objects.PaymentCategory;
++import de.hsharz.provirent.objects.Person;
++import de.hsharz.provirent.objects.Status;
++import de.hsharz.provirent.objects.Subtitle;
++import de.hsharz.provirent.objects.VideoFormat;
++
++/**
++ * @author Philipp Schneider
++ *  
++ */
++public class HibernateUtil {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(HibernateUtil.class);
++
++    private static final SessionFactory sessionFactory;
++    static {
++        try {
++            //     Create the SessionFactory
++            Configuration cfg = new Configuration();
++            cfg
++            .addClass(Movie.class).addClass(Actor.class)
++            .addClass(AudioFormat.class).addClass(Condition.class)
++            .addClass(Director.class).addClass(Dvd.class)
++            .addClass(Genre.class).addClass(Language.class)
++            .addClass(Status.class).addClass(Bill.class)
++            .addClass(Subtitle.class).addClass(VideoFormat.class)
++            .addClass(Customer.class).addClass(Image.class)
++            .addClass(MovieOrder.class).addClass(OrderItem.class)
++            .addClass(Person.class).addClass(Payment.class).addClass(PaymentCategory.class);
++
++
++            sessionFactory = cfg.buildSessionFactory();
++        } catch (Throwable ex) {
++            logger.error(&quot;Initial SessionFactory creation failed.&quot;, ex);
++            throw new ExceptionInInitializerError(ex);
++        }
++    }
++
++    public static final ThreadLocal session = new ThreadLocal();
++
++    public static Session currentSession() throws HibernateException {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;currentSession() - start&quot;);
++        }
++
++        Session s = (Session) session.get();
++        //     Open a new Session, if this Thread has none yet
++        if (s == null) {
++            s = sessionFactory.openSession();
++            session.set(s);
++        }
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;currentSession() - end&quot;);
++        }
++        return s;
++    }
++
++    public static void closeSession() throws HibernateException {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;closeSession() - start&quot;);
++        }
++
++        Session s = (Session) session.get();
++        session.set(null);
++        if (s != null)
++            s.close();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;closeSession() - end&quot;);
++        }
++    }
++
++    
++    
++    
++}
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000319.html">[Provirent-svn-commit] r317 - docu/latex project_src/customer project_src/customer/WEB-INF project_src/customer/WEB-INF/lib project_src/customer/WEB-INF/src project_src/customer/WEB-INF/src/de/hsharz/provirent/customer/action project_src/customer/jsp
+</A></li>
+	<LI>Next message: <A HREF="000321.html">[Provirent-svn-commit] r319 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#320">[ date ]</a>
+              <a href="thread.html#320">[ thread ]</a>
+              <a href="subject.html#320">[ subject ]</a>
+              <a href="author.html#320">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

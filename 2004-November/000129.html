@@ -1,0 +1,2541 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r128 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r128%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/management/gui/language%20de/hsharz/provirent/objects%20de/hsharz/provirent/persistence%20test/provirent/hibernate&In-Reply-To=%3C200411111458.iABEwUhk006743%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000128.html">
+   <LINK REL="Next"  HREF="000130.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r128 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r128%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/management/gui/language%20de/hsharz/provirent/objects%20de/hsharz/provirent/persistence%20test/provirent/hibernate&In-Reply-To=%3C200411111458.iABEwUhk006743%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r128 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Thu Nov 11 15:58:30 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000128.html">[Provirent-svn-commit] r127 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+        <LI>Next message: <A HREF="000130.html">[Provirent-svn-commit] r129 - html
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#129">[ date ]</a>
+              <a href="thread.html#129">[ thread ]</a>
+              <a href="subject.html#129">[ subject ]</a>
+              <a href="author.html#129">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-11-11 15:58:27 +0100 (Thu, 11 Nov 2004)
+New Revision: 128
+
+Added:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeStatus.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/status.properties
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeGenre.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeLanguage.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/language.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Condition.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Status.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomerOld.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvdOld.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestHibernate.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java
+Log:
+-Status und Condition erledigt
+-Testfiles etwas umge?\195?\164ndert
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeGenre.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeGenre.java	2004-11-11 11:43:54 UTC (rev 127)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeGenre.java	2004-11-11 14:58:27 UTC (rev 128)
+@@ -201,6 +201,7 @@
+             sashForm1.setLayoutData(sashForm1LData1);
+ 
+             initGenreGroup();
++            refreshGenreTable(textGenreSearch.getText());
+ 
+         }
+         this.layout();
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeLanguage.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeLanguage.java	2004-11-11 11:43:54 UTC (rev 127)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeLanguage.java	2004-11-11 14:58:27 UTC (rev 128)
+@@ -35,8 +35,6 @@
+ 
+ import de.hsharz.provirent.objects.Language;
+ import de.hsharz.provirent.objects.Subtitle;
+-import de.hsharz.provirent.objects.Subtitle;
+-import de.hsharz.provirent.objects.Subtitle;
+ import de.hsharz.provirent.persistence.DataBaseException;
+ import de.hsharz.provirent.persistence.Database;
+ /**
+@@ -252,6 +250,8 @@
+ 
+             initLanguageGroup();
+             initSubTitleGroup();
++            refreshLanguageTable(textLanguageSearch.getText());
++            refreshSubtitleTable(textSubtitleSearch.getText());
+ 
+         }
+         this.layout();
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeStatus.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeStatus.java	2004-11-11 11:43:54 UTC (rev 127)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeStatus.java	2004-11-11 14:58:27 UTC (rev 128)
+@@ -0,0 +1,1669 @@
++package de.hsharz.provirent.management.gui;
++
++import java.text.MessageFormat;
++import java.util.Locale;
++import java.util.PropertyResourceBundle;
++import java.util.ResourceBundle;
++
++import org.apache.log4j.Logger;
++import org.eclipse.swt.SWT;
++import org.eclipse.swt.custom.SashForm;
++import org.eclipse.swt.events.FocusAdapter;
++import org.eclipse.swt.events.FocusEvent;
++import org.eclipse.swt.events.SelectionAdapter;
++import org.eclipse.swt.events.SelectionEvent;
++import org.eclipse.swt.layout.FormAttachment;
++import org.eclipse.swt.layout.FormData;
++import org.eclipse.swt.layout.FormLayout;
++import org.eclipse.swt.layout.GridData;
++import org.eclipse.swt.layout.GridLayout;
++import org.eclipse.swt.widgets.Button;
++import org.eclipse.swt.widgets.Composite;
++import org.eclipse.swt.widgets.Display;
++import org.eclipse.swt.widgets.Event;
++import org.eclipse.swt.widgets.Group;
++import org.eclipse.swt.widgets.Label;
++import org.eclipse.swt.widgets.List;
++import org.eclipse.swt.widgets.Listener;
++import org.eclipse.swt.widgets.Shell;
++import org.eclipse.swt.widgets.Table;
++import org.eclipse.swt.widgets.TableColumn;
++import org.eclipse.swt.widgets.TableItem;
++import org.eclipse.swt.widgets.Text;
++
++import com.cloudgarden.resource.SWTResourceManager;
++
++import de.hsharz.provirent.objects.Condition;
++import de.hsharz.provirent.objects.Status;
++import de.hsharz.provirent.persistence.DataBaseException;
++import de.hsharz.provirent.persistence.Database;
++/**
++* This code was generated using CloudGarden's Jigloo
++* SWT/Swing GUI Builder, which is free for non-commercial
++* use. If Jigloo is being used commercially (ie, by a corporation,
++* company or business for any purpose whatever) then you
++* should purchase a license for each developer using Jigloo.
++* Please visit www.cloudgarden.com for details.
++* Use of Jigloo implies acceptance of these licensing terms.
++* *************************************
++* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED
++* for this machine, so Jigloo or this code cannot be used legally
++* for any corporate or commercial purpose.
++* *************************************
++*/
++public class CompositeStatus extends AbstractComposite{
++
++    {
++        //Register as a resource user - SWTResourceManager will
++        //handle the obtaining and disposing of resources
++        SWTResourceManager.registerResourceUser(this);
++    }
++
++
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger
++            .getLogger(CompositeStatus.class);
++    
++    
++    private final static int MODE_VIEW = 0;
++
++    private final static int MODE_ADD = 1;
++    
++    private SashForm sashForm1;
++
++    private Group groupStatusOverview;
++
++    private Group groupStatusDetail;
++
++    private Label labelStatusId;
++
++    private Label labelStatusShortname;
++
++    private Text textStatusName;
++
++    private Label labelStatusName;
++
++    private Text textStatusID;
++    
++    private Button buttonStatusCancel;
++
++    private Button buttonStatusSave;
++
++    private Button buttonStatusFill;
++
++    private Button buttonStatusDelete;
++
++    private Button buttonStatusEdit;
++
++    private Button buttonStatusNew;
++
++    private Text textStatusShortname;
++
++    private Text textStatusSearch;
++
++    private Label labelStatusSearch;
++
++    private Table tableStatus;
++
++    private SashForm sashFormStatus;
++
++    private Group groupStatus;
++    
++    private Group groupConditionOverview;
++
++    private Group groupConditionDetail;
++
++    private Label labelConditionId;
++
++    private Label labelConditionShortname;
++
++    private Text textConditionName;
++
++    private Label labelConditionName;
++
++    private Text textConditionID;
++    
++    private Button buttonConditionCancel;
++
++    private Button buttonConditionSave;
++
++    private Button buttonConditionFill;
++
++    private Button buttonConditionDelete;
++
++    private Button buttonConditionEdit;
++
++    private Button buttonConditionNew;
++
++    private Text textConditionShortname;
++
++    private Text textConditionSearch;
++
++    private Label labelConditionSearch;
++
++    private SashForm sashFormCondition;
++
++    private Group groupCondition;
++    
++    private int mode_Condition = 0;
++    
++    private List list1;
++    
++    private Table tableCondition;
++
++    private Group group1Condition;
++
++    private final static int MODE_EDIT = 2;
++    
++    private StatusLineStyledText statusLine;
++
++    private ResourceBundle l;
++    
++    private Composite parent;
++
++
++    private Composite composite2;
++
++
++    protected int mode_Status;
++
++
++    private TableColumn tableColumn;
++    
++    private TableColumn tableColumn1, tableColumn2, tableColumn3;
++    
++    /*
++     * &#196;ndert die Sprache aller Elemente
++     * 
++     * @see de.hsharz.provirent.managment.gui.AbstractComposite#changeStatus(java.util.Locale)
++     */
++    public void changeLanguage(Locale locale) {
++
++    }
++
++    /* 
++     * Init die Sprache (properties Datei)
++     * @see de.hsharz.provirent.managment.gui.AbstractComposite#initStatus(java.util.Locale)
++     */
++    public void initLanguage(Locale locale) {
++
++        l = PropertyResourceBundle.getBundle(
++                &quot;de.hsharz.provirent.management.gui.Language.Status&quot;, locale);
++
++    }
++    
++    
++	/**
++	* Auto-generated main method to display this 
++	* org.eclipse.swt.widgets.Composite inside a new Shell.
++	*/
++	public static void main(String[] args) {
++		showGUI();
++	}
++		
++	/**
++	* Auto-generated method to display this 
++	* org.eclipse.swt.widgets.Composite inside a new Shell.
++	*/
++	public static void showGUI() {
++		Display display = Display.getDefault();
++		Shell shell = new Shell(display);
++
++		shell.open();
++		while (!shell.isDisposed()) {
++			if (!display.readAndDispatch())
++				display.sleep();
++		}
++	}
++
++	public CompositeStatus(Composite p, int style,
++            StatusLineStyledText status, Locale l) {
++	    super(p, style, status, l);
++        parent = p;
++        //Statusline wird gestzt
++        statusLine = status;
++        
++        //sprache wird init
++        initLanguage(l);
++	    
++	    
++		initGUI();
++	}
++
++	private void initGUI() {
++	    if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - start&quot;);
++        }
++
++        this.setLayout(new GridLayout());
++        this.setSize(816, 540);
++        {
++            sashForm1 = new SashForm(this, SWT.VERTICAL | SWT.V_SCROLL);
++            GridData sashForm1LData1 = new GridData();
++            sashForm1LData1.grabExcessHorizontalSpace = true;
++            sashForm1LData1.horizontalAlignment = GridData.FILL;
++            sashForm1LData1.grabExcessVerticalSpace = true;
++            sashForm1LData1.verticalAlignment = GridData.FILL;
++            sashForm1.setLayoutData(sashForm1LData1);
++
++            initStatusGroup();
++            initConditionGroup();
++            refreshStatusTable(textStatusSearch.getText());
++            refreshConditionTable(textConditionSearch.getText());
++
++        }
++        this.layout();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - end&quot;);
++        }
++    } 
++	
++	/**
++     * 
++     */
++    private void initConditionGroup() {
++        {
++            //init a group for the Condition
++            groupCondition = new Group(sashForm1, SWT.NONE);
++            GridLayout group2Layout = new GridLayout();
++            group2Layout.makeColumnsEqualWidth = true;
++            groupCondition.setText(l.getString(&quot;Condition.group.label&quot;));
++            groupCondition.setSize(758, 284);
++            FormData group2LData = new FormData();
++            groupCondition.addFocusListener(new FocusAdapter() {
++                public void focusLost(FocusEvent evt) {
++                    System.out.println(&quot;groupCondition.focusLost, event=&quot;
++                        + evt);
++                    buttonConditionCancel.setEnabled(false);
++                    buttonConditionDelete.setEnabled(false);
++                    buttonConditionEdit.setEnabled(false);
++                    buttonConditionNew.setEnabled(false);
++                    buttonConditionSave.setEnabled(false);
++                    
++                }
++            });
++            groupCondition.setLayout(group2Layout);
++            groupCondition.setLayoutData(group2LData);
++            {
++                sashFormCondition = new SashForm(groupCondition, SWT.NONE);
++                FormLayout sashForm2Layout = new FormLayout();
++                sashFormCondition.setSize(748, 300);
++                GridData sashForm2LData = new GridData();
++                sashFormCondition.setLayout(sashForm2Layout);
++                sashForm2LData.verticalAlignment = GridData.FILL;
++                sashForm2LData.horizontalAlignment = GridData.FILL;
++                sashForm2LData.grabExcessHorizontalSpace = true;
++                sashForm2LData.grabExcessVerticalSpace = true;
++                sashFormCondition.setLayoutData(sashForm2LData);
++
++                //init die Gruppe f&#252;r Condition &#220;berblick
++                initConditionGroupOverview();
++                //init die Detailansicht
++                initConditionGroupDetail();
++
++            }
++        }
++
++        
++    }
++
++    /**
++     * 
++     */
++    private void initConditionGroupDetail() {
++        groupConditionDetail = new Group(sashFormCondition, SWT.NONE);
++        GridLayout groupConditionDetailLayout = new GridLayout();
++        groupConditionDetailLayout.marginHeight = 25;
++        groupConditionDetailLayout.numColumns = 6;
++        groupConditionDetailLayout.verticalSpacing = 15;
++        groupConditionDetail.setText(l
++                .getString(&quot;Condition.groupdetail.label&quot;));
++        FormData formData = new FormData();
++        groupConditionDetail.setLayout(groupConditionDetailLayout);
++        formData.right = new FormAttachment(100, 100, -5);
++        formData.top = new FormAttachment(0, 100, 5);
++        formData.bottom = new FormAttachment(100, 100, -5);
++        groupConditionDetail.setLayoutData(formData);
++        {
++            labelConditionId = new Label(groupConditionDetail, SWT.NONE);
++            labelConditionId.setText(l
++                    .getString(&quot;Condition.groupdetail.idlabel&quot;)
++                    + &quot;:&quot;);
++            labelConditionId.setSize(125, 15);
++            GridData formData2 = new GridData();
++            formData2.widthHint = 125;
++            formData2.heightHint = 15;
++            formData2.horizontalSpan = 2;
++            labelConditionId.setLayoutData(formData2);
++        }
++        {
++            textConditionID = new Text(groupConditionDetail, SWT.READ_ONLY
++                    | SWT.BORDER);
++            GridData text1LData1 = new GridData();
++            text1LData1.horizontalAlignment = GridData.FILL;
++            text1LData1.heightHint = 13;
++            text1LData1.horizontalSpan = 4;
++            text1LData1.grabExcessHorizontalSpace = true;
++            textConditionID.setLayoutData(text1LData1);
++        }
++        {
++            labelConditionName = new Label(groupConditionDetail, SWT.NONE);
++            labelConditionName.setText(l
++                    .getString(&quot;Condition.groupdetail.namelabel&quot;)
++                    + &quot;:&quot;);
++            labelConditionName.setSize(125, 15);
++            GridData labelConditionNameLData = new GridData();
++            labelConditionNameLData.widthHint = 125;
++            labelConditionNameLData.heightHint = 15;
++            labelConditionNameLData.horizontalSpan = 2;
++            labelConditionName.setLayoutData(labelConditionNameLData);
++        }
++        {
++            textConditionName = new Text(groupConditionDetail,
++                    SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData2 = new GridData();
++            text1LData2.horizontalAlignment = GridData.FILL;
++            text1LData2.heightHint = 13;
++            text1LData2.horizontalSpan = 4;
++            text1LData2.grabExcessHorizontalSpace = true;
++            textConditionName.setLayoutData(text1LData2);
++        }
++        {
++            labelConditionShortname = new Label(groupConditionDetail,
++                    SWT.NONE);
++            labelConditionShortname.setText(l
++                    .getString(&quot;Condition.groupdetail.shortcutlabel&quot;)
++                    + &quot;:&quot;);
++            labelConditionShortname.setSize(125, 15);
++            GridData label1LData1 = new GridData();
++            label1LData1.widthHint = 125;
++            label1LData1.heightHint = 15;
++            label1LData1.horizontalSpan = 2;
++            labelConditionShortname.setLayoutData(label1LData1);
++        }
++        {
++            textConditionShortname = new Text(groupConditionDetail,
++                    SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData3 = new GridData();
++            text1LData3.horizontalAlignment = GridData.FILL;
++            text1LData3.heightHint = 13;
++            text1LData3.horizontalSpan = 4;
++            text1LData3.grabExcessHorizontalSpace = true;
++            textConditionShortname.setLayoutData(text1LData3);
++        }
++        {
++
++//          die Buttons bekommen ein eigenes Composite
++            composite2 = new Composite(groupConditionDetail, SWT.EMBEDDED);
++            GridLayout composite2Layout = new GridLayout();
++            composite2Layout.numColumns = 6;
++            GridData composite2LData = new GridData();
++            composite2.setLayout(composite2Layout);
++            composite2LData.verticalAlignment = GridData.END;
++            composite2LData.horizontalAlignment = GridData.CENTER;
++            composite2LData.widthHint = 391;
++            composite2LData.horizontalSpan = 6;
++            composite2LData.grabExcessHorizontalSpace = true;
++            composite2LData.grabExcessVerticalSpace = true;
++            composite2LData.heightHint = 35;
++            composite2.setLayoutData(composite2LData);
++
++            //init all the Buttons
++            initConditionDetailButtons();
++
++        }
++        
++    }
++
++    /**
++     * 
++     */
++    private void initConditionDetailButtons() {
++        buttonConditionNew = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonConditionNew.setText(l.getString(&quot;button.new&quot;));
++        buttonConditionNew.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++
++                textConditionID.setText(&quot;&quot;);
++                textConditionName.setText(&quot;&quot;);
++                textConditionShortname.setText(&quot;&quot;);
++                
++
++                textConditionName.setEditable(true);
++                textConditionShortname.setEditable(true);
++                buttonConditionCancel.setEnabled(true);
++                buttonConditionSave.setEnabled(true);
++                buttonConditionNew.setEnabled(false);
++                buttonConditionEdit.setEnabled(false);
++                buttonConditionDelete.setEnabled(false);
++                
++                textConditionSearch.setEditable(false);
++                tableCondition.setEnabled(false);
++
++                mode_Condition = ManagementGui.MODE_ADD;
++
++            }
++        });
++
++        buttonConditionEdit = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonConditionEdit.setText(l.getString(&quot;button.edit&quot;));
++        buttonConditionEdit.setEnabled(false);
++        buttonConditionEdit.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++
++                mode_Condition = ManagementGui.MODE_EDIT;
++
++
++                textConditionID.setEditable(false);
++
++                textConditionName.setEditable(true);
++                textConditionName.setFocus();
++                textConditionShortname.setEditable(true);
++                buttonConditionCancel.setEnabled(true);
++                buttonConditionSave.setEnabled(true);
++                buttonConditionNew.setEnabled(false);
++                buttonConditionEdit.setEnabled(false);
++                buttonConditionDelete.setEnabled(false);
++
++
++                tableCondition.setEnabled(false);
++                textConditionSearch.setEnabled(false);
++                
++
++            }
++        });
++
++        buttonConditionDelete = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonConditionDelete.setText(l.getString(&quot;button.delete&quot;));
++        buttonConditionDelete.setEnabled(false);
++        buttonConditionDelete.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonConditionDelete.widgetSelected, event=&quot;
++                                + evt);
++                
++                
++               String msg = MessageFormat.format(
++                       l.getString(&quot;Condition.groupdetail.deletebutton.question.text&quot;),
++                               new Object[]{textConditionName.getText()+&quot; &quot;+textConditionShortname.getText()});
++                
++               int question = showMsg(msg,
++                       l.getString(&quot;Condition.groupdetail.deletebutton.question.header&quot;), 
++                       SWT.ICON_QUESTION | SWT.YES | SWT.NO);
++               
++               if (question != SWT.YES){
++                   return;
++               }
++                
++                Condition o = new Condition();
++                o.setConditionId(new Integer(Integer.parseInt(textConditionID.getText())));
++                o.setConditionName(textConditionName.getText());
++                o.setConditionshortname(textConditionShortname.getText());
++                
++                try {
++                    //object speichern
++                    // Fehlerbehandlung
++                    Database.deleteObject(o);
++
++                    //&#220;bersichtsTabelle aktualisieren
++                    refreshConditionTable(textConditionSearch.getText());
++                    
++                    //Detailansicht leeren
++                    textConditionID.setText(&quot;&quot;);
++                    textConditionName.setText(&quot;&quot;);
++                    textConditionShortname.setText(&quot;&quot;);
++                    
++                    //in Tabelle n&#228;chsten ausw&#228;hlen
++                    try {
++                        tableCondition.select(0);
++                    } catch (Exception ex) {}
++                    
++                    //Statusline Nachricht sezten
++                    statusLine.setStatus(1,l.getString(&quot;Condition.groupdetail.deletebutton.newok&quot;));
++
++                } catch (DataBaseException e) {
++                    if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                        //Fehler beim Speichern des Objectes
++
++                        statusLine.setStatus(3,l.getString(&quot;Condition.groupdetail.deletebutton.errorsave&quot;));
++                        showMsg(l.getString(&quot;Condition.groupdetail.deletebutton.errorsave&quot;),
++                                l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                        //fehler beim db aufbau
++                        statusLine.setStatus(3,l.getString(&quot;Condition.groupdetail.deletebutton.errordb&quot;));
++                        showMsg(l.getString(&quot;Condition.groupdetail.deletebutton.errordb&quot;),
++                                l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else {
++                        //@todo
++                        e.printStackTrace();
++                    }
++                    
++                }                
++                
++
++                }
++
++            }
++        );
++
++        //leerer nicht sichtbarer Button
++        buttonConditionFill = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        GridData buttonConditionFillLData = new GridData();
++        buttonConditionFill.setVisible(false);
++        buttonConditionFill.setEnabled(false);
++        buttonConditionFillLData.widthHint = 30;
++        buttonConditionFillLData.heightHint = 23;
++        buttonConditionFill.setLayoutData(buttonConditionFillLData);
++
++        buttonConditionSave = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonConditionSave.setText(l.getString(&quot;button.save&quot;));
++        buttonConditionSave.setEnabled(false);
++        buttonConditionSave.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonConditionSave.widgetSelected, event=&quot;
++                                + evt);
++
++                
++                //testen ob Name leer ist
++                if (textConditionName.getText().trim().equalsIgnoreCase(&quot;&quot;)) {
++                    
++                    showMsg(l.getString(&quot;Condition.groupdetail.savebutton.warn.noname.msg&quot;),
++                            l.getString(&quot;Condition.groupdetail.savebutton.warn.noname.title&quot;),
++                            SWT.ICON_WARNING | SWT.YES);
++
++                    	return;
++                }
++                
++                //testen welcher mode
++                
++                if (mode_Condition == ManagementGui.MODE_ADD) {
++                    
++                    /**
++                     * @todo eine Exception bekommen wieder leider NOCH nicht mit
++                     * d.h. es muss noch ein r&#252;ckgabewert kommen oder eine Exception 
++                     * &#252;bermitteln werden (aus der DB Klasse)
++                     */
++                    //neues Objekt erzeugen
++                    Condition tmp = new Condition(textConditionName.getText(),
++                            textConditionShortname.getText());
++                    
++                    try {
++                        //object speichern
++                        // Fehlerbehandlung
++                        Object o = Database.saveObject(
++                                new Condition(textConditionName.getText(),
++                                        textConditionShortname.getText()));
++                        
++                        // in &#220;bersichtstabelle einf&#252;gen
++                        insertIntoConditionTable((Condition)o);
++                        textConditionID.setText( ((Condition)o).getConditionId()+&quot;&quot; );
++                        
++                        
++                        //Statusline Nachricht sezten
++                        statusLine.setStatus(1,l.getString(&quot;Condition.groupdetail.savebutton.newok&quot;));
++
++                    } catch (DataBaseException e) {
++                        if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                            //Fehler beim Speichern des Objectes
++
++                            statusLine.setStatus(3,l.getString(&quot;Condition.groupdetail.savebutton.errorsave&quot;));
++                            showMsg(l.getString(&quot;Condition.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                            //fehler beim db aufbau
++                            statusLine.setStatus(3,l.getString(&quot;Condition.groupdetail.savebutton.errordb&quot;));
++                            showMsg(l.getString(&quot;Condition.groupdetail.savebutton.errordb&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else {
++                            //@todo
++                            e.printStackTrace();
++                        }
++                        
++                    }
++                    
++                    
++                    //alle Buttons auf aktiv setzen
++                    setVideoGroupButtonSaveCancel();
++                    
++                } else if (mode_Condition == ManagementGui.MODE_EDIT) {
++                    
++                    Condition tmp = new Condition(textConditionName.getText(),
++                                    textConditionShortname.getText());
++        		tmp.setConditionId( new Integer (Integer.parseInt(textConditionID.getText())) );
++                try {
++                    //object speichern
++                    // Fehlerbehandlung
++                    Database.saveObject(tmp);
++                    //&#220;bersichtstabelle aktualisieren
++                    refreshConditionTable(textConditionSearch.getText());
++                    
++                    //Statusline Nachricht sezten
++                    statusLine.setStatus(1,l.getString(&quot;Condition.groupdetail.savebutton.editok&quot;));
++                   
++
++                } catch (DataBaseException e) {
++                    if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                        //Fehler beim Speichern des Objectes
++
++                        statusLine.setStatus(3,l.getString(&quot;Condition.groupdetail.savebutton.errorsave&quot;));
++                        showMsg(l.getString(&quot;Condition.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                        //fehler beim db aufbau
++                        statusLine.setStatus(3,l.getString(&quot;Condition.groupdetail.savebutton.errordb&quot;));
++                        showMsg(l.getString(&quot;Condition.groupdetail.savebutton.errordb&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else {
++                        //@todo
++                        e.printStackTrace();
++                    }
++                    
++                }
++                    
++ 
++                    //alle Buttons auf aktiv setzen
++                    setVideoGroupButtonSaveCancel();
++                    
++                }
++                
++                
++                
++                /**
++                 * @todo Exception werfen, da nur die zwei Modes sein d&#252;rfen
++                 */
++                
++            }
++        });
++
++        buttonConditionCancel = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonConditionCancel.setText(l.getString(&quot;button.cancel&quot;));
++        buttonConditionCancel.setEnabled(false);
++        buttonConditionCancel.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonConditionCancel.widgetSelected, event=&quot;
++                                + evt);
++                setVideoGroupButtonSaveCancel();
++            }
++        });
++
++        
++    }
++
++    /**
++     * 
++     */
++    protected void setVideoGroupButtonSaveCancel() {
++        buttonConditionSave.setEnabled(false);
++        buttonConditionCancel.setEnabled(false);
++        buttonConditionEdit.setEnabled(true);
++        buttonConditionNew.setEnabled(true);
++        buttonConditionDelete.setEnabled(true);
++        textConditionName.setEditable(false);
++        textConditionShortname.setEditable(false);
++        textConditionSearch.setEditable(true);
++
++        // VideoTabelle aktivieren
++        tableCondition.setEnabled(true);
++
++        //VideoSearch aktivieren
++        textConditionSearch.setEnabled(true);
++        
++    }
++
++    /**
++     * @param Condition
++     */
++    protected void insertIntoConditionTable(Condition s) {
++        TableItem item = new TableItem(tableCondition, SWT.NONE);
++        item.setText(new String[] { s.getConditionId() + &quot;&quot;, s.getConditionName(),
++                s.getConditionshortname() });
++        
++    }
++
++    /**
++     * 
++     */
++    protected void refreshConditionTable(final String filter) {
++        if (tableCondition == null) {
++            System.out
++                    .println(&quot;Konnte Conditiontable nicht refreshen, da diese null ist!&quot;);
++            return;
++        }
++        System.out.println(&quot;Versuche nun VideoListe zu refreshen. Filter: &quot;
++                + filter);
++        tableCondition.removeAll();
++        TableItem item;
++        java.util.List Conditionlist = Database.getCondition(filter);
++
++        for (int i = 0; i &lt; Conditionlist.size(); i++) {
++
++            Condition o = (Condition) Conditionlist.get(i);
++            item = new TableItem(tableCondition, SWT.NONE);
++            item.setText(new String[] { o.getConditionId() + &quot;&quot;, o.getConditionName(),
++                    o.getConditionshortname() });
++
++        }
++
++        
++    }
++
++    /**
++     * 
++     */
++    private void initConditionGroupOverview() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initConditionGroupOverview() - start&quot;);
++        }
++
++        groupConditionOverview = new Group(sashFormCondition, SWT.NONE);
++        GridLayout group5Layout = new GridLayout();
++        group5Layout.numColumns = 8;
++        groupConditionOverview.setText(l
++                .getString(&quot;Condition.groupoverview.label&quot;));
++        FormData group5LData = new FormData();
++        groupConditionOverview.setLayout(group5Layout);
++        group5LData.left = new FormAttachment(0, 100, 0);
++        group5LData.top = new FormAttachment(0, 100, 0);
++        groupConditionOverview.setLayoutData(group5LData);
++
++        //Tabelle anzeigen
++        initTableCondition();
++        //Suche darunter anzeigen
++        initConditionSearch();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initConditionGroupOverview() - end&quot;);
++        }
++        
++    }
++
++    /**
++     * 
++     */
++    private void initConditionSearch() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initConditionSearch() - start&quot;);
++        }
++
++        //label f&#252;r die Suche
++        labelConditionSearch = new Label(groupConditionOverview, SWT.NONE);
++        labelConditionSearch.setText(l
++                .getString(&quot;Condition.groupoverview.searchlabel&quot;)
++                + &quot;:&quot;);
++        GridData label2LData = new GridData();
++        label2LData.horizontalSpan = 3;
++        labelConditionSearch.setLayoutData(label2LData);
++
++        //das Suchfeld
++        textConditionSearch = new Text(groupConditionOverview, SWT.BORDER);
++        GridData text2LData = new GridData();
++        textConditionSearch.addFocusListener(new FocusAdapter() {
++            public void focusLost(FocusEvent evt) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;focusLost(FocusEvent evt = &quot; + evt + &quot; &quot;
++                            + textConditionSearch.getText() + &quot;) - start&quot;);
++                }
++
++                refreshConditionTable(textConditionSearch.getText());
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;focusLost(FocusEvent) - end&quot;);
++                }
++            }
++        });
++
++        textConditionSearch.addListener(SWT.DefaultSelection, new Listener() {
++            public void handleEvent(Event e) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;handleEvent(Event e = &quot; + e + &quot; &quot;
++                            + textConditionSearch.getText() + &quot;) - start&quot;);
++                }
++
++                refreshConditionTable(textConditionSearch.getText());
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;handleEvent(Event) - end&quot;);
++                }
++            }
++        });
++
++        text2LData.horizontalAlignment = GridData.FILL;
++        text2LData.horizontalSpan = 5;
++        text2LData.grabExcessHorizontalSpace = true;
++        textConditionSearch.setLayoutData(text2LData);
++
++
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initConditionSearch() - end&quot;);
++        }
++        
++    }
++
++    /**
++     * 
++     */
++    private void initTableCondition() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initTableCondition() - start&quot;);
++        }
++
++        tableCondition = new Table(groupConditionOverview, SWT.SINGLE
++                | SWT.FULL_SELECTION | SWT.V_SCROLL | SWT.BORDER);
++        tableCondition.setHeaderVisible(true);
++        tableCondition.setLinesVisible(true);
++        GridData table2LData = new GridData();
++        tableCondition.addFocusListener(new FocusAdapter() {
++            public void focusLost(FocusEvent evt) {
++                System.out.println(&quot;tableCondition.focusLost, event=&quot; + evt);
++                //TODO add your code for tableCondition.focusLost
++            }
++            public void focusGained(FocusEvent evt) {
++                System.out
++                    .println(&quot;tableCondition.focusGained, event=&quot; + evt);
++                //TODO add your code for tableCondition.focusGained
++            }
++        });
++        tableCondition.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;widgetSelected(SelectionEvent evt = &quot;
++                        + evt
++                        + &quot;) - start&quot;);
++                }
++
++                int index = tableCondition.getSelectionIndex();
++
++                System.out.println(&quot;Table select. id: &quot;
++                    + index
++                    + &quot; TableItem:&quot;
++                    + tableCondition.getItem(index)
++                    + &quot; id: &quot;
++                    + tableCondition.getItem(index).getText(0));
++
++                //es wurde ein Element aus Tabelle ausgewaehlt jetzt muss die
++                //Detailansicht aktualisiert werden
++                refreshConditionDetail(tableCondition.getItem(index)
++                    .getText(0));
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;widgetSelected(SelectionEvent) - end&quot;);
++                }
++            }
++        });
++        table2LData.verticalAlignment = GridData.FILL;
++        table2LData.horizontalAlignment = GridData.FILL;
++        table2LData.horizontalSpan = 8;
++        table2LData.grabExcessHorizontalSpace = true;
++        table2LData.grabExcessVerticalSpace = true;
++        tableCondition.setLayoutData(table2LData);
++
++        //einzelne Spalten hinzuf&#252;gen
++        tableColumn = new TableColumn(tableCondition, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Condition.groupoverview.columnid&quot;));
++        tableColumn.setWidth(50);
++
++        tableColumn = new TableColumn(tableCondition, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Condition.groupoverview.columnname&quot;));
++        tableColumn.setWidth(200);
++
++        tableColumn = new TableColumn(tableCondition, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Condition.groupoverview.columnshortname&quot;));
++        tableColumn.setWidth(75);
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initTableCondition() - end&quot;);
++        }
++        
++    }
++
++    /**
++     * @param text
++     */
++    protected void refreshConditionDetail(final String id) {
++        Condition object;
++        try {
++            //since we only can get a String value from the table, we
++            //need to convert this
++            object = Database.getSingleCondition(Integer.parseInt(id));
++
++            if (object == null) {
++
++                /*
++                 * 
++                 * @TODO Statusbar aktualiseren
++                 */
++                return;
++            }
++        } catch (Exception e) {
++            // TODO: handle exception
++            //id ist keine Zahl
++            return;
++        }
++
++        textConditionID.setText(object.getConditionId() + &quot;&quot;);
++        textConditionName.setText(object.getConditionName());
++        textConditionShortname.setText(object.getConditionshortname());
++
++        //Buttons zum l&#246;schen und editieren aktivieren
++        buttonConditionEdit.setEnabled(true);
++        buttonConditionDelete.setEnabled(true);
++
++        //Mode auf view setzen
++        mode_Condition = ManagementGui.MODE_VIEW;
++
++        
++    }
++
++    /**
++     * 
++     */
++    private void initStatusGroup() {
++        {
++            //init a group for the Status
++            groupStatus = new Group(sashForm1, SWT.NONE);
++            GridLayout group2Layout = new GridLayout();
++            group2Layout.makeColumnsEqualWidth = true;
++            groupStatus.setText(l.getString(&quot;Status.group.label&quot;));
++            groupStatus.setSize(758, 284);
++            FormData group2LData = new FormData();
++            groupStatus.addFocusListener(new FocusAdapter() {
++                public void focusLost(FocusEvent evt) {
++                    System.out.println(&quot;groupStatus.focusLost, event=&quot;
++                        + evt);
++                    buttonStatusCancel.setEnabled(false);
++                    buttonStatusDelete.setEnabled(false);
++                    buttonStatusEdit.setEnabled(false);
++                    buttonStatusNew.setEnabled(false);
++                    buttonStatusSave.setEnabled(false);
++                    //TODO add your code for groupStatus.focusLost
++                }
++            });
++            groupStatus.setLayout(group2Layout);
++            groupStatus.setLayoutData(group2LData);
++            {
++                sashFormStatus = new SashForm(groupStatus, SWT.NONE);
++                FormLayout sashForm2Layout = new FormLayout();
++                sashFormStatus.setSize(748, 300);
++                GridData sashForm2LData = new GridData();
++                sashFormStatus.setLayout(sashForm2Layout);
++                sashForm2LData.verticalAlignment = GridData.FILL;
++                sashForm2LData.horizontalAlignment = GridData.FILL;
++                sashForm2LData.grabExcessHorizontalSpace = true;
++                sashForm2LData.grabExcessVerticalSpace = true;
++                sashFormStatus.setLayoutData(sashForm2LData);
++
++                //init die Gruppe f&#252;r Statuse &#220;berblick
++                initStatusGroupOverview();
++                //init die Detailansicht
++                initStatusGroupDetail();
++
++            }
++        }
++
++	}
++
++    /**
++     * 
++     */
++    private void initStatusGroupDetail() {
++        groupStatusDetail = new Group(sashFormStatus, SWT.NONE);
++        GridLayout groupStatusDetailLayout = new GridLayout();
++        groupStatusDetailLayout.marginHeight = 25;
++        groupStatusDetailLayout.numColumns = 6;
++        groupStatusDetailLayout.verticalSpacing = 15;
++        groupStatusDetail.setText(l
++                .getString(&quot;Status.groupdetail.label&quot;));
++        FormData formData = new FormData();
++        groupStatusDetail.setLayout(groupStatusDetailLayout);
++        formData.right = new FormAttachment(100, 100, -5);
++        formData.top = new FormAttachment(0, 100, 5);
++        formData.bottom = new FormAttachment(100, 100, -5);
++        groupStatusDetail.setLayoutData(formData);
++        {
++            labelStatusId = new Label(groupStatusDetail, SWT.NONE);
++            labelStatusId.setText(l
++                    .getString(&quot;Status.groupdetail.idlabel&quot;)
++                    + &quot;:&quot;);
++            labelStatusId.setSize(125, 15);
++            GridData formData2 = new GridData();
++            formData2.widthHint = 125;
++            formData2.heightHint = 15;
++            formData2.horizontalSpan = 2;
++            labelStatusId.setLayoutData(formData2);
++        }
++        {
++            textStatusID = new Text(groupStatusDetail, SWT.READ_ONLY
++                    | SWT.BORDER);
++            GridData text1LData1 = new GridData();
++            text1LData1.horizontalAlignment = GridData.FILL;
++            text1LData1.heightHint = 13;
++            text1LData1.horizontalSpan = 4;
++            text1LData1.grabExcessHorizontalSpace = true;
++            textStatusID.setLayoutData(text1LData1);
++        }
++        {
++            labelStatusName = new Label(groupStatusDetail, SWT.NONE);
++            labelStatusName.setText(l
++                    .getString(&quot;Status.groupdetail.namelabel&quot;)
++                    + &quot;:&quot;);
++            labelStatusName.setSize(125, 15);
++            GridData labelStatusNameLData = new GridData();
++            labelStatusNameLData.widthHint = 125;
++            labelStatusNameLData.heightHint = 15;
++            labelStatusNameLData.horizontalSpan = 2;
++            labelStatusName.setLayoutData(labelStatusNameLData);
++        }
++        {
++            textStatusName = new Text(groupStatusDetail,
++                    SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData2 = new GridData();
++            text1LData2.horizontalAlignment = GridData.FILL;
++            text1LData2.heightHint = 13;
++            text1LData2.horizontalSpan = 4;
++            text1LData2.grabExcessHorizontalSpace = true;
++            textStatusName.setLayoutData(text1LData2);
++        }
++        {
++            labelStatusShortname = new Label(groupStatusDetail,
++                    SWT.NONE);
++            labelStatusShortname.setText(l
++                    .getString(&quot;Status.groupdetail.shortcutlabel&quot;)
++                    + &quot;:&quot;);
++            labelStatusShortname.setSize(125, 15);
++            GridData label1LData1 = new GridData();
++            label1LData1.widthHint = 125;
++            label1LData1.heightHint = 15;
++            label1LData1.horizontalSpan = 2;
++            labelStatusShortname.setLayoutData(label1LData1);
++        }
++        {
++            textStatusShortname = new Text(groupStatusDetail,
++                    SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData3 = new GridData();
++            text1LData3.horizontalAlignment = GridData.FILL;
++            text1LData3.heightHint = 13;
++            text1LData3.horizontalSpan = 4;
++            text1LData3.grabExcessHorizontalSpace = true;
++            textStatusShortname.setLayoutData(text1LData3);
++        }
++        {
++
++            //die Buttons bekommen ein eigenes Composite
++            composite2 = new Composite(groupStatusDetail, SWT.EMBEDDED);
++            GridLayout composite2Layout = new GridLayout();
++            composite2Layout.numColumns = 6;
++            GridData composite2LData = new GridData();
++            composite2.setLayout(composite2Layout);
++            composite2LData.verticalAlignment = GridData.END;
++            composite2LData.horizontalAlignment = GridData.CENTER;
++            composite2LData.widthHint = 391;
++            composite2LData.horizontalSpan = 6;
++            composite2LData.grabExcessHorizontalSpace = true;
++            composite2LData.grabExcessVerticalSpace = true;
++            composite2LData.heightHint = 35;
++            composite2.setLayoutData(composite2LData);
++
++            //init all the Buttons
++            initStatusDetailButtons();
++
++        }
++
++        
++    }
++
++    /**
++     * 
++     */
++    private void initStatusDetailButtons() {
++        buttonStatusNew = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonStatusNew.setText(l.getString(&quot;button.new&quot;));
++        buttonStatusNew.addSelectionListener(new SelectionAdapter() {
++            
++
++            public void widgetSelected(SelectionEvent evt) {
++
++                textStatusID.setText(&quot;&quot;);
++                textStatusName.setText(&quot;&quot;);
++                textStatusShortname.setText(&quot;&quot;);
++                
++
++                textStatusName.setEditable(true);
++                textStatusShortname.setEditable(true);
++                buttonStatusCancel.setEnabled(true);
++                buttonStatusSave.setEnabled(true);
++                buttonStatusNew.setEnabled(false);
++                buttonStatusEdit.setEnabled(false);
++                buttonStatusDelete.setEnabled(false);
++                
++                textStatusSearch.setEditable(false);
++                tableStatus.setEnabled(false);
++
++                mode_Status = ManagementGui.MODE_ADD;
++
++            }
++        });
++
++        buttonStatusEdit = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonStatusEdit.setText(l.getString(&quot;button.edit&quot;));
++        buttonStatusEdit.setEnabled(false);
++        buttonStatusEdit.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++
++                mode_Status = ManagementGui.MODE_EDIT;
++
++
++                textStatusID.setEditable(false);
++
++                textStatusName.setEditable(true);
++                textStatusName.setFocus();
++                textStatusShortname.setEditable(true);
++                buttonStatusCancel.setEnabled(true);
++                buttonStatusSave.setEnabled(true);
++                buttonStatusNew.setEnabled(false);
++                buttonStatusEdit.setEnabled(false);
++                buttonStatusDelete.setEnabled(false);
++
++
++                tableStatus.setEnabled(false);
++                textStatusSearch.setEnabled(false);
++                
++
++            }
++        });
++
++        buttonStatusDelete = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonStatusDelete.setText(l.getString(&quot;button.delete&quot;));
++        buttonStatusDelete.setEnabled(false);
++        buttonStatusDelete.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonStatusDelete.widgetSelected, event=&quot;
++                                + evt);
++                
++                
++               String msg = MessageFormat.format(
++                       l.getString(&quot;Status.groupdetail.deletebutton.question.text&quot;),
++                               new Object[]{textStatusName.getText()+&quot; &quot;+textStatusShortname.getText()});
++                
++               int question = showMsg(msg,
++                       l.getString(&quot;Status.groupdetail.deletebutton.question.header&quot;), 
++                       SWT.ICON_QUESTION | SWT.YES | SWT.NO);
++               
++               if (question != SWT.YES){
++                   return;
++               }
++                
++                Status o = new Status();
++                o.setStatusId(new Integer(Integer.parseInt(textStatusID.getText())));
++                o.setStatusName(textStatusName.getText());
++                o.setStatusShortname(textStatusShortname.getText());
++                
++                try {
++                    //object speichern
++                    // Fehlerbehandlung
++                    Database.deleteObject(o);
++
++                    //&#220;bersichtsTabelle aktualisieren
++                    refreshStatusTable(textStatusSearch.getText());
++                    
++                    //Detailansicht leeren
++                    textStatusID.setText(&quot;&quot;);
++                    textStatusName.setText(&quot;&quot;);
++                    textStatusShortname.setText(&quot;&quot;);
++                    
++                    //in Tabelle n&#228;chsten ausw&#228;hlen
++                    try {
++                        tableStatus.select(0);
++                    } catch (Exception ex) {}
++                    
++                    //Statusline Nachricht sezten
++                    statusLine.setStatus(1,l.getString(&quot;Status.groupdetail.deletebutton.newok&quot;));
++
++                } catch (DataBaseException e) {
++                    if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                        //Fehler beim Speichern des Objectes
++
++                        statusLine.setStatus(3,l.getString(&quot;Status.groupdetail.deletebutton.errorsave&quot;));
++                        showMsg(l.getString(&quot;Status.groupdetail.deletebutton.errorsave&quot;),
++                                l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                        //fehler beim db aufbau
++                        statusLine.setStatus(3,l.getString(&quot;Status.groupdetail.deletebutton.errordb&quot;));
++                        showMsg(l.getString(&quot;Status.groupdetail.deletebutton.errordb&quot;),
++                                l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else {
++                        //@todo
++                        e.printStackTrace();
++                    }
++                    
++                }                
++                
++
++                }
++
++            }
++        );
++
++        //leerer nicht sichtbarer Button
++        buttonStatusFill = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        GridData buttonStatusFillLData = new GridData();
++        buttonStatusFill.setVisible(false);
++        buttonStatusFill.setEnabled(false);
++        buttonStatusFillLData.widthHint = 30;
++        buttonStatusFillLData.heightHint = 23;
++        buttonStatusFill.setLayoutData(buttonStatusFillLData);
++
++        buttonStatusSave = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonStatusSave.setText(l.getString(&quot;button.save&quot;));
++        buttonStatusSave.setEnabled(false);
++        buttonStatusSave.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonStatusSave.widgetSelected, event=&quot;
++                                + evt);
++
++                
++                //testen ob Name leer ist
++                if (textStatusName.getText().trim().equalsIgnoreCase(&quot;&quot;)) {
++                    
++                    showMsg(l.getString(&quot;Status.groupdetail.savebutton.warn.noname.msg&quot;),
++                            l.getString(&quot;Status.groupdetail.savebutton.warn.noname.title&quot;),
++                            SWT.ICON_WARNING | SWT.YES);
++
++                    	return;
++                }
++                
++                //testen welcher mode
++                
++                if (mode_Status == ManagementGui.MODE_ADD) {
++                    
++                    /**
++                     * @todo eine Exception bekommen wieder leider NOCH nicht mit
++                     * d.h. es muss noch ein r&#252;ckgabewert kommen oder eine Exception 
++                     * &#252;bermitteln werden (aus der DB Klasse)
++                     */
++                    //neues Objekt erzeugen
++                    Status tmp = new Status(textStatusName.getText(),
++                            textStatusShortname.getText());
++                    
++                    try {
++                        //object speichern
++                        // Fehlerbehandlung
++                        Object o = Database.saveObject(
++                                new Status(textStatusName.getText(),
++                                        textStatusShortname.getText()));
++                        
++                        // in &#220;bersichtstabelle einf&#252;gen
++                        insertIntoStatusTable((Status)o);
++                        textStatusID.setText( ((Status)o).getStatusId()+&quot;&quot; );
++                        
++                        
++                        //Statusline Nachricht sezten
++                        statusLine.setStatus(1,l.getString(&quot;Status.groupdetail.savebutton.newok&quot;));
++
++                    } catch (DataBaseException e) {
++                        if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                            //Fehler beim Speichern des Objectes
++
++                            statusLine.setStatus(3,l.getString(&quot;Status.groupdetail.savebutton.errorsave&quot;));
++                            showMsg(l.getString(&quot;Status.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                            //fehler beim db aufbau
++                            statusLine.setStatus(3,l.getString(&quot;Status.groupdetail.savebutton.errordb&quot;));
++                            showMsg(l.getString(&quot;Status.groupdetail.savebutton.errordb&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else {
++                            //@todo
++                            e.printStackTrace();
++                        }
++                        
++                    }
++                    
++                    
++                    //alle Buttons auf aktiv setzen
++                    setStatusGroupButtonSaveCancel();
++                    
++                } else if (mode_Status == ManagementGui.MODE_EDIT) {
++                    
++                    Status tmp = new Status(textStatusName.getText(),
++                                    textStatusShortname.getText());
++        		tmp.setStatusId( new Integer (Integer.parseInt(textStatusID.getText())) );
++                try {
++                    //object speichern
++                    // Fehlerbehandlung
++                    Database.saveObject(tmp);
++                    //&#220;bersichtstabelle aktualisieren
++                    refreshStatusTable(textStatusSearch.getText());
++                    
++                    //Statusline Nachricht sezten
++                    statusLine.setStatus(1,l.getString(&quot;Status.groupdetail.savebutton.editok&quot;));
++                   
++
++                } catch (DataBaseException e) {
++                    if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                        //Fehler beim Speichern des Objectes
++
++                        statusLine.setStatus(3,l.getString(&quot;Status.groupdetail.savebutton.errorsave&quot;));
++                        showMsg(l.getString(&quot;Status.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                        //fehler beim db aufbau
++                        statusLine.setStatus(3,l.getString(&quot;Status.groupdetail.savebutton.errordb&quot;));
++                        showMsg(l.getString(&quot;Status.groupdetail.savebutton.errordb&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else {
++                        //@todo
++                        e.printStackTrace();
++                    }
++                    
++                }
++                    
++ 
++                    //alle Buttons auf aktiv setzen
++                    setStatusGroupButtonSaveCancel();
++                    
++                }
++                
++                
++                
++                /**
++                 * @todo Exception werfen, da nur die zwei Modes sein d&#252;rfen
++                 */
++                
++            }
++        });
++
++        buttonStatusCancel = new Button(composite2, SWT.PUSH | SWT.CENTER);
++        buttonStatusCancel.setText(l.getString(&quot;button.cancel&quot;));
++        buttonStatusCancel.setEnabled(false);
++        buttonStatusCancel.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonStatusCancel.widgetSelected, event=&quot;
++                                + evt);
++                setStatusGroupButtonSaveCancel();
++            }
++        });
++
++        
++    }
++
++    /**
++     * 
++     */
++    protected void setStatusGroupButtonSaveCancel() {
++        buttonStatusSave.setEnabled(false);
++        buttonStatusCancel.setEnabled(false);
++        buttonStatusEdit.setEnabled(true);
++        buttonStatusNew.setEnabled(true);
++        buttonStatusDelete.setEnabled(true);
++        textStatusName.setEditable(false);
++        textStatusShortname.setEditable(false);
++        textStatusSearch.setEditable(true);
++
++        // StatusTabelle aktivieren
++        tableStatus.setEnabled(true);
++
++        //StatusSearch aktivieren
++        textStatusSearch.setEnabled(true);
++        
++    }
++
++    /**
++     * @param Status
++     */
++    protected void insertIntoStatusTable(Status Status) {
++        TableItem item = new TableItem(tableStatus, SWT.NONE);
++        item.setText(new String[] { Status.getStatusId() + &quot;&quot;, Status.getStatusName(),
++                Status.getStatusShortname() });
++        
++    }
++
++    /**
++     * @param text
++     */
++    protected void refreshStatusTable(final String filter) {
++        if (tableStatus == null) {
++            System.out
++                    .println(&quot;Konnte Statustable nicht refreshen, da diese null ist!&quot;);
++            return;
++        }
++        System.out.println(&quot;Versuche nun StatusListe zu refreshen. Filter: &quot;
++                + filter);
++        tableStatus.removeAll();
++        TableItem item;
++        java.util.List Statuslist = Database.getStatus(filter);
++
++        for (int i = 0; i &lt; Statuslist.size(); i++) {
++
++            Status o = (Status) Statuslist.get(i);
++            item = new TableItem(tableStatus, SWT.NONE);
++            item.setText(new String[] { o.getStatusId() + &quot;&quot;, o.getStatusName(),
++                    o.getStatusShortname() });
++
++        }
++
++        
++    }
++
++    /**
++     * 
++     */
++    private void initStatusGroupOverview() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initStatusGroupOverview() - start&quot;);
++        }
++
++        groupStatusOverview = new Group(sashFormStatus, SWT.NONE);
++        GridLayout group5Layout = new GridLayout();
++        group5Layout.numColumns = 8;
++        groupStatusOverview.setText(l
++                .getString(&quot;Status.groupoverview.label&quot;));
++        FormData group5LData = new FormData();
++        groupStatusOverview.setLayout(group5Layout);
++        group5LData.left = new FormAttachment(0, 100, 0);
++        group5LData.top = new FormAttachment(0, 100, 0);
++        groupStatusOverview.setLayoutData(group5LData);
++
++        //Tabelle anzeigen
++        initTableStatus();
++        //Suche darunter anzeigen
++        initStatusSearch();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initStatusGroupOverview() - end&quot;);
++        }
++        
++    }
++
++    /**
++     * 
++     */
++    private void initStatusSearch() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initStatusSearch() - start&quot;);
++        }
++
++        //label f&#252;r die Suche
++        labelStatusSearch = new Label(groupStatusOverview, SWT.NONE);
++        labelStatusSearch.setText(l
++                .getString(&quot;Status.groupoverview.searchlabel&quot;)
++                + &quot;:&quot;);
++        GridData label2LData = new GridData();
++        label2LData.horizontalSpan = 3;
++        labelStatusSearch.setLayoutData(label2LData);
++
++        //das Suchfeld
++        textStatusSearch = new Text(groupStatusOverview, SWT.BORDER);
++        GridData text2LData = new GridData();
++        textStatusSearch.addFocusListener(new FocusAdapter() {
++            public void focusLost(FocusEvent evt) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;focusLost(FocusEvent evt = &quot; + evt + &quot; &quot;
++                            + textStatusSearch.getText() + &quot;) - start&quot;);
++                }
++
++                refreshStatusTable(textStatusSearch.getText());
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;focusLost(FocusEvent) - end&quot;);
++                }
++            }
++        });
++
++        textStatusSearch.addListener(SWT.DefaultSelection, new Listener() {
++            public void handleEvent(Event e) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;handleEvent(Event e = &quot; + e + &quot; &quot;
++                            + textStatusSearch.getText() + &quot;) - start&quot;);
++                }
++
++                refreshStatusTable(textStatusSearch.getText());
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;handleEvent(Event) - end&quot;);
++                }
++            }
++        });
++
++        text2LData.horizontalAlignment = GridData.FILL;
++        text2LData.horizontalSpan = 5;
++        text2LData.grabExcessHorizontalSpace = true;
++        textStatusSearch.setLayoutData(text2LData);
++
++
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initStatusSearch() - end&quot;);
++        }
++        
++    }
++
++    /**
++     * 
++     */
++    private void initTableStatus() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initTableStatus() - start&quot;);
++        }
++
++        tableStatus = new Table(groupStatusOverview, SWT.SINGLE
++                | SWT.FULL_SELECTION | SWT.V_SCROLL | SWT.BORDER);
++        tableStatus.setHeaderVisible(true);
++        tableStatus.setLinesVisible(true);
++        GridData table2LData = new GridData();
++        tableStatus.addFocusListener(new FocusAdapter() {
++            public void focusLost(FocusEvent evt) {
++                System.out.println(&quot;tableStatus.focusLost, event=&quot; + evt);
++                //TODO add your code for tableStatus.focusLost
++            }
++            public void focusGained(FocusEvent evt) {
++                System.out
++                    .println(&quot;tableStatus.focusGained, event=&quot; + evt);
++                //TODO add your code for tableStatus.focusGained
++            }
++        });
++        tableStatus.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;widgetSelected(SelectionEvent evt = &quot;
++                        + evt
++                        + &quot;) - start&quot;);
++                }
++
++                int index = tableStatus.getSelectionIndex();
++
++                System.out.println(&quot;Table select. id: &quot;
++                    + index
++                    + &quot; TableItem:&quot;
++                    + tableStatus.getItem(index)
++                    + &quot; id: &quot;
++                    + tableStatus.getItem(index).getText(0));
++
++                //es wurde ein Element aus Tabelle ausgewaehlt jetzt muss die
++                //Detailansicht aktualisiert werden
++                refreshStatusDetail(tableStatus.getItem(index)
++                    .getText(0));
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;widgetSelected(SelectionEvent) - end&quot;);
++                }
++            }
++        });
++        table2LData.verticalAlignment = GridData.FILL;
++        table2LData.horizontalAlignment = GridData.FILL;
++        table2LData.horizontalSpan = 8;
++        table2LData.grabExcessHorizontalSpace = true;
++        table2LData.grabExcessVerticalSpace = true;
++        tableStatus.setLayoutData(table2LData);
++
++        //einzelne Spalten hinzuf&#252;gen
++        tableColumn = new TableColumn(tableStatus, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Status.groupoverview.columnid&quot;));
++        tableColumn.setWidth(50);
++
++        tableColumn = new TableColumn(tableStatus, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Status.groupoverview.columnname&quot;));
++        tableColumn.setWidth(200);
++
++        tableColumn = new TableColumn(tableStatus, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Status.groupoverview.columnshortname&quot;));
++        tableColumn.setWidth(75);
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initTableStatus() - end&quot;);
++        }
++        
++    }
++
++    /**
++     * @param text
++     */
++    protected void refreshStatusDetail(final String id) {
++        Status object;
++        try {
++            //since we only can get a String value from the table, we
++            //need to convert this
++            object = Database.getSingleStatus(Integer.parseInt(id));
++
++            if (object == null) {
++
++                /*
++                 * 
++                 * @TODO Statusbar aktualiseren
++                 */
++                return;
++            }
++        } catch (Exception e) {
++            //id ist keine Zahl
++            return;
++        }
++
++        textStatusID.setText(object.getStatusId() + &quot;&quot;);
++        textStatusName.setText(object.getStatusName());
++        textStatusShortname.setText(object.getStatusShortname());
++
++        //Buttons zum l&#246;schen und editieren aktivieren
++        buttonStatusEdit.setEnabled(true);
++        buttonStatusDelete.setEnabled(true);
++
++        //Mode auf view setzen
++        mode_Status = ManagementGui.MODE_VIEW;
++        
++    }
++
++	
++
++}
++
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-11 11:43:54 UTC (rev 127)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-11 14:58:27 UTC (rev 128)
+@@ -175,6 +175,12 @@
+     
+     private Locale locale ;
+ 
++    protected CTabItem tabItemStatus;
++
++    private CompositeStatus compositeStatus;
++
++    private CTabItem tabStatusLanguage;
++
+     /**
+      * Auto-generated main method to display this
+      * org.eclipse.swt.widgets.Composite inside a new Shell.
+@@ -474,11 +480,19 @@
+         viewStatusMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewStatusMenuItem.setText(l.getString(&quot;menu.view.status&quot;));
+         viewStatusMenuItem.setSelection(false);
++        viewStatusMenuItem.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++				if(tabItemStatus == null || tabItemStatus.isDisposed()){
++				    initStatusTab();
++				    return;   
++				}
++				
++				cTabFolderMain.setSelection(tabItemStatus);
++				viewStatusMenuItem.setSelection(true);
++				cTabFolderMain.showSelection();
++            }
++        });   
+ 
+-        viewConditionMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+-        viewConditionMenuItem.setText(l.getString(&quot;menu.view.condition&quot;));
+-        viewConditionMenuItem.setSelection(false);
+-
+         viewMovieMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewMovieMenuItem.setText(l.getString(&quot;menu.view.movie&quot;));
+         viewMovieMenuItem.setSelection(false);
+@@ -494,6 +508,32 @@
+     }
+ 
+     /**
++     * 
++     */
++    private void initStatusTab() {
++        tabItemStatus = new CTabItem(cTabFolderMain, SWT.NONE);
++        tabItemStatus.setText(l.getString(&quot;tab.Status.title&quot;));
++        tabItemStatus.addDisposeListener(new DisposeListener() {
++
++            public void widgetDisposed(DisposeEvent evt) {
++                if(!viewStatusMenuItem.isDisposed()){
++                    viewStatusMenuItem.setSelection(false);
++                }
++            }
++            
++        });
++        {
++            compositeStatus = new CompositeStatus(
++                cTabFolderMain,
++                SWT.NONE, statusLine, locale);
++            
++            tabItemStatus.setControl(compositeStatus);
++        }
++        
++    }
++
++
++    /**
+      * init the help menu
+      */
+     private void initHelpMenu() {
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/language.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/language.properties	2004-11-11 11:43:54 UTC (rev 127)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/language.properties	2004-11-11 14:58:27 UTC (rev 128)
+@@ -6,23 +6,23 @@
+ button.save=Speichern
+ button.cancel=Abbruch
+ 
+-Language.group.label=Language
++Language.group.label=Sprache
+ Language.groupoverview.label=&#220;berblick
+-Language.groupoverview.columnid=id
++Language.groupoverview.columnid=Id
+ Language.groupoverview.columnname=Name
+ Language.groupoverview.columnshortname=Abk.
+ 
+ 
+ Language.groupoverview.searchlabel=Suche nach
+ Language.groupdetail.label=Detail
+-Language.groupdetail.idlabel=Language ID
+-Language.groupdetail.namelabel=Language Name
+-Language.groupdetail.shortcutlabel=Language Abk&#252;rzung
++Language.groupdetail.idlabel=Sprache ID
++Language.groupdetail.namelabel=Sprache
++Language.groupdetail.shortcutlabel=Abk&#252;rzung
+ 
+ Language.groupdetail.savebutton.warn.noname.title=Datensatz speichern
+ Language.groupdetail.savebutton.warn.noname.msg=Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie einen Namen an
+-Language.groupdetail.savebutton.newok=Speichern der neuen Language erfolgreich.
+-Language.groupdetail.savebutton.editok=&#196;ndern der Language erfolgreich.
++Language.groupdetail.savebutton.newok=Speichern der neuen Sprache erfolgreich.
++Language.groupdetail.savebutton.editok=&#196;ndern der Sprache erfolgreich.
+ 
+ Language.groupdetail.savebutton.errorsave=Datenbankfehler beim Speichern.
+ Language.groupdetail.savebutton.errordb=Datenbankfehler beim Herstellen der Verbindung.(save).
+@@ -33,23 +33,23 @@
+ Language.groupdetail.deletebutton.errorsave=Datenbankfehler beim L&#246;schen.
+ Language.groupdetail.deletebutton.errordb=Datenbankfehler beim Herstellen der Verbindung(del).
+ 
+-Subtitle.group.label=Subtitle
++Subtitle.group.label=Untertitel
+ Subtitle.groupoverview.label=&#220;berblick
+-Subtitle.groupoverview.columnid=id
++Subtitle.groupoverview.columnid=Id
+ Subtitle.groupoverview.columnname=Name
+ Subtitle.groupoverview.columnshortname=Abk.
+ 
+ 
+ Subtitle.groupoverview.searchlabel=Suche nach
+ Subtitle.groupdetail.label=Detail
+-Subtitle.groupdetail.idlabel=Subtitle ID
+-Subtitle.groupdetail.namelabel=Subtitle Name
+-Subtitle.groupdetail.shortcutlabel=Subtitle Abk&#252;rzung
++Subtitle.groupdetail.idlabel=Untertitel ID
++Subtitle.groupdetail.namelabel=Untertitel Name
++Subtitle.groupdetail.shortcutlabel=Untertitel Abk&#252;rzung
+ 
+ Subtitle.groupdetail.savebutton.warn.noname.title=Datensatz speichern
+ Subtitle.groupdetail.savebutton.warn.noname.msg=Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie einen Namen an
+-Subtitle.groupdetail.savebutton.newok=Speichern des neuen Subtitles erfolgreich.
+-Subtitle.groupdetail.savebutton.editok=&#196;ndern des Subtitles erfolgreich.
++Subtitle.groupdetail.savebutton.newok=Speichern des neuen Untertitels erfolgreich.
++Subtitle.groupdetail.savebutton.editok=&#196;ndern des Untertitels erfolgreich.
+ 
+ Subtitle.groupdetail.savebutton.errorsave=Datenbankfehler beim Speichern.
+ Subtitle.groupdetail.savebutton.errordb=Datenbankfehler beim Herstellen der Verbindung.(save).
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties	2004-11-11 11:43:54 UTC (rev 127)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties	2004-11-11 14:58:27 UTC (rev 128)
+@@ -17,11 +17,9 @@
+ 
+ menu.view.genre=Genre
+ 
+-menu.view.subtitle=Untertitel
+-menu.view.language=Sprache
++menu.view.language=Sprachen
+ 
+ menu.view.status=Status
+-menu.view.condition=Zustand
+ 
+ menu.view.movie=Film
+ 
+@@ -36,9 +34,7 @@
+ tab.actor.title=Darsteller
+ tab.director.title=Regie
+ tab.genre.title=Genre
+-tab.subtitle.title=
+-tab.language.title=Sprache
+-tab.status.title=
+-tab.condition.title=
++tab.language.title=Sprache/Untertitel
++tab.Status.title=Status/Zustand
+ tab.movie.title=
+ status.resizewarn=Fenster kann Mindestgr&#246;&#223;e nicht unterschreiten.
+\ No newline at end of file
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/status.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/status.properties	2004-11-11 11:43:54 UTC (rev 127)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/status.properties	2004-11-11 14:58:27 UTC (rev 128)
+@@ -0,0 +1,62 @@
++
++error=Fehler
++button.new=Neu
++button.edit=Bearbeiten
++button.delete=L&#246;schen
++button.save=Speichern
++button.cancel=Abbruch
++
++Status.group.label=Status
++Status.groupoverview.label=&#220;berblick
++Status.groupoverview.columnid=Id
++Status.groupoverview.columnname=Name
++Status.groupoverview.columnshortname=Abk.
++
++
++Status.groupoverview.searchlabel=Suche nach
++Status.groupdetail.label=Detail
++Status.groupdetail.idlabel=Status ID
++Status.groupdetail.namelabel=Status Name
++Status.groupdetail.shortcutlabel=Status Abk&#252;rzung
++
++Status.groupdetail.savebutton.warn.noname.title=Datensatz speichern
++Status.groupdetail.savebutton.warn.noname.msg=Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie einen Namen an
++Status.groupdetail.savebutton.newok=Speichern des neuen Status erfolgreich.
++Status.groupdetail.savebutton.editok=&#196;ndern des Status erfolgreich.
++
++Status.groupdetail.savebutton.errorsave=Datenbankfehler beim Speichern.
++Status.groupdetail.savebutton.errordb=Datenbankfehler beim Herstellen der Verbindung.(save).
++
++Status.groupdetail.deletebutton.question.header=Wirklich l&#246;schen?
++Status.groupdetail.deletebutton.question.text=Wollen Sie den Datensatz {0} wirklich l&#246;schen?
++Status.groupdetail.deletebutton.newok=Datensatz wurde erfolgreich gel&#246;scht.
++Status.groupdetail.deletebutton.errorsave=Datenbankfehler beim L&#246;schen.
++Status.groupdetail.deletebutton.errordb=Datenbankfehler beim Herstellen der Verbindung(del).
++
++Condition.group.label=Zustand
++Condition.groupoverview.label=&#220;berblick
++Condition.groupoverview.columnid=Id
++Condition.groupoverview.columnname=Name
++Condition.groupoverview.columnshortname=Abk.
++
++
++Condition.groupoverview.searchlabel=Suche nach
++Condition.groupdetail.label=Detail
++Condition.groupdetail.idlabel=Zustand ID
++Condition.groupdetail.namelabel=Zustand Name
++Condition.groupdetail.shortcutlabel=Zustand Abk&#252;rzung
++
++Condition.groupdetail.savebutton.warn.noname.title=Datensatz speichern
++Condition.groupdetail.savebutton.warn.noname.msg=Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie einen Namen an
++Condition.groupdetail.savebutton.newok=Speichern der neuen Zustandes erfolgreich.
++Condition.groupdetail.savebutton.editok=&#196;ndern der Zustandes erfolgreich.
++
++Condition.groupdetail.savebutton.errorsave=Datenbankfehler beim Speichern.
++Condition.groupdetail.savebutton.errordb=Datenbankfehler beim Herstellen der Verbindung.(save).
++
++Condition.groupdetail.deletebutton.question.header=Wirklich l&#246;schen?
++Condition.groupdetail.deletebutton.question.text=Wollen Sie den Datensatz {0} wirklich l&#246;schen?
++Condition.groupdetail.deletebutton.newok=Datensatz wurde erfolgreich gel&#246;scht.
++Condition.groupdetail.deletebutton.errorsave=Datenbankfehler beim L&#246;schen.
++Condition.groupdetail.deletebutton.errordb=Datenbankfehler beim Herstellen der Verbindung(del).
++
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Condition.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Condition.hbm.xml	2004-11-11 11:43:54 UTC (rev 127)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Condition.hbm.xml	2004-11-11 14:58:27 UTC (rev 128)
+@@ -16,7 +16,9 @@
+       &lt;id name=&quot;conditionId&quot; type=&quot;int&quot; column=&quot;CONDITIONID&quot;&gt;
+         &lt;meta attribute=&quot;scope-set&quot;&gt;public&lt;/meta&gt;
+         &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+-        &lt;generator class=&quot;native&quot;/&gt;
++        &lt;generator class=&quot;sequence&quot;&gt;
++			&lt;param name=&quot;sequence&quot;&gt;condition_id_sequence&lt;/param&gt;
++		&lt;/generator&gt;
+       &lt;/id&gt;
+  
+       &lt;property name=&quot;conditionName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Status.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Status.hbm.xml	2004-11-11 11:43:54 UTC (rev 127)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Status.hbm.xml	2004-11-11 14:58:27 UTC (rev 128)
+@@ -17,7 +17,9 @@
+       &lt;id name=&quot;statusId&quot; type=&quot;int&quot; column=&quot;STATUSID&quot;&gt;
+         &lt;meta attribute=&quot;scope-set&quot;&gt;public&lt;/meta&gt;
+         &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+-        &lt;generator class=&quot;native&quot;/&gt;
++        &lt;generator class=&quot;sequence&quot;&gt;
++			&lt;param name=&quot;sequence&quot;&gt;status_id_sequence&lt;/param&gt;
++		&lt;/generator&gt;
+       &lt;/id&gt;
+  
+       &lt;property name=&quot;statusName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-11 11:43:54 UTC (rev 127)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-11 14:58:27 UTC (rev 128)
+@@ -45,9 +45,11 @@
+ import org.apache.log4j.Logger;
+ 
+ import de.hsharz.provirent.objects.AudioFormat;
++import de.hsharz.provirent.objects.Condition;
+ import de.hsharz.provirent.objects.Director;
+ import de.hsharz.provirent.objects.Genre;
+ import de.hsharz.provirent.objects.Language;
++import de.hsharz.provirent.objects.Status;
+ import de.hsharz.provirent.objects.Subtitle;
+ import de.hsharz.provirent.objects.VideoFormat;
+ import de.hsharz.provirent.objects.Actor;
+@@ -489,7 +491,7 @@
+ 	                
+ 	                //maybe we are searching for the id?
+ 	                try {
+-	                    any.add(Expression.eq(&quot;GenreId&quot;, new Integer(Integer.parseInt(filter))));
++	                    any.add(Expression.eq(&quot;genreId&quot;, new Integer(Integer.parseInt(filter))));
+ 	                } catch (Exception e) {
+ 	                }
+ 	                
+@@ -593,7 +595,7 @@
+ 	                
+ 	                //maybe we are searching for the id?
+ 	                try {
+-	                    any.add(Expression.eq(&quot;LanguageId&quot;, new Integer(Integer.parseInt(filter))));
++	                    any.add(Expression.eq(&quot;languageId&quot;, new Integer(Integer.parseInt(filter))));
+ 	                } catch (Exception e) {
+ 	                }
+ 	                
+@@ -799,7 +801,7 @@
+ 	                
+ 	                //maybe we are searching for the id?
+ 	                try {
+-	                    any.add(Expression.eq(&quot;SubtitleId&quot;, new Integer(Integer.parseInt(filter))));
++	                    any.add(Expression.eq(&quot;subtitleId&quot;, new Integer(Integer.parseInt(filter))));
+ 	                } catch (Exception e) {
+ 	                }
+ 	                
+@@ -871,6 +873,214 @@
+ 	    
+ 	
+ 	}
++	
++	/**
++	 * This method gets all Status from the database.
++	 * searches for name or shortname or id
++	 * @param filter 
++	 * @return List of Status objects, or an empty List
++	 */
++	public static List getStatus(final String filter){
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getStatus() - start. String filter= &quot;+filter);
++	    }
++	    //init the returnlist
++	    List returnlist = new ArrayList();
++	
++	    Session s = null;
++	    
++	    try {
++	        //get new Session and begin Transaction
++	        s = HibernateUtil.currentSession();
++	            
++	            //init the criteria
++	            Criteria criteria = s.createCriteria(Status.class);
++	            //any of the criteria 
++	            Disjunction any = Expression.disjunction();
++	
++	            //if filter not empty
++	            if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++	                any.add(Expression.like(&quot;statusName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;statusShortname&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                
++	                //maybe we are searching for the id?
++	                try {
++	                    any.add(Expression.eq(&quot;statusId&quot;, new Integer(Integer.parseInt(filter))));
++	                } catch (Exception e) {
++	                }
++	                
++	            }
++	            //add all criteria
++	            criteria.add(any);
++	            //get the results
++	            returnlist = criteria.list();
++	
++	
++	
++	
++	    } catch (Exception e) {
++	        logger.error(
++	                &quot;getStatus() - Error while trying to do Transaction&quot;,
++	                e);
++	        returnlist = new ArrayList();
++	    } finally {
++	        try {
++	            // No matter what, close the session
++	            HibernateUtil.closeSession();
++	        } catch (HibernateException e1) {
++	            logger.error(&quot;getStatus() - Could not Close the Session&quot;, e1);
++	        }
++	    }
++	
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getStatus() - end&quot;);
++	    }
++	    return returnlist;
++	    
++	
++	}
++	
++	
++	public static Status getSingleStatus(final int id){
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getSingleStatus() - start. int filter= &quot;+id);
++	    }
++	    //init the returnlist
++	    Status returnobject = null;
++	
++	    Session s = null;
++	    Transaction tx = null;
++	    try {
++	        //get new Session and begin Transaction
++	        s = HibernateUtil.currentSession();
++	
++	            returnobject = (Status)s.get(Status.class, new Integer(id));
++	
++	    } catch (Exception e) {
++	        logger.error(
++	                &quot;getSingleStatus() - Error while trying to do Transaction&quot;,
++	                e);
++	        
++	    } finally {
++	        try {
++	            // No matter what, close the session
++	            HibernateUtil.closeSession();
++	        } catch (HibernateException e1) {
++	            logger.error(&quot;getSingleStatus() - Could not Close the Session&quot;, e1);
++	        }
++	    }
++	
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getSingleStatus() - end&quot;);
++	    }
++	    return returnobject;
++	    
++	
++	}
++	
++    /**
++	 * This method gets all Conditions from the database.
++	 * searches for name or shortname or id
++	 * @param filter 
++	 * @return List of Condition objects, or an empty List
++	 */
++	public static List getCondition(final String filter){
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getCondition() - start. String filter= &quot;+filter);
++	    }
++	    //init the returnlist
++	    List returnlist = new ArrayList();
++	
++	    Session s = null;
++	    
++	    try {
++	        //get new Session and begin Transaction
++	        s = HibernateUtil.currentSession();
++	            
++	            //init the criteria
++	            Criteria criteria = s.createCriteria(Condition.class);
++	            //any of the criteria 
++	            Disjunction any = Expression.disjunction();
++	
++	            //if filter not empty
++	            if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++	                any.add(Expression.like(&quot;conditionName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;conditionshortname&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                
++	                //maybe we are searching for the id?
++	                try {
++	                    any.add(Expression.eq(&quot;conditionId&quot;, new Integer(Integer.parseInt(filter))));
++	                } catch (Exception e) {
++	                }
++	                
++	            }
++	            //add all criteria
++	            criteria.add(any);
++	            //get the results
++	            returnlist = criteria.list();
++	
++	
++	
++	
++	    } catch (Exception e) {
++	        logger.error(
++	                &quot;getCondition() - Error while trying to do Transaction&quot;,
++	                e);
++	        returnlist = new ArrayList();
++	    } finally {
++	        try {
++	            // No matter what, close the session
++	            HibernateUtil.closeSession();
++	        } catch (HibernateException e1) {
++	            logger.error(&quot;getCondition() - Could not Close the Session&quot;, e1);
++	        }
++	    }
++	
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getCondition() - end&quot;);
++	    }
++	    return returnlist;
++	    
++	
++	}
++	
++	
++	public static Condition getSingleCondition(final int id){
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getSingleCondition() - start. int filter= &quot;+id);
++	    }
++	    //init the returnlist
++	    Condition returnobject = null;
++	
++	    Session s = null;
++	    Transaction tx = null;
++	    try {
++	        //get new Session and begin Transaction
++	        s = HibernateUtil.currentSession();
++	
++	            returnobject = (Condition)s.get(Condition.class, new Integer(id));
++	
++	    } catch (Exception e) {
++	        logger.error(
++	                &quot;getSingleCondition() - Error while trying to do Transaction&quot;,
++	                e);
++	        
++	    } finally {
++	        try {
++	            // No matter what, close the session
++	            HibernateUtil.closeSession();
++	        } catch (HibernateException e1) {
++	            logger.error(&quot;getSingleCondition() - Could not Close the Session&quot;, e1);
++	        }
++	    }
++	
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getSingleCondition() - end&quot;);
++	    }
++	    return returnobject;
++	    
++	
++	}
+ 
+ 	/**
+ 	 * This method gets all Directors from the database.
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java	2004-11-11 11:43:54 UTC (rev 127)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java	2004-11-11 14:58:27 UTC (rev 128)
+@@ -84,7 +84,7 @@
+         }
+     }
+ 
+-    public void testCondition() throws Exception {
++    /*public void testCondition() throws Exception {
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - start&quot;);
+         }
+@@ -194,7 +194,7 @@
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+-    }
++    }*/
+ 
+     public void testSaveCondition() throws Exception {
+         if (logger.isDebugEnabled()) {
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java	2004-11-11 11:43:54 UTC (rev 127)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java	2004-11-11 14:58:27 UTC (rev 128)
+@@ -1,7 +1,6 @@
+ package test.provirent.hibernate;
+ 
+ import java.util.ArrayList;
+-import java.util.Date;
+ import java.util.Calendar;
+ import java.util.Iterator;
+ import java.util.List;
+@@ -12,7 +11,6 @@
+ 
+ import org.apache.log4j.Logger;
+ 
+-import de.hsharz.provirent.objects.Condition;
+ import de.hsharz.provirent.objects.Customer;
+ import de.hsharz.provirent.objects.Person;
+ /*
+@@ -120,7 +118,7 @@
+ 
+                 Customer c = new Customer();
+                 c.setUserName(&quot;kunde1&quot;);
+-                c.setPassword(&quot;kunde1&quot;);
++                c.setUserPassword(&quot;kunde1&quot;);
+                 c.setHiddenQuestion(&quot; &quot;);
+                 c.setHiddenAnswer(&quot; &quot;);
+ 
+@@ -255,7 +253,7 @@
+ 
+                 Customer c = new Customer();
+                 c.setUserName(&quot;kunde1&quot;);
+-                c.setPassword(&quot;kunde1&quot;);
++                c.setUserPassword(&quot;kunde1&quot;);
+                 c.setHiddenQuestion(&quot; &quot;);
+                 c.setHiddenAnswer(&quot; &quot;);
+ 
+@@ -284,7 +282,7 @@
+                 //second Customer
+                 c = new Customer();
+                 c.setUserName(&quot;kunde2&quot;);
+-                c.setPassword(&quot;kunde2&quot;);
++                c.setUserPassword(&quot;kunde2&quot;);
+                 c.setHiddenQuestion(&quot; &quot;);
+                 c.setHiddenAnswer(&quot; &quot;);
+ 
+@@ -311,7 +309,7 @@
+                 //third Customer
+                 c = new Customer();
+                 c.setUserName(&quot;kunde3&quot;);
+-                c.setPassword(&quot;kunde3&quot;);
++                c.setUserPassword(&quot;kunde3&quot;);
+                 c.setHiddenQuestion(&quot; &quot;);
+                 c.setHiddenAnswer(&quot; &quot;);
+ 
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomerOld.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomerOld.java	2004-11-11 11:43:54 UTC (rev 127)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomerOld.java	2004-11-11 14:58:27 UTC (rev 128)
+@@ -32,15 +32,12 @@
+  */
+ package test.provirent.hibernate;
+ 
+-import java.util.ArrayList;
+-import java.util.List;
+-import java.util.ListIterator;
+-
+ import net.sf.hibernate.Session;
+ import net.sf.hibernate.SessionFactory;
+ import net.sf.hibernate.Transaction;
+ import net.sf.hibernate.cfg.Configuration;
+-import de.hsharz.provirent.objects.*;
++import de.hsharz.provirent.objects.Customer;
++import de.hsharz.provirent.objects.Person;
+ 
+ 
+ /**
+@@ -141,7 +138,7 @@
+             Customer c = new Customer();
+             c.setPerson(p);
+             c.setUserName(&quot;boelkstoff&quot;);
+-            c.setPassword(&quot;egal&quot;);
++            c.setUserPassword(&quot;egal&quot;);
+             c.setHiddenQuestion(&quot;Wer&quot;);
+             c.setHiddenAnswer(&quot;ich&quot;);
+             
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvdOld.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvdOld.java	2004-11-11 11:43:54 UTC (rev 127)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvdOld.java	2004-11-11 14:58:27 UTC (rev 128)
+@@ -33,14 +33,22 @@
+ package test.provirent.hibernate;
+ 
+ import java.util.ArrayList;
+-import java.util.List;
+-import java.util.ListIterator;
+ 
+ import net.sf.hibernate.Session;
+ import net.sf.hibernate.SessionFactory;
+ import net.sf.hibernate.Transaction;
+ import net.sf.hibernate.cfg.Configuration;
+-import de.hsharz.provirent.objects.*;
++import de.hsharz.provirent.objects.Actor;
++import de.hsharz.provirent.objects.AudioFormat;
++import de.hsharz.provirent.objects.Condition;
++import de.hsharz.provirent.objects.Director;
++import de.hsharz.provirent.objects.Dvd;
++import de.hsharz.provirent.objects.Genre;
++import de.hsharz.provirent.objects.Language;
++import de.hsharz.provirent.objects.Movie;
++import de.hsharz.provirent.objects.Status;
++import de.hsharz.provirent.objects.Subtitle;
++import de.hsharz.provirent.objects.VideoFormat;
+ 
+ 
+ /**
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestHibernate.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestHibernate.java	2004-11-11 11:43:54 UTC (rev 127)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestHibernate.java	2004-11-11 14:58:27 UTC (rev 128)
+@@ -33,14 +33,22 @@
+ package test.provirent.hibernate;
+ 
+ import java.util.ArrayList;
+-import java.util.List;
+-import java.util.ListIterator;
+ 
+ import net.sf.hibernate.Session;
+ import net.sf.hibernate.SessionFactory;
+ import net.sf.hibernate.Transaction;
+ import net.sf.hibernate.cfg.Configuration;
+-import de.hsharz.provirent.objects.*;
++import de.hsharz.provirent.objects.Actor;
++import de.hsharz.provirent.objects.AudioFormat;
++import de.hsharz.provirent.objects.Condition;
++import de.hsharz.provirent.objects.Director;
++import de.hsharz.provirent.objects.Dvd;
++import de.hsharz.provirent.objects.Genre;
++import de.hsharz.provirent.objects.Language;
++import de.hsharz.provirent.objects.Movie;
++import de.hsharz.provirent.objects.Status;
++import de.hsharz.provirent.objects.Subtitle;
++import de.hsharz.provirent.objects.VideoFormat;
+ 
+ 
+ /**
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java	2004-11-11 11:43:54 UTC (rev 127)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java	2004-11-11 14:58:27 UTC (rev 128)
+@@ -45,7 +45,6 @@
+ 
+ import de.hsharz.provirent.objects.Actor;
+ import de.hsharz.provirent.objects.AudioFormat;
+-import de.hsharz.provirent.objects.Customer;
+ import de.hsharz.provirent.objects.Director;
+ import de.hsharz.provirent.objects.Genre;
+ import de.hsharz.provirent.objects.Image;
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java	2004-11-11 11:43:54 UTC (rev 127)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java	2004-11-11 14:58:27 UTC (rev 128)
+@@ -83,7 +83,7 @@
+             logger.debug(&quot;tearDown() - end&quot;);
+         }
+     }
+-
++    /*
+     public void testStatus() throws Exception {
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - start&quot;);
+@@ -192,7 +192,7 @@
+       if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+-    }
++    }*/
+ 
+     public void testSaveStatus() throws Exception {
+         if (logger.isDebugEnabled()) {
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000128.html">[Provirent-svn-commit] r127 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+	<LI>Next message: <A HREF="000130.html">[Provirent-svn-commit] r129 - html
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#129">[ date ]</a>
+              <a href="thread.html#129">[ thread ]</a>
+              <a href="subject.html#129">[ subject ]</a>
+              <a href="author.html#129">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,391 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r96 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r96%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200411081458.iA8EwVGd025279%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000096.html">
+   <LINK REL="Next"  HREF="000098.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r96 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r96%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200411081458.iA8EwVGd025279%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r96 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Mon Nov  8 15:58:31 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000096.html">[Provirent-svn-commit] r95 - in project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui: . language
+</A></li>
+        <LI>Next message: <A HREF="000098.html">[Provirent-svn-commit] r97 - in project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#97">[ date ]</a>
+              <a href="thread.html#97">[ thread ]</a>
+              <a href="subject.html#97">[ subject ]</a>
+              <a href="author.html#97">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-08 15:58:30 +0100 (Mon, 08 Nov 2004)
+New Revision: 96
+
+Added:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeActors.java
+Removed:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeArtists.java
+Log:
+
+
+Copied: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeActors.java (from rev 94, project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeArtists.java)
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeArtists.java	2004-11-06 13:43:17 UTC (rev 94)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeActors.java	2004-11-08 14:58:30 UTC (rev 96)
+@@ -0,0 +1,163 @@
++package de.hsharz.provirent.managment.gui;
++
++import java.util.Locale;
++import java.util.PropertyResourceBundle;
++import java.util.ResourceBundle;
++
++import org.apache.log4j.Logger;
++import org.eclipse.swt.SWT;
++import org.eclipse.swt.layout.GridLayout;
++import org.eclipse.swt.widgets.Button;
++import org.eclipse.swt.widgets.Composite;
++import org.eclipse.swt.widgets.Display;
++import org.eclipse.swt.widgets.Shell;
++
++
++import org.eclipse.swt.widgets.Group;
++import org.eclipse.swt.layout.GridData;
++import com.cloudgarden.resource.SWTResourceManager;
++import org.eclipse.swt.widgets.Text;
++/**
++* This code was generated using CloudGarden's Jigloo
++* SWT/Swing GUI Builder, which is free for non-commercial
++* use. If Jigloo is being used commercially (ie, by a corporation,
++* company or business for any purpose whatever) then you
++* should purchase a license for each developer using Jigloo.
++* Please visit www.cloudgarden.com for details.
++* Use of Jigloo implies acceptance of these licensing terms.
++* *************************************
++* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED
++* for this machine, so Jigloo or this code cannot be used legally
++* for any corporate or commercial purpose.
++* *************************************
++*/
++public class CompositeActors extends AbstractComposite{
++
++    {
++        //Register as a resource user - SWTResourceManager will
++        //handle the obtaining and disposing of resources
++        SWTResourceManager.registerResourceUser(this);
++    }
++
++
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger
++            .getLogger(CompositeActors.class);
++    
++    
++    private final static int MODE_VIEW = 0;
++
++    private final static int MODE_ADD = 1;
++    private Text text1;
++    private Group groupActor;
++
++    private final static int MODE_EDIT = 2;
++    
++    private StatusLineStyledText statusLine;
++
++    private ResourceBundle l;
++    
++    private Composite parent;
++    
++    /*
++     * &#196;ndert die Sprache aller Elemente
++     * 
++     * @see de.hsharz.provirent.managment.gui.AbstractComposite#changeLanguage(java.util.Locale)
++     */
++    public void changeLanguage(Locale locale) {
++
++    }
++
++    /* 
++     * Init die Sprache (properties Datei)
++     * @see de.hsharz.provirent.managment.gui.AbstractComposite#initLanguage(java.util.Locale)
++     */
++    public void initLanguage(Locale locale) {
++
++        l = PropertyResourceBundle.getBundle(
++                &quot;de.hsharz.provirent.managment.gui.language.Actors&quot;, locale);
++
++    }
++    
++    
++	/**
++	* Auto-generated main method to display this 
++	* org.eclipse.swt.widgets.Composite inside a new Shell.
++	*/
++	public static void main(String[] args) {
++		showGUI();
++	}
++		
++	/**
++	* Auto-generated method to display this 
++	* org.eclipse.swt.widgets.Composite inside a new Shell.
++	*/
++	public static void showGUI() {
++		Display display = Display.getDefault();
++		Shell shell = new Shell(display);
++
++		shell.open();
++		while (!shell.isDisposed()) {
++			if (!display.readAndDispatch())
++				display.sleep();
++		}
++	}
++
++	public CompositeActors(Composite p, int style,
++            StatusLineStyledText status, Locale l) {
++	    super(p, style, status, l);
++        parent = p;
++        //Statusline wird gestzt
++        statusLine = status;
++        
++        //sprache wird init
++        initLanguage(l);
++	    
++	    
++		initGUI();
++	}
++
++	private void initGUI() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - start&quot;);
++        }
++
++        this.setLayout(new GridLayout());
++        this.setSize(816, 540);
++        {
++            groupActor = new Group(this, SWT.NONE);
++            GridLayout groupActorLayout = new GridLayout();
++            GridData groupActorLData = new GridData();
++            groupActorLData.grabExcessHorizontalSpace = true;
++            groupActorLData.grabExcessVerticalSpace = true;
++            groupActorLData.horizontalAlignment = GridData.FILL;
++            groupActorLData.verticalAlignment = GridData.FILL;
++            groupActor.setLayoutData(groupActorLData);
++            groupActorLayout.makeColumnsEqualWidth = true;
++            groupActor.setLayout(groupActorLayout);
++            groupActor.setText(&quot;Actor&quot;);
++            {
++                text1 = new Text(groupActor, SWT.MULTI | SWT.WRAP);
++                text1.setText(&quot;text1&quot;);
++                GridData text1LData = new GridData();
++                text1.setBackground(SWTResourceManager.getColor(255, 0, 0));
++                text1LData.widthHint = 336;
++                text1LData.heightHint = 173;
++                text1.setLayoutData(text1LData);
++            }
++        }
++
++        this.layout();
++
++
++        
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - end&quot;);
++        }
++	}
++
++	
++
++}
+
+Deleted: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeArtists.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeArtists.java	2004-11-08 14:57:34 UTC (rev 95)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeArtists.java	2004-11-08 14:58:30 UTC (rev 96)
+@@ -1,144 +0,0 @@
+-package de.hsharz.provirent.managment.gui;
+-
+-import java.util.Locale;
+-import java.util.PropertyResourceBundle;
+-import java.util.ResourceBundle;
+-
+-import org.apache.log4j.Logger;
+-import org.eclipse.swt.SWT;
+-import org.eclipse.swt.layout.GridLayout;
+-import org.eclipse.swt.widgets.Button;
+-import org.eclipse.swt.widgets.Composite;
+-import org.eclipse.swt.widgets.Display;
+-import org.eclipse.swt.widgets.Shell;
+-
+-
+-import org.eclipse.swt.widgets.Group;
+-import org.eclipse.swt.layout.GridData;
+-/**
+-* This code was generated using CloudGarden's Jigloo
+-* SWT/Swing GUI Builder, which is free for non-commercial
+-* use. If Jigloo is being used commercially (ie, by a corporation,
+-* company or business for any purpose whatever) then you
+-* should purchase a license for each developer using Jigloo.
+-* Please visit www.cloudgarden.com for details.
+-* Use of Jigloo implies acceptance of these licensing terms.
+-* *************************************
+-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED
+-* for this machine, so Jigloo or this code cannot be used legally
+-* for any corporate or commercial purpose.
+-* *************************************
+-*/
+-public class CompositeArtists extends AbstractComposite{
+-
+-    /**
+-     * Logger for this class
+-     */
+-    private static final Logger logger = Logger
+-            .getLogger(CompositeArtists.class);
+-    
+-    
+-    private final static int MODE_VIEW = 0;
+-
+-    private final static int MODE_ADD = 1;
+-    private Group groupArtist;
+-
+-    private final static int MODE_EDIT = 2;
+-    
+-    private StatusLineStyledText statusLine;
+-
+-    private ResourceBundle l;
+-    
+-    private Composite parent;
+-    
+-    /*
+-     * &#196;ndert die Sprache aller Elemente
+-     * 
+-     * @see de.hsharz.provirent.managment.gui.AbstractComposite#changeLanguage(java.util.Locale)
+-     */
+-    public void changeLanguage(Locale locale) {
+-
+-    }
+-
+-    /* 
+-     * Init die Sprache (properties Datei)
+-     * @see de.hsharz.provirent.managment.gui.AbstractComposite#initLanguage(java.util.Locale)
+-     */
+-    public void initLanguage(Locale locale) {
+-
+-        l = PropertyResourceBundle.getBundle(
+-                &quot;de.hsharz.provirent.managment.gui.language.artists&quot;, locale);
+-
+-    }
+-    
+-    
+-	/**
+-	* Auto-generated main method to display this 
+-	* org.eclipse.swt.widgets.Composite inside a new Shell.
+-	*/
+-	public static void main(String[] args) {
+-		showGUI();
+-	}
+-		
+-	/**
+-	* Auto-generated method to display this 
+-	* org.eclipse.swt.widgets.Composite inside a new Shell.
+-	*/
+-	public static void showGUI() {
+-		Display display = Display.getDefault();
+-		Shell shell = new Shell(display);
+-
+-		shell.open();
+-		while (!shell.isDisposed()) {
+-			if (!display.readAndDispatch())
+-				display.sleep();
+-		}
+-	}
+-
+-	public CompositeArtists(Composite p, int style,
+-            StatusLineStyledText status, Locale l) {
+-	    super(p, style, status, l);
+-        parent = p;
+-        //Statusline wird gestzt
+-        statusLine = status;
+-        
+-        //sprache wird init
+-        initLanguage(l);
+-	    
+-	    
+-		initGUI();
+-	}
+-
+-	private void initGUI() {
+-        if (logger.isDebugEnabled()) {
+-            logger.debug(&quot;initGUI() - start&quot;);
+-        }
+-
+-        this.setLayout(new GridLayout());
+-        this.setSize(816, 540);
+-        {
+-            groupArtist = new Group(this, SWT.NONE);
+-            GridLayout groupArtistLayout = new GridLayout();
+-            GridData groupArtistLData = new GridData();
+-            groupArtistLData.grabExcessHorizontalSpace = true;
+-            groupArtistLData.grabExcessVerticalSpace = true;
+-            groupArtistLData.horizontalAlignment = GridData.FILL;
+-            groupArtistLData.verticalAlignment = GridData.FILL;
+-            groupArtist.setLayoutData(groupArtistLData);
+-            groupArtistLayout.makeColumnsEqualWidth = true;
+-            groupArtist.setLayout(groupArtistLayout);
+-            groupArtist.setText(&quot;Artist&quot;);
+-        }
+-
+-        this.layout();
+-
+-
+-        
+-        if (logger.isDebugEnabled()) {
+-            logger.debug(&quot;initGUI() - end&quot;);
+-        }
+-	}
+-
+-	
+-
+-}
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000096.html">[Provirent-svn-commit] r95 - in project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui: . language
+</A></li>
+	<LI>Next message: <A HREF="000098.html">[Provirent-svn-commit] r97 - in project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#97">[ date ]</a>
+              <a href="thread.html#97">[ thread ]</a>
+              <a href="subject.html#97">[ subject ]</a>
+              <a href="author.html#97">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

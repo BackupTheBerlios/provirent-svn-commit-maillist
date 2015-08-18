@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r260 - project_src/website
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-January/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r260%20-%20project_src/website&In-Reply-To=%3C200501092104.j09L4c6H030612%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000260.html">
+   <LINK REL="Next"  HREF="000262.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r260 - project_src/website</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r260%20-%20project_src/website&In-Reply-To=%3C200501092104.j09L4c6H030612%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r260 - project_src/website">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Sun Jan  9 22:04:38 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000260.html">[Provirent-svn-commit] r259 - project_src/website
+</A></li>
+        <LI>Next message: <A HREF="000262.html">[Provirent-svn-commit] r261 - project_src/website
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#261">[ date ]</a>
+              <a href="thread.html#261">[ thread ]</a>
+              <a href="subject.html#261">[ subject ]</a>
+              <a href="author.html#261">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2005-01-09 22:04:37 +0100 (Sun, 09 Jan 2005)
+New Revision: 260
+
+Removed:
+   project_src/website/Servlet.library
+   project_src/website/website.jpx
+Log:
+
+
+Deleted: project_src/website/Servlet.library
+===================================================================
+--- project_src/website/Servlet.library	2005-01-09 21:03:51 UTC (rev 259)
++++ project_src/website/Servlet.library	2005-01-09 21:04:37 UTC (rev 260)
+@@ -1,7 +0,0 @@
+-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+-&lt;library&gt;
+-  &lt;!--JBuilder Library Definition File--&gt;
+-  &lt;fullname&gt;Servlet&lt;/fullname&gt;
+-  &lt;required&gt;Tomcat 4.1 Servlet&lt;/required&gt;
+-  &lt;lastmodsaved&gt;1104253609506&lt;/lastmodsaved&gt;
+-&lt;/library&gt;
+
+Deleted: project_src/website/website.jpx
+===================================================================
+--- project_src/website/website.jpx	2005-01-09 21:03:51 UTC (rev 259)
++++ project_src/website/website.jpx	2005-01-09 21:04:37 UTC (rev 260)
+@@ -1,153 +0,0 @@
+-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+-&lt;!--JBuilder XML Project--&gt;
+-&lt;project&gt;
+-  &lt;property category=&quot;debug.0&quot; name=&quot;ShowFilesModified&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;debug.0&quot; name=&quot;SmartStep&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;debug.0&quot; name=&quot;SmartStepRedefineClasses&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;generalFormatting&quot; name=&quot;baseCodeStyle&quot; value=&quot;java/Java Standard.codestyle&quot;/&gt;
+-  &lt;property category=&quot;generalFormatting2&quot; name=&quot;blockIndent&quot; value=&quot;4&quot;/&gt;
+-  &lt;property category=&quot;generalFormatting2&quot; name=&quot;continuationIndent&quot; value=&quot;8&quot;/&gt;
+-  &lt;property category=&quot;generalFormatting2&quot; name=&quot;overrideBasicFormatting&quot; value=&quot;1&quot;/&gt;
+-  &lt;property category=&quot;javaFormatting&quot; name=&quot;alignMultilineAssign&quot; value=&quot;1&quot;/&gt;
+-  &lt;property category=&quot;javaFormatting&quot; name=&quot;arrayInitDataOnNewLine&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;javaFormatting&quot; name=&quot;blankLinesAfterClass&quot; value=&quot;2&quot;/&gt;
+-  &lt;property category=&quot;javaFormatting&quot; name=&quot;catchOnNewLine&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;javaFormatting&quot; name=&quot;elseOnNewLine&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;javaFormatting&quot; name=&quot;extendsOnNewLine&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;javaFormatting&quot; name=&quot;finallyOnNewLine&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;javaFormatting&quot; name=&quot;implementsOnNewLine&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;javaFormatting&quot; name=&quot;indentCase&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;javaFormatting&quot; name=&quot;packagePrefixGroups&quot; value=&quot;java;BLANK_LINE;javax;BLANK_LINE;(*)&quot;/&gt;
+-  &lt;property category=&quot;javaFormatting&quot; name=&quot;preservedBlankLinesInDecl&quot; value=&quot;2&quot;/&gt;
+-  &lt;property category=&quot;javaFormatting&quot; name=&quot;spaceBeforeLparen&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;javaFormatting&quot; name=&quot;whileOnNewLine&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;javadoc&quot; name=&quot;custom.tags.1&quot; value=&quot;todo;a;To Do:&quot;/&gt;
+-  &lt;property category=&quot;module&quot; name=&quot;ProjectConvertedToEnsureModulesHaveSupportedFeatures&quot; value=&quot;1&quot;/&gt;
+-  &lt;property category=&quot;module&quot; name=&quot;ProjectConvertedToUseFilesAndDependenciesAsDefaultContent&quot; value=&quot;1&quot;/&gt;
+-  &lt;property category=&quot;module&quot; name=&quot;ProjectConvertedToUseProperModuleDefaults&quot; value=&quot;1&quot;/&gt;
+-  &lt;property category=&quot;module&quot; name=&quot;last.wizard.module.name&quot; value=&quot;web&quot;/&gt;
+-  &lt;property category=&quot;module&quot; name=&quot;projectConvertedFromModuleExtensionsToModuleFileTypes&quot; value=&quot;1&quot;/&gt;
+-  &lt;property category=&quot;optimize.0&quot; name=&quot;OptimizableType&quot; value=&quot;intuitive.ide.borland.jb10.ProfilerBootstrap&quot;/&gt;
+-  &lt;property category=&quot;optimize.0&quot; name=&quot;oicc.FilterFile&quot; value=&quot;D:\a_provirent\project_src\website\website.oif&quot;/&gt;
+-  &lt;property category=&quot;optimize.0&quot; name=&quot;oipr.FilterFile&quot; value=&quot;D:\a_provirent\project_src\website\website.oif&quot;/&gt;
+-  &lt;property category=&quot;optimize.0&quot; name=&quot;oira.FilterFile&quot; value=&quot;D:\a_provirent\project_src\website\website.oif&quot;/&gt;
+-  &lt;property category=&quot;runtime&quot; name=&quot;DefaultConfiguration&quot; value=&quot;-1&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;BuildTargetOnRun&quot; value=&quot;com.borland.jbuilder.build.ProjectBuilder$ProjectBuildAction;make&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;ConfigurationName&quot; value=&quot;jsp1&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;RunnableType&quot; value=&quot;com.borland.jbuilder.runtime.ServerRunner&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;appserver.parameters&quot; value=&quot;&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;appserver.servername&quot; value=&quot;&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;appserver.vmparameters&quot; value=&quot;&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;custom.init_required&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;custom.required.1&quot; value=&quot;Servlet&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;custom.required.2&quot; value=&quot;Struts&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;enable.tcpmonitor&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;enable.wsimonitor&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;enabled.services&quot; value=&quot;jsp;naming&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;jsp.launchuri&quot; value=&quot;/web/index.jsp&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;jsprunner.launchuri&quot; value=&quot;/web/index.jsp&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;server.arguments&quot; value=&quot;&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;server.instance.name&quot; value=&quot;&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;server.name&quot; value=&quot;Tomcat 4.1&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;server.vmparameters&quot; value=&quot;&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;tcpmonitor.listenport&quot; value=&quot;&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;tcpmonitor.targethost&quot; value=&quot;&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;tcpmonitor.targetport&quot; value=&quot;&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;wsimonitor.listenport&quot; value=&quot;&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;wsimonitor.logfile&quot; value=&quot;&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;wsimonitor.targethost&quot; value=&quot;&quot;/&gt;
+-  &lt;property category=&quot;runtime.0&quot; name=&quot;wsimonitor.targetport&quot; value=&quot;&quot;/&gt;
+-  &lt;property category=&quot;serverservices&quot; name=&quot;disabled.services&quot; value=&quot;jdatastore;sqlj&quot;/&gt;
+-  &lt;property category=&quot;serverservices&quot; name=&quot;single.server.name&quot; value=&quot;Tomcat 4.1&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;AuthorLabel&quot; value=&quot;@author&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;BackupPath&quot; value=&quot;bak&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;CheckStable&quot; value=&quot;1&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;Company&quot; value=&quot;&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;CompanyLabel&quot; value=&quot;Company:&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;Copyright&quot; value=&quot;Copyright (c) 2004&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;CopyrightLabel&quot; value=&quot;Copyright:&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;DefaultPath&quot; value=&quot;src&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;Description&quot; value=&quot;&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;DescriptionLabel&quot; value=&quot;Description:&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;DocPath&quot; value=&quot;doc&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;ExcludeClassEnabled&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;IncludeTestPath&quot; value=&quot;1&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;InstanceVisibility&quot; value=&quot;2&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;JDK&quot; value=&quot;java version 1.4.2_04-b05&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;JvmVersion&quot; value=&quot;1.2&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;LastTag&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;Libraries&quot; value=&quot;Servlet;Struts;provirent_objects&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;MakeStable&quot; value=&quot;0&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;OutPath&quot; value=&quot;classes&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;SourcePath&quot; value=&quot;src;test&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;TestPath&quot; value=&quot;test&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;Title&quot; value=&quot;&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;TitleLabel&quot; value=&quot;Title:&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;Version&quot; value=&quot;1.0&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;VersionLabel&quot; value=&quot;@version&quot;/&gt;
+-  &lt;property category=&quot;sys&quot; name=&quot;WorkingDirectory&quot; value=&quot;.&quot;/&gt;
+-  &lt;property category=&quot;team&quot; name=&quot;ignorePath.0&quot; value=&quot;Tomcat&quot;/&gt;
+-  &lt;property category=&quot;webModule&quot; name=&quot;last.wizard.module.name&quot; value=&quot;web&quot;/&gt;
+-  &lt;node name=&quot;web&quot; type=&quot;WebModuleNode&quot;&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;archiverClass&quot; value=&quot;com.borland.jbuilder.enterprise.module.web.WebModuleArchiver&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.1&quot; value=&quot;i:jar&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.10&quot; value=&quot;i:jsp&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.11&quot; value=&quot;i:tld&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.12&quot; value=&quot;i:opentools&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.13&quot; value=&quot;i:png&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.14&quot; value=&quot;i:properties&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.15&quot; value=&quot;i:au&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.16&quot; value=&quot;i:txt&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.17&quot; value=&quot;i:ram&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.18&quot; value=&quot;i:css&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.19&quot; value=&quot;i:wml&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.2&quot; value=&quot;i:cab&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.20&quot; value=&quot;i:xml&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.21&quot; value=&quot;i:xul&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.22&quot; value=&quot;i:xpi&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.23&quot; value=&quot;i:xsl&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.3&quot; value=&quot;i:rpt&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.4&quot; value=&quot;i:gif&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.5&quot; value=&quot;i:html&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.6&quot; value=&quot;i:class&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.7&quot; value=&quot;i:jnlp&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.8&quot; value=&quot;i:js&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;contentRules.9&quot; value=&quot;i:jpg&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;defaultLibraryState&quot; value=&quot;3&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;includeDeps&quot; value=&quot;1&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;libraryStates.1&quot; value=&quot;0:Servlet&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;libraryStates.2&quot; value=&quot;0:Tomcat 4.1 Servlet&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;outPathState&quot; value=&quot;4&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;targetPath&quot; value=&quot;web.war&quot;/&gt;
+-    &lt;property category=&quot;archiving&quot; name=&quot;usingRules&quot; value=&quot;1&quot;/&gt;
+-    &lt;property category=&quot;kit.struts&quot; name=&quot;struts-config.1&quot; value=&quot;WEB-INF/struts-config.xml&quot;/&gt;
+-    &lt;property category=&quot;kit.struts&quot; name=&quot;tiles-defs.1&quot; value=&quot;1:WEB-INF/tiles-defs.xml&quot;/&gt;
+-    &lt;property category=&quot;kit.struts&quot; name=&quot;validator-defs.1&quot; value=&quot;1:WEB-INF/validator-rules.xml&quot;/&gt;
+-    &lt;property category=&quot;kit.struts&quot; name=&quot;validator-defs.2&quot; value=&quot;1:WEB-INF/validation.xml&quot;/&gt;
+-    &lt;property category=&quot;module&quot; name=&quot;buildModuleArchiveWithModuleNode&quot; value=&quot;0&quot;/&gt;
+-    &lt;property category=&quot;module&quot; name=&quot;buildModuleArchiveWithProject&quot; value=&quot;0&quot;/&gt;
+-    &lt;property category=&quot;module&quot; name=&quot;buildModuleExplodedArchiveWithModuleNode&quot; value=&quot;1&quot;/&gt;
+-    &lt;property category=&quot;module&quot; name=&quot;buildModuleExplodedArchiveWithProject&quot; value=&quot;1&quot;/&gt;
+-    &lt;property category=&quot;module&quot; name=&quot;cleanRules.1&quot; value=&quot;I:WEB-INF/classes/**&quot;/&gt;
+-    &lt;property category=&quot;module&quot; name=&quot;cleanRules.2&quot; value=&quot;I:WEB-INF/lib/**&quot;/&gt;
+-    &lt;property category=&quot;module&quot; name=&quot;cleanRules.3&quot; value=&quot;X:WEB-INF/**/*.ds&quot;/&gt;
+-    &lt;property category=&quot;module&quot; name=&quot;cleanRules.4&quot; value=&quot;X:WEB-INF/**/*.wsdd&quot;/&gt;
+-    &lt;property category=&quot;module&quot; name=&quot;cleanRules.5&quot; value=&quot;X:WEB-INF/*.xml&quot;/&gt;
+-    &lt;property category=&quot;module&quot; name=&quot;cleanRules.6&quot; value=&quot;X:WEB-INF/*.xmi&quot;/&gt;
+-    &lt;property category=&quot;module&quot; name=&quot;directory&quot; value=&quot;web&quot;/&gt;
+-    &lt;property category=&quot;module&quot; name=&quot;extraDefaultDirectoriesToKeepOnClean.1&quot; value=&quot;.cvsignore&quot;/&gt;
+-    &lt;property category=&quot;module&quot; name=&quot;lastServer&quot; value=&quot;Tomcat 4.1&quot;/&gt;
+-    &lt;property category=&quot;module&quot; name=&quot;nodeJBuilderVersion&quot; value=&quot;JBuilder 200&quot;/&gt;
+-    &lt;property category=&quot;module&quot; name=&quot;supported.features.1&quot; value=&quot;Servlet 2.3&quot;/&gt;
+-    &lt;property category=&quot;module&quot; name=&quot;supported.features.2&quot; value=&quot;JSP 1.2&quot;/&gt;
+-    &lt;property category=&quot;module&quot; name=&quot;useModuleSpecificJavaFileNodesToBuild&quot; value=&quot;1&quot;/&gt;
+-    &lt;property category=&quot;web&quot; name=&quot;context-root&quot; value=&quot;web&quot;/&gt;
+-    &lt;property category=&quot;webModule&quot; name=&quot;kit.1&quot; value=&quot;struts/struts_validation&quot;/&gt;
+-    &lt;property category=&quot;webModule&quot; name=&quot;kit.2&quot; value=&quot;struts/struts_tiles&quot;/&gt;
+-    &lt;property category=&quot;webModule&quot; name=&quot;kit.3&quot; value=&quot;struts&quot;/&gt;
+-    &lt;property category=&quot;webModule&quot; name=&quot;kitlib.1&quot; value=&quot;Struts&quot;/&gt;
+-    &lt;property category=&quot;webModule&quot; name=&quot;kitlib.2&quot; value=&quot;Struts&quot;/&gt;
+-    &lt;property category=&quot;webModule&quot; name=&quot;kitlib.3&quot; value=&quot;Struts&quot;/&gt;
+-    &lt;property category=&quot;webModule&quot; name=&quot;launch.uri&quot; value=&quot;/&quot;/&gt;
+-  &lt;/node&gt;
+-&lt;/project&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000260.html">[Provirent-svn-commit] r259 - project_src/website
+</A></li>
+	<LI>Next message: <A HREF="000262.html">[Provirent-svn-commit] r261 - project_src/website
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#261">[ date ]</a>
+              <a href="thread.html#261">[ thread ]</a>
+              <a href="subject.html#261">[ subject ]</a>
+              <a href="author.html#261">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

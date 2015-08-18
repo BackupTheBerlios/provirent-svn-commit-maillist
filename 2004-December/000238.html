@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r237 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r237%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20test/provirent/hibernate&In-Reply-To=%3C200412111727.iBBHRDcQ027581%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000237.html">
+   <LINK REL="Next"  HREF="000239.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r237 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r237%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20test/provirent/hibernate&In-Reply-To=%3C200412111727.iBBHRDcQ027581%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r237 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Sat Dec 11 18:27:13 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000237.html">[Provirent-svn-commit] r236 - in project_src/provirent_hibernate/src: de/hsharz/provirent/objects test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000239.html">[Provirent-svn-commit] r238 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#238">[ date ]</a>
+              <a href="thread.html#238">[ thread ]</a>
+              <a href="subject.html#238">[ subject ]</a>
+              <a href="author.html#238">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-12-11 18:27:11 +0100 (Sat, 11 Dec 2004)
+New Revision: 237
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java	2004-12-11 13:54:16 UTC (rev 236)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java	2004-12-11 17:27:11 UTC (rev 237)
+@@ -603,7 +603,7 @@
+ 					Payment o = new Payment();
+ 					o.setPaymentId(new Integer(Integer.parseInt(textPaymentID
+ 							.getText())));
+-					o.setName(textPaymentName.getText());
++					//o.setName(textPaymentName.getText());
+ 					o.setDuration1(Float.parseFloat(textduration1.getText()));
+ 					o.setDuration2(Float.parseFloat(textduration2.getText()));
+ 					o.setDuration3(Float.parseFloat(textduration3.getText()));
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java	2004-12-11 13:54:16 UTC (rev 236)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java	2004-12-11 17:27:11 UTC (rev 237)
+@@ -32,6 +32,8 @@
+  */
+ package test.provirent.hibernate;
+ 
++import org.apache.log4j.Logger;
++
+ import java.util.ArrayList;
+ import java.util.Calendar;
+ import java.util.List;
+@@ -44,6 +46,7 @@
+ import net.sf.hibernate.expression.Expression;
+ import net.sf.hibernate.expression.Order;
+ import de.hsharz.provirent.objects.Customer;
++import de.hsharz.provirent.objects.Dvd;
+ import de.hsharz.provirent.objects.MovieOrder;
+ import de.hsharz.provirent.objects.OrderItem;
+ import de.hsharz.provirent.objects.Payment;
+@@ -53,6 +56,10 @@
+  *
+  */
+ public class TestMovieOrder extends TestCase {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(TestMovieOrder.class);
+ 
+     /*
+      * @see TestCase#setUp()
+@@ -85,16 +92,26 @@
+             s = HibernateUtil.currentSession();
+             tx = s.beginTransaction();
+ 
+-            List customers = new ArrayList();
++            List customers = s.find(&quot;from Customer as customer&quot;);
++            assertNotNull(
++                    &quot;testCreateMovieOrder(): Can't get Customer from DB. Null&quot;,
++                    customers);
++            assertTrue(
++                    &quot;testCreateMovieOrder(): Can not find Customer in DB&quot;,
++                    customers.size() &gt; 0);
+             
+-            List dvds = new ArrayList();
++            List dvds = s.find(&quot;from Dvd as dvd&quot;);
++            assertNotNull(
++                    &quot;testCreateMovieOrder(): Can't get Dvd from DB. Null&quot;,
++                    dvds);
++            assertTrue(
++                    &quot;testCreateMovieOrder(): Can not find Dvd in DB&quot;,
++                    dvds.size() &gt; 0);          
+             
+-            
+             //for each movie 
+             for (int i = 0; i &lt; 1; i++) {
+ 
+-                Customer customer =null;
+-                //customer = (Customer) customers.get(i);
++                Customer customer = (Customer) customers.get(i);
+ 
+ 
+                 MovieOrder movieOrder = new MovieOrder();
+@@ -102,10 +119,7 @@
+ 
+                 List orderItems = new ArrayList();
+ 
+-
+                 
+-                
+-                
+                 for (int j = 0; j &lt; 1; j++) {
+ 
+                     OrderItem orderItem = new OrderItem();
+@@ -113,35 +127,31 @@
+                     orderItem.setDuration(2);
+ 
+                     
+-                    //Dvd dvd = (Dvd)dvds.get(0);
+-                    //orderItem.setDvd(dvd);
++                    Dvd dvd = (Dvd)dvds.get(0);
++                    orderItem.setDvd(dvd);
+                     
+                     orderItem.setOrderTime(Calendar.getInstance());
+                     
+-                    //dvd.getPaymentCategory();
++
+                     
+                     //get the Payment where the PaymentCategory are the one
+                     //from dvd and the date is the highest
+                     
+-                    
+-                    
+-                    
+-            		Criteria criteria = s.createCriteria(Payment.class).addOrder(Order.desc(&quot;startdate&quot;)).setMaxResults(1)
+-            				.createAlias(&quot;PaymentCategory&quot;, &quot;pc&quot;).add(Expression.eq(&quot;pc.name&quot;,&quot;A&quot;));
+-
+-            		List pay = criteria.list();
+-            		System.out.println(&quot;Payment: &quot;+pay.size());
+-            		for (int k = 0; k &lt; pay.size(); k++) {
+-            		    System.out.println(k+&quot; &quot;+pay.get(k) );
+-                    }
++                    List payment = s.createCriteria(Payment.class)
++            				.addOrder(Order.desc(&quot;startdate&quot;))
++            				.setMaxResults(1)
++            				.createAlias(&quot;PaymentCategory&quot;, &quot;pc&quot;)
++            				.add(Expression.eq(&quot;pc.name&quot;,dvd.getPaymentCategory().getName()))
++            				.list();
++                    assertNotNull(
++                            &quot;testCreateMovieOrder(): Can't get Payment from DB. Null&quot;,
++                            payment);
++                    assertTrue(
++                            &quot;testCreateMovieOrder(): Can not find Payment in DB&quot;,
++                            payment.size() &gt; 0);  
+             		
+-            		
+                     
+-                    
+-                    
+-                    
+-                    
+-                    orderItem.setPayment(new Payment());
++                    orderItem.setPayment((Payment)payment.get(0));
+ 
+                     //this data is to be set when the dvd is beeing
+                     //send to the customer
+@@ -160,6 +170,7 @@
+                 movieOrder.setMovieOrderItems(orderItems);
+ 
+                 //save the movieOrder
++                logger.debug(&quot;MovieOrder: &quot;+movieOrder);
+                 //s.save(movieOrder);
+             }
+         } catch (HibernateException e) {
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000237.html">[Provirent-svn-commit] r236 - in project_src/provirent_hibernate/src: de/hsharz/provirent/objects test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000239.html">[Provirent-svn-commit] r238 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#238">[ date ]</a>
+              <a href="thread.html#238">[ thread ]</a>
+              <a href="subject.html#238">[ subject ]</a>
+              <a href="author.html#238">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

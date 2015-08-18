@@ -1,0 +1,468 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r275 - docu/latex
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r275%20-%20docu/latex&In-Reply-To=%3C200511301504.jAUF4uvP021944%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000275.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r275 - docu/latex</H1>
+    <B>pschneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r275%20-%20docu/latex&In-Reply-To=%3C200511301504.jAUF4uvP021944%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r275 - docu/latex">pschneider at berlios.de
+       </A><BR>
+    <I>Wed Nov 30 16:04:56 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000275.html">[Provirent-svn-commit] r274 - docu/latex
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#276">[ date ]</a>
+              <a href="thread.html#276">[ thread ]</a>
+              <a href="subject.html#276">[ subject ]</a>
+              <a href="author.html#276">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2005-11-30 16:04:55 +0100 (Wed, 30 Nov 2005)
+New Revision: 275
+
+Modified:
+   docu/latex/1-Einfuehrung.tex
+   docu/latex/2-Aufbau.tex
+   docu/latex/3-2-Versionsverwaltung.tex
+   docu/latex/3-3-Entwicklungsumgebung.tex
+   docu/latex/3-4-GUIJava.tex
+   docu/latex/3-5-JavaWebanwendungen.tex
+   docu/latex/3-6-Persistenzschichten.tex
+   docu/latex/4-1-Versionsverwaltung.tex
+   docu/latex/4-2-Entwicklungsumgebung.tex
+   docu/latex/4-3-GUIJava.tex
+   docu/latex/4-4-JavaWebanwendungen.tex
+   docu/latex/4-5-Persistenzschichten.tex
+Log:
+
+
+Modified: docu/latex/1-Einfuehrung.tex
+===================================================================
+--- docu/latex/1-Einfuehrung.tex	2005-11-30 14:44:43 UTC (rev 274)
++++ docu/latex/1-Einfuehrung.tex	2005-11-30 15:04:55 UTC (rev 275)
+@@ -19,30 +19,40 @@
+ 	Strasse										&amp;	Strasse der Jugend 22  	&amp; Kastanienring 16				\\
+ 	Ort												&amp;	04880 Dommitsch					&amp; 04316 Leipzig							\\[0.4cm]
+ 	<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">Romeodied at gmx.de</A>					&amp;	<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">fossiossi at web.de</A>				&amp; <A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">provirent at phil-schneider.de</A> \\
++	
++	
++	
+ \end{tabular}		
+ 			
+-\section{Kapitel} \label{sec:Kapitel}
++\section{Kapitelarbeit} \label{sec:Kapitel}
+ 
+-Remo Griesch
+-\pageref{sec:tech-Entwicklungsumgebung}
+-\pageref{sec:tech-Benutzerschnittstellen}
+-\pageref{sec:impl-Entwicklungsumgebung}
+-\pageref{sec:impl-Benutzerschnittstellen}
++\subsection{Remo Griesch}
++\ref{sec:tech-Entwicklungsumgebung} \vpagerefrange{sec:tech-Entwicklungsumgebung}{sec:tech-Entwicklungsumgebung-ende};
+ 
+-Stefan Forstner
+-\pageref{sec:tech-WebAnwendungen}
+-\pageref{sec:tech-Persistenzschichten}
+-\pageref{sec:impl-WebAnwendungen}
+-\pageref{sec:impl-Persistenzschichten}
++\ref{sec:tech-Benutzerschnittstellen} \vpagerefrange{sec:tech-Benutzerschnittstellen}{sec:tech-Benutzerschnittstellen-ende};
+ 
++\ref{sec:impl-Entwicklungsumgebung}  \vpagerefrange{sec:impl-Entwicklungsumgebung}{sec:impl-Entwicklungsumgebung-ende};
+ 
+-Philipp Schneider:
+-\vref{sec:Einfuehrung} auf Seite \vrefrange{sec:Einfuehrung}{sec:Einfuehrung-ende} \\
+-\vref{sec:KonzepteundAufbau} aus Seite \pageref{sec:KonzepteundAufbau}{sec:KonzepteundAufbau-ende} \\
+-\pageref{sec:tech-Versionsverwaltung} \\
+-\pageref{sec:impl-Versionsverwaltung} \\
++\ref{sec:impl-Benutzerschnittstellen}  \vpagerefrange{sec:impl-Benutzerschnittstellen}{sec:impl-Benutzerschnittstellen-ende}
+ 
++\subsection{Stefan Forstner}
++\ref{sec:tech-WebAnwendungen} \vpagerefrange{sec:tech-WebAnwendungen}{sec:tech-WebAnwendungen-ende};
+ 
++\ref{sec:tech-Persistenzschichten}  \vpagerefrange{sec:tech-Persistenzschichten}{sec:tech-Persistenzschichten-ende};
++
++\ref{sec:impl-WebAnwendungen} \vpagerefrange{sec:impl-WebAnwendungen}{sec:impl-WebAnwendungen-ende};
++
++\ref{sec:impl-Persistenzschichten}  \vpagerefrange{sec:impl-Persistenzschichten}{sec:impl-Persistenzschichten-ende}
++
++\subsection{Philipp Schneider}
++\ref{sec:Einfuehrung} \vpagerefrange{sec:Einfuehrung}{sec:Einfuehrung-ende};
++
++\ref{sec:KonzepteundAufbau} \vpagerefrange{sec:KonzepteundAufbau}{sec:KonzepteundAufbau-ende};
++
++\ref{sec:tech-Versionsverwaltung}  \vpagerefrange{sec:tech-Versionsverwaltung}{sec:tech-Versionsverwaltung-ende};
++
++\ref{sec:impl-Versionsverwaltung}  \vpagerefrange{sec:impl-Versionsverwaltung}{sec:impl-Versionsverwaltung-ende}
++
+ \newpage
+ \section{Motivation} \label{sec:Motivation}
+ Im Rahmen des Studiums an der Fachhochschule Harz in Wernigerode muss jeder Student des Studiengangs Kommunikationsinformatik eine Projektarbeit abgeben. Dies bedeutet, da&#223; der Student eine Aufgabe (meist Programmieraufgabe) alleine oder in einem kleinen Team bew&#228;ltigen muss. Die Professoren der Hochschule bieten dabei viele interessante Projektarbeiten an, sind jedoch auf offen f&#252;r eigene Vorschl&#228;ge der Studenten.\\
+
+Modified: docu/latex/2-Aufbau.tex
+===================================================================
+--- docu/latex/2-Aufbau.tex	2005-11-30 14:44:43 UTC (rev 274)
++++ docu/latex/2-Aufbau.tex	2005-11-30 15:04:55 UTC (rev 275)
+@@ -84,4 +84,6 @@
+ 
+ Das Kundenmodul und das Versandmodul konnten aus Zeitgr&#252;nden nicht mehr realisiert werden.\\
+ 
++
++%Hier danach nicht mehr schreiben
+ \label{sec:KonzepteundAufbau-ende}
+\ No newline at end of file
+
+Modified: docu/latex/3-2-Versionsverwaltung.tex
+===================================================================
+--- docu/latex/3-2-Versionsverwaltung.tex	2005-11-30 14:44:43 UTC (rev 274)
++++ docu/latex/3-2-Versionsverwaltung.tex	2005-11-30 15:04:55 UTC (rev 275)
+@@ -16,3 +16,11 @@
+ 	\caption{Subversion's Architektur \citep[Kap.~1]{Collins-Sussman2005}}
+ 	\label{fig:svnarchitekur}
+ \end{figure}
++
++
++
++
++
++
++%Hier danach nicht mehr schreiben
++\label{sec:tech-Versionsverwaltung-ende}
+\ No newline at end of file
+
+Modified: docu/latex/3-3-Entwicklungsumgebung.tex
+===================================================================
+--- docu/latex/3-3-Entwicklungsumgebung.tex	2005-11-30 14:44:43 UTC (rev 274)
++++ docu/latex/3-3-Entwicklungsumgebung.tex	2005-11-30 15:04:55 UTC (rev 275)
+@@ -1,4 +1,29 @@
+ \section{Entwicklungsumgebung} \label{sec:tech-Entwicklungsumgebung}
+ 		\subsection{JBuilder}
+ 		\subsection{Netbeans}
+-		\subsection{Eclipse}
+\ No newline at end of file
++		\subsection{Eclipse}
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++%Hier danach nicht mehr schreiben
++\label{sec:tech-Entwicklungsumgebung-ende}
+\ No newline at end of file
+
+Modified: docu/latex/3-4-GUIJava.tex
+===================================================================
+--- docu/latex/3-4-GUIJava.tex	2005-11-30 14:44:43 UTC (rev 274)
++++ docu/latex/3-4-GUIJava.tex	2005-11-30 15:04:55 UTC (rev 275)
+@@ -4,4 +4,27 @@
+ 		\subsection{Standard Widget Toolkit - SWT}
+ 		
+ 		
+-		
+\ No newline at end of file
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++%Hier danach nicht mehr schreiben
++\label{sec:tech-Benutzerschnittstellen-ende}
+\ No newline at end of file
+
+Modified: docu/latex/3-5-JavaWebanwendungen.tex
+===================================================================
+--- docu/latex/3-5-JavaWebanwendungen.tex	2005-11-30 14:44:43 UTC (rev 274)
++++ docu/latex/3-5-JavaWebanwendungen.tex	2005-11-30 15:04:55 UTC (rev 275)
+@@ -2,4 +2,30 @@
+ 		\subsection{Java Server Faces - JSF}
+ 		\subsection{Struts}
+ 
+-	
+\ No newline at end of file
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++%Hier danach nicht mehr schreiben
++\label{sec:tech-WebAnwendungen-ende}
+\ No newline at end of file
+
+Modified: docu/latex/3-6-Persistenzschichten.tex
+===================================================================
+--- docu/latex/3-6-Persistenzschichten.tex	2005-11-30 14:44:43 UTC (rev 274)
++++ docu/latex/3-6-Persistenzschichten.tex	2005-11-30 15:04:55 UTC (rev 275)
+@@ -2,4 +2,32 @@
+ 		\subsection{Java Data Objects} 
+ 		\subsection{Hibernate}
+ 		
+-	
+\ No newline at end of file
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++%Hier danach nicht mehr schreiben
++\label{sec:tech-Persistenzschichten-ende}
+\ No newline at end of file
+
+Modified: docu/latex/4-1-Versionsverwaltung.tex
+===================================================================
+--- docu/latex/4-1-Versionsverwaltung.tex	2005-11-30 14:44:43 UTC (rev 274)
++++ docu/latex/4-1-Versionsverwaltung.tex	2005-11-30 15:04:55 UTC (rev 275)
+@@ -9,3 +9,12 @@
+ 
+ 
+ 		
++
++
++
++
++
++
++
++%Hier danach nicht mehr schreiben
++\label{sec:impl-Versionsverwaltung-ende}
+\ No newline at end of file
+
+Modified: docu/latex/4-2-Entwicklungsumgebung.tex
+===================================================================
+--- docu/latex/4-2-Entwicklungsumgebung.tex	2005-11-30 14:44:43 UTC (rev 274)
++++ docu/latex/4-2-Entwicklungsumgebung.tex	2005-11-30 15:04:55 UTC (rev 275)
+@@ -1,2 +1,22 @@
+ \section{Entwicklungsumgebung mit Eclipse} \label{sec:impl-Entwicklungsumgebung}
+ 
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++%Hier danach nicht mehr schreiben
++\label{sec:impl-Entwicklungsumgebung-ende}
+\ No newline at end of file
+
+Modified: docu/latex/4-3-GUIJava.tex
+===================================================================
+--- docu/latex/4-3-GUIJava.tex	2005-11-30 14:44:43 UTC (rev 274)
++++ docu/latex/4-3-GUIJava.tex	2005-11-30 15:04:55 UTC (rev 275)
+@@ -1 +1,23 @@
+-\section{grafischen Benutzerschnittstellen mit SWT} \label{sec:impl-Benutzerschnittstellen}
+\ No newline at end of file
++\section{grafischen Benutzerschnittstellen mit SWT} \label{sec:impl-Benutzerschnittstellen}
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++%Hier danach nicht mehr schreiben
++\label{sec:impl-Benutzerschnittstellen-ende}
+\ No newline at end of file
+
+Modified: docu/latex/4-4-JavaWebanwendungen.tex
+===================================================================
+--- docu/latex/4-4-JavaWebanwendungen.tex	2005-11-30 14:44:43 UTC (rev 274)
++++ docu/latex/4-4-JavaWebanwendungen.tex	2005-11-30 15:04:55 UTC (rev 275)
+@@ -1,3 +1,22 @@
+ \section{Java-Web-Anwendungen mit Struts} \label{sec:impl-WebAnwendungen}
+ 
+ 
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++%Hier danach nicht mehr schreiben
++\label{sec:impl-WebAnwendungen-ende}
+\ No newline at end of file
+
+Modified: docu/latex/4-5-Persistenzschichten.tex
+===================================================================
+--- docu/latex/4-5-Persistenzschichten.tex	2005-11-30 14:44:43 UTC (rev 274)
++++ docu/latex/4-5-Persistenzschichten.tex	2005-11-30 15:04:55 UTC (rev 275)
+@@ -1 +1,24 @@
+-\section{Persistenzschichten mit Hibernate} \label{sec:impl-Persistenzschichten}
+\ No newline at end of file
++\section{Persistenzschichten mit Hibernate} \label{sec:impl-Persistenzschichten}
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++%Hier danach nicht mehr schreiben
++\label{sec:impl-Persistenzschichten-ende}
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000275.html">[Provirent-svn-commit] r274 - docu/latex
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#276">[ date ]</a>
+              <a href="thread.html#276">[ thread ]</a>
+              <a href="subject.html#276">[ subject ]</a>
+              <a href="author.html#276">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

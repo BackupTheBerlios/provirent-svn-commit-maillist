@@ -1,0 +1,360 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r178 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/persistence test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r178%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/persistence%20test/provirent/hibernate&In-Reply-To=%3C200411292133.iATLX5Ph005587%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000178.html">
+   <LINK REL="Next"  HREF="000180.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r178 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/persistence test/provirent/hibernate</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r178%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/persistence%20test/provirent/hibernate&In-Reply-To=%3C200411292133.iATLX5Ph005587%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r178 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/persistence test/provirent/hibernate">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Mon Nov 29 22:33:05 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000178.html">[Provirent-svn-commit] r177 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence
+</A></li>
+        <LI>Next message: <A HREF="000180.html">[Provirent-svn-commit] r179 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#179">[ date ]</a>
+              <a href="thread.html#179">[ thread ]</a>
+              <a href="subject.html#179">[ subject ]</a>
+              <a href="author.html#179">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-11-29 22:33:03 +0100 (Mon, 29 Nov 2004)
+New Revision: 178
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java
+Log:
+Database.java     - um Movie erweitert
+TestMovie.java    - an ge?\195?\164nderte Movie.java angepasst
+CompositeMovie    - Methode refreshDetail implementiert
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-11-29 20:12:23 UTC (rev 177)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-11-29 21:33:03 UTC (rev 178)
+@@ -93,6 +93,7 @@
+     private Text textMoviesID;
+     private Text textMoviesTitle;
+     private Text textMoviesDescription;
++    private Text textMoviesDate;
+     
+     private Label labelMoviesSearch;
+     private Label labelMoviesID;
+@@ -131,9 +132,9 @@
+     private List listMoviesGenres;
+     private List listMoviesActors;
+     private List listMoviesDirectors;
+-    private Text textMoviesDate;
++    
+ 
+-    protected int mode_actor;
++    protected int mode_movie;
+     
+     private StatusLineStyledText statusLine;
+     
+@@ -912,7 +913,7 @@
+     	    buttonMoviesNew.addSelectionListener(new SelectionAdapter() {
+             public void widgetSelected(SelectionEvent evt) {
+                 
+-                mode_actor = ManagementGui.MODE_ADD;
++                mode_movie = ManagementGui.MODE_ADD;
+                 
+                 textMoviesID.setText(&quot;&quot;);
+                 textMoviesTitle.setText(&quot;&quot;);
+@@ -953,7 +954,7 @@
+     	    buttonMoviesEdit.addSelectionListener(new SelectionAdapter() {
+             public void widgetSelected(SelectionEvent evt) {
+ 
+-                mode_actor = ManagementGui.MODE_EDIT;
++                mode_movie = ManagementGui.MODE_EDIT;
+ 
+                 textMoviesID.setEditable(false);
+                 textMoviesTitle.setEditable(true);
+@@ -1237,9 +1238,41 @@
+     /**
+      * @param text
+      */
+-    protected void refreshMoviesDetail(String text) {
++    protected void refreshMoviesDetail(String id) {
+         // TODO Auto-generated method stub
+-        
++        Movie object;
++        try {
++            //since we only can get a String value from the table, we
++            //need to convert this
++            object = Database.getSingleMovie(Integer.parseInt(id));
++
++            if (object == null) {
++
++                /*
++                 * 
++                 * @TODO Statusbar aktualiseren
++                 */
++                return;
++            }
++        } catch (Exception e) {
++            // TODO: handle exception
++            //id ist keine Zahl
++            return;
++        }
++
++        textMoviesID.setText(object.getMovieId() + &quot;&quot;);
++        textMoviesTitle.setText(object.getTitle());
++        textMoviesDate.setText(object.getReleaseDate().toString());
++        textMoviesDescription.setText(object.getDescription());
++        //listMoviesImages.
++
++        //Buttons zum l&#246;schen und editieren aktivieren
++        buttonMoviesEdit.setEnabled(true);
++        buttonMoviesDelete.setEnabled(true);
++
++        //Mode auf view setzen
++        mode_movie = ManagementGui.MODE_VIEW;
++          
+     }
+ 
+     protected void openDialogDescription() {
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-29 20:12:23 UTC (rev 177)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-29 21:33:03 UTC (rev 178)
+@@ -122,7 +122,7 @@
+     private CompositeGenre compositeGenre;
+     private CompositeLanguage compositeLanguage;
+     private CompositeImage compositeImage;
+-    private CopyOfCompositeMovie compositeMovie;
++    private CompositeMovie compositeMovie;
+     private CompositePayment compositePayment;
+     private CompositeStatus compositeStatus;   
+ 
+@@ -778,7 +778,7 @@
+         });
+   
+         {
+-            compositeMovie = new CopyOfCompositeMovie(
++            compositeMovie = new CompositeMovie(
+                 cTabFolderMain,
+                 SWT.NONE, statusLine, locale);
+             
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-29 20:12:23 UTC (rev 177)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-29 21:33:03 UTC (rev 178)
+@@ -51,6 +51,7 @@
+ import de.hsharz.provirent.objects.Genre;
+ import de.hsharz.provirent.objects.Image;
+ import de.hsharz.provirent.objects.Language;
++import de.hsharz.provirent.objects.Movie;
+ import de.hsharz.provirent.objects.Payment;
+ import de.hsharz.provirent.objects.Status;
+ import de.hsharz.provirent.objects.Subtitle;
+@@ -1534,4 +1535,120 @@
+ 	
+ 	}
+ 
++	/**
++	 * This method gets all Movies from the database.
++	 * searches for ID,Title,Date,Description,Actor,Director...
++	 * @param filter 
++	 * @return List of Payment objects, or an empty List
++	 */
++	public static List getMovie(final String filter){
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getMovie() - start. String filter= &quot;+filter);
++	    }
++	    //init the returnlist
++	    List returnlist = new ArrayList();
++	
++	    Session s = null;
++	    
++	    try {
++	        //get new Session and begin Transaction
++	        s = HibernateUtil.currentSession();
++	            
++	            //init the criteria
++	            Criteria criteria = s.createCriteria(Movie.class);
++	            //any of the criteria 
++	            Disjunction any = Expression.disjunction();
++	          
++	            /*
++	            any.add(Expression.sql(&quot;Select * from PAYMENT where name like '&quot; + 
++	                    		name + 
++	                    		&quot;' and startdate = (select startdate from PAYMENT where name like '&quot; + 
++	                    		name +
++	                    						   &quot;')&quot;));
++	            
++	            */
++	
++	            //if filter not empty
++	            if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++	                any.add(Expression.like(&quot;title&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;releaseDate&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;description&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;actors&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;directors&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                //any.add(Expression.like(&quot;images&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                //maybe we are searching for the id?
++	                try {
++	                    any.add(Expression.eq(&quot;movieId&quot;, new Integer(Integer.parseInt(filter))));
++	                } catch (Exception e) {
++	                }
++	                
++	            }
++	            
++	            //add all criteria
++	            criteria.add(any);
++	            //get the results
++	            returnlist = criteria.list();
++	            
++	            
++	
++	    } catch (Exception e) {
++	        logger.error(
++	                &quot;getMovie() - Error while trying to do Transaction&quot;,
++	                e);
++	        returnlist = new ArrayList();
++	    } finally {
++	        try {
++	            // No matter what, close the session
++	            HibernateUtil.closeSession();
++	        } catch (HibernateException e1) {
++	            logger.error(&quot;getMovie() - Could not Close the Session&quot;, e1);
++	        }
++	    }
++	
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getMovie() - end&quot;);
++	    }
++	    return returnlist;
++	    
++	}
++	
++	
++	public static Movie getSingleMovie(final int id){
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getSingleMovie() - start. int filter= &quot;+id);
++	    }
++	    //init the returnlist
++	    Movie returnobject = null;
++	
++	    Session s = null;
++	    Transaction tx = null;
++	    try {
++	        //get new Session and begin Transaction
++	        s = HibernateUtil.currentSession();
++	
++	            returnobject = (Movie)s.get(Movie.class, new Integer(id));
++	
++	    } catch (Exception e) {
++	        logger.error(
++	                &quot;getSingleMovie() - Error while trying to do Transaction&quot;,
++	                e);
++	        
++	    } finally {
++	        try {
++	            // No matter what, close the session
++	            HibernateUtil.closeSession();
++	        } catch (HibernateException e1) {
++	            logger.error(&quot;getSingleMovie() - Could not Close the Session&quot;, e1);
++	        }
++	    }
++	
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getSingleMovie() - end&quot;);
++	    }
++	    return returnobject;
++	    
++	}
++
++
+ }
++
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java	2004-11-29 20:12:23 UTC (rev 177)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java	2004-11-29 21:33:03 UTC (rev 178)
+@@ -142,7 +142,7 @@
+                     s.save( iter.next() );
+                 }
+                 movie.setGenres(objects);
+-                
++              /*  
+                 objects = new ArrayList();
+                 objects.add(new Language(&quot;Deutsch&quot;,&quot;de&quot;));
+                 objects.add(new Language(&quot;Englisch&quot;,&quot;en&quot;));
+@@ -175,7 +175,7 @@
+                     s.save( iter.next() );
+                 }
+                 movie.setVideoFormats(new ArrayList());
+-
++                */
+                 //add movie to movie List
+                 movies.add(movie);
+ 
+@@ -335,6 +335,7 @@
+                 }
+                 movie.setGenres(movieprops);
+                 
++                /*
+                 //try to get Language from db
+                 dbprops =  s.find(&quot;from Language as language&quot;);
+                 assertNotNull(&quot;testCreateDBMovie(): Can't get Language from DB. Null&quot;, dbprops);
+@@ -400,8 +401,8 @@
+                     movieprops.add(prop);
+                 }
+                 movie.setVideoFormats(movieprops);
++                */
+                 
+-                
+                 int id = ((Integer)s.save(movie)).intValue();
+                 s.flush();
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000178.html">[Provirent-svn-commit] r177 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence
+</A></li>
+	<LI>Next message: <A HREF="000180.html">[Provirent-svn-commit] r179 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#179">[ date ]</a>
+              <a href="thread.html#179">[ thread ]</a>
+              <a href="subject.html#179">[ subject ]</a>
+              <a href="author.html#179">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

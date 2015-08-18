@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r150 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r150%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411230000.iAN00uCq021437%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000150.html">
+   <LINK REL="Next"  HREF="000152.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r150 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r150%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411230000.iAN00uCq021437%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r150 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Tue Nov 23 01:00:56 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000150.html">[Provirent-svn-commit] r149 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000152.html">[Provirent-svn-commit] r151 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#151">[ date ]</a>
+              <a href="thread.html#151">[ thread ]</a>
+              <a href="subject.html#151">[ subject ]</a>
+              <a href="author.html#151">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-23 01:00:48 +0100 (Tue, 23 Nov 2004)
+New Revision: 150
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogDescription.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+Log:
+- speicherleaks versucht zu beseitigen
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java	2004-11-22 21:53:19 UTC (rev 149)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java	2004-11-23 00:00:48 UTC (rev 150)
+@@ -769,7 +769,7 @@
+     /**
+      * 
+      */
+-    protected void setActorsGroupButtonSaveCancel() {
++    private void setActorsGroupButtonSaveCancel() {
+         buttonActorsSave.setEnabled(false);
+         buttonActorsCancel.setEnabled(false);
+         buttonActorsEdit.setEnabled(true);
+@@ -786,13 +786,13 @@
+         textActorsSearch.setEnabled(true);        
+     }
+ 
+-    protected void insertIntoActorsOverviewTable(Actor actor) {
++    private void insertIntoActorsOverviewTable(Actor actor) {
+         TableItem item = new TableItem(tableActorsOverview, SWT.NONE);
+         item.setText(new String[] { actor.getActorId() + &quot;&quot;, actor.getFirstName(),
+                 actor.getLastName() });        
+     }
+     
+-    protected void refreshActorsOverviewTable(final String filter) {
++    private void refreshActorsOverviewTable(final String filter) {
+         if (tableActorsOverview == null) {
+             System.out
+                     .println(&quot;Konnte ActorsOverviewtable nicht refreshen, da diese null ist!&quot;);
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java	2004-11-22 21:53:19 UTC (rev 149)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java	2004-11-23 00:00:48 UTC (rev 150)
+@@ -546,6 +546,7 @@
+                     if (ideaImage != null &amp;&amp; !ideaImage.isDisposed()) {
+                         paintImage(e);
+                         //e.gc.drawImage(scaledImage, 0, 0);
++                        e.gc.dispose();
+                     }
+                 }
+             });
+@@ -1107,6 +1108,8 @@
+                 scaledImage.getImageData().height, ix
+                         + scaledImage.getImageData().x, iy
+                         + scaledImage.getImageData().y, w, h);
++        event.gc.dispose();
++        paintImage.dispose();
+     }
+ 
+     /**
+@@ -1152,7 +1155,6 @@
+             canvasImg.redraw();
+         }
+ 
+-        canvasImg.redraw();
+ 
+         //Buttons zum l&#246;schen und editieren aktivieren
+ 
+@@ -1208,6 +1210,7 @@
+                     o.getImageFileName(), o.getImageFileDescription() });
+ 
+         }
++        Imagelist = null;
+     }
+     
+     private Image createThumbnailImage(byte[] data){
+@@ -1233,6 +1236,8 @@
+         final Image scaledtemp = new Image(getDisplay(),
+                 image.getImageData().scaledTo((int)(width*scalefactor),(int)(height*scalefactor)));
+         
++        
++        image.dispose();
+ 
+         System.out.println(&quot;Gr&#246;&#223;e: &quot;+scaledtemp.getBounds());
+         
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogDescription.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogDescription.java	2004-11-22 21:53:19 UTC (rev 149)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogDescription.java	2004-11-23 00:00:48 UTC (rev 150)
+@@ -50,7 +50,6 @@
+ 	
+ 	private StyledText styledTextDescritpion;
+ 	
+-	private SashForm sashForm1;
+ 
+ 	private ResourceBundle l;
+ 	
+@@ -84,7 +83,7 @@
+      */
+     public void initLanguage(Locale locale) {
+         l = PropertyResourceBundle.getBundle(
+-                &quot;de.hsharz.provirent.management.gui.language.dialogmovies&quot;, locale);
++                &quot;de.hsharz.provirent.management.gui.language.movies&quot;, locale);
+ 
+     }
+ 	
+@@ -105,19 +104,19 @@
+ 
+ 			dialogShell.setLayout(new GridLayout());
+             {
+-                sashForm1 = new SashForm(dialogShell, SWT.NONE);
+-                GridData sashForm1LData = new GridData();
+-                sashForm1LData.widthHint = 300;
+-                sashForm1LData.heightHint = 200;
+-                sashForm1.setLayoutData(sashForm1LData);
+-                {
+-                    groupDialogDescription = new Group(sashForm1, SWT.NONE);
++
++                    groupDialogDescription = new Group(dialogShell, SWT.NONE);
+                     GridLayout groupDialogDescriptionLayout = new GridLayout();
+                     groupDialogDescriptionLayout.numColumns = 5;
+                     groupDialogDescriptionLayout.makeColumnsEqualWidth = true;
+                     groupDialogDescription.setBounds(0, 0, 316, 178);
+                     groupDialogDescription.setLayout(groupDialogDescriptionLayout);
+                     groupDialogDescription.setText(&quot;Beschreibung&quot;);
++                    GridData groupForm1LData = new GridData();
++                    groupForm1LData.widthHint = 300;
++                    groupForm1LData.heightHint = 200;
++                    groupDialogDescription.setLayoutData(groupForm1LData);                      
++                    
+                     {
+                         labelDescriptionAdvice = new Label(groupDialogDescription, SWT.NONE);
+                         labelDescriptionAdvice.setText(&quot;Beschreibung ins Textfeld schreiben oder &#228;ndern&quot;);
+@@ -161,7 +160,7 @@
+                     }
+ 
+                 }
+-            }
++            
+ 			dialogShell.layout();
+ 			dialogShell.pack();
+ 			dialogShell.open();
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-22 21:53:19 UTC (rev 149)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-23 00:00:48 UTC (rev 150)
+@@ -583,6 +583,11 @@
+                 if(!viewImageMenuItem.isDisposed()){
+                     viewImageMenuItem.setSelection(false);
+                 }
++                if (compositeImage != null &amp;&amp; !compositeImage.isDisposed()){
++                    compositeImage.dispose();
++                    compositeImage = null;
++                }
++                
+             }
+             
+         });
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000150.html">[Provirent-svn-commit] r149 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000152.html">[Provirent-svn-commit] r151 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#151">[ date ]</a>
+              <a href="thread.html#151">[ thread ]</a>
+              <a href="subject.html#151">[ subject ]</a>
+              <a href="author.html#151">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

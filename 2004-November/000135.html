@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r134 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r134%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411151502.iAFF2QbR005653%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000134.html">
+   <LINK REL="Next"  HREF="000136.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r134 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r134%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411151502.iAFF2QbR005653%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r134 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Mon Nov 15 16:02:26 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000134.html">[Provirent-svn-commit] r133 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+        <LI>Next message: <A HREF="000136.html">[Provirent-svn-commit] r135 - in project_src/provirent_hibernate/src: . de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#135">[ date ]</a>
+              <a href="thread.html#135">[ thread ]</a>
+              <a href="subject.html#135">[ subject ]</a>
+              <a href="author.html#135">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-15 16:02:24 +0100 (Mon, 15 Nov 2004)
+New Revision: 134
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java
+Log:
+- scrollen funktioniert auch
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java	2004-11-15 14:26:43 UTC (rev 133)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java	2004-11-15 15:02:24 UTC (rev 134)
+@@ -17,6 +17,7 @@
+ import org.eclipse.swt.graphics.Image;
+ import org.eclipse.swt.graphics.ImageData;
+ import org.eclipse.swt.graphics.ImageLoader;
++import org.eclipse.swt.graphics.Rectangle;
+ import org.eclipse.swt.layout.FormAttachment;
+ import org.eclipse.swt.layout.FormData;
+ import org.eclipse.swt.layout.GridData;
+@@ -31,6 +32,7 @@
+ import org.eclipse.swt.widgets.Label;
+ import org.eclipse.swt.widgets.Listener;
+ import org.eclipse.swt.widgets.Scale;
++import org.eclipse.swt.widgets.ScrollBar;
+ import org.eclipse.swt.widgets.Shell;
+ import org.eclipse.swt.widgets.Table;
+ import org.eclipse.swt.widgets.TableColumn;
+@@ -41,6 +43,7 @@
+ 
+ import de.hsharz.provirent.objects.Actor;
+ import de.hsharz.provirent.persistence.Database;
++import org.eclipse.swt.widgets.Slider;
+ /**
+ * This code was generated using CloudGarden's Jigloo
+ * SWT/Swing GUI Builder, which is free for non-commercial
+@@ -107,6 +110,7 @@
+     protected int mode_actor;
+     
+     private Image ideaImage,scaledImage;
++    int iy,ix = 0;
+     
+     private StatusLineStyledText statusLine;
+ 
+@@ -176,6 +180,8 @@
+ 	}
+ 
+ 	private void initGUI() {
++		{
++		}
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;initGUI() - start&quot;);
+         }
+@@ -479,18 +485,24 @@
+                 GridData button1LData = new GridData();
+                 button1.addSelectionListener(new SelectionAdapter() {
+                     public void widgetSelected(SelectionEvent evt) {
+-                        String[] filterExtensions = {&quot;*.gif&quot;,&quot;*.jpg&quot;, &quot;*.*&quot;};
+-                        FileDialog fileDialog = new FileDialog(getShell(), SWT.OPEN);
++                        String[] filterExtensions = { &quot;*.gif&quot;, &quot;*.jpg&quot;, &quot;*.*&quot; };
++                        FileDialog fileDialog = new FileDialog(
++                            getShell(),
++                            SWT.OPEN);
+                         fileDialog.setText(&quot;FileDialog Demo&quot;);
+                         fileDialog.setFilterPath(&quot;C:/&quot;);
+-                        
++
+                         fileDialog.setFilterExtensions(filterExtensions);
+-                        String selectedFile = fileDialog.open(); 
+-                        if (selectedFile != null){
+-                            scaledImage = ideaImage = new Image(getDisplay(),selectedFile);
++                        String selectedFile = fileDialog.open();
++                        if (selectedFile != null) {
++                            scaledImage = ideaImage = new Image(
++                                getDisplay(),
++                                selectedFile);
+                             canvas1.redraw();
+                             text1.setText(fileDialog.getFileName());
+                             scale1.setEnabled(true);
++                            resetScrollBars();
++                            resizeScrollBars();
+                         }
+                     }
+                 });
+@@ -498,11 +510,11 @@
+                 button1LData.grabExcessHorizontalSpace = true;
+                 button1LData.horizontalSpan = 2;
+                 button1.setLayoutData(button1LData);
+-                
+ 
+-                
+-            
+-                canvas1 = new Canvas(groupActorsDetail, SWT.BORDER);
++                canvas1 = new Canvas(groupActorsDetail, SWT.NO_REDRAW_RESIZE
++                    | SWT.H_SCROLL
++                    | SWT.V_SCROLL
++                    | SWT.BORDER);
+                 GridData canvas1LData = new GridData();
+                 canvas1LData.grabExcessHorizontalSpace = true;
+                 canvas1LData.horizontalAlignment = GridData.FILL;
+@@ -512,12 +524,33 @@
+                 canvas1.setLayoutData(canvas1LData);
+                 canvas1.addPaintListener(new PaintListener() {
+                     public void paintControl(PaintEvent e) {
+-                        if (ideaImage != null &amp;&amp; !ideaImage.isDisposed()){
+-                     e.gc.drawImage(scaledImage,0,0);
++                        if (ideaImage != null &amp;&amp; !ideaImage.isDisposed()) {
++                            paintImage(e);
++                            //e.gc.drawImage(scaledImage, 0, 0);
+                         }
+                     }
+-                });    
+-                  
++                });
++
++                // Set up the image canvas scroll bars.
++                ScrollBar horizontal = canvas1.getHorizontalBar();
++                horizontal.setVisible(true);
++                horizontal.setMinimum(0);
++                horizontal.setEnabled(false);
++                horizontal.addSelectionListener(new SelectionAdapter() {
++                    public void widgetSelected(SelectionEvent event) {
++                        scrollHorizontally((ScrollBar)event.widget);
++                    }
++                });
++                ScrollBar vertical = canvas1.getVerticalBar();
++                vertical.setVisible(true);
++                vertical.setMinimum(0);
++                vertical.setEnabled(false);
++                vertical.addSelectionListener(new SelectionAdapter() {
++                    public void widgetSelected(SelectionEvent event) {
++                        scrollVertically((ScrollBar)event.widget);
++                    }
++                });
++
+             }
+             {
+                 label2 = new Label(groupActorsDetail, SWT.NONE);
+@@ -539,23 +572,24 @@
+                         //System.out.println(&quot;scale1.widgetSelected, event=&quot;
+                         //    + evt);
+ 
+-                        float  scaleFaktor = (float)scale1.getSelection()/100;
+-                        int newwidth =(int)(ideaImage.getBounds().width*scaleFaktor);
+-                        int newheight = (int)(ideaImage.getBounds().height*scaleFaktor);
+-                            
+-                        ImageData newdata = ideaImage.getImageData().scaledTo(newwidth,newheight);
+-                        
+-                        scaledImage = new Image(getDisplay(),newdata);
++                        float scaleFaktor = (float) scale1.getSelection() / 100;
++                        int newwidth = (int) (ideaImage.getBounds().width * scaleFaktor);
++                        int newheight = (int) (ideaImage.getBounds().height * scaleFaktor);
++
++                        ImageData newdata = ideaImage.getImageData().scaledTo(
++                            newwidth,
++                            newheight);
++
++                        scaledImage = new Image(getDisplay(), newdata);
+                         canvas1.redraw();
+-                        
++
+                         ImageLoader imageLoader = new ImageLoader();
+-                        imageLoader.data = new ImageData[] {newdata};
++                        imageLoader.data = new ImageData[] { newdata };
+                         ByteArrayOutputStream bos = new ByteArrayOutputStream();
+-                        imageLoader.save(bos,SWT.IMAGE_GIF); 
+-                        
+-                        
+-                        
++                        imageLoader.save(bos, SWT.IMAGE_GIF);
++
+                         imagebytedata = bos.toByteArray();
++                        resizeScrollBars();
+                     }
+                 });
+                 scale1LData.grabExcessHorizontalSpace = true;
+@@ -566,16 +600,111 @@
+                 scale1.setMinimum(0);
+                 scale1.setIncrement(10);
+                 scale1.setSelection(100);
+-                
+-                
++
+             }
+ 
+         	// buttons for detail
+ 	}
+ 
+-	 
++	void resizeScrollBars() {
++		// Set the max and thumb for the image canvas scroll bars.
++		ScrollBar horizontal = canvas1.getHorizontalBar();
++		ScrollBar vertical = canvas1.getVerticalBar();
++		Rectangle canvasBounds = canvas1.getClientArea();
++		int width = Math.round(scaledImage.getImageData().width);
++		if (width &gt; canvasBounds.width) {
++			// The image is wider than the canvas.
++			horizontal.setEnabled(true);
++			horizontal.setMaximum(width);
++			horizontal.setThumb(canvasBounds.width);
++			horizontal.setPageIncrement(canvasBounds.width);
++		} else {
++			// The canvas is wider than the image.
++			horizontal.setEnabled(false);
++
++			canvas1.redraw();
++		}
++		int height = Math.round(scaledImage.getImageData().height);
++		if (height &gt; canvasBounds.height) {
++			// The image is taller than the canvas.
++			vertical.setEnabled(true);
++			vertical.setMaximum(height);
++			vertical.setThumb(canvasBounds.height);
++			vertical.setPageIncrement(canvasBounds.height);
++		} else {
++			// The canvas is taller than the image.
++			vertical.setEnabled(false);
++				canvas1.redraw();
++			
++		}
++	}
+ 	
+ 	
++	void scrollHorizontally(ScrollBar scrollBar) {
++		if (scaledImage == null) return;
++		Rectangle canvasBounds = canvas1.getClientArea();
++		int width = Math.round(scaledImage.getImageData().width );
++		int height = Math.round(scaledImage.getImageData().height );
++		if (width &gt; canvasBounds.width) {
++			// Only scroll if the image is bigger than the canvas.
++			int x = -scrollBar.getSelection();
++			if (x + width &lt; canvasBounds.width) {
++				// Don't scroll past the end of the image.
++				x = canvasBounds.width - width;
++			}
++			canvas1.scroll(x, iy, ix, iy, width, height, false);
++			ix = x;
++			
++		}
++	}
++	
++	void scrollVertically(ScrollBar scrollBar) {
++		if (scaledImage == null) return;
++		Rectangle canvasBounds = canvas1.getClientArea();
++		int width = Math.round(scaledImage.getImageData().width);
++		int height = Math.round(scaledImage.getImageData().height);
++		if (height &gt; canvasBounds.height) {
++			// Only scroll if the image is bigger than the canvas.
++			int y = -scrollBar.getSelection();
++			if (y + height &lt; canvasBounds.height) {
++				// Don't scroll past the end of the image.
++				y = canvasBounds.height - height;
++			}
++			canvas1.scroll(ix, y, ix, iy, width, height, false);
++			iy = y;
++		}
++	}	
++	
++	// Reset the scroll bars to 0.
++	void resetScrollBars() {
++		if (scaledImage == null) return;
++		ix = 0; iy = 0;
++		resizeScrollBars();
++		canvas1.getHorizontalBar().setSelection(0);
++		canvas1.getVerticalBar().setSelection(0);
++		
++	}
++	
++	
++	void paintImage(PaintEvent event) {
++		Image paintImage = scaledImage;
++
++		int w = Math.round(scaledImage.getImageData().width);
++		int h = Math.round(scaledImage.getImageData().height);
++		event.gc.drawImage(
++			paintImage,
++			0,
++			0,
++			scaledImage.getImageData().width,
++			scaledImage.getImageData().height,
++			ix + scaledImage.getImageData().x,
++			iy + scaledImage.getImageData().y,
++			w,
++			h);
++	}
++
++
++	
+ 	/**
+      * @param text
+      */
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000134.html">[Provirent-svn-commit] r133 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+	<LI>Next message: <A HREF="000136.html">[Provirent-svn-commit] r135 - in project_src/provirent_hibernate/src: . de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#135">[ date ]</a>
+              <a href="thread.html#135">[ thread ]</a>
+              <a href="subject.html#135">[ subject ]</a>
+              <a href="author.html#135">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

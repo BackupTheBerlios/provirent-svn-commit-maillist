@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r215 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r215%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200412071654.iB7GsoKe002418%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000216.html">
+   <LINK REL="Next"  HREF="000217.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r215 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r215%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200412071654.iB7GsoKe002418%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r215 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Tue Dec  7 17:54:50 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000216.html">[Provirent-svn-commit] r214 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+        <LI>Next message: <A HREF="000217.html">[Provirent-svn-commit] r216 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#215">[ date ]</a>
+              <a href="thread.html#215">[ thread ]</a>
+              <a href="subject.html#215">[ subject ]</a>
+              <a href="author.html#215">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-12-07 17:54:49 +0100 (Tue, 07 Dec 2004)
+New Revision: 215
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-12-07 16:54:01 UTC (rev 214)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-12-07 16:54:49 UTC (rev 215)
+@@ -109,6 +109,7 @@
+     private CTabItem tabItemPayment;
+     private CTabItem tabItemActor;
+     private CTabItem tabItemDirector;
++    private CTabItem tabItemOrder;
+     private CTabItem tabItemLanguage;
+     private CTabItem tabItemCustomer;
+     private CTabItem tabItemGenre;
+@@ -121,6 +122,7 @@
+     private CompositeActors compositeActor;
+     private CompositeDirectors compositeDirector;
+     private CompositeGenre compositeGenre;
++    private CompositeOrder compositeOrder;
+     private CompositeLanguage compositeLanguage;
+     private CompositeImage compositeImage;
+     private CompositeMovie compositeMovie;
+@@ -143,6 +145,7 @@
+     private MenuItem viewDirectorMenuItem;
+     private MenuItem viewVideoFormatMenuItem;
+     private MenuItem viewActorMenuItem;
++    private MenuItem viewOrderMenuItem;
+     private MenuItem viewCustomerMenuItem;
+     private MenuItem viewGenreMenuItem;
+     private MenuItem viewLanguageMenuItem;
+@@ -462,6 +465,23 @@
+             }
+         });
+         
++        viewOrderMenuItem = new MenuItem(viewMenu, SWT.CHECK);
++        viewOrderMenuItem.setText(l.getString(&quot;menu.view.order&quot;));
++        viewOrderMenuItem.setSelection(false);
++        viewOrderMenuItem.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++				if(tabItemOrder == null || tabItemOrder.isDisposed()){
++				    initOrderTab();
++				    return;   
++				}
++				
++				cTabFolderMain.setSelection(tabItemOrder);
++				viewOrderMenuItem.setSelection(true);
++				cTabFolderMain.showSelection();				
++            
++            }
++        });
++        
+         viewGenreMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewGenreMenuItem.setText(l.getString(&quot;menu.view.genre&quot;));
+         viewGenreMenuItem.setSelection(false);
+@@ -694,6 +714,28 @@
+         
+     }
+     
++    private void initOrderTab() {
++        tabItemOrder = new CTabItem(cTabFolderMain, SWT.NONE);        
++        tabItemOrder.setText(l.getString(&quot;tab.Order.title&quot;));
++        tabItemOrder.addDisposeListener(new DisposeListener() {
++            public void widgetDisposed(DisposeEvent evt) {
++
++                if (!viewOrderMenuItem.isDisposed()){
++                    viewOrderMenuItem.setSelection(false);
++                }
++            }
++        });
++
++        {
++            compositeOrder = new CompositeOrder(
++                cTabFolderMain,
++                SWT.NONE, statusLine, locale);
++            
++            tabItemOrder.setControl(compositeOrder);
++        }
++        cTabFolderMain.setSelection(tabItemOrder);
++        
++    }    
+     
+     private void initDirectorTab() {
+         tabItemDirector = new CTabItem(cTabFolderMain, SWT.NONE);
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000216.html">[Provirent-svn-commit] r214 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+	<LI>Next message: <A HREF="000217.html">[Provirent-svn-commit] r216 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#215">[ date ]</a>
+              <a href="thread.html#215">[ thread ]</a>
+              <a href="subject.html#215">[ subject ]</a>
+              <a href="author.html#215">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

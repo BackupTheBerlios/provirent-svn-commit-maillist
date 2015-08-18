@@ -1,0 +1,1393 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r99 - in project_src/strutstest: WEB-INF WEB-INF/classes/de/hsharz/provirent/strutstest WEB-INF/classes/de/hsharz/provirent/strutstest/action WEB-INF/classes/de/hsharz/provirent/strutstest/forms WEB-INF/classes/resources WEB-INF/src/de/hsharz/provirent/strutstest WEB-INF/src/de/hsharz/provirent/strutstest/action WEB-INF/src/de/hsharz/provirent/strutstest/forms WEB-INF/src/resources pages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r99%20-%20in%20project_src/strutstest%3A%20WEB-INF%20WEB-INF/classes/de/hsharz/provirent/strutstest%20WEB-INF/classes/de/hsharz/provirent/strutstest/action%20WEB-INF/classes/de/hsharz/provirent/strutstest/forms%20WEB-INF/classes/resources%20WEB-INF/src/de/hsharz/provirent/strutstest%20WEB-INF/src/de/hsharz/provirent/strutstest/action%20WEB-INF/src/de/hsharz/provirent/strutstest/forms%20WEB-INF/src/resources%20pages&In-Reply-To=%3C200411082224.iA8MO8qS002418%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000099.html">
+   <LINK REL="Next"  HREF="000101.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r99 - in project_src/strutstest: WEB-INF WEB-INF/classes/de/hsharz/provirent/strutstest WEB-INF/classes/de/hsharz/provirent/strutstest/action WEB-INF/classes/de/hsharz/provirent/strutstest/forms WEB-INF/classes/resources WEB-INF/src/de/hsharz/provirent/strutstest WEB-INF/src/de/hsharz/provirent/strutstest/action WEB-INF/src/de/hsharz/provirent/strutstest/forms WEB-INF/src/resources pages</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r99%20-%20in%20project_src/strutstest%3A%20WEB-INF%20WEB-INF/classes/de/hsharz/provirent/strutstest%20WEB-INF/classes/de/hsharz/provirent/strutstest/action%20WEB-INF/classes/de/hsharz/provirent/strutstest/forms%20WEB-INF/classes/resources%20WEB-INF/src/de/hsharz/provirent/strutstest%20WEB-INF/src/de/hsharz/provirent/strutstest/action%20WEB-INF/src/de/hsharz/provirent/strutstest/forms%20WEB-INF/src/resources%20pages&In-Reply-To=%3C200411082224.iA8MO8qS002418%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r99 - in project_src/strutstest: WEB-INF WEB-INF/classes/de/hsharz/provirent/strutstest WEB-INF/classes/de/hsharz/provirent/strutstest/action WEB-INF/classes/de/hsharz/provirent/strutstest/forms WEB-INF/classes/resources WEB-INF/src/de/hsharz/provirent/strutstest WEB-INF/src/de/hsharz/provirent/strutstest/action WEB-INF/src/de/hsharz/provirent/strutstest/forms WEB-INF/src/resources pages">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Mon Nov  8 23:24:08 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000099.html">[Provirent-svn-commit] r98 - timetable
+</A></li>
+        <LI>Next message: <A HREF="000101.html">[Provirent-svn-commit] r100 - project_src/provirent_hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#100">[ date ]</a>
+              <a href="thread.html#100">[ thread ]</a>
+              <a href="subject.html#100">[ subject ]</a>
+              <a href="author.html#100">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-11-08 23:24:06 +0100 (Mon, 08 Nov 2004)
+New Revision: 99
+
+Added:
+   project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/action/
+   project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/action/AuswerteActionBean.class
+   project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/action/RegistrateAction.class
+   project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/action/RegistrateCompleteAction.class
+   project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/forms/
+   project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/forms/DatenFormBean.class
+   project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/forms/RegistrateFormBean.class
+   project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/forms/RegistrationCompleteFormBean.class
+   project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/action/
+   project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/action/AuswerteActionBean.java
+   project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/action/RegistrateAction.java
+   project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/action/RegistrateCompleteAction.java
+   project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/forms/
+   project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/forms/DatenFormBean.java
+   project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/forms/RegistrateFormBean.java
+   project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/forms/RegistrationCompleteFormBean.java
+   project_src/strutstest/pages/RegistrateCompleteForm.jsp
+Removed:
+   project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/AuswerteActionBean.class
+   project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/DatenFormBean.class
+   project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/AuswerteActionBean.java
+   project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/DatenFormBean.java
+Modified:
+   project_src/strutstest/WEB-INF/classes/resources/MessageResources.properties
+   project_src/strutstest/WEB-INF/src/resources/MessageResources.properties
+   project_src/strutstest/WEB-INF/struts-config.xml
+   project_src/strutstest/pages/EingabeFormular.jsp
+Log:
+
+
+Deleted: project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/AuswerteActionBean.class
+===================================================================
+(Binary files differ)
+
+Deleted: project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/DatenFormBean.class
+===================================================================
+(Binary files differ)
+
+Added: project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/action/AuswerteActionBean.class
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/action/AuswerteActionBean.class
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/action/RegistrateAction.class
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/action/RegistrateAction.class
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/action/RegistrateCompleteAction.class
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/action/RegistrateCompleteAction.class
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/forms/DatenFormBean.class
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/forms/DatenFormBean.class
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/forms/RegistrateFormBean.class
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/forms/RegistrateFormBean.class
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/forms/RegistrationCompleteFormBean.class
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest/forms/RegistrationCompleteFormBean.class
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Modified: project_src/strutstest/WEB-INF/classes/resources/MessageResources.properties
+===================================================================
+--- project_src/strutstest/WEB-INF/classes/resources/MessageResources.properties	2004-11-08 22:18:56 UTC (rev 98)
++++ project_src/strutstest/WEB-INF/classes/resources/MessageResources.properties	2004-11-08 22:24:06 UTC (rev 99)
+@@ -31,3 +31,20 @@
+ welcome.Password=Password
+ error.username.required=Error: Username required!
+ error.password.required=Error: Password required!
++
++registrate.title=Professional Video Rental
++registrate.heading=Registration
++registrate.message=Please complete the following form to register for usage of Professional Video Rental
++registrate.UserName=Username
++registrate.LastName=Last Name
++registrate.FirstName=First Name
++registrate.Password=Password
++registrate.RePassword=Repeat Password
++registrate.Email=Email Address
++error.registrate.username.required=Fehler: Username required!
++error.registrate.lastname.required=Fehler: Last Name required!
++error.registrate.firstname.required=Fehler: First Name required!
++error.registrate.password.required=Fehler: Password required!
++error.registrate.repassword.required=Fehler: Please insert Password twice!
++error.registrate.repassword.notidentic=Fehler: Repeat of Password don't correspondends with Password! 
++error.registrate.email.required=Fehler: Email Adress required!
+\ No newline at end of file
+
+Deleted: project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/AuswerteActionBean.java
+===================================================================
+--- project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/AuswerteActionBean.java	2004-11-08 22:18:56 UTC (rev 98)
++++ project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/AuswerteActionBean.java	2004-11-08 22:24:06 UTC (rev 99)
+@@ -1,53 +0,0 @@
+-/*
+- * Created on 26.10.2004
+- *
+- * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
+- * All rights reserved.
+- *
+- * Redistribution and use in source and binary forms, with or without
+- * modification, are permitted provided that the following conditions
+- * are met:
+- *
+- * - Redistributions of source code must retain the above copyright notice,
+- * this list of conditions and the following disclaimer.
+- * - Redistributions in binary form must reproduce the above copyright notice,
+- * this list of conditions and the following disclaimer in the documentation
+- * and/or other materials provided with the distribution.
+- * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
+- * the names of its contributors may be used to endorse or promote products
+- * derived from this software without specific prior written permission.
+- *
+- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
+- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+- * POSSIBILITY OF SUCH DAMAGE.
+- *
+- */
+-package de.hsharz.provirent.strutstest;
+-
+-/**
+- * @author Stefan Forstner
+- *
+- */
+-
+-import javax.servlet.http.*;
+-import org.apache.struts.action.*;
+-
+-public final class AuswerteActionBean extends Action {
+-  public ActionForward execute( ActionMapping       mp,
+-                                ActionForm          fm,
+-                                HttpServletRequest  rq,
+-                                HttpServletResponse rp ) {
+-    DatenFormBean dfb = (DatenFormBean)fm;
+-    String sAction = dfb.getAction();
+-    return mp.findForward( sAction );
+-  }
+-}
+-
+
+Deleted: project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/DatenFormBean.java
+===================================================================
+--- project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/DatenFormBean.java	2004-11-08 22:18:56 UTC (rev 98)
++++ project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/DatenFormBean.java	2004-11-08 22:24:06 UTC (rev 99)
+@@ -1,96 +0,0 @@
+-/*
+- * Created on 26.10.2004
+- * 
+- * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider All
+- * rights reserved.
+- * 
+- * Redistribution and use in source and binary forms, with or without
+- * modification, are permitted provided that the following conditions are met:
+- *  - Redistributions of source code must retain the above copyright notice,
+- * this list of conditions and the following disclaimer. - Redistributions in
+- * binary form must reproduce the above copyright notice, this list of
+- * conditions and the following disclaimer in the documentation and/or other
+- * materials provided with the distribution. - Neither the name of the Remo
+- * Griesch/Stefan Forstner/Philipp Schneider nor the names of its contributors
+- * may be used to endorse or promote products derived from this software without
+- * specific prior written permission.
+- * 
+- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
+- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+- * POSSIBILITY OF SUCH DAMAGE.
+- *  
+- */
+-package de.hsharz.provirent.strutstest;
+-
+-import javax.servlet.http.*;
+-import org.apache.struts.action.*;
+-
+-public final class DatenFormBean extends ActionForm {
+-
+-    private String username = null;
+-
+-    private String password = null;
+-
+-    private String action = null;
+-
+-    public String getUsername() {
+-        return this.username;
+-    }
+-
+-    public String getPassword() {
+-        return this.password;
+-    }
+-
+-    public String getAction() {
+-        return this.action;
+-    }
+-
+-    public void setUsername(String username) {
+-        this.username = username;
+-    }
+-
+-    public void setPassword(String password) {
+-        this.password = password;
+-    }
+-
+-    public void setAction(String action) {
+-        this.action = action;
+-    }
+-
+-    public void reset(ActionMapping mp, HttpServletRequest rq) {
+-        username = null;
+-        password = null;
+-        action = null;
+-    }
+-
+-    public ActionErrors validate(ActionMapping mp, HttpServletRequest rq) {
+-        ActionErrors errors = null;
+-        if (!&quot;Weiter&quot;.equals(action)) {
+-            username = null;
+-            password = null;
+-        } else {
+-            if (username == null || username.length() &lt; 1) {
+-                if (errors == null)
+-                    errors = new ActionErrors();
+-                errors.add(&quot;username&quot;, new ActionError(
+-                        &quot;error.username.required&quot;));
+-            }
+-            if (password == null || password.length() &lt; 1) {
+-                if (errors == null)
+-                    errors = new ActionErrors();
+-                errors.add(&quot;password&quot;, new ActionError(
+-                        &quot;error.password.required&quot;));
+-            }
+-        }
+-        return errors;
+-    }
+-
+-}
+\ No newline at end of file
+
+Added: project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/action/AuswerteActionBean.java
+===================================================================
+--- project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/action/AuswerteActionBean.java	2004-11-08 22:18:56 UTC (rev 98)
++++ project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/action/AuswerteActionBean.java	2004-11-08 22:24:06 UTC (rev 99)
+@@ -0,0 +1,55 @@
++/*
++ * Created on 26.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.strutstest.action;
++
++/**
++ * @author Stefan Forstner
++ *
++ */
++
++import javax.servlet.http.*;
++import org.apache.struts.action.*;
++
++import de.hsharz.provirent.strutstest.forms.DatenFormBean;
++
++public final class AuswerteActionBean extends Action {
++  public ActionForward execute( ActionMapping       mp,
++                                ActionForm          fm,
++                                HttpServletRequest  rq,
++                                HttpServletResponse rp ) {
++    DatenFormBean dfb = (DatenFormBean)fm;
++    String sAction = dfb.getAction();
++    return mp.findForward( sAction );
++  }
++}
++
+
+Added: project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/action/RegistrateAction.java
+===================================================================
+--- project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/action/RegistrateAction.java	2004-11-08 22:18:56 UTC (rev 98)
++++ project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/action/RegistrateAction.java	2004-11-08 22:24:06 UTC (rev 99)
+@@ -0,0 +1,58 @@
++/*
++ * Created on 08.11.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.strutstest.action;
++
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++import org.apache.struts.action.Action;
++import org.apache.struts.action.ActionForm;
++import org.apache.struts.action.ActionForward;
++import org.apache.struts.action.ActionMapping;
++
++import de.hsharz.provirent.strutstest.forms.RegistrateFormBean;
++
++/**
++ * @author Stefan Forstner
++ *
++ */
++public class RegistrateAction extends Action {
++    public ActionForward execute( ActionMapping mp,
++            ActionForm          fm,
++            HttpServletRequest  rq,
++            HttpServletResponse rp ) {
++        RegistrateFormBean rfb = (RegistrateFormBean)fm;
++        String sAction = rfb.getAction();
++        return mp.findForward( sAction );
++    }
++}
+
+Added: project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/action/RegistrateCompleteAction.java
+===================================================================
+--- project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/action/RegistrateCompleteAction.java	2004-11-08 22:18:56 UTC (rev 98)
++++ project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/action/RegistrateCompleteAction.java	2004-11-08 22:24:06 UTC (rev 99)
+@@ -0,0 +1,58 @@
++/*
++ * Created on 08.11.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.strutstest.action;
++
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++import org.apache.struts.action.Action;
++import org.apache.struts.action.ActionForm;
++import org.apache.struts.action.ActionForward;
++import org.apache.struts.action.ActionMapping;
++
++import de.hsharz.provirent.strutstest.forms.RegistrationCompleteFormBean;
++
++/**
++ * @author Stefan Forstner
++ *
++ */
++public class RegistrateCompleteAction extends Action {
++    public ActionForward execute( ActionMapping mp,
++            ActionForm          fm,
++            HttpServletRequest  rq,
++            HttpServletResponse rp ) {
++        RegistrationCompleteFormBean rcfb = (RegistrationCompleteFormBean)fm;
++        String sAction = rcfb.getAction();
++        return mp.findForward( sAction );
++    }
++}
+
+Added: project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/forms/DatenFormBean.java
+===================================================================
+--- project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/forms/DatenFormBean.java	2004-11-08 22:18:56 UTC (rev 98)
++++ project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/forms/DatenFormBean.java	2004-11-08 22:24:06 UTC (rev 99)
+@@ -0,0 +1,96 @@
++/*
++ * Created on 26.10.2004
++ * 
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider All
++ * rights reserved.
++ * 
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *  - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer. - Redistributions in
++ * binary form must reproduce the above copyright notice, this list of
++ * conditions and the following disclaimer in the documentation and/or other
++ * materials provided with the distribution. - Neither the name of the Remo
++ * Griesch/Stefan Forstner/Philipp Schneider nor the names of its contributors
++ * may be used to endorse or promote products derived from this software without
++ * specific prior written permission.
++ * 
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *  
++ */
++package de.hsharz.provirent.strutstest.forms;
++
++import javax.servlet.http.*;
++import org.apache.struts.action.*;
++
++public final class DatenFormBean extends ActionForm {
++
++    private String username = null;
++
++    private String password = null;
++
++    private String action = null;
++
++    public String getUsername() {
++        return this.username;
++    }
++
++    public String getPassword() {
++        return this.password;
++    }
++
++    public String getAction() {
++        return this.action;
++    }
++
++    public void setUsername(String username) {
++        this.username = username;
++    }
++
++    public void setPassword(String password) {
++        this.password = password;
++    }
++
++    public void setAction(String action) {
++        this.action = action;
++    }
++
++    public void reset(ActionMapping mp, HttpServletRequest rq) {
++        username = null;
++        password = null;
++        action = null;
++    }
++
++    public ActionErrors validate(ActionMapping mp, HttpServletRequest rq) {
++        ActionErrors errors = null;
++        if (!&quot;Weiter&quot;.equals(action)) {
++            username = null;
++            password = null;
++        } else {
++            if (username == null || username.length() &lt; 1) {
++                if (errors == null)
++                    errors = new ActionErrors();
++                errors.add(&quot;username&quot;, new ActionMessage(
++                        &quot;error.username.required&quot;));
++            }
++            if (password == null || password.length() &lt; 1) {
++                if (errors == null)
++                    errors = new ActionErrors();
++                errors.add(&quot;password&quot;, new ActionMessage(
++                        &quot;error.password.required&quot;));
++            }
++        }
++        return errors;
++    }
++
++}
+\ No newline at end of file
+
+Added: project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/forms/RegistrateFormBean.java
+===================================================================
+--- project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/forms/RegistrateFormBean.java	2004-11-08 22:18:56 UTC (rev 98)
++++ project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/forms/RegistrateFormBean.java	2004-11-08 22:24:06 UTC (rev 99)
+@@ -0,0 +1,196 @@
++/*
++ * Created on 08.11.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.strutstest.forms;
++
++import javax.servlet.http.HttpServletRequest;
++
++import org.apache.struts.action.ActionErrors;
++import org.apache.struts.action.ActionForm;
++import org.apache.struts.action.ActionMapping;
++import org.apache.struts.action.ActionMessage;
++
++/**
++ * @author Stefan Forstner
++ *
++ */
++public class RegistrateFormBean extends ActionForm {
++    private String username = null;
++    
++    private String lastname = null;
++    
++    private String firstname = null;
++
++    private String password = null;
++    
++    private String repassword = null;
++    
++    private String email = null;
++
++    private String action = null;
++
++    public String getUsername() {
++        return this.username;
++    }
++
++    public String getPassword() {
++        return this.password;
++    }
++
++    public String getAction() {
++        return this.action;
++    }
++
++    public void setUsername(String username) {
++        this.username = username;
++    }
++
++    public void setPassword(String password) {
++        this.password = password;
++    }
++
++    public void setAction(String action) {
++        this.action = action;
++    }
++
++    public void reset(ActionMapping mp, HttpServletRequest rq) {
++        username = null;
++        lastname = null;
++        firstname = null;
++        password = null;
++        repassword = null;
++        email = null;
++    }
++
++    public ActionErrors validate(ActionMapping mp, HttpServletRequest rq) {
++        ActionErrors errors = null;
++        if (!&quot;Registrate&quot;.equals(action)) {
++            username = null;
++            lastname = null;
++            firstname = null;
++            password = null;
++            repassword = null;
++            email = null;
++        } else {
++            if (username == null || username.length() &lt; 1) {
++                if (errors == null)
++                    errors = new ActionErrors();
++                errors.add(&quot;username&quot;, new ActionMessage(
++                        &quot;error.registrate.username.required&quot;));
++            }
++            if (lastname == null || lastname.length() &lt; 1) {
++                if (errors == null)
++                    errors = new ActionErrors();
++                errors.add(&quot;lastname&quot;, new ActionMessage(
++                        &quot;error.registrate.lastname.required&quot;));
++            }
++            if (firstname == null || firstname.length() &lt; 1) {
++                if (errors == null)
++                    errors = new ActionErrors();
++                errors.add(&quot;firstname&quot;, new ActionMessage(
++                        &quot;error.registrate.firstname.required&quot;));
++            }
++            if (password == null || password.length() &lt; 1) {
++                if (errors == null)
++                    errors = new ActionErrors();
++                errors.add(&quot;password&quot;, new ActionMessage(
++                        &quot;error.registrate.password.required&quot;));
++            }
++            if (repassword == null || repassword.length() &lt; 1) {
++                if (errors == null)
++                    errors = new ActionErrors();
++                errors.add(&quot;repassword&quot;, new ActionMessage(
++                        &quot;error.registrate.repassword.required&quot;));
++            } else if (!repassword.equals(password)){
++                if (errors == null)
++                    errors = new ActionErrors();
++                errors.add(&quot;repassword&quot;, new ActionMessage(
++                        &quot;error.registrate.repassword.notidentic&quot;));
++            }
++            if (email == null || email.length() &lt; 1) {
++                if (errors == null)
++                    errors = new ActionErrors();
++                errors.add(&quot;email&quot;, new ActionMessage(
++                        &quot;error.registrate.email.required&quot;));
++            }
++        }
++        return errors;
++    }
++    /**
++     * @return Returns the email.
++     */
++    public String getEmail() {
++        return email;
++    }
++    /**
++     * @param email The email to set.
++     */
++    public void setEmail(String email) {
++        this.email = email;
++    }
++    /**
++     * @return Returns the firstname.
++     */
++    public String getFirstname() {
++        return firstname;
++    }
++    /**
++     * @param firstname The firstname to set.
++     */
++    public void setFirstname(String firstname) {
++        this.firstname = firstname;
++    }
++    /**
++     * @return Returns the lastname.
++     */
++    public String getLastname() {
++        return lastname;
++    }
++    /**
++     * @param lastname The lastname to set.
++     */
++    public void setLastname(String lastname) {
++        this.lastname = lastname;
++    }
++    /**
++     * @return Returns the repassword.
++     */
++    public String getRepassword() {
++        return repassword;
++    }
++    /**
++     * @param repassword The repassword to set.
++     */
++    public void setRepassword(String repassword) {
++        this.repassword = repassword;
++    }
++}
+
+Added: project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/forms/RegistrationCompleteFormBean.java
+===================================================================
+--- project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/forms/RegistrationCompleteFormBean.java	2004-11-08 22:18:56 UTC (rev 98)
++++ project_src/strutstest/WEB-INF/src/de/hsharz/provirent/strutstest/forms/RegistrationCompleteFormBean.java	2004-11-08 22:24:06 UTC (rev 99)
+@@ -0,0 +1,55 @@
++/*
++ * Created on 08.11.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.strutstest.forms;
++
++import org.apache.struts.action.ActionForm;
++
++/**
++ * @author Stefan Forstner
++ *
++ */
++public class RegistrationCompleteFormBean extends ActionForm {
++    private String action = null;
++    /**
++     * @return Returns the action.
++     */
++    public String getAction() {
++        return action;
++    }
++    /**
++     * @param action The action to set.
++     */
++    public void setAction(String action) {
++        this.action = action;
++    }
++}
+
+Modified: project_src/strutstest/WEB-INF/src/resources/MessageResources.properties
+===================================================================
+--- project_src/strutstest/WEB-INF/src/resources/MessageResources.properties	2004-11-08 22:18:56 UTC (rev 98)
++++ project_src/strutstest/WEB-INF/src/resources/MessageResources.properties	2004-11-08 22:24:06 UTC (rev 99)
+@@ -31,3 +31,20 @@
+ welcome.Password=Password
+ error.username.required=Error: Username required!
+ error.password.required=Error: Password required!
++
++registrate.title=Professional Video Rental
++registrate.heading=Registration
++registrate.message=Please complete the following form to register for usage of Professional Video Rental
++registrate.UserName=Username
++registrate.LastName=Last Name
++registrate.FirstName=First Name
++registrate.Password=Password
++registrate.RePassword=Repeat Password
++registrate.Email=Email Address
++error.registrate.username.required=Fehler: Username required!
++error.registrate.lastname.required=Fehler: Last Name required!
++error.registrate.firstname.required=Fehler: First Name required!
++error.registrate.password.required=Fehler: Password required!
++error.registrate.repassword.required=Fehler: Please insert Password twice!
++error.registrate.repassword.notidentic=Fehler: Repeat of Password don't correspondends with Password! 
++error.registrate.email.required=Fehler: Email Adress required!
+\ No newline at end of file
+
+Modified: project_src/strutstest/WEB-INF/struts-config.xml
+===================================================================
+--- project_src/strutstest/WEB-INF/struts-config.xml	2004-11-08 22:18:56 UTC (rev 98)
++++ project_src/strutstest/WEB-INF/struts-config.xml	2004-11-08 22:24:06 UTC (rev 99)
+@@ -1,207 +1,206 @@
+-&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;
+-
+-&lt;!DOCTYPE struts-config PUBLIC
+-          &quot;-//Apache Software Foundation//DTD Struts Configuration 1.2//EN&quot;
+-          &quot;<A HREF="http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd</A>&quot;&gt;
+-
+-&lt;!--
+-     This is a blank Struts configuration file with an example
+-     welcome action/page and other commented sample elements.
+-
+-     Tiles and the Struts Validator are configured using the factory defaults
+-     and are ready-to-use.
+-
+-     NOTE: If you have a generator tool to create the corresponding Java classes
+-     for you, you could include the details in the &quot;form-bean&quot; declarations.
+-     Otherwise, you would only define the &quot;form-bean&quot; element itself, with the
+-     corresponding &quot;name&quot; and &quot;type&quot; attributes, as shown here.
+---&gt;
+-
+-
+-&lt;struts-config&gt;
+-
+-&lt;!-- ============================================ Data Source Configuration --&gt;
+-&lt;!--
+-&lt;data-sources&gt;
+-&lt;data-source type=&quot;org.apache.commons.dbcp.BasicDataSource&quot;&gt;
+-    &lt;set-property
+-      property=&quot;driverClassName&quot;
+-      value=&quot;org.postgresql.Driver&quot; /&gt;
+-    &lt;set-property
+-      property=&quot;url&quot;
+-      value=&quot;jdbc:<A HREF="postgresql://localhost/mydatabase">postgresql://localhost/mydatabase</A>&quot; /&gt;
+-    &lt;set-property
+-      property=&quot;username&quot;
+-      value=&quot;me&quot; /&gt;
+-    &lt;set-property
+-      property=&quot;password&quot;
+-      value=&quot;test&quot; /&gt;
+-    &lt;set-property
+-      property=&quot;maxActive&quot;
+-      value=&quot;10&quot; /&gt;
+-    &lt;set-property
+-      property=&quot;maxWait&quot;
+-      value=&quot;5000&quot; /&gt;
+-    &lt;set-property
+-      property=&quot;defaultAutoCommit&quot;
+-      value=&quot;false&quot; /&gt;
+-    &lt;set-property
+-      property=&quot;defaultReadOnly&quot;
+-      value=&quot;false&quot; /&gt;
+-    &lt;set-property
+-      property=&quot;validationQuery&quot;
+-      value=&quot;SELECT COUNT(*) FROM market&quot; /&gt;
+-&lt;/data-source&gt;
+-&lt;/data-sources&gt;
+---&gt;
+-
+-&lt;!-- ================================================ Form Bean Definitions --&gt;
+-
+-    &lt;form-beans&gt;
+-		&lt;form-bean name=&quot;DatenFormBean&quot; type=&quot;de.hsharz.provirent.strutstest.DatenFormBean&quot; /&gt;
+-		
+-    &lt;!-- sample form bean descriptor for an ActionForm
+-        &lt;form-bean
+-            name=&quot;inputForm&quot;
+-            type=&quot;app.InputForm&quot;/&gt;
+-    end sample --&gt;
+-
+-    &lt;!-- sample form bean descriptor for a DynaActionForm
+-        &lt;form-bean
+-            name=&quot;logonForm&quot;
+-            type=&quot;org.apache.struts.action.DynaActionForm&quot;&gt;
+-            &lt;form-property
+-                name=&quot;username&quot;
+-                type=&quot;java.lang.String&quot;/&gt;
+-            &lt;form-property
+-                name=&quot;password&quot;
+-                type=&quot;java.lang.String&quot;/&gt;
+-       &lt;/form-bean&gt;
+-    end sample --&gt;
+-    &lt;/form-beans&gt;
+-
+-
+-&lt;!-- ========================================= Global Exception Definitions --&gt;
+-
+-    &lt;global-exceptions&gt;
+-        &lt;!-- sample exception handler
+-        &lt;exception
+-            key=&quot;expired.password&quot;
+-            type=&quot;app.ExpiredPasswordException&quot;
+-            path=&quot;/changePassword.jsp&quot;/&gt;
+-        end sample --&gt;
+-    &lt;/global-exceptions&gt;
+-
+-
+-&lt;!-- =========================================== Global Forward Definitions --&gt;
+-
+-    &lt;global-forwards&gt;
+-        &lt;!-- Default forward to &quot;Welcome&quot; action --&gt;
+-        &lt;!-- Demonstrates using index.jsp to forward --&gt;
+-        &lt;forward name=&quot;startForwardName&quot; path=&quot;/StartActionPath.do&quot; /&gt;
+-
+-    &lt;/global-forwards&gt;
+-
+-
+-&lt;!-- =========================================== Action Mapping Definitions --&gt;
+-
+-    &lt;action-mappings&gt;
+-            &lt;!-- Default &quot;Welcome&quot; action --&gt;
+-            &lt;!-- Forwards to Welcome.jsp --&gt;
+-        &lt;action path=&quot;/StartActionPath&quot; forward=&quot;/pages/EingabeFormular.jsp&quot; /&gt;
+-		&lt;action path=&quot;/htmlFormActionPath&quot; type=&quot;de.hsharz.provirent.strutstest.AuswerteActionBean&quot; 
+-			name=&quot;DatenFormBean&quot; scope=&quot;request&quot; input=&quot;/pages/EingabeFormular.jsp&quot;&gt;
+-			&lt;forward name=&quot;Weiter&quot;    path=&quot;/ErgebnisanzeigeActionPath.do&quot; /&gt;
++&lt;!DOCTYPE struts-config PUBLIC &quot;-//Apache Software Foundation//DTD Struts Configuration 1.2//EN&quot; &quot;<A HREF="http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd</A>&quot;&gt;
++&lt;!--
++     This is a blank Struts configuration file with an example
++     welcome action/page and other commented sample elements.
++
++     Tiles and the Struts Validator are configured using the factory defaults
++     and are ready-to-use.
++
++     NOTE: If you have a generator tool to create the corresponding Java classes
++     for you, you could include the details in the &quot;form-bean&quot; declarations.
++     Otherwise, you would only define the &quot;form-bean&quot; element itself, with the
++     corresponding &quot;name&quot; and &quot;type&quot; attributes, as shown here.
++--&gt;&lt;struts-config&gt;
++
++&lt;!-- ============================================ Data Source Configuration --&gt;
++&lt;!--
++&lt;data-sources&gt;
++&lt;data-source type=&quot;org.apache.commons.dbcp.BasicDataSource&quot;&gt;
++    &lt;set-property
++      property=&quot;driverClassName&quot;
++      value=&quot;org.postgresql.Driver&quot; /&gt;
++    &lt;set-property
++      property=&quot;url&quot;
++      value=&quot;jdbc:<A HREF="postgresql://localhost/mydatabase">postgresql://localhost/mydatabase</A>&quot; /&gt;
++    &lt;set-property
++      property=&quot;username&quot;
++      value=&quot;me&quot; /&gt;
++    &lt;set-property
++      property=&quot;password&quot;
++      value=&quot;test&quot; /&gt;
++    &lt;set-property
++      property=&quot;maxActive&quot;
++      value=&quot;10&quot; /&gt;
++    &lt;set-property
++      property=&quot;maxWait&quot;
++      value=&quot;5000&quot; /&gt;
++    &lt;set-property
++      property=&quot;defaultAutoCommit&quot;
++      value=&quot;false&quot; /&gt;
++    &lt;set-property
++      property=&quot;defaultReadOnly&quot;
++      value=&quot;false&quot; /&gt;
++    &lt;set-property
++      property=&quot;validationQuery&quot;
++      value=&quot;SELECT COUNT(*) FROM market&quot; /&gt;
++&lt;/data-source&gt;
++&lt;/data-sources&gt;
++--&gt;
++
++&lt;!-- ================================================ Form Bean Definitions --&gt;
++
++    &lt;form-beans&gt;
++		&lt;form-bean name=&quot;DatenFormBean&quot; type=&quot;de.hsharz.provirent.strutstest.forms.DatenFormBean&quot; /&gt;
++		&lt;form-bean name=&quot;RegistrationCompleteFormBean&quot; type=&quot;de.hsharz.provirent.strutstest.forms.RegistrationCompleteFormBean&quot; /&gt;
++		&lt;form-bean name=&quot;RegistrateFormBean&quot; type=&quot;de.hsharz.provirent.strutstest.forms.RegistrateFormBean&quot; /&gt;
++    &lt;!-- sample form bean descriptor for an ActionForm
++        &lt;form-bean
++            name=&quot;inputForm&quot;
++            type=&quot;app.InputForm&quot;/&gt;
++    end sample --&gt;
++
++    &lt;!-- sample form bean descriptor for a DynaActionForm
++        &lt;form-bean
++            name=&quot;logonForm&quot;
++            type=&quot;org.apache.struts.action.DynaActionForm&quot;&gt;
++            &lt;form-property
++                name=&quot;username&quot;
++                type=&quot;java.lang.String&quot;/&gt;
++            &lt;form-property
++                name=&quot;password&quot;
++                type=&quot;java.lang.String&quot;/&gt;
++       &lt;/form-bean&gt;
++    end sample --&gt;
++    &lt;/form-beans&gt;
++
++
++&lt;!-- ========================================= Global Exception Definitions --&gt;
++
++    &lt;global-exceptions&gt;
++        &lt;!-- sample exception handler
++        &lt;exception
++            key=&quot;expired.password&quot;
++            type=&quot;app.ExpiredPasswordException&quot;
++            path=&quot;/changePassword.jsp&quot;/&gt;
++        end sample --&gt;
++    &lt;/global-exceptions&gt;
++
++
++&lt;!-- =========================================== Global Forward Definitions --&gt;
++
++    &lt;global-forwards&gt;
++        &lt;!-- Default forward to &quot;Welcome&quot; action --&gt;
++        &lt;!-- Demonstrates using index.jsp to forward --&gt;
++        &lt;forward name=&quot;startForwardName&quot; path=&quot;/StartActionPath.do&quot; /&gt;
++
++    &lt;/global-forwards&gt;
++
++
++&lt;!-- =========================================== Action Mapping Definitions --&gt;
++
++    &lt;action-mappings&gt;
++            &lt;!-- Default &quot;Welcome&quot; action --&gt;
++            &lt;!-- Forwards to Welcome.jsp --&gt;
++        &lt;action path=&quot;/StartActionPath&quot; forward=&quot;/pages/EingabeFormular.jsp&quot; /&gt;
++		&lt;action path=&quot;/htmlFormActionPath&quot; type=&quot;de.hsharz.provirent.strutstest.action.AuswerteActionBean&quot; name=&quot;DatenFormBean&quot; scope=&quot;request&quot; input=&quot;/pages/EingabeFormular.jsp&quot;&gt;
++			&lt;forward name=&quot;Weiter&quot; path=&quot;/ErgebnisanzeigeActionPath.do&quot; /&gt;
+ 			&lt;forward name=&quot;Abbrechen&quot; path=&quot;/StartActionPath.do&quot; /&gt;
++			&lt;forward name=&quot;Registrate&quot; path=&quot;/RegistrateActionPath.do&quot;/&gt;
++		&lt;/action&gt;
++		&lt;action path=&quot;/ErgebnisanzeigeActionPath&quot; forward=&quot;/pages/ErgebnisAnzeige.jsp&quot; /&gt;
++		&lt;action path=&quot;/RegistrateActionPath&quot; forward=&quot;/pages/RegistrateForm.jsp&quot; /&gt;
++
++		&lt;action path=&quot;/SubscribeFormActionPath&quot; type=&quot;de.hsharz.provirent.strutstest.action.RegistrateAction&quot; name=&quot;RegistrateFormBean&quot; scope=&quot;request&quot; input=&quot;/pages/RegistrateForm.jsp&quot;&gt;
++			&lt;forward name=&quot;Registrate&quot; path=&quot;/SubscribeActionPath.do&quot; /&gt;
++			&lt;forward name=&quot;Cancel&quot; path=&quot;/StartActionPath.do&quot; /&gt;
+ 		&lt;/action&gt;
+-		&lt;action path=&quot;/ErgebnisanzeigeActionPath&quot; forward=&quot;/pages/ErgebnisAnzeige.jsp&quot; /&gt;
+-
+-
+-    &lt;!-- sample input and input submit actions
+-
+-        &lt;action
+-            path=&quot;/Input&quot;
+-            type=&quot;org.apache.struts.actions.ForwardAction&quot;
+-            parameter=&quot;/pages/Input.jsp&quot;/&gt;
+-
+-        &lt;action
+-            path=&quot;/InputSubmit&quot;
+-            type=&quot;app.InputAction&quot;
+-            name=&quot;inputForm&quot;
+-            scope=&quot;request&quot;
+-            validate=&quot;true&quot;
+-            input=&quot;/pages/Input.jsp&quot;/&gt;
+-
+-            &lt;action
+-                path=&quot;/edit*&quot;
+-                type=&quot;app.Edit{1}Action&quot;
+-                name=&quot;inputForm&quot;
+-                scope=&quot;request&quot;
+-                validate=&quot;true&quot;
+-                input=&quot;/pages/Edit{1}.jsp&quot;/&gt;
+-
++		&lt;action path=&quot;/SubscribeActionPath&quot; forward=&quot;/pages/RegistrationCompleteForm.jsp&quot;/&gt;
++	
++		&lt;action path=&quot;/SubscribeCompleteFormActionPath&quot; type=&quot;de.hsharz.provirent.strutstest.action.RegistrationCompleteAction&quot; name=&quot;RegistrationCompleteFormBean&quot; scope=&quot;request&quot; input=&quot;/pages/RegistrateCompleteForm.jsp&quot;&gt;
++			&lt;forward name=&quot;OK&quot; path=&quot;/StartActionPath.do&quot; /&gt;
++		&lt;/action&gt;
++	
++		&lt;!-- sample input and input submit actions
++
++        &lt;action
++            path=&quot;/Input&quot;
++            type=&quot;org.apache.struts.actions.ForwardAction&quot;
++            parameter=&quot;/pages/Input.jsp&quot;/&gt;
++
++        &lt;action
++            path=&quot;/InputSubmit&quot;
++            type=&quot;app.InputAction&quot;
++            name=&quot;inputForm&quot;
++            scope=&quot;request&quot;
++            validate=&quot;true&quot;
++            input=&quot;/pages/Input.jsp&quot;/&gt;
++
++            &lt;action
++                path=&quot;/edit*&quot;
++                type=&quot;app.Edit{1}Action&quot;
++                name=&quot;inputForm&quot;
++                scope=&quot;request&quot;
++                validate=&quot;true&quot;
++                input=&quot;/pages/Edit{1}.jsp&quot;/&gt;
++
+     end samples --&gt;
+-    &lt;/action-mappings&gt;
+-
+-
+-&lt;!-- ============================================= Controller Configuration --&gt;
+-
+-    &lt;controller
+-       processorClass=&quot;org.apache.struts.tiles.TilesRequestProcessor&quot;/&gt;
+-
+-
+-&lt;!-- ======================================== Message Resources Definitions --&gt;
+-
+-    &lt;message-resources parameter=&quot;resources.MessageResources&quot; /&gt;
+-
+-
+-&lt;!-- =============================================== Plug Ins Configuration --&gt;
+-
+-  &lt;!-- ======================================================= Tiles plugin --&gt;
+-  &lt;!--
+-     This plugin initialize Tiles definition factory. This later can takes some
+-	 parameters explained here after. The plugin first read parameters from
+-	 web.xml, thenoverload them with parameters defined here. All parameters
+-	 are optional.
+-     The plugin should be declared in each struts-config file.
+-       - definitions-config: (optional)
+-            Specify configuration file names. There can be several comma
+-		    separated file names (default: ?? )
+-       - moduleAware: (optional - struts1.1)
+-            Specify if the Tiles definition factory is module aware. If true
+-            (default), there will be one factory for each Struts module.
+-			If false, there will be one common factory for all module. In this
+-            later case, it is still needed to declare one plugin per module.
+-            The factory will be initialized with parameters found in the first
+-            initialized plugin (generally the one associated with the default
+-            module).
+-			  true : One factory per module. (default)
+-			  false : one single shared factory for all modules
+-	   - definitions-parser-validate: (optional)
+-	        Specify if xml parser should validate the Tiles configuration file.
+-			  true : validate. DTD should be specified in file header (default)
+-			  false : no validation
+-
+-	  Paths found in Tiles definitions are relative to the main context.
+-  --&gt;
+-
+-    &lt;plug-in className=&quot;org.apache.struts.tiles.TilesPlugin&quot; &gt;
+-
+-      &lt;!-- Path to XML definition file --&gt;
+-      &lt;set-property property=&quot;definitions-config&quot;
+-                       value=&quot;/WEB-INF/tiles-defs.xml&quot; /&gt;
+-      &lt;!-- Set Module-awareness to true --&gt;
+-      &lt;set-property property=&quot;moduleAware&quot; value=&quot;true&quot; /&gt;
+-    &lt;/plug-in&gt;
+-
+-
+-  &lt;!-- =================================================== Validator plugin --&gt;
+-
+-  &lt;plug-in className=&quot;org.apache.struts.validator.ValidatorPlugIn&quot;&gt;
+-    &lt;set-property
+-        property=&quot;pathnames&quot;
+-        value=&quot;/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml&quot;/&gt;
+-  &lt;/plug-in&gt;
+-
++		
++	&lt;/action-mappings&gt;
++
++
++&lt;!-- ============================================= Controller Configuration --&gt;
++
++    &lt;controller processorClass=&quot;org.apache.struts.tiles.TilesRequestProcessor&quot; /&gt;
++
++
++&lt;!-- ======================================== Message Resources Definitions --&gt;
++
++    &lt;message-resources parameter=&quot;resources.MessageResources&quot; /&gt;
++
++
++&lt;!-- =============================================== Plug Ins Configuration --&gt;
++
++  &lt;!-- ======================================================= Tiles plugin --&gt;
++  &lt;!--
++     This plugin initialize Tiles definition factory. This later can takes some
++	 parameters explained here after. The plugin first read parameters from
++	 web.xml, thenoverload them with parameters defined here. All parameters
++	 are optional.
++     The plugin should be declared in each struts-config file.
++       - definitions-config: (optional)
++            Specify configuration file names. There can be several comma
++		    separated file names (default: ?? )
++       - moduleAware: (optional - struts1.1)
++            Specify if the Tiles definition factory is module aware. If true
++            (default), there will be one factory for each Struts module.
++			If false, there will be one common factory for all module. In this
++            later case, it is still needed to declare one plugin per module.
++            The factory will be initialized with parameters found in the first
++            initialized plugin (generally the one associated with the default
++            module).
++			  true : One factory per module. (default)
++			  false : one single shared factory for all modules
++	   - definitions-parser-validate: (optional)
++	        Specify if xml parser should validate the Tiles configuration file.
++			  true : validate. DTD should be specified in file header (default)
++			  false : no validation
++
++	  Paths found in Tiles definitions are relative to the main context.
++  --&gt;
++
++    &lt;plug-in className=&quot;org.apache.struts.tiles.TilesPlugin&quot;&gt;
++
++      &lt;!-- Path to XML definition file --&gt;
++      &lt;set-property property=&quot;definitions-config&quot; value=&quot;/WEB-INF/tiles-defs.xml&quot; /&gt;
++      &lt;!-- Set Module-awareness to true --&gt;
++      &lt;set-property property=&quot;moduleAware&quot; value=&quot;true&quot; /&gt;
++    &lt;/plug-in&gt;
++
++
++  &lt;!-- =================================================== Validator plugin --&gt;
++
++  &lt;plug-in className=&quot;org.apache.struts.validator.ValidatorPlugIn&quot;&gt;
++    &lt;set-property property=&quot;pathnames&quot; value=&quot;/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml&quot; /&gt;
++  &lt;/plug-in&gt;
++
+ &lt;/struts-config&gt;
+-
+
+Modified: project_src/strutstest/pages/EingabeFormular.jsp
+===================================================================
+--- project_src/strutstest/pages/EingabeFormular.jsp	2004-11-08 22:18:56 UTC (rev 98)
++++ project_src/strutstest/pages/EingabeFormular.jsp	2004-11-08 22:24:06 UTC (rev 99)
+@@ -25,7 +25,7 @@
+     &lt;font color=red&gt;&lt;html:errors property=&quot;password&quot; /&gt;&lt;/font&gt;&lt;/p&gt;
+ &lt;p&gt; &lt;html:submit property=&quot;action&quot; value=&quot;Weiter&quot; /&gt;
+     &lt;html:submit property=&quot;action&quot; value=&quot;Abbrechen&quot; /&gt;&lt;/p&gt;
+-&lt;p&gt; &lt;html:link property=&quot;action&quot; value=&quot;registrate&quot;&lt;/p&gt;
++&lt;p&gt; &lt;html:link property=&quot;action&quot; value=&quot;Registrate&quot;&lt;/p&gt;
+ 
+ &lt;/html:form&gt;
+ 
+
+Added: project_src/strutstest/pages/RegistrateCompleteForm.jsp
+===================================================================
+--- project_src/strutstest/pages/RegistrateCompleteForm.jsp	2004-11-08 22:18:56 UTC (rev 98)
++++ project_src/strutstest/pages/RegistrateCompleteForm.jsp	2004-11-08 22:24:06 UTC (rev 99)
+@@ -0,0 +1,22 @@
++&lt;%@ taglib uri=&quot;/WEB-INF/struts-bean.tld&quot; prefix=&quot;bean&quot; %&gt;
++&lt;%@ taglib uri=&quot;/WEB-INF/struts-html.tld&quot; prefix=&quot;html&quot; %&gt;
++
++&lt;html:html&gt;
++&lt;head&gt;
++  &lt;title&gt;&lt;bean:message key=&quot;registrateComplete.title&quot; /&gt;&lt;/title&gt;
++&lt;/head&gt;
++&lt;body&gt;
++
++&lt;logic:notPresent name=&quot;org.apache.struts.action.MESSAGE&quot; scope=&quot;application&quot;&gt;
++  &lt;font color=&quot;red&quot;&gt;ERROR: Application resources not loaded&lt;/font&gt;
++&lt;/logic:notPresent&gt;
++
++&lt;h3&gt;&lt;bean:message key=&quot;registrateComplete.heading&quot; /&gt;&lt;/h3&gt;
++&lt;p&gt; &lt;bean:message key=&quot;registrate.Complete.message&quot; /&gt;&lt;/p&gt;
++
++&lt;html:form&gt;
++	&lt;p&gt; &lt;html:submit property=&quot;action&quot; value=&quot;OK&quot; /&gt;&lt;/p&gt;	
++&lt;/html:form&gt;
++
++&lt;/body&gt;
++&lt;/html:html&gt;
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000099.html">[Provirent-svn-commit] r98 - timetable
+</A></li>
+	<LI>Next message: <A HREF="000101.html">[Provirent-svn-commit] r100 - project_src/provirent_hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#100">[ date ]</a>
+              <a href="thread.html#100">[ thread ]</a>
+              <a href="subject.html#100">[ subject ]</a>
+              <a href="author.html#100">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

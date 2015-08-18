@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r234 - in project_src/provirent_hibernate/src: de/hsharz/provirent/objects test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r234%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/objects%20test/provirent/hibernate&In-Reply-To=%3C200412102147.iBALlKVZ022189%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000234.html">
+   <LINK REL="Next"  HREF="000236.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r234 - in project_src/provirent_hibernate/src: de/hsharz/provirent/objects test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r234%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/objects%20test/provirent/hibernate&In-Reply-To=%3C200412102147.iBALlKVZ022189%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r234 - in project_src/provirent_hibernate/src: de/hsharz/provirent/objects test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Fri Dec 10 22:47:20 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000234.html">[Provirent-svn-commit] r233 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000236.html">[Provirent-svn-commit] r235 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#235">[ date ]</a>
+              <a href="thread.html#235">[ thread ]</a>
+              <a href="subject.html#235">[ subject ]</a>
+              <a href="author.html#235">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-12-10 22:47:19 +0100 (Fri, 10 Dec 2004)
+New Revision: 234
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.hbm.xml
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java
+Log:
+- TestOrder begonnen
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.hbm.xml	2004-12-10 20:48:35 UTC (rev 233)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.hbm.xml	2004-12-10 21:47:19 UTC (rev 234)
+@@ -28,8 +28,8 @@
+ 		 &lt;/many-to-one&gt;
+ 
+  			&lt;list	name=&quot;movieOrderItems&quot;
+- 						table=&quot;MOVIEORDERORDERITEMS&quot;
+- 						&gt;
++ 					table=&quot;MOVIEORDERORDERITEMS&quot;
++ 					cascade=&quot;all&quot;	&gt;
+ 				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+ 				&lt;key column=&quot;MOVIEORDERID&quot;/&gt;
+ 				&lt;index column=&quot;POS&quot;/&gt;
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java	2004-12-10 20:48:35 UTC (rev 233)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java	2004-12-10 21:47:19 UTC (rev 234)
+@@ -84,6 +84,9 @@
+     }
+ 
+     public void testCreateDvd() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreateDvd() - start&quot;);
++        }
+ 
+         Session s = null;
+         Transaction tx = null;
+@@ -250,10 +253,15 @@
+                 // No matter what, close the session
+                 HibernateUtil.closeSession();
+             } catch (HibernateException e) {
++                logger.error(&quot;testCreateDvd()&quot;, e);
++
+                 // TODO Auto-generated catch block
+                 e.printStackTrace();
+             }
+         }
+ 
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreateDvd() - end&quot;);
++        }
+     }
+ }
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java	2004-12-10 20:48:35 UTC (rev 233)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java	2004-12-10 21:47:19 UTC (rev 234)
+@@ -32,7 +32,21 @@
+  */
+ package test.provirent.hibernate;
+ 
++import java.util.ArrayList;
++import java.util.Calendar;
++import java.util.List;
++
+ import junit.framework.TestCase;
++import net.sf.hibernate.HibernateException;
++import net.sf.hibernate.Session;
++import net.sf.hibernate.Transaction;
++import de.hsharz.provirent.objects.Condition;
++import de.hsharz.provirent.objects.Customer;
++import de.hsharz.provirent.objects.Dvd;
++import de.hsharz.provirent.objects.Movie;
++import de.hsharz.provirent.objects.MovieOrder;
++import de.hsharz.provirent.objects.OrderItem;
++import de.hsharz.provirent.objects.Payment;
+ 
+ /**
+  * @author Philipp Schneider
+@@ -62,4 +76,61 @@
+         super(arg0);
+     }
+ 
+-}
++    public void createMovieOrder() {
++
++        Session s = null;
++        Transaction tx = null;
++
++        try {
++            s = HibernateUtil.currentSession();
++            tx = s.beginTransaction();
++
++            List customers = new ArrayList();
++            //for each movie 
++            for (int i = 0; i &lt; 3; i++) {
++
++                Customer customer = (Customer) customers.get(i);
++
++
++                MovieOrder movieOrder = new MovieOrder();
++                movieOrder.setCustomer(customer);
++
++                List orderItems = new ArrayList();
++
++                for (int j = 0; j &lt; 3; j++) {
++
++                    OrderItem orderItem = new OrderItem();
++                    orderItem.setCustomer(customer);
++                    orderItem.setDuration(2);
++
++                    orderItem.setDvd(new Dvd());
++                    
++                    orderItem.setOrderTime(Calendar.getInstance());
++                    orderItem.setPayment(new Payment());
++
++                    //this data is to be set when the dvd is beeing
++                    //send to the customer
++                    orderItem.setConditionSend(new Condition());
++                    orderItem.setSenderTime(Calendar.getInstance());
++
++                    //this data is set when the dvd is beeig received
++                    //from the customer
++                    orderItem.setReceivingTime(null);
++                    orderItem.setConditionReceiving(null);
++
++                    //add to the List
++                    orderItems.add(orderItem);
++                }
++
++                movieOrder.setMovieOrderItems(orderItems);
++
++                //save the movieOrder
++                s.save(movieOrder);
++            }
++        } catch (HibernateException e) {
++            // TODO Auto-generated catch block
++            e.printStackTrace();
++        }
++
++    }
++}
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000234.html">[Provirent-svn-commit] r233 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000236.html">[Provirent-svn-commit] r235 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#235">[ date ]</a>
+              <a href="thread.html#235">[ thread ]</a>
+              <a href="subject.html#235">[ subject ]</a>
+              <a href="author.html#235">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

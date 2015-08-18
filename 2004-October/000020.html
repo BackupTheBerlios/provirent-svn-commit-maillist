@@ -1,0 +1,1153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r19 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r19%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/objects&In-Reply-To=%3C200410091419.i99EJEov026089%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000019.html">
+   <LINK REL="Next"  HREF="000021.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r19 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r19%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/objects&In-Reply-To=%3C200410091419.i99EJEov026089%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r19 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Sat Oct  9 16:19:14 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000019.html">[Provirent-svn-commit] r18 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+        <LI>Next message: <A HREF="000021.html">[Provirent-svn-commit] r20 - / project_src/provirent_hibernate project_src/provirent_hibernate/bin project_src/provirent_hibernate/data project_src/provirent_hibernate/src project_src/provirent_hibernate/src/test/provirent/hibernate timetable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#20">[ date ]</a>
+              <a href="thread.html#20">[ thread ]</a>
+              <a href="subject.html#20">[ subject ]</a>
+              <a href="author.html#20">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-09 16:19:12 +0200 (Sat, 09 Oct 2004)
+New Revision: 19
+
+Added:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Bill.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Order.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.java
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Bill.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Order.java
+Log:
+- weitere Objekte erzeugt
+
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Bill.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Bill.hbm.xml	2004-10-09 12:17:13 UTC (rev 18)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Bill.hbm.xml	2004-10-09 14:19:12 UTC (rev 19)
+@@ -0,0 +1,42 @@
++&lt;?xml version=&quot;1.0&quot;?&gt;
++&lt;!DOCTYPE hibernate-mapping
++             PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 2.0//EN&quot;
++             &quot;<A HREF="http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd</A>&quot;&gt;
++  &lt;hibernate-mapping&gt;
++ 
++   &lt;class name=&quot;de.hsharz.provirent.objects.Bill&quot; table=&quot;BILL&quot;&gt;
++      &lt;meta attribute=&quot;class-description&quot;&gt;
++        Represents a Bill.
++        @author Philipp Schneider
++        @todo Orderid muss noch irgendwie rein
++      &lt;/meta&gt;
++      
++  		
++ 			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
++ 			
++      &lt;id name=&quot;billId&quot; type=&quot;int&quot; column=&quot;BILLID&quot;&gt;
++        &lt;meta attribute=&quot;scope-set&quot;&gt;protected&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++        &lt;generator class=&quot;native&quot;/&gt;
++      &lt;/id&gt;
++
++		 &lt;many-to-one
++				name=&quot;customer&quot;
++				class=&quot;de.hsharz.provirent.objects.Customer&quot;
++		 &gt;
++		 	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++		 &lt;/many-to-one&gt;
++
++
++ 
++      &lt;property name=&quot;pdfFile&quot; type=&quot;binary&quot;&gt;
++      	&lt;column name=&quot;pdffile&quot; sql-type=&quot;blob&quot; /&gt;
++      &lt;/property&gt;
++				
++      &lt;property name=&quot;pdfFileSize&quot; type=&quot;int&quot;&gt;
++					&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;      	
++      &lt;/property&gt; 
++             
++ 
++    &lt;/class&gt;
++  &lt;/hibernate-mapping&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Bill.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Bill.java	2004-10-09 12:17:13 UTC (rev 18)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Bill.java	2004-10-09 14:19:12 UTC (rev 19)
+@@ -1,41 +1,95 @@
+-/*
+- * Created on 06.10.2004
+- *
+- * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
+- * All rights reserved.
+- *
+- * Redistribution and use in source and binary forms, with or without
+- * modification, are permitted provided that the following conditions
+- * are met:
+- *
+- * - Redistributions of source code must retain the above copyright notice,
+- * this list of conditions and the following disclaimer.
+- * - Redistributions in binary form must reproduce the above copyright notice,
+- * this list of conditions and the following disclaimer in the documentation
+- * and/or other materials provided with the distribution.
+- * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
+- * the names of its contributors may be used to endorse or promote products
+- * derived from this software without specific prior written permission.
+- *
+- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
+- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+- * POSSIBILITY OF SUCH DAMAGE.
+- *
+- */
+ package de.hsharz.provirent.objects;
+ 
+-/**
+- * @author Philipp Schneider
+- *
+- */
+-public class Bill {
++import java.io.Serializable;
++import org.apache.commons.lang.builder.EqualsBuilder;
++import org.apache.commons.lang.builder.HashCodeBuilder;
++import org.apache.commons.lang.builder.ToStringBuilder;
+ 
++
++/** 
++ *         Represents a Bill.
++ *         @author Philipp Schneider
++ *         @todo Orderid muss noch irgendwie rein
++ *       
++*/
++public class Bill implements Serializable {
++
++    /** identifier field */
++    private Integer billId;
++
++    /** nullable persistent field */
++    private byte[] pdfFile;
++
++    /** nullable persistent field */
++    private int pdfFileSize;
++
++    /** nullable persistent field */
++    private de.hsharz.provirent.objects.Customer customer;
++
++    /** full constructor */
++    public Bill(byte[] pdfFile, int pdfFileSize, de.hsharz.provirent.objects.Customer customer) {
++        this.pdfFile = pdfFile;
++        this.pdfFileSize = pdfFileSize;
++        this.customer = customer;
++    }
++
++    /** default constructor */
++    public Bill() {
++    }
++
++    public Integer getBillId() {
++        return this.billId;
++    }
++
++    protected void setBillId(Integer billId) {
++        this.billId = billId;
++    }
++
++    public byte[] getPdfFile() {
++        return this.pdfFile;
++    }
++
++    public void setPdfFile(byte[] pdfFile) {
++        this.pdfFile = pdfFile;
++    }
++
++    public int getPdfFileSize() {
++        return this.pdfFileSize;
++    }
++
++    public void setPdfFileSize(int pdfFileSize) {
++        this.pdfFileSize = pdfFileSize;
++    }
++
++    public de.hsharz.provirent.objects.Customer getCustomer() {
++        return this.customer;
++    }
++
++    public void setCustomer(de.hsharz.provirent.objects.Customer customer) {
++        this.customer = customer;
++    }
++
++    public String toString() {
++        return new ToStringBuilder(this)
++            .append(&quot;billId&quot;, getBillId())
++            .append(&quot;pdfFileSize&quot;, getPdfFileSize())
++            .append(&quot;customer&quot;, getCustomer())
++            .toString();
++    }
++
++    public boolean equals(Object other) {
++        if ( (this == other ) ) return true;
++        if ( !(other instanceof Bill) ) return false;
++        Bill castOther = (Bill) other;
++        return new EqualsBuilder()
++            .append(this.getBillId(), castOther.getBillId())
++            .isEquals();
++    }
++
++    public int hashCode() {
++        return new HashCodeBuilder()
++            .append(getBillId())
++            .toHashCode();
++    }
++
+ }
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml	2004-10-09 12:17:13 UTC (rev 18)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml	2004-10-09 14:19:12 UTC (rev 19)
+@@ -18,7 +18,9 @@
+         &lt;generator class=&quot;native&quot;/&gt;
+       &lt;/id&gt;
+  
+- 			&lt;timestamp	name=&quot;dayOfRegistration&quot; /&gt;
++ 			&lt;timestamp	name=&quot;dayOfRegistration&quot;&gt;
++ 				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++ 			&lt;/timestamp&gt;
+  
+  			&lt;one-to-one name=&quot;person&quot; class=&quot;de.hsharz.provirent.objects.Person&quot; cascade=&quot;all&quot;/&gt;
+       
+@@ -38,19 +40,12 @@
+       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+       &lt;/property&gt;
+                          
+-
+-      
++    
+  
+       &lt;property name=&quot;dayOfBirth&quot; type=&quot;calendar&quot; &gt;
+       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+       &lt;/property&gt;
+  
+  			
+- &lt;!--
+-      &lt;property name=&quot;dayOfRegistration&quot; type=&quot;calendar&quot; not-null=&quot;true&quot; not-null=&quot;true&quot;&gt;
+-      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;
+---&gt;
+-
+     &lt;/class&gt;
+   &lt;/hibernate-mapping&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java	2004-10-09 12:17:13 UTC (rev 18)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java	2004-10-09 14:19:12 UTC (rev 19)
+@@ -134,6 +134,7 @@
+             .append(&quot;hiddenQuestion&quot;, getHiddenQuestion())
+             .append(&quot;hiddenAnswer&quot;, getHiddenAnswer())
+             .append(&quot;dayOfBirth&quot;, getDayOfBirth())
++            .append(&quot;dayOfRegistration&quot;, getDayOfRegistration())
+             .toString();
+     }
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml	2004-10-09 12:17:13 UTC (rev 18)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml	2004-10-09 14:19:12 UTC (rev 19)
+@@ -36,80 +36,7 @@
+       &lt;property name=&quot;barcode&quot; type=&quot;string&quot; unique=&quot;true&quot;&gt;
+       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+       &lt;/property&gt;
+-		&lt;!--		
+ 
+-      &lt;property name=&quot;description&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+-      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;
+-             
+-      &lt;property name=&quot;runtime&quot; type=&quot;int&quot;&gt;
+-        &lt;meta attribute=&quot;field-description&quot;&gt;Playing time&lt;/meta&gt;
+-        &lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;
+- 
+-      &lt;property name=&quot;releaseDate&quot; type=&quot;date&quot;&gt;
+-        &lt;meta attribute=&quot;field-description&quot;&gt;When the movie was released or added&lt;/meta&gt;
+-				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;
+- 
+- 
+- 			&lt;list	name=&quot;actors&quot;
+- 						table=&quot;MOVIEACTORS&quot;
+- 						inverse=&quot;true&quot; &gt;
+-				&lt;key column=&quot;MOVIEID&quot;/&gt;
+-				&lt;index column=&quot;POS&quot;/&gt;
+-				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Actor&quot; column=&quot;ACTORID&quot; /&gt;			
+- 			&lt;/list&gt;
+  			
+- 			&lt;list	name=&quot;director&quot;
+- 						table=&quot;MOVIEDIRECTORS&quot;
+- 						inverse=&quot;true&quot; &gt;
+-				&lt;key column=&quot;MOVIEID&quot;/&gt;
+-				&lt;index column=&quot;POS&quot;/&gt;
+-				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Director&quot; column=&quot;DIRECTORID&quot; /&gt;			
+- 			&lt;/list&gt; 			
+-
+- 			&lt;list	name=&quot;languages&quot;
+- 						table=&quot;MOVIELANGUAGES&quot;
+- 						inverse=&quot;true&quot; &gt;
+-				&lt;key column=&quot;MOVIEID&quot;/&gt;
+-				&lt;index column=&quot;POS&quot;/&gt;
+-				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Language&quot; column=&quot;LANGUAGEID&quot; /&gt;			
+- 			&lt;/list&gt; 			
+-
+- 			&lt;list	name=&quot;subtitles&quot;
+- 						table=&quot;MOVIESUBTITLES&quot;
+- 						inverse=&quot;true&quot; &gt;
+-				&lt;key column=&quot;MOVIEID&quot;/&gt;
+-				&lt;index column=&quot;POS&quot;/&gt;
+-				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Subtitle&quot; column=&quot;SUBTITLEID&quot; /&gt;			
+- 			&lt;/list&gt; 	
+-
+- 			&lt;list	name=&quot;genres&quot;
+- 						table=&quot;MOVIEGENRES&quot;
+- 						inverse=&quot;true&quot; &gt;
+-				&lt;key column=&quot;MOVIEID&quot;/&gt;
+-				&lt;index column=&quot;POS&quot;/&gt;
+-				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Genre&quot; column=&quot;GENREID&quot; /&gt;			
+- 			&lt;/list&gt;  			
+-
+- 			&lt;list	name=&quot;audioFormats&quot;
+- 						table=&quot;MOVIEAUDIOFORMATES&quot;
+- 						inverse=&quot;true&quot; &gt;
+-				&lt;key column=&quot;MOVIEID&quot;/&gt;
+-				&lt;index column=&quot;POS&quot;/&gt;
+-				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.AudioFormat&quot; column=&quot;AUDIOFORMATID&quot; /&gt;			
+- 			&lt;/list&gt;  
+-
+- 			&lt;list	name=&quot;videoFormats&quot;
+- 						table=&quot;MOVIEVIDEOFORMATES&quot;
+- 						inverse=&quot;true&quot; &gt;
+-				&lt;key column=&quot;MOVIEID&quot;/&gt;
+-				&lt;index column=&quot;POS&quot;/&gt;
+-				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.VideoFormat&quot; column=&quot;VIDEOFORMATID&quot; /&gt;			
+- 			&lt;/list&gt; 
+- 			
+- 			--&gt;
+- 			
+     &lt;/class&gt;
+   &lt;/hibernate-mapping&gt;
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml	2004-10-09 12:17:13 UTC (rev 18)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml	2004-10-09 14:19:12 UTC (rev 19)
+@@ -0,0 +1,41 @@
++&lt;?xml version=&quot;1.0&quot;?&gt;
++&lt;!DOCTYPE hibernate-mapping
++             PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 2.0//EN&quot;
++             &quot;<A HREF="http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd</A>&quot;&gt;
++  &lt;hibernate-mapping&gt;
++ 
++   &lt;class name=&quot;de.hsharz.provirent.objects.Image&quot; table=&quot;IMAGE&quot;&gt;
++      &lt;meta attribute=&quot;class-description&quot;&gt;
++        Represents an Image.
++        @author Philipp Schneider
++      &lt;/meta&gt;
++      
++  		
++ 			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
++ 			
++      &lt;id name=&quot;imageId&quot; type=&quot;int&quot; column=&quot;IMAGEID&quot;&gt;
++        &lt;meta attribute=&quot;scope-set&quot;&gt;protected&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++        &lt;generator class=&quot;native&quot;/&gt;
++      &lt;/id&gt;
++
++ 
++      &lt;property name=&quot;imageFile&quot; type=&quot;binary&quot;&gt;
++      	&lt;column name=&quot;pdffile&quot; sql-type=&quot;blob&quot; /&gt;
++      &lt;/property&gt;
++				
++      &lt;property name=&quot;imageFileSize&quot; type=&quot;int&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt; 
++             
++      &lt;property name=&quot;imageFileName&quot; type=&quot;string&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt; 
++
++      &lt;property name=&quot;imageFileDescription&quot; type=&quot;string&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt; 
++
++ 
++    &lt;/class&gt;
++  &lt;/hibernate-mapping&gt;
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.java	2004-10-09 12:17:13 UTC (rev 18)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.java	2004-10-09 14:19:12 UTC (rev 19)
+@@ -0,0 +1,107 @@
++package de.hsharz.provirent.objects;
++
++import java.io.Serializable;
++import org.apache.commons.lang.builder.EqualsBuilder;
++import org.apache.commons.lang.builder.HashCodeBuilder;
++import org.apache.commons.lang.builder.ToStringBuilder;
++
++
++/** 
++ *         Represents an Image.
++ *         @author Philipp Schneider
++ *       
++*/
++public class Image implements Serializable {
++
++    /** identifier field */
++    private Integer imageId;
++
++    /** nullable persistent field */
++    private byte[] imageFile;
++
++    /** nullable persistent field */
++    private int imageFileSize;
++
++    /** nullable persistent field */
++    private String imageFileName;
++
++    /** nullable persistent field */
++    private String imageFileDescription;
++
++    /** full constructor */
++    public Image(byte[] imageFile, int imageFileSize, String imageFileName, String imageFileDescription) {
++        this.imageFile = imageFile;
++        this.imageFileSize = imageFileSize;
++        this.imageFileName = imageFileName;
++        this.imageFileDescription = imageFileDescription;
++    }
++
++    /** default constructor */
++    public Image() {
++    }
++
++    public Integer getImageId() {
++        return this.imageId;
++    }
++
++    protected void setImageId(Integer imageId) {
++        this.imageId = imageId;
++    }
++
++    public byte[] getImageFile() {
++        return this.imageFile;
++    }
++
++    public void setImageFile(byte[] imageFile) {
++        this.imageFile = imageFile;
++    }
++
++    public int getImageFileSize() {
++        return this.imageFileSize;
++    }
++
++    public void setImageFileSize(int imageFileSize) {
++        this.imageFileSize = imageFileSize;
++    }
++
++    public String getImageFileName() {
++        return this.imageFileName;
++    }
++
++    public void setImageFileName(String imageFileName) {
++        this.imageFileName = imageFileName;
++    }
++
++    public String getImageFileDescription() {
++        return this.imageFileDescription;
++    }
++
++    public void setImageFileDescription(String imageFileDescription) {
++        this.imageFileDescription = imageFileDescription;
++    }
++
++    public String toString() {
++        return new ToStringBuilder(this)
++            .append(&quot;imageId&quot;, getImageId())
++            .append(&quot;imageFileSize&quot;, getImageFileSize())
++            .append(&quot;imageFileName&quot;, getImageFileName())
++            .append(&quot;imageFileDescription&quot;, getImageFileDescription())
++            .toString();
++    }
++
++    public boolean equals(Object other) {
++        if ( (this == other ) ) return true;
++        if ( !(other instanceof Image) ) return false;
++        Image castOther = (Image) other;
++        return new EqualsBuilder()
++            .append(this.getImageId(), castOther.getImageId())
++            .isEquals();
++    }
++
++    public int hashCode() {
++        return new HashCodeBuilder()
++            .append(getImageId())
++            .toHashCode();
++    }
++
++}
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml	2004-10-09 12:17:13 UTC (rev 18)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml	2004-10-09 14:19:12 UTC (rev 19)
+@@ -38,6 +38,22 @@
+ 				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+       &lt;/property&gt;
+  
++			&lt;one-to-one name=&quot;mainImage&quot; class=&quot;de.hsharz.provirent.objects.Image&quot; cascade=&quot;all&quot;&gt;
++					&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++			&lt;/one-to-one&gt;
++
++ 			&lt;list	name=&quot;images&quot;
++ 						table=&quot;MOVIEIMAGES&quot;
++ 						cascade=&quot;all&quot;
++ 						&gt;
++				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++				&lt;key column=&quot;MOVIEID&quot;/&gt;
++				&lt;index column=&quot;POS&quot;/&gt;
++				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Image&quot; column=&quot;IMAGEID&quot;/&gt;
++
++ 			&lt;/list&gt;
++
++
+  
+  			&lt;list	name=&quot;actors&quot;
+  						table=&quot;MOVIEACTORS&quot;
+@@ -46,9 +62,7 @@
+ 				&lt;key column=&quot;MOVIEID&quot;/&gt;
+ 				&lt;index column=&quot;POS&quot;/&gt;
+ 				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Actor&quot; column=&quot;ACTORID&quot;/&gt;
+-				
+-				
+-						
++
+  			&lt;/list&gt;
+  			
+ 			
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.java	2004-10-09 12:17:13 UTC (rev 18)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.java	2004-10-09 14:19:12 UTC (rev 19)
+@@ -30,7 +30,13 @@
+     /** nullable persistent field */
+     private Date releaseDate;
+ 
++    /** nullable persistent field */
++    private de.hsharz.provirent.objects.Image mainImage;
++
+     /** persistent field */
++    private List images;
++
++    /** persistent field */
+     private List actors;
+ 
+     /** persistent field */
+@@ -52,11 +58,13 @@
+     private List videoFormats;
+ 
+     /** full constructor */
+-    public Movie(String title, String description, int runtime, Date releaseDate, List actors, List director, List languages, List subtitles, List genres, List audioFormats, List videoFormats) {
++    public Movie(String title, String description, int runtime, Date releaseDate, de.hsharz.provirent.objects.Image mainImage, List images, List actors, List director, List languages, List subtitles, List genres, List audioFormats, List videoFormats) {
+         this.title = title;
+         this.description = description;
+         this.runtime = runtime;
+         this.releaseDate = releaseDate;
++        this.mainImage = mainImage;
++        this.images = images;
+         this.actors = actors;
+         this.director = director;
+         this.languages = languages;
+@@ -71,9 +79,10 @@
+     }
+ 
+     /** minimal constructor */
+-    public Movie(String title, String description, List actors, List director, List languages, List subtitles, List genres, List audioFormats, List videoFormats) {
++    public Movie(String title, String description, List images, List actors, List director, List languages, List subtitles, List genres, List audioFormats, List videoFormats) {
+         this.title = title;
+         this.description = description;
++        this.images = images;
+         this.actors = actors;
+         this.director = director;
+         this.languages = languages;
+@@ -129,6 +138,22 @@
+         this.releaseDate = releaseDate;
+     }
+ 
++    public de.hsharz.provirent.objects.Image getMainImage() {
++        return this.mainImage;
++    }
++
++    public void setMainImage(de.hsharz.provirent.objects.Image mainImage) {
++        this.mainImage = mainImage;
++    }
++
++    public List getImages() {
++        return this.images;
++    }
++
++    public void setImages(List images) {
++        this.images = images;
++    }
++
+     public List getActors() {
+         return this.actors;
+     }
+@@ -192,6 +217,8 @@
+             .append(&quot;description&quot;, getDescription())
+             .append(&quot;runtime&quot;, getRuntime())
+             .append(&quot;releaseDate&quot;, getReleaseDate())
++            .append(&quot;mainImage&quot;, getMainImage())
++            .append(&quot;images&quot;, getImages())
+             .append(&quot;actors&quot;, getActors())
+             .append(&quot;director&quot;, getDirector())
+             .append(&quot;languages&quot;, getLanguages())
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Order.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Order.hbm.xml	2004-10-09 12:17:13 UTC (rev 18)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Order.hbm.xml	2004-10-09 14:19:12 UTC (rev 19)
+@@ -0,0 +1,51 @@
++&lt;?xml version=&quot;1.0&quot;?&gt;
++&lt;!DOCTYPE hibernate-mapping
++             PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 2.0//EN&quot;
++             &quot;<A HREF="http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd</A>&quot;&gt;
++  &lt;hibernate-mapping&gt;
++ 
++   &lt;class name=&quot;de.hsharz.provirent.objects.Order&quot; table=&quot;ORDER&quot;&gt;
++      &lt;meta attribute=&quot;class-description&quot;&gt;
++        Represents an Order.
++        @author Philipp Schneider
++      &lt;/meta&gt;
++      
++  		
++ 			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
++ 			
++      &lt;id name=&quot;orderId&quot; type=&quot;int&quot; column=&quot;ORDERID&quot;&gt;
++        &lt;meta attribute=&quot;scope-set&quot;&gt;protected&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++        &lt;generator class=&quot;native&quot;/&gt;
++      &lt;/id&gt;
++
++		 &lt;many-to-one
++				name=&quot;customer&quot;
++				class=&quot;de.hsharz.provirent.objects.Customer&quot;
++		 &gt;
++		 	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++		 &lt;/many-to-one&gt;
++
++ 			&lt;list	name=&quot;orderItems&quot;
++ 						table=&quot;ORDERORDERITEMS&quot;
++ 						&gt;
++				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++				&lt;key column=&quot;ORDERID&quot;/&gt;
++				&lt;index column=&quot;POS&quot;/&gt;
++				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.OrderItem&quot; column=&quot;ORDERITEMID&quot;/&gt;
++
++ 			&lt;/list&gt;
++
++ 
++      &lt;property name=&quot;name&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++				
++ 
++      &lt;property name=&quot;shortname&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++             
++ 
++    &lt;/class&gt;
++  &lt;/hibernate-mapping&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Order.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Order.java	2004-10-09 12:17:13 UTC (rev 18)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Order.java	2004-10-09 14:19:12 UTC (rev 19)
+@@ -1,41 +1,116 @@
+-/*
+- * Created on 06.10.2004
+- *
+- * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
+- * All rights reserved.
+- *
+- * Redistribution and use in source and binary forms, with or without
+- * modification, are permitted provided that the following conditions
+- * are met:
+- *
+- * - Redistributions of source code must retain the above copyright notice,
+- * this list of conditions and the following disclaimer.
+- * - Redistributions in binary form must reproduce the above copyright notice,
+- * this list of conditions and the following disclaimer in the documentation
+- * and/or other materials provided with the distribution.
+- * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
+- * the names of its contributors may be used to endorse or promote products
+- * derived from this software without specific prior written permission.
+- *
+- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
+- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+- * POSSIBILITY OF SUCH DAMAGE.
+- *
+- */
+ package de.hsharz.provirent.objects;
+ 
+-/**
+- * @author Philipp Schneider
+- *
+- */
+-public class Order {
++import java.io.Serializable;
++import java.util.List;
++import org.apache.commons.lang.builder.EqualsBuilder;
++import org.apache.commons.lang.builder.HashCodeBuilder;
++import org.apache.commons.lang.builder.ToStringBuilder;
+ 
++
++/** 
++ *         Represents an Order.
++ *         @author Philipp Schneider
++ *       
++*/
++public class Order implements Serializable {
++
++    /** identifier field */
++    private Integer orderId;
++
++    /** persistent field */
++    private String name;
++
++    /** persistent field */
++    private String shortname;
++
++    /** nullable persistent field */
++    private de.hsharz.provirent.objects.Customer customer;
++
++    /** persistent field */
++    private List orderItems;
++
++    /** full constructor */
++    public Order(String name, String shortname, de.hsharz.provirent.objects.Customer customer, List orderItems) {
++        this.name = name;
++        this.shortname = shortname;
++        this.customer = customer;
++        this.orderItems = orderItems;
++    }
++
++    /** default constructor */
++    public Order() {
++    }
++
++    /** minimal constructor */
++    public Order(String name, String shortname, List orderItems) {
++        this.name = name;
++        this.shortname = shortname;
++        this.orderItems = orderItems;
++    }
++
++    public Integer getOrderId() {
++        return this.orderId;
++    }
++
++    protected void setOrderId(Integer orderId) {
++        this.orderId = orderId;
++    }
++
++    public String getName() {
++        return this.name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public String getShortname() {
++        return this.shortname;
++    }
++
++    public void setShortname(String shortname) {
++        this.shortname = shortname;
++    }
++
++    public de.hsharz.provirent.objects.Customer getCustomer() {
++        return this.customer;
++    }
++
++    public void setCustomer(de.hsharz.provirent.objects.Customer customer) {
++        this.customer = customer;
++    }
++
++    public List getOrderItems() {
++        return this.orderItems;
++    }
++
++    public void setOrderItems(List orderItems) {
++        this.orderItems = orderItems;
++    }
++
++    public String toString() {
++        return new ToStringBuilder(this)
++            .append(&quot;orderId&quot;, getOrderId())
++            .append(&quot;name&quot;, getName())
++            .append(&quot;shortname&quot;, getShortname())
++            .append(&quot;customer&quot;, getCustomer())
++            .append(&quot;orderItems&quot;, getOrderItems())
++            .toString();
++    }
++
++    public boolean equals(Object other) {
++        if ( (this == other ) ) return true;
++        if ( !(other instanceof Order) ) return false;
++        Order castOther = (Order) other;
++        return new EqualsBuilder()
++            .append(this.getOrderId(), castOther.getOrderId())
++            .isEquals();
++    }
++
++    public int hashCode() {
++        return new HashCodeBuilder()
++            .append(getOrderId())
++            .toHashCode();
++    }
++
+ }
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.hbm.xml	2004-10-09 12:17:13 UTC (rev 18)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.hbm.xml	2004-10-09 14:19:12 UTC (rev 19)
+@@ -0,0 +1,75 @@
++&lt;?xml version=&quot;1.0&quot;?&gt;
++&lt;!DOCTYPE hibernate-mapping
++             PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 2.0//EN&quot;
++             &quot;<A HREF="http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd</A>&quot;&gt;
++  &lt;hibernate-mapping&gt;
++ 
++   &lt;class name=&quot;de.hsharz.provirent.objects.OrderItem&quot; table=&quot;ORDERITEM&quot;&gt;
++      &lt;meta attribute=&quot;class-description&quot;&gt;
++        Represents an OrderItem.
++        @author Philipp Schneider
++      &lt;/meta&gt;
++      
++  		
++ 			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
++ 			
++      &lt;id name=&quot;orderItemId&quot; type=&quot;int&quot; column=&quot;ORDERITEMID&quot;&gt;
++        &lt;meta attribute=&quot;scope-set&quot;&gt;protected&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++        &lt;generator class=&quot;native&quot;/&gt;
++      &lt;/id&gt;
++
++			&lt;timestamp	name=&quot;orderTime&quot;&gt;
++				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++			&lt;/timestamp&gt;
++
++
++      &lt;property name=&quot;senderTime&quot; type=&quot;calendar&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++				
++ 
++      &lt;property name=&quot;receivingTime&quot; type=&quot;calendar&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++
++
++		 &lt;many-to-one
++				name=&quot;customer&quot;
++				class=&quot;de.hsharz.provirent.objects.Customer&quot;
++		 &gt;
++			 	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++		 &lt;/many-to-one&gt;
++		 
++
++		 &lt;many-to-one
++				name=&quot;dvd&quot;
++				class=&quot;de.hsharz.provirent.objects.Dvd&quot;
++		 &gt;
++			 	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++		 &lt;/many-to-one&gt;
++
++				
++ 
++      &lt;property name=&quot;duration&quot; type=&quot;int&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++             
++ 
++		 &lt;many-to-one
++				name=&quot;conditionSend&quot;
++				class=&quot;de.hsharz.provirent.objects.Condition&quot;
++		 &gt;
++			 	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++		 &lt;/many-to-one&gt; 
++ 
++ 
++		 &lt;many-to-one
++				name=&quot;conditionReceiving&quot;
++				class=&quot;de.hsharz.provirent.objects.Condition&quot;
++		 &gt;
++			 	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++		 &lt;/many-to-one&gt; 
++ 
++    &lt;/class&gt;
++  &lt;/hibernate-mapping&gt;
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.java	2004-10-09 12:17:13 UTC (rev 18)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.java	2004-10-09 14:19:12 UTC (rev 19)
+@@ -0,0 +1,167 @@
++package de.hsharz.provirent.objects;
++
++import java.io.Serializable;
++import java.util.Calendar;
++import java.util.Date;
++import org.apache.commons.lang.builder.EqualsBuilder;
++import org.apache.commons.lang.builder.HashCodeBuilder;
++import org.apache.commons.lang.builder.ToStringBuilder;
++
++
++/** 
++ *         Represents an OrderItem.
++ *         @author Philipp Schneider
++ *       
++*/
++public class OrderItem implements Serializable {
++
++    /** identifier field */
++    private Integer orderItemId;
++
++    /** nullable persistent field */
++    private Calendar senderTime;
++
++    /** nullable persistent field */
++    private Calendar receivingTime;
++
++    /** persistent field */
++    private int duration;
++
++    /** nullable persistent field */
++    private Date orderTime;
++
++    /** nullable persistent field */
++    private de.hsharz.provirent.objects.Customer customer;
++
++    /** nullable persistent field */
++    private de.hsharz.provirent.objects.Dvd dvd;
++
++    /** nullable persistent field */
++    private de.hsharz.provirent.objects.Condition conditionSend;
++
++    /** nullable persistent field */
++    private de.hsharz.provirent.objects.Condition conditionReceiving;
++
++    /** full constructor */
++    public OrderItem(Calendar senderTime, Calendar receivingTime, int duration, Date orderTime, de.hsharz.provirent.objects.Customer customer, de.hsharz.provirent.objects.Dvd dvd, de.hsharz.provirent.objects.Condition conditionSend, de.hsharz.provirent.objects.Condition conditionReceiving) {
++        this.senderTime = senderTime;
++        this.receivingTime = receivingTime;
++        this.duration = duration;
++        this.orderTime = orderTime;
++        this.customer = customer;
++        this.dvd = dvd;
++        this.conditionSend = conditionSend;
++        this.conditionReceiving = conditionReceiving;
++    }
++
++    /** default constructor */
++    public OrderItem() {
++    }
++
++    /** minimal constructor */
++    public OrderItem(int duration) {
++        this.duration = duration;
++    }
++
++    public Integer getOrderItemId() {
++        return this.orderItemId;
++    }
++
++    protected void setOrderItemId(Integer orderItemId) {
++        this.orderItemId = orderItemId;
++    }
++
++    public Calendar getSenderTime() {
++        return this.senderTime;
++    }
++
++    public void setSenderTime(Calendar senderTime) {
++        this.senderTime = senderTime;
++    }
++
++    public Calendar getReceivingTime() {
++        return this.receivingTime;
++    }
++
++    public void setReceivingTime(Calendar receivingTime) {
++        this.receivingTime = receivingTime;
++    }
++
++    public int getDuration() {
++        return this.duration;
++    }
++
++    public void setDuration(int duration) {
++        this.duration = duration;
++    }
++
++    public Date getOrderTime() {
++        return this.orderTime;
++    }
++
++    public void setOrderTime(Date orderTime) {
++        this.orderTime = orderTime;
++    }
++
++    public de.hsharz.provirent.objects.Customer getCustomer() {
++        return this.customer;
++    }
++
++    public void setCustomer(de.hsharz.provirent.objects.Customer customer) {
++        this.customer = customer;
++    }
++
++    public de.hsharz.provirent.objects.Dvd getDvd() {
++        return this.dvd;
++    }
++
++    public void setDvd(de.hsharz.provirent.objects.Dvd dvd) {
++        this.dvd = dvd;
++    }
++
++    public de.hsharz.provirent.objects.Condition getConditionSend() {
++        return this.conditionSend;
++    }
++
++    public void setConditionSend(de.hsharz.provirent.objects.Condition conditionSend) {
++        this.conditionSend = conditionSend;
++    }
++
++    public de.hsharz.provirent.objects.Condition getConditionReceiving() {
++        return this.conditionReceiving;
++    }
++
++    public void setConditionReceiving(de.hsharz.provirent.objects.Condition conditionReceiving) {
++        this.conditionReceiving = conditionReceiving;
++    }
++
++    public String toString() {
++        return new ToStringBuilder(this)
++            .append(&quot;orderItemId&quot;, getOrderItemId())
++            .append(&quot;senderTime&quot;, getSenderTime())
++            .append(&quot;receivingTime&quot;, getReceivingTime())
++            .append(&quot;duration&quot;, getDuration())
++            .append(&quot;orderTime&quot;, getOrderTime())
++            .append(&quot;customer&quot;, getCustomer())
++            .append(&quot;dvd&quot;, getDvd())
++            .append(&quot;conditionSend&quot;, getConditionSend())
++            .append(&quot;conditionReceiving&quot;, getConditionReceiving())
++            .toString();
++    }
++
++    public boolean equals(Object other) {
++        if ( (this == other ) ) return true;
++        if ( !(other instanceof OrderItem) ) return false;
++        OrderItem castOther = (OrderItem) other;
++        return new EqualsBuilder()
++            .append(this.getOrderItemId(), castOther.getOrderItemId())
++            .isEquals();
++    }
++
++    public int hashCode() {
++        return new HashCodeBuilder()
++            .append(getOrderItemId())
++            .toHashCode();
++    }
++
++}
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000019.html">[Provirent-svn-commit] r18 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+	<LI>Next message: <A HREF="000021.html">[Provirent-svn-commit] r20 - / project_src/provirent_hibernate project_src/provirent_hibernate/bin project_src/provirent_hibernate/data project_src/provirent_hibernate/src project_src/provirent_hibernate/src/test/provirent/hibernate timetable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#20">[ date ]</a>
+              <a href="thread.html#20">[ thread ]</a>
+              <a href="subject.html#20">[ subject ]</a>
+              <a href="author.html#20">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

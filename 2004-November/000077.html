@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r76 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r76%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200411021516.iA2FGLnD017308%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000076.html">
+   <LINK REL="Next"  HREF="000078.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r76 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r76%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200411021516.iA2FGLnD017308%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r76 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Tue Nov  2 16:16:21 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000076.html">[Provirent-svn-commit] r75 - in project_src/strutstest: WEB-INF/classes/resources WEB-INF/src/resources pages
+</A></li>
+        <LI>Next message: <A HREF="000078.html">[Provirent-svn-commit] r77 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#77">[ date ]</a>
+              <a href="thread.html#77">[ thread ]</a>
+              <a href="subject.html#77">[ subject ]</a>
+              <a href="author.html#77">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-02 16:16:21 +0100 (Tue, 02 Nov 2004)
+New Revision: 76
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java
+Log:
+- VideoFormattabelle wird jetzt beim ?\195?\182ffnen angezeigt
+- kommentare hinzugef?\195?\188gt
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java	2004-11-02 13:17:39 UTC (rev 75)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeFormate.java	2004-11-02 15:16:21 UTC (rev 76)
+@@ -213,8 +213,15 @@
+ 
+         //die Gui wird aufgerufen
+         initGUI();
++        
++        //die VideoFormattabelle wird gef&#252;llt
++        refreshVideoFormatTable(&quot;&quot;);
++        
+     }
+ 
++    /**
++     * Zeigt die linke Gruppe des VideoFormates an
++     */
+     private void initVideoFormatGroupOverview() {
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;initVideoFormatGroupOverview() - start&quot;);
+@@ -222,7 +229,7 @@
+ 
+         groupVideoFormatOverview = new Group(sashFormVideoFormat, SWT.NONE);
+         GridLayout group5Layout = new GridLayout();
+-        group5Layout.numColumns = 6;
++        group5Layout.numColumns = 8;
+         groupVideoFormatOverview.setText(l
+                 .getString(&quot;videoformat.groupoverview.label&quot;));
+         FormData group5LData = new FormData();
+@@ -231,8 +238,9 @@
+         group5LData.top = new FormAttachment(0, 100, 0);
+         groupVideoFormatOverview.setLayoutData(group5LData);
+ 
+-        //Tabelle init
++        //Tabelle anzeigen
+         initTableVideoFormat();
++        //Suche darunter anzeigen
+         initVideoFormatSearch();
+ 
+         if (logger.isDebugEnabled()) {
+@@ -240,19 +248,24 @@
+         }
+     }
+ 
++    /**
++     * Suchfelder f&#252;r die Suche
++     */
+     private void initVideoFormatSearch() {
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;initVideoFormatSearch() - start&quot;);
+         }
+ 
++        //label f&#252;r die Suche
+         labelVideoFormatSearch = new Label(groupVideoFormatOverview, SWT.NONE);
+         labelVideoFormatSearch.setText(l
+                 .getString(&quot;videoformat.groupoverview.searchlabel&quot;)
+                 + &quot;:&quot;);
+         GridData label2LData = new GridData();
+-        label2LData.horizontalSpan = 2;
++        label2LData.horizontalSpan = 3;
+         labelVideoFormatSearch.setLayoutData(label2LData);
+ 
++        //das Suchfeld
+         textVideoFormatSearch = new Text(groupVideoFormatOverview, SWT.BORDER);
+         GridData text2LData = new GridData();
+         textVideoFormatSearch.addFocusListener(new FocusAdapter() {
+@@ -286,15 +299,20 @@
+         });
+ 
+         text2LData.horizontalAlignment = GridData.FILL;
+-        text2LData.horizontalSpan = 4;
++        text2LData.horizontalSpan = 5;
+         text2LData.grabExcessHorizontalSpace = true;
+         textVideoFormatSearch.setLayoutData(text2LData);
+ 
++
++
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;initVideoFormatSearch() - end&quot;);
+         }
+     }
+ 
++    /**
++     * Tabelle f&#252;r die &#220;bersicht aller vorhandenen Formate
++     */
+     private void initTableVideoFormat() {
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;initTableVideoFormat() - start&quot;);
+@@ -345,11 +363,12 @@
+         });
+         table2LData.verticalAlignment = GridData.FILL;
+         table2LData.horizontalAlignment = GridData.FILL;
+-        table2LData.horizontalSpan = 6;
++        table2LData.horizontalSpan = 8;
+         table2LData.grabExcessHorizontalSpace = true;
+         table2LData.grabExcessVerticalSpace = true;
+         tableVideoFormat.setLayoutData(table2LData);
+ 
++        //einzelne Spalten hinzuf&#252;gen
+         tableColumn = new TableColumn(tableVideoFormat, SWT.CENTER);
+         tableColumn.setText(l.getString(&quot;videoformat.groupoverview.columnid&quot;));
+         tableColumn.setWidth(50);
+@@ -367,6 +386,9 @@
+         }
+     }
+ 
++    /**
++     * Buttons f&#252;r die VideoFormate
++     */
+     private void initVideoFormatDetailButtons() {
+ 
+         buttonVideoFormatNew = new Button(composite2, SWT.PUSH | SWT.CENTER);
+@@ -498,6 +520,7 @@
+             }
+         );
+ 
++        //leerer nicht sichtbarer Button
+         buttonVideoFormatFill = new Button(composite2, SWT.PUSH | SWT.CENTER);
+         GridData buttonVideoFormatFillLData = new GridData();
+         buttonVideoFormatFill.setVisible(false);
+@@ -651,15 +674,17 @@
+         textVideoFormatShortname.setEditable(false);
+         textVideoFormatSearch.setEditable(true);
+ 
+-        //                                          VideoTabelle
+-        // aktivieren
++        // VideoTabelle aktivieren
+         tableVideoFormat.setEnabled(true);
+ 
+-        //VideoSearch
+-        // aktivieren
++        //VideoSearch aktivieren
+         textVideoFormatSearch.setEnabled(true);
+     }
+ 
++    /**
++     * rechte Seite des VideoFormates
++     * Detailansicht
++     */
+     private void initVideoFormatGroupDetail() {
+ 
+         groupVideoFormatDetail = new Group(sashFormVideoFormat, SWT.NONE);
+@@ -744,6 +769,7 @@
+         }
+         {
+ 
++            //die Buttons bekommen ein eigenes Composite
+             composite2 = new Composite(groupVideoFormatDetail, SWT.EMBEDDED);
+             GridLayout composite2Layout = new GridLayout();
+             composite2Layout.numColumns = 6;
+@@ -765,6 +791,9 @@
+ 
+     }
+ 
++    /**
++     * Gruppe f&#252;r das VideoFormat (oben)
++     */
+     private void initVideoFormatGroup() {
+         {
+             //init a group for the videoformat
+@@ -802,6 +831,7 @@
+ 
+                 //init die Gruppe f&#252;r VideoFormate &#220;berblick
+                 initVideoFormatGroupOverview();
++                //init die Detailansicht
+                 initVideoFormatGroupDetail();
+ 
+             }
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000076.html">[Provirent-svn-commit] r75 - in project_src/strutstest: WEB-INF/classes/resources WEB-INF/src/resources pages
+</A></li>
+	<LI>Next message: <A HREF="000078.html">[Provirent-svn-commit] r77 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#77">[ date ]</a>
+              <a href="thread.html#77">[ thread ]</a>
+              <a href="subject.html#77">[ subject ]</a>
+              <a href="author.html#77">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

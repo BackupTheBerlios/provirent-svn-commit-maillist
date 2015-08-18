@@ -1,0 +1,303 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r229 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r229%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20test/provirent/hibernate&In-Reply-To=%3C200412081944.iB8JirFZ016329%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000229.html">
+   <LINK REL="Next"  HREF="000231.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r229 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui test/provirent/hibernate</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r229%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20test/provirent/hibernate&In-Reply-To=%3C200412081944.iB8JirFZ016329%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r229 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui test/provirent/hibernate">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Wed Dec  8 20:44:53 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000229.html">[Provirent-svn-commit] r228 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+</A></li>
+        <LI>Next message: <A HREF="000231.html">[Provirent-svn-commit] r230 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#230">[ date ]</a>
+              <a href="thread.html#230">[ thread ]</a>
+              <a href="subject.html#230">[ subject ]</a>
+              <a href="author.html#230">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-12-08 20:44:50 +0100 (Wed, 08 Dec 2004)
+New Revision: 229
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDirectors.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeFormate.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeGenre.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeLanguage.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeStatus.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java
+Log:
+Alle Composite   - saveObjekt() -&gt; updateObjekt()
+
+Composite Image  - bei Text setEnabled() -&gt; setEditable()
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java	2004-12-08 19:17:07 UTC (rev 228)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java	2004-12-08 19:44:50 UTC (rev 229)
+@@ -671,7 +671,7 @@
+                     try {
+                         //object speichern
+                         // Fehlerbehandlung
+-                        Database.saveObject(tmp);
++                        Database.updateObject(tmp);
+                         //&#220;bersichtstabelle aktualisieren
+                         refreshActorsOverviewTable(textActorsSearch.getText());
+                         
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDirectors.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDirectors.java	2004-12-08 19:17:07 UTC (rev 228)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDirectors.java	2004-12-08 19:44:50 UTC (rev 229)
+@@ -670,7 +670,7 @@
+                     try {
+                         //object speichern
+                         // Fehlerbehandlung
+-                        Database.saveObject(tmp);
++                        Database.updateObject(tmp);
+                         //&#220;bersichtstabelle aktualisieren
+                         refreshDirectorsOverviewTable(textDirectorsSearch.getText());
+                         
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeFormate.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeFormate.java	2004-12-08 19:17:07 UTC (rev 228)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeFormate.java	2004-12-08 19:44:50 UTC (rev 229)
+@@ -627,7 +627,7 @@
+                 try {
+                     //object speichern
+                     // Fehlerbehandlung
+-                    Database.saveObject(tmp);
++                    Database.updateObject(tmp);
+                     //&#220;bersichtstabelle aktualisieren
+                     refreshVideoFormatTable(textVideoFormatSearch.getText());
+                     
+@@ -1232,7 +1232,7 @@
+                 try {
+                     //object speichern
+                     // Fehlerbehandlung
+-                    Database.saveObject(tmp);
++                    Database.updateObject(tmp);
+                     //&#220;bersichtstabelle aktualisieren
+                     refreshAudioFormatTable(textAudioFormatSearch.getText());
+                     
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeGenre.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeGenre.java	2004-12-08 19:17:07 UTC (rev 228)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeGenre.java	2004-12-08 19:44:50 UTC (rev 229)
+@@ -591,7 +591,7 @@
+                 try {
+                     //object speichern
+                     // Fehlerbehandlung
+-                    Database.saveObject(tmp);
++                    Database.updateObject(tmp);
+                     //&#220;bersichtstabelle aktualisieren
+                     refreshGenreTable(textGenreSearch.getText());
+                     
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java	2004-12-08 19:17:07 UTC (rev 228)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java	2004-12-08 19:44:50 UTC (rev 229)
+@@ -917,7 +917,7 @@
+ 							try {
+ 								//object speichern
+ 								// Fehlerbehandlung
+-								Database.saveObject(localImage);
++								Database.updateObject(localImage);
+ 								//&#220;bersichtstabelle aktualisieren
+ 								refreshImageOverviewTable(textImagesSearch
+ 										.getText());
+@@ -964,10 +964,10 @@
+ 
+ 						}
+ 						tableImagesOverview.setEnabled(true);
+-						textImagesSearch.setEnabled(true);
++						textImagesSearch.setEditable(true);
+ 
+-						textImagesDescription.setEnabled(false);
+-						textImagesName.setEnabled(false);
++						textImagesDescription.setEditable(false);
++						textImagesName.setEditable(false);
+ 
+ 						buttonImageCancel.setEnabled(false);
+ 						buttonImageDelete.setEnabled(false);
+@@ -989,10 +989,10 @@
+ 					public void widgetSelected(SelectionEvent evt) {
+ 
+ 						tableImagesOverview.setEnabled(true);
+-						textImagesSearch.setEnabled(true);
++						textImagesSearch.setEditable(true);
+ 
+-						textImagesDescription.setEnabled(false);
+-						textImagesName.setEnabled(false);
++						textImagesDescription.setEditable(false);
++						textImagesName.setEditable(false);
+ 
+ 						buttonImageCancel.setEnabled(false);
+ 						buttonImageDelete.setEnabled(false);
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeLanguage.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeLanguage.java	2004-12-08 19:17:07 UTC (rev 228)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeLanguage.java	2004-12-08 19:44:50 UTC (rev 229)
+@@ -639,7 +639,7 @@
+                 try {
+                     //object speichern
+                     // Fehlerbehandlung
+-                    Database.saveObject(tmp);
++                    Database.updateObject(tmp);
+                     //&#220;bersichtstabelle aktualisieren
+                     refreshSubtitleTable(textSubtitleSearch.getText());
+                     
+@@ -1342,7 +1342,7 @@
+                 try {
+                     //object speichern
+                     // Fehlerbehandlung
+-                    Database.saveObject(tmp);
++                    Database.updateObject(tmp);
+                     //&#220;bersichtstabelle aktualisieren
+                     refreshLanguageTable(textLanguageSearch.getText());
+                     
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeStatus.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeStatus.java	2004-12-08 19:17:07 UTC (rev 228)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeStatus.java	2004-12-08 19:44:50 UTC (rev 229)
+@@ -639,7 +639,7 @@
+                 try {
+                     //object speichern
+                     // Fehlerbehandlung
+-                    Database.saveObject(tmp);
++                    Database.updateObject(tmp);
+                     //&#220;bersichtstabelle aktualisieren
+                     refreshConditionTable(textConditionSearch.getText());
+                     
+@@ -1342,7 +1342,7 @@
+                 try {
+                     //object speichern
+                     // Fehlerbehandlung
+-                    Database.saveObject(tmp);
++                    Database.updateObject(tmp);
+                     //&#220;bersichtstabelle aktualisieren
+                     refreshStatusTable(textStatusSearch.getText());
+                     
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java	2004-12-08 19:17:07 UTC (rev 228)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java	2004-12-08 19:44:50 UTC (rev 229)
+@@ -210,28 +210,28 @@
+                         .add(new String[] {
+                                 &quot;The Forgotten&quot;,
+                                 &quot;96&quot;,
+-                                &quot;A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...&quot;,
++                                &quot;A grieving mother, Telly Parada, is struggling \n to cope with the loss of her 9-year-old son. \n She is stunned...&quot;,
+                                 &quot;Forgotten_main.jpg&quot;, &quot;Forgotten_1.jpg&quot;,
+                                 &quot;Forgotten_2.jpg&quot; });
+                 data
+                         .add(new String[] {
+                                 &quot;Ocean's Twelve&quot;,
+                                 &quot;128&quot;,
+-                                &quot;With Tess (Roberts) and Rusty (Pitt) at his side, Daniel Ocean (Clooney) must find one more conspirator before he can pull off heists in three different European cities -- Paris, Rome, and Amsterdam.&quot;,
++                                &quot;With Tess (Roberts) and Rusty (Pitt) at his side,\n Daniel Ocean (Clooney) must find one more conspirator \n before he can pull off heists in three \n different European cities -- Paris, Rome, and Amsterdam.&quot;,
+                                 &quot;Twelve_main.jpg&quot;, &quot;Twelve_1.jpg&quot;,
+                                 &quot;Twelve_2.jpg&quot;, &quot;Twelve_3.jpg&quot; });
+                 data
+                         .add(new String[] {
+                                 &quot;Blade: Trinity&quot;,
+                                 &quot;156&quot;,
+-                                &quot;Framed by the Vampire Nation for a series of brutal murders, the Daywalker (Snipes) finds allies in a group of vampire hunters, the Nightstalkers, and together they wage a battle that leads all the way to Dracula himself.&quot;,
++                                &quot;Framed by the Vampire Nation for a series \n of brutal murders, the Daywalker (Snipes) \n finds allies in a group of vampire hunters, \n the Nightstalkers, and together they wage a battle \n that leads all the way to Dracula himself.&quot;,
+                                 &quot;Blade_main.jpg&quot;, &quot;Blade_1.jpg&quot;, &quot;Blade_2.jpg&quot;,
+                                 &quot;Blade_3.jpg&quot; });
+                 data
+                         .add(new String[] {
+                                 &quot;National Treasure&quot;,
+                                 &quot;126&quot;,
+-                                &quot;Benjamin Franklin Gates (Cage) descends from a family of treasure-seekers who've all hunted for the same thing: a war chest hidden by the Founding Fathers prior to the Revolutionary War. Ben's close to discovering its whereabouts, as is his competition, though the FBI is also hip to the hunt.&quot;,
++                                &quot;Benjamin Franklin Gates (Cage) descends \n from a family of treasure-seekers who've \n all hunted for the same thing: a war chest \n hidden by the Founding Fathers prior to the \n Revolutionary War. Ben's close to discovering \n its whereabouts, as is his competition, \n though the FBI is also hip to the hunt.&quot;,
+                                 &quot;Treasure_main.jpg&quot;, &quot;Treasure_1.jpg&quot;,
+                                 &quot;Treasure_2.jpg&quot;, &quot;Treasure_3.jpg&quot;,
+                                 &quot;Treasure_4.jpg&quot; });
+@@ -239,28 +239,28 @@
+                         .add(new String[] {
+                                 &quot;Christmas with the Kranks&quot;,
+                                 &quot;92&quot;,
+-                                &quot;Upon receiving a last-minute call from their daughter, Luther and Nora Krank (Allen and Curtis) ditch their vacation plans and scramble to get their home in shape to celebrate Christmas.&quot;,
++                                &quot;Upon receiving a last-minute call from their \n daughter, Luther and Nora Krank \n (Allen and Curtis) ditch their vacation plans and scramble \n to get their home in shape to \n celebrate Christmas.&quot;,
+                                 &quot;Kranks_main.jpg&quot;, &quot;Kranks_1.jpg&quot;,
+                                 &quot;Kranks_2.jpg&quot; });
+                 data
+                         .add(new String[] {
+                                 &quot;The Polar Express&quot;,
+                                 &quot;215&quot;,
+-                                &quot;A boy's belief in Santa Claus is restored on Christmas Eve when a steam train pulls up in front of his house and whisks him away to the North Pole.&quot;,
++                                &quot;A boy's belief in Santa Claus is restored \n on Christmas Eve when a steam train \n pulls up in front of his house and whisks \n him away to the North Pole.&quot;,
+                                 &quot;Polar_main.jpg&quot;, &quot;Polar_1.jpg&quot;, &quot;Polar_2.jpg&quot;,
+                                 &quot;Polar_3.jpg&quot; });
+                 data
+                         .add(new String[] {
+                                 &quot;The Incredibles&quot;,
+                                 &quot;186&quot;,
+-                                &quot;Years after their last assignment, a husband and wife superhero team, who currently maintain a ho-hum suburban existence, respond a cryptic communiqu&#233; from a remote island base.&quot;,
++                                &quot;Years after their last assignment, \n a husband and wife superhero team, \n who currently maintain a ho-hum suburban existence, \n respond a cryptic communiqu&#233; from a \n remote island base.&quot;,
+                                 &quot;Incredibles_main.jpg&quot;, &quot;Incredibles_1.jpg&quot;,
+                                 &quot;Incredibles_2.jpg&quot; });
+                 data
+                         .add(new String[] {
+                                 &quot;Closer&quot;,
+                                 &quot;145&quot;,
+-                                &quot;Two couples are drawn together by undeniable attraction and a series of chance encounters.&quot;,
++                                &quot;Two couples are drawn together by undeniable \n attraction and a series of chance \n encounters.&quot;,
+                                 &quot;closer_main.jpg&quot;, &quot;closer_1.jpg&quot;,
+                                 &quot;closer_2.jpg&quot;, &quot;closer_3.jpg&quot; });
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000229.html">[Provirent-svn-commit] r228 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+</A></li>
+	<LI>Next message: <A HREF="000231.html">[Provirent-svn-commit] r230 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#230">[ date ]</a>
+              <a href="thread.html#230">[ thread ]</a>
+              <a href="subject.html#230">[ subject ]</a>
+              <a href="author.html#230">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

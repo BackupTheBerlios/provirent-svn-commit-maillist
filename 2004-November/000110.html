@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r109 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r109%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/persistence&In-Reply-To=%3C200411100050.iAA0oFBu003922%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000109.html">
+   <LINK REL="Next"  HREF="000111.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r109 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r109%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/persistence&In-Reply-To=%3C200411100050.iAA0oFBu003922%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r109 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Wed Nov 10 01:50:15 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000109.html">[Provirent-svn-commit] r108 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+        <LI>Next message: <A HREF="000111.html">[Provirent-svn-commit] r110 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#110">[ date ]</a>
+              <a href="thread.html#110">[ thread ]</a>
+              <a href="subject.html#110">[ subject ]</a>
+              <a href="author.html#110">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-11-10 01:49:41 +0100 (Wed, 10 Nov 2004)
+New Revision: 109
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-10 00:48:08 UTC (rev 108)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-10 00:49:41 UTC (rev 109)
+@@ -36,7 +36,6 @@
+ import java.util.List;
+ 
+ import net.sf.hibernate.Criteria;
+-import net.sf.hibernate.Hibernate;
+ import net.sf.hibernate.HibernateException;
+ import net.sf.hibernate.Session;
+ import net.sf.hibernate.Transaction;
+@@ -45,7 +44,11 @@
+ 
+ import org.apache.log4j.Logger;
+ 
+-import de.hsharz.provirent.objects.*;
++import de.hsharz.provirent.objects.AudioFormat;
++import de.hsharz.provirent.objects.Director;
++import de.hsharz.provirent.objects.Genre;
++import de.hsharz.provirent.objects.Language;
++import de.hsharz.provirent.objects.VideoFormat;
+ 
+ 
+ 
+@@ -243,6 +246,7 @@
+                             + &quot;des Objectes:&quot; + o + &quot; Exception: &quot; + e);
+                     exception = 1;
+                 }
++                
+                 s.flush();
+                
+                 tx.commit();
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000109.html">[Provirent-svn-commit] r108 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+	<LI>Next message: <A HREF="000111.html">[Provirent-svn-commit] r110 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#110">[ date ]</a>
+              <a href="thread.html#110">[ thread ]</a>
+              <a href="subject.html#110">[ subject ]</a>
+              <a href="author.html#110">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

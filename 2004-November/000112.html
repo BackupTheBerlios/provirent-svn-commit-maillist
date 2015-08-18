@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r111 - project_src/provirent_hibernate/src
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r111%20-%20project_src/provirent_hibernate/src&In-Reply-To=%3C200411100055.iAA0tvKe004208%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000111.html">
+   <LINK REL="Next"  HREF="000113.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r111 - project_src/provirent_hibernate/src</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r111%20-%20project_src/provirent_hibernate/src&In-Reply-To=%3C200411100055.iAA0tvKe004208%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r111 - project_src/provirent_hibernate/src">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Wed Nov 10 01:55:57 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000111.html">[Provirent-svn-commit] r110 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000113.html">[Provirent-svn-commit] r112 - project_src/provirent_hibernate/src/de/hsharz/provirent
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#112">[ date ]</a>
+              <a href="thread.html#112">[ thread ]</a>
+              <a href="subject.html#112">[ subject ]</a>
+              <a href="author.html#112">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-11-10 01:55:35 +0100 (Wed, 10 Nov 2004)
+New Revision: 111
+
+Modified:
+   project_src/provirent_hibernate/src/hibernate.properties
+Log:
+Auf Firebird umgestellt
+
+Modified: project_src/provirent_hibernate/src/hibernate.properties
+===================================================================
+--- project_src/provirent_hibernate/src/hibernate.properties	2004-11-10 00:54:28 UTC (rev 110)
++++ project_src/provirent_hibernate/src/hibernate.properties	2004-11-10 00:55:35 UTC (rev 111)
+@@ -1,6 +1,6 @@
+-hibernate.dialect=net.sf.hibernate.dialect.HSQLDialect
+-hibernate.connection.driver_class=org.hsqldb.jdbcDriver
+-hibernate.connection.url=jdbc:hsqldb:data/video
+-hibernate.connection.username=sa
+-hibernate.connection.password=
++hibernate.dialect=net.sf.hibernate.dialect.FirebirdDialect
++hibernate.connection.driver_class=org.firebirdsql.jdbc.FBDriver
++hibernate.connection.url=jdbc:firebirdsql:localhost:c:/video
++hibernate.connection.username=SYSDBA
++hibernate.connection.password=masterkey
+ hibernate.jdbc.use_streams_for_binary=true
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000111.html">[Provirent-svn-commit] r110 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000113.html">[Provirent-svn-commit] r112 - project_src/provirent_hibernate/src/de/hsharz/provirent
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#112">[ date ]</a>
+              <a href="thread.html#112">[ thread ]</a>
+              <a href="subject.html#112">[ subject ]</a>
+              <a href="author.html#112">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r8 - in project_src/web: . src src/de src/de/hsharz src/de/hsharz/provirent
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r8%20-%20in%20project_src/web%3A%20.%20src%20src/de%20src/de/hsharz%20src/de/hsharz/provirent&In-Reply-To=%3C200410061903.i96J3WC9009908%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000008.html">
+   <LINK REL="Next"  HREF="000010.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r8 - in project_src/web: . src src/de src/de/hsharz src/de/hsharz/provirent</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r8%20-%20in%20project_src/web%3A%20.%20src%20src/de%20src/de/hsharz%20src/de/hsharz/provirent&In-Reply-To=%3C200410061903.i96J3WC9009908%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r8 - in project_src/web: . src src/de src/de/hsharz src/de/hsharz/provirent">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Wed Oct  6 21:03:32 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000008.html">[Provirent-svn-commit] r7 - docu/uml/usecase
+</A></li>
+        <LI>Next message: <A HREF="000010.html">[Provirent-svn-commit] r9 - project_src/web/src/de/hsharz/provirent/objects
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#9">[ date ]</a>
+              <a href="thread.html#9">[ thread ]</a>
+              <a href="subject.html#9">[ subject ]</a>
+              <a href="author.html#9">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-06 21:03:31 +0200 (Wed, 06 Oct 2004)
+New Revision: 8
+
+Added:
+   project_src/web/.checkstyle
+   project_src/web/.classpath
+   project_src/web/.project
+   project_src/web/bin/
+   project_src/web/lib/
+   project_src/web/src/
+   project_src/web/src/de/
+   project_src/web/src/de/hsharz/
+   project_src/web/src/de/hsharz/provirent/
+   project_src/web/src/de/hsharz/provirent/objects/
+Log:
+Eclipse Project Setup
+
+Added: project_src/web/.checkstyle
+===================================================================
+--- project_src/web/.checkstyle	2004-10-06 09:41:29 UTC (rev 7)
++++ project_src/web/.checkstyle	2004-10-06 19:03:31 UTC (rev 8)
+@@ -0,0 +1,6 @@
++&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
++&lt;fileset-config file-format-version=&quot;1.0.0&quot;&gt;
++    &lt;fileset name=&quot;Sun Chekcs&quot; enabled=&quot;true&quot; check-config-name=&quot;Sun Checks&quot;&gt;
++        &lt;file-match-pattern match-pattern=&quot;.java$&quot; include-pattern=&quot;true&quot;/&gt;
++    &lt;/fileset&gt;
++&lt;/fileset-config&gt;
+
+Added: project_src/web/.classpath
+===================================================================
+--- project_src/web/.classpath	2004-10-06 09:41:29 UTC (rev 7)
++++ project_src/web/.classpath	2004-10-06 19:03:31 UTC (rev 8)
+@@ -0,0 +1,8 @@
++&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
++&lt;classpath&gt;
++	&lt;classpathentry kind=&quot;src&quot; path=&quot;src&quot;/&gt;
++	&lt;classpathentry kind=&quot;src&quot; path=&quot;lib&quot;/&gt;
++	&lt;classpathentry kind=&quot;con&quot; path=&quot;org.eclipse.jdt.launching.JRE_CONTAINER&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;lib/commons-lang-2.0.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;output&quot; path=&quot;bin&quot;/&gt;
++&lt;/classpath&gt;
+
+Added: project_src/web/.project
+===================================================================
+--- project_src/web/.project	2004-10-06 09:41:29 UTC (rev 7)
++++ project_src/web/.project	2004-10-06 19:03:31 UTC (rev 8)
+@@ -0,0 +1,30 @@
++&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
++&lt;projectDescription&gt;
++	&lt;name&gt;web&lt;/name&gt;
++	&lt;comment&gt;&lt;/comment&gt;
++	&lt;projects&gt;
++	&lt;/projects&gt;
++	&lt;buildSpec&gt;
++		&lt;buildCommand&gt;
++			&lt;name&gt;com.atlassw.tools.eclipse.checkstyle.CheckstyleBuilder&lt;/name&gt;
++			&lt;arguments&gt;
++			&lt;/arguments&gt;
++		&lt;/buildCommand&gt;
++		&lt;buildCommand&gt;
++			&lt;name&gt;org.eclipse.jdt.core.javabuilder&lt;/name&gt;
++			&lt;arguments&gt;
++			&lt;/arguments&gt;
++		&lt;/buildCommand&gt;
++	&lt;/buildSpec&gt;
++	&lt;natures&gt;
++		&lt;nature&gt;org.eclipse.jdt.core.javanature&lt;/nature&gt;
++		&lt;nature&gt;com.atlassw.tools.eclipse.checkstyle.CheckstyleNature&lt;/nature&gt;
++	&lt;/natures&gt;
++	&lt;linkedResources&gt;
++		&lt;link&gt;
++			&lt;name&gt;lib&lt;/name&gt;
++			&lt;type&gt;2&lt;/type&gt;
++			&lt;location&gt;G:/eclipse/workspace/web/lib&lt;/location&gt;
++		&lt;/link&gt;
++	&lt;/linkedResources&gt;
++&lt;/projectDescription&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000008.html">[Provirent-svn-commit] r7 - docu/uml/usecase
+</A></li>
+	<LI>Next message: <A HREF="000010.html">[Provirent-svn-commit] r9 - project_src/web/src/de/hsharz/provirent/objects
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#9">[ date ]</a>
+              <a href="thread.html#9">[ thread ]</a>
+              <a href="subject.html#9">[ subject ]</a>
+              <a href="author.html#9">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

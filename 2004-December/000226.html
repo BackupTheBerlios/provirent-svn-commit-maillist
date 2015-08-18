@@ -1,0 +1,579 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r225 - in project_src/provirent_hibernate/src/de/hsharz/provirent: . management/gui management/gui/language persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r225%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20.%20management/gui%20management/gui/language%20persistence&In-Reply-To=%3C200412081845.iB8IjuMe013986%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000225.html">
+   <LINK REL="Next"  HREF="000227.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r225 - in project_src/provirent_hibernate/src/de/hsharz/provirent: . management/gui management/gui/language persistence</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r225%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20.%20management/gui%20management/gui/language%20persistence&In-Reply-To=%3C200412081845.iB8IjuMe013986%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r225 - in project_src/provirent_hibernate/src/de/hsharz/provirent: . management/gui management/gui/language persistence">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Wed Dec  8 19:45:56 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000225.html">[Provirent-svn-commit] r224 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui objects
+</A></li>
+        <LI>Next message: <A HREF="000227.html">[Provirent-svn-commit] r226 - in project_src/provirent_hibernate/src: de/hsharz/provirent de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#226">[ date ]</a>
+              <a href="thread.html#226">[ thread ]</a>
+              <a href="subject.html#226">[ subject ]</a>
+              <a href="author.html#226">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-12-08 19:45:55 +0100 (Wed, 08 Dec 2004)
+New Revision: 225
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeOrder.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+Log:
+Payment          - Util verworfen
+                 - Fehler in Update bereinigt
+
+Composite Movie  - MainImage hinzugef?\195?\188gt
+                 
+DialogMovie      - Um MainImage erweitert
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java	2004-12-08 18:41:22 UTC (rev 224)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java	2004-12-08 18:45:55 UTC (rev 225)
+@@ -38,6 +38,7 @@
+ import java.text.SimpleDateFormat;
+ import java.util.Calendar;
+ import java.util.Properties;
++import java.text.DateFormat;
+ 
+ import javax.mail.Address;
+ import javax.mail.Message;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java	2004-12-08 18:41:22 UTC (rev 224)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java	2004-12-08 18:45:55 UTC (rev 225)
+@@ -64,8 +64,10 @@
+ 
+     private TableColumn tableDVDOverview_ColumnTitle;
+ 
+-    private TableColumn tableDVDOverview_ColumnDate;
++    private TableColumn tableDVDOverview_ColumnStatus;
+     
++    private TableColumn tableDVDOverview_ColumnCondition;
++    
+     private Text textDVDSearch;
+     
+     private Label labelDVDSearch;
+@@ -240,12 +242,19 @@
+                     tableDVDOverview_ColumnTitle.setWidth(120);
+                 }
+                 {
+-                    tableDVDOverview_ColumnDate = new TableColumn(
++                    tableDVDOverview_ColumnStatus = new TableColumn(
+                             tableDVDOverview, SWT.CENTER);
+-                    tableDVDOverview_ColumnDate.setText(l
+-                            .getString(&quot;dvd.groupoverview.columndate&quot;));
+-                    tableDVDOverview_ColumnDate.setWidth(120);
++                    tableDVDOverview_ColumnStatus.setText(l
++                            .getString(&quot;dvd.groupoverview.columnstatus&quot;));
++                    tableDVDOverview_ColumnStatus.setWidth(120);
+                 }
++                {
++                    tableDVDOverview_ColumnCondition = new TableColumn(
++                            tableDVDOverview, SWT.CENTER);
++                    tableDVDOverview_ColumnCondition.setText(l
++                            .getString(&quot;dvd.groupoverview.columncondition&quot;));
++                    tableDVDOverview_ColumnCondition.setWidth(120);
++                }
+             }// table Movies Overview
+ 
+             // Search
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-08 18:41:22 UTC (rev 224)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-08 18:45:55 UTC (rev 225)
+@@ -47,6 +47,7 @@
+ import de.hsharz.provirent.persistence.DataBaseException;
+ import de.hsharz.provirent.persistence.Database;
+ 
++import org.eclipse.swt.widgets.Combo;
+ /**
+  * This code was generated using CloudGarden's Jigloo SWT/Swing GUI Builder,
+  * which is free for non-commercial use. If Jigloo is being used commercially
+@@ -116,6 +117,8 @@
+     private Text textMoviesDescription;
+ 
+     private Text textMoviesDate;
++    
++    private Text textMoviesmainImage;
+ 
+     private Label labelMoviesSearch;
+ 
+@@ -136,6 +139,8 @@
+     private Label labelMoviesGenres;
+ 
+     private Label labelMoviesImages;
++        
++    private Label labelMoviesmainImage;
+ 
+     private Button buttonMoviesNew;
+ 
+@@ -166,6 +171,8 @@
+     private Button buttonMoviesDeleteImages;
+ 
+     private Button buttonMoviesChangeDate;
++    
++    private Button buttonMoviesChangemainImage;
+ 
+     private SashForm sashForm1;
+ 
+@@ -259,7 +266,7 @@
+         }
+ 
+         this.setLayout(new GridLayout());
+-        this.setSize(830, 650);
++        this.setSize(824, 634);
+         {
+             groupMovie = new Group(this, SWT.NONE);
+             GridLayout groupMovieLayout = new GridLayout();
+@@ -500,11 +507,11 @@
+             labelMoviesDate.setText(l.getString(&quot;movies.groupdetail.labeldate&quot;)
+                     + &quot;:&quot;);
+             labelMoviesDate.setSize(125, 15);
+-            GridData labelActorNameLData = new GridData();
+-            labelActorNameLData.heightHint = 15;
+-            labelActorNameLData.horizontalAlignment = GridData.FILL;
+-            labelActorNameLData.verticalAlignment = GridData.BEGINNING;
+-            labelMoviesDate.setLayoutData(labelActorNameLData);
++            GridData labelMoviesDateLData = new GridData();
++            labelMoviesDateLData.heightHint = 15;
++            labelMoviesDateLData.horizontalAlignment = GridData.FILL;
++            labelMoviesDateLData.verticalAlignment = GridData.BEGINNING;
++            labelMoviesDate.setLayoutData(labelMoviesDateLData);
+         }
+         {
+             textMoviesDate = new Text(groupMoviesDetail, SWT.READ_ONLY
+@@ -1051,8 +1058,52 @@
+                 tableMoviesDetail_ColumnName.setWidth(200);
+             }
+         }// Edit Images
+-
+         {
++            labelMoviesmainImage = new Label(groupMoviesDetail, SWT.NONE);
++            labelMoviesmainImage.setText(l.getString(&quot;movies.groupdetail.labelmainimage&quot;)
++                    + &quot;:&quot;);
++            labelMoviesmainImage.setSize(125, 15);
++            GridData labelMoviesImageLData = new GridData();
++            labelMoviesImageLData.heightHint = 15;
++            labelMoviesImageLData.horizontalAlignment = GridData.FILL;
++            labelMoviesImageLData.verticalAlignment = GridData.BEGINNING;
++            labelMoviesmainImage.setLayoutData(labelMoviesImageLData);
++        }
++        {
++            textMoviesmainImage = new Text(groupMoviesDetail, SWT.READ_ONLY
++                    | SWT.BORDER);
++            GridData text1LData2 = new GridData();
++            text1LData2.horizontalAlignment = GridData.FILL;
++            text1LData2.heightHint = 13;
++            text1LData2.horizontalSpan = 4;
++            text1LData2.grabExcessHorizontalSpace = true;
++            textMoviesmainImage.setLayoutData(text1LData2);
++            textMoviesmainImage.setText(&quot;&quot;);
++        }
++        {
++            buttonMoviesChangemainImage = new Button(groupMoviesDetail, SWT.NONE);
++            buttonMoviesChangemainImage.setText(l
++                    .getString(&quot;movies.button.changedate&quot;));
++            buttonMoviesChangemainImage.setEnabled(false);
++            GridData text1LData2 = new GridData();
++            text1LData2.horizontalAlignment = GridData.FILL;
++            text1LData2.heightHint = 20;
++            text1LData2.horizontalSpan = 1;
++            buttonMoviesChangemainImage.setLayoutData(text1LData2);
++            buttonMoviesChangemainImage.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++                    //open responsible Dialog and insert text
++                    DialogMovie dialog = new DialogMovie(getShell(), 0, locale,
++                            localmovie, DialogMovie.TYPE_MAINIMAGE);
++                    dialog.open();
++                    if (localmovie.getMainImage() != null)
++                    textMoviesmainImage.setText(localmovie.getMainImage().getImageFileName());                  
++                }
++            });
++        }
++        
++            
++        {
+             compositeButtons = new Composite(groupMoviesDetail, SWT.EMBEDDED);
+             GridLayout composite2Layout = new GridLayout();
+             composite2Layout.numColumns = 6;
+@@ -1100,7 +1151,8 @@
+                     buttonMoviesAddImages.setEnabled(true);
+                     buttonMoviesDeleteImages.setEnabled(true);
+                     buttonMoviesChangeDate.setEnabled(true);
+-
++                    buttonMoviesChangemainImage.setEnabled(true);
++                    
+                     tableMoviesOverview.setEnabled(false);
+                     tableMoviesDirectorsDetail.removeAll();
+                     tableMoviesActorsDetail.removeAll();
+@@ -1145,6 +1197,7 @@
+                     buttonMoviesAddImages.setEnabled(true);
+                     buttonMoviesDeleteImages.setEnabled(true);
+                     buttonMoviesChangeDate.setEnabled(true);
++                    buttonMoviesChangemainImage.setEnabled(true);
+                     
+                     tableMoviesOverview.setEnabled(false);
+                     
+@@ -1341,7 +1394,7 @@
+                         // Fehlerbehandlung
+ 
+                         if (mode_movie == ManagementGui.MODE_ADD)  {
+-                        Object o = Database.saveObject(localmovie);
++
+ 
+                         logger.debug(&quot;Objektid: &quot;+localmovie.getMovieId()+&quot; vor speichern&quot;);
+                         Database.saveObject(localmovie);
+@@ -1352,8 +1405,8 @@
+                         insertIntoMoviesOverviewTable(localmovie);
+                         textMoviesID.setText(localmovie.getMovieId() + &quot;&quot;);
+                         }
+-                        if (mode_movie == ManagementGui.MODE_EDIT)  {
+-                            Object o = Database.updateObject(localmovie);
++                        else if (mode_movie == ManagementGui.MODE_EDIT)  {
++                            Database.updateObject(localmovie);
+                         } 
+                         //Statusline Nachricht sezten
+                         statusLine
+@@ -1456,6 +1509,7 @@
+         buttonMoviesAddImages.setEnabled(false);
+         buttonMoviesDeleteImages.setEnabled(false);
+         buttonMoviesChangeDate.setEnabled(false);
++        buttonMoviesChangemainImage.setEnabled(false);
+         textMoviesTitle.setEditable(false);
+         textMoviesDescription.setEditable(false);
+         textMoviesSearch.setEditable(true);
+@@ -1527,7 +1581,8 @@
+                 .format(object.getReleaseDate().getTime()));
+         textMoviesRuntime.setText(Integer.toString(object.getRuntime()));
+         textMoviesDescription.setText(object.getDescription());
+-
++        textMoviesmainImage.setText(object.getMainImage().getImageFileName());
++        
+         TableItem item;
+         // Fill Directorstable
+         tableMoviesDirectorsDetail.removeAll();
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeOrder.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeOrder.java	2004-12-08 18:41:22 UTC (rev 224)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeOrder.java	2004-12-08 18:45:55 UTC (rev 225)
+@@ -256,7 +256,7 @@
+ 	            String orderdate = &quot;&quot;;
+ 	            if (o.getOrderTime() != null) {
+ 	                orderdate = DateFormat.getDateInstance(DateFormat.SHORT).format(
+-	                    o.getOrderTime().getTime());
++	                    o.getOrderTime());
+ 	            }
+ 	           
+ 	            String senddate = &quot;&quot;;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java	2004-12-08 18:41:22 UTC (rev 224)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java	2004-12-08 18:45:55 UTC (rev 225)
+@@ -607,7 +607,17 @@
+                     o.setDuration1(Float.parseFloat(textduration1.getText()));
+                     o.setDuration2(Float.parseFloat(textduration2.getText()));
+                     o.setDuration3(Float.parseFloat(textduration3.getText()));
+-                    o.setStartdate(Util.getDateByText(textstartdate.getText(), &quot;dd.MM.YYYY&quot;));
++                    o.setStartdate(Calendar.getInstance());
++                    try {
++                        o.getStartdate().setTime(DateFormat.getDateInstance(DateFormat.LONG).parse(textstartdate.getText()));
++                    } catch (ParseException e1) {
++                        // TODO Auto-generated catch block
++                        e1.printStackTrace();
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;Problem mit Date l&#246;schen wird verworfen &quot;);
++                        }
++                        return;
++                    }
+ 
+                     //object speichern
+                     // Fehlerbehandlung
+@@ -817,7 +827,7 @@
+ 
+                         //object speichern
+                         // Fehlerbehandlung
+-                        Database.saveObject(tmp);
++                        Database.updateObject(tmp);
+                         //&#220;bersichtstabelle aktualisieren
+                         refreshPaymentTable(textPaymentSearch.getText());
+ 
+@@ -935,7 +945,7 @@
+                 Payment.getName(), Double.toString(Payment.getDuration1()),
+                 Double.toString(Payment.getDuration2()),
+                 Double.toString(Payment.getDuration3()),
+-                Util.getTextByDate(Payment.getStartdate(), &quot;dd.MM.YYYY&quot;) });
++                DateFormat.getDateInstance(DateFormat.SHORT).format(Payment.getStartdate().getTime()) });
+ 
+         tablePayment.deselectAll();
+         refreshPaymentDetail(&quot;&quot;);
+@@ -1023,7 +1033,8 @@
+                     Double.toString(o.getDuration1()),
+                     Double.toString(o.getDuration2()),
+                     Double.toString(o.getDuration3()),
+-                    Util.getTextByDate(o.getStartdate(), &quot;dd.MM.YYYY&quot;) });
++                    DateFormat.getDateInstance(DateFormat.SHORT).format(
++                            o.getStartdate().getTime()) });
+ 
+         }
+ 
+@@ -1255,8 +1266,8 @@
+             for (int i = 0; i &lt; vec.size(); i++) {
+                 Calendar date = (Calendar) vec.get(i);
+ 
+-                if (Util.getTextByDate(date, &quot;dd.MM.YYYY&quot;).equals(
+-                        Util.getTextByDate(object.getStartdate(), &quot;dd.MM.YYYY&quot;))) {
++                if (DateFormat.getDateInstance(DateFormat.SHORT).format(date.getTime()).equals(
++                        DateFormat.getDateInstance(DateFormat.SHORT).format(object.getStartdate().getTime()))) {
+                     buttonPaymentEdit.setEnabled(true);
+ 
+                 }
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java	2004-12-08 18:41:22 UTC (rev 224)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java	2004-12-08 18:45:55 UTC (rev 225)
+@@ -44,6 +44,8 @@
+ 
+     public final static int TYPE_DIRECTOR = 4;
+ 
++    public final static int TYPE_MAINIMAGE = 5;
++    
+     private int type = 0;
+ 
+     private Shell dialogShell;
+@@ -173,7 +175,11 @@
+             groupDialogDescription.setText(l
+                     .getString(&quot;movies.dialog.title.image&quot;));
+         }
+-
++        else if (type == TYPE_MAINIMAGE) {
++            groupDialogDescription.setText(l
++                    .getString(&quot;movies.dialog.title.mainimage&quot;));
++        }
++        
+         GridData groupForm1LData = new GridData();
+         groupForm1LData.widthHint = 300;
+         groupForm1LData.heightHint = 200;
+@@ -213,8 +219,12 @@
+             } else if (type == TYPE_IMAGE) {
+                 labelDescriptionAdvice.setText(l
+                         .getString(&quot;movies.dialog.labeltable.image&quot;));
++            } else if  (type == TYPE_MAINIMAGE) {
++                labelDescriptionAdvice.setText(l
++                        .getString(&quot;movies.dialog.labeltable.mainimage&quot;));
+             }
+-
++            
++            
+             table1 = new Table(groupDialogDescription, SWT.SINGLE
+                     | SWT.FULL_SELECTION);
+             GridData table1LData = new GridData();
+@@ -233,7 +243,7 @@
+                 item.setResizable(false);
+             }
+ 
+-            if (type == TYPE_IMAGE) {
++            if (type == TYPE_IMAGE || type == TYPE_MAINIMAGE) {
+                 TableColumn item = new TableColumn(table1, SWT.CENTER);
+                 item.setAlignment(SWT.LEFT);
+                 item.setWidth(100);
+@@ -256,7 +266,7 @@
+                     item
+                             .setText(l
+                                     .getString(&quot;movies.dialog.column.name.genre&quot;));
+-                } else if (type == TYPE_IMAGE) {
++                } else if (type == TYPE_IMAGE || type == TYPE_MAINIMAGE) {
+                     item
+                             .setText(l
+                                     .getString(&quot;movies.dialog.column.name.image&quot;));
+@@ -277,7 +287,7 @@
+                 } else if (type == TYPE_GENRE) {
+                     item.setText(l
+                             .getString(&quot;movies.dialog.column.shortname.genre&quot;));
+-                } else if (type == TYPE_IMAGE) {
++                } else if (type == TYPE_IMAGE || type == TYPE_MAINIMAGE) {
+                     item
+                             .setText(l
+                                     .getString(&quot;movies.dialog.column.description.image&quot;));
+@@ -287,8 +297,13 @@
+ 
+             buttonDescriptionAccept = new Button(groupDialogDescription,
+                     SWT.PUSH | SWT.CENTER);
+-            buttonDescriptionAccept.setText(l
+-                    .getString(&quot;movies.dialog.buttonadd&quot;));
++            if(type == TYPE_MAINIMAGE)  {            
++                buttonDescriptionAccept.setText(l
++                        .getString(&quot;movies.dialog.buttonadd.mainimage&quot;));
++            } else  {
++                buttonDescriptionAccept.setText(l
++                        .getString(&quot;movies.dialog.buttonadd&quot;));
++            }                
+             GridData buttonDescriptionAcceptLData2 = new GridData();
+             buttonDescriptionAcceptLData2.horizontalSpan = 2;
+             buttonDescriptionAcceptLData2.horizontalAlignment = GridData.FILL;
+@@ -349,8 +364,19 @@
+                                                     (Image) valuelist.get(j));
+                                             break;
+                                         }
++                                    } else if (type == TYPE_MAINIMAGE)  {
++                                        if ((table1.getItem(sel[i]).getText(0))
++                                                .equalsIgnoreCase(((Image) valuelist
++                                                        .get(j)).getImageId()
++                                                        + &quot;&quot;)) {
++                                            logger
++                                                    .debug(&quot;F&#252;ge Bild zum Movie hinzu:&quot;
++                                                            + (Image) valuelist
++                                                                    .get(j));
++                                            movie.setMainImage((Image) valuelist.get(j));
++                                            dialogShell.close();
++                                        }
+                                     }
+-
+                                 }
+ 
+                                 table1.remove(sel[i]);
+@@ -427,7 +453,7 @@
+                 item.setText(new String[] { o.getGenreId() + &quot;&quot;, o.getName(),
+                         o.getShortname() });
+             }
+-        } else if (type == TYPE_IMAGE) {
++        } else if (type == TYPE_IMAGE || type == TYPE_MAINIMAGE) {
+             valuelist = Database
+                     .getImagesExcept(filter, this.movie.getImages());
+             for (int i = 0; i &lt; valuelist.size(); i++) {
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties	2004-12-08 18:41:22 UTC (rev 224)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties	2004-12-08 18:45:55 UTC (rev 225)
+@@ -5,4 +5,5 @@
+ dvd.groupoverview.searchlabel =Suche nach
+ dvd.groupoverview.columnid =ID
+ dvd.groupoverview.columntitle =Titel
+-dvd.groupoverview.columndate =Erscheinungsdatum
+\ No newline at end of file
++dvd.groupoverview.columnstatus =Status
++dvd.groupoverview.columncondition =Zustand
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-12-08 18:41:22 UTC (rev 224)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-12-08 18:45:55 UTC (rev 225)
+@@ -22,6 +22,7 @@
+ movies.groupdetail.labelgenres =Liste der Genre
+ movies.groupdetail.labelimages =Liste der Bilder
+ movies.groupdetail.labeldescription =Beschreibung
++movies.groupdetail.labelmainimage =Hauptbild
+ movies.groupdetail.textdate =(Beispiel: 01.01.2001)
+ movies.groupdetail.datebuttonfinish=Fertig
+ movies.groupdetail.datedialogtitle=Bitte w&#228;hlen Sie ein Datum aus
+@@ -65,10 +66,12 @@
+ movies.dialog.title.genre=Genre
+ movies.dialog.title.image=Bilder
+ movies.dialog.title.director=Directors
++movies.dialog.title.mainimage =Hauptbild
+ 
+ movies.dialog.search.tooltip=Geben Sie hier bitte Ihren Suchbegriff ein
+ movies.dialog.search.buttonname=Suchen
+ movies.dialog.buttonadd=Hinzuf&#252;gen
++movies.dialog.buttonadd.mainimage =Ausw&#228;hlen
+ movies.dialog.buttonfinish=Fertig
+ movies.dialog.column.id=id
+ movies.dialog.column.lastname.actor=Nachname
+@@ -85,3 +88,4 @@
+ movies.dialog.labeltable.genre=W&#228;hlen Sie ein Genre:
+ movies.dialog.labeltable.image=W&#228;hlen Sie ein Bild:
+ movies.dialog.labeltable.director=W&#228;hlen Sie einen Director:
++movies.dialog.labeltable.mainimage=W&#228;hlen Sie das Hauptbild:
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-08 18:41:22 UTC (rev 224)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-08 18:45:55 UTC (rev 225)
+@@ -1875,13 +1875,19 @@
+ 	
+ 	            //if filter not empty
+ 	            if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++	                criteria.createAlias(&quot;actors&quot;,&quot;a&quot;);
++	                criteria.createAlias(&quot;director&quot;,&quot;d&quot;);
+ 	                any.add(Expression.like(&quot;title&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+-	                any.add(Expression.like(&quot;releaseDate&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                //any.add(Expression.like(&quot;releaseDate&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+ 	                any.add(Expression.like(&quot;description&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+-	                any.add(Expression.like(&quot;actors&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+-	                any.add(Expression.like(&quot;runtime&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+-	                any.add(Expression.like(&quot;director&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+-	                any.add(Expression.like(&quot;genres&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                //any.add(Expression.like(&quot;runtime&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++
++	                any.add(Expression.like(&quot;a.lastName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;a.firstName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;d.lastName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;d.firstName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                //any.add(Expression.like(&quot;director&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                //any.add(Expression.like(&quot;genres&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+ 	                //any.add(Expression.like(&quot;images&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+ 	                //maybe we are searching for the id?
+ 	                try {
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000225.html">[Provirent-svn-commit] r224 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui objects
+</A></li>
+	<LI>Next message: <A HREF="000227.html">[Provirent-svn-commit] r226 - in project_src/provirent_hibernate/src: de/hsharz/provirent de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#226">[ date ]</a>
+              <a href="thread.html#226">[ thread ]</a>
+              <a href="subject.html#226">[ subject ]</a>
+              <a href="author.html#226">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

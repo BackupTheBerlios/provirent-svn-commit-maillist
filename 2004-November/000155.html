@@ -1,0 +1,257 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r154 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r154%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411231826.iANIQnRY021558%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000154.html">
+   <LINK REL="Next"  HREF="000156.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r154 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r154%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411231826.iANIQnRY021558%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r154 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Tue Nov 23 19:26:49 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000154.html">[Provirent-svn-commit] r153 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+        <LI>Next message: <A HREF="000156.html">[Provirent-svn-commit] r155 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#155">[ date ]</a>
+              <a href="thread.html#155">[ thread ]</a>
+              <a href="subject.html#155">[ subject ]</a>
+              <a href="author.html#155">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-23 19:26:49 +0100 (Tue, 23 Nov 2004)
+New Revision: 154
+
+Added:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java
+Removed:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogDescription.java
+Log:
+
+
+Deleted: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogDescription.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogDescription.java	2004-11-23 18:24:08 UTC (rev 153)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogDescription.java	2004-11-23 18:26:49 UTC (rev 154)
+@@ -1,177 +0,0 @@
+-package de.hsharz.provirent.management.gui;
+-
+-/**
+-* This code was generated using CloudGarden's Jigloo
+-* SWT/Swing GUI Builder, which is free for non-commercial
+-* use. If Jigloo is being used commercially (ie, by a corporation,
+-* company or business for any purpose whatever) then you
+-* should purchase a license for each developer using Jigloo.
+-* Please visit www.cloudgarden.com for details.
+-* Use of Jigloo implies acceptance of these licensing terms.
+-* *************************************
+-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED
+-* for this machine, so Jigloo or this code cannot be used legally
+-* for any corporate or commercial purpose.
+-* *************************************
+-*/
+-
+-import org.eclipse.swt.layout.FillLayout;
+-import org.eclipse.swt.layout.GridLayout;
+-import org.eclipse.swt.widgets.Display;
+-import org.eclipse.swt.widgets.Shell;
+-import org.eclipse.swt.SWT;
+-
+-import org.eclipse.swt.widgets.Group;
+-import org.eclipse.swt.layout.GridData;
+-import org.eclipse.swt.custom.SashForm;
+-import org.eclipse.swt.widgets.Label;
+-import org.eclipse.swt.widgets.Text;
+-import org.eclipse.swt.widgets.Button;
+-import org.eclipse.swt.custom.StyledText;
+-import org.eclipse.swt.events.SelectionAdapter;
+-import org.eclipse.swt.events.SelectionEvent;
+-
+-import java.util.Locale;
+-import java.util.PropertyResourceBundle;
+-import java.util.ResourceBundle;
+-
+-
+-
+-public class DialogDescription extends org.eclipse.swt.widgets.Dialog {
+-    
+-	private Shell dialogShell;
+-    
+-	private Group groupDialogDescription;
+-	
+-	private Button buttonDescriptionAbort;
+-	private Button buttonDescriptionAccept;
+-	
+-	private Label labelDescriptionAdvice;
+-	
+-	private StyledText styledTextDescritpion;
+-	
+-
+-	private ResourceBundle l;
+-	
+-	/**
+-	* Auto-generated main method to display this 
+-	* org.eclipse.swt.widgets.Dialog inside a new Shell.
+-	*/
+-	public static void main(String[] args) {
+-		try {
+-			Display display = Display.getDefault();
+-			Shell shell = new Shell(display);
+-			DialogDescription inst = new DialogDescription(shell, SWT.NULL, Locale.GERMAN);
+-			inst.open();
+-		} catch (Exception e) {
+-			e.printStackTrace();
+-		}
+-	}
+-	
+-	/*
+-     * &#196;ndert die Sprache aller Elemente
+-     * 
+-     * @see de.hsharz.provirent.managment.gui.AbstractComposite#changeLanguage(java.util.Locale)
+-     */
+-    public void changeLanguage(Locale locale) {
+-
+-    }
+-
+-    /* 
+-     * Init die Sprache (properties Datei)
+-     * @see de.hsharz.provirent.managment.gui.AbstractComposite#initLanguage(java.util.Locale)
+-     */
+-    public void initLanguage(Locale locale) {
+-        l = PropertyResourceBundle.getBundle(
+-                &quot;de.hsharz.provirent.management.gui.language.movies&quot;, locale);
+-
+-    }
+-	
+-	
+-    
+-	public DialogDescription(Shell parent, int style, Locale locale) {
+-		super(parent, style);
+-		
+-		initLanguage(locale);
+-	}
+-
+-
+-	
+-	public void open() {
+-		try {
+-			Shell parent = getParent();
+-			dialogShell = new Shell(parent, SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
+-
+-			dialogShell.setLayout(new GridLayout());
+-            {
+-
+-                    groupDialogDescription = new Group(dialogShell, SWT.NONE);
+-                    GridLayout groupDialogDescriptionLayout = new GridLayout();
+-                    groupDialogDescriptionLayout.numColumns = 5;
+-                    groupDialogDescriptionLayout.makeColumnsEqualWidth = true;
+-                    groupDialogDescription.setBounds(0, 0, 316, 178);
+-                    groupDialogDescription.setLayout(groupDialogDescriptionLayout);
+-                    groupDialogDescription.setText(&quot;Beschreibung&quot;);
+-                    GridData groupForm1LData = new GridData();
+-                    groupForm1LData.widthHint = 300;
+-                    groupForm1LData.heightHint = 200;
+-                    groupDialogDescription.setLayoutData(groupForm1LData);                      
+-                    
+-                    {
+-                        labelDescriptionAdvice = new Label(groupDialogDescription, SWT.NONE);
+-                        labelDescriptionAdvice.setText(&quot;Beschreibung ins Textfeld schreiben oder &#228;ndern&quot;);
+-        
+-                    }
+-                    {
+-                        styledTextDescritpion = new StyledText(groupDialogDescription, SWT.NONE);
+-                        styledTextDescritpion.setText(&quot;&quot;);
+-                        GridData styledTextDescritpionLData = new GridData();
+-                        styledTextDescritpionLData.horizontalSpan = 5;
+-                        styledTextDescritpionLData.horizontalAlignment = GridData.FILL;
+-                        styledTextDescritpionLData.verticalAlignment = GridData.FILL;
+-                        styledTextDescritpionLData.verticalSpan = 3;
+-                        styledTextDescritpionLData.grabExcessHorizontalSpace = true;
+-                        styledTextDescritpionLData.grabExcessVerticalSpace = true;
+-                        styledTextDescritpion.setLayoutData(styledTextDescritpionLData);
+-                    }
+-                    {
+-                        buttonDescriptionAccept = new Button(groupDialogDescription, SWT.PUSH | SWT.CENTER);
+-                        buttonDescriptionAccept.setText(&quot;&#220;bernehmen&quot;);
+-                        GridData buttonDescriptionAcceptLData2 = new GridData();
+-                        buttonDescriptionAcceptLData2.horizontalSpan = 2;
+-                        buttonDescriptionAcceptLData2.grabExcessHorizontalSpace = true;
+-                        buttonDescriptionAcceptLData2.horizontalAlignment = GridData.FILL;
+-                        buttonDescriptionAccept.setLayoutData(buttonDescriptionAcceptLData2);
+-                    }
+-                    {
+-                        buttonDescriptionAbort = new Button(groupDialogDescription, SWT.PUSH | SWT.CENTER);
+-                        buttonDescriptionAbort.setText(&quot;Abbruch&quot;);
+-                        GridData buttonDescriptionAbortLData = new GridData();
+-                        buttonDescriptionAbortLData.grabExcessHorizontalSpace = true;
+-                        buttonDescriptionAbortLData.horizontalAlignment = GridData.FILL;
+-                        buttonDescriptionAbortLData.horizontalSpan = 2;
+-                        buttonDescriptionAbort.setLayoutData(buttonDescriptionAbortLData);
+-                        buttonDescriptionAbort.addSelectionListener(new SelectionAdapter() {
+-                            public void widgetSelected(SelectionEvent evt) {
+-                               // TODO
+-                               dialogShell.close();
+-                            }
+-                        });  
+-                    }
+-
+-                }
+-            
+-			dialogShell.layout();
+-			dialogShell.pack();
+-			dialogShell.open();
+-			Display display = dialogShell.getDisplay();
+-			while (!dialogShell.isDisposed()) {
+-				if (!display.readAndDispatch())
+-					display.sleep();
+-			}
+-		} catch (Exception e) {
+-			e.printStackTrace();
+-		}
+-	}
+-	
+-}
+
+Copied: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java (from rev 153, project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogDescription.java)
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000154.html">[Provirent-svn-commit] r153 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+	<LI>Next message: <A HREF="000156.html">[Provirent-svn-commit] r155 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#155">[ date ]</a>
+              <a href="thread.html#155">[ thread ]</a>
+              <a href="subject.html#155">[ subject ]</a>
+              <a href="author.html#155">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

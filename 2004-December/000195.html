@@ -1,0 +1,307 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r194 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r194%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200412021654.iB2GsqmQ008864%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000194.html">
+   <LINK REL="Next"  HREF="000196.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r194 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r194%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200412021654.iB2GsqmQ008864%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r194 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Thu Dec  2 17:54:52 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000194.html">[Provirent-svn-commit] r193 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+        <LI>Next message: <A HREF="000196.html">[Provirent-svn-commit] r195 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#195">[ date ]</a>
+              <a href="thread.html#195">[ thread ]</a>
+              <a href="subject.html#195">[ subject ]</a>
+              <a href="author.html#195">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-12-02 17:54:50 +0100 (Thu, 02 Dec 2004)
+New Revision: 194
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+Log:
+Compsite Movie   - Date wird durch Dialog realisiert
+                 Grund:keine falschen Eingaben und                          konform
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-02 11:08:52 UTC (rev 193)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-02 16:54:50 UTC (rev 194)
+@@ -1,6 +1,8 @@
+ package de.hsharz.provirent.management.gui;
+ 
++import java.text.DateFormat;
+ import java.text.MessageFormat;
++import java.text.ParseException;
+ import java.util.ArrayList;
+ import java.util.GregorianCalendar;
+ import java.util.Locale;
+@@ -32,7 +34,9 @@
+ import org.eclipse.swt.widgets.Text;
+ 
+ import com.cloudgarden.resource.SWTResourceManager;
+-
++import org.vafada.swtcalendar.SWTCalendarEvent;
++import org.vafada.swtcalendar.SWTCalendarListener;
++import de.hsharz.provirent.Util;
+ import de.hsharz.provirent.objects.Actor;
+ import de.hsharz.provirent.objects.Director;
+ import de.hsharz.provirent.objects.Genre;
+@@ -119,7 +123,8 @@
+     private Button buttonMoviesDeleteGenres;
+     private Button buttonMoviesAddImages;
+     private Button buttonMoviesDeleteImages;
+-     
++    private Button buttonMoviesChangeDate; 
++    
+     private SashForm sashForm1;
+     
+     private Composite parent;
+@@ -129,7 +134,7 @@
+     private Composite compositeMoviesEditGenres;
+     private Composite compositeMoviesEditImages;
+     
+-    protected int mode_movie;
++    private int mode_movie;
+     
+     private StatusLineStyledText statusLine;
+     
+@@ -479,11 +484,42 @@
+             GridData text1LData2 = new GridData();
+             text1LData2.horizontalAlignment = GridData.FILL;
+             text1LData2.heightHint = 13;
+-            text1LData2.horizontalSpan = 5;
++            text1LData2.horizontalSpan = 4;
+             text1LData2.grabExcessHorizontalSpace = true;
+             textMoviesDate.setLayoutData(text1LData2);
+             textMoviesDate.setText(l.getString(&quot;movies.groupdetail.textdate&quot;));
+         }
++        {
++    	    buttonMoviesChangeDate = new Button(groupMoviesDetail, SWT.NONE);
++    	    buttonMoviesChangeDate.setText(l
++    	            .getString(&quot;movies.button.changedate&quot;));
++    	    buttonMoviesChangeDate.setEnabled(false);
++    	    GridData text1LData2 = new GridData();
++    	    text1LData2.horizontalAlignment = GridData.FILL;
++    	    text1LData2.heightHint = 20;
++    	    text1LData2.horizontalSpan =1;
++    	    buttonMoviesChangeDate.setLayoutData(text1LData2);        
++    	    buttonMoviesChangeDate.addSelectionListener(new SelectionAdapter() {
++    	        public void widgetSelected(SelectionEvent evt) {
++    	            //open responsible Dialog and insert text
++    	            final SWTCalendarDialog cal = new SWTCalendarDialog(getDisplay(),l.getString(&quot;movies.groupdetail.datebuttonfinish&quot;));
++
++                    cal.addDateChangedListener(new SWTCalendarListener() {
++                        public void dateChanged(SWTCalendarEvent calendarEvent) {
++                            textMoviesDate.setText( DateFormat.getDateInstance(DateFormat.LONG).format(calendarEvent.getCalendar().getTime()));
++                        }
++                    });
++
++                    if (textMoviesDate.getText() != null &amp;&amp; textMoviesDate.getText().length() &gt; 0) {
++                        try {
++                               cal.setDate(DateFormat.getDateInstance(DateFormat.LONG).parse(textMoviesDate.getText()));
++                        } catch (ParseException pe) {
++                        }
++                    }
++                    cal.open();                                                                	            
++    	        }
++    	    });  
++        }
+         //labels and buttons for Detail
+         {
+     	    labelMoviesDescription = new Label(groupMoviesDetail, SWT.NONE);
+@@ -960,8 +996,8 @@
+                 textMoviesDate.setText(&quot;&quot;);
+                 textMoviesDescription.setText(&quot;&quot;);
+                 textMoviesTitle.setEditable(true);
+-                textMoviesDate.setEditable(true);
+                 textMoviesDescription.setEditable(true);
++                textMoviesSearch.setEditable(false);
+                 
+                 buttonMoviesCancel.setEnabled(true);
+                 buttonMoviesSave.setEnabled(true);
+@@ -976,8 +1012,8 @@
+                 buttonMoviesDeleteGenres.setEnabled(true);
+                 buttonMoviesAddImages.setEnabled(true);
+                 buttonMoviesDeleteImages.setEnabled(true);
++                buttonMoviesChangeDate.setEnabled(true);
+                 
+-                textMoviesSearch.setEditable(false);
+                 tableMoviesOverview.setEnabled(false);
+                 tableMoviesDirectorsDetail.removeAll();
+                 tableMoviesActorsDetail.removeAll();
+@@ -1003,7 +1039,6 @@
+                 textMoviesID.setEditable(false);
+                 textMoviesTitle.setEditable(true);
+                 textMoviesTitle.setFocus();
+-                textMoviesDate.setEditable(true);
+                 textMoviesDescription.setEditable(true);
+                 
+                 buttonMoviesCancel.setEnabled(true);
+@@ -1019,6 +1054,7 @@
+                 buttonMoviesDeleteGenres.setEnabled(true);
+                 buttonMoviesAddImages.setEnabled(true);
+                 buttonMoviesDeleteImages.setEnabled(true);
++                buttonMoviesChangeDate.setEnabled(true);
+                 
+                 tableMoviesOverview.setEnabled(false);
+                 textMoviesSearch.setEnabled(false);
+@@ -1138,6 +1174,7 @@
+                     movie.setTitle(textMoviesTitle.getText());
+                     movie.setDescription(textMoviesDescription.getText());
+                     movie.setReleaseDate(new GregorianCalendar());
++                    movie.setRuntime(90);
+                 }
+                     /**
+                      * @todo eine Exception bekommen wieder leider NOCH nicht mit
+@@ -1207,7 +1244,7 @@
+     /**
+      * @param movie2
+      */
+-    protected void insertIntoMoviesOverviewTable(Movie movie2) {
++    private void insertIntoMoviesOverviewTable(Movie movie2) {
+         // TODO Auto-generated method stub
+         
+     }
+@@ -1215,12 +1252,11 @@
+     /**
+      * 
+      */
+-    protected void setMoviesGroupButtonSaveCancel() {
++    private void setMoviesGroupButtonSaveCancel() {
+         tableMoviesOverview.setEnabled(true);
+         textMoviesTitle.setEditable(false);
+-        textMoviesDate.setEditable(false);
+         textMoviesDescription.setEditable(false);
+-        textMoviesSearch.setEnabled(true);
++        textMoviesSearch.setEditable(true);
+         buttonMoviesCancel.setEnabled(false);
+         buttonMoviesSave.setEnabled(false);
+         buttonMoviesNew.setEnabled(true);
+@@ -1234,12 +1270,13 @@
+         buttonMoviesDeleteGenres.setEnabled(false);
+         buttonMoviesAddImages.setEnabled(false);
+         buttonMoviesDeleteImages.setEnabled(false);
++        buttonMoviesChangeDate.setEnabled(true);
+     }
+ 
+     /**
+      * @param text
+      */
+-    protected void refreshMoviesOverviewTable(String filter) {
++    private void refreshMoviesOverviewTable(String filter) {
+         // TODO Auto-generated method stub
+         if (tableMoviesOverview == null) {
+             System.out
+@@ -1256,8 +1293,13 @@
+ 
+             Movie o = (Movie) Movielist.get(i);
+             item = new TableItem(tableMoviesOverview, SWT.NONE);
+-            item.setText(new String[] { o.getMovieId() + &quot;&quot;, o.getTitle(),
+-                    o.getReleaseDate().getTime().toString() });
++            try {
++                item.setText(new String[] { o.getMovieId() + &quot;&quot;, o.getTitle(),
++                        Util.getTextByDate(o.getReleaseDate()) });
++            } catch (DataBaseException e) {
++                // TODO Auto-generated catch block
++                e.printStackTrace();
++            }
+ 
+         }
+     }
+@@ -1289,7 +1331,12 @@
+         movie = object;
+         textMoviesID.setText(object.getMovieId() + &quot;&quot;);
+         textMoviesTitle.setText(object.getTitle());
+-        textMoviesDate.setText(object.getReleaseDate().getTime().toString());
++        try {
++            textMoviesDate.setText(Util.getTextByDate(object.getReleaseDate()));
++        } catch (DataBaseException e1) {
++            // TODO Auto-generated catch block
++            e1.printStackTrace();
++        }
+         textMoviesDescription.setText(object.getDescription());
+         
+         TableItem item;
+@@ -1344,7 +1391,7 @@
+           
+     }
+ 
+-    protected void openDialogDescription() {
++    private void openDialogDescription() {
+         // TODO Auto-generated method stub
+         Shell dialogShell = new Shell();
+         //Dialog dialogDescription=new Dialog(dialogShell);
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-12-02 11:08:52 UTC (rev 193)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-12-02 16:54:50 UTC (rev 194)
+@@ -23,8 +23,8 @@
+ movies.groupdetail.labelimages =Liste der Bilder
+ movies.groupdetail.labeldescription =Beschreibung
+ movies.groupdetail.textdate = (Beispiel: 01.01.2001)
++movies.groupdetail.datebuttonfinish = Fertig
+ 
+-
+ button.new =Neu
+ button.edit =Bearbeiten
+ button.delete =L&#246;schen
+@@ -33,8 +33,8 @@
+ movies.button.editdescription =Beschreibung
+ movies.button.additem =Hinzuf&#252;gen
+ movies.button.deleteitem =L&#246;schen
++movies.button.changedate =&#196;ndern
+ 
+-
+ movies.groupdetail.savebutton.warn.noname.title =Datensatz speichern
+ movies.groupdetail.savebutton.warn.noname.msg =Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie eine volst&#228;ndigen Namen an
+ movies.groupdetail.savebutton.newok =Speichern des neuen Films erfolgreich.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000194.html">[Provirent-svn-commit] r193 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+	<LI>Next message: <A HREF="000196.html">[Provirent-svn-commit] r195 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#195">[ date ]</a>
+              <a href="thread.html#195">[ thread ]</a>
+              <a href="subject.html#195">[ subject ]</a>
+              <a href="author.html#195">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

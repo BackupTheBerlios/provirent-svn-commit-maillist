@@ -1,0 +1,395 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r201 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r201%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20management/gui/language%20persistence&In-Reply-To=%3C200412031301.iB3D1TmK019731%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000201.html">
+   <LINK REL="Next"  HREF="000203.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r201 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r201%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20management/gui/language%20persistence&In-Reply-To=%3C200412031301.iB3D1TmK019731%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r201 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Fri Dec  3 14:01:29 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000201.html">[Provirent-svn-commit] r200 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+        <LI>Next message: <A HREF="000203.html">[Provirent-svn-commit] r202 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui objects persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#202">[ date ]</a>
+              <a href="thread.html#202">[ thread ]</a>
+              <a href="subject.html#202">[ subject ]</a>
+              <a href="author.html#202">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-12-03 14:01:28 +0100 (Fri, 03 Dec 2004)
+New Revision: 201
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+Log:
+Composite Movie  - speichern m?\195?\182glich
+                 - Runtime hinzugef?\195?\188gt
+                 - editieren und l?\195?\182schen
+                 erzeugen noch Probleme in der Datenbank
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-03 10:59:29 UTC (rev 200)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-03 13:01:28 UTC (rev 201)
+@@ -332,12 +332,10 @@
+                                         + evt);
+                     }
+                 });
+-                tableMoviesOverview
+-                        .addSelectionListener(new SelectionAdapter() {
++                tableMoviesOverview.addSelectionListener(new SelectionAdapter() {
+                             public void widgetSelected(SelectionEvent evt) {
+                                 if (logger.isDebugEnabled()) {
+-                                    logger
+-                                            .debug(&quot;widgetSelected(SelectionEvent evt = &quot;
++                                    logger.debug(&quot;widgetSelected(SelectionEvent evt = &quot;
+                                                     + evt + &quot;) - start&quot;);
+                                 }
+ 
+@@ -359,8 +357,7 @@
+                                         .getItem(index).getText(0));
+ 
+                                 if (logger.isDebugEnabled()) {
+-                                    logger
+-                                            .debug(&quot;widgetSelected(SelectionEvent) - end&quot;);
++                                    logger.debug(&quot;widgetSelected(SelectionEvent) - end&quot;);
+                                 }
+                             }
+                         });
+@@ -1177,11 +1174,6 @@
+ 
+                     tableMoviesOverview.setEnabled(false);
+                     textMoviesSearch.setEnabled(false);
+-
+-                    //java.util.List Movielist =
+-                    // Database.getMovie(textMoviesID.getText());
+-                    //only one element because of ID
+-                    //movie = (Movie)Movielist.get(0);
+                 }
+             });
+ 
+@@ -1196,19 +1188,15 @@
+                                     + evt);
+ 
+                     String msg = MessageFormat
+-                            .format(
+-                                    l
+-                                            .getString(&quot;movies.groupdetail.deletebutton.question.text&quot;),
++                            .format(l.getString(&quot;movies.groupdetail.deletebutton.question.text&quot;),
+                                     new Object[] { textMoviesTitle.getText()
+                                             + &quot; &quot;
+-                                            + l
+-                                                    .getString(&quot;movies.groupdetail.deletebutton.question.gap&quot;)
++                                            + l.getString(&quot;movies.groupdetail.deletebutton.question.gap&quot;)
+                                             + &quot; &quot; + textMoviesDate.getText() });
+ 
+                     int question = showMsg(
+                             msg,
+-                            l
+-                                    .getString(&quot;movies.groupdetail.deletebutton.question.header&quot;),
++                            l.getString(&quot;movies.groupdetail.deletebutton.question.header&quot;),
+                             SWT.ICON_QUESTION | SWT.YES | SWT.NO);
+ 
+                     if (question != SWT.YES) {
+@@ -1240,36 +1228,21 @@
+ 
+                         //Statusline Nachricht sezten
+                         statusLine
+-                                .setStatus(
+-                                        1,
+-                                        l
+-                                                .getString(&quot;movies.groupdetail.deletebutton.newok&quot;));
++                                .setStatus(1,l.getString(&quot;movies.groupdetail.deletebutton.newok&quot;));
+ 
+                     } catch (DataBaseException e) {
+                         if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
+                             //Fehler beim Speichern des Objectes
+ 
+-                            statusLine
+-                                    .setStatus(
+-                                            3,
+-                                            l
+-                                                    .getString(&quot;movies.groupdetail.deletebutton.errorsave&quot;));
+-                            showMsg(
+-                                    l
+-                                            .getString(&quot;movies.groupdetail.deletebutton.errorsave&quot;),
++                            statusLine.setStatus(3,l.getString(&quot;movies.groupdetail.deletebutton.errorsave&quot;));
++                            showMsg(l.getString(&quot;movies.groupdetail.deletebutton.errorsave&quot;),
+                                     l.getString(&quot;error&quot;), SWT.ICON_ERROR
+                                             | SWT.OK);
+ 
+                         } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
+                             //fehler beim db aufbau
+-                            statusLine
+-                                    .setStatus(
+-                                            3,
+-                                            l
+-                                                    .getString(&quot;movies.groupdetail.deletebutton.errordb&quot;));
+-                            showMsg(
+-                                    l
+-                                            .getString(&quot;movies.groupdetail.deletebutton.errordb&quot;),
++                            statusLine.setStatus(3,l.getString(&quot;movies.groupdetail.deletebutton.errordb&quot;));
++                            showMsg(l.getString(&quot;movies.groupdetail.deletebutton.errordb&quot;),
+                                     l.getString(&quot;error&quot;), SWT.ICON_ERROR
+                                             | SWT.OK);
+ 
+@@ -1314,36 +1287,40 @@
+                             || movie.getGenres().size() == 0
+                             || movie.getImages().size() == 0) {
+ 
+-                        showMsg(
+-                                l
+-                                        .getString(&quot;movies.groupdetail.savebutton.warn.noname.msg&quot;),
+-                                l
+-                                        .getString(&quot;movies.groupdetail.savebutton.warn.noname.title&quot;),
++                        showMsg(l.getString(&quot;movies.groupdetail.savebutton.warn.noname.msg&quot;),
++                                l.getString(&quot;movies.groupdetail.savebutton.warn.noname.title&quot;),
+                                 SWT.ICON_WARNING | SWT.YES);
+ 
+                         return;
+                     }
+ 
+                     //testen welcher mode
+-                    if (mode_movie == ManagementGui.MODE_ADD) {
+-                        movie.setTitle(textMoviesTitle.getText());
+-                        movie.setDescription(textMoviesDescription.getText());
+-                        try {
+-
+-                            movie.setReleaseDate(Calendar.getInstance());
+-                            movie.getReleaseDate().setTime(
+-                                    DateFormat.getDateInstance(DateFormat.LONG)
+-                                            .parse(textMoviesDate.getText()));
++                    movie.setTitle(textMoviesTitle.getText());
++                    movie.setDescription(textMoviesDescription.getText());
++                    try {
++                        movie.setReleaseDate(Calendar.getInstance());
++                        movie.getReleaseDate().setTime(
++                                DateFormat.getDateInstance(DateFormat.LONG)
++                                .parse(textMoviesDate.getText()));
+                             logger.debug(&quot;Datum: &quot; + movie.getReleaseDate());
+-                        } catch (ParseException e1) {
+-                            // TODO Auto-generated catch block
+-                            //Hier muss noch was gemacht werden, das Datum konnte nicht geparst werden
+-                            e1.printStackTrace();
+-                            return;
+-                        }
+-                        movie.setRuntime(Integer.parseInt(textMoviesRuntime
+-                                .getText()));
++                    } catch (ParseException e1) {
++                        // TODO Auto-generated catch block
++                        //Hier muss noch was gemacht werden, das Datum konnte nicht geparst werden
++                        e1.printStackTrace();
++                        return;
+                     }
++
++                    try{
++                    movie.setRuntime(Integer.parseInt(textMoviesRuntime
++                            .getText()));
++                    }
++                    catch(Exception ex){
++                        ex.printStackTrace();
++                        showMsg(l.getString(&quot;movies.groupdetail.savebutton.warn.noname.msg&quot;),
++                                l.getString(&quot;movies.groupdetail.savebutton.warn.noname.title&quot;),
++                                SWT.ICON_WARNING | SWT.YES);
++                        return;
++                    }
+                     /**
+                      * @todo eine Exception bekommen wieder leider NOCH nicht
+                      *       mit d.h. es muss noch ein r&#252;ckgabewert kommen oder
+@@ -1365,9 +1342,7 @@
+                         statusLine
+                                 .setStatus(
+                                         1,
+-                                        l
+-                                                .getString(&quot;movies.groupdetail.savebutton.newok&quot;));
+-
++                                        l.getString(&quot;movies.groupdetail.savebutton.newok&quot;));
+                     } catch (DataBaseException e) {
+                         if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
+                             //Fehler beim Speichern des Objectes
+@@ -1375,11 +1350,9 @@
+                             statusLine
+                                     .setStatus(
+                                             3,
+-                                            l
+-                                                    .getString(&quot;movies.groupdetail.savebutton.errorsave&quot;));
++                                            l.getString(&quot;movies.groupdetail.savebutton.errorsave&quot;));
+                             showMsg(
+-                                    l
+-                                            .getString(&quot;movies.groupdetail.savebutton.errorsave&quot;),
++                                    l.getString(&quot;movies.groupdetail.savebutton.errorsave&quot;),
+                                     &quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
+ 
+                         } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
+@@ -1387,11 +1360,9 @@
+                             statusLine
+                                     .setStatus(
+                                             3,
+-                                            l
+-                                                    .getString(&quot;movies.groupdetail.savebutton.errordb&quot;));
++                                            l.getString(&quot;movies.groupdetail.savebutton.errordb&quot;));
+                             showMsg(
+-                                    l
+-                                            .getString(&quot;movies.groupdetail.savebutton.errordb&quot;),
++                                    l.getString(&quot;movies.groupdetail.savebutton.errordb&quot;),
+                                     &quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
+ 
+                         } else {
+@@ -1431,7 +1402,9 @@
+      */
+     private void insertIntoMoviesOverviewTable(Movie movie2) {
+         // TODO Auto-generated method stub
+-
++        TableItem item = new TableItem(tableMoviesOverview,SWT.NONE);
++        item.setText(new String [] {movie2.getMovieId()+ &quot; &quot;,movie2.getTitle()
++                + &quot; &quot;,Util.getTextByDate(movie2.getReleaseDate())});
+     }
+ 
+     /**
+@@ -1442,6 +1415,7 @@
+         textMoviesTitle.setEditable(false);
+         textMoviesDescription.setEditable(false);
+         textMoviesSearch.setEditable(true);
++        textMoviesRuntime.setEditable(false);
+         buttonMoviesCancel.setEnabled(false);
+         buttonMoviesSave.setEnabled(false);
+         buttonMoviesNew.setEnabled(true);
+@@ -1455,7 +1429,7 @@
+         buttonMoviesDeleteGenres.setEnabled(false);
+         buttonMoviesAddImages.setEnabled(false);
+         buttonMoviesDeleteImages.setEnabled(false);
+-        buttonMoviesChangeDate.setEnabled(true);
++        buttonMoviesChangeDate.setEnabled(false);
+     }
+ 
+     /**
+@@ -1513,7 +1487,7 @@
+         textMoviesID.setText(object.getMovieId() + &quot;&quot;);
+         textMoviesTitle.setText(object.getTitle());
+         textMoviesDate.setText(Util.getTextByDate(object.getReleaseDate(), &quot;dd.MM.YYYY&quot;));
+-
++        textMoviesRuntime.setText(Integer.toString(object.getRuntime()));
+         textMoviesDescription.setText(object.getDescription());
+ 
+         TableItem item;
+@@ -1542,8 +1516,7 @@
+             Genre o = (Genre) object.getGenres().get(i);
+             logger.debug(i + &quot; &quot; + o);
+             item = new TableItem(tableMoviesGenresDetail, SWT.NONE);
+-            item
+-                    .setText(new String[] { o.getGenreId() + &quot;&quot;,
++            item.setText(new String[] { o.getGenreId() + &quot;&quot;,
+                             o.getName() + &quot;&quot; });
+ 
+             //item.setText(new String[] {o.getGenreId() 
+@@ -1553,7 +1526,6 @@
+         //Fill Imagetable
+         tableMoviesImagesDetail.removeAll();
+         logger.debug(&quot;Anzahl der Bilder: &quot; + object.getImages().size());
+-        System.out.println(object.getImages().size());
+         for (int i = 0; i &lt; object.getImages().size(); i++) {
+             Image o = (Image) object.getImages().get(i);
+             item = new TableItem(tableMoviesImagesDetail, SWT.NONE);
+@@ -1569,22 +1541,4 @@
+         mode_movie = ManagementGui.MODE_VIEW;
+ 
+     }
+-
+-    private void openDialogDescription() {
+-        // TODO Auto-generated method stub
+-        Shell dialogShell = new Shell();
+-        //Dialog dialogDescription=new Dialog(dialogShell);
+-        //dialogDescription.open();
+-        Movie film = new Movie();
+-        film.setActors(new ArrayList());
+-        film.setImages(new ArrayList());
+-        film.setGenres(new ArrayList());
+-        film.setDirector(new ArrayList());
+-
+-        DialogMovie test = new DialogMovie(dialogShell, 1, l.getLocale(), film,
+-                DialogMovie.TYPE_ACTOR);
+-        test.open();
+-
+-    }
+-
+ }
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-12-03 10:59:29 UTC (rev 200)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-12-03 13:01:28 UTC (rev 201)
+@@ -37,7 +37,7 @@
+ movies.button.changedate =&#196;ndern
+ 
+ movies.groupdetail.savebutton.warn.noname.title =Datensatz speichern
+-movies.groupdetail.savebutton.warn.noname.msg =Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie eine volst&#228;ndigen Namen an
++movies.groupdetail.savebutton.warn.noname.msg =Der Datensatz kann nicht gespeichert werden. \n Bitte &#252;berpr&#252;fen Sie auf Korrektheit und Vollst&#228;ndigkeit
+ movies.groupdetail.savebutton.newok =Speichern des neuen Films erfolgreich.
+ movies.groupdetail.savebutton.editok =&#196;ndern des Films erfolgreich.
+ movies.groupdetail.savebutton.errorsave =Datenbankfehler beim Speichern.
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-03 10:59:29 UTC (rev 200)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-03 13:01:28 UTC (rev 201)
+@@ -354,10 +354,8 @@
+                     HibernateUtil.closeSession();
+                 } catch (HibernateException e1) {
+                     
+-                    logger
+-                            .error(
+-                                    &quot;deleteObject(Object) - Could not Close the Session&quot;,
+-                                    e1);
++                    logger.error(&quot;deleteObject(Object) - Could not Close the Session&quot;,
++                                  e1);
+                     
+                 }
+             }
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000201.html">[Provirent-svn-commit] r200 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+	<LI>Next message: <A HREF="000203.html">[Provirent-svn-commit] r202 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui objects persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#202">[ date ]</a>
+              <a href="thread.html#202">[ thread ]</a>
+              <a href="subject.html#202">[ subject ]</a>
+              <a href="author.html#202">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

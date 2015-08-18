@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r200 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r200%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200412031059.iB3AxUXe029735%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000200.html">
+   <LINK REL="Next"  HREF="000202.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r200 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r200%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200412031059.iB3AxUXe029735%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r200 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Fri Dec  3 11:59:30 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000200.html">[Provirent-svn-commit] r199 - in project_src/provirent_hibernate/src/de/hsharz/provirent: . management/gui
+</A></li>
+        <LI>Next message: <A HREF="000202.html">[Provirent-svn-commit] r201 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#201">[ date ]</a>
+              <a href="thread.html#201">[ thread ]</a>
+              <a href="subject.html#201">[ subject ]</a>
+              <a href="author.html#201">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-12-03 11:59:29 +0100 (Fri, 03 Dec 2004)
+New Revision: 200
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java	2004-12-02 19:57:51 UTC (rev 199)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java	2004-12-03 10:59:29 UTC (rev 200)
+@@ -505,12 +505,12 @@
+ 
+                         public void dateChanged(SWTCalendarEvent calendarEvent) {
+                             String date;
+-                            date = Util.getTextByDate(calendarEvent.getCalendar(), &quot;dd.MM.YYYY&quot;);
++                            date = Util.getTextByDate(calendarEvent.getCalendar(), &quot;dd.MM.yyyy&quot;);
+                             textBirthday.setText(date);                     
+                         }
+                     });
+                     if (textBirthday.getText() != null &amp;&amp; textBirthday.getText().length() &gt; 0) {
+-                        Date date = Util.getDateByText(textBirthday.getText(), &quot;dd.MM.YYYY&quot;).getTime();
++                        Date date = Util.getDateByText(textBirthday.getText(), &quot;dd.MM.yyyy&quot;).getTime();
+                         cal.setDate(date);
+                     }
+                     cal.open();                                                          
+@@ -736,12 +736,12 @@
+ 
+                         public void dateChanged(SWTCalendarEvent calendarEvent) {
+                             String date = null;
+-                            date = Util.getTextByDate(calendarEvent.getCalendar(), &quot;dd.MM.YYYY&quot;);
++                            date = Util.getTextByDate(calendarEvent.getCalendar(), &quot;dd.MM.yyyy&quot;);
+                             textRegistrationDate.setText(date);                          
+                         }
+                     });
+                     if (textRegistrationDate.getText() != null &amp;&amp; textRegistrationDate.getText().length() &gt; 0) {
+-                        Date date = Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.YYYY&quot;).getTime();
++                        Date date = Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.yyyy&quot;).getTime();
+                         cal.setDate(date);
+                     }
+                     cal.open();                                                          
+@@ -907,7 +907,7 @@
+ 	                o.setUserName(textUserName.getText());
+ 	                Date regdate = null;
+ 	                if (textRegistrationDate.getText() != null) {
+-	                    regdate = Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.YYYY&quot;).getTime();
++	                    regdate = Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.yyyy&quot;).getTime();
+ 	                }
+ 	                o.setDayOfRegistration(regdate);
+ 	                o.setUserPassword(textPassword.getText());
+@@ -926,7 +926,7 @@
+ 	                p.setEmailAddress(textEmail.getText());
+ 	                Calendar birthday = null;
+ 	                if (textBirthday.getText() != &quot;&quot;) {
+-	                    birthday = Util.getDateByText(textBirthday.getText(), &quot;dd.MM.YYYY&quot;);
++	                    birthday = Util.getDateByText(textBirthday.getText(), &quot;dd.MM.yyyy&quot;);
+ 	                }
+ 	                p.setDayOfBirth(birthday);
+ 	                o.setPerson(p);
+@@ -1052,7 +1052,7 @@
+     	                o.setUserName(textUserName.getText());
+     	                Date regdate = null;
+     	                if (textRegistrationDate.getText() != &quot;&quot;) {
+-    	                    regdate = Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.YYYY&quot;).getTime();
++    	                    regdate = Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.yyyy&quot;).getTime();
+     	                }   	          
+     	                o.setDayOfRegistration(regdate);
+     	                o.setUserPassword(textPassword.getText());
+@@ -1071,7 +1071,7 @@
+     	                p.setEmailAddress(textEmail.getText());
+     	                Calendar birthday = null;
+     	                if (textBirthday.getText() != &quot;&quot;) {
+-    	                    birthday = Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.YYYY&quot;);
++    	                    birthday = Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.yyyy&quot;);
+     	                }
+     	                p.setDayOfBirth(birthday);
+     	                o.setPerson(p);
+@@ -1114,15 +1114,17 @@
+                 } else if (mode_Customer == ManagementGui.MODE_EDIT) {
+                     try {
+                         
+-                        Customer o = localCustomer;
+-    	                Person p = o.getPerson();
+-    	                o.setCustomerId(new Integer(Integer.parseInt(textCustomerID.getText())));
+-    	                o.setUserName(textUserName.getText());
+-    	                o.setDayOfRegistration(Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.YYYY&quot;).getTime());
+-    	                o.setUserPassword(textPassword.getText());
+-    	                o.setHiddenQuestion(textQuestion.getText());
+-    	                o.setHiddenAnswer(textAnswer.getText());
+-    	                p.setPersonId(localCustomer.getPerson().getPersonId());
++                        //Customer o = localCustomer;
++    	                //Person p = o.getPerson();
++    	                
++    	                //o.setCustomerId(new Integer(Integer.parseInt(textCustomerID.getText())));
++    	                localCustomer.setUserName(textUserName.getText());
++    	                localCustomer.setDayOfRegistration(Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.yyyy&quot;).getTime());
++    	                localCustomer.setUserPassword(textPassword.getText());
++    	                localCustomer.setHiddenQuestion(textQuestion.getText());
++    	                localCustomer.setHiddenAnswer(textAnswer.getText());
++    	                //p.setPersonId(localCustomer.getPerson().getPersonId());
++    	                /*
+     	                p.setLastName(textLastName.getText());
+     	                p.setFirstName(textFirstName.getText());
+     	                p.setMiddleName(textMiddleName.getText());
+@@ -1134,12 +1136,12 @@
+     	                p.setCity(textCity.getText());
+     	                p.setCountry(textCountry.getText());
+     	                p.setEmailAddress(textEmail.getText());
+-    	                p.setDayOfBirth(Util.getDateByText(textBirthday.getText(), &quot;dd.MM.YYYY&quot;));
++    	                p.setDayOfBirth(Util.getDateByText(textBirthday.getText(), &quot;dd.MM.yyyy&quot;));
+     	                o.setPerson(p);
+-	                
++	                */
+ 	                    //object speichern
+ 	                    // Fehlerbehandlung
+-	                    Database.saveObject(o);
++	                    Database.saveObject(localCustomer);
+ 	                    //&#220;bersichtstabelle aktualisieren
+ 	                    refreshCustomerTable(textCustomerSearch.getText());
+ 	                    
+@@ -1239,13 +1241,13 @@
+         TableItem item = new TableItem(tableCustomer, SWT.NONE);
+         String birthday = &quot;&quot;;
+         if (customer.getPerson().getDayOfBirth() != null) {
+-            birthday = Util.getTextByDate(customer.getPerson().getDayOfBirth(), &quot;dd.MM.YYYY&quot;);
++            birthday = Util.getTextByDate(customer.getPerson().getDayOfBirth(), &quot;dd.MM.yyyy&quot;);
+         }
+         String regdate = &quot;&quot;;
+         if (customer.getDayOfRegistration() != null) {
+             Calendar cal = Calendar.getInstance();
+             cal.setTime(customer.getDayOfRegistration());
+-            birthday = Util.getTextByDate(cal, &quot;dd.MM.YYYY&quot;);            
++            birthday = Util.getTextByDate(cal, &quot;dd.MM.yyyy&quot;);            
+         }
+         item.setText(new String[] { customer.getCustomerId() + &quot;&quot;, 
+                 					customer.getUserName(), 
+@@ -1294,14 +1296,14 @@
+             if (o.getPerson().getDayOfBirth() == null) {
+                 date = &quot;&quot;;
+             } else {
+-                date = Util.getTextByDate(o.getPerson().getDayOfBirth(), &quot;dd.MM.YYYY&quot;);
++                date = Util.getTextByDate(o.getPerson().getDayOfBirth(), &quot;dd.MM.yyyy&quot;);
+             }
+             item.setText(new String[] { o.getCustomerId() + &quot;&quot;, 
+                     					o.getUserName(), 
+                     					o.getPerson().getLastName(),
+                     					o.getPerson().getFirstName(),
+                     					date,
+-                    					Util.getTextByDate(regdate, &quot;dd.MM.YYYY&quot;),              					
++                    					Util.getTextByDate(regdate, &quot;dd.MM.yyyy&quot;),              					
+                     					});
+ 
+         }
+@@ -1553,7 +1555,7 @@
+             if (object.getPerson().getDayOfBirth() == null) {
+                 date = &quot;&quot;;
+             } else {
+-                date = Util.getTextByDate(object.getPerson().getDayOfBirth(), &quot;dd.MM.YYYY&quot;);
++                date = Util.getTextByDate(object.getPerson().getDayOfBirth(), &quot;dd.MM.yyyy&quot;);
+             }
+             textBirthday.setText(date);
+             if (object.getDayOfRegistration() == null) {
+@@ -1561,7 +1563,7 @@
+             } else {
+                 Calendar cal = Calendar.getInstance();
+                 cal.setTime(object.getDayOfRegistration());
+-                regdate = Util.getTextByDate(cal, &quot;dd.MM.YYYY&quot;);
++                regdate = Util.getTextByDate(cal, &quot;dd.MM.yyyy&quot;);
+             }
+             textRegistrationDate.setText(regdate);
+ 	        
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000200.html">[Provirent-svn-commit] r199 - in project_src/provirent_hibernate/src/de/hsharz/provirent: . management/gui
+</A></li>
+	<LI>Next message: <A HREF="000202.html">[Provirent-svn-commit] r201 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#201">[ date ]</a>
+              <a href="thread.html#201">[ thread ]</a>
+              <a href="subject.html#201">[ subject ]</a>
+              <a href="author.html#201">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

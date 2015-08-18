@@ -1,0 +1,336 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r299 - docu/latex
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r299%20-%20docu/latex&In-Reply-To=%3C200512171850.jBHIoi8s025681%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000300.html">
+   <LINK REL="Next"  HREF="000302.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r299 - docu/latex</H1>
+    <B>pschneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r299%20-%20docu/latex&In-Reply-To=%3C200512171850.jBHIoi8s025681%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r299 - docu/latex">pschneider at berlios.de
+       </A><BR>
+    <I>Sat Dec 17 19:50:44 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000300.html">[Provirent-svn-commit] r298 - docu/latex/images
+</A></li>
+        <LI>Next message: <A HREF="000302.html">[Provirent-svn-commit] r300 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#301">[ date ]</a>
+              <a href="thread.html#301">[ thread ]</a>
+              <a href="subject.html#301">[ subject ]</a>
+              <a href="author.html#301">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2005-12-17 19:50:41 +0100 (Sat, 17 Dec 2005)
+New Revision: 299
+
+Modified:
+   docu/latex/1-Einfuehrung.tex
+   docu/latex/3-4-GUIJava.tex
+   docu/latex/4-3-GUIJava.tex
+   docu/latex/Provirent-Doku.bib
+   docu/latex/Provirent-Doku.tex
+Log:
+Remo sein Zeug hinzugef?\195?\188gt.
+Selber bitte kontrollieren
+
+Modified: docu/latex/1-Einfuehrung.tex
+===================================================================
+--- docu/latex/1-Einfuehrung.tex	2005-12-17 15:58:09 UTC (rev 298)
++++ docu/latex/1-Einfuehrung.tex	2005-12-17 18:50:41 UTC (rev 299)
+@@ -33,7 +33,7 @@
+ 
+ \ref{sec:tech-Benutzerschnittstellen} \vpagerefrange{sec:tech-Benutzerschnittstellen}{sec:tech-Benutzerschnittstellen-ende};
+ 
+-\ref{sec:impl-Entwicklungsumgebung}  \vpagerefrange{sec:impl-Entwicklungsumgebung}{sec:impl-Entwicklungsumgebung-ende};
++%\ref{sec:impl-Entwicklungsumgebung}  \vpagerefrange{sec:impl-Entwicklungsumgebung}{sec:impl-Entwicklungsumgebung-ende};
+ 
+ \ref{sec:impl-Benutzerschnittstellen}  \vpagerefrange{sec:impl-Benutzerschnittstellen}{sec:impl-Benutzerschnittstellen-ende}
+ 
+
+Modified: docu/latex/3-4-GUIJava.tex
+===================================================================
+--- docu/latex/3-4-GUIJava.tex	2005-12-17 15:58:09 UTC (rev 298)
++++ docu/latex/3-4-GUIJava.tex	2005-12-17 18:50:41 UTC (rev 299)
+@@ -56,7 +56,7 @@
+ Aufgrund der steigenden Rechenleistung der PCs und der im JDK 1.3 verbesserten Swing-Grafikbibliothek konnten jedoch viele der Probleme behoben werden. \citep{Krueger2003}
+ 
+ 
+-\subsection{Standard Widget Toolkit und JFace}
++\subsection{Standard Widget Toolkit und JFace}\label{sec:StandardWidgetToolkitundJFace}
+ SWT ist ebenfalls eine Grafikbibliothek f&#252;r Java und steht f&#252;r Standard Widget Toolkit. Im Gegensatz zu den anderen genannten Grafikbibliotheken ist SWT von IBM und nicht von SUN entwickelt wurden. SWT wurde im Jahr 2001 f&#252;r die Entwicklungsumgebung Eclipse entwickelt. Im Gegensatz zu Swing verwendet SWT die nativen grafischen Elemente des Betriebssystems und schlie&#223;t sich damit AWT an.\\
+ Des Weiteren ist SWT im Gegensatz zu AWT und Swing nicht als plattformunabh&#228;ngig zu betrachten. Dies resultiert daraus, das  SWT die entsprechende Bibliothek f&#252;r den betriebssystemabh&#228;ngigen Code f&#252;r die GUI-Elemente zur Laufzeit ben&#246;tigt. Zus&#228;tzlich werden die  Java-Klassen der SWT-Bibliothek ben&#246;tigt, die auf die betriebsystemabh&#228;nige Bibliothek zugreifen.\\
+ Leider leidet SWT aufgrund des eben beschriebenen Sachverhalts auf einigen nicht Windows-Plattformen an Effizienzproblemen, da bestimmte Funktionalit&#228;ten eventuell nicht verf&#252;gbar sind und dadurch emuliert werden m&#252;ssen.\\
+
+Modified: docu/latex/4-3-GUIJava.tex
+===================================================================
+--- docu/latex/4-3-GUIJava.tex	2005-12-17 15:58:09 UTC (rev 298)
++++ docu/latex/4-3-GUIJava.tex	2005-12-17 18:50:41 UTC (rev 299)
+@@ -1,23 +1,173 @@
+ \section{grafischen Benutzerschnittstellen mit SWT} \label{sec:impl-Benutzerschnittstellen}
++Dieses Kapitel beginnt mit der Vorstellung allgemeiner Komponenten, die w&#228;hrend der Implementierung verwendet wurden. Danach wird auf den Aufbau der grafischen Benutzeroberfl&#228;che und dazu auf einzelne Klassen eingegangen, um einen &#220;berblick &#252;ber die gesamte Implementierung zu vermitteln. Aufgrund dessen das dieses Projekt noch nicht beendet wurde, sind nicht alle hier erw&#228;hnten Funktionalit&#228;ten bereits vollst&#228;ndig realisiert.
+ 
++\subsection{Log4j} \label{sec:Log4j}
++Log4j\footnote{\url{org.apache.log4j}} wurde w&#228;hrend der Implementierung der einzelnen Klassen genutzt um evtl. Debug- und Fehlermeldungen &#252;ber eine gemeinsame Schnittstelle zu verwalten. Dabei unterst&#252;tzt Log4j Hierarchien, das bedeutet man kann Logger-Ausgaben einer bestimmten Hierarchie zuordnen und dadurch entscheiden welche Ausgaben man im Moment ben&#246;tigt.\\
++Aufgrund dieser Debug- und Fehlermeldungen konnte das Programmverhalten bei Bedienungsfehlern entsprechend angepasst werden. Des Weiteren konnte auf diese Weise der Programmablauf verfolgt und evtl. Fehler in der Programmierung beseitigt werden.
+ 
++\subsection{PropertyResourceBundle-Klasse} \label{sec:PropertyResourceBundleKlasse}
++Die PropertyResourceBundle-Klasse befindet sich java.util package. Um die M&#246;glichkeit zu haben vor und w&#228;hrend des Programmablaufs die Sprache im Programm zu &#228;ndern, sind, anstatt des eigentlichen Namen von Buttons oder der Inhalt von Hilfetexten, entsprechende Bezeichner definiert wurden. Diese Bezeichner befinden sich mit dem zugeh&#246;rigen Inhalten in verschiedenen Textdateien. Mit Hilfe der PropertyResourceBundle-Klasse k&#246;nnen nun die entsprechenden Dateien ausgelesen werden und ersetzen die definierten Bezeichner mit dem eigentlichen Inhalt. Dazu wird die Datei ausgelesen und ein entsprechendes ResourceBundle erzeugt, &#252;ber den man Zugriff auf die definierten Bezeichner und deren Inhalt hat. Dadurch ist es m&#246;glich verschiedene Sprachen zu unterst&#252;tzen, indem man f&#252;r jede Sprache entsprechende Dateien erzeugt bei denen die selben Bezeichner definiert sind, der Inhalt aber in der entsprechenden Sprache vorliegt.
+ 
++\subsection{Locale-Klasse} \label{sec:LocaleKlasse}
++Mit Hilfe der Locale-Klasse ( java.util package ) ist man in der Lage sich an bestimmte geographische, politische oder kulturelle Eigenschaften bestimmter Gebiete anzupassen. Im Zusammenhang mit diesem Projekt wird Locale dazu verwendet sich der entsprechenden Zeitzone und, wenn vom Programm unterst&#252;tzt, die dortige Sprache als Standard-Sprache zu &#252;bernehmen. Das Einstellen der Region,Sprache,etc. muss aber durch den Benutzer erfolgen.
+ 
++\subsection{Aufbau der grafischen Benutzeroberfl&#228;che} \label{sec:AufbauDerGrafischenBenutzeroberflaeche}
++F&#252;r die grafische Benutzeroberfl&#228;che wurde auf die SWT-Bibliothek zur&#252;ckgegriffen. Die Entwicklungsumgebung Eclipse baut auch auf SWT auf. Aus diesem Grund stand die SWT-Bibliothek ohne weiteren Aufwand zur Verf&#252;gung. Auf die einzelnen Klassen von SWT wird hier nicht eingegangen, da sich der Umfang des Dokumentes erheblich erh&#246;ht. Alle verwendeten grafischen Komponenten f&#252;r Fenster, Buttons, Textfelder, etc. wurden aus der SWT-Bibliothek verwendet. Genauere Informationen k&#246;nnen &#252;ber die API abgefragt werden.\\
++Die grafische Oberfl&#228;che baut sich aus einem Hauptfenster ( mit Men&#252;leiste ) auf, das es erlaubt zwischen den einzelnen Unterfenster ( Men&#252;punkten ) zu navigieren und &#252;ber eine Statusleiste verf&#252;gt, die entsprechende Meldungen bei Fehlern oder erfolgreichen Abschlie&#223;en von implementierten Aktionen informiert. Die Untermen&#252;s werden &#252;ber das Hauptfenster aufgerufen, erhalten gleichzeitig den Fokus und werden damit dem Benutzer angezeigt. Um zwischen den verschiedenen Untermen&#252;s zu navigieren kann zum einen das entsprechende Men&#252; aufgerufen werden und zum anderen wird jedes ge&#246;ffnete Men&#252; als Reiter dargestellt. &#220;ber diesen Reiter kann der Fokus auf das gew&#252;nschte Men&#252; gegeben werden. In einzelnen Untermen&#252;s werden f&#252;r kritische Eingaben entsprechende Dialogboxen verwendet, die die Bedienung vereinfachen und verhindern das ein Benutzer falsche Angaben machen kann.\\
++Der oben vorgestellte Aufbau wird durch folgenden Klassen realisiert:\\
++\begin{enumerate}
++	\item SWTResourceManager ( realisiert das korrekte Freigeben der grafischen Objekte, siehe \vref{sec:StandardWidgetToolkitundJFace})
++	\item ManagementGui ( bildet das Hauptfenster, mit Men&#252; und Statusleiste / ist die zentrale Verwaltungsstelle der Untermen&#252;s)
++	
++		\begin{enumerate}
++			\item CompositeActors ( Untermen&#252; f&#252;r Schauspieler )
++			\item CompositeCustomer ( Untermen&#252; f&#252;r Kunden )
++			\item CompositeDirectors ( Untermen&#252; f&#252;r Regisseure )
++			\item CompositeDVD ( Untermen&#252; f&#252;r vorhandene DVDs / Lagerbestand,Status )
++				\begin{enumerate}
++					\item DialogDVD ( Dialoge f&#252;r einfachere Bedienung des DVD-Men&#252;s )
++				\end{enumerate}
++			\item CompositeFormate ( Untermen&#252; f&#252;r Audio- und Videoformate )
++			\item CompositeGenre ( Untermen&#252; f&#252;r Genre )
++			\item CompositeImage ( Untermen&#252; f&#252;r Cover,Poster und Bilder zu Filmen)
++			\item CompositeLanguage ( Untermen&#252; f&#252;r unterst&#252;tzte Untertitel und Sprachen )
++			\item CompositeMovie ( Untermen&#252; f&#252;r Filme )
++				\begin{enumerate}
++					\item DialogDVD ( Dialoge f&#252;r einfachere Bedienung des DVD-Men&#252;s )
++				\end{enumerate}
++			\item CompositeOrder ( Untermen&#252; f&#252;r Bestellungen )
++			\item CompositePayment ( Untermen&#252; f&#252;r Rechnungen )
++			\item CompositeStatus ( Untermen&#252; f&#252;r den Zustand von DVDs )
++			
++		\end{enumerate}
++	\item StatusLineStyledText ( definiert das Aussehen der Statusleiste bei Fehler oder anderen Ereignissen )
++	\item SWTCalendarDialog ( bietet eine grafische Kalenderoberfl&#228;che, zur einfacheren Eingabe von Datum- und Zeitangaben )
++	\item ColorDef ( definiert Farben f&#252;r festgelegte Ereignisse )
++\end{enumerate}
+ 
++\subsection{SWTResourceManager-Klasse} \label{sec:SWTResourceManagerKlasse}
++Diese Klasse ist verantwortlich daf&#252;r, das grafische Objekte ( Fenster, Buttons, etc. ) wieder freigegeben werden. Dazu wird bei einem nicht mehr verwendeten Objekt die dispose()-Methode aufgerufen und gibt somit das Objekt und den damit verbundenen Speicherplatz wieder frei.
+ 
++\subsection{ManagementGui-Klasse} \label{sec:ManagementGuiKlasse}
++Die ManagementGui-Klasse erzeugt das Hauptfenster indem die anderen Untermen&#252;s angezeigt werden. Des Weiteren wird eine Men&#252;leiste und eine Statusleiste implementiert.\\
++Dazu wird als Erstes das Hauptfenster erzeugt, der Titel des Fensters &#252;ber Locale l&#160;ermittelt und an das Fenster &#252;bergeben. Die Gr&#246;&#223;e des Fensters ist in Konstanten festgelegt, da sich aufgrund von Bildschirmeinstellungen die jeweilige Aufl&#246;sung sich von System zu System unterscheiden kann.
++\begin{lstlisting}[language=Java, showstringspaces=false]
++display&#160;=&#160;Display.getDefault();
++shell&#160;=&#160;new&#160;Shell(display);
++shell.setText(l.getString(&quot;mainwindow.title&quot;));
++//set&#160;size
++shell.setSize(MAIN_WINDOW_WIDTH,&#160;MAIN_WINDOW_HEIGHT);
++shell.setLocation(MAIN_WINDOW_X,&#160;MAIN_WINDOW_Y);
++\end{lstlisting}
+ 
++Anschlie&#223;end wird die Men&#252;leiste mit den entsprechenden Men&#252;punkten erzeugt und initialisiert.
++\begin{lstlisting}[language=Java, showstringspaces=false]
++rootMenu&#160;=&#160;new&#160;Menu(shell,&#160;SWT.BAR);
++shell.setMenuBar(rootMenu);
++//init&#160;the&#160;other&#160;menu's
++initFileMenu();
++initViewMenu();
++initHelpMenu();
++\end{lstlisting}
+ 
++Das \texttt{ViewMenu} beinhaltet alle implementierten und ausw&#228;hlbaren Untermen&#252;s. Die Bezeichnung der einzelnen Men&#252;punkte ist wieder in Locale \texttt{l} festgelegt. Nachdem der Men&#252;punkt erzeugt wurde, werden die einzelnen Untermen&#252;punkte erzeugt und festgelegt ob sie bereits nach dem Start aktiv sein sollen. Der folgende Quellcodeabschnitt zeigt diese Vorgehensweise mit dem Men&#252;punkt \texttt{menu.view} und dem Untermen&#252;
++\texttt{menu.view.format}.
+ 
++\begin{lstlisting}[language=Java, showstringspaces=false]
++viewMenuItem&#160;=&#160;new&#160;MenuItem(rootMenu,&#160;SWT.CASCADE);
++viewMenuItem.setText(l.getString(&quot;menu.view&quot;));
++viewMenu&#160;=&#160;new&#160;Menu(viewMenuItem);
++viewMenuItem.setMenu(viewMenu);
++viewVideoFormatMenuItem&#160;=&#160;new&#160;MenuItem(viewMenu,&#160;SWT.CHECK);
++viewVideoFormatMenuItem.setText(l.getString(&quot;menu.&#160;view.format&quot;));
++viewVideoFormatMenuItem.setSelection(false);
++\end{lstlisting}
+ 
++Darauf wird dem Untermen&#252;punkt ein \texttt{SelectionListener} zugeordnet der die entsprechende Behandlung festlegt, wenn der Untermen&#252;punkt ausgew&#228;hlt wurde. Bevor das Hauptfenster angezeigt werden kann, wird vorher noch das Layout des Fensters festgelegt und die Statusleiste initialisiert.
+ 
++\begin{lstlisting}[language=Java, showstringspaces=false]
++//init&#160;the&#160;MainComposite
++compositeMain&#160;=&#160;new&#160;Composite(compositeRoot,&#160;SWT.EMBEDDED);
++GridLayout&#160;composite3Layout&#160;=&#160;new&#160;GridLayout();
++...
++//StatusLine
++initStatusLine();
++\end{lstlisting}
+ 
+ 
++Das fertige Hauptfenster sieht wie in \vref{fig:fensterstart} zu sehen aus.
++\begin{figure}[htbp]
++	\centering
++	\includegraphics[scale=0.5]{images/Fenster_Start}
++	\caption{Hauptfenster der Management Anwendung}
++	\label{fig:fensterstart}
++\end{figure}
+ 
+ 
++\subsection{CompositeDVD-Klasse} \label{sec:CompositeDVDKlasse}
++Die CompositeDVD-Klasse legt das Aussehen und Verhalten des DVD-Men&#252;punktes fest. Wird der DVD-Men&#252;punkt aufgerufen, sorgt die ManagementGui-Klasse daf&#252;r das das DVD-Fenster den Fokus erh&#228;lt und f&#252;gt den DVD-Reiter zu den bereits vorhandenen Reitern hinzu. Die Erzeugung des DVD-Fensters ist &#228;hnlich des Hauptfensters. Der Unterschied besteht darin, das zus&#228;tzlich die ganzen Eigenschaften die ein DVD-Objekt besitzt mit Hilfe des Men&#252;punktes bearbeitet werden k&#246;nnen m&#252;ssen. Dazu wird eine Reihe von Buttons, Labels, Tables, Comboboxen, etc.. ben&#246;tigt.\\
++Die grafische Oberfl&#228;che wird im DVD-Fenster in eine linke und rechte H&#228;lfte unterteilt. In der linken H&#228;lfte werden alle DVD-Objekte angezeigt, die sich in der Datenbank befinden. Des Weiteren befindet sich auf der linken Seite ein Suchfeld um die evtl. Massen an DVD-Objekten einfacher zu handhaben. Auf der rechten Seite des DVD-Fensters befindet sich die Editor-Umgebung. Mit Hilfe der verschiedenen Textfelder, Buttons, Comboboxen im Editor k&#246;nnen nun existierende DVDs bearbeitet und neue DVDs in die Datenbank eingef&#252;gt werden.
++\begin{lstlisting}[language=Java, showstringspaces=false]
++if&#160;(mode_dvd&#160;==&#160;ManagementGui.MODE_ADD)&#160;&#160;&#160;{
++  Database.saveObject(localdvd);
++  ...
++}&#160;else&#160;if&#160;(mode_dvd&#160;==&#160;ManagementGui.MODE_EDIT)&#160;&#160;&#160;{
++  Database.updateObject(localdvd);
++}
++\end{lstlisting}
+ 
++Das DVD-Fenster sieht wie in \vref{fig:dvdfenster} aus:
++\begin{figure}[htbp]
++	\centering
++	\includegraphics[scale=0.5]{images/Fenster_DVD}
++	\caption{DVD-Fenster}
++	\label{fig:dvdfenster}
++\end{figure}
+ 
++Wie oben beschrieben, werden auf der linken Seite des Fenster die in der Datenbank vorhandenen Objekte angezeigt und darunter befindet sich das Suchfeld. Auf der rechten Seiten befinden sich mehrere Buttons, Textfelder, etc. die je nach gew&#252;nschter T&#228;tigkeit aktiviert oder deaktivert sind. Auf diese Art und Weise lassen sich Benutzerfehler verhindern, da je nach gew&#252;nschter T&#228;tigkeit nur die in diesem Zustand m&#246;glichen Aktionen ( Buttons,Textfelder,etc. ) funktionst&#252;chtig sind.\\
++Wird das DVD-Fenster geschlossen wechselt der Fokus zum n&#228;chsten vorhandenen Reiter, ansonsten ist nur das Hauptfenster sichtbar.\\
++Die anderen Untermen&#252;s sind je nach Funktionalit&#228;t komplexer oder weniger komplexer aufgebaut. Trotzdem sind sie im Gro&#223;en und Ganzen identisch zum DVD-Fenster. Aus diesem Grund werden sie hier nicht weiter behandelt.
+ 
++\subsection{DialogDVD-Klasse} \label{sec:DialogDVDKlasse}
++Zur einfacheren Handhabung wurden f&#252;r bestimmte Felder, die zum Beispiel mehrere Werte erlauben oder von Benutzern unterschiedlich eingegeben werden k&#246;nnten, Dialogfenster erstellt, um die Eingabe durch den Benutzer einheitlich zu halten. Die DialiogDVD-Klasse realisiert mehrere Dialogfenster unter anderem f&#252;r die Auswahl der Sprache und Untertitel die eine DVD unterst&#252;tzt. Wie der folgenden Quellcodeauschnitt zeigt, wird dazu der gew&#252;nschte Dialogtyp &#252;bergeben und dementsprechend behandelt.
++\begin{lstlisting}[language=Java, showstringspaces=false]
++if&#160;(type&#160;==&#160;TYPE_LANGUAGE)&#160;{
++  groupDialogDescription.setText(l.getString(&quot;dvd.dialog.title.language&quot;));
++}&#160;else&#160;if&#160;(type&#160;==&#160;TYPE_SUBTITLE)&#160;{
++  groupDialogDescription.setText(l.getString(&quot;dvd.dialog.title.subtitle&quot;));
++...
++\end{lstlisting}
+ 
++Die folgende (siehe \vref{fig:dvddialogfenster}) Grafik zeigt das Dialogfenster um die Sprachen die eine DVD unterst&#252;tzt auszuw&#228;hlen:
++\begin{figure}[htbp]
++	\centering
++	\includegraphics[scale=1.0]{images/Dialog_DVD_Sprachen}
++	\caption{DVD-Dialogfenster f&#252;r Sprachen}
++	\label{fig:dvddialogfenster}
++\end{figure}
+ 
++Je nach verwendeten Dialog steht dem Benutzer ein Suchfeld zur Verf&#252;gung und eine Auswahl an erlaubten Werten. Aus diesen kann &#252;ber das Dialogfenster eine bestimmte Menge ausgew&#228;hlt werden. Die Menge wird &#252;ber eine Liste an die aufrufende Klasse zur&#252;ckgegeben und von ihr f&#252;r das entsprechende Feld &#252;bernommen. Doppelte Eingaben werden dabei durch das Ausblenden bereits ausgew&#228;hlter Werte verhindert.\\
++Die DialogMovie-Klasse geht in &#228;hnlicher Weise vor und wird deshalb hier nicht weiter behandelt.\\
++Die SWTCalendarDialog-Klasse realisiert ein Dialogfenster f&#252;r Datum-Eingaben, dazu existiert in der SWT-Bibliothek eine daf&#252;r bereits entwickelte Klasse. Diese SWTCalender-Klasse wird in der SWTCalendarDialog-Klasse verwendet und muss als Argument das anzuzeigende Dialogfenster erhalten.
++\begin{lstlisting}[language=Java, showstringspaces=false]
++swtcal&#160;=&#160;new&#160;SWTCalendar(shell);
++\end{lstlisting}
++Die folgende Grafik (siehe \vref{fig:dvddialogfensterdatum}) zeigt ein solches Dialogfenster:
++
++\begin{figure}[htbp]
++	\centering
++	\includegraphics[scale=1.0]{images/Calendar_Fenster}
++	\caption{DialogFenster f&#252;r Datum-Eingaben}
++	\label{fig:dvddialogfensterdatum}
++\end{figure}
++
++\subsection{StatusLineStyledText- und ColorDef-Klasse} \label{sec:StatusLineStyledTextUndColorDefKlasse}
++Beide Klassen realisieren ein einheitliches Aussehen der Statusleiste bzw. Farben f&#252;r die verschiedenen Men&#252;s. In der ColorDef-Klasse sind verschiedenen Farben definiert, um bei Fehlermeldungen oder Ereignisse ein einheitliches Farbschema zu haben. Die StatusLineStyledText-Klasse nutzt dieses Farbschema f&#252;r ensprechende Ausgabe auf der Statuszeile.
++
++\subsection{Zusammenfassung}
++\label{sec:Zusammenfassung}
++Aufgrund der SWT-Bibliothek konnte eine einfach zu bedienende Benutzeroberfl&#228;che erstellt werden, mit der alle notwendigen Objekte f&#252;r eine Online-Videothek einfach editiert und erstellt werden k&#246;nnen. Aufgrund der verwendeten Reiter f&#252;r jedes Untermen&#252; kann schnell zwischen den einzelnen Men&#252;s umgeschaltet und Ver&#228;nderungen vorgenommen werden. Die verschiedenen Dialogfenster erleichtern die Eingabe f&#252;r den Benutzer und zugleich die Bearbeitung im Quellcode.
++
++
+ %Hier danach nicht mehr schreiben
+ \label{sec:impl-Benutzerschnittstellen-ende}
+\ No newline at end of file
+
+Modified: docu/latex/Provirent-Doku.bib
+===================================================================
+--- docu/latex/Provirent-Doku.bib	2005-12-17 15:58:09 UTC (rev 298)
++++ docu/latex/Provirent-Doku.bib	2005-12-17 18:50:41 UTC (rev 299)
+@@ -137,6 +137,14 @@
+   url = {<A HREF="http://ximbiot.com/cvs/manual/cvs-1.11.21/cvs.html">http://ximbiot.com/cvs/manual/cvs-1.11.21/cvs.html</A>},
+ }
+ 
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at MANUAL</A>{SWTBasic,
++  title = {SWT-Basic-Tutorial},
++  author = {Shantha Ramachandran},
++  year = {2003},
++  owner = {Philipp Schneider},
++  url = {<A HREF="http://www.cs.umanitoba.ca/~eclipse/2-Basic.pdf">http://www.cs.umanitoba.ca/~eclipse/2-Basic.pdf</A>},
++}
++
+ @BOOK{Rechenberger1994,
+   title = {Konzepte und Verfahren f{\&quot;u}r die Software-Versionsverwaltung},
+   publisher = {Universit&#228;tsverlag Rudolf Trauner},
+@@ -193,15 +201,12 @@
+ }
+ 
+ @MANUAL{EclipseISV,
+-  title = {org.eclipse.platform.doc.isv.3.1.pdf},
++  title = {Eclipse-Tutorial},
++  year = {2005},
+   owner = {Philipp Schneider},
++  url = {<A HREF="http://download.eclipse.org/eclipse/downloads/drops/R-3.1-200506271435/org.eclipse.jdt.doc.isv.3.1.pdf.zip">http://download.eclipse.org/eclipse/downloads/drops/R-3.1-200506271435/org.eclipse.jdt.doc.isv.3.1.pdf.zip</A>},
+ }
+ 
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">- at MANUAL</A>{SWTBasic,
+-  title = {2-Basic.pdf},
+-  owner = {Philipp Schneider},
+-}
+-
+ @comment{jabref-meta: selector_journal:Java Spektrum;Javamagazin;}
+ 
+ @comment{jabref-meta: selector_author:D;Olav Maassen;Stephen Stelting;
+
+Modified: docu/latex/Provirent-Doku.tex
+===================================================================
+--- docu/latex/Provirent-Doku.tex	2005-12-17 15:58:09 UTC (rev 298)
++++ docu/latex/Provirent-Doku.tex	2005-12-17 18:50:41 UTC (rev 299)
+@@ -136,7 +136,7 @@
+ %====================================
+ \include{4-0-Implementierung}
+ \include{4-1-Versionsverwaltung}
+-\include{4-2-Entwicklungsumgebung}
++%\include{4-2-Entwicklungsumgebung}
+ \include{4-3-GUIJava}
+ \include{4-4-JavaWebanwendungen}
+ \include{4-5-Persistenzschichten}
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000300.html">[Provirent-svn-commit] r298 - docu/latex/images
+</A></li>
+	<LI>Next message: <A HREF="000302.html">[Provirent-svn-commit] r300 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#301">[ date ]</a>
+              <a href="thread.html#301">[ thread ]</a>
+              <a href="subject.html#301">[ subject ]</a>
+              <a href="author.html#301">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

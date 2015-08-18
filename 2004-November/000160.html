@@ -1,0 +1,2065 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r159 - in project_src/provirent_hibernate/src: de/hsharz/provirent de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r159%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/management/gui/language%20de/hsharz/provirent/objects%20de/hsharz/provirent/persistence%20test/provirent/hibernate&In-Reply-To=%3C200411240213.iAO2DSMd032545%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000159.html">
+   <LINK REL="Next"  HREF="000161.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r159 - in project_src/provirent_hibernate/src: de/hsharz/provirent de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r159%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/management/gui/language%20de/hsharz/provirent/objects%20de/hsharz/provirent/persistence%20test/provirent/hibernate&In-Reply-To=%3C200411240213.iAO2DSMd032545%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r159 - in project_src/provirent_hibernate/src: de/hsharz/provirent de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Wed Nov 24 03:13:28 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000159.html">[Provirent-svn-commit] r158 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+        <LI>Next message: <A HREF="000161.html">[Provirent-svn-commit] r160 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#160">[ date ]</a>
+              <a href="thread.html#160">[ thread ]</a>
+              <a href="subject.html#160">[ subject ]</a>
+              <a href="author.html#160">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-11-24 03:13:27 +0100 (Wed, 24 Nov 2004)
+New Revision: 159
+
+Added:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/payment.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Payment.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Payment.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeFormate.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+Log:
+composite payment erstellt
+testklasse erstellt
+zugriff auf datenbank funzt noch nich -&gt; exception
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java	2004-11-23 23:35:57 UTC (rev 158)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java	2004-11-24 02:13:27 UTC (rev 159)
+@@ -34,7 +34,10 @@
+ 
+ import java.io.UnsupportedEncodingException;
+ import java.security.MessageDigest;
++import java.util.Calendar;
+ import java.util.Properties;
++import java.util.StringTokenizer;
++import java.util.Vector;
+ 
+ import javax.mail.Address;
+ import javax.mail.Message;
+@@ -46,6 +49,8 @@
+ 
+ import org.apache.log4j.Logger;
+ 
++import de.hsharz.provirent.persistence.DataBaseException;
++
+ /**
+  * @author Philipp Schneider
+  *  
+@@ -120,4 +125,28 @@
+         Util h = new Util();
+ 
+     }
++
++    /**
++     * @param text
++     * @return
++     */
++    public static Calendar getDateByText(String textdate) throws DataBaseException {
++        StringTokenizer tokenizer = new StringTokenizer(textdate, &quot;.&quot;);
++        Vector vec = new Vector();
++        while (tokenizer.hasMoreTokens()) {
++           vec.add(tokenizer.nextToken());
++        }
++        
++        if (vec.size() != 3) {
++            return null;     
++        } else {
++            String days = (String) vec.get(0);
++            String months = (String) vec.get(1);
++            String years = (String) vec.get(2);
++            Calendar date = Calendar.getInstance();
++            date.set(Integer.parseInt(years), Integer.parseInt(months), 
++                     Integer.parseInt(days));
++            return date;
++        }
++    }
+ }
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeFormate.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeFormate.java	2004-11-23 23:35:57 UTC (rev 158)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeFormate.java	2004-11-24 02:13:27 UTC (rev 159)
+@@ -32,8 +32,6 @@
+ import org.eclipse.swt.widgets.Text;
+ 
+ import de.hsharz.provirent.objects.AudioFormat;
+-import de.hsharz.provirent.objects.AudioFormat;
+-import de.hsharz.provirent.objects.AudioFormat;
+ import de.hsharz.provirent.objects.VideoFormat;
+ import de.hsharz.provirent.persistence.DataBaseException;
+ import de.hsharz.provirent.persistence.Database;
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java	2004-11-23 23:35:57 UTC (rev 158)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java	2004-11-24 02:13:27 UTC (rev 159)
+@@ -0,0 +1,1031 @@
++package de.hsharz.provirent.management.gui;
++
++import java.text.MessageFormat;
++import java.util.Locale;
++import java.util.PropertyResourceBundle;
++import java.util.ResourceBundle;
++
++import org.apache.log4j.Logger;
++import org.eclipse.swt.SWT;
++import org.eclipse.swt.custom.SashForm;
++import org.eclipse.swt.events.FocusAdapter;
++import org.eclipse.swt.events.FocusEvent;
++import org.eclipse.swt.events.SelectionAdapter;
++import org.eclipse.swt.events.SelectionEvent;
++import org.eclipse.swt.layout.FormAttachment;
++import org.eclipse.swt.layout.FormData;
++import org.eclipse.swt.layout.FormLayout;
++import org.eclipse.swt.layout.GridData;
++import org.eclipse.swt.layout.GridLayout;
++import org.eclipse.swt.widgets.Button;
++import org.eclipse.swt.widgets.Composite;
++import org.eclipse.swt.widgets.Display;
++import org.eclipse.swt.widgets.Event;
++import org.eclipse.swt.widgets.Group;
++import org.eclipse.swt.widgets.Label;
++import org.eclipse.swt.widgets.Listener;
++import org.eclipse.swt.widgets.Shell;
++import org.eclipse.swt.widgets.Table;
++import org.eclipse.swt.widgets.TableColumn;
++import org.eclipse.swt.widgets.TableItem;
++import org.eclipse.swt.widgets.Text;
++
++import com.cloudgarden.resource.SWTResourceManager;
++
++import de.hsharz.provirent.Util;
++import de.hsharz.provirent.objects.Payment;
++import de.hsharz.provirent.persistence.DataBaseException;
++import de.hsharz.provirent.persistence.Database;
++/**
++* This code was generated using CloudGarden's Jigloo
++* SWT/Swing GUI Builder, which is free for non-commercial
++* use. If Jigloo is being used commercially (ie, by a corporation,
++* company or business for any purpose whatever) then you
++* should purchase a license for each developer using Jigloo.
++* Please visit www.cloudgarden.com for details.
++* Use of Jigloo implies acceptance of these licensing terms.
++* *************************************
++* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED
++* for this machine, so Jigloo or this code cannot be used legally
++* for any corporate or commercial purpose.
++* *************************************
++*/
++public class CompositePayment extends AbstractComposite{
++
++    {
++        //Register as a resource user - SWTResourceManager will
++        //handle the obtaining and disposing of resources
++        SWTResourceManager.registerResourceUser(this);
++    }
++
++
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger
++            .getLogger(CompositePayment.class);
++    
++    
++    private final static int MODE_VIEW = 0;
++
++    private final static int MODE_ADD = 1;
++    
++    private SashForm sashForm1;
++    private SashForm sashFormPayment;
++    
++    private Composite parent;
++    private Composite compositeButtons;
++
++    private Group groupPayment;
++
++    private Group groupPaymentOverview;
++
++    private Group groupPaymentDetail;
++
++    private Label labelPaymentId;   
++    private Label labelPaymentName;
++    private Label labelduration1;
++    private Label labelduration2;
++    private Label labelduration3;
++    private Label labelstartdate;
++    
++    private Text textPaymentID;
++    private Text textPaymentName;
++    private Text textduration1;
++    private Text textduration2;
++    private Text textduration3;
++    private Text textstartdate;
++    
++    private Text textPaymentSearch;
++    private Label labelPaymentSearch;
++    
++    private Button buttonPaymentCancel;
++    private Button buttonPaymentSave;
++    private Button buttonPaymentFill;
++    private Button buttonPaymentDelete;
++    private Button buttonPaymentEdit;
++    private Button buttonPaymentNew;
++           
++    private Table tablePayment;
++    private TableColumn tableColumn;
++
++    
++
++    private final static int MODE_EDIT = 2;
++    
++    private StatusLineStyledText statusLine;
++
++    private ResourceBundle l;
++    
++    protected int mode_Payment;
++ 
++    /*
++     * &#196;ndert die Sprache aller Elemente
++     * 
++     * @see de.hsharz.provirent.managment.gui.AbstractComposite#changeLanguage(java.util.Locale)
++     */
++    public void changeLanguage(Locale locale) {
++
++    }
++
++    /* 
++     * Init die Sprache (properties Datei)
++     * @see de.hsharz.provirent.managment.gui.AbstractComposite#initLanguage(java.util.Locale)
++     */
++    public void initLanguage(Locale locale) {
++
++        l = PropertyResourceBundle.getBundle(
++                &quot;de.hsharz.provirent.management.gui.language.payment&quot;, locale);
++
++    }
++    
++    
++	/**
++	* Auto-generated main method to display this 
++	* org.eclipse.swt.widgets.Composite inside a new Shell.
++	*/
++	public static void main(String[] args) {
++		showGUI();
++	}
++		
++	/**
++	* Auto-generated method to display this 
++	* org.eclipse.swt.widgets.Composite inside a new Shell.
++	*/
++	public static void showGUI() {
++		Display display = Display.getDefault();
++		Shell shell = new Shell(display);
++
++		shell.open();
++		while (!shell.isDisposed()) {
++			if (!display.readAndDispatch())
++				display.sleep();
++		}
++	}
++
++	public CompositePayment(Composite p, int style,
++            StatusLineStyledText status, Locale l) {
++	    super(p, style, status, l);
++        parent = p;
++        //Statusline wird gestzt
++        statusLine = status;
++        
++        //sprache wird init
++        initLanguage(l);
++	    
++	    
++		initGUI();
++	}
++
++	private void initGUI() {
++	    if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - start&quot;);
++        }
++
++        this.setLayout(new GridLayout());
++        this.setSize(816, 540);
++        {
++            sashForm1 = new SashForm(this, SWT.VERTICAL | SWT.V_SCROLL);
++            GridData sashForm1LData1 = new GridData();
++            sashForm1LData1.grabExcessHorizontalSpace = true;
++            sashForm1LData1.horizontalAlignment = GridData.FILL;
++            sashForm1LData1.grabExcessVerticalSpace = true;
++            sashForm1LData1.verticalAlignment = GridData.FILL;
++            sashForm1.setLayoutData(sashForm1LData1);
++
++            initPaymentGroup();
++            refreshPaymentTable(textPaymentSearch.getText());
++
++        }
++        this.layout();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - end&quot;);
++        }
++    } 
++	
++	/**
++     * 
++     */
++    private void initPaymentGroup() {
++        {
++            //init a group for the Payment
++            groupPayment = new Group(sashForm1, SWT.NONE);
++            GridLayout group2Layout = new GridLayout();
++            group2Layout.makeColumnsEqualWidth = true;
++            groupPayment.setText(l.getString(&quot;Payment.group.label&quot;));
++            groupPayment.setSize(758, 284);
++            FormData group2LData = new FormData();
++            groupPayment.addFocusListener(new FocusAdapter() {
++                public void focusLost(FocusEvent evt) {
++                    System.out.println(&quot;groupPayment.focusLost, event=&quot;
++                        + evt);
++                    buttonPaymentCancel.setEnabled(false);
++                    buttonPaymentDelete.setEnabled(false);
++                    buttonPaymentEdit.setEnabled(false);
++                    buttonPaymentNew.setEnabled(false);
++                    buttonPaymentSave.setEnabled(false);
++                }
++            });
++            groupPayment.setLayout(group2Layout);
++            groupPayment.setLayoutData(group2LData);
++            {
++                sashFormPayment = new SashForm(groupPayment, SWT.NONE);
++                FormLayout sashForm2Layout = new FormLayout();
++                sashFormPayment.setSize(748, 300);
++                GridData sashForm2LData = new GridData();
++                sashFormPayment.setLayout(sashForm2Layout);
++                sashForm2LData.verticalAlignment = GridData.FILL;
++                sashForm2LData.horizontalAlignment = GridData.FILL;
++                sashForm2LData.grabExcessHorizontalSpace = true;
++                sashForm2LData.grabExcessVerticalSpace = true;
++                sashFormPayment.setLayoutData(sashForm2LData);
++
++                //init die Gruppe f&#252;r Paymente &#220;berblick
++                initPaymentGroupOverview();
++                //init die Detailansicht
++                initPaymentGroupDetail();
++
++            }
++        }
++
++	}
++
++    /**
++     * 
++     */
++    private void initPaymentGroupDetail() {
++        groupPaymentDetail = new Group(sashFormPayment, SWT.NONE);
++        GridLayout groupPaymentDetailLayout = new GridLayout();
++        groupPaymentDetailLayout.marginHeight = 25;
++        groupPaymentDetailLayout.numColumns = 6;
++        groupPaymentDetailLayout.verticalSpacing = 15;
++        groupPaymentDetail.setText(l
++                .getString(&quot;Payment.groupdetail.label&quot;));
++        FormData formData = new FormData();
++        groupPaymentDetail.setLayout(groupPaymentDetailLayout);
++        formData.right = new FormAttachment(100, 100, -5);
++        formData.top = new FormAttachment(0, 100, 5);
++        formData.bottom = new FormAttachment(100, 100, -5);
++        groupPaymentDetail.setLayoutData(formData);
++        {
++            labelPaymentId = new Label(groupPaymentDetail, SWT.NONE);
++            labelPaymentId.setText(l
++                    .getString(&quot;Payment.groupdetail.idlabel&quot;)
++                    + &quot;:&quot;);
++            labelPaymentId.setSize(125, 15);
++            GridData formData2 = new GridData();
++            formData2.widthHint = 125;
++            formData2.heightHint = 15;
++            formData2.horizontalSpan = 2;
++            labelPaymentId.setLayoutData(formData2);
++        }        
++        {
++            textPaymentID = new Text(groupPaymentDetail, SWT.READ_ONLY
++                    | SWT.BORDER);
++            GridData text1LData1 = new GridData();
++            text1LData1.horizontalAlignment = GridData.FILL;
++            text1LData1.heightHint = 13;
++            text1LData1.horizontalSpan = 4;
++            text1LData1.grabExcessHorizontalSpace = true;
++            textPaymentID.setLayoutData(text1LData1);
++        }
++        {
++            labelPaymentName = new Label(groupPaymentDetail, SWT.NONE);
++            labelPaymentName.setText(l
++                    .getString(&quot;Payment.groupdetail.namelabel&quot;)
++                    + &quot;:&quot;);
++            labelPaymentName.setSize(125, 15);
++            GridData formData2 = new GridData();
++            formData2.widthHint = 125;
++            formData2.heightHint = 15;
++            formData2.horizontalSpan = 2;
++            labelPaymentName.setLayoutData(formData2);
++        }
++        {
++            textPaymentName = new Text(groupPaymentDetail, SWT.READ_ONLY
++                    | SWT.BORDER);
++            GridData text1LData1 = new GridData();
++            text1LData1.horizontalAlignment = GridData.FILL;
++            text1LData1.heightHint = 13;
++            text1LData1.horizontalSpan = 4;
++            text1LData1.grabExcessHorizontalSpace = true;
++            textPaymentName.setLayoutData(text1LData1);
++        }
++        {
++            labelduration1 = new Label(groupPaymentDetail, SWT.NONE);
++            labelduration1.setText(l
++                    .getString(&quot;Payment.groupdetail.duration1label&quot;)
++                    + &quot;:&quot;);
++            labelduration1.setSize(125, 15);
++            GridData labelduration1LData = new GridData();
++            labelduration1LData.widthHint = 125;
++            labelduration1LData.heightHint = 15;
++            labelduration1LData.horizontalSpan = 2;
++            labelduration1.setLayoutData(labelduration1LData);
++        }
++        {
++            textduration1 = new Text(groupPaymentDetail,
++                    SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData2 = new GridData();
++            text1LData2.horizontalAlignment = GridData.FILL;
++            text1LData2.heightHint = 13;
++            text1LData2.horizontalSpan = 4;
++            text1LData2.grabExcessHorizontalSpace = true;
++            textduration1.setLayoutData(text1LData2);
++        }
++        {
++            labelduration2 = new Label(groupPaymentDetail,
++                    SWT.NONE);
++            labelduration2.setText(l
++                    .getString(&quot;Payment.groupdetail.duration2label&quot;)
++                    + &quot;:&quot;);
++            labelduration2.setSize(125, 15);
++            GridData label2LData1 = new GridData();
++            label2LData1.widthHint = 125;
++            label2LData1.heightHint = 15;
++            label2LData1.horizontalSpan = 2;
++            labelduration2.setLayoutData(label2LData1);
++        }
++        {
++            textduration2 = new Text(groupPaymentDetail,
++                    SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData3 = new GridData();
++            text1LData3.horizontalAlignment = GridData.FILL;
++            text1LData3.heightHint = 13;
++            text1LData3.horizontalSpan = 4;
++            text1LData3.grabExcessHorizontalSpace = true;
++            textduration2.setLayoutData(text1LData3);
++        }
++        {
++            labelduration3 = new Label(groupPaymentDetail,
++                    SWT.NONE);
++            labelduration3.setText(l
++                    .getString(&quot;Payment.groupdetail.duration3label&quot;)
++                    + &quot;:&quot;);
++            labelduration3.setSize(125, 15);
++            GridData label1LData1 = new GridData();
++            label1LData1.widthHint = 125;
++            label1LData1.heightHint = 15;
++            label1LData1.horizontalSpan = 2;
++            labelduration3.setLayoutData(label1LData1);
++        }
++        {
++            textduration3 = new Text(groupPaymentDetail,
++                    SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData3 = new GridData();
++            text1LData3.horizontalAlignment = GridData.FILL;
++            text1LData3.heightHint = 13;
++            text1LData3.horizontalSpan = 4;
++            text1LData3.grabExcessHorizontalSpace = true;
++            textduration3.setLayoutData(text1LData3);
++        }
++        {
++            labelstartdate = new Label(groupPaymentDetail,
++                    SWT.NONE);
++            labelstartdate.setText(l
++                    .getString(&quot;Payment.groupdetail.startdatelabel&quot;)
++                    + &quot;:&quot;);
++            labelstartdate.setSize(125, 15);
++            GridData label1LData1 = new GridData();
++            label1LData1.widthHint = 125;
++            label1LData1.heightHint = 15;
++            label1LData1.horizontalSpan = 2;
++            labelstartdate.setLayoutData(label1LData1);
++        }
++        {
++            textstartdate = new Text(groupPaymentDetail,
++                    SWT.READ_ONLY | SWT.BORDER);
++            GridData text1LData3 = new GridData();
++            text1LData3.horizontalAlignment = GridData.FILL;
++            text1LData3.heightHint = 13;
++            text1LData3.horizontalSpan = 4;
++            text1LData3.grabExcessHorizontalSpace = true;
++            textstartdate.setLayoutData(text1LData3);
++        }
++        {
++
++            //die Buttons bekommen ein eigenes Composite
++            compositeButtons = new Composite(groupPaymentDetail, SWT.EMBEDDED);
++            GridLayout composite2Layout = new GridLayout();
++            composite2Layout.numColumns = 6;
++            GridData composite2LData = new GridData();
++            compositeButtons.setLayout(composite2Layout);
++            composite2LData.verticalAlignment = GridData.END;
++            composite2LData.horizontalAlignment = GridData.CENTER;
++            composite2LData.widthHint = 391;
++            composite2LData.horizontalSpan = 6;
++            composite2LData.grabExcessHorizontalSpace = true;
++            composite2LData.grabExcessVerticalSpace = true;
++            composite2LData.heightHint = 35;
++            compositeButtons.setLayoutData(composite2LData);
++
++            //init all the Buttons
++            initPaymentDetailButtons();
++
++        }
++
++        
++    }
++
++    /**
++     * 
++     */
++    private void initPaymentDetailButtons() {
++        buttonPaymentNew = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++        buttonPaymentNew.setText(l.getString(&quot;button.new&quot;));
++        buttonPaymentNew.addSelectionListener(new SelectionAdapter() {
++            
++
++            public void widgetSelected(SelectionEvent evt) {
++
++                textPaymentID.setText(&quot;&quot;);
++                textPaymentName.setText(&quot;&quot;);
++                textduration1.setText(&quot;&quot;);
++                textduration2.setText(&quot;&quot;);
++                textduration3.setText(&quot;&quot;);
++                textstartdate.setText(&quot;&quot;);
++
++                textPaymentName.setEditable(true);
++                textduration1.setEditable(true);
++                textduration2.setEditable(true);
++                textduration3.setEditable(true);
++                textstartdate.setEditable(true);
++                
++                buttonPaymentCancel.setEnabled(true);
++                buttonPaymentSave.setEnabled(true);
++                buttonPaymentNew.setEnabled(false);
++                buttonPaymentEdit.setEnabled(false);
++                buttonPaymentDelete.setEnabled(false);
++                
++                textPaymentSearch.setEditable(false);
++                tablePayment.setEnabled(false);
++
++                mode_Payment = ManagementGui.MODE_ADD;
++
++            }
++        });
++
++        buttonPaymentEdit = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++        buttonPaymentEdit.setText(l.getString(&quot;button.edit&quot;));
++        buttonPaymentEdit.setEnabled(false);
++        buttonPaymentEdit.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++
++                mode_Payment = ManagementGui.MODE_EDIT;
++
++                textPaymentID.setEditable(false);
++                textPaymentName.setEditable(true);
++                textduration1.setEditable(true);
++                textduration2.setEditable(true);                
++                textduration3.setEditable(true);
++                textstartdate.setEditable(true);
++                
++                textduration1.setFocus();
++                
++                buttonPaymentCancel.setEnabled(true);
++                buttonPaymentSave.setEnabled(true);
++                buttonPaymentNew.setEnabled(false);
++                buttonPaymentEdit.setEnabled(false);
++                buttonPaymentDelete.setEnabled(false);
++
++
++                tablePayment.setEnabled(false);
++                textPaymentSearch.setEnabled(false);
++                
++
++            }
++        });
++
++        buttonPaymentDelete = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++        buttonPaymentDelete.setText(l.getString(&quot;button.delete&quot;));
++        buttonPaymentDelete.setEnabled(false);
++        buttonPaymentDelete.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonPaymentDelete.widgetSelected, event=&quot;
++                                + evt);
++                
++                
++               String msg = MessageFormat.format(
++                       l.getString(&quot;Payment.groupdetail.deletebutton.question.text&quot;),
++                               new Object[]{textPaymentName.getText() + &quot; &quot; + 
++                               				textduration1.getText() + &quot; &quot; + 
++                               				textduration2.getText() + &quot; &quot; + 
++                               				textduration3.getText() + &quot; &quot; +
++                               				textstartdate.getText()});
++                
++               int question = showMsg(msg,
++                       l.getString(&quot;Payment.groupdetail.deletebutton.question.header&quot;), 
++                       SWT.ICON_QUESTION | SWT.YES | SWT.NO);
++               
++               if (question != SWT.YES){
++                   return;
++               }
++                try {
++	                Payment o = new Payment();
++	                o.setPaymentId(new Integer(Integer.parseInt(textPaymentID.getText())));
++	                o.setName(textPaymentName.getText());
++	                o.setDuration1(Float.parseFloat(textduration1.getText()));
++	                o.setDuration2(Float.parseFloat(textduration2.getText()));
++	                o.setDuration3(Float.parseFloat(textduration3.getText()));                
++	                o.setStartdate(Util.getDateByText(textstartdate.getText()));
++
++                    //object speichern
++                    // Fehlerbehandlung
++                    Database.deleteObject(o);
++
++                    //&#220;bersichtsTabelle aktualisieren
++                    refreshPaymentTable(textPaymentSearch.getText());
++                    
++                    //Detailansicht leeren
++                    textPaymentID.setText(&quot;&quot;);
++                    textPaymentName.setText(&quot;&quot;);
++                    textduration1.setText(&quot;&quot;);
++                    textduration2.setText(&quot;&quot;);
++                    textduration3.setText(&quot;&quot;);
++                    textstartdate.setText(&quot;&quot;);
++                    //in Tabelle n&#228;chsten ausw&#228;hlen
++                    try {
++                        tablePayment.select(0);
++                    } catch (Exception ex) {}
++                    
++                    //Statusline Nachricht sezten
++                    statusLine.setStatus(1,l.getString(&quot;Payment.groupdetail.deletebutton.newok&quot;));
++
++                } catch (DataBaseException e) {
++                    if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                        //Fehler beim Speichern des Objectes
++
++                        statusLine.setStatus(3,l.getString(&quot;Payment.groupdetail.deletebutton.errorsave&quot;));
++                        showMsg(l.getString(&quot;Payment.groupdetail.deletebutton.errorsave&quot;),
++                                l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                        //fehler beim db aufbau
++                        statusLine.setStatus(3,l.getString(&quot;Payment.groupdetail.deletebutton.errordb&quot;));
++                        showMsg(l.getString(&quot;Payment.groupdetail.deletebutton.errordb&quot;),
++                                l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else {
++                        //@todo
++                        e.printStackTrace();
++                    }
++                    
++                }                
++                
++
++                }
++
++            }
++        );
++
++        //leerer nicht sichtbarer Button
++        buttonPaymentFill = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++        GridData buttonPaymentFillLData = new GridData();
++        buttonPaymentFill.setVisible(false);
++        buttonPaymentFill.setEnabled(false);
++        buttonPaymentFillLData.widthHint = 30;
++        buttonPaymentFillLData.heightHint = 23;
++        buttonPaymentFill.setLayoutData(buttonPaymentFillLData);
++
++        buttonPaymentSave = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++        buttonPaymentSave.setText(l.getString(&quot;button.save&quot;));
++        buttonPaymentSave.setEnabled(false);
++        buttonPaymentSave.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonPaymentSave.widgetSelected, event=&quot;
++                                + evt);
++
++                
++                //testen ob duration leer ist
++                if (   textPaymentName.getText().trim().equalsIgnoreCase(&quot;&quot;) ||
++                       textduration1.getText().trim().equalsIgnoreCase(&quot;&quot;) || 
++                       textduration2.getText().trim().equalsIgnoreCase(&quot;&quot;) || 
++                       textduration3.getText().trim().equalsIgnoreCase(&quot;&quot;) ||
++                       textstartdate.getText().trim().equalsIgnoreCase(&quot;&quot;)) {
++                    
++                    showMsg(l.getString(&quot;Payment.groupdetail.savebutton.warn.noname.msg&quot;),
++                            l.getString(&quot;Payment.groupdetail.savebutton.warn.noname.title&quot;),
++                            SWT.ICON_WARNING | SWT.YES);
++
++                    	return;
++                }
++                
++                //testen welcher mode
++                
++                if (mode_Payment == ManagementGui.MODE_ADD) {
++                    
++                    /**
++                     * @todo eine Exception bekommen wieder leider NOCH nicht mit
++                     * d.h. es muss noch ein r&#252;ckgabewert kommen oder eine Exception 
++                     * &#252;bermitteln werden (aus der DB Klasse)
++                     */
++	                    
++                    try {	
++                    	//neues Objekt erzeugen
++	                    Payment tmp = new Payment(textPaymentName.getText(), 
++                            			Float.parseFloat(textduration1.getText()),
++                            			Float.parseFloat(textduration2.getText()), 
++                            			Float.parseFloat(textduration3.getText()),
++                            			Util.getDateByText(textstartdate.getText()));
++                    
++                    
++                        //object speichern
++                        // Fehlerbehandlung
++                        Object o = Database.saveObject(
++                                new Payment(textPaymentName.getText(), 
++                                        Float.parseFloat(textduration1.getText()),
++                                        Float.parseFloat(textduration2.getText()), 
++                                        Float.parseFloat(textduration3.getText()),
++                                        Util.getDateByText(textstartdate.getText())));
++                        
++                        // in &#220;bersichtstabelle einf&#252;gen
++                        insertIntoPaymentTable((Payment)o);
++                        textPaymentID.setText( ((Payment)o).getPaymentId()+&quot;&quot; );
++                        
++                        
++                        //Statusline Nachricht sezten
++                        statusLine.setStatus(1,l.getString(&quot;Payment.groupdetail.savebutton.newok&quot;));
++
++                    } catch (DataBaseException e) {
++                        if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                            //Fehler beim Speichern des Objectes
++
++                            statusLine.setStatus(3,l.getString(&quot;Payment.groupdetail.savebutton.errorsave&quot;));
++                            showMsg(l.getString(&quot;Payment.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                            //fehler beim db aufbau
++                            statusLine.setStatus(3,l.getString(&quot;Payment.groupdetail.savebutton.errordb&quot;));
++                            showMsg(l.getString(&quot;Payment.groupdetail.savebutton.errordb&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else {
++                            //@todo
++                            e.printStackTrace();
++                        }
++                        
++                    }
++                    
++                    
++                    //alle Buttons auf aktiv setzen
++                    setPaymentGroupButtonSaveCancel();
++                    
++                } else if (mode_Payment == ManagementGui.MODE_EDIT) {
++                    try {
++	                    Payment tmp = new Payment(textPaymentName.getText(), 
++	                            Float.parseFloat(textduration1.getText()),
++	                            Float.parseFloat(textduration2.getText()), 
++	                            Float.parseFloat(textduration3.getText()),
++	                            Util.getDateByText(textstartdate.getText()));
++	                    tmp.setPaymentId(new Integer(Integer.parseInt(textPaymentID.getText())));
++	                
++	                    //object speichern
++	                    // Fehlerbehandlung
++	                    Database.saveObject(tmp);
++	                    //&#220;bersichtstabelle aktualisieren
++	                    refreshPaymentTable(textPaymentSearch.getText());
++	                    
++	                    //Statusline Nachricht sezten
++	                    statusLine.setStatus(1,l.getString(&quot;Payment.groupdetail.savebutton.editok&quot;));
++	                   
++	
++	                } catch (DataBaseException e) {
++	                    if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++	                        //Fehler beim Speichern des Objectes
++	
++	                        statusLine.setStatus(3,l.getString(&quot;Payment.groupdetail.savebutton.errorsave&quot;));
++	                        showMsg(l.getString(&quot;Payment.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++	                        
++	                    } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++	                        //fehler beim db aufbau
++	                        statusLine.setStatus(3,l.getString(&quot;Payment.groupdetail.savebutton.errordb&quot;));
++	                        showMsg(l.getString(&quot;Payment.groupdetail.savebutton.errordb&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++	                        
++	                    } else {
++	                        //@todo
++	                        e.printStackTrace();
++	                    }
++                    
++	                }
++                    
++ 
++                    //alle Buttons auf aktiv setzen
++                    setPaymentGroupButtonSaveCancel();
++                    
++                }
++                
++                
++                
++                /**
++                 * @todo Exception werfen, da nur die zwei Modes sein d&#252;rfen
++                 */
++                
++            }
++        });
++
++        buttonPaymentCancel = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++        buttonPaymentCancel.setText(l.getString(&quot;button.cancel&quot;));
++        buttonPaymentCancel.setEnabled(false);
++        buttonPaymentCancel.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonPaymentCancel.widgetSelected, event=&quot;
++                                + evt);
++                setPaymentGroupButtonSaveCancel();
++            }
++        });
++       
++    }
++
++    /**
++     * 
++     */
++    protected void setPaymentGroupButtonSaveCancel() {
++        buttonPaymentSave.setEnabled(false);
++        buttonPaymentCancel.setEnabled(false);
++        buttonPaymentEdit.setEnabled(true);
++        buttonPaymentNew.setEnabled(true);
++        buttonPaymentDelete.setEnabled(true);
++        textPaymentName.setEditable(false);
++        textduration1.setEditable(false);
++        textduration2.setEditable(false);
++        textduration3.setEditable(false);
++        textstartdate.setEditable(false);
++        textPaymentSearch.setEditable(true);
++
++        // PaymentTabelle aktivieren
++        tablePayment.setEnabled(true);
++
++        //PaymentSearch aktivieren
++        textPaymentSearch.setEnabled(true);
++        
++    }
++
++    /**
++     * @param Payment
++     */
++    protected void insertIntoPaymentTable(Payment Payment) {
++        TableItem item = new TableItem(tablePayment, SWT.NONE);
++        item.setText(new String[] { Payment.getPaymentId() + &quot;&quot;, 
++                					Payment.getName(), 
++                					Double.toString(Payment.getDuration1()),
++                					Double.toString(Payment.getDuration2()), 
++                					Double.toString(Payment.getDuration3()),
++                					Payment.getStartdate().toString()});
++        
++    }
++
++    /**
++     * @param text
++     */
++    protected void refreshPaymentTable(final String filter) {
++        if (tablePayment == null) {
++            System.out
++                    .println(&quot;Konnte Paymenttable nicht refreshen, da diese null ist!&quot;);
++            return;
++        }
++        System.out.println(&quot;Versuche nun PaymentListe zu refreshen. Filter: &quot;
++                + filter);
++        tablePayment.removeAll();
++        TableItem item;
++        java.util.List Paymentlist = Database.getPayment(filter);
++
++        for (int i = 0; i &lt; Paymentlist.size(); i++) {
++
++            Payment o = (Payment) Paymentlist.get(i);
++            item = new TableItem(tablePayment, SWT.NONE);
++            item.setText(new String[] { o.getPaymentId() + &quot;&quot;,
++                    					o.getName(),
++                    					Double.toString(o.getDuration1()),
++                    					Double.toString(o.getDuration2()), 
++                    					Double.toString(o.getDuration3()),
++                    					o.getStartdate().toString()});
++
++        }
++
++        
++    }
++
++    /**
++     * 
++     */
++    private void initPaymentGroupOverview() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initPaymentGroupOverview() - start&quot;);
++        }
++
++        groupPaymentOverview = new Group(sashFormPayment, SWT.NONE);
++        GridLayout group5Layout = new GridLayout();
++        group5Layout.numColumns = 8;
++        groupPaymentOverview.setText(l
++                .getString(&quot;Payment.groupoverview.label&quot;));
++        FormData group5LData = new FormData();
++        groupPaymentOverview.setLayout(group5Layout);
++        group5LData.left = new FormAttachment(0, 100, 0);
++        group5LData.top = new FormAttachment(0, 100, 0);
++        groupPaymentOverview.setLayoutData(group5LData);
++
++        //Tabelle anzeigen
++        initTablePayment();
++        //Suche darunter anzeigen
++        initPaymentSearch();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initPaymentGroupOverview() - end&quot;);
++        }
++        
++    }
++
++    /**
++     * 
++     */
++    private void initPaymentSearch() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initPaymentSearch() - start&quot;);
++        }
++
++        //label f&#252;r die Suche
++        labelPaymentSearch = new Label(groupPaymentOverview, SWT.NONE);
++        labelPaymentSearch.setText(l
++                .getString(&quot;Payment.groupoverview.searchlabel&quot;)
++                + &quot;:&quot;);
++        GridData label2LData = new GridData();
++        label2LData.horizontalSpan = 3;
++        labelPaymentSearch.setLayoutData(label2LData);
++
++        //das Suchfeld
++        textPaymentSearch = new Text(groupPaymentOverview, SWT.BORDER);
++        GridData text2LData = new GridData();
++        textPaymentSearch.addFocusListener(new FocusAdapter() {
++            public void focusLost(FocusEvent evt) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;focusLost(FocusEvent evt = &quot; + evt + &quot; &quot;
++                            + textPaymentSearch.getText() + &quot;) - start&quot;);
++                }
++
++                refreshPaymentTable(textPaymentSearch.getText());
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;focusLost(FocusEvent) - end&quot;);
++                }
++            }
++        });
++
++        textPaymentSearch.addListener(SWT.DefaultSelection, new Listener() {
++            public void handleEvent(Event e) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;handleEvent(Event e = &quot; + e + &quot; &quot;
++                            + textPaymentSearch.getText() + &quot;) - start&quot;);
++                }
++
++                refreshPaymentTable(textPaymentSearch.getText());
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;handleEvent(Event) - end&quot;);
++                }
++            }
++        });
++
++        text2LData.horizontalAlignment = GridData.FILL;
++        text2LData.horizontalSpan = 5;
++        text2LData.grabExcessHorizontalSpace = true;
++        textPaymentSearch.setLayoutData(text2LData);
++
++
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initPaymentSearch() - end&quot;);
++        }
++        
++    }
++
++    /**
++     * 
++     */
++    private void initTablePayment() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initTablePayment() - start&quot;);
++        }
++
++        tablePayment = new Table(groupPaymentOverview, SWT.SINGLE
++                | SWT.FULL_SELECTION | SWT.V_SCROLL | SWT.BORDER);
++        tablePayment.setHeaderVisible(true);
++        tablePayment.setLinesVisible(true);
++        GridData table2LData = new GridData();
++        tablePayment.addFocusListener(new FocusAdapter() {
++            public void focusLost(FocusEvent evt) {
++                System.out.println(&quot;tablePayment.focusLost, event=&quot; + evt);
++            }
++            public void focusGained(FocusEvent evt) {
++                System.out
++                    .println(&quot;tablePayment.focusGained, event=&quot; + evt);
++            }
++        });
++        tablePayment.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;widgetSelected(SelectionEvent evt = &quot;
++                        + evt
++                        + &quot;) - start&quot;);
++                }
++
++                int index = tablePayment.getSelectionIndex();
++
++                System.out.println(&quot;Table select. id: &quot;
++                    + index
++                    + &quot; TableItem:&quot;
++                    + tablePayment.getItem(index)
++                    + &quot; id: &quot;
++                    + tablePayment.getItem(index).getText(0));
++
++                //es wurde ein Element aus Tabelle ausgewaehlt jetzt muss die
++                //Detailansicht aktualisiert werden
++                refreshPaymentDetail(tablePayment.getItem(index)
++                    .getText(0));
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;widgetSelected(SelectionEvent) - end&quot;);
++                }
++            }
++        });
++        table2LData.verticalAlignment = GridData.FILL;
++        table2LData.horizontalAlignment = GridData.FILL;
++        table2LData.horizontalSpan = 8;
++        table2LData.grabExcessHorizontalSpace = true;
++        table2LData.grabExcessVerticalSpace = true;
++        tablePayment.setLayoutData(table2LData);
++
++        //einzelne Spalten hinzuf&#252;gen
++        tableColumn = new TableColumn(tablePayment, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Payment.groupoverview.columnid&quot;));
++        tableColumn.setWidth(50);
++        
++        tableColumn = new TableColumn(tablePayment, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Payment.groupoverview.columnname&quot;));
++        tableColumn.setWidth(50);
++
++        tableColumn = new TableColumn(tablePayment, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Payment.groupoverview.columnduration1&quot;));
++        tableColumn.setWidth(70);
++
++        tableColumn = new TableColumn(tablePayment, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Payment.groupoverview.columnduration2&quot;));
++        tableColumn.setWidth(70);
++        
++        tableColumn = new TableColumn(tablePayment, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Payment.groupoverview.columnduration3&quot;));
++        tableColumn.setWidth(70);
++        tableColumn = new TableColumn(tablePayment, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Payment.groupoverview.columnstartdate&quot;));
++        tableColumn.setWidth(70);
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initTablePayment() - end&quot;);
++        }
++        
++    }
++
++    /**
++     * @param text
++     */
++    protected void refreshPaymentDetail(final String id) {
++        Payment object;
++        try {
++            //since we only can get a String value from the table, we
++            //need to convert this
++            object = Database.getSinglePayment(Integer.parseInt(id));
++
++            if (object == null) {
++
++                /*
++                 * 
++                 * @TODO Statusbar aktualiseren
++                 */
++                return;
++            }
++        } catch (Exception e) {
++            //id ist keine Zahl
++            return;
++        }
++
++        textPaymentID.setText(object.getPaymentId() + &quot;&quot;);
++        textPaymentName.setText(object.getName());
++        textduration1.setText(Double.toString(object.getDuration1()));
++        textduration2.setText(Double.toString(object.getDuration2()));
++        textduration3.setText(Double.toString(object.getDuration3()));
++        textstartdate.setText(object.getStartdate().toString());
++
++        //Buttons zum l&#246;schen und editieren aktivieren
++        buttonPaymentEdit.setEnabled(true);
++        buttonPaymentDelete.setEnabled(true);
++
++        //Mode auf view setzen
++        mode_Payment = ManagementGui.MODE_VIEW;
++        
++    }
++
++	
++
++}
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-23 23:35:57 UTC (rev 158)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-24 02:13:27 UTC (rev 159)
+@@ -105,16 +105,16 @@
+     private CTabFolder cTabFolderMain;
+ 
+     private CTabItem tabItemFormat;
++    private CTabItem tabItemPayment;
+     private CTabItem tabItemActor;
+     private CTabItem tabItemDirector;
+     private CTabItem tabItemLanguage;
+     private CTabItem tabItemGenre;
+     private CTabItem tabItemImage;
+     private CTabItem tabItemMovie;
+-    
+-    
+-    
+-    
++    private CTabItem tabItemStatus;
++    private CTabItem tabStatusLanguage;
++        
+     private CompositeFormate compositeFormate;
+     private CompositeActors compositeActor;
+     private CompositeDirectors compositeDirector;
+@@ -122,53 +122,44 @@
+     private CompositeLanguage compositeLanguage;
+     private CompositeImage compositeImage;
+     private CompositeMovie compositeMovie;
++    private CompositePayment compositePayment;
++    private CompositeStatus compositeStatus;   
++
++    private Menu rootMenu;
+     
+-
++    private Menu fileMenu;
++    private MenuItem fileMenuItem;
++    private MenuItem exitMenuItem;
++    private MenuItem closeFileMenuItem;
++    private MenuItem saveFileMenuItem;
++    private MenuItem newFileMenuItem;
++    private MenuItem openFileMenuItem;  
++    
++    private Menu viewMenu;
++    private MenuItem viewMenuItem;
++    private MenuItem viewDirectorMenuItem;
++    private MenuItem viewVideoFormatMenuItem;
++    private MenuItem viewActorMenuItem;
++    private MenuItem viewGenreMenuItem;
++    private MenuItem viewLanguageMenuItem;
++    private MenuItem viewStatusMenuItem;
++    private MenuItem viewPaymentMenuItem;
++    private MenuItem viewConditionMenuItem;
++    private MenuItem viewMovieMenuItem;
++    private MenuItem viewDvdMenuItem;
++    private MenuItem viewBillMenuItem;
++    private MenuItem viewImageMenuItem;
++    
++    private Menu helpMenu;
+     private MenuItem aboutMenuItem;
+-
+     private MenuItem contentsMenuItem;
+-
+-    private Menu helpMenu;
+-
+     private MenuItem helpMenuItem;
+ 
+-    private MenuItem viewDirectorMenuItem;
+-    
+-    private MenuItem viewVideoFormatMenuItem,viewActorMenuItem,viewGenreMenuItem;
+-    private MenuItem viewLanguageMenuItem,viewStatusMenuItem;
+-    private MenuItem viewConditionMenuItem,viewMovieMenuItem,viewDvdMenuItem, viewBillMenuItem, viewImageMenuItem;
+-    
+-
+     private Shell shell;
+ 
+     private Display display;
+ 
+-    private Menu viewMenu;
+ 
+-    private MenuItem viewMenuItem;
+-
+-    private MenuItem exitMenuItem;
+-
+-    private MenuItem closeFileMenuItem;
+-
+-    private MenuItem saveFileMenuItem;
+-
+-    private MenuItem newFileMenuItem;
+-
+-    private MenuItem openFileMenuItem;
+-
+-    private Menu fileMenu;
+-
+-    private MenuItem fileMenuItem;
+-
+-    private Menu rootMenu;
+-
+-    private TableColumn tableColumn6;
+-
+-    private TableColumn tableColumn5;
+-
+-    private TableColumn tableColumn4;
+-
+     private StatusLineStyledText statusLine;
+ 
+     private Composite compositeStatusLine;
+@@ -177,8 +168,6 @@
+ 
+     private Composite compositeRoot;
+ 
+-    private Text textVideoFormatId;
+-
+     /**
+      * Bundle for multilanguage
+      */
+@@ -186,12 +175,6 @@
+     
+     private Locale locale ;
+ 
+-    protected CTabItem tabItemStatus;
+-
+-    private CompositeStatus compositeStatus;
+-
+-    private CTabItem tabStatusLanguage;
+-
+     /**
+      * Auto-generated main method to display this
+      * org.eclipse.swt.widgets.Composite inside a new Shell.
+@@ -489,6 +472,21 @@
+             }
+         });         
+        
++        viewPaymentMenuItem = new MenuItem(viewMenu, SWT.CHECK);
++        viewPaymentMenuItem.setText(l.getString(&quot;menu.view.payment&quot;));
++        viewPaymentMenuItem.setSelection(false);
++        viewPaymentMenuItem.addSelectionListener(new SelectionAdapter(){
++            public void widgetSelected(SelectionEvent evt) {
++				if(tabItemPayment == null || tabItemPayment.isDisposed()){
++				    initPaymentTab();
++				    return;   
++				}
++				
++				cTabFolderMain.setSelection(tabItemPayment);
++				viewPaymentMenuItem.setSelection(true);
++				cTabFolderMain.showSelection();
++            }
++        });
+         
+         viewStatusMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewStatusMenuItem.setText(l.getString(&quot;menu.view.status&quot;));
+@@ -718,7 +716,30 @@
+         }
+         cTabFolderMain.setSelection(tabItemGenre);
+     }
++    
++    private void initPaymentTab() {
++        tabItemPayment = new CTabItem(cTabFolderMain, SWT.NONE);
++        tabItemPayment.setText(l.getString(&quot;tab.payment.title&quot;));
++        tabItemPayment.addDisposeListener(new DisposeListener() {
+ 
++            public void widgetDisposed(DisposeEvent evt) {
++                if(!viewPaymentMenuItem.isDisposed()){
++                    viewPaymentMenuItem.setSelection(false);
++                }
++            }
++            
++        });
++  
++        {
++            compositePayment = new CompositePayment(
++                cTabFolderMain,
++                SWT.NONE, statusLine, locale);
++            
++            tabItemPayment.setControl(compositePayment);
++        }
++        cTabFolderMain.setSelection(tabItemPayment);
++    }
++
+     private void initLanguageTab() {
+         tabItemLanguage = new CTabItem(cTabFolderMain, SWT.NONE);
+         tabItemLanguage.setText(l.getString(&quot;tab.language.title&quot;));
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties	2004-11-23 23:35:57 UTC (rev 158)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties	2004-11-24 02:13:27 UTC (rev 159)
+@@ -15,6 +15,8 @@
+ 
+ menu.view.director=Regie
+ 
++menu.view.payment=Preisklassen
++
+ menu.view.genre=Genre
+ 
+ menu.view.language=Sprachen
+@@ -39,5 +41,6 @@
+ tab.language.title=Sprache/Untertitel
+ tab.Status.title=Status/Zustand
+ tab.movie.title=Filme
++tab.payment.title=Preisklassen
+ tab.image.title=Bilder
+ status.resizewarn=Fenster kann Mindestgr&#246;&#223;e nicht unterschreiten.
+\ No newline at end of file
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/payment.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/payment.properties	2004-11-23 23:35:57 UTC (rev 158)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/payment.properties	2004-11-24 02:13:27 UTC (rev 159)
+@@ -0,0 +1,40 @@
++
++error=Fehler
++button.new=Neu
++button.edit=Bearbeiten
++button.delete=L&#246;schen
++button.save=Speichern
++button.cancel=Abbruch
++
++Payment.group.label=Preisklassen
++Payment.groupoverview.label=&#220;berblick
++Payment.groupoverview.columnid=Id
++Payment.groupoverview.columnname=Name
++Payment.groupoverview.columnduration1=1 Tag
++Payment.groupoverview.columnduration2=3 Tage
++Payment.groupoverview.columnduration3=7 Tage
++Payment.groupoverview.columnstartdate=Datum
++
++Payment.groupoverview.searchlabel=Suche nach
++Payment.groupdetail.label=Detail
++Payment.groupdetail.idlabel=Preisklasse ID
++Payment.groupdetail.namelabel=Preisklasse Name
++Payment.groupdetail.duration1label=Preis f&#252;r 1 Tag
++Payment.groupdetail.duration2label=Preis f&#252;r 3 Tage
++Payment.groupdetail.duration3label=Preis f&#252;r 7 Tage
++Payment.groupdetail.startdatelabel=G&#252;ltig ab
++
++
++Payment.groupdetail.savebutton.warn.noname.title=Datensatz speichern
++Payment.groupdetail.savebutton.warn.noname.msg=Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie einen Namen an
++Payment.groupdetail.savebutton.newok=Speichern der neuen Preisklasse erfolgreich.
++Payment.groupdetail.savebutton.editok=&#196;ndern der Preisklasse erfolgreich.
++
++Payment.groupdetail.savebutton.errorsave=Datenbankfehler beim Speichern.
++Payment.groupdetail.savebutton.errordb=Datenbankfehler beim Herstellen der Verbindung.(save).
++
++Payment.groupdetail.deletebutton.question.header=Wirklich l&#246;schen?
++Payment.groupdetail.deletebutton.question.text=Wollen Sie den Datensatz {0} wirklich l&#246;schen?
++Payment.groupdetail.deletebutton.newok=Datensatz wurde erfolgreich gel&#246;scht.
++Payment.groupdetail.deletebutton.errorsave=Datenbankfehler beim L&#246;schen.
++Payment.groupdetail.deletebutton.errordb=Datenbankfehler beim Herstellen der Verbindung(del).
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Payment.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Payment.hbm.xml	2004-11-23 23:35:57 UTC (rev 158)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Payment.hbm.xml	2004-11-24 02:13:27 UTC (rev 159)
+@@ -0,0 +1,46 @@
++&lt;?xml version=&quot;1.0&quot;?&gt;
++&lt;!DOCTYPE hibernate-mapping
++             PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 2.0//EN&quot;
++             &quot;<A HREF="http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd</A>&quot;&gt;
++  &lt;hibernate-mapping&gt;
++ 
++   &lt;class name=&quot;de.hsharz.provirent.objects.Payment&quot; table=&quot;PAYMENT&quot;&gt;
++      &lt;meta attribute=&quot;class-description&quot;&gt;
++        Represents a Payment.
++        @author Stefan Forstner
++      &lt;/meta&gt;
++      
++ 			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
++			&lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++ 			
++      &lt;id name=&quot;paymentId&quot; type=&quot;int&quot; column=&quot;PAYMENTID&quot; length=&quot;10&quot;&gt;
++        &lt;meta attribute=&quot;scope-set&quot;&gt;public&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++        &lt;generator class=&quot;sequence&quot;&gt;
++			&lt;param name=&quot;sequence&quot;&gt;payment_id_sequence&lt;/param&gt;
++		&lt;/generator&gt;
++      &lt;/id&gt;
++	  
++	  &lt;property name=&quot;name&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++ 
++      &lt;property name=&quot;duration1&quot; type=&quot;double&quot; not-null=&quot;true&quot;&gt;
++
++      &lt;/property&gt;
++				
++ 
++      &lt;property name=&quot;duration2&quot; type=&quot;double&quot; not-null=&quot;true&quot;&gt;
++
++      &lt;/property&gt;
++             
++	  &lt;property name=&quot;duration3&quot; type=&quot;double&quot; not-null=&quot;true&quot;&gt;
++
++      &lt;/property&gt;
++	  
++	  &lt;property name=&quot;startdate&quot; type=&quot;calendar&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++	  
++    &lt;/class&gt;
++  &lt;/hibernate-mapping&gt;
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Payment.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Payment.java	2004-11-23 23:35:57 UTC (rev 158)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Payment.java	2004-11-24 02:13:27 UTC (rev 159)
+@@ -0,0 +1,137 @@
++package de.hsharz.provirent.objects;
++
++import java.io.Serializable;
++import java.util.Calendar;
++import org.apache.commons.lang.builder.EqualsBuilder;
++import org.apache.commons.lang.builder.HashCodeBuilder;
++import org.apache.commons.lang.builder.ToStringBuilder;
++
++
++/** 
++ *         Represents a Payment.
++ *         @author Stefan Forstner
++ *       
++*/
++public class Payment implements Serializable {
++
++    /** identifier field */
++    private Integer paymentId;
++
++    /** persistent field */
++    private String name;
++
++    /** persistent field */
++    private double duration1;
++
++    /** persistent field */
++    private double duration2;
++
++    /** persistent field */
++    private double duration3;
++
++    /** nullable persistent field */
++    private Calendar startdate;
++
++    /** full constructor */
++    public Payment(String name, double duration1, double duration2, double duration3, Calendar startdate) {
++        this.name = name;
++        this.duration1 = duration1;
++        this.duration2 = duration2;
++        this.duration3 = duration3;
++        this.startdate = startdate;
++    }
++
++    /** default constructor */
++    public Payment() {
++    }
++
++    /** minimal constructor */
++    public Payment(String name, double duration1, double duration2, double duration3) {
++        this.name = name;
++        this.duration1 = duration1;
++        this.duration2 = duration2;
++        this.duration3 = duration3;
++    }
++
++    public Integer getPaymentId() {
++        return this.paymentId;
++    }
++
++    public void setPaymentId(Integer paymentId) {
++        this.paymentId = paymentId;
++    }
++
++    public String getName() {
++        return this.name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public double getDuration1() {
++        return this.duration1;
++    }
++
++    public void setDuration1(double duration1) {
++        this.duration1 = duration1;
++    }
++
++    public double getDuration2() {
++        return this.duration2;
++    }
++
++    public void setDuration2(double duration2) {
++        this.duration2 = duration2;
++    }
++
++    public double getDuration3() {
++        return this.duration3;
++    }
++
++    public void setDuration3(double duration3) {
++        this.duration3 = duration3;
++    }
++
++    public Calendar getStartdate() {
++        return this.startdate;
++    }
++
++    public void setStartdate(Calendar startdate) {
++        this.startdate = startdate;
++    }
++
++    public String toString() {
++        return new ToStringBuilder(this)
++            .append(&quot;paymentId&quot;, getPaymentId())
++            .append(&quot;name&quot;, getName())
++            .append(&quot;startdate&quot;, getStartdate())
++            .toString();
++    }
++
++    public boolean equals(Object other) {
++        if ( (this == other ) ) return true;
++        if ( !(other instanceof Payment) ) return false;
++        Payment castOther = (Payment) other;
++        return new EqualsBuilder()
++            .append(this.getPaymentId(), castOther.getPaymentId())
++            .append(this.getName(), castOther.getName())
++            .append(this.getDuration1(), castOther.getDuration1())
++            .append(this.getDuration2(), castOther.getDuration2())
++            .append(this.getDuration3(), castOther.getDuration3())
++            .append(this.getStartdate(), castOther.getStartdate())
++            .isEquals();
++    }
++
++    public int hashCode() {
++        return new HashCodeBuilder()
++            .append(getPaymentId())
++            .append(getName())
++            .append(getDuration1())
++            .append(getDuration2())
++            .append(getDuration3())
++            .append(getStartdate())
++            .toHashCode();
++    }
++
++}
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-23 23:35:57 UTC (rev 158)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-24 02:13:27 UTC (rev 159)
+@@ -52,6 +52,7 @@
+ import de.hsharz.provirent.objects.Genre;
+ import de.hsharz.provirent.objects.Image;
+ import de.hsharz.provirent.objects.Language;
++import de.hsharz.provirent.objects.Payment;
+ import de.hsharz.provirent.objects.Status;
+ import de.hsharz.provirent.objects.Subtitle;
+ import de.hsharz.provirent.objects.VideoFormat;
+@@ -1424,5 +1425,111 @@
+ 	    
+ 	
+ 	}
++	
++	/**
++	 * This method gets all Payments from the database.
++	 * searches for name,duration1, duration2, duration3, startdate or id
++	 * @param filter 
++	 * @return List of Payment objects, or an empty List
++	 */
++	public static List getPayment(final String filter){
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getPayment() - start. String filter= &quot;+filter);
++	    }
++	    //init the returnlist
++	    List returnlist = new ArrayList();
++	
++	    Session s = null;
++	    
++	    try {
++	        //get new Session and begin Transaction
++	        s = HibernateUtil.currentSession();
++	            
++	            //init the criteria
++	            Criteria criteria = s.createCriteria(Condition.class);
++	            //any of the criteria 
++	            Disjunction any = Expression.disjunction();
++	
++	            //if filter not empty
++	            if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++	                any.add(Expression.like(&quot;name&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;duration1&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;duration2&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;duration3&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;startdate&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                //maybe we are searching for the id?
++	                try {
++	                    any.add(Expression.eq(&quot;paymentId&quot;, new Integer(Integer.parseInt(filter))));
++	                } catch (Exception e) {
++	                }
++	                
++	            }
++	            //add all criteria
++	            criteria.add(any);
++	            //get the results
++	            returnlist = criteria.list();
++	
++	
++	
++	
++	    } catch (Exception e) {
++	        logger.error(
++	                &quot;getPayment() - Error while trying to do Transaction&quot;,
++	                e);
++	        returnlist = new ArrayList();
++	    } finally {
++	        try {
++	            // No matter what, close the session
++	            HibernateUtil.closeSession();
++	        } catch (HibernateException e1) {
++	            logger.error(&quot;getPayment() - Could not Close the Session&quot;, e1);
++	        }
++	    }
++	
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getPayment() - end&quot;);
++	    }
++	    return returnlist;
++	    
++	
++	}
++	
++	
++	public static Payment getSinglePayment(final int id){
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getSinglePayment() - start. int filter= &quot;+id);
++	    }
++	    //init the returnlist
++	    Payment returnobject = null;
++	
++	    Session s = null;
++	    Transaction tx = null;
++	    try {
++	        //get new Session and begin Transaction
++	        s = HibernateUtil.currentSession();
++	
++	            returnobject = (Payment)s.get(Payment.class, new Integer(id));
++	
++	    } catch (Exception e) {
++	        logger.error(
++	                &quot;getSinglePayment() - Error while trying to do Transaction&quot;,
++	                e);
++	        
++	    } finally {
++	        try {
++	            // No matter what, close the session
++	            HibernateUtil.closeSession();
++	        } catch (HibernateException e1) {
++	            logger.error(&quot;getSinglePayment() - Could not Close the Session&quot;, e1);
++	        }
++	    }
++	
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getSinglePayment() - end&quot;);
++	    }
++	    return returnobject;
++	    
++	
++	}
+ 
+ }
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java	2004-11-23 23:35:57 UTC (rev 158)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java	2004-11-24 02:13:27 UTC (rev 159)
+@@ -0,0 +1,299 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import java.util.ArrayList;
++import java.util.Iterator;
++import java.util.List;
++
++import junit.framework.TestCase;
++import net.sf.hibernate.Session;
++import net.sf.hibernate.Transaction;
++
++import org.apache.log4j.Logger;
++
++import de.hsharz.provirent.objects.Payment;
++
++/**
++ * @author Stefan Forstner
++ *
++ */
++public class TestPayment extends TestCase {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(TestPayment.class);
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - start&quot;);
++        }
++
++        super.setUp();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - end&quot;);
++        }
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - start&quot;);
++        }
++
++        super.tearDown();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - end&quot;);
++        }
++    }
++    
++    /*public void testGenre() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Payments = new ArrayList();
++
++                Payment myp1 = null;
++                Payment myp2 = null;
++                Payment myp3 = null;
++                Payment myp4 = null;
++                
++                s.clear();
++
++                for (int i = 1; i &lt;= 10; i++) {
++                    myp1 = new Payment(&quot;A&quot;, 2.00d, 4.00d, 8.00d);
++                    myp2 = new Payment(&quot;B&quot;, 3.00d, 6.00d, 12.00d);
++                    myp3 = new Payment(&quot;C&quot;, 4.00d, 8.00d, 14.00d);
++                    myp4 = new Payment(&quot;D&quot;, 5.00d, 10.00d, 20.00d);
++                    Payments.add(myp1);
++                    Payments.add(myp2);
++                    Payments.add(myp3);
++                    Payments.add(myp4);
++                }             
++                
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Payments.iterator(); iter.hasNext();) {
++                    Payment dir = (Payment) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++                for (int i = 0; i &lt; ids.size(); i++) {
++                    int id = ((Integer) ids.get(i)).intValue();
++                    Payment myp = (Payment) Payments.get(i);
++
++                    //get Payment from Hibernate
++                    Payment dbd = (Payment) s.get(Payment.class, new Integer(id));
++                    assertNotNull(&quot;Can't get Payment&quot; + id + &quot; from DB&quot;, dbd);
++                    if (dbd == null) {
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;testCreating()Kein object mit id &quot;
++                                    + id + &quot;gefunden.&quot;);
++                        }
++                        return;
++                    }
++                    //are both equal?
++                    assertEquals(
++                            &quot;Select: Payment aus DB nicht gleich meiner. DB: &quot;
++                                    + dbd + &quot; My:&quot; + myp, myp, dbd);
++
++                    //Update
++
++                    //delete the object
++                    s.delete(myp);
++                    s.flush();
++
++                    logger.debug(&quot;L&#246;sche eins per Hand&quot;);
++                    Payment o = new Payment();
++                    o.setPaymentId(new Integer(0));
++                    o.setName(&quot;&quot;);
++                    o.setDuration1(0d);
++                    o.setDuration2(0d);
++                    o.setDuration3(0d);
++                    o.setStartdate(null);
++                    s.delete(o);
++                    s.flush();
++                    
++                    
++                    dbd = myp = null;
++
++                    Object obj = s.get(Payment.class, new Integer(id));
++
++                    //should be null, because data deleted
++                    assertNull(&quot;Deleted: Payment&quot; + id + &quot;, but still in DB&quot;, obj);
++
++                    if (logger.isDebugEnabled()) {
++                        logger
++                                .debug(&quot;testCreating() - Payment aus DB gleich meiner? DB: &quot;
++                                        + dbd + &quot; My:&quot; + myp);
++                    }
++
++                }
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testCreating() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testCreating() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            HibernateUtil.closeSession();
++        }
++
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - end&quot;);
++        }
++    }*/
++
++    public void testSavePayment() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSavePayment() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Payments = new ArrayList();
++
++                Payment myp1 = new Payment(&quot;A&quot;, 2.00d, 4.00d, 8.00d);
++                Payment myp2 = new Payment(&quot;B&quot;, 3.00d, 6.00d, 12.00d);
++                Payment myp3 = new Payment(&quot;C&quot;, 4.00d, 8.00d, 14.00d);
++                Payment myp4 = new Payment(&quot;D&quot;, 5.00d, 10.00d, 20.00d);
++
++                Payments.add(myp1);
++                Payments.add(myp2);
++                Payments.add(myp3);
++                Payments.add(myp4);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Payments.iterator(); iter.hasNext();) {
++                    Payment dir = (Payment) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testSavePayment() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testSavePayment() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            HibernateUtil.closeSession();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSavePayment() - end&quot;);
++        }
++    }
++
++    /**
++     * Constructor for TestGenre.
++     * @param arg0
++     */
++    public TestPayment(String arg0) {
++        super(arg0);
++    }
++
++}
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000159.html">[Provirent-svn-commit] r158 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+	<LI>Next message: <A HREF="000161.html">[Provirent-svn-commit] r160 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#160">[ date ]</a>
+              <a href="thread.html#160">[ thread ]</a>
+              <a href="subject.html#160">[ subject ]</a>
+              <a href="author.html#160">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

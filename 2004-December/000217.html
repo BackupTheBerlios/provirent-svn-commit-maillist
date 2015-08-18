@@ -1,0 +1,704 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r216 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r216%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200412071655.iB7GtGdp002511%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000215.html">
+   <LINK REL="Next"  HREF="000218.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r216 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r216%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200412071655.iB7GtGdp002511%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r216 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Tue Dec  7 17:55:16 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000215.html">[Provirent-svn-commit] r215 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+        <LI>Next message: <A HREF="000218.html">[Provirent-svn-commit] r217 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#217">[ date ]</a>
+              <a href="thread.html#217">[ thread ]</a>
+              <a href="subject.html#217">[ subject ]</a>
+              <a href="author.html#217">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-12-07 17:55:16 +0100 (Tue, 07 Dec 2004)
+New Revision: 216
+
+Added:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeOrder.java
+Log:
+
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeOrder.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeOrder.java	2004-12-07 16:54:49 UTC (rev 215)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeOrder.java	2004-12-07 16:55:16 UTC (rev 216)
+@@ -0,0 +1,628 @@
++/*
++ * Created on 06.12.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.management.gui;
++
++import java.text.DateFormat;
++import java.util.Locale;
++import java.util.PropertyResourceBundle;
++import java.util.ResourceBundle;
++
++import org.apache.log4j.Logger;
++import org.eclipse.swt.SWT;
++import org.eclipse.swt.custom.SashForm;
++import org.eclipse.swt.events.FocusAdapter;
++import org.eclipse.swt.events.FocusEvent;
++import org.eclipse.swt.events.SelectionAdapter;
++import org.eclipse.swt.events.SelectionEvent;
++import org.eclipse.swt.layout.FormAttachment;
++import org.eclipse.swt.layout.FormData;
++import org.eclipse.swt.layout.FormLayout;
++import org.eclipse.swt.layout.GridData;
++import org.eclipse.swt.layout.GridLayout;
++import org.eclipse.swt.widgets.Composite;
++import org.eclipse.swt.widgets.Control;
++import org.eclipse.swt.widgets.Display;
++import org.eclipse.swt.widgets.Event;
++import org.eclipse.swt.widgets.Group;
++import org.eclipse.swt.widgets.Label;
++import org.eclipse.swt.widgets.Listener;
++import org.eclipse.swt.widgets.Shell;
++import org.eclipse.swt.widgets.Table;
++import org.eclipse.swt.widgets.TableColumn;
++import org.eclipse.swt.widgets.TableItem;
++import org.eclipse.swt.widgets.Text;
++
++import com.cloudgarden.resource.SWTResourceManager;
++
++import de.hsharz.provirent.objects.Customer;
++import de.hsharz.provirent.objects.MovieOrder;
++import de.hsharz.provirent.objects.OrderItem;
++import de.hsharz.provirent.persistence.DataBaseException;
++import de.hsharz.provirent.persistence.Database;
++
++/**
++ * @author Stefan Forstner
++ *
++ */
++public class CompositeOrder extends AbstractComposite {
++
++    private final static int MODE_VIEW = 0;
++
++    private final static int MODE_ADD = 1;
++    
++    private final static int MODE_EDIT = 2;
++    
++    private Composite parent;
++    private StatusLineStyledText statusLine;
++    private ResourceBundle l;
++    
++    
++    {
++        //Register as a resource user - SWTResourceManager will
++        //handle the obtaining and disposing of resources
++        SWTResourceManager.registerResourceUser(this);
++    }
++    
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger
++            .getLogger(CompositeCustomer.class);
++    private SashForm sashForm1;
++
++    private Group groupOrder;
++
++    private SashForm sashFormOrder;
++
++    private Group groupOrderOverview;
++
++    private Label labelOrderSearch;
++
++    private Text textOrderSearch;
++
++    private Table tableOrder;
++
++    private TableColumn tableColumn;
++    
++    private Table tableOrderItems;
++
++    private Group groupOrderDetail;
++
++    private MovieOrder localCustomer;
++    
++    /**
++     * @param p
++     * @param style
++     * @param status
++     * @param l
++     */
++    public CompositeOrder(Composite p, int style, StatusLineStyledText status, Locale l) {
++        super(p, style, status, l);
++        parent = p;
++        //Statusline wird gestzt
++        statusLine = status;
++
++        //sprache wird init
++        initLanguage(l);
++
++        initGUI();
++    }
++    
++    public static void showGUI() {
++        Display display = Display.getDefault();
++        Shell shell = new Shell(display);
++
++        shell.open();
++        while (!shell.isDisposed()) {
++            if (!display.readAndDispatch())
++                display.sleep();
++        }
++    }
++
++    /**
++     * 
++     */
++    private void initGUI() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - start&quot;);
++        }
++
++        this.setLayout(new GridLayout());
++        this.setSize(816, 540);
++        {
++            sashForm1 = new SashForm(this, SWT.VERTICAL | SWT.V_SCROLL);
++            GridData sashForm1LData1 = new GridData();
++            sashForm1LData1.grabExcessHorizontalSpace = true;
++            sashForm1LData1.horizontalAlignment = GridData.FILL;
++            sashForm1LData1.grabExcessVerticalSpace = true;
++            sashForm1LData1.verticalAlignment = GridData.FILL;
++            sashForm1.setLayoutData(sashForm1LData1);
++
++            initOrderGroup();
++            
++            refreshOrderTable(textOrderSearch.getText());
++
++        }
++        this.layout();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - end&quot;);
++        }
++    }
++
++    /**
++     * @param text
++     */
++    private void refreshOrderTable(String filter) {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;refreshOrderTable(String) - Versuche nun OrderListe zu refreshen. Filter: &quot;
++                            + filter);
++        }
++        if (tableOrder == null) {
++            if (logger.isDebugEnabled()) {
++                logger.debug(&quot;refreshOrderTable(String) - Konnte Ordertable nicht refreshen, da diese null ist!&quot;);
++            }
++            return;
++        }
++
++        tableOrder.removeAll();
++        TableItem item;
++        java.util.List Orderlist = Database.getOrder(filter);
++
++        for (int i = 0; i &lt; Orderlist.size(); i++) {
++
++            MovieOrder o = (MovieOrder) Orderlist.get(i);
++
++            item = new TableItem(tableOrder, SWT.NONE);
++                        
++            item.setText(new String[] { o.getMovieOrderId() + &quot;&quot;,
++                    o.getCustomer().getUserName(), o.getCustomer().getPerson().getLastName(),
++                    o.getCustomer().getPerson().getFirstName()});
++
++        }
++    }
++    
++    /**
++     * @param text
++     */
++    private void refreshOrderItemTable(String id) {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;refreshOrderItemTable(String) - Versuche nun OrderItemListe zu refreshen. Filter: &quot;
++                            + id);
++        }
++        if (tableOrder == null) {
++            if (logger.isDebugEnabled()) {
++                logger.debug(&quot;refreshOrderItemTable(String) - Konnte OrderItemtable nicht refreshen, da diese null ist!&quot;);
++            }
++            return;
++        }
++        
++        if (!id.equals(&quot;&quot;) &amp;&amp; id != null) {
++            MovieOrder object;
++            try {
++                //since we only can get a String value from the table, we
++                //need to convert this
++                object = Database.getSingleOrder(Integer.parseInt(id));
++
++                if (object == null) {
++
++                    // @TODO Statusbar aktualiseren
++                    return;
++                }
++            } catch (Exception e) {
++                //id ist keine Zahl
++                return;
++            }
++            localCustomer = object;            
++            
++            tableOrderItems.removeAll();
++            TableItem item;
++            java.util.List OrderItemlist = localCustomer.getMovieOrderItems();
++
++	        for (int i = 0; i &lt; OrderItemlist.size(); i++) {
++	
++	            OrderItem o = (OrderItem) OrderItemlist.get(i);
++	
++	            item = new TableItem(tableOrderItems, SWT.NONE);
++	            
++	            String orderdate = &quot;&quot;;
++	            if (o.getOrderTime() != null) {
++	                orderdate = DateFormat.getDateInstance(DateFormat.SHORT).format(
++	                    o.getOrderTime().getTime());
++	            }
++	            
++	            String senddate = &quot;&quot;;
++	            if (o.getSenderTime() != null) {
++	                senddate = DateFormat.getDateInstance(DateFormat.SHORT).format(
++	                    o.getSenderTime().getTime());
++	            }
++	            
++	            String receivingdate = &quot;&quot;;
++	            if (o.getReceivingTime() != null) {
++	                receivingdate = DateFormat.getDateInstance(DateFormat.SHORT).format(
++	                    o.getReceivingTime().getTime());
++	            }
++	            
++	            item.setText(new String[] { o.getOrderItemId() + &quot;&quot;,
++	                    o.getDvd().getDvdId().toString(), o.getDvd().getMovie().getTitle(),
++	                    orderdate, 
++	                    senddate, 
++	                    receivingdate,
++	                    o.getPayment().getName(),
++	                    Integer.toString(o.getDuration()),
++	                    o.getConditionSend().getConditionName(),
++	                    o.getConditionReceiving().getConditionName()});
++	
++	        }
++        }
++    }
++
++    /**
++     * 
++     */
++    private void initOrderGroup() {
++        {
++            //init a group for the Customer
++            groupOrder = new Group(sashForm1, SWT.NONE);
++            GridLayout group2Layout = new GridLayout();
++            group2Layout.makeColumnsEqualWidth = true;
++            groupOrder.setText(l.getString(&quot;Order.group.label&quot;));
++            groupOrder.setSize(758, 284);
++            FormData group2LData = new FormData();
++            groupOrder.addFocusListener(new FocusAdapter() {
++                private Control buttonOrderCancel;
++                private Control buttonOrderDelete;
++                private Control buttonOrderEdit;
++                private Control buttonOrderNew;
++                private Control buttonOrderSave;
++
++                public void focusLost(FocusEvent evt) {
++                    if (logger.isDebugEnabled()) {
++                        logger
++                                .debug(&quot;focusLost(FocusEvent) - groupOrder.focusLost, event=&quot;
++                                        + evt);
++                    }
++                    buttonOrderCancel.setEnabled(false);
++                    buttonOrderDelete.setEnabled(false);
++                    buttonOrderEdit.setEnabled(false);
++                    buttonOrderNew.setEnabled(false);
++                    buttonOrderSave.setEnabled(false);
++                }
++            });
++            groupOrder.setLayout(group2Layout);
++            groupOrder.setLayoutData(group2LData);
++            {
++                sashFormOrder = new SashForm(groupOrder, SWT.NONE);
++                FormLayout sashForm2Layout = new FormLayout();
++                sashFormOrder.setSize(748, 300);
++                GridData sashForm2LData = new GridData();
++                sashFormOrder.setLayout(sashForm2Layout);
++                sashForm2LData.verticalAlignment = GridData.FILL;
++                sashForm2LData.horizontalAlignment = GridData.FILL;
++                sashForm2LData.grabExcessHorizontalSpace = true;
++                sashForm2LData.grabExcessVerticalSpace = true;
++                sashFormOrder.setLayoutData(sashForm2LData);
++
++                //init die Gruppe f&#252;r Customere &#220;berblick
++                initOrderGroupOverview();
++                //init die Detailansicht
++                initOrderGroupDetail();
++
++            }
++        }
++    }
++
++    /**
++     * 
++     */
++    private void initOrderGroupDetail() {
++        groupOrderDetail = new Group(sashFormOrder, SWT.NONE);
++        GridLayout groupOrderDetailLayout = new GridLayout();
++        groupOrderDetailLayout.marginHeight = 25;
++        groupOrderDetailLayout.numColumns = 4;
++        groupOrderDetailLayout.verticalSpacing = 15;
++        groupOrderDetail.setText(l.getString(&quot;Order.groupdetail.label&quot;));
++        FormData formData = new FormData();
++        groupOrderDetail.setLayout(groupOrderDetailLayout);
++        formData.right = new FormAttachment(100, 100, -5);
++        formData.top = new FormAttachment(0, 100, 5);
++        formData.bottom = new FormAttachment(100, 100, -5);
++        groupOrderDetail.setLayoutData(formData);
++    }
++
++    /**
++     * 
++     */
++    private void initOrderGroupOverview() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initOrderGroupOverview() - start&quot;);
++        }
++
++        groupOrderOverview = new Group(sashFormOrder, SWT.NONE);
++        GridLayout group5Layout = new GridLayout();
++        group5Layout.numColumns = 8;
++        groupOrderOverview.setText(l
++                .getString(&quot;Order.groupoverview.label&quot;));
++        FormData group5LData = new FormData();
++        groupOrderOverview.setLayout(group5Layout);
++        group5LData.left = new FormAttachment(0, 100, 0);
++        group5LData.top = new FormAttachment(0, 100, 0);
++        groupOrderOverview.setLayoutData(group5LData);
++
++        //Tabelle anzeigen
++        initTableOrder();
++        //Suche darunter anzeigen
++        initOrderSearch();
++        //Tabelle f&#252;r Orderitems
++        initTableOrderItems();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initCustomerGroupOverview() - end&quot;);
++        }
++
++        
++    }
++
++    /**
++     * 
++     */
++    private void initTableOrderItems() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initTableOrderItems() - start&quot;);
++        }
++
++        tableOrderItems = new Table(groupOrderOverview, SWT.SINGLE
++                | SWT.FULL_SELECTION | SWT.V_SCROLL | SWT.BORDER);
++        tableOrderItems.setHeaderVisible(true);
++        tableOrderItems.setLinesVisible(true);
++        GridData table2LData = new GridData();
++
++        tableOrderItems.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++
++                int index = tableOrderItems.getSelectionIndex();
++
++                //es wurde ein Element aus Tabelle ausgewaehlt jetzt muss die
++                //Detailansicht aktualisiert werden
++                refreshOrderItemTable(tableOrderItems.getItem(index).getText(0));
++
++            }
++        });
++        table2LData.verticalAlignment = GridData.FILL;
++        table2LData.horizontalAlignment = GridData.FILL;
++        table2LData.horizontalSpan = 8;
++        table2LData.grabExcessHorizontalSpace = true;
++        table2LData.grabExcessVerticalSpace = true;
++        tableOrderItems.setLayoutData(table2LData);
++
++        //einzelne Spalten hinzuf&#252;gen
++        tableColumn = new TableColumn(tableOrderItems, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;OrderItems.groupoverview.columnid&quot;));
++        tableColumn.setWidth(50);
++
++        tableColumn = new TableColumn(tableOrderItems, SWT.CENTER);
++        tableColumn.setText(l
++                .getString(&quot;OrderItems.groupoverview.columndvdid&quot;));
++        tableColumn.setWidth(50);
++
++        tableColumn = new TableColumn(tableOrderItems, SWT.CENTER);
++        tableColumn.setText(l
++                .getString(&quot;OrderItems.groupoverview.columnmoviename&quot;));
++        tableColumn.setWidth(70);
++        
++        tableColumn = new TableColumn(tableOrderItems, SWT.CENTER);
++        tableColumn.setText(l
++                .getString(&quot;OrderItems.groupoverview.columnordertime&quot;));
++        tableColumn.setWidth(70);
++        
++        tableColumn = new TableColumn(tableOrderItems, SWT.CENTER);
++        tableColumn.setText(l
++                .getString(&quot;OrderItems.groupoverview.columnsendertime&quot;));
++        tableColumn.setWidth(70);
++        
++        tableColumn = new TableColumn(tableOrderItems, SWT.CENTER);
++        tableColumn.setText(l
++                .getString(&quot;OrderItems.groupoverview.columnreceivingtime&quot;));
++        tableColumn.setWidth(70);
++        
++        tableColumn = new TableColumn(tableOrderItems, SWT.CENTER);
++        tableColumn.setText(l
++                .getString(&quot;OrderItems.groupoverview.columnpayment&quot;));
++        tableColumn.setWidth(70);
++        
++        tableColumn = new TableColumn(tableOrderItems, SWT.CENTER);
++        tableColumn.setText(l
++                .getString(&quot;OrderItems.groupoverview.columnduration&quot;));
++        tableColumn.setWidth(70);
++        
++        tableColumn = new TableColumn(tableOrderItems, SWT.CENTER);
++        tableColumn.setText(l
++                .getString(&quot;OrderItems.groupoverview.columnconditionsend&quot;));
++        tableColumn.setWidth(70);
++        
++        tableColumn = new TableColumn(tableOrderItems, SWT.CENTER);
++        tableColumn.setText(l
++                .getString(&quot;OrderItems.groupoverview.columnconditionreceiving&quot;));
++        tableColumn.setWidth(70);
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initTableOrderItems() - end&quot;);
++        }
++    }
++
++    /**
++     * 
++     */
++    private void initOrderSearch() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initOrderSearch() - start&quot;);
++        }
++
++        //label f&#252;r die Suche
++        labelOrderSearch = new Label(groupOrderOverview, SWT.NONE);
++        labelOrderSearch.setText(l
++                .getString(&quot;Order.groupoverview.searchlabel&quot;)
++                + &quot;:&quot;);
++        GridData label2LData = new GridData();
++        label2LData.horizontalSpan = 3;
++        labelOrderSearch.setLayoutData(label2LData);
++
++        //das Suchfeld
++        textOrderSearch = new Text(groupOrderOverview, SWT.BORDER);
++        GridData text2LData = new GridData();
++        textOrderSearch.addFocusListener(new FocusAdapter() {
++            public void focusLost(FocusEvent evt) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;focusLost(FocusEvent evt = &quot; + evt + &quot; &quot;
++                            + textOrderSearch.getText() + &quot;) - start&quot;);
++                }
++                
++                /* TODO
++                try {
++                    refreshOrderTable(textOrderSearch.getText());
++                } catch (DataBaseException e) {
++                    logger.error(&quot;focusLost(FocusEvent)&quot;, e);
++                }*/
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;focusLost(FocusEvent) - end&quot;);
++                }
++            }
++        });
++
++        textOrderSearch.addListener(SWT.DefaultSelection, new Listener() {
++            public void handleEvent(Event e) {
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;handleEvent(Event e = &quot; + e + &quot; &quot;
++                            + textOrderSearch.getText() + &quot;) - start&quot;);
++                }
++                
++                /* TODO
++                try {
++                    refreshOrderTable(textOrderSearch.getText());
++                } catch (DataBaseException e1) {
++                    logger.error(&quot;handleEvent(Event)&quot;, e1);
++                }*/
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;handleEvent(Event) - end&quot;);
++                }
++            }
++        });
++
++        text2LData.horizontalAlignment = GridData.FILL;
++        text2LData.horizontalSpan = 5;
++        text2LData.grabExcessHorizontalSpace = true;
++        textOrderSearch.setLayoutData(text2LData);
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initOrderSearch() - end&quot;);
++        }
++    }
++
++    /**
++     * 
++     */
++    private void initTableOrder() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initTableOrder() - start&quot;);
++        }
++
++        tableOrder = new Table(groupOrderOverview, SWT.SINGLE
++                | SWT.FULL_SELECTION | SWT.V_SCROLL | SWT.BORDER);
++        tableOrder.setHeaderVisible(true);
++        tableOrder.setLinesVisible(true);
++        GridData table2LData = new GridData();
++
++        tableOrder.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++
++                int index = tableOrder.getSelectionIndex();
++
++                //es wurde ein Element aus Tabelle ausgewaehlt jetzt muss die
++                //Detailansicht aktualisiert werden
++                refreshOrderItemTable(tableOrder.getItem(index).getText(0));
++
++            }
++        });
++        table2LData.verticalAlignment = GridData.FILL;
++        table2LData.horizontalAlignment = GridData.FILL;
++        table2LData.horizontalSpan = 8;
++        table2LData.grabExcessHorizontalSpace = true;
++        table2LData.grabExcessVerticalSpace = true;
++        tableOrder.setLayoutData(table2LData);
++
++        //einzelne Spalten hinzuf&#252;gen
++        tableColumn = new TableColumn(tableOrder, SWT.CENTER);
++        tableColumn.setText(l.getString(&quot;Order.groupoverview.columnid&quot;));
++        tableColumn.setWidth(50);
++
++        tableColumn = new TableColumn(tableOrder, SWT.CENTER);
++        tableColumn.setText(l
++                .getString(&quot;Order.groupoverview.columnusername&quot;));
++        tableColumn.setWidth(50);
++
++        tableColumn = new TableColumn(tableOrder, SWT.CENTER);
++        tableColumn.setText(l
++                .getString(&quot;Order.groupoverview.columnlastname&quot;));
++        tableColumn.setWidth(70);
++        
++        tableColumn = new TableColumn(tableOrder, SWT.CENTER);
++        tableColumn.setText(l
++                .getString(&quot;Order.groupoverview.columnfirstname&quot;));
++        tableColumn.setWidth(70);
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initTableOrder() - end&quot;);
++        }
++    }
++
++    /* (non-Javadoc)
++     * @see de.hsharz.provirent.management.gui.AbstractComposite#changeLanguage(java.util.Locale)
++     */
++    public void changeLanguage(Locale l) {
++        // TODO Auto-generated method stub
++
++    }
++
++    /* (non-Javadoc)
++     * @see de.hsharz.provirent.management.gui.AbstractComposite#initLanguage(java.util.Locale)
++     */
++    public void initLanguage(Locale locale) {
++        l = PropertyResourceBundle.getBundle(
++                &quot;de.hsharz.provirent.management.gui.language.Order&quot;, locale);
++    }
++
++    public static void main(String[] args) {
++    }
++}
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000215.html">[Provirent-svn-commit] r215 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+	<LI>Next message: <A HREF="000218.html">[Provirent-svn-commit] r217 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#217">[ date ]</a>
+              <a href="thread.html#217">[ thread ]</a>
+              <a href="subject.html#217">[ subject ]</a>
+              <a href="author.html#217">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

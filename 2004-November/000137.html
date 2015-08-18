@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r136 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r136%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/objects&In-Reply-To=%3C200411151940.iAFJeBWc029463%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000136.html">
+   <LINK REL="Next"  HREF="000138.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r136 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r136%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/objects&In-Reply-To=%3C200411151940.iAFJeBWc029463%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r136 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Mon Nov 15 20:40:11 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000136.html">[Provirent-svn-commit] r135 - in project_src/provirent_hibernate/src: . de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence
+</A></li>
+        <LI>Next message: <A HREF="000138.html">[Provirent-svn-commit] r137 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#137">[ date ]</a>
+              <a href="thread.html#137">[ thread ]</a>
+              <a href="subject.html#137">[ subject ]</a>
+              <a href="author.html#137">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-15 20:40:10 +0100 (Mon, 15 Nov 2004)
+New Revision: 136
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.java
+Log:
+- bei image gibt es auch ein thumb image
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml	2004-11-15 19:37:23 UTC (rev 135)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml	2004-11-15 19:40:10 UTC (rev 136)
+@@ -24,6 +24,10 @@
+       &lt;property name=&quot;imageFile&quot; type=&quot;binary&quot;&gt;
+       	&lt;column name=&quot;imageFile&quot; sql-type=&quot;BLOB&quot; /&gt;
+       &lt;/property&gt;
++
++      &lt;property name=&quot;imageFileThumb&quot; type=&quot;binary&quot;&gt;
++      	&lt;column name=&quot;imageFileThumb&quot; sql-type=&quot;BLOB&quot; /&gt;
++      &lt;/property&gt;
+ 				
+       &lt;property name=&quot;imageFileSize&quot; type=&quot;int&quot;&gt;
+       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.java	2004-11-15 19:37:23 UTC (rev 135)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.java	2004-11-15 19:40:10 UTC (rev 136)
+@@ -20,6 +20,9 @@
+     private byte[] imageFile;
+ 
+     /** nullable persistent field */
++    private byte[] imageFileThumb;
++
++    /** nullable persistent field */
+     private int imageFileSize;
+ 
+     /** nullable persistent field */
+@@ -29,8 +32,9 @@
+     private String imageFileDescription;
+ 
+     /** full constructor */
+-    public Image(byte[] imageFile, int imageFileSize, String imageFileName, String imageFileDescription) {
++    public Image(byte[] imageFile, byte[] imageFileThumb, int imageFileSize, String imageFileName, String imageFileDescription) {
+         this.imageFile = imageFile;
++        this.imageFileThumb = imageFileThumb;
+         this.imageFileSize = imageFileSize;
+         this.imageFileName = imageFileName;
+         this.imageFileDescription = imageFileDescription;
+@@ -56,6 +60,14 @@
+         this.imageFile = imageFile;
+     }
+ 
++    public byte[] getImageFileThumb() {
++        return this.imageFileThumb;
++    }
++
++    public void setImageFileThumb(byte[] imageFileThumb) {
++        this.imageFileThumb = imageFileThumb;
++    }
++
+     public int getImageFileSize() {
+         return this.imageFileSize;
+     }
+@@ -96,6 +108,7 @@
+         return new EqualsBuilder()
+             .append(this.getImageId(), castOther.getImageId())
+             .append(this.getImageFile(), castOther.getImageFile())
++            .append(this.getImageFileThumb(), castOther.getImageFileThumb())
+             .append(this.getImageFileSize(), castOther.getImageFileSize())
+             .append(this.getImageFileName(), castOther.getImageFileName())
+             .append(this.getImageFileDescription(), castOther.getImageFileDescription())
+@@ -106,6 +119,7 @@
+         return new HashCodeBuilder()
+             .append(getImageId())
+             .append(getImageFile())
++            .append(getImageFileThumb())
+             .append(getImageFileSize())
+             .append(getImageFileName())
+             .append(getImageFileDescription())
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000136.html">[Provirent-svn-commit] r135 - in project_src/provirent_hibernate/src: . de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence
+</A></li>
+	<LI>Next message: <A HREF="000138.html">[Provirent-svn-commit] r137 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#137">[ date ]</a>
+              <a href="thread.html#137">[ thread ]</a>
+              <a href="subject.html#137">[ subject ]</a>
+              <a href="author.html#137">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

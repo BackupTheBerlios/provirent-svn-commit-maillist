@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r210 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r210%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20persistence&In-Reply-To=%3C200412062318.iB6NIZ3U017673%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000210.html">
+   <LINK REL="Next"  HREF="000212.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r210 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r210%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20persistence&In-Reply-To=%3C200412062318.iB6NIZ3U017673%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r210 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Tue Dec  7 00:18:35 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000210.html">[Provirent-svn-commit] r209 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+        <LI>Next message: <A HREF="000212.html">[Provirent-svn-commit] r211 - in project_src/provirent_hibernate/src: de/hsharz/provirent/objects test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#211">[ date ]</a>
+              <a href="thread.html#211">[ thread ]</a>
+              <a href="subject.html#211">[ subject ]</a>
+              <a href="author.html#211">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-12-07 00:18:29 +0100 (Tue, 07 Dec 2004)
+New Revision: 210
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-06 22:50:18 UTC (rev 209)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-06 23:18:29 UTC (rev 210)
+@@ -1309,7 +1309,6 @@
+                                         .parse(textMoviesDate.getText()));
+                         logger.debug(&quot;Datum: &quot; + localmovie.getReleaseDate());
+                     } catch (ParseException e1) {
+-                        // TODO Auto-generated catch block
+                         //Hier muss noch was gemacht werden, das Datum konnte
+                         // nicht geparst werden
+                         logger.error(&quot;widgetSelected(SelectionEvent)&quot;, e1);
+@@ -1339,11 +1338,13 @@
+                     try {
+                         //object speichern
+                         // Fehlerbehandlung
+-                        Object o = Database.saveObject(localmovie);
++                        logger.debug(&quot;Objektid: &quot;+localmovie.getMovieId()+&quot; vor speichern&quot;);
++                        Database.saveObject(localmovie);
++                        logger.debug(&quot;Objektid: &quot;+localmovie.getMovieId()+&quot; nach speichern&quot;);
+ 
+                         // in &#220;bersichtstabelle einf&#252;gen
+-                        insertIntoMoviesOverviewTable((Movie) o);
+-                        textMoviesID.setText(((Movie) o).getMovieId() + &quot;&quot;);
++                        insertIntoMoviesOverviewTable(localmovie);
++                        textMoviesID.setText(localmovie.getMovieId() + &quot;&quot;);
+ 
+                         //Statusline Nachricht sezten
+                         statusLine
+@@ -1352,6 +1353,7 @@
+                                         l
+                                                 .getString(&quot;movies.groupdetail.savebutton.newok&quot;));
+                     } catch (DataBaseException e) {
++                        logger.debug(&quot;DataBaseException: &quot;+e);
+                         if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
+                             //Fehler beim Speichern des Objectes
+ 
+@@ -1382,12 +1384,14 @@
+                             logger.error(&quot;widgetSelected(SelectionEvent)&quot;, e);
+                         }
+ 
++                    } catch (Exception ex) {
++                        logger.debug(&quot;Unbekannte Exception: &quot;,ex);
+                     }
+ 
+                     //activate buttons
+                     setMoviesGroupButtonSaveCancel();
+ 
+-                    //Execption because only 2 modes posiibel
++                    
+ 
+                 }
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java	2004-12-06 22:50:18 UTC (rev 209)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java	2004-12-06 23:18:29 UTC (rev 210)
+@@ -380,6 +380,9 @@
+             }
+         });
+ 
++        //Liste f&#252;llen
++        refreshList(&quot;&quot;);
++        
+         dialogShell.layout();
+         dialogShell.pack();
+         dialogShell.open();
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-06 22:50:18 UTC (rev 209)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-06 23:18:29 UTC (rev 210)
+@@ -32,7 +32,10 @@
+  */
+ package de.hsharz.provirent.persistence;
+ 
++import java.text.DateFormat;
++import java.text.ParseException;
+ import java.util.ArrayList;
++import java.util.Calendar;
+ import java.util.List;
+ 
+ import net.sf.hibernate.Criteria;
+@@ -41,7 +44,6 @@
+ import net.sf.hibernate.Transaction;
+ import net.sf.hibernate.expression.Disjunction;
+ import net.sf.hibernate.expression.Expression;
+-import net.sf.hibernate.type.Type;
+ 
+ import org.apache.log4j.Logger;
+ 
+@@ -55,7 +57,6 @@
+ import de.hsharz.provirent.objects.Language;
+ import de.hsharz.provirent.objects.Movie;
+ import de.hsharz.provirent.objects.Payment;
+-import de.hsharz.provirent.objects.Person;
+ import de.hsharz.provirent.objects.Status;
+ import de.hsharz.provirent.objects.Subtitle;
+ import de.hsharz.provirent.objects.VideoFormat;
+@@ -182,15 +183,19 @@
+             try {
+                 //get new Session and begin Transaction
+                 s = HibernateUtil.currentSession();
++                tx = s.beginTransaction();
+                 try{
+-                    s.saveOrUpdate(o);
++
++                    //s.saveOrUpdate(o);
++                    s.save(o);
+                 } catch (HibernateException e) {
+                     logger.error(&quot;saveObject(). Fehler beim Speichern/Updaten &quot;
+                             +&quot;des Objectes:&quot;+o+&quot; Exception: &quot;+e);
+                     exception = 1;
+                 }
++                tx.commit();
+                 s.flush();
+-               
++
+                 
+             } catch (HibernateException e) {
+                 //exception = 2;
+@@ -1631,10 +1636,15 @@
+ 	                //any.add(Expression.like(&quot;dayOfRegistration&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+ 	                any.add(Expression.like(&quot;p.lastName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+ 	                any.add(Expression.like(&quot;p.firstName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+-	                //any.add(Expression.like(&quot;p.dayOfBirth&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                try{
++	                    Calendar cal = Calendar.getInstance();
++	                    cal.setTime(DateFormat.getDateInstance(DateFormat.SHORT).parse(filter));
++	                any.add(Expression.like(&quot;p.dayOfBirth&quot;, cal));
++	                } catch (ParseException pex){
++	                    logger.debug(&quot;Fehler beim Parsen des Datums&quot;,pex);
++	                }
+ 	                
+ 	                
+-	                
+ 	                //maybe we are searching for the id?
+ 	                try {
+ 	                    any.add(Expression.eq(&quot;customerId&quot;, new Integer(Integer.parseInt(filter))));
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000210.html">[Provirent-svn-commit] r209 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+	<LI>Next message: <A HREF="000212.html">[Provirent-svn-commit] r211 - in project_src/provirent_hibernate/src: de/hsharz/provirent/objects test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#211">[ date ]</a>
+              <a href="thread.html#211">[ thread ]</a>
+              <a href="subject.html#211">[ subject ]</a>
+              <a href="author.html#211">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

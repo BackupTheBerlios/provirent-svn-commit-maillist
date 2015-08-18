@@ -1,0 +1,415 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r67 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r67%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/persistence&In-Reply-To=%3C200410261929.i9QJTDWr011507%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000067.html">
+   <LINK REL="Next"  HREF="000069.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r67 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r67%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/persistence&In-Reply-To=%3C200410261929.i9QJTDWr011507%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r67 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Tue Oct 26 21:29:13 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000067.html">[Provirent-svn-commit] r66 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language
+</A></li>
+        <LI>Next message: <A HREF="000069.html">[Provirent-svn-commit] r68 - in project_src: . strutstest strutstest/META-INF strutstest/WEB-INF strutstest/WEB-INF/classes strutstest/WEB-INF/classes/de strutstest/WEB-INF/classes/de/hsharz strutstest/WEB-INF/classes/de/hsharz/provirent strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest strutstest/WEB-INF/classes/java strutstest/WEB-INF/classes/java/resources strutstest/WEB-INF/classes/loader strutstest/WEB-INF/classes/loader/META-INF strutstest/WEB-INF/classes/loader/META-INF/tlds strutstest/WEB-INF/classes/loader/org strutstest/WEB-INF/classes/loader/org/apache strutstest/WEB-INF/classes/loader/org/apache/commons strutstest/WEB-INF/classes/loader/org/apache/commons/digester strutstest/WEB-INF/classes/loader/org/apache/commons/digester/rss strutstest/WEB-INF/classes/loader/org/apache/commons/digester/xmlrules strutstest/WEB-INF/classes/loader/org/apache/commons/validator strutstest/WEB-INF/classes/loader/org/apache/commons/validator/javascript strutstest/WEB-INF/classes/loader/or! g/apache/commons/validator/resources strutstest/WEB-INF/classes/loader/org/apache/struts strutstest/WEB-INF/classes/loader/org/apache/struts/action strutstest/WEB-INF/classes/loader/org/apache/struts/actions strutstest/WEB-INF/classes/loader/org/apache/struts/resources strutstest/WEB-INF/classes/loader/org/apache/struts/taglib strutstest/WEB-INF/classes/loader/org/apache/struts/taglib/bean strutstest/WEB-INF/classes/loader/org/apache/struts/taglib/html strutstest/WEB-INF/classes/loader/org/apache/struts/taglib/logic strutstest/WEB-INF/classes/loader/org/apache/struts/util strutstest/WEB-INF/classes/org strutstest/WEB-INF/classes/org/apache strutstest/WEB-INF/classes/org/apache/jsp strutstest/WEB-INF/classes/org/apache/jsp/pages strutstest/WEB-INF/classes/resources strutstest/WEB-INF/lib strutstest/WEB-INF/src strutstest/WEB-INF/src/de strutstest/WEB-INF/src/de/hsharz strutstest/WEB-INF/src/de/hsharz/provirent strutstest/WEB-INF/src/de/hsharz/provirent/strutstest strutstest/! WEB-INF/src/java strutstest/WEB-INF/src/java/resources strutst! est/WEB-
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#68">[ date ]</a>
+              <a href="thread.html#68">[ thread ]</a>
+              <a href="subject.html#68">[ subject ]</a>
+              <a href="author.html#68">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-26 21:29:12 +0200 (Tue, 26 Oct 2004)
+New Revision: 67
+
+Added:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/DataBaseException.java
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+Log:
+- Methoden zum l?\195?\182schen und speichern eines objectes
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/DataBaseException.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/DataBaseException.java	2004-10-26 19:28:31 UTC (rev 66)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/DataBaseException.java	2004-10-26 19:29:12 UTC (rev 67)
+@@ -0,0 +1,74 @@
++/*
++ * Created on 26.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.persistence;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class DataBaseException extends Exception {
++
++    /**
++     * 
++     */
++    public DataBaseException() {
++        super();
++        // TODO Auto-generated constructor stub
++    }
++
++    /**
++     * @param arg0
++     */
++    public DataBaseException(String arg0) {
++        super(arg0);
++        // TODO Auto-generated constructor stub
++    }
++
++    /**
++     * @param arg0
++     */
++    public DataBaseException(Throwable arg0) {
++        super(arg0);
++        // TODO Auto-generated constructor stub
++    }
++
++    /**
++     * @param arg0
++     * @param arg1
++     */
++    public DataBaseException(String arg0, Throwable arg1) {
++        super(arg0, arg1);
++        // TODO Auto-generated constructor stub
++    }
++
++}
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-10-26 19:28:31 UTC (rev 66)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-10-26 19:29:12 UTC (rev 67)
+@@ -60,6 +60,23 @@
+     private static final Logger logger = Logger.getLogger(Database.class);
+ 
+ 
++    public static void initDB() {
++        try {
++            HibernateUtil.currentSession();
++        } catch (HibernateException e) {
++            // TODO Auto-generated catch block
++            e.printStackTrace();
++        } finally {
++            try {
++                HibernateUtil.closeSession();
++            } catch (HibernateException e1) {
++                // TODO Auto-generated catch block
++                e1.printStackTrace();
++            }
++        }
++        
++    }
++    
+     /**
+      * This method gets all Directors from the database.
+      * searches for firstname or lastname or id
+@@ -140,9 +157,132 @@
+         
+ 
+     }
++    public static void saveObject(Object o) throws DataBaseException{
++        if (logger.isDebugEnabled()) {
++            logger
++                    .debug(&quot;saveObject(Object o = &quot; + o
++                            + &quot;) - start&quot;);
++        }
++        int exception =0;
++        
++        Session s = null;
++        Transaction tx = null;
++  
++            try {
++                //get new Session and begin Transaction
++                s = HibernateUtil.currentSession();
++                tx = s.beginTransaction();
++                try{
++                    s.saveOrUpdate(o);
++                } catch (HibernateException e) {
++                    logger.error(&quot;saveObject(). Fehler beim Speichern/Updaten &quot;
++                            +&quot;des Objectes:&quot;+o+&quot; Exception: &quot;+e);
++                    exception = 1;
++                }
++                s.flush();
++               
++                tx.commit();
++                
++            } catch (HibernateException e) {
++                exception = 2;
++                logger
++                .error(
++                        &quot;saveObject() - Something went wrong here; discard all partial changes&quot;,
++                        e);
++                if (tx != null) {
++                    try {
++                        // Something went wrong; discard all partial changes
++                        tx.rollback();
++                    } catch (HibernateException e1) {
++                        // TODO Auto-generated catch block
++                        e1.printStackTrace();
++                    }
++                }    
+ 
++            } finally {
++                try {
++                    // No matter what, close the session
++                    HibernateUtil.closeSession();
++                } catch (HibernateException e1) {
++                    
++                    logger.error(&quot;saveObject() - Could not Close the Session&quot;, e1);
++                    
++                }
++            }
++
++            if (exception &gt; 0) {
++                throw new DataBaseException(&quot;exception&quot;);
++            }
++            
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;saveObject(VideoFormat) - end&quot;);
++        }
++    }
+     
++  
+     
++    public static void deleteObject(Object o) throws DataBaseException{
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;deleteObject(Object o = &quot; + o + &quot;) - start&quot;);
++        }
++        int exception =0;
++        
++        Session s = null;
++        Transaction tx = null;
++  
++            try {
++                //get new Session and begin Transaction
++                s = HibernateUtil.currentSession();
++                tx = s.beginTransaction();
++                try{
++                    s.delete(o);
++                } catch (HibernateException e) {
++                    logger.error(&quot;saveObject(). Fehler beim Speichern/Updaten &quot;
++                            + &quot;des Objectes:&quot; + o + &quot; Exception: &quot; + e);
++                    exception = 1;
++                }
++                s.flush();
++               
++                tx.commit();
++                
++            } catch (HibernateException e) {
++                exception = 2;
++                logger
++                        .error(
++                                &quot;deleteObject(Object) - Something went wrong here; discard all partial changes&quot;,
++                                e);
++                if (tx != null) {
++                    try {
++                        // Something went wrong; discard all partial changes
++                        tx.rollback();
++                    } catch (HibernateException e1) {
++                        // TODO Auto-generated catch block
++                        e1.printStackTrace();
++                    }
++                }    
++
++            } finally {
++                try {
++                    // No matter what, close the session
++                    HibernateUtil.closeSession();
++                } catch (HibernateException e1) {
++                    
++                    logger
++                            .error(
++                                    &quot;deleteObject(Object) - Could not Close the Session&quot;,
++                                    e1);
++                    
++                }
++            }
++
++            if (exception &gt; 0) {
++                throw new DataBaseException(&quot;exception&quot;);
++            }
++            
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;deleteObject(Object) - end&quot;);
++        }
++    }
+     
+     
+     /**
+@@ -159,13 +299,10 @@
+         List returnlist = new ArrayList();
+ 
+         Session s = null;
+-        Transaction tx = null;
++        
+         try {
+             //get new Session and begin Transaction
+             s = HibernateUtil.currentSession();
+-            tx = s.beginTransaction();
+-
+-            try {
+                 
+                 //init the criteria
+                 Criteria criteria = s.createCriteria(VideoFormat.class);
+@@ -190,20 +327,8 @@
+                 returnlist = criteria.list();
+ 
+ 
+-            } catch (Exception e) {
+-                if (tx != null) {
+-                    logger
+-                            .error(
+-                                    &quot;getVideoFormat() - Something went wrong here; discard all partial changes&quot;,
+-                                    e);
+ 
+-                    // Something went wrong; discard all partial changes
+-                    tx.rollback();
+-                }
+ 
+-		                
+-            }
+-
+         } catch (Exception e) {
+             logger.error(
+                     &quot;getVideoFormat() - Error while trying to do Transaction&quot;,
+@@ -239,28 +364,9 @@
+         try {
+             //get new Session and begin Transaction
+             s = HibernateUtil.currentSession();
+-            tx = s.beginTransaction();
+ 
+-            try {
+-
+                 returnobject = (VideoFormat)s.get(VideoFormat.class, new Integer(id));
+-                
+ 
+-
+-            } catch (Exception e) {
+-                if (tx != null) {
+-                    logger
+-                            .error(
+-                                    &quot;getSingleVideoFormat() - Something went wrong here; discard all partial changes&quot;,
+-                                    e);
+-
+-                    // Something went wrong; discard all partial changes
+-                    tx.rollback();
+-                }
+-
+-		                
+-            }
+-
+         } catch (Exception e) {
+             logger.error(
+                     &quot;getSingleVideoFormat() - Error while trying to do Transaction&quot;,
+@@ -298,13 +404,10 @@
+         List returnlist = new ArrayList();
+ 
+         Session s = null;
+-        Transaction tx = null;
++
+         try {
+             //get new Session and begin Transaction
+             s = HibernateUtil.currentSession();
+-            tx = s.beginTransaction();
+-
+-            try {
+                 
+                 //init the criteria
+                 Criteria criteria = s.createCriteria(AudioFormat.class);
+@@ -329,20 +432,7 @@
+                 returnlist = criteria.list();
+ 
+ 
+-            } catch (Exception e) {
+-                if (tx != null) {
+-                    logger
+-                            .error(
+-                                    &quot;getAudioFormat() - Something went wrong here; discard all partial changes&quot;,
+-                                    e);
+ 
+-                    // Something went wrong; discard all partial changes
+-                    tx.rollback();
+-                }
+-
+-		                
+-            }
+-
+         } catch (Exception e) {
+             logger.error(
+                     &quot;getAudioFormat() - Error while trying to do Transaction&quot;,
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000067.html">[Provirent-svn-commit] r66 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language
+</A></li>
+	<LI>Next message: <A HREF="000069.html">[Provirent-svn-commit] r68 - in project_src: . strutstest strutstest/META-INF strutstest/WEB-INF strutstest/WEB-INF/classes strutstest/WEB-INF/classes/de strutstest/WEB-INF/classes/de/hsharz strutstest/WEB-INF/classes/de/hsharz/provirent strutstest/WEB-INF/classes/de/hsharz/provirent/strutstest strutstest/WEB-INF/classes/java strutstest/WEB-INF/classes/java/resources strutstest/WEB-INF/classes/loader strutstest/WEB-INF/classes/loader/META-INF strutstest/WEB-INF/classes/loader/META-INF/tlds strutstest/WEB-INF/classes/loader/org strutstest/WEB-INF/classes/loader/org/apache strutstest/WEB-INF/classes/loader/org/apache/commons strutstest/WEB-INF/classes/loader/org/apache/commons/digester strutstest/WEB-INF/classes/loader/org/apache/commons/digester/rss strutstest/WEB-INF/classes/loader/org/apache/commons/digester/xmlrules strutstest/WEB-INF/classes/loader/org/apache/commons/validator strutstest/WEB-INF/classes/loader/org/apache/commons/validator/javascript strutstest/WEB-INF/classes/loader/or! g/apache/commons/validator/resources strutstest/WEB-INF/classes/loader/org/apache/struts strutstest/WEB-INF/classes/loader/org/apache/struts/action strutstest/WEB-INF/classes/loader/org/apache/struts/actions strutstest/WEB-INF/classes/loader/org/apache/struts/resources strutstest/WEB-INF/classes/loader/org/apache/struts/taglib strutstest/WEB-INF/classes/loader/org/apache/struts/taglib/bean strutstest/WEB-INF/classes/loader/org/apache/struts/taglib/html strutstest/WEB-INF/classes/loader/org/apache/struts/taglib/logic strutstest/WEB-INF/classes/loader/org/apache/struts/util strutstest/WEB-INF/classes/org strutstest/WEB-INF/classes/org/apache strutstest/WEB-INF/classes/org/apache/jsp strutstest/WEB-INF/classes/org/apache/jsp/pages strutstest/WEB-INF/classes/resources strutstest/WEB-INF/lib strutstest/WEB-INF/src strutstest/WEB-INF/src/de strutstest/WEB-INF/src/de/hsharz strutstest/WEB-INF/src/de/hsharz/provirent strutstest/WEB-INF/src/de/hsharz/provirent/strutstest strutstest/! WEB-INF/src/java strutstest/WEB-INF/src/java/resources strutst! est/WEB-
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#68">[ date ]</a>
+              <a href="thread.html#68">[ thread ]</a>
+              <a href="subject.html#68">[ subject ]</a>
+              <a href="author.html#68">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

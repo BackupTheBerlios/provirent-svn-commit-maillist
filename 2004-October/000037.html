@@ -1,0 +1,364 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r36 - project_src/provirent_hibernate/src/test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r36%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200410111844.i9BIidgi020837%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000036.html">
+   <LINK REL="Next"  HREF="000038.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r36 - project_src/provirent_hibernate/src/test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r36%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200410111844.i9BIidgi020837%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r36 - project_src/provirent_hibernate/src/test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Mon Oct 11 20:44:39 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000036.html">[Provirent-svn-commit] r35 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000038.html">[Provirent-svn-commit] r37 - timetable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#37">[ date ]</a>
+              <a href="thread.html#37">[ thread ]</a>
+              <a href="subject.html#37">[ subject ]</a>
+              <a href="author.html#37">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-11 20:44:38 +0200 (Mon, 11 Oct 2004)
+New Revision: 36
+
+Modified:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java	2004-10-11 17:50:25 UTC (rev 35)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java	2004-10-11 18:44:38 UTC (rev 36)
+@@ -32,6 +32,8 @@
+  */
+ package test.provirent.hibernate;
+ 
++import org.apache.log4j.Logger;
++
+ import net.sf.hibernate.HibernateException;
+ import net.sf.hibernate.Session;
+ import net.sf.hibernate.SessionFactory;
+@@ -63,6 +65,10 @@
+  *  
+  */
+ public class HibernateUtil {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(HibernateUtil.class);
+ 
+     private static Log log = LogFactory.getLog(HibernateUtil.class);
+ 
+@@ -93,20 +99,36 @@
+     public static final ThreadLocal session = new ThreadLocal();
+ 
+     public static Session currentSession() throws HibernateException {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;currentSession() - start&quot;);
++        }
++
+         Session s = (Session) session.get();
+         //     Open a new Session, if this Thread has none yet
+         if (s == null) {
+             s = sessionFactory.openSession();
+             session.set(s);
+         }
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;currentSession() - end&quot;);
++        }
+         return s;
+     }
+ 
+     public static void closeSession() throws HibernateException {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;closeSession() - start&quot;);
++        }
++
+         Session s = (Session) session.get();
+         session.set(null);
+         if (s != null)
+             s.close();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;closeSession() - end&quot;);
++        }
+     }
+ 
+ }
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java	2004-10-11 17:50:25 UTC (rev 35)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java	2004-10-11 18:44:38 UTC (rev 36)
+@@ -163,6 +163,8 @@
+ 
+                 
+                 int id = c.getCustomerId().intValue();
++                int personid = c.getPerson().getPersonId().intValue();
++                
+                 //get Condition from Hibernate
+                 Customer dbc = (Customer) s.get(Customer.class, new Integer(id));
+                 assertNotNull(&quot;Can't get Customer&quot; + id + &quot; from DB&quot;, dbc);
+@@ -191,7 +193,15 @@
+                 //should be null, because data deleted
+                 assertNull(&quot;Deleted: Customer ID:&quot; + id + &quot;, but still in DB&quot;, obj);
+ 
++
++                obj = s.get(Person.class, new Integer(personid));
++
++                //should be null, because data deleted
++                assertNull(&quot;Deleted Customer, but Person is still there: Customer ID:&quot; 
++                        + id + &quot; Personid: &quot;+ personid + &quot;, but still in DB&quot;, obj);
+                 
++                
++                
+                 tx.commit();
+ 
+                 System.out.println(&quot;Customer der gespeichert wurde: &quot; + customer.toString());
+@@ -200,7 +210,7 @@
+                 if (tx != null) {
+                     logger
+                             .error(
+-                                    &quot;TestCreatingCustomer() - Something went wrong here; discard all partial changes&quot;,
++                                    &quot;testCustomer() - Something went wrong here; discard all partial changes&quot;,
+                                     e);
+ 
+                     // Something went wrong; discard all partial changes
+@@ -210,7 +220,7 @@
+ 
+         } catch (Exception e) {
+             logger.error(
+-                    &quot;TestCreatingCustomer() - Error while trying to beginTransaction&quot;,
++                    &quot;testCustomer() - Error while trying to beginTransaction&quot;,
+                     e);
+             throw e;
+         } finally {
+@@ -221,9 +231,180 @@
+         
+         
+         if (logger.isDebugEnabled()) {
+-            logger.debug(&quot;TestCreatingCustomer() - end&quot;);
++            logger.debug(&quot;testCustomer() - end&quot;);
+         }
+     }
++
++    public void testCreateCustomer() throws Exception{
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreateCustomer() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                List customer = new ArrayList();
++                
++                //create new objects
++
++                Customer c = new Customer();
++                c.setUserName(&quot;kunde1&quot;);
++                c.setPassword(&quot;kunde1&quot;);
++                c.setHiddenQuestion(&quot; &quot;);
++                c.setHiddenAnswer(&quot; &quot;);
++
++                Date birth = new Date();
++                birth.setMonth(4);
++                birth.setYear(1981);
++                birth.setDate(14);
++                Calendar birthday = Calendar.getInstance();
++                birthday.setTime(birth);
++                
++                c.setDayOfBirth(birthday);
++                
++                Person person = new Person();
++                person.setFirstName(&quot;Philipp&quot;);
++                person.setLastName(&quot;Schneider&quot;);
++                person.setStreet(&quot;Kastanienring&quot;);
++                person.setStreetNumber(&quot;16&quot;);
++                person.setCity(&quot;Leipzig&quot;);
++                person.setZipCode(&quot;04316&quot;);
++                person.setCountry(&quot;Deutschland&quot;);
++                person.setSalutation(&quot;Herr&quot;);
++                person.setEmailAddress(&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>&quot;);
++                c.setPerson(person);
++                customer.add(c);
++
++                //second Customer
++                c = new Customer();
++                c.setUserName(&quot;kunde2&quot;);
++                c.setPassword(&quot;kunde2&quot;);
++                c.setHiddenQuestion(&quot; &quot;);
++                c.setHiddenAnswer(&quot; &quot;);
++
++                birth = new Date();
++                birth.setMonth(5);
++                birth.setYear(1988);
++                birth.setDate(18);
++                birthday = Calendar.getInstance();
++                birthday.setTime(birth);
++                
++                c.setDayOfBirth(birthday);
++                
++                person = new Person();
++                person.setFirstName(&quot;Max&quot;);
++                person.setLastName(&quot;Meier&quot;);
++                person.setStreet(&quot;Kohlgartenstr.&quot;);
++                person.setStreetNumber(&quot;67&quot;);
++                person.setCity(&quot;Wernigerode&quot;);
++                person.setZipCode(&quot;38855&quot;);
++                person.setCountry(&quot;Deutschland&quot;);
++                person.setSalutation(&quot;Herr&quot;);
++                person.setEmailAddress(&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>&quot;);
++                c.setPerson(person);
++                customer.add(c);
++                
++       
++                //third Customer
++                c = new Customer();
++                c.setUserName(&quot;kunde3&quot;);
++                c.setPassword(&quot;kunde3&quot;);
++                c.setHiddenQuestion(&quot; &quot;);
++                c.setHiddenAnswer(&quot; &quot;);
++
++                birth = new Date();
++                birth.setMonth(8);
++                birth.setYear(1956);
++                birth.setDate(02);
++                birthday = Calendar.getInstance();
++                birthday.setTime(birth);
++                
++                c.setDayOfBirth(birthday);
++                
++                person = new Person();
++                person.setFirstName(&quot;Thomas&quot;);
++                person.setLastName(&quot;Pech&quot;);
++                person.setStreet(&quot;Riebeck.&quot;);
++                person.setStreetNumber(&quot;7a&quot;);
++                person.setCity(&quot;Leipzig&quot;);
++                person.setZipCode(&quot;04317&quot;);
++                person.setCountry(&quot;Deutschland&quot;);
++                person.setSalutation(&quot;Herr&quot;);
++                person.setEmailAddress(&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde3-provirent at phil-schneider.de</A>&quot;);
++                c.setPerson(person);
++                customer.add(c);
++              
++                
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = customer.iterator(); iter.hasNext();) {
++                    Customer custe = (Customer) iter.next();
++                    ids.add((Integer) s.save(custe));
++
++                }
++                s.flush();
++
++                for (int i =0;i &lt; ids.size(); i++) {
++                    
++                    int id = ((Integer)ids.get(i)).intValue();
++                    
++                    //get Condition from Hibernate
++                    Customer dbc = (Customer) s.get(Customer.class, new Integer(id));
++                    assertNotNull(&quot;Can't get Customer&quot; + id + &quot; from DB&quot;, dbc);
++                    if (dbc == null) {
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;testCreateCustomer() Kein object mit id &quot;
++                                    + id + &quot;gefunden.&quot;);
++                        }
++                        return;
++                    }
++                    //are both equal?
++                    assertEquals(
++                            &quot;Select: Customer aus DB nicht gleich meiner. DB: &quot;
++                                    + dbc + &quot; My:&quot; + c, c, dbc); 
++
++                }
++                
++
++                
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testCreateCustomer() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testCreateCustomer() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            HibernateUtil.closeSession();
++        }
++        
++        
++        
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreateCustomer() - end&quot;);
++        }
++    }
+     
++  
+     
+ }
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000036.html">[Provirent-svn-commit] r35 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000038.html">[Provirent-svn-commit] r37 - timetable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#37">[ date ]</a>
+              <a href="thread.html#37">[ thread ]</a>
+              <a href="subject.html#37">[ subject ]</a>
+              <a href="author.html#37">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

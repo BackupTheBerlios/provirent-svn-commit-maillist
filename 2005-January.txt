@@ -1,0 +1,2553 @@
+From pschneider at sheep.berlios.de  Mon Jan  3 22:01:55 2005
+From: pschneider at sheep.berlios.de (Philipp Schneider at BerliOS)
+Date: Mon, 3 Jan 2005 22:01:55 +0100
+Subject: [Provirent-svn-commit] r255 - docu/libdocu/struts
+Message-ID: <200501032101.j03L1tsj030406@sheep.berlios.de>
+
+Author: pschneider
+Date: 2005-01-03 22:01:54 +0100 (Mon, 03 Jan 2005)
+New Revision: 255
+
+Added:
+   docu/libdocu/struts/Struts In Action.pdf
+Log:
+
+
+Added: docu/libdocu/struts/Struts In Action.pdf
+===================================================================
+(Binary files differ)
+
+
+Property changes on: docu/libdocu/struts/Struts In Action.pdf
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+
+
+From pschneider at sheep.berlios.de  Sun Jan  9 21:11:26 2005
+From: pschneider at sheep.berlios.de (Philipp Schneider at BerliOS)
+Date: Sun, 9 Jan 2005 21:11:26 +0100
+Subject: [Provirent-svn-commit] r256 - project_src/website
+Message-ID: <200501092011.j09KBQlQ027379@sheep.berlios.de>
+
+Author: pschneider
+Date: 2005-01-09 21:11:25 +0100 (Sun, 09 Jan 2005)
+New Revision: 256
+
+Modified:
+   project_src/website/website.jpx
+   project_src/website/website.jpx.local
+Log:
+
+
+Modified: project_src/website/website.jpx
+===================================================================
+--- project_src/website/website.jpx	2005-01-03 21:01:54 UTC (rev 255)
++++ project_src/website/website.jpx	2005-01-09 20:11:25 UTC (rev 256)
+@@ -18,7 +18,6 @@
+   <property category="javaFormatting" name="implementsOnNewLine" value="0"/>
+   <property category="javaFormatting" name="indentCase" value="0"/>
+   <property category="javaFormatting" name="packagePrefixGroups" value="java;BLANK_LINE;javax;BLANK_LINE;(*)"/>
+-  <property category="javaFormatting" name="packageThreshold" value="0"/>
+   <property category="javaFormatting" name="preservedBlankLinesInDecl" value="2"/>
+   <property category="javaFormatting" name="spaceBeforeLparen" value="0"/>
+   <property category="javaFormatting" name="whileOnNewLine" value="0"/>
+@@ -77,7 +76,7 @@
+   <property category="sys" name="JDK" value="java version 1.4.2_04-b05"/>
+   <property category="sys" name="JvmVersion" value="1.2"/>
+   <property category="sys" name="LastTag" value="0"/>
+-  <property category="sys" name="Libraries" value="Servlet;Struts"/>
++  <property category="sys" name="Libraries" value="Servlet;Struts;provirent_objects"/>
+   <property category="sys" name="MakeStable" value="0"/>
+   <property category="sys" name="OutPath" value="classes"/>
+   <property category="sys" name="SourcePath" value="src;test"/>
+@@ -127,6 +126,14 @@
+     <property category="kit.struts" name="validator-defs.2" value="1:WEB-INF/validation.xml"/>
+     <property category="module" name="buildModuleArchiveWithModuleNode" value="0"/>
+     <property category="module" name="buildModuleArchiveWithProject" value="0"/>
++    <property category="module" name="buildModuleExplodedArchiveWithModuleNode" value="1"/>
++    <property category="module" name="buildModuleExplodedArchiveWithProject" value="1"/>
++    <property category="module" name="cleanRules.1" value="I:WEB-INF/classes/**"/>
++    <property category="module" name="cleanRules.2" value="I:WEB-INF/lib/**"/>
++    <property category="module" name="cleanRules.3" value="X:WEB-INF/**/*.ds"/>
++    <property category="module" name="cleanRules.4" value="X:WEB-INF/**/*.wsdd"/>
++    <property category="module" name="cleanRules.5" value="X:WEB-INF/*.xml"/>
++    <property category="module" name="cleanRules.6" value="X:WEB-INF/*.xmi"/>
+     <property category="module" name="directory" value="web"/>
+     <property category="module" name="extraDefaultDirectoriesToKeepOnClean.1" value=".cvsignore"/>
+     <property category="module" name="lastServer" value="Tomcat 4.1"/>
+
+Modified: project_src/website/website.jpx.local
+===================================================================
+--- project_src/website/website.jpx.local	2005-01-03 21:01:54 UTC (rev 255)
++++ project_src/website/website.jpx.local	2005-01-09 20:11:25 UTC (rev 256)
+@@ -1,6 +1,6 @@
+ build.menu.1[0]=com.borland.jbuilder.build.ProjectBuilder$ProjectBuildAction;make
+ build.menu.2[0]=com.borland.jbuilder.build.ProjectBuilder$ProjectBuildAction;rebuild
+-content.layout.xml.[0]=<project-layout><tab_container selected_index="2"><tab node_name="src/de/provirent/web/Constant.java"/><tab node_name="src/de/provirent/web/Action/DetailAction.java"/><tab node_name="web/details.jsp"/><tab node_name="src/de/provirent/web/objects/DTOMovie.java"/><tab node_name="src/de/provirent/web/objects/DTOMovieShort.java"/><tab node_name="web/templates/main.jsp"/><tab node_name="web/WEB-INF/struts-config.xml"/></tab_container></project-layout>
++content.layout.xml.[0]=<project-layout><tab_container selected_index="2"><tab node_name="src/de/provirent/web/Constant.java"/><tab node_name="src/de/provirent/web/persistence/DataBase.java"/><tab node_name="src/de/provirent/web/Action/DetailAction.java"/><tab node_name="web/details.jsp"/><tab node_name="src/de/provirent/web/objects/DTOMovie.java"/><tab node_name="web/templates/main.jsp"/><tab node_name="web/WEB-INF/struts-config.xml"/></tab_container></project-layout>
+ debug.NoTracingClasses.1[0]=23 com.borland.datastore.*1  1 -1
+ debug.NoTracingClasses.10[0]=7  javax.*1  1 -1
+ debug.NoTracingClasses.11[0]=5  sun.*1  1 -1
+@@ -26,36 +26,39 @@
+ debug.NoTracingClasses.7[0]=17 com.borland.sql.*1  1 -1
+ debug.NoTracingClasses.8[0]=9  com.sun.*1  1 -1
+ debug.NoTracingClasses.9[0]=6  java.*1  1 -1
+-history.files.active[0]=web/details.jsp,F;34,1985
+-history.files.open.1[0]=src/de/provirent/web/Constant.java,F;1,52
+-history.files.open.2[0]=src/de/provirent/web/Action/DetailAction.java,F;1,840
+-history.files.open.3[0]=web/details.jsp,F;34,1985
+-history.files.open.4[0]=src/de/provirent/web/objects/DTOMovie.java,F;1,124
+-history.files.open.5[0]=src/de/provirent/web/objects/DTOMovieShort.java,F;1,780
++history.files.active[0]=src/de/provirent/web/Action/DetailAction.java,F;1,81
++history.files.open.1[0]=src/de/provirent/web/Constant.java,F;1,274
++history.files.open.2[0]=src/de/provirent/web/persistence/DataBase.java,F;1,209
++history.files.open.3[0]=src/de/provirent/web/Action/DetailAction.java,F;1,81
++history.files.open.4[0]=web/details.jsp,F;1,454
++history.files.open.5[0]=src/de/provirent/web/objects/DTOMovie.java,F;62,1969
+ history.files.open.6[0]=web/templates/main.jsp,F;126,7041
+ history.files.open.7[0]=web/WEB-INF/struts-config.xml,F;1,466
+ import.optimize.legacyPropertiesRead[0]=1
+ sys.Author[0]=
+-sys.DefaultPackage[0]=de.provirent.web.objects
+-sys.ReopenHistory.1[0]=web/top10month.jsp
+-sys.ReopenHistory.10[0]=src/de/provirent/web/Action/LoginAction.java
+-sys.ReopenHistory.11[0]=src/de/provirent/web/Action/LogoutAction.java
+-sys.ReopenHistory.12[0]=src/de/provirent/web/LoginForm.java
+-sys.ReopenHistory.13[0]=src/de/provirent/web/LogoutAction.java
+-sys.ReopenHistory.14[0]=src/de/provirent/web/LoginAction.java
+-sys.ReopenHistory.15[0]=web/WEB-INF/classes/ApplicationResources.properties
+-sys.ReopenHistory.16[0]=web/WEB-INF/web.xml
+-sys.ReopenHistory.2[0]=src/de/provirent/web/Action/Top10MonthAction.java
+-sys.ReopenHistory.3[0]=web/jsp1.jsp
+-sys.ReopenHistory.4[0]=src/ApplicationResources.properties
+-sys.ReopenHistory.5[0]=web/index.jsp
+-sys.ReopenHistory.6[0]=src/de/provirent/web/Form/LoginForm.java
+-sys.ReopenHistory.7[0]=src/de/provirent/web/Action/SearchAction.java
+-sys.ReopenHistory.8[0]=src/de/provirent/web/Form/SearchForm.java
+-sys.ReopenHistory.9[0]=src/de/provirent/web/Form/SearchAction.java
+-team.lastScanned[0]=1104349700571
+-wizard.package.package_history.1[0]=de.provirent.web.objects
+-wizard.package.package_history.2[0]=de.provirent.web.Action
+-wizard.package.package_history.3[0]=de.provirent.web
+-wizard.package.package_history.4[0]=de.provirent.web.Form
+-wizard.package.package_history.5[0]=website
++sys.DefaultPackage[0]=de.provirent.web.persistence
++sys.ReopenHistory.1[0]=src/de/provirent/web/objects/DTOMovieShort.java
++sys.ReopenHistory.10[0]=src/de/provirent/web/Form/SearchAction.java
++sys.ReopenHistory.11[0]=src/de/provirent/web/Action/LoginAction.java
++sys.ReopenHistory.12[0]=src/de/provirent/web/Action/LogoutAction.java
++sys.ReopenHistory.13[0]=src/de/provirent/web/LoginForm.java
++sys.ReopenHistory.14[0]=src/de/provirent/web/LogoutAction.java
++sys.ReopenHistory.15[0]=src/de/provirent/web/LoginAction.java
++sys.ReopenHistory.16[0]=web/WEB-INF/classes/ApplicationResources.properties
++sys.ReopenHistory.17[0]=web/WEB-INF/web.xml
++sys.ReopenHistory.2[0]=web/top10month.jsp
++sys.ReopenHistory.3[0]=src/de/provirent/web/Action/Top10MonthAction.java
++sys.ReopenHistory.4[0]=web/jsp1.jsp
++sys.ReopenHistory.5[0]=src/ApplicationResources.properties
++sys.ReopenHistory.6[0]=web/index.jsp
++sys.ReopenHistory.7[0]=src/de/provirent/web/Form/LoginForm.java
++sys.ReopenHistory.8[0]=src/de/provirent/web/Action/SearchAction.java
++sys.ReopenHistory.9[0]=src/de/provirent/web/Form/SearchForm.java
++team.ActiveVCS[0]=Subversion
++team.lastScanned[0]=1104447395828
++wizard.package.package_history.1[0]=de.provirent.web.persistence
++wizard.package.package_history.2[0]=de.provirent.web
++wizard.package.package_history.3[0]=de.provirent.web.objects
++wizard.package.package_history.4[0]=de.provirent.web.Action
++wizard.package.package_history.5[0]=de.provirent.web.Form
++wizard.package.package_history.6[0]=website
+
+
+
+From rgriesch at sheep.berlios.de  Sun Jan  9 21:27:38 2005
+From: rgriesch at sheep.berlios.de (Remo Griesch at BerliOS)
+Date: Sun, 9 Jan 2005 21:27:38 +0100
+Subject: [Provirent-svn-commit] r257 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence
+Message-ID: <200501092027.j09KRc13028034@sheep.berlios.de>
+
+Author: rgriesch
+Date: 2005-01-09 21:27:37 +0100 (Sun, 09 Jan 2005)
+New Revision: 257
+
+Added:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogDVD.java
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+Log:
+Composite DVD - beendet
+DialogDVD     - erstellt und beendet
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java	2005-01-09 20:11:25 UTC (rev 256)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java	2005-01-09 20:27:37 UTC (rev 257)
+@@ -1,14 +1,11 @@
+ package de.hsharz.provirent.management.gui;
+ 
+-import java.text.DateFormat;
+ import java.text.MessageFormat;
+-import java.text.ParseException;
+ import java.util.ArrayList;
+-import java.util.Calendar;
++import java.util.List;
+ import java.util.Locale;
+ import java.util.PropertyResourceBundle;
+ import java.util.ResourceBundle;
+-import java.util.List;
+ 
+ import org.apache.log4j.Logger;
+ import org.eclipse.swt.SWT;
+@@ -37,19 +34,15 @@
+ 
+ import com.cloudgarden.resource.SWTResourceManager;
+ 
+-import de.hsharz.provirent.objects.Actor;
+-import de.hsharz.provirent.objects.Director;
++import de.hsharz.provirent.objects.AudioFormat;
++import de.hsharz.provirent.objects.Condition;
+ import de.hsharz.provirent.objects.Dvd;
+-import de.hsharz.provirent.objects.Genre;
+-import de.hsharz.provirent.objects.Image;
+ import de.hsharz.provirent.objects.Language;
+-import de.hsharz.provirent.objects.Subtitle;
+-import de.hsharz.provirent.objects.VideoFormat;
+-import de.hsharz.provirent.objects.AudioFormat;
+ import de.hsharz.provirent.objects.Movie;
+ import de.hsharz.provirent.objects.PaymentCategory;
+-import de.hsharz.provirent.objects.Condition;
+ import de.hsharz.provirent.objects.Status;
++import de.hsharz.provirent.objects.Subtitle;
++import de.hsharz.provirent.objects.VideoFormat;
+ import de.hsharz.provirent.persistence.DataBaseException;
+ import de.hsharz.provirent.persistence.Database;
+ 
+@@ -426,7 +419,6 @@
+      * 
+      */
+     private void initDVDDetail() {
+-        // TODO Auto-generated method stub
+         //      Group DVD Detail
+ 		{
+ 			groupDVDDetail = new Group(sashForm1, SWT.H_SCROLL);
+@@ -485,7 +477,8 @@
+ 		}
+         {
+             labelDVDMovie = new Label(groupDVDDetail, SWT.NONE);
+-            labelDVDMovie.setText("labelDVDMovie");
++            labelDVDMovie.setText(l.getString("dvd.groupdetail.labelmovie")
++					+ ":");
+             GridData labelDVDMovieLData = new GridData();
+             labelDVDMovieLData.horizontalAlignment = GridData.FILL;
+             labelDVDMovie.setLayoutData(labelDVDMovieLData);
+@@ -505,7 +498,8 @@
+         }
+         {
+             labelDVDPayment = new Label(groupDVDDetail, SWT.NONE);
+-            labelDVDPayment.setText("labelDVDPayment");
++            labelDVDPayment.setText(l.getString("dvd.groupdetail.labelpayment")
++					+ ":");
+             GridData labelDVDPaymentLData = new GridData();
+             labelDVDPaymentLData.horizontalAlignment = GridData.FILL;
+             labelDVDPayment.setLayoutData(labelDVDPaymentLData);
+@@ -525,7 +519,8 @@
+         }
+         {
+             labelDVDStatus = new Label(groupDVDDetail, SWT.NONE);
+-            labelDVDStatus.setText("labelDVDStatus");
++            labelDVDStatus.setText(l.getString("dvd.groupdetail.labelstatus")
++					+ ":");
+             GridData labelDVDStatusLData = new GridData();
+             labelDVDStatusLData.horizontalAlignment = GridData.FILL;
+             labelDVDStatus.setLayoutData(labelDVDStatusLData);
+@@ -546,7 +541,8 @@
+         }
+         {
+             labelDVDCondition = new Label(groupDVDDetail, SWT.NONE);
+-            labelDVDCondition.setText("labelDVDCondition");
++            labelDVDCondition.setText(l.getString("dvd.groupdetail.labelcondition")
++					+ ":");
+             GridData labelDVDConditionLData = new GridData();
+             labelDVDConditionLData.horizontalAlignment = GridData.FILL;
+             labelDVDCondition.setLayoutData(labelDVDConditionLData);
+@@ -603,30 +599,27 @@
+ 					.addSelectionListener(new SelectionAdapter() {
+ 						public void widgetSelected(SelectionEvent evt) {
+ 							//open responsible Dialog and insert objects into
+-							/* table
+-							DialogMovie dialog = new DialogMovie(getShell(), 0,
+-									locale, localmovie,
+-									DialogMovie.TYPE_DIRECTOR);
++							//table
++							DialogDVD dialog = new DialogDVD(getShell(), 0,
++									locale, localdvd,
++									DialogDVD.TYPE_LANGUAGE);
+ 							dialog.open();
+ 
+-							tableMoviesDirectorsDetail.removeAll();
++							tableDVDLanguagesDetail.removeAll();
+ 							TableItem item;
+-							for (int i = 0; i < localmovie.getDirector().size(); i++) {
++							for (int i = 0; i < localdvd.getLanguages().size(); i++) {
+ 								item = new TableItem(
+-										tableMoviesDirectorsDetail, SWT.NONE);
++										tableDVDLanguagesDetail, SWT.NONE);
+ 								item.setText(new String[] {
+-										((Director) localmovie.getDirector()
+-												.get(i)).getDirectorId()
++										((Language) localdvd.getLanguages()
++												.get(i)).getLanguageId()
+ 												+ "",
+-										((Director) localmovie.getDirector()
+-												.get(i)).getLastName()
+-												+ " , "
+-												+ ((Director) localmovie
+-														.getDirector().get(i))
+-														.getFirstName() });
++										((Language) localdvd.getLanguages()
++												.get(i)).getName()
++								});
+ 							}
+-							*/
+-						    // TODO
++							
++						    
+ 						}
+ 					});
+ 		}
+@@ -666,7 +659,7 @@
+ 								tableDVDLanguagesDetail.remove(index);
+ 							}
+ 							
+-						    //TODO
++						    
+ 						}
+ 					});
+ 		}
+@@ -733,26 +726,24 @@
+ 			buttonDVDAddSubtitles.addSelectionListener(new SelectionAdapter() {
+ 				public void widgetSelected(SelectionEvent evt) {
+ 					//open responsible Dialog and insert objects into table
+-					/*
+-				    DialogMovie dialog = new DialogMovie(getShell(), 0, locale,
+-							localmovie, DialogMovie.TYPE_ACTOR);
++					//
++				    DialogDVD dialog = new DialogDVD(getShell(), 0, locale,
++							localdvd, DialogDVD.TYPE_SUBTITLE);
+ 					dialog.open();
+ 
+-					tableMoviesActorsDetail.removeAll();
++					tableDVDSubtitlesDetail.removeAll();
+ 					TableItem item;
+-					for (int i = 0; i < localmovie.getActors().size(); i++) {
+-						item = new TableItem(tableMoviesActorsDetail, SWT.NONE);
++					for (int i = 0; i < localdvd.getSubtitles().size(); i++) {
++						item = new TableItem(tableDVDSubtitlesDetail, SWT.NONE);
+ 						item.setText(new String[] {
+-								((Actor) localmovie.getActors().get(i))
+-										.getActorId()
++								((Subtitle) localdvd.getSubtitles().get(i))
++										.getSubtitleId()
+ 										+ "",
+-								((Actor) localmovie.getActors().get(i))
+-										.getLastName()
+-										+ ", "
+-										+ ((Actor) localmovie.getActors()
+-												.get(i)).getFirstName() });
++								((Subtitle) localdvd.getSubtitles().get(i))
++										.getName() 
++						});
+ 					}
+-				*/
++				
+ 				}
+ 			});
+ 		}
+@@ -855,24 +846,23 @@
+ 			buttonDVDAddVideoformat.addSelectionListener(new SelectionAdapter() {
+ 				public void widgetSelected(SelectionEvent evt) {
+ 					//open responsible Dialog and insert objects into table
+-					/*
+-				    DialogMovie dialog = new DialogMovie(getShell(), 0, locale,
+-							localmovie, DialogMovie.TYPE_GENRE);
++					//
++				    DialogDVD dialog = new DialogDVD(getShell(), 0, locale,
++							localdvd, DialogDVD.TYPE_VIDEOFORMAT);
+ 					dialog.open();
+ 
+-					tableMoviesGenresDetail.removeAll();
++					tableDVDVideoformatDetail.removeAll();
+ 					TableItem item;
+-					for (int i = 0; i < localmovie.getGenres().size(); i++) {
+-						item = new TableItem(tableMoviesGenresDetail, SWT.NONE);
++					for (int i = 0; i < localdvd.getVideoFormats().size(); i++) {
++						item = new TableItem(tableDVDVideoformatDetail, SWT.NONE);
+ 						item.setText(new String[] {
+-								((Genre) localmovie.getGenres().get(i))
+-										.getGenreId()
++								((VideoFormat) localdvd.getVideoFormats().get(i))
++										.getVideoFormatId()
+ 										+ "",
+-								((Genre) localmovie.getGenres().get(i))
+-										.getName()
+-										+ "" });
++								((VideoFormat) localdvd.getVideoFormats().get(i))
++										.getName() });
+ 					}
+-				*/
++				
+ 				}
+ 			});
+ 		}
+@@ -975,26 +965,25 @@
+ 			buttonDVDAddAudioformat.addSelectionListener(new SelectionAdapter() {
+ 				public void widgetSelected(SelectionEvent evt) {
+ 					//open responsible Dialog and insert objects into table
+-					/*
+-				    DialogMovie dialog = new DialogMovie(getShell(), 0, locale,
+-							localmovie, DialogMovie.TYPE_IMAGE);
++					//
++				    DialogDVD dialog = new DialogDVD(getShell(), 0, locale,
++							localdvd, DialogDVD.TYPE_AUDIOFORMAT);
+ 					dialog.open();
+ 
+-					tableMoviesImagesDetail.removeAll();
++					tableDVDAudioformatDetail.removeAll();
+ 					TableItem item;
+-					for (int i = 0; i < localmovie.getImages().size(); i++) {
+-						item = new TableItem(tableMoviesImagesDetail, SWT.NONE);
++					for (int i = 0; i < localdvd.getAudioFormats().size(); i++) {
++						item = new TableItem(tableDVDAudioformatDetail, SWT.NONE);
+ 						item.setText(new String[] {
+-								((Image) localmovie.getImages().get(i))
+-										.getImageId()
++								((AudioFormat) localdvd.getAudioFormats().get(i))
++										.getAudioFormatId()
+ 										+ "",
+-								((Image) localmovie.getImages().get(i))
+-										.getImageFileName()
++								((AudioFormat) localdvd.getAudioFormats().get(i))
++										.getName()
+ 										+ "" });
+ 					}
+-					*/
+-				    //TODO
+-				}
++					
++				 }
+ 			});
+ 		}
+ 		{
+@@ -1093,6 +1082,10 @@
+ 					comboDVDPayment.setEnabled(true);
+ 					comboDVDStatus.setEnabled(true);
+ 					comboDVDCondition.setEnabled(true);
++					comboDVDMovie.setText("");
++					comboDVDPayment.setText("");
++					comboDVDCondition.setText("");
++					comboDVDStatus.setText("");
+ 					
+ 					buttonDVDCancel.setEnabled(true);
+ 					buttonDVDSave.setEnabled(true);
+@@ -1272,7 +1265,7 @@
+ 										+ evt);
+ 					}
+ 
+-					/*List errors = validateInput();
++					List errors = validateInput();
+ 
+ 					if (errors.size() > 0) {
+ 						StringBuffer buf = new StringBuffer();
+@@ -1291,32 +1284,41 @@
+ 						return;
+ 
+ 					}
+-					*/
+-					//testen welcher mode
++					
++					
+ 					localdvd.setBarcode(textDVDBarcode.getText());
+ 					
+-					/*
+-					try {
+-						localmovie.setRuntime(Integer
+-								.parseInt(textMoviesRuntime.getText()));
+-					} catch (Exception ex) {
+-						logger.error("widgetSelected(SelectionEvent)", ex);
+-						showMsg(
+-								l
+-										.getString("movies.groupdetail.savebutton.warn.noname.msg"),
+-								l
+-										.getString("movies.groupdetail.savebutton.warn.noname.title"),
+-								SWT.ICON_WARNING | SWT.YES);
+-						return;
++					
++					// sehr schlechte L?sung
++					//TODO bessere L?sung finden
++					List list = Database.getMovie("");
++					for(int i=0;i<list.size();i++)  {
++					    if(comboDVDMovie.getText().compareTo(((Movie)list.get(i)).getTitle()) == 0)  {
++					      localdvd.setMovie((Movie)list.get(i)); 
++					      break;
++					    }
+ 					}
+-					*/
+-					/**
+-					 * @todo eine Exception bekommen wieder leider NOCH nicht
+-					 *       mit d.h. es muss noch ein r?ckgabewert kommen oder
+-					 *       eine Exception ?bermitteln werden (aus der DB
+-					 *       Klasse)
+-					 */
+-					//neues Objekt erzeugen
++					list = Database.getPaymentCategory();
++					for(int i=0;i<list.size();i++)  {
++					    if(comboDVDPayment.getText().compareTo(((PaymentCategory)list.get(i)).getName()) == 0)  {
++					      localdvd.setPaymentCategory((PaymentCategory)list.get(i)); 
++					      break;
++					    }
++					}
++					list = Database.getCondition("");
++					for(int i=0;i<list.size();i++)  {
++					    if(comboDVDCondition.getText().compareTo(((Condition)list.get(i)).getConditionName()) == 0)  {
++					      localdvd.setCondition((Condition)list.get(i)); 
++					      break;
++					    }
++					}
++					list = Database.getStatus("");
++					for(int i=0;i<list.size();i++)  {
++					    if(comboDVDStatus.getText().compareTo(((Status)list.get(i)).getStatusName()) == 0)  {
++					      localdvd.setStatus((Status)list.get(i)); 
++					      break;
++					    }
++					}
+ 					try {
+ 						//object speichern
+ 						// Fehlerbehandlung
+@@ -1330,7 +1332,7 @@
+ 									+ " nach speichern");
+ 
+ 							// in ?bersichtstabelle einf?gen
+-							insertIntoMoviesOverviewTable(localdvd);
++							insertIntoDVDOverviewTable(localdvd);
+ 							textDVDID.setText(localdvd.getDvdId() + "");
+ 						} else if (mode_dvd == ManagementGui.MODE_EDIT) {
+ 							Database.updateObject(localdvd);
+@@ -1339,8 +1341,7 @@
+ 						statusLine
+ 								.setStatus(
+ 										1,
+-										l
+-												.getString("dvd.groupdetail.savebutton.newok"));
++										l.getString("dvd.groupdetail.savebutton.newok"));
+ 					} catch (DataBaseException e) {
+ 						logger.debug("DataBaseException: " + e);
+ 						if (e.getMessage().equalsIgnoreCase("1")) {
+@@ -1349,11 +1350,9 @@
+ 							statusLine
+ 									.setStatus(
+ 											3,
+-											l
+-													.getString("dvd.groupdetail.savebutton.errorsave"));
++											l.getString("dvd.groupdetail.savebutton.errorsave"));
+ 							showMsg(
+-									l
+-											.getString("dvd.groupdetail.savebutton.errorsave"),
++									l.getString("dvd.groupdetail.savebutton.errorsave"),
+ 									"Fehler", SWT.ICON_ERROR | SWT.OK);
+ 
+ 						} else if (e.getMessage().equalsIgnoreCase("2")) {
+@@ -1361,11 +1360,9 @@
+ 							statusLine
+ 									.setStatus(
+ 											3,
+-											l
+-													.getString("dvd.groupdetail.savebutton.errordb"));
++											l.getString("dvd.groupdetail.savebutton.errordb"));
+ 							showMsg(
+-									l
+-											.getString("dvd.groupdetail.savebutton.errordb"),
++									l.getString("dvd.groupdetail.savebutton.errordb"),
+ 									"Fehler", SWT.ICON_ERROR | SWT.OK);
+ 
+ 						} else {
+@@ -1379,7 +1376,7 @@
+ 
+ 					//activate buttons
+ 					setDVDGroupButtonSaveCancel();
+-
++					refreshDVDOverviewTable(textDVDSearch.getText());
+ 				}
+ 
+ 			});
+@@ -1440,8 +1437,14 @@
+     /**
+      * @param localdvd2
+      */
+-    private void insertIntoMoviesOverviewTable(Dvd localdvd2) {
+-        // TODO Auto-generated method stub
++    private void insertIntoDVDOverviewTable(Dvd localdvd2) {
++//      TODO Auto-generated method stub
++		TableItem item = new TableItem(tableDVDOverview, SWT.NONE);
++		item.setText(new String[] {
++				localdvd2.getDvdId() + " ",
++				localdvd2.getMovie().getTitle() + " ",
++				localdvd2.getPaymentCategory().getName() + " ",
++				localdvd2.getStatus().getStatusName()});
+         
+     }
+ 
+@@ -1561,4 +1564,57 @@
+ 		mode_dvd = ManagementGui.MODE_VIEW;
+     }
+ 
++	private List validateInput() {
++		List errors = new ArrayList();
++
++		if (textDVDBarcode.getText().trim().equalsIgnoreCase("")) {
++			errors.add(l
++					.getString("dvd.groupdetail.savebutton.warn.nobarcode"));
++		}
++
++		if (comboDVDMovie.getText().compareToIgnoreCase("") == 0) {
++			errors
++					.add(l.getString("dvd.groupdetail.savebutton.warn.nomovie"));
++		}
++
++		if (comboDVDPayment.getText().compareToIgnoreCase("") == 0) {
++			errors
++					.add(l
++							.getString("dvd.groupdetail.savebutton.warn.nopayment"));
++		}
++
++		if (comboDVDCondition.getText().compareToIgnoreCase("") == 0) {
++			errors
++					.add(l
++							.getString("dvd.groupdetail.savebutton.warn.nocondition"));
++		}
++
++		if (comboDVDStatus.getText().compareToIgnoreCase("") == 0) {
++			errors.add(l
++					.getString("dvd.groupdetail.savebutton.warn.nostatus"));
++		}
++
++		if (localdvd.getLanguages().size() == 0) {
++			errors.add(l
++					.getString("dvd.groupdetail.savebutton.warn.nolanguage"));
++		}
++
++		if (localdvd.getSubtitles().size() == 0) {
++			errors.add(l
++					.getString("dvd.groupdetail.savebutton.warn.nosubtitle"));
++		}
++
++		if (localdvd.getVideoFormats().size() == 0) {
++			errors.add(l
++					.getString("dvd.groupdetail.savebutton.warn.novideoformat"));
++		}
++		
++		if (localdvd.getAudioFormats().size() == 0) {
++			errors.add(l
++					.getString("dvd.groupdetail.savebutton.warn.noaudioformat"));
++		}
++		return errors;
++	}
++    
+ }
++
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogDVD.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogDVD.java	2005-01-09 20:11:25 UTC (rev 256)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogDVD.java	2005-01-09 20:27:37 UTC (rev 257)
+@@ -0,0 +1,416 @@
++package de.hsharz.provirent.management.gui;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.Locale;
++import java.util.PropertyResourceBundle;
++import java.util.ResourceBundle;
++
++import org.apache.log4j.Logger;
++import org.eclipse.swt.SWT;
++import org.eclipse.swt.events.SelectionAdapter;
++import org.eclipse.swt.events.SelectionEvent;
++import org.eclipse.swt.layout.GridData;
++import org.eclipse.swt.layout.GridLayout;
++import org.eclipse.swt.widgets.Button;
++import org.eclipse.swt.widgets.Display;
++import org.eclipse.swt.widgets.Group;
++import org.eclipse.swt.widgets.Label;
++import org.eclipse.swt.widgets.Shell;
++import org.eclipse.swt.widgets.Table;
++import org.eclipse.swt.widgets.TableColumn;
++import org.eclipse.swt.widgets.TableItem;
++import org.eclipse.swt.widgets.Text;
++
++import de.hsharz.provirent.objects.AudioFormat;
++import de.hsharz.provirent.objects.Dvd;
++import de.hsharz.provirent.objects.Language;
++import de.hsharz.provirent.objects.Subtitle;
++import de.hsharz.provirent.objects.VideoFormat;
++import de.hsharz.provirent.persistence.Database;
++
++
++/**
++* This code was generated using CloudGarden's Jigloo
++* SWT/Swing GUI Builder, which is free for non-commercial
++* use. If Jigloo is being used commercially (ie, by a corporation,
++* company or business for any purpose whatever) then you
++* should purchase a license for each developer using Jigloo.
++* Please visit www.cloudgarden.com for details.
++* Use of Jigloo implies acceptance of these licensing terms.
++* *************************************
++* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED
++* for this machine, so Jigloo or this code cannot be used legally
++* for any corporate or commercial purpose.
++* *************************************
++*/
++public class DialogDVD extends org.eclipse.swt.widgets.Dialog {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(DialogMovie.class);
++
++    public final static int TYPE_LANGUAGE = 1;
++
++    public final static int TYPE_SUBTITLE = 2;
++
++    public final static int TYPE_VIDEOFORMAT = 3;
++
++    public final static int TYPE_AUDIOFORMAT = 4;
++    
++    private int type = 0;
++
++    private Shell dialogShell;
++
++    private Group groupDialogDescription;
++
++    private Button buttonDescriptionAbort;
++
++    private Button buttonDescriptionAccept;
++
++    private Label labelDescriptionAdvice;
++
++    private Button button1;
++
++    private Table table1;
++
++    private Button button2;
++
++    private Text text1;
++
++    private Dvd dvd;
++
++    private List valuelist;
++
++    private ResourceBundle l;
++
++    private Shell shell;
++    
++    private int size_width = 200;
++    private int size_height = 210;
++    private int start_x = 50;
++    private int start_y = 50;
++
++    /**
++     * Auto-generated main method to display this org.eclipse.swt.widgets.Dialog
++     * inside a new Shell.
++     */
++    public static void main(String[] args) {
++
++        try {
++
++            Display display = Display.getDefault();
++            Dvd dvd = new Dvd();
++            dvd.setLanguages(new ArrayList());
++            dvd.setSubtitles(new ArrayList());
++            dvd.setVideoFormats(new ArrayList());
++            dvd.setAudioFormats(new ArrayList());
++
++            Shell shell = new Shell(display);
++            DialogDVD inst = new DialogDVD(shell, SWT.NULL, Locale.GERMAN,
++                    dvd, TYPE_LANGUAGE);
++            inst.open();
++        } catch (Exception e) {
++            e.printStackTrace();
++        }
++    }
++
++    /*
++     * ?ndert die Sprache aller Elemente
++     * 
++     * @see de.hsharz.provirent.managment.gui.AbstractComposite#changeLanguage(java.util.Locale)
++     */
++    public void changeLanguage(Locale locale) {
++
++    }
++
++    /*
++     * Init die Sprache (properties Datei)
++     * 
++     * @see de.hsharz.provirent.managment.gui.AbstractComposite#initLanguage(java.util.Locale)
++     */
++    private void initLanguage(Locale locale) {
++        l = PropertyResourceBundle.getBundle(
++                "de.hsharz.provirent.management.gui.language.dvds", locale);
++
++    }
++
++    public DialogDVD(Shell parent, int style, Locale locale, Dvd dvd,
++            int type) {
++        super(parent, style);
++        shell = parent;
++
++        this.dvd = dvd;
++        initLanguage(locale);
++        this.type = type;
++    }
++
++    public DialogDVD(Shell parent, int style, Locale locale, Dvd dvd,
++            int type, int x, int y, int width, int height) {
++        super(parent, style);
++        shell = parent;
++        this.dvd = dvd;
++        initLanguage(locale);
++        this.type = type;
++        start_x = x;
++        start_y = y;
++        size_height = height;
++        size_width = width;
++    }
++    
++    
++    public void open() {
++
++        Shell parent = getParent();
++        dialogShell = new Shell(parent, SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
++        dialogShell.setSize(size_width, size_height);
++        dialogShell.setBounds(start_x,start_y,size_width,size_height);
++        dialogShell.setLayout(new GridLayout());
++
++        groupDialogDescription = new Group(dialogShell, SWT.NONE);
++        GridLayout groupDialogDescriptionLayout = new GridLayout();
++        groupDialogDescriptionLayout.numColumns = 5;
++        groupDialogDescriptionLayout.makeColumnsEqualWidth = true;
++
++        groupDialogDescription.setLayout(groupDialogDescriptionLayout);
++
++        if (type == TYPE_LANGUAGE) {
++            groupDialogDescription.setText(l
++                    .getString("dvd.dialog.title.language"));
++        } else if (type == TYPE_SUBTITLE) {
++            groupDialogDescription.setText(l
++                    .getString("dvd.dialog.title.subtitle"));
++        } else if (type == TYPE_VIDEOFORMAT) {
++            groupDialogDescription.setText(l
++                    .getString("dvd.dialog.title.videoformat"));
++        } else if (type == TYPE_AUDIOFORMAT) {
++            groupDialogDescription.setText(l
++                    .getString("dvd.dialog.title.audioformat"));
++        }
++        
++        GridData groupForm1LData = new GridData();
++        groupForm1LData.widthHint = 300;
++        groupForm1LData.heightHint = 200;
++        groupDialogDescription.setLayoutData(groupForm1LData);
++
++        text1 = new Text(groupDialogDescription, SWT.BORDER);
++        text1.setToolTipText(l.getString("dvd.dialog.search.tooltip"));
++
++        GridData text1LData = new GridData();
++        text1LData.horizontalSpan = 4;
++        text1LData.horizontalAlignment = GridData.FILL;
++        text1LData.grabExcessHorizontalSpace = true;
++        text1.setLayoutData(text1LData);
++
++        {
++            button1 = new Button(groupDialogDescription, SWT.PUSH | SWT.CENTER);
++            button1.setText(l.getString("dvd.dialog.search.buttonname"));
++
++            button1.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++                    refreshList(text1.getText());
++                }
++            });
++        }
++        {
++            labelDescriptionAdvice = new Label(groupDialogDescription, SWT.NONE);
++
++            if (type == TYPE_LANGUAGE) {
++                labelDescriptionAdvice.setText(l
++                        .getString("dvd.dialog.labeltable.language"));
++            } else if (type == TYPE_SUBTITLE) {
++                labelDescriptionAdvice.setText(l
++                        .getString("dvd.dialog.labeltable.subtitle"));
++            } else if (type == TYPE_VIDEOFORMAT) {
++                labelDescriptionAdvice.setText(l
++                        .getString("dvd.dialog.labeltable.videoformat"));
++            } else if (type == TYPE_AUDIOFORMAT) {
++                labelDescriptionAdvice.setText(l
++                        .getString("dvd.dialog.labeltable.audioformat"));
++            }
++            
++            
++            table1 = new Table(groupDialogDescription, SWT.SINGLE
++                    | SWT.FULL_SELECTION);
++            GridData table1LData = new GridData();
++            table1LData.horizontalAlignment = GridData.FILL;
++            table1LData.horizontalSpan = 5;
++            table1LData.grabExcessHorizontalSpace = true;
++            table1LData.verticalAlignment = GridData.FILL;
++            table1LData.grabExcessVerticalSpace = true;
++            table1.setLayoutData(table1LData);
++            table1.setLinesVisible(true);
++            table1.setHeaderVisible(true);
++            {
++                TableColumn item = new TableColumn(table1, SWT.CENTER);
++                item.setText(l.getString("dvd.dialog.column.id"));
++                item.setWidth(0);
++                item.setResizable(false);
++            }
++            {
++                TableColumn item = new TableColumn(table1, SWT.CENTER);
++                item.setAlignment(SWT.LEFT);
++                item.setWidth(100);
++
++                if (type == TYPE_LANGUAGE) {
++                    item.setText(l
++                            .getString("dvd.dialog.column.language"));
++                } else if (type == TYPE_SUBTITLE) {
++                    item.setText(l
++                             .getString("dvd.dialog.column.subtitle"));
++                } else if (type == TYPE_VIDEOFORMAT) {
++                    item.setText(l
++                             .getString("dvd.dialog.column.videoformat"));
++                } else if (type == TYPE_AUDIOFORMAT) {
++                    item.setText(l
++                             .getString("dvd.dialog.column.audioformat"));
++                }
++
++            }
++            {
++                TableColumn item = new TableColumn(table1, SWT.CENTER);
++                item.setAlignment(SWT.LEFT);
++                item.setWidth(100);
++                item.setText(l
++                            .getString("dvd.dialog.column.short"));
++                    item.setWidth(150);
++            }
++            
++            buttonDescriptionAccept = new Button(groupDialogDescription,
++                    SWT.PUSH | SWT.CENTER);
++            buttonDescriptionAccept.setText(l
++                        .getString("dvd.dialog.buttonadd"));                
++            GridData buttonDescriptionAcceptLData2 = new GridData();
++            buttonDescriptionAcceptLData2.horizontalSpan = 2;
++            buttonDescriptionAcceptLData2.horizontalAlignment = GridData.FILL;
++            buttonDescriptionAccept
++                    .setLayoutData(buttonDescriptionAcceptLData2);
++
++            buttonDescriptionAccept.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                            int[] sel = table1.getSelectionIndices();
++                            for (int i = 0; i < sel.length; i++) {
++                                for (int j = 0; j < valuelist.size(); j++) {
++                                    if (type == TYPE_LANGUAGE) {
++                                        if ((table1.getItem(sel[i]).getText(0))
++                                                .equalsIgnoreCase(((Language) valuelist
++                                                        .get(j)).getLanguageId()
++                                                        + "")) {
++                                            dvd.getLanguages().add(
++                                                    (Language) valuelist.get(j));
++                                            break;
++                                        }
++                                    } else if (type == TYPE_SUBTITLE) {
++                                        if ((table1.getItem(sel[i]).getText(0))
++                                                .equalsIgnoreCase(((Subtitle) valuelist
++                                                        .get(j))
++                                                        .getSubtitleId()
++                                                        + "")) {
++                                            dvd.getSubtitles().add(
++                                                     (Subtitle) valuelist.get(j));
++                                            break;
++                                        }
++                                    } else if (type == TYPE_VIDEOFORMAT) {
++                                        if ((table1.getItem(sel[i]).getText(0))
++                                                .equalsIgnoreCase(((VideoFormat) valuelist
++                                                        .get(j)).getVideoFormatId()
++                                                        + "")) {
++                                            dvd.getVideoFormats().add(
++                                                    (VideoFormat) valuelist.get(j));
++                                            break;
++                                        }
++                                    } else if (type == TYPE_AUDIOFORMAT) {
++                                        if ((table1.getItem(sel[i]).getText(0))
++                                                .equalsIgnoreCase(((AudioFormat) valuelist
++                                                        .get(j)).getAudioFormatId()
++                                                        + "")) {
++
++                                            dvd.getAudioFormats().add(
++                                                    (AudioFormat) valuelist.get(j));
++                                            break;
++                                        }                                                                    
++                                    }
++                                }                           
++                                table1.remove(sel[i]);
++                           }
++            		}
++            });
++        }
++        
++        {
++            button2 = new Button(groupDialogDescription, SWT.FLAT | SWT.CENTER);
++            button2.setEnabled(false);
++            button2.setVisible(false);
++        }
++
++        buttonDescriptionAbort = new Button(groupDialogDescription, SWT.PUSH
++                | SWT.CENTER);
++        buttonDescriptionAbort.setText(l
++                .getString("dvd.dialog.buttonfinish"));
++        GridData buttonDescriptionAbortLData = new GridData();
++        buttonDescriptionAbortLData.horizontalAlignment = GridData.FILL;
++        buttonDescriptionAbortLData.horizontalSpan = 2;
++        buttonDescriptionAbort.setLayoutData(buttonDescriptionAbortLData);
++        buttonDescriptionAbort.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                dialogShell.close();
++            }
++        });
++
++        //Liste f?llen
++        refreshList("");
++        
++        dialogShell.layout();
++        dialogShell.pack();
++        dialogShell.open();
++        Display display = dialogShell.getDisplay();
++        while (!dialogShell.isDisposed()) {
++            if (!display.readAndDispatch())
++                display.sleep();
++        }
++
++    }
++
++    private void refreshList(final String filter) {
++        if (table1 == null || table1.isDisposed()) {
++            logger.warn("Konnte DialogDVD List nicht refreshen, da diese null ist!");
++            return;
++        }
++        table1.removeAll();
++        table1.clearAll();
++        if (type == TYPE_LANGUAGE) {
++            valuelist = Database.getLanguageExcept(filter, this.dvd.getLanguages());
++            for (int i = 0; i < valuelist.size(); i++) {
++                Language o = (Language) valuelist.get(i);
++                TableItem item = new TableItem(table1, SWT.NONE);
++                item.setText(new String[] { o.getLanguageId() + "",
++                        o.getName(), o.getShortname() });
++            }
++        } else if (type == TYPE_SUBTITLE) {
++            valuelist = Database.getSubtitleExcept(filter, this.dvd
++                    .getSubtitles());
++            for (int i = 0; i < valuelist.size(); i++) {
++                Subtitle o = (Subtitle) valuelist.get(i);
++                TableItem item = new TableItem(table1, SWT.NONE);
++                item.setText(new String[] { o.getSubtitleId() + "",
++                        o.getName(), o.getShortname() });
++            }
++        } else if (type == TYPE_VIDEOFORMAT) {
++            valuelist = Database.getVideoformatExcept(filter, this.dvd.getVideoFormats());
++            for (int i = 0; i < valuelist.size(); i++) {
++                VideoFormat o = (VideoFormat) valuelist.get(i);
++                TableItem item = new TableItem(table1, SWT.NONE);
++                item.setText(new String[] { o.getVideoFormatId() + "", o.getName(),
++                        o.getShortname() });
++            }
++       } else if (type == TYPE_AUDIOFORMAT) {
++           valuelist = Database.getAudioformatExcept(filter, this.dvd.getAudioFormats());
++           for (int i = 0; i < valuelist.size(); i++) {
++               AudioFormat o = (AudioFormat) valuelist.get(i);
++               TableItem item = new TableItem(table1, SWT.NONE);
++               item.setText(new String[] { o.getAudioFormatId() + "", o.getName(),
++                    o.getShortname() });
++           }
++       } 
++    }
++}
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties	2005-01-09 20:11:25 UTC (rev 256)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties	2005-01-09 20:27:37 UTC (rev 257)
+@@ -11,6 +11,10 @@
+ dvd.groupdetail.label =Detail
+ dvd.groupdetail.labelid =Id
+ dvd.groupdetail.labelbarcode =Barcode
++dvd.groupdetail.labelmovie =Film
++dvd.groupdetail.labelpayment =Preisklasse
++dvd.groupdetail.labelstatus =Status
++dvd.groupdetail.labelcondition =Zustand
+ dvd.groupdetail.labellanguages =Sprachen
+ dvd.groupdetail.labelSubtitles =Untertitel
+ dvd.groupdetail.labelvideoformat =Videoformat
+@@ -35,3 +39,40 @@
+ dvd.groupdetail.deletebutton.errorsave=Datenbankfehler beim L?schen.
+ dvd.groupdetail.deletebutton.errordb=Datenbankfehler beim Herstellen der Verbindung(del).
+ 
++dvd.groupdetail.savebutton.newok =Speichern der neuen DVD erfolgreich.
++dvd.groupdetail.savebutton.editok =?ndern der DVD erfolgreich.
++dvd.groupdetail.savebutton.errorsave =Datenbankfehler beim Speichern.
++dvd.groupdetail.savebutton.errordb =Datenbankfehler beim Herstellen der Verbindung.(save).
++
++dvd.groupdetail.savebutton.warn.noitems.title =Datensatz speichern
++dvd.groupdetail.savebutton.warn.noitems.msg =Der Datensatz kann nicht gespeichert werden, da folgende Werte fehlen:\n
++dvd.groupdetail.savebutton.warn.noaudioformat =Audioformat
++dvd.groupdetail.savebutton.warn.novideoformat =Videoformat
++dvd.groupdetail.savebutton.warn.nomovie =Film
++dvd.groupdetail.savebutton.warn.nosubtitle =Untertitel
++dvd.groupdetail.savebutton.warn.nolanguage =Sprache
++dvd.groupdetail.savebutton.warn.nocondition =Zustand
++dvd.groupdetail.savebutton.warn.nostatus =Status
++dvd.groupdetail.savebutton.warn.nopayment =Preisklasse
++dvd.groupdetail.savebutton.warn.nobarcode =Barcode
++
++dvd.dialog.title.language =Sprache
++dvd.dialog.title.subtitle =Untertitel
++dvd.dialog.title.videoformat =Videoformat
++dvd.dialog.title.audioformat =Audioformat
++
++dvd.dialog.search.tooltip=Geben Sie hier bitte Ihren Suchbegriff ein
++dvd.dialog.search.buttonname=Suchen
++dvd.dialog.buttonadd=Hinzuf?gen
++dvd.dialog.buttonfinish=Fertig
++dvd.dialog.column.id=id
++dvd.dialog.column.language=Sprache
++dvd.dialog.column.subtitle=Untertitel
++dvd.dialog.column.videoformat=Videoformat
++dvd.dialog.column.audioformat=Audioformat
++dvd.dialog.column.short =Abk.
++
++dvd.dialog.labeltable.language=W?hlen Sie eine Sprache:
++dvd.dialog.labeltable.subtitle=W?hlen Sie die Untertitel:
++dvd.dialog.labeltable.videoformat=W?hlen Sie ein Videoformat:
++dvd.dialog.labeltable.audioformat=W?hlen Sie ein Audioformat:
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2005-01-09 20:11:25 UTC (rev 256)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2005-01-09 20:27:37 UTC (rev 257)
+@@ -427,6 +427,79 @@
+ 
+ 	}
+ 
++	public static List getVideoformatExcept(final String filter, List videoformat) {
++		if (logger.isDebugEnabled()) {
++			logger.debug("getVideoformatExcept() - start. String filter= " + filter);
++		}
++
++		//check if elements in list are Genre Objects
++		if (videoformat.size() > 0) {
++			if (!(videoformat.get(0) instanceof VideoFormat)) {
++				logger.error("Elemente in Liste sind keine Videoformate");
++				return new ArrayList();
++			}
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(VideoFormat.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null && !filter.equalsIgnoreCase("")) {
++				any.add(Expression.like("name", "%" + filter + "%"));
++				any.add(Expression.like("shortname", "%" + filter + "%"));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq("videoFormatId", new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			logger.debug("Anzahl der Videoformate:" + videoformat.size());
++			for (int i = 0; i < videoformat.size(); i++) {
++			    VideoFormat tmp = (VideoFormat) videoformat.get(i);
++				criteria.add(Expression.not(Expression.eq("videoFormatId", tmp
++						.getVideoFormatId())));
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					"getVideoformatExcept() - Error while trying to do Transaction",
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error("getVideoformatExcept() - Could not Close the Session",
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug("getVideoformatExcept() - end");
++		}
++		return returnlist;
++
++	}
++	
+ 	public static VideoFormat getSingleVideoFormat(final int id) {
+ 		if (logger.isDebugEnabled()) {
+ 			logger.debug("getSingleVideoFormat() - start. int filter= " + id);
+@@ -531,6 +604,79 @@
+ 
+ 	}
+ 
++	public static List getAudioformatExcept(final String filter, List audioformat) {
++		if (logger.isDebugEnabled()) {
++			logger.debug("getAudioformatExcept() - start. String filter= " + filter);
++		}
++
++		//check if elements in list are Genre Objects
++		if (audioformat.size() > 0) {
++			if (!(audioformat.get(0) instanceof AudioFormat)) {
++				logger.error("Elemente in Liste sind keine Audioformate");
++				return new ArrayList();
++			}
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(AudioFormat.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null && !filter.equalsIgnoreCase("")) {
++				any.add(Expression.like("name", "%" + filter + "%"));
++				any.add(Expression.like("shortname", "%" + filter + "%"));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq("audioFormatId", new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			logger.debug("Anzahl der Audioformate:" + audioformat.size());
++			for (int i = 0; i < audioformat.size(); i++) {
++			    AudioFormat tmp = (AudioFormat) audioformat.get(i);
++				criteria.add(Expression.not(Expression.eq("audioFormatId", tmp
++						.getAudioFormatId())));
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					"getAudioformatExcept() - Error while trying to do Transaction",
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error("getAudioformatExcept() - Could not Close the Session",
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug("getAudioformatExcept() - end");
++		}
++		return returnlist;
++
++	}
++	
+ 	/**
+ 	 * This method gets all Genres from the database.
+ 	 * searches for firstname or lastname or id
+@@ -713,6 +859,79 @@
+ 
+ 	}
+ 
++	public static List getLanguageExcept(final String filter, List language) {
++		if (logger.isDebugEnabled()) {
++			logger.debug("getAudioformatExcept() - start. String filter= " + filter);
++		}
++
++		//check if elements in list are Genre Objects
++		if (language.size() > 0) {
++			if (!(language.get(0) instanceof Language)) {
++				logger.error("Elemente in Liste sind keine Sprachen");
++				return new ArrayList();
++			}
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Language.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null && !filter.equalsIgnoreCase("")) {
++				any.add(Expression.like("name", "%" + filter + "%"));
++				any.add(Expression.like("shortname", "%" + filter + "%"));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq("languageId", new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			logger.debug("Anzahl der Sprachen:" + language.size());
++			for (int i = 0; i < language.size(); i++) {
++			    Language tmp = (Language) language.get(i);
++				criteria.add(Expression.not(Expression.eq("languageId", tmp
++						.getLanguageId())));
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					"getLanguageExcept() - Error while trying to do Transaction",
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error("getLanguageExcept() - Could not Close the Session",
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug("getLanguageExcept() - end");
++		}
++		return returnlist;
++
++	}
++	
+ 	public static Language getSingleLanguage(final int id) {
+ 		if (logger.isDebugEnabled()) {
+ 			logger.debug("getSingleLanguage() - start. int filter= " + id);
+@@ -935,6 +1154,79 @@
+ 
+ 	}
+ 
++	public static List getSubtitleExcept(final String filter, List subtitle) {
++		if (logger.isDebugEnabled()) {
++			logger.debug("getSubtitleExcept() - start. String filter= " + filter);
++		}
++
++		//check if elements in list are Genre Objects
++		if (subtitle.size() > 0) {
++			if (!(subtitle.get(0) instanceof Subtitle)) {
++				logger.error("Elemente in Liste sind keine Untertitel");
++				return new ArrayList();
++			}
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Subtitle.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null && !filter.equalsIgnoreCase("")) {
++				any.add(Expression.like("name", "%" + filter + "%"));
++				any.add(Expression.like("shortname", "%" + filter + "%"));
++
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq("subtitleId", new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++			logger.debug("Anzahl der Untertitel:" + subtitle.size());
++			for (int i = 0; i < subtitle.size(); i++) {
++			    Subtitle tmp = (Subtitle) subtitle.get(i);
++				criteria.add(Expression.not(Expression.eq("subtitleId", tmp
++						.getSubtitleId())));
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger.error(
++					"getSubtitleExcept() - Error while trying to do Transaction",
++					e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error("getSubtitleExcept() - Could not Close the Session",
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug("getSubtitleExcept() - end");
++		}
++		return returnlist;
++
++	}
++	
+ 	public static Subtitle getSingleSubtitle(final int id) {
+ 		if (logger.isDebugEnabled()) {
+ 			logger.debug("getSingleSubtitle() - start. int filter= " + id);
+@@ -1939,7 +2231,6 @@
+ 		return returnobject;
+ 
+ 	}
+-
+ 	
+ 	/**
+ 	 * This method gets all PaymentCategory from the database.
+
+
+
+From pschneider at sheep.berlios.de  Sun Jan  9 22:02:50 2005
+From: pschneider at sheep.berlios.de (Philipp Schneider at BerliOS)
+Date: Sun, 9 Jan 2005 22:02:50 +0100
+Subject: [Provirent-svn-commit] r258 - project_src/website
+Message-ID: <200501092102.j09L2om4030377@sheep.berlios.de>
+
+Author: pschneider
+Date: 2005-01-09 22:02:49 +0100 (Sun, 09 Jan 2005)
+New Revision: 258
+
+Removed:
+   project_src/website/src/
+Log:
+
+
+
+
+From pschneider at sheep.berlios.de  Sun Jan  9 22:03:52 2005
+From: pschneider at sheep.berlios.de (Philipp Schneider at BerliOS)
+Date: Sun, 9 Jan 2005 22:03:52 +0100
+Subject: [Provirent-svn-commit] r259 - project_src/website
+Message-ID: <200501092103.j09L3qAL030480@sheep.berlios.de>
+
+Author: pschneider
+Date: 2005-01-09 22:03:51 +0100 (Sun, 09 Jan 2005)
+New Revision: 259
+
+Removed:
+   project_src/website/bak/
+Log:
+
+
+
+
+From pschneider at sheep.berlios.de  Sun Jan  9 22:04:38 2005
+From: pschneider at sheep.berlios.de (Philipp Schneider at BerliOS)
+Date: Sun, 9 Jan 2005 22:04:38 +0100
+Subject: [Provirent-svn-commit] r260 - project_src/website
+Message-ID: <200501092104.j09L4c6H030612@sheep.berlios.de>
+
+Author: pschneider
+Date: 2005-01-09 22:04:37 +0100 (Sun, 09 Jan 2005)
+New Revision: 260
+
+Removed:
+   project_src/website/Servlet.library
+   project_src/website/website.jpx
+Log:
+
+
+Deleted: project_src/website/Servlet.library
+===================================================================
+--- project_src/website/Servlet.library	2005-01-09 21:03:51 UTC (rev 259)
++++ project_src/website/Servlet.library	2005-01-09 21:04:37 UTC (rev 260)
+@@ -1,7 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<library>
+-  <!--JBuilder Library Definition File-->
+-  <fullname>Servlet</fullname>
+-  <required>Tomcat 4.1 Servlet</required>
+-  <lastmodsaved>1104253609506</lastmodsaved>
+-</library>
+
+Deleted: project_src/website/website.jpx
+===================================================================
+--- project_src/website/website.jpx	2005-01-09 21:03:51 UTC (rev 259)
++++ project_src/website/website.jpx	2005-01-09 21:04:37 UTC (rev 260)
+@@ -1,153 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<!--JBuilder XML Project-->
+-<project>
+-  <property category="debug.0" name="ShowFilesModified" value="0"/>
+-  <property category="debug.0" name="SmartStep" value="0"/>
+-  <property category="debug.0" name="SmartStepRedefineClasses" value="0"/>
+-  <property category="generalFormatting" name="baseCodeStyle" value="java/Java Standard.codestyle"/>
+-  <property category="generalFormatting2" name="blockIndent" value="4"/>
+-  <property category="generalFormatting2" name="continuationIndent" value="8"/>
+-  <property category="generalFormatting2" name="overrideBasicFormatting" value="1"/>
+-  <property category="javaFormatting" name="alignMultilineAssign" value="1"/>
+-  <property category="javaFormatting" name="arrayInitDataOnNewLine" value="0"/>
+-  <property category="javaFormatting" name="blankLinesAfterClass" value="2"/>
+-  <property category="javaFormatting" name="catchOnNewLine" value="0"/>
+-  <property category="javaFormatting" name="elseOnNewLine" value="0"/>
+-  <property category="javaFormatting" name="extendsOnNewLine" value="0"/>
+-  <property category="javaFormatting" name="finallyOnNewLine" value="0"/>
+-  <property category="javaFormatting" name="implementsOnNewLine" value="0"/>
+-  <property category="javaFormatting" name="indentCase" value="0"/>
+-  <property category="javaFormatting" name="packagePrefixGroups" value="java;BLANK_LINE;javax;BLANK_LINE;(*)"/>
+-  <property category="javaFormatting" name="preservedBlankLinesInDecl" value="2"/>
+-  <property category="javaFormatting" name="spaceBeforeLparen" value="0"/>
+-  <property category="javaFormatting" name="whileOnNewLine" value="0"/>
+-  <property category="javadoc" name="custom.tags.1" value="todo;a;To Do:"/>
+-  <property category="module" name="ProjectConvertedToEnsureModulesHaveSupportedFeatures" value="1"/>
+-  <property category="module" name="ProjectConvertedToUseFilesAndDependenciesAsDefaultContent" value="1"/>
+-  <property category="module" name="ProjectConvertedToUseProperModuleDefaults" value="1"/>
+-  <property category="module" name="last.wizard.module.name" value="web"/>
+-  <property category="module" name="projectConvertedFromModuleExtensionsToModuleFileTypes" value="1"/>
+-  <property category="optimize.0" name="OptimizableType" value="intuitive.ide.borland.jb10.ProfilerBootstrap"/>
+-  <property category="optimize.0" name="oicc.FilterFile" value="D:\a_provirent\project_src\website\website.oif"/>
+-  <property category="optimize.0" name="oipr.FilterFile" value="D:\a_provirent\project_src\website\website.oif"/>
+-  <property category="optimize.0" name="oira.FilterFile" value="D:\a_provirent\project_src\website\website.oif"/>
+-  <property category="runtime" name="DefaultConfiguration" value="-1"/>
+-  <property category="runtime.0" name="BuildTargetOnRun" value="com.borland.jbuilder.build.ProjectBuilder$ProjectBuildAction;make"/>
+-  <property category="runtime.0" name="ConfigurationName" value="jsp1"/>
+-  <property category="runtime.0" name="RunnableType" value="com.borland.jbuilder.runtime.ServerRunner"/>
+-  <property category="runtime.0" name="appserver.parameters" value=""/>
+-  <property category="runtime.0" name="appserver.servername" value=""/>
+-  <property category="runtime.0" name="appserver.vmparameters" value=""/>
+-  <property category="runtime.0" name="custom.init_required" value="0"/>
+-  <property category="runtime.0" name="custom.required.1" value="Servlet"/>
+-  <property category="runtime.0" name="custom.required.2" value="Struts"/>
+-  <property category="runtime.0" name="enable.tcpmonitor" value="0"/>
+-  <property category="runtime.0" name="enable.wsimonitor" value="0"/>
+-  <property category="runtime.0" name="enabled.services" value="jsp;naming"/>
+-  <property category="runtime.0" name="jsp.launchuri" value="/web/index.jsp"/>
+-  <property category="runtime.0" name="jsprunner.launchuri" value="/web/index.jsp"/>
+-  <property category="runtime.0" name="server.arguments" value=""/>
+-  <property category="runtime.0" name="server.instance.name" value=""/>
+-  <property category="runtime.0" name="server.name" value="Tomcat 4.1"/>
+-  <property category="runtime.0" name="server.vmparameters" value=""/>
+-  <property category="runtime.0" name="tcpmonitor.listenport" value=""/>
+-  <property category="runtime.0" name="tcpmonitor.targethost" value=""/>
+-  <property category="runtime.0" name="tcpmonitor.targetport" value=""/>
+-  <property category="runtime.0" name="wsimonitor.listenport" value=""/>
+-  <property category="runtime.0" name="wsimonitor.logfile" value=""/>
+-  <property category="runtime.0" name="wsimonitor.targethost" value=""/>
+-  <property category="runtime.0" name="wsimonitor.targetport" value=""/>
+-  <property category="serverservices" name="disabled.services" value="jdatastore;sqlj"/>
+-  <property category="serverservices" name="single.server.name" value="Tomcat 4.1"/>
+-  <property category="sys" name="AuthorLabel" value="@author"/>
+-  <property category="sys" name="BackupPath" value="bak"/>
+-  <property category="sys" name="CheckStable" value="1"/>
+-  <property category="sys" name="Company" value=""/>
+-  <property category="sys" name="CompanyLabel" value="Company:"/>
+-  <property category="sys" name="Copyright" value="Copyright (c) 2004"/>
+-  <property category="sys" name="CopyrightLabel" value="Copyright:"/>
+-  <property category="sys" name="DefaultPath" value="src"/>
+-  <property category="sys" name="Description" value=""/>
+-  <property category="sys" name="DescriptionLabel" value="Description:"/>
+-  <property category="sys" name="DocPath" value="doc"/>
+-  <property category="sys" name="ExcludeClassEnabled" value="0"/>
+-  <property category="sys" name="IncludeTestPath" value="1"/>
+-  <property category="sys" name="InstanceVisibility" value="2"/>
+-  <property category="sys" name="JDK" value="java version 1.4.2_04-b05"/>
+-  <property category="sys" name="JvmVersion" value="1.2"/>
+-  <property category="sys" name="LastTag" value="0"/>
+-  <property category="sys" name="Libraries" value="Servlet;Struts;provirent_objects"/>
+-  <property category="sys" name="MakeStable" value="0"/>
+-  <property category="sys" name="OutPath" value="classes"/>
+-  <property category="sys" name="SourcePath" value="src;test"/>
+-  <property category="sys" name="TestPath" value="test"/>
+-  <property category="sys" name="Title" value=""/>
+-  <property category="sys" name="TitleLabel" value="Title:"/>
+-  <property category="sys" name="Version" value="1.0"/>
+-  <property category="sys" name="VersionLabel" value="@version"/>
+-  <property category="sys" name="WorkingDirectory" value="."/>
+-  <property category="team" name="ignorePath.0" value="Tomcat"/>
+-  <property category="webModule" name="last.wizard.module.name" value="web"/>
+-  <node name="web" type="WebModuleNode">
+-    <property category="archiving" name="archiverClass" value="com.borland.jbuilder.enterprise.module.web.WebModuleArchiver"/>
+-    <property category="archiving" name="contentRules.1" value="i:jar"/>
+-    <property category="archiving" name="contentRules.10" value="i:jsp"/>
+-    <property category="archiving" name="contentRules.11" value="i:tld"/>
+-    <property category="archiving" name="contentRules.12" value="i:opentools"/>
+-    <property category="archiving" name="contentRules.13" value="i:png"/>
+-    <property category="archiving" name="contentRules.14" value="i:properties"/>
+-    <property category="archiving" name="contentRules.15" value="i:au"/>
+-    <property category="archiving" name="contentRules.16" value="i:txt"/>
+-    <property category="archiving" name="contentRules.17" value="i:ram"/>
+-    <property category="archiving" name="contentRules.18" value="i:css"/>
+-    <property category="archiving" name="contentRules.19" value="i:wml"/>
+-    <property category="archiving" name="contentRules.2" value="i:cab"/>
+-    <property category="archiving" name="contentRules.20" value="i:xml"/>
+-    <property category="archiving" name="contentRules.21" value="i:xul"/>
+-    <property category="archiving" name="contentRules.22" value="i:xpi"/>
+-    <property category="archiving" name="contentRules.23" value="i:xsl"/>
+-    <property category="archiving" name="contentRules.3" value="i:rpt"/>
+-    <property category="archiving" name="contentRules.4" value="i:gif"/>
+-    <property category="archiving" name="contentRules.5" value="i:html"/>
+-    <property category="archiving" name="contentRules.6" value="i:class"/>
+-    <property category="archiving" name="contentRules.7" value="i:jnlp"/>
+-    <property category="archiving" name="contentRules.8" value="i:js"/>
+-    <property category="archiving" name="contentRules.9" value="i:jpg"/>
+-    <property category="archiving" name="defaultLibraryState" value="3"/>
+-    <property category="archiving" name="includeDeps" value="1"/>
+-    <property category="archiving" name="libraryStates.1" value="0:Servlet"/>
+-    <property category="archiving" name="libraryStates.2" value="0:Tomcat 4.1 Servlet"/>
+-    <property category="archiving" name="outPathState" value="4"/>
+-    <property category="archiving" name="targetPath" value="web.war"/>
+-    <property category="archiving" name="usingRules" value="1"/>
+-    <property category="kit.struts" name="struts-config.1" value="WEB-INF/struts-config.xml"/>
+-    <property category="kit.struts" name="tiles-defs.1" value="1:WEB-INF/tiles-defs.xml"/>
+-    <property category="kit.struts" name="validator-defs.1" value="1:WEB-INF/validator-rules.xml"/>
+-    <property category="kit.struts" name="validator-defs.2" value="1:WEB-INF/validation.xml"/>
+-    <property category="module" name="buildModuleArchiveWithModuleNode" value="0"/>
+-    <property category="module" name="buildModuleArchiveWithProject" value="0"/>
+-    <property category="module" name="buildModuleExplodedArchiveWithModuleNode" value="1"/>
+-    <property category="module" name="buildModuleExplodedArchiveWithProject" value="1"/>
+-    <property category="module" name="cleanRules.1" value="I:WEB-INF/classes/**"/>
+-    <property category="module" name="cleanRules.2" value="I:WEB-INF/lib/**"/>
+-    <property category="module" name="cleanRules.3" value="X:WEB-INF/**/*.ds"/>
+-    <property category="module" name="cleanRules.4" value="X:WEB-INF/**/*.wsdd"/>
+-    <property category="module" name="cleanRules.5" value="X:WEB-INF/*.xml"/>
+-    <property category="module" name="cleanRules.6" value="X:WEB-INF/*.xmi"/>
+-    <property category="module" name="directory" value="web"/>
+-    <property category="module" name="extraDefaultDirectoriesToKeepOnClean.1" value=".cvsignore"/>
+-    <property category="module" name="lastServer" value="Tomcat 4.1"/>
+-    <property category="module" name="nodeJBuilderVersion" value="JBuilder 200"/>
+-    <property category="module" name="supported.features.1" value="Servlet 2.3"/>
+-    <property category="module" name="supported.features.2" value="JSP 1.2"/>
+-    <property category="module" name="useModuleSpecificJavaFileNodesToBuild" value="1"/>
+-    <property category="web" name="context-root" value="web"/>
+-    <property category="webModule" name="kit.1" value="struts/struts_validation"/>
+-    <property category="webModule" name="kit.2" value="struts/struts_tiles"/>
+-    <property category="webModule" name="kit.3" value="struts"/>
+-    <property category="webModule" name="kitlib.1" value="Struts"/>
+-    <property category="webModule" name="kitlib.2" value="Struts"/>
+-    <property category="webModule" name="kitlib.3" value="Struts"/>
+-    <property category="webModule" name="launch.uri" value="/"/>
+-  </node>
+-</project>
+
+
+
+From pschneider at sheep.berlios.de  Sun Jan  9 22:08:26 2005
+From: pschneider at sheep.berlios.de (Philipp Schneider at BerliOS)
+Date: Sun, 9 Jan 2005 22:08:26 +0100
+Subject: [Provirent-svn-commit] r261 - project_src/website
+Message-ID: <200501092108.j09L8QZ1030972@sheep.berlios.de>
+
+Author: pschneider
+Date: 2005-01-09 22:08:26 +0100 (Sun, 09 Jan 2005)
+New Revision: 261
+
+Removed:
+   project_src/website/Tomcat/
+   project_src/website/classes/
+   project_src/website/web/
+   project_src/website/website.jpx.local
+   project_src/website/website.oif
+Log:
+
+
+Deleted: project_src/website/website.jpx.local
+===================================================================
+--- project_src/website/website.jpx.local	2005-01-09 21:04:37 UTC (rev 260)
++++ project_src/website/website.jpx.local	2005-01-09 21:08:26 UTC (rev 261)
+@@ -1,64 +0,0 @@
+-build.menu.1[0]=com.borland.jbuilder.build.ProjectBuilder$ProjectBuildAction;make
+-build.menu.2[0]=com.borland.jbuilder.build.ProjectBuilder$ProjectBuildAction;rebuild
+-content.layout.xml.[0]=<project-layout><tab_container selected_index="2"><tab node_name="src/de/provirent/web/Constant.java"/><tab node_name="src/de/provirent/web/persistence/DataBase.java"/><tab node_name="src/de/provirent/web/Action/DetailAction.java"/><tab node_name="web/details.jsp"/><tab node_name="src/de/provirent/web/objects/DTOMovie.java"/><tab node_name="web/templates/main.jsp"/><tab node_name="web/WEB-INF/struts-config.xml"/></tab_container></project-layout>
+-debug.NoTracingClasses.1[0]=23 com.borland.datastore.*1  1 -1
+-debug.NoTracingClasses.10[0]=7  javax.*1  1 -1
+-debug.NoTracingClasses.11[0]=5  sun.*1  1 -1
+-debug.NoTracingClasses.12[0]=23 com.borland.appclient.*1  1 -1
+-debug.NoTracingClasses.13[0]=21 com.borland.console.*1  1 -1
+-debug.NoTracingClasses.14[0]=17 com.borland.ejb.*1  1 -1
+-debug.NoTracingClasses.15[0]=24 com.borland.enterprise.*1  1 -1
+-debug.NoTracingClasses.16[0]=18 com.borland.jafa.*1  1 -1
+-debug.NoTracingClasses.17[0]=17 com.borland.jss.*1  1 -1
+-debug.NoTracingClasses.18[0]=24 com.borland.management.*1  1 -1
+-debug.NoTracingClasses.19[0]=23 com.borland.primetime.*1  1 -1
+-debug.NoTracingClasses.2[0]=21 com.borland.dbswing.*1  1 -1
+-debug.NoTracingClasses.20[0]=22 com.borland.security.*1  1 -1
+-debug.NoTracingClasses.21[0]=18 com.borland.util.*1  1 -1
+-debug.NoTracingClasses.22[0]=17 com.borland.xml.*1  1 -1
+-debug.NoTracingClasses.23[0]=13 com.inprise.*1  1 -1
+-debug.NoTracingClasses.24[0]=15 com.visigenic.*1  1 -1
+-debug.NoTracingClasses.25[0]=9  org.omg.*1  1 -1
+-debug.NoTracingClasses.3[0]=16 com.borland.dx.*1  1 -1
+-debug.NoTracingClasses.4[0]=16 com.borland.jb.*1  1 -1
+-debug.NoTracingClasses.5[0]=18 com.borland.jbcl.*1  1 -1
+-debug.NoTracingClasses.6[0]=30 com.borland.jbuilder.runtime.*1  1 -1
+-debug.NoTracingClasses.7[0]=17 com.borland.sql.*1  1 -1
+-debug.NoTracingClasses.8[0]=9  com.sun.*1  1 -1
+-debug.NoTracingClasses.9[0]=6  java.*1  1 -1
+-history.files.active[0]=src/de/provirent/web/Action/DetailAction.java,F;1,81
+-history.files.open.1[0]=src/de/provirent/web/Constant.java,F;1,274
+-history.files.open.2[0]=src/de/provirent/web/persistence/DataBase.java,F;1,209
+-history.files.open.3[0]=src/de/provirent/web/Action/DetailAction.java,F;1,81
+-history.files.open.4[0]=web/details.jsp,F;1,454
+-history.files.open.5[0]=src/de/provirent/web/objects/DTOMovie.java,F;62,1969
+-history.files.open.6[0]=web/templates/main.jsp,F;126,7041
+-history.files.open.7[0]=web/WEB-INF/struts-config.xml,F;1,466
+-import.optimize.legacyPropertiesRead[0]=1
+-sys.Author[0]=
+-sys.DefaultPackage[0]=de.provirent.web.persistence
+-sys.ReopenHistory.1[0]=src/de/provirent/web/objects/DTOMovieShort.java
+-sys.ReopenHistory.10[0]=src/de/provirent/web/Form/SearchAction.java
+-sys.ReopenHistory.11[0]=src/de/provirent/web/Action/LoginAction.java
+-sys.ReopenHistory.12[0]=src/de/provirent/web/Action/LogoutAction.java
+-sys.ReopenHistory.13[0]=src/de/provirent/web/LoginForm.java
+-sys.ReopenHistory.14[0]=src/de/provirent/web/LogoutAction.java
+-sys.ReopenHistory.15[0]=src/de/provirent/web/LoginAction.java
+-sys.ReopenHistory.16[0]=web/WEB-INF/classes/ApplicationResources.properties
+-sys.ReopenHistory.17[0]=web/WEB-INF/web.xml
+-sys.ReopenHistory.2[0]=web/top10month.jsp
+-sys.ReopenHistory.3[0]=src/de/provirent/web/Action/Top10MonthAction.java
+-sys.ReopenHistory.4[0]=web/jsp1.jsp
+-sys.ReopenHistory.5[0]=src/ApplicationResources.properties
+-sys.ReopenHistory.6[0]=web/index.jsp
+-sys.ReopenHistory.7[0]=src/de/provirent/web/Form/LoginForm.java
+-sys.ReopenHistory.8[0]=src/de/provirent/web/Action/SearchAction.java
+-sys.ReopenHistory.9[0]=src/de/provirent/web/Form/SearchForm.java
+-team.ActiveVCS[0]=Subversion
+-team.lastScanned[0]=1104447395828
+-wizard.package.package_history.1[0]=de.provirent.web.persistence
+-wizard.package.package_history.2[0]=de.provirent.web
+-wizard.package.package_history.3[0]=de.provirent.web.objects
+-wizard.package.package_history.4[0]=de.provirent.web.Action
+-wizard.package.package_history.5[0]=de.provirent.web.Form
+-wizard.package.package_history.6[0]=website
+
+Deleted: project_src/website/website.oif
+===================================================================
+--- project_src/website/website.oif	2005-01-09 21:04:37 UTC (rev 260)
++++ project_src/website/website.oif	2005-01-09 21:08:26 UTC (rev 261)
+@@ -1,755 +0,0 @@
+-{
+-    Content = (
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _C_AWTClasses;
+-                Name = "AWT classes";
+-                Operation = OR;
+-                PatternList = (
+-                    java.awt.*,
+-                    sun.awt.*,
+-                    sun.java2d.*,
+-                    com.apple.mrj.internal.awt.*
+-                );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _Y_ApacheJServ;
+-                Name = "Apache JServ";
+-                Operation = OR;
+-                PatternList = ( org.apache.java.*, org.apache.jserv.* );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _N_Orion;
+-                Name = Orion;
+-                Operation = OR;
+-                PatternList = ( com.orionserver.*, com.evermind.*, javax.servlet.* );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _F_BEAWebLogic;
+-                Name = "WebLogic classes";
+-                Operation = OR;
+-                PatternList = (
+-                    weblogic.*,
+-                    com.bea.interop.*,
+-                    com.bea.java2com.*,
+-                    com.bea.jcom.*,
+-                    com.bea.jvm.*,
+-                    com.bea.utils.*,
+-                    com.beasys.*,
+-                    com.sun.management.jmx.*,
+-                    "$Proxy*",
+-                    com.sun.naming.*,
+-                    com.sun.mail.*,
+-                    com.sun.jndi.*,
+-                    com.sun.activation.*,
+-                    com.sun.rsajca.*,
+-                    LDAP*,
+-                    utils.*,
+-                    jsp_servlet.*,
+-                    javax.servlet.*
+-                );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _D_BES5;
+-                Name = "BES Classes";
+-                Operation = OR;
+-                PatternList = (
+-                    com.borland.enterprise.*,
+-                    com.borland.datastore.*,
+-                    com.borland.product.*,
+-                    com.borland.dx.*,
+-                    com.borland.compiler.*,
+-                    com.borland.jbuilder.*,
+-                    com.borland.sanctuary.*,
+-                    com.borland.javamaker.*,
+-                    com.borland.dbswing.*,
+-                    com.borland.dbtools.*,
+-                    com.borland.jb.*,
+-                    com.borland.ejb.*,
+-                    com.borland.jbcl.*,
+-                    com.borland.sql.*,
+-                    com.borland.jdbcx.*,
+-                    com.borland.javax.*,
+-                    com.borland.jss.*,
+-                    com.borland.primetime.*,
+-                    com.borland.product.*,
+-                    com.borland.security.*,
+-                    com.borland.xml.*,
+-                    com.borland.jafa.*,
+-                    com.borland.management.*,
+-                    com.borland.console.*,
+-                    com.inprise.*,
+-                    com.visigenic.*,
+-                    com.borland.catalina.*,
+-                    com.borland.java.*,
+-                    com.borland.vbroker.*,
+-                    com.borland.appclient.*,
+-                    flexlm.*,
+-                    javax.servlet.*
+-                );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _O_SYBASEJaguar;
+-                Name = "Sybase Jaguar";
+-                Operation = OR;
+-                PatternList = ( com.sybase.*, javax.servlet.* );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _Q_Resin;
+-                Name = Resin;
+-                Operation = OR;
+-                PatternList = (
+-                    com.caucho.ejb.*,
+-                    com.caucho.persist.*,
+-                    com.caucho.burlap.*,
+-                    com.caucho.hessian.*,
+-                    com.caucho.util.*,
+-                    com.caucho.iiop.*,
+-                    com.caucho.jms.*,
+-                    com.caucho.es.*,
+-                    com.caucho.vfs.*,
+-                    com.caucho.java.*,
+-                    com.caucho.regexp.*,
+-                    com.caucho.xml.*,
+-                    com.caucho.eswrap.*,
+-                    com.caucho.sql.*,
+-                    com.caucho.transaction.*,
+-                    com.caucho.xsl.*,
+-                    com.caucho.transform.*,
+-                    com.caucho.xpath.*,
+-                    com.caucho.jsp.*,
+-                    com.caucho.server.*,
+-                    com.caucho.http.*,
+-                    com.caucho.security.*,
+-                    com.caucho.naming.*,
+-                    com.caucho.tools.*,
+-                    com.caucho.webutil.*,
+-                    com.caucho.jslib.*,
+-                    com.caucho.services.*,
+-                    com.caucho.web.*,
+-                    com.caucho.graphics.*,
+-                    com.caucho.jdbc.*,
+-                    _ejb.*_EJB*,
+-                    _jsbean.*,
+-                    javax.servlet.*
+-                );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _G_IBMWebSphere;
+-                Name = "IBM WebSphere";
+-                Operation = OR;
+-                PatternList = (
+-                    com.ibm.asn1.*,
+-                    com.ibm.cfwk.*,
+-                    com.ibm.gsk_sslight.*,
+-                    com.ibm.sslight.*,
+-                    com.ibm.util.*,
+-                    com.ibm.ejs.*,
+-                    com.ibm.db.*,
+-                    com.ibm.ivj.*,
+-                    com.ibm.debug.*,
+-                    com.ibm.websphere.*,
+-                    com.ibm.gsk.*,
+-                    com.ibm.servlet.*,
+-                    com.ibm.asn1.*,
+-                    com.ibm.ldap.*,
+-                    db.*,
+-                    jdbc.*,
+-                    com.ibm.ivb.*,
+-                    com.ibm.ejb.*,
+-                    com.ibm.cs.*,
+-                    com.ibm.WAS35sslight.*,
+-                    com.ibm.CORBA.*,
+-                    com.ibm.IExtendedSecurity*,
+-                    com.ibm.ISecurity*,
+-                    com.ibm.NamingStringSyntax.*,
+-                    com.ibm.ras.*,
+-                    com.ibm.Security*,
+-                    com.ibm.som.*,
+-                    com.ibm.WebSphereSecurity.*,
+-                    com.ibm.WebSphereSecurityImpl.*,
+-                    com.ibm.vap.*,
+-                    com.ibm.webtools.runtime.*,
+-                    com.ibm.rmi.*,
+-                    com.ibm.org.*,
+-                    com.ibm.ws.*,
+-                    com.ibm.connector2.*,
+-                    com.ibm.etools.*,
+-                    com.ibm.sw.*,
+-                    com.ibm.gryphon.*,
+-                    com.ibm.gryphonimpl.*,
+-                    com.ibm.CBUtils.*,
+-                    com.ibm.idl.*,
+-                    com.ibm.ivf.*,
+-                    com.ibm.xmi.*,
+-                    com.ibm.ExtendedNaming.*,
+-                    com.ibm.Wsn*,
+-                    com.ibm.trl.*,
+-                    com.ibm.uddi.*,
+-                    com.ibm.vap.*,
+-                    com.ibm.psh.*,
+-                    com.ibm.dom.*,
+-                    com.ibm.jsse.*,
+-                    com.ibm.crypto.*,
+-                    com.ibm.sslite.*,
+-                    com.ibm.security.*,
+-                    com.ibm.net.*,
+-                    com.ibm.misc.*,
+-                    com.ibm.logging.*,
+-                    com.ibm.db2j.*,
+-                    com.ibm.CSIv2Security.*,
+-                    com.tivoli.*,
+-                    db2j.*,
+-                    javax.servlet.*
+-                );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _P_ATGDynamo;
+-                Name = "ATG Dynamo";
+-                Operation = OR;
+-                PatternList = ( atg.*, javax.servlet.* );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _A_JavaCoreClasses;
+-                Name = "Java core classes";
+-                Operation = OR;
+-                PatternList = (
+-                    java.*,
+-                    javax.*,
+-                    org.omg.*,
+-                    org.ietf.*,
+-                    sun.*,
+-                    sunw.*,
+-                    com.sun.security.*,
+-                    com.sun.corba.*,
+-                    com.sun.rsasign.*,
+-                    com.sun.rsajca.*,
+-                    com.sun.java.*,
+-                    com.sun.org.*,
+-                    com.sun.media.*,
+-                    com.sun.image.*,
+-                    com.sun.imageio.*,
+-                    com.sun.rmi.*,
+-                    com.sun.mail.*,
+-                    com.sun.tools.*,
+-                    com.sun.jdi.*,
+-                    com.sun.activation.*,
+-                    com.sun.javadoc.*,
+-                    com.ibm.jvm.*
+-                );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _E_XMLClasses;
+-                Name = "XML classes";
+-                Operation = OR;
+-                PatternList = (
+-                    org.xml.*,
+-                    org.w3c.*,
+-                    javax.xml.*,
+-                    org.apache.xerces.*,
+-                    org.apache.xml.*,
+-                    org.apache.xalan.*,
+-                    org.apache.cocoon.*,
+-                    org.apache.crimson.*,
+-                    org.apache.xpath.*,
+-                    com.sun.xml.*,
+-                    org.apache.soap.*,
+-                    org.apache.html.*,
+-                    org.apache.wml.*,
+-                    org.jdom.*,
+-                    org.dom4j.*,
+-                    com.ibm.xml.*
+-                );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _G_IBMDB2Client;
+-                Name = "IBM DB2 Client";
+-                Operation = OR;
+-                PatternList = ( COM.ibm.db2.* );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _B_JavaLang;
+-                Name = "Java language classes";
+-                Operation = OR;
+-                PatternList = ( java.lang.* );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _I_iPlanetWS;
+-                Name = "iPlanet WS";
+-                Operation = OR;
+-                PatternList = ( com.iplanet.*, javax.servlet.* );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _W_Iona;
+-                Name = "Iona iPortal";
+-                Operation = OR;
+-                PatternList = ( com.iona.*, javax.servlet.* );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _L_SilverStream;
+-                Name = SilverStream;
+-                Operation = OR;
+-                PatternList = ( com.sssw.*, javax.servlet.* );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _M_JBoss;
+-                Name = JBoss;
+-                Operation = OR;
+-                PatternList = (
+-                    org.jboss.*,
+-                    org.jbossmq.*,
+-                    org.enhydra.*,
+-                    org.hsql.*,
+-                    org.jnp.*,
+-                    org.opentools.*,
+-                    "$Proxy*",
+-                    javax.servlet.*
+-                );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _D_SwingClasses;
+-                Name = "Swing classes";
+-                Operation = OR;
+-                PatternList = (
+-                    com.sun.java.swing.*,
+-                    com.sun.java.accessibility.*,
+-                    javax.swing.*,
+-                    javax.accessibility.*,
+-                    com.apple.mrj.swing.*
+-                );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _J_MacromediaJRun;
+-                Name = "Macromedia JRun";
+-                Operation = OR;
+-                PatternList = ( com.livesoftware.*, allaire.jrun.*, javax.servlet.* );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _K_Oracle9i;
+-                Name = Oracle9i;
+-                Operation = OR;
+-                PatternList = ( com.evermind.*, org.apache.jserv.*, javax.servlet.* );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _H_JakartaTomcat;
+-                Name = "Jakarta Tomcat";
+-                Operation = OR;
+-                PatternList = (
+-                    org.apache.tomcat.*,
+-                    org.apache.catalina.*,
+-                    org.apache.coyote.*,
+-                    org.apache.tools.*,
+-                    org.apache.jasper.*,
+-                    org.apache.ajp.*,
+-                    org.apache.naming.*,
+-                    org.apache.commons.*,
+-                    com.sun.naming.*,
+-                    javax.servlet.*
+-                );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _O_JUnit;
+-                Name = JUnit;
+-                Operation = OR;
+-                PatternList = ( junit.*, com.borland.jbuilder.unittest.* );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = _G_Ant;
+-                Name = Ant;
+-                Operation = OR;
+-                PatternList = ( org.apache.tools.ant.*, org.apache.tools.tar.* );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = Z_JBoss3rdParty;
+-                Name = "JBoss 3rd party classes";
+-                Operation = OR;
+-                PatternList = (
+-                    sun.tools.*,
+-                    com.sun.naming.*,
+-                    com.sun.management.*,
+-                    javax.naming.*,
+-                    org.apache.log4j.*,
+-                    org.hsqldb.*
+-                );
+-                ReadOnly = FALSE;
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = Z_Resin3rdpartyXML;
+-                Name = "Resin 3rd party XML classes";
+-                Operation = OR;
+-                PatternList = ( _xsl.* );
+-                ReadOnly = FALSE;
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = Z_BES3rdParty;
+-                Name = "BES 3rd party classes";
+-                Operation = OR;
+-                PatternList = (
+-                    com.sun.server.*,
+-                    com.sun.net.*,
+-                    com.sun.crypto.*,
+-                    com.sun.jndi.*,
+-                    com.sun.mail.*,
+-                    com.sun.security.*,
+-                    org.omg.CORBA.*,
+-                    org.omg.PortableServer.*,
+-                    org.omg.PortableInterceptor.*,
+-                    org.omg.CosEventComm.*,
+-                    org.omg.CosNaming.*,
+-                    org.omg.CosTransactions.*,
+-                    org.omg.firewall.*,
+-                    org.omg.Messaging.*,
+-                    org.omg.IOP.*,
+-                    org.omg.CSIIOP.*,
+-                    org.omg.SSLIOP.*,
+-                    org.omg.GSSUP.*,
+-                    gnu.regexp.*,
+-                    COM.rsa.*,
+-                    progress.message.*,
+-                    HTTPClient.*,
+-                    com.mortbay.*,
+-                    org.apache.turbine.*,
+-                    org.apache.java.*,
+-                    org.apache.fop.*
+-                );
+-                ReadOnly = FALSE;
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = Z_Orion3rdParty;
+-                Name = "Orion 3rd party classes";
+-                Operation = OR;
+-                PatternList = (
+-                    sun.tools.*,
+-                    com.sun.naming.*,
+-                    javax.naming.*,
+-                    com.sun.activation.*,
+-                    com.sun.net.ssl.*,
+-                    com.sun.mail.*,
+-                    COM.rsa.*
+-                );
+-                ReadOnly = FALSE;
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = Z_Weblogic3rdParty;
+-                Name = "WebLogic 3rd party classes";
+-                Operation = OR;
+-                PatternList = (
+-                    COM.rsa.*,
+-                    bsh.*,
+-                    antlr.*,
+-                    com.adventnet.*,
+-                    com.rsa.*,
+-                    com.octetstring.*,
+-                    com.certicom.*,
+-                    com.asn1c.*,
+-                    com.linar.*,
+-                    org.mozilla.*,
+-                    com.sun.naming.*,
+-                    com.sun.management.*,
+-                    com.sun.activation.*,
+-                    javax.naming.*,
+-                    com.sun.net.*,
+-                    com.sun.crypto.*,
+-                    COM.jrockit.*
+-                );
+-                ReadOnly = FALSE;
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = Z_Cloudscape;
+-                Name = "Cloudscape JDBC Driver classes";
+-                Operation = OR;
+-                PatternList = (
+-                    c8e.*,
+-                    COM.cloudscape.*,
+-                    COM.objectspace.*,
+-                    com.objectspace.*
+-                );
+-                ReadOnly = FALSE;
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = 1018649724232;
+-                Name = "PointBase JDBC Driver classes";
+-                Operation = OR;
+-                PatternList = ( com.pointbase.* );
+-                ReadOnly = FALSE;
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = Z_WebSphere3rdParty;
+-                Name = "WebSphere 3rd party classes";
+-                Operation = OR;
+-                PatternList = (
+-                    com.klg.*,
+-                    tcl.*,
+-                    com.oroinc.*,
+-                    com.ibm.bsf.*,
+-                    org.mozilla.*,
+-                    com.netscape.javascript.*,
+-                    com.lotus.xml.*,
+-                    com.lotus.xpath.*,
+-                    com.lotus.xsl.*,
+-                    com.merant.sequelink.*,
+-                    demo.asn1.*,
+-                    iaik.asn1*,
+-                    iaik.pkcs.*,
+-                    iaik.security.*,
+-                    iaik.utils.*,
+-                    iaik.x509.*,
+-                    javax.crypto.*,
+-                    iaik.java.security.*,
+-                    javax.ejb.*,
+-                    javax.naming.*,
+-                    com.sun.naming.internal.*,
+-                    javax.sql.*,
+-                    javax.transaction.*,
+-                    org.omg.CORBA.*,
+-                    org.omg.CosNaming.*,
+-                    org.omg.CosPropertyService.*,
+-                    org.omg.CosTransactions.*,
+-                    org.omg.Security*,
+-                    org.omg.SendingContext.*,
+-                    org.omg.stub.*,
+-                    com.sun.server.*,
+-                    com.sun.web.util.*,
+-                    com.sun.jsp.*,
+-                    org.apache.jasper,
+-                    intersolv.jdbc.*
+-                );
+-                ReadOnly = FALSE;
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = Z_EJBStubsSkels;
+-                Name = "EJB stubs and skels";
+-                Operation = OR;
+-                PatternList = (
+-                    *_Impl,
+-                    *_EOImpl,
+-                    *_HomeImpl,
+-                    *_CMP_RDBMS,
+-                    *_LocalHomeImpl,
+-                    *_ELOImpl,
+-                    *_WLStub,
+-                    *_WLSkel,
+-                    *._*_Stub,
+-                    *._*_BaseStub,
+-                    *._*_Tie,
+-                    *._*_Skel,
+-                    *Home_*,
+-                    *HomeBean_*,
+-                    *EJB_*,
+-                    *EJBInjectorImpl_*,
+-                    *EJBExtractor_*,
+-                    *EJBCacheEntryImpl_*,
+-                    *EJBAdaptorBinding_*,
+-                    *BeanInjectorImpl_*,
+-                    *BeanExtractor_*,
+-                    *BeanCacheEntryImpl_*,
+-                    *BeanAdaptorBinding_*,
+-                    *EJBFunctionSet_*
+-                );
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        },
+-        {
+-            ccex = t;
+-            cnd = {
+-                ID = Z_Resin3rdParty;
+-                Name = "Resin 3rd party classes";
+-                Operation = OR;
+-                PatternList = ( sun.tools.*, com.sun.naming.*, javax.naming.* );
+-                ReadOnly = FALSE;
+-            };
+-            cpu = f;
+-            grp = f;
+-            mem = f;
+-        }
+-    );
+-}
+\ No newline at end of file
+
+
+

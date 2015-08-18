@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r296 - docu/latex
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r296%20-%20docu/latex&In-Reply-To=%3C200512160836.jBG8axe3023573%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000297.html">
+   <LINK REL="Next"  HREF="000299.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r296 - docu/latex</H1>
+    <B>pschneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r296%20-%20docu/latex&In-Reply-To=%3C200512160836.jBG8axe3023573%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r296 - docu/latex">pschneider at berlios.de
+       </A><BR>
+    <I>Fri Dec 16 09:36:59 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000297.html">[Provirent-svn-commit] r295 - in docu/latex: . images
+</A></li>
+        <LI>Next message: <A HREF="000299.html">[Provirent-svn-commit] r297 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#298">[ date ]</a>
+              <a href="thread.html#298">[ thread ]</a>
+              <a href="subject.html#298">[ subject ]</a>
+              <a href="author.html#298">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2005-12-16 09:36:40 +0100 (Fri, 16 Dec 2005)
+New Revision: 296
+
+Modified:
+   docu/latex/3-0-Technologien.tex
+   docu/latex/3-1-Datenbank.tex
+   docu/latex/3-2-Versionsverwaltung.tex
+   docu/latex/Provirent-Doku.tex
+Log:
+
+
+Modified: docu/latex/3-0-Technologien.tex
+===================================================================
+--- docu/latex/3-0-Technologien.tex	2005-12-15 17:21:27 UTC (rev 295)
++++ docu/latex/3-0-Technologien.tex	2005-12-16 08:36:40 UTC (rev 296)
+@@ -1,73 +1 @@
+-\chapter{Technologien} \label{sec:Technologien}
+-In diesem Abschnitt werden kurz die zu verwendeten Technologien verwendet.
+-
+-
+-
+-		
+-		
+-				
+-
+-
+-		
+-\section*{Datenbank - erste Ideen}	\label{asas}
+-
+-
+-
+-
+-	\begin{itemize}
+-			
+-  		\item Kunden
+-  		\begin{itemize}
+-  			\setlength{\itemsep}{-1ex plus0.5ex minus0.3ex}
+-  			\item kundenid \emph{Integer Autoincrement Primary Key}
+-  			\item name \emph{VARCHAR(200)}
+-  			\item vorname \emph{VARCHAR(200)}
+-  			\item strasse \emph{VARCHAR(200)}
+-  		\end{itemize}
+-  	 \item benutzer
+-  		\begin{itemize}
+-  			\setlength{\itemsep}{-1ex plus0.5ex minus0.3ex}
+-  			\item benutzerid \emph{Integer Autoincrement Primary Key}
+-  		\end{itemize}
+-
+-  	 \item dvds
+-  		\begin{itemize}
+-  			\setlength{\itemsep}{-1ex plus0.5ex minus0.3ex}
+-  			\item dvdid \emph{Integer Autoincrement Primary Key}
+-  		\end{itemize}
+-
+-  	 \item genre
+-  		\begin{itemize}
+-  			\setlength{\itemsep}{-1ex plus0.5ex minus0.3ex}
+-  			\item genreid \emph{Integer Autoincrement Primary Key}
+-  		\end{itemize}
+-
+-  	 \item artikel
+-  		\begin{itemize}
+-  			\setlength{\itemsep}{-1ex plus0.5ex minus0.3ex}
+-  			\item artikelid \emph{Integer Autoincrement Primary Key}
+-  		\end{itemize}
+-
+-  	 \item verleih
+-  		\begin{itemize}
+-  			\setlength{\itemsep}{-1ex plus0.5ex minus0.3ex}
+-  			\item verleihid \emph{Integer Autoincrement Primary Key}
+-  		\end{itemize}
+-
+-  	 \item preis
+-  		\begin{itemize}
+-  			\setlength{\itemsep}{-1ex plus0.5ex minus0.3ex}
+-  			\item preisid \emph{Integer Autoincrement Primary Key}
+-  		\end{itemize}
+-  	 
+-
+-   \end{itemize}			
+-
+-	\section*{Prototyp}
+-	Bevor versuchen ein fertiges Produkt zu realisieren und daran vermutlich scheitern werden, haben wir beschlossen einen einfachen Prototyp zu programmieren. Dieser soll die wichtigsten Merkmale besitzen und zu Demostrationszwecken dienen.
+-	Jedoch soll es auch m&#246;glich sein, diesen Prototypen zu einem fertigen Produkt fertig zu entwickeln. Der Prototyp soll also nicht quick \&amp; dirty programmiert werden. \\
+-	Der Prototyp soll haupts&#228;chlich die Kundenseite implementieren. D.h. er soll eine Webanwendung bereitstellen, bei der der Kunde bzw. Interessent sich regiestrieren kann und die Videothek benutzen kann. Dies bedeutet er kann sich die vorhanden Videos anschauen (Informationen zu diesen), kann sich die Verf&#252;gbarkeit anschauen, Video ausleihen, Rechnungen ansehen bzw. ausdrucken und eine Liste mit all seinen bisherigen Bestellungen anschauen. \\
+-	Das Modul f&#252;r die Verwaltung der DVD's ist in diesem Prototypen noch nicht vorgesehen. \\
+-	Das Modul f&#252;r das Versenden und Empfangen ist nur in einfacher Variante vorgesehen. Der Mitarbeiter der Onlinevideothek bekommt eine kleine Anwendung auf Konsolenbasis ohne grafische Oberfl&#228;che.
+-		
+-		
+\ No newline at end of file
++\chapter{Technologien} \label{sec:Technologien}
+\ No newline at end of file
+
+Modified: docu/latex/3-1-Datenbank.tex
+===================================================================
+--- docu/latex/3-1-Datenbank.tex	2005-12-15 17:21:27 UTC (rev 295)
++++ docu/latex/3-1-Datenbank.tex	2005-12-16 08:36:40 UTC (rev 296)
+@@ -1,3 +1,70 @@
++
++\section{Datenbankdesign - erste Ideen}	\label{asas}
++
++
++
++
++	\begin{itemize}
++			
++  		\item Kunden
++  		\begin{itemize}
++  			\setlength{\itemsep}{-1ex plus0.5ex minus0.3ex}
++  			\item kundenid \emph{Integer Autoincrement Primary Key}
++  			\item name \emph{VARCHAR(200)}
++  			\item vorname \emph{VARCHAR(200)}
++  			\item strasse \emph{VARCHAR(200)}
++  		\end{itemize}
++  	 \item benutzer
++  		\begin{itemize}
++  			\setlength{\itemsep}{-1ex plus0.5ex minus0.3ex}
++  			\item benutzerid \emph{Integer Autoincrement Primary Key}
++  		\end{itemize}
++
++  	 \item dvds
++  		\begin{itemize}
++  			\setlength{\itemsep}{-1ex plus0.5ex minus0.3ex}
++  			\item dvdid \emph{Integer Autoincrement Primary Key}
++  		\end{itemize}
++
++  	 \item genre
++  		\begin{itemize}
++  			\setlength{\itemsep}{-1ex plus0.5ex minus0.3ex}
++  			\item genreid \emph{Integer Autoincrement Primary Key}
++  		\end{itemize}
++
++  	 \item artikel
++  		\begin{itemize}
++  			\setlength{\itemsep}{-1ex plus0.5ex minus0.3ex}
++  			\item artikelid \emph{Integer Autoincrement Primary Key}
++  		\end{itemize}
++
++  	 \item verleih
++  		\begin{itemize}
++  			\setlength{\itemsep}{-1ex plus0.5ex minus0.3ex}
++  			\item verleihid \emph{Integer Autoincrement Primary Key}
++  		\end{itemize}
++
++  	 \item preis
++  		\begin{itemize}
++  			\setlength{\itemsep}{-1ex plus0.5ex minus0.3ex}
++  			\item preisid \emph{Integer Autoincrement Primary Key}
++  		\end{itemize}
++  	 
++
++   \end{itemize}			
++
++	\section{Prototyp}
++	Bevor versuchen ein fertiges Produkt zu realisieren und daran vermutlich scheitern werden, haben wir beschlossen einen einfachen Prototyp zu programmieren. Dieser soll die wichtigsten Merkmale besitzen und zu Demostrationszwecken dienen.
++	Jedoch soll es auch m&#246;glich sein, diesen Prototypen zu einem fertigen Produkt fertig zu entwickeln. Der Prototyp soll also nicht quick \&amp; dirty programmiert werden. \\
++	Der Prototyp soll haupts&#228;chlich die Kundenseite implementieren. D.h. er soll eine Webanwendung bereitstellen, bei der der Kunde bzw. Interessent sich regiestrieren kann und die Videothek benutzen kann. Dies bedeutet er kann sich die vorhanden Videos anschauen (Informationen zu diesen), kann sich die Verf&#252;gbarkeit anschauen, Video ausleihen, Rechnungen ansehen bzw. ausdrucken und eine Liste mit all seinen bisherigen Bestellungen anschauen. \\
++	Das Modul f&#252;r die Verwaltung der DVD's ist in diesem Prototypen noch nicht vorgesehen. \\
++	Das Modul f&#252;r das Versenden und Empfangen ist nur in einfacher Variante vorgesehen. Der Mitarbeiter der Onlinevideothek bekommt eine kleine Anwendung auf Konsolenbasis ohne grafische Oberfl&#228;che.
++		
++
++
++
++
++
+ \section{Datenbank}
+ Zum Einsatz soll eine OpenSource Datenbank kommen. Gedanken an eine kommerzielle Datenbank kam aus Gr&#252;nden der Lizenzkosten nicht auf. \\
+ Zu Auswahl standen mehrere OpenSource Datenbanken. MySql \footnote{\url{<A HREF="http://dev.mysql.com/downloads/mysql/4.0.html">http://dev.mysql.com/downloads/mysql/4.0.html</A>}}, SAP DB \footnote{\url{<A HREF="http://dev.mysql.com/downloads/maxdb/7.5.00.html">http://dev.mysql.com/downloads/maxdb/7.5.00.html</A>}} , HSQL DB \footnote{\url{<A HREF="http://hsqldb.sourceforge.net">http://hsqldb.sourceforge.net</A>}} und Firebird \footnote{\url{<A HREF="http://firebird.sourceforge.net">http://firebird.sourceforge.net</A>}}.
+
+Modified: docu/latex/3-2-Versionsverwaltung.tex
+===================================================================
+--- docu/latex/3-2-Versionsverwaltung.tex	2005-12-15 17:21:27 UTC (rev 295)
++++ docu/latex/3-2-Versionsverwaltung.tex	2005-12-16 08:36:40 UTC (rev 296)
+@@ -1,6 +1,6 @@
+ \section{Versionsverwaltung} \label{sec:tech-Versionsverwaltung}
+ Eine Versionsverwaltung ist ein System der Softwareentwicklung zur Versionierung und Kontrolle des gemeinsamen Zugriff's auf Quelltexte. Mit Hilfe einer solchen Software werden laufende &#196;nderungen an Quelltexten oder &#228;hnlichen Dateien erfasst und in einem Archiv mit Zeitstempel und Benutzerkennung erfasst. Ein Archiv, auch Repository genannt, ist dabei meist einen Datenbank oder ein systemabh&#228;ngiges Dateiformat. Mit Hilfe einer Versionsverwaltung k&#246;nnen mehrere Benutzer (Entwickler) einem einem Projekt, sogar an einer Datei gleichzeitig arbeiten. Ohne des Einsatz einer Versionsverwaltung ist es sehr schwierig in einem Team eine Software zu entwickeln. Jeder Entwickler muss immer den aktuellen Stand der Quelltexte besitzen und m&#252;sste sich mit den anderen Entwickler absprechen, welche Dateien von wem bearbeitet werden, eine gleichzeitige Bearbeitung einer Datei w&#228;re nur mit gro&#223;em Aufwand m&#246;glich, wie in \vref{fig:vv-personen} beispielhaft zu sehen ist. Weiterhin ist es in Fe!
+ hlerf&#228;llen schwierig auf &#228;ltere Projektst&#228;nde zur&#252;ckzugreifen. Da in der heutigen zeit viele Projekte global, von mehreren Entwicklern weltweit, unter Zeitdruck entwickelt werden, ist der Einsatz einer Versionsverwaltung zwingend notwendig. Eine Versionsverwaltung &#252;bernimmt dabei folgende Aufgaben:
+-\begin{itemize}[itemsep=.5cm]
++\begin{itemize}
+ 	\item fr&#252;here Versionen reproduzierbar
+ 	\item kontinuierliche Generationsfolge sicherstellen
+ 	\item Platzsparende Speicherung
+
+Modified: docu/latex/Provirent-Doku.tex
+===================================================================
+--- docu/latex/Provirent-Doku.tex	2005-12-15 17:21:27 UTC (rev 295)
++++ docu/latex/Provirent-Doku.tex	2005-12-16 08:36:40 UTC (rev 296)
+@@ -127,7 +127,7 @@
+ \include{2-Aufbau}
+ %====================================
+ \include{3-0-Technologien}
+-\include{3-1-Datenbank}
++%\include{3-1-Datenbank}
+ \include{3-2-Versionsverwaltung}
+ \include{3-3-Entwicklungsumgebung}
+ \include{3-4-GUIJava}
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000297.html">[Provirent-svn-commit] r295 - in docu/latex: . images
+</A></li>
+	<LI>Next message: <A HREF="000299.html">[Provirent-svn-commit] r297 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#298">[ date ]</a>
+              <a href="thread.html#298">[ thread ]</a>
+              <a href="subject.html#298">[ subject ]</a>
+              <a href="author.html#298">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

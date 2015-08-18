@@ -1,0 +1,2193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r135 - in project_src/provirent_hibernate/src: . de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r135%20-%20in%20project_src/provirent_hibernate/src%3A%20.%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/management/gui/language%20de/hsharz/provirent/objects%20de/hsharz/provirent/persistence&In-Reply-To=%3C200411151937.iAFJbO0J029363%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000135.html">
+   <LINK REL="Next"  HREF="000137.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r135 - in project_src/provirent_hibernate/src: . de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r135%20-%20in%20project_src/provirent_hibernate/src%3A%20.%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/management/gui/language%20de/hsharz/provirent/objects%20de/hsharz/provirent/persistence&In-Reply-To=%3C200411151937.iAFJbO0J029363%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r135 - in project_src/provirent_hibernate/src: . de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Mon Nov 15 20:37:24 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000135.html">[Provirent-svn-commit] r134 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+        <LI>Next message: <A HREF="000137.html">[Provirent-svn-commit] r136 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#136">[ date ]</a>
+              <a href="thread.html#136">[ thread ]</a>
+              <a href="subject.html#136">[ subject ]</a>
+              <a href="author.html#136">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-15 20:37:23 +0100 (Mon, 15 Nov 2004)
+New Revision: 135
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+   project_src/provirent_hibernate/src/log4j.properties
+Log:
+-sprachen erg?\195?\164nzt
+- immer noch mit fehlern, neues funktioniert bereit
+- hibernate file ver?\195?\164ndertn, ANT ERNEUT AUSF?\195?\156HREN!!
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java	2004-11-15 15:02:24 UTC (rev 134)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeImage.java	2004-11-15 19:37:23 UTC (rev 135)
+@@ -1,6 +1,9 @@
+ package de.hsharz.provirent.management.gui;
+ 
++import java.io.ByteArrayInputStream;
+ import java.io.ByteArrayOutputStream;
++import java.io.IOException;
++import java.text.MessageFormat;
+ import java.util.Locale;
+ import java.util.PropertyResourceBundle;
+ import java.util.ResourceBundle;
+@@ -42,23 +45,24 @@
+ import com.cloudgarden.resource.SWTResourceManager;
+ 
+ import de.hsharz.provirent.objects.Actor;
++import de.hsharz.provirent.persistence.DataBaseException;
+ import de.hsharz.provirent.persistence.Database;
+-import org.eclipse.swt.widgets.Slider;
++
+ /**
+-* This code was generated using CloudGarden's Jigloo
+-* SWT/Swing GUI Builder, which is free for non-commercial
+-* use. If Jigloo is being used commercially (ie, by a corporation,
+-* company or business for any purpose whatever) then you
+-* should purchase a license for each developer using Jigloo.
+-* Please visit www.cloudgarden.com for details.
+-* Use of Jigloo implies acceptance of these licensing terms.
+-* *************************************
+-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED
+-* for this machine, so Jigloo or this code cannot be used legally
+-* for any corporate or commercial purpose.
+-* *************************************
+-*/
+-public class CompositeImage extends AbstractComposite{
++ * This code was generated using CloudGarden's Jigloo
++ * SWT/Swing GUI Builder, which is free for non-commercial
++ * use. If Jigloo is being used commercially (ie, by a corporation,
++ * company or business for any purpose whatever) then you
++ * should purchase a license for each developer using Jigloo.
++ * Please visit www.cloudgarden.com for details.
++ * Use of Jigloo implies acceptance of these licensing terms.
++ * *************************************
++ * A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED
++ * for this machine, so Jigloo or this code cannot be used legally
++ * for any corporate or commercial purpose.
++ * *************************************
++ */
++public class CompositeImage extends AbstractComposite {
+ 
+     {
+         //Register as a resource user - SWTResourceManager will
+@@ -66,59 +70,93 @@
+         SWTResourceManager.registerResourceUser(this);
+     }
+ 
+-
+     /**
+      * Logger for this class
+      */
+-    private static final Logger logger = Logger
+-            .getLogger(CompositeImage.class);
+-    
++    private static final Logger logger = Logger.getLogger(CompositeImage.class);
++
+     byte[] imagebytedata;
++
++    private Label labelImagesResize;
++
++    private Scale scaleResize;
++
++    private Text textFileUrl;
++
++    private Button buttonSelectFile;
++
++    private Label labelImagesFile;
++
++    private SashForm sashForm1;
++
++    private SashForm sashForm2;
++
++    private Image ideaImage, scaledImage;
++
++    int iy, ix = 0;
++
++    private String currentDir = &quot;&quot;;
++
++    private Canvas canvasImg;
++
+     private final static int MODE_VIEW = 0;
++
+     private final static int MODE_ADD = 1;
+-    private Label label2;
+-    private Scale scale1;
+-    private Canvas canvas1;
+-    private Text text1;
+-    private Button button1;
+-    private Label label1;
++
++    private Composite compositeButtons;
++
++    private Button buttonImageCancel;
++
++    private Button buttonImageSave;
++
++    private Button buttonImageFill;
++
++    private Button buttonImageDelete;
++
++    private Button buttonImageEdit;
++
++    private Button buttonImageNew;
++
+     private final static int MODE_EDIT = 2;
+-    
+-    private Table tableActorsOverview;
+-    private TableColumn tableActorsOverview_ColumnID;
+-    private TableColumn tableActorsOverview_ColumnFName;
+-    private TableColumn tableActorsOverview_ColumnLName;
+-    
+-    
+-    private SashForm sashForm1;
+-    private SashForm sashForm2;
+-    
+-    private Group groupActor;
+-    private Group groupActorsOverview;
+-    private Group groupActorsDetail;
+-    
+-    private Text textActorsSearch;
+-    private Text textActorsID;
+-    private Text textActorsFName;
+-    private Text textActorsLName;
+-    
+-    private Label labelActorsSearch;
+-    private Label labelActorsID;
+-    private Label labelActorsFName;
+-    private Label labelActorsLName;
+ 
+-    protected int mode_actor;
+-    
+-    private Image ideaImage,scaledImage;
+-    int iy,ix = 0;
+-    
++    private Table tableImagesOverview;
++
++    private TableColumn tableImagesOverview_ColumnID;
++
++    private TableColumn tableImagesOverview_ColumnName;
++
++    private TableColumn tableImagesOverview_ColumnDescription;
++
++    private Group groupImage;
++
++    private Group groupImagesOverview;
++
++    private Group groupImagesDetail;
++
++    private Text textImagesSearch;
++
++    private Text textImagesID;
++
++    private Text textImagesName;
++
++    private Text textImagesDescription;
++
++    private Label labelImagesSearch;
++
++    private Label labelImagesID;
++
++    private Label labelImagesFName;
++
++    private Label labelImagesLName;
++
++    protected int mode_image;
++
+     private StatusLineStyledText statusLine;
+ 
+     private ResourceBundle l;
+-    
++
+     private Composite parent;
+ 
+-    private String currentDir = &quot;C:/&quot;;
+     /*
+      * &#196;ndert die Sprache aller Elemente
+      * 
+@@ -135,53 +173,52 @@
+     public void initLanguage(Locale locale) {
+ 
+         l = PropertyResourceBundle.getBundle(
+-                &quot;de.hsharz.provirent.management.gui.language.actors&quot;, locale);
++                &quot;de.hsharz.provirent.management.gui.language.images&quot;, locale);
+ 
+     }
+-    
+-    
+-	/**
+-	* Auto-generated main method to display this 
+-	* org.eclipse.swt.widgets.Composite inside a new Shell.
+-	*/
+-	public static void main(String[] args) {
+-		showGUI();
+-	}
+-		
+-	/**
+-	* Auto-generated method to display this 
+-	* org.eclipse.swt.widgets.Composite inside a new Shell.
+-	*/
+-	public static void showGUI() {
+-		Display display = Display.getDefault();
+-		Shell shell = new Shell(display);
+ 
+-		CompositeImage p = new CompositeImage(shell,SWT.NONE,null,Locale.getDefault());
+-		
+-		shell.open();
+-		while (!shell.isDisposed()) {
+-			if (!display.readAndDispatch())
+-				display.sleep();
+-		}
+-	}
++    /**
++     * Auto-generated main method to display this 
++     * org.eclipse.swt.widgets.Composite inside a new Shell.
++     */
++    public static void main(String[] args) {
++        showGUI();
++    }
+ 
+-	public CompositeImage(Composite p, int style,
+-            StatusLineStyledText status, Locale l) {
+-	    super(p, style, status, l);
++    /**
++     * Auto-generated method to display this 
++     * org.eclipse.swt.widgets.Composite inside a new Shell.
++     */
++    public static void showGUI() {
++        Display display = Display.getDefault();
++        Shell shell = new Shell(display);
++
++        CompositeImage p = new CompositeImage(shell, SWT.NONE, null, Locale
++                .getDefault());
++
++        shell.open();
++        while (!shell.isDisposed()) {
++            if (!display.readAndDispatch())
++                display.sleep();
++        }
++    }
++
++    public CompositeImage(Composite p, int style, StatusLineStyledText status,
++            Locale l) {
++        super(p, style, status, l);
+         parent = p;
+         //Statusline wird gestzt
+         statusLine = status;
+-        
++
+         //sprache wird init
+         initLanguage(l);
+-	    
+-	    
+-		initGUI();
+-	}
+ 
+-	private void initGUI() {
+-		{
+-		}
++        initGUI();
++    }
++
++    private void initGUI() {
++        {
++        }
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;initGUI() - start&quot;);
+         }
+@@ -189,534 +226,900 @@
+         this.setLayout(new GridLayout());
+         this.setSize(816, 540);
+         {
+-            groupActor = new Group(this, SWT.NONE);
++            groupImage = new Group(this, SWT.NONE);
+             GridLayout groupActorLayout = new GridLayout();
+             GridData groupActorLData = new GridData();
+             groupActorLData.grabExcessHorizontalSpace = true;
+             groupActorLData.grabExcessVerticalSpace = true;
+             groupActorLData.horizontalAlignment = GridData.FILL;
+             groupActorLData.verticalAlignment = GridData.FILL;
+-            groupActor.setLayoutData(groupActorLData);
++            groupImage.setLayoutData(groupActorLData);
+             groupActorLayout.makeColumnsEqualWidth = true;
+-            groupActor.setLayout(groupActorLayout);
+-            groupActor.setText(l.getString(&quot;actors.group.label&quot;));
++            groupImage.setLayout(groupActorLayout);
++            groupImage.setText(l.getString(&quot;images.group.label&quot;));
+             {
+-                sashForm2 = new SashForm(groupActor, SWT.NONE);
++                sashForm2 = new SashForm(groupImage, SWT.NONE);
+                 GridData sashForm2LData = new GridData();
+                 sashForm2LData.verticalAlignment = GridData.FILL;
+                 sashForm2LData.horizontalAlignment = GridData.FILL;
+                 sashForm2LData.grabExcessHorizontalSpace = true;
+                 sashForm2LData.grabExcessVerticalSpace = true;
+                 sashForm2.setLayoutData(sashForm2LData);
+-                
+-               
++
+             }
+             // init the rest of the layout
+-            initActorsOverview();
+-            initActorsDetail();
+-            refreshActorsOverviewTable(textActorsSearch.getText());
++            initImagesOverview();
++            initImagesDetail();
++            refreshImageOverviewTable(textImagesSearch.getText());
+         }
+ 
+         this.layout();
+ 
+-
+-        
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;initGUI() - end&quot;);
+         }
+-	}
++    }
+ 
+-	
+-	private void initActorsOverview()  {	    
+-//	  Group Actors Overview 
+-        {
+-            groupActorsOverview = new Group(sashForm2,SWT.NONE);
+-            GridLayout group1Layout = new GridLayout();
+-            group1Layout.numColumns = 8;
+-            groupActorsOverview.setLayout(group1Layout);
+-            groupActorsOverview.setText(l.getString(&quot;actors.groupoverview.label&quot;));
+-            
+-            {// table Actors Overview
+-                tableActorsOverview = new Table(
+-                    groupActorsOverview,
+-                    SWT.SINGLE
+-                        | SWT.FULL_SELECTION
+-                        | SWT.V_SCROLL | SWT.BORDER);
+-                GridData tableActorsOverviewLData = new GridData();
+-                tableActorsOverview.setHeaderVisible(true);
+-                tableActorsOverview.setLinesVisible(true);
+-                tableActorsOverviewLData.horizontalAlignment = GridData.FILL;
+-                tableActorsOverviewLData.verticalAlignment = GridData.FILL;
+-                tableActorsOverviewLData.horizontalSpan = 8;
+-                tableActorsOverviewLData.grabExcessHorizontalSpace = true;
+-                tableActorsOverviewLData.grabExcessVerticalSpace = true;
+-                tableActorsOverview.setLayoutData(tableActorsOverviewLData);
+-                tableActorsOverview.addFocusListener(new FocusAdapter() {
+-                        public void focusLost(FocusEvent evt) {
+-                            System.out
+-                                .println(&quot;tableActorsOverview.focusLost, event=&quot;
+-                                    + evt);
+-                        }
+-                        public void focusGained(FocusEvent evt) {
+-                            System.out
+-                                .println(&quot;tableActorsOverview.focusGained, event=&quot;
+-                                    + evt);
+-                        }
+-                    });
+-                tableActorsOverview.addSelectionListener(new SelectionAdapter() {
+-                        public void widgetSelected(SelectionEvent evt) {
+-                            if (logger.isDebugEnabled()) {
+-                                logger
+-                                    .debug(&quot;widgetSelected(SelectionEvent evt = &quot;
+-                                        + evt
+-                                        + &quot;) - start&quot;);
+-                            }
++    private void initImagesOverview() {
++        //	  Group Images Overview 
+ 
+-                            int index = tableActorsOverview
+-                                .getSelectionIndex();
++        groupImagesOverview = new Group(sashForm2, SWT.NONE);
++        GridLayout group1Layout = new GridLayout();
++        group1Layout.numColumns = 8;
++        groupImagesOverview.setLayout(group1Layout);
++        groupImagesOverview.setText(l.getString(&quot;images.groupoverview.label&quot;));
+ 
+-                            System.out.println(&quot;Table select. id: &quot;
+-                                + index
+-                                + &quot; TableItem:&quot;
+-                                + tableActorsOverview.getItem(index)
+-                                + &quot; id: &quot;
+-                                + tableActorsOverview.getItem(index)
+-                                    .getText(0));
++        {// table Images Overview
++            tableImagesOverview = new Table(groupImagesOverview, SWT.SINGLE
++                    | SWT.FULL_SELECTION | SWT.V_SCROLL | SWT.BORDER);
++            GridData tableImagesOverviewLData = new GridData();
++            tableImagesOverview.setHeaderVisible(true);
++            tableImagesOverview.setLinesVisible(true);
++            tableImagesOverviewLData.horizontalAlignment = GridData.FILL;
++            tableImagesOverviewLData.verticalAlignment = GridData.FILL;
++            tableImagesOverviewLData.horizontalSpan = 8;
++            tableImagesOverviewLData.grabExcessHorizontalSpace = true;
++            tableImagesOverviewLData.grabExcessVerticalSpace = true;
++            tableImagesOverview.setLayoutData(tableImagesOverviewLData);
++            tableImagesOverview.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++                    if (logger.isDebugEnabled()) {
++                        logger.debug(&quot;widgetSelected(SelectionEvent evt = &quot;
++                                + evt + &quot;) - start&quot;);
++                    }
+ 
+-                            //es wurde ein Element aus Tabelle ausgewaehlt jetzt muss die
+-                            //Detailansicht aktualisiert werden
+-                            refreshActorsDetail(tableActorsOverview.getItem(index)
+-                                                              .getText(0));
++                    int index = tableImagesOverview.getSelectionIndex();
+ 
+-                            if (logger.isDebugEnabled()) {
+-                                logger
+-                                    .debug(&quot;widgetSelected(SelectionEvent) - end&quot;);
+-                            }
+-                        }
+-                    });
+-                {
+-                    tableActorsOverview_ColumnID = new TableColumn(
+-                        tableActorsOverview,
+-                        SWT.CENTER);
+-                    tableActorsOverview_ColumnID.setText(l
+-                        .getString(&quot;actors.groupoverview.columnid&quot;));
+-                    tableActorsOverview_ColumnID.setWidth(40);
++                    //es wurde ein Element aus Tabelle ausgewaehlt jetzt muss die
++                    //Detailansicht aktualisiert werden
++                    refreshImagesDetail(tableImagesOverview.getItem(index)
++                            .getText(0));
++
++                    if (logger.isDebugEnabled()) {
++                        logger.debug(&quot;widgetSelected(SelectionEvent) - end&quot;);
++                    }
+                 }
+-                {
+-                    tableActorsOverview_ColumnFName = new TableColumn(
+-                        tableActorsOverview,
+-                        SWT.CENTER);
+-                    tableActorsOverview_ColumnFName.setText(l
+-                        .getString(&quot;actors.groupoverview.columnfirstname&quot;));
+-                    tableActorsOverview_ColumnFName.setWidth(80);
+-                }
+-                {
+-                    tableActorsOverview_ColumnLName = new TableColumn(
+-                        tableActorsOverview,
+-                        SWT.CENTER);
+-                    tableActorsOverview_ColumnLName.setText(l
+-                        .getString(&quot;actors.groupoverview.columnlastname&quot;));
+-                    tableActorsOverview_ColumnLName.setWidth(80);
+-                }
+-            }
+-            // table Actors Overview
+-            // Search
++            });
+             {
+-                //label for Search
+-                labelActorsSearch = new Label(groupActorsOverview, SWT.NONE);
+-                labelActorsSearch.setText(l
+-                        .getString(&quot;actors.groupoverview.searchlabel&quot;)
+-                        + &quot;:&quot;);
+-                GridData label2LData = new GridData();
+-                label2LData.horizontalSpan = 3;
+-                labelActorsSearch.setLayoutData(label2LData);
++                tableImagesOverview_ColumnID = new TableColumn(
++                        tableImagesOverview, SWT.CENTER);
++                tableImagesOverview_ColumnID.setText(l
++                        .getString(&quot;images.groupoverview.columnid&quot;));
++                tableImagesOverview_ColumnID.setWidth(40);
+ 
+-                //text Search
+-                textActorsSearch = new Text(groupActorsOverview, SWT.BORDER);
+-                GridData text2LData = new GridData();
+-                textActorsSearch.addFocusListener(new FocusAdapter() {
+-                    public void focusLost(FocusEvent evt) {
+-                        if (logger.isDebugEnabled()) {
+-                            logger.debug(&quot;focusLost(FocusEvent evt = &quot; + evt + &quot; &quot;
+-                                    + textActorsSearch.getText() + &quot;) - start&quot;);
+-                        }
++                tableImagesOverview_ColumnName = new TableColumn(
++                        tableImagesOverview, SWT.CENTER);
++                tableImagesOverview_ColumnName.setText(l
++                        .getString(&quot;images.groupoverview.name&quot;));
++                tableImagesOverview_ColumnName.setWidth(80);
+ 
+-                        refreshActorsOverviewTable(textActorsSearch.getText());
++                tableImagesOverview_ColumnDescription = new TableColumn(
++                        tableImagesOverview, SWT.CENTER);
++                tableImagesOverview_ColumnDescription.setText(l
++                        .getString(&quot;images.groupoverview.description&quot;));
++                tableImagesOverview_ColumnDescription.setWidth(80);
+ 
+-                        if (logger.isDebugEnabled()) {
+-                            logger.debug(&quot;focusLost(FocusEvent) - end&quot;);
+-                        }
++            }
++        }
++        // table Images Overview
++        // Search
++        {
++            //label for Search
++            labelImagesSearch = new Label(groupImagesOverview, SWT.NONE);
++            labelImagesSearch.setText(l
++                    .getString(&quot;images.groupoverview.searchlabel&quot;)
++                    + &quot;:&quot;);
++            GridData labelImagesResizeLData = new GridData();
++            labelImagesResizeLData.horizontalSpan = 3;
++            labelImagesSearch.setLayoutData(labelImagesResizeLData);
++
++            //text Search
++            textImagesSearch = new Text(groupImagesOverview, SWT.BORDER);
++            GridData text2LData = new GridData();
++            textImagesSearch.addFocusListener(new FocusAdapter() {
++                public void focusLost(FocusEvent evt) {
++                    if (logger.isDebugEnabled()) {
++                        logger.debug(&quot;focusLost(FocusEvent evt = &quot; + evt + &quot; &quot;
++                                + textImagesSearch.getText() + &quot;) - start&quot;);
+                     }
+-                });
+-                textActorsSearch.addListener(SWT.DefaultSelection, new Listener() {
+-                    public void handleEvent(Event e) {
+-                        if (logger.isDebugEnabled()) {
+-                            logger.debug(&quot;handleEvent(Event e = &quot; + e + &quot; &quot;
+-                                    + textActorsSearch.getText() + &quot;) - start&quot;);
+-                        }
+ 
+-                        refreshActorsOverviewTable(textActorsSearch.getText());
++                    refreshImageOverviewTable(textImagesSearch.getText());
+ 
+-                        if (logger.isDebugEnabled()) {
+-                            logger.debug(&quot;handleEvent(Event) - end&quot;);
+-                        }
++                    if (logger.isDebugEnabled()) {
++                        logger.debug(&quot;focusLost(FocusEvent) - end&quot;);
+                     }
+-                });
+-                text2LData.horizontalAlignment = GridData.FILL;
+-                text2LData.horizontalSpan = 5;
+-                text2LData.grabExcessHorizontalSpace = true;
+-                textActorsSearch.setLayoutData(text2LData);
+-            }// Search                    
+-        }
+-	}
+-	
+-	private void initActorsDetail()  {	    
+-	    // Group Actors Detail
++                }
++            });
++            textImagesSearch.addListener(SWT.DefaultSelection, new Listener() {
++                public void handleEvent(Event e) {
++                    if (logger.isDebugEnabled()) {
++                        logger.debug(&quot;handleEvent(Event e = &quot; + e + &quot; &quot;
++                                + textImagesSearch.getText() + &quot;) - start&quot;);
++                    }
++
++                    refreshImageOverviewTable(textImagesSearch.getText());
++
++                    if (logger.isDebugEnabled()) {
++                        logger.debug(&quot;handleEvent(Event) - end&quot;);
++                    }
++                }
++            });
++            text2LData.horizontalAlignment = GridData.FILL;
++            text2LData.horizontalSpan = 5;
++            text2LData.grabExcessHorizontalSpace = true;
++            textImagesSearch.setLayoutData(text2LData);
++        }// Search                    
++
++    }
++
++    private void initImagesDetail() {
++        // Group Images Detail
+         {
+-            groupActorsDetail = new Group(sashForm2, SWT.NONE);
++            groupImagesDetail = new Group(sashForm2, SWT.NONE);
+             GridLayout group2Layout = new GridLayout();
+             GridData group2LData = new GridData();
+             group2Layout.verticalSpacing = 15;
+             group2Layout.numColumns = 6;
+-            groupActorsDetail.setText(l.getString(&quot;actors.groupdetail.label&quot;));   
++            groupImagesDetail.setText(l.getString(&quot;images.groupdetail.label&quot;));
+             FormData formData = new FormData();
+-            groupActorsDetail.setLayout(group2Layout);
++            groupImagesDetail.setLayout(group2Layout);
+             formData.right = new FormAttachment(100, 100, -5);
+             formData.top = new FormAttachment(0, 100, 5);
+             formData.bottom = new FormAttachment(100, 100, -5);
+-            groupActorsDetail.setLayoutData(formData);
++            groupImagesDetail.setLayoutData(formData);
++
++            // labels and buttons for detail
++
++            labelImagesID = new Label(groupImagesDetail, SWT.NONE);
++            labelImagesID.setText(l.getString(&quot;images.groupdetail.labelid&quot;)
++                    + &quot;:&quot;);
++            labelImagesID.setSize(125, 15);
++            GridData formData2 = new GridData();
++            formData2.widthHint = 125;
++            formData2.heightHint = 15;
++            formData2.horizontalSpan = 2;
++            labelImagesID.setLayoutData(formData2);
+         }
+-        	// labels and buttons for detail
+-        	{
+-        	    labelActorsID = new Label(groupActorsDetail, SWT.NONE);
+-        	    labelActorsID.setText(l
+-        	            .getString(&quot;actors.groupdetail.labelid&quot;)
+-        	            + &quot;:&quot;);
+-        	    labelActorsID.setSize(125, 15);
+-        	    GridData formData2 = new GridData();
+-        	    formData2.widthHint = 125;
+-        	    formData2.heightHint = 15;
+-        	    formData2.horizontalSpan = 2;
+-        	    labelActorsID.setLayoutData(formData2);
+-        	}
+-        	{
+-        	    textActorsID = new Text(
+-        	            groupActorsDetail,
+-        	            SWT.READ_ONLY | SWT.BORDER);
+-        	    GridData text1LData1 = new GridData();
+-        	    text1LData1.horizontalAlignment = GridData.FILL;
+-        	    text1LData1.heightHint = 13;
+-        	    text1LData1.horizontalSpan = 4;
+-        	    text1LData1.grabExcessHorizontalSpace = true;
+-        	    textActorsID.setLayoutData(text1LData1);
+-        	}
+-        	{
+-                labelActorsFName = new Label(
+-                    groupActorsDetail,
+-                    SWT.NONE);
+-                labelActorsFName.setText(l
+-                    .getString(&quot;actors.groupdetail.labelfirstname&quot;)
++        {
++            textImagesID = new Text(groupImagesDetail, SWT.READ_ONLY
++                    | SWT.BORDER);
++            GridData text1LData1 = new GridData();
++            text1LData1.horizontalAlignment = GridData.FILL;
++            text1LData1.heightHint = 13;
++            text1LData1.horizontalSpan = 4;
++            text1LData1.grabExcessHorizontalSpace = true;
++            textImagesID.setLayoutData(text1LData1);
++        }
++        {
++            labelImagesFName = new Label(groupImagesDetail, SWT.NONE);
++            labelImagesFName.setText(l
++                    .getString(&quot;images.groupdetail.labelname&quot;)
+                     + &quot;:&quot;);
+-                labelActorsFName.setSize(125, 15);
+-                GridData labelActorNameLData = new GridData();
+-                labelActorNameLData.widthHint = 125;
+-                labelActorNameLData.heightHint = 15;
+-                labelActorNameLData.horizontalSpan = 2;
+-                labelActorsFName
+-                    .setLayoutData(labelActorNameLData);
+-            }
+-            {
+-        	    textActorsFName = new Text(groupActorsDetail,
+-        	            SWT.READ_ONLY | SWT.BORDER);
+-        	    GridData text1LData2 = new GridData();
+-        	    text1LData2.horizontalAlignment = GridData.FILL;
+-        	    text1LData2.heightHint = 13;
+-        	    text1LData2.horizontalSpan = 4;
+-        	    text1LData2.grabExcessHorizontalSpace = true;
+-        	    textActorsFName.setLayoutData(text1LData2);
+-        	}
+-            {
+-        	    labelActorsLName = new Label(groupActorsDetail,
+-        	            SWT.NONE);
+-        	    labelActorsLName.setText(l
+-        	            .getString(&quot;actors.groupdetail.labellastname&quot;)
+-        	            + &quot;:&quot;);
+-        	    labelActorsLName.setSize(125, 15);
+-        	    GridData label1LData1 = new GridData();
+-        	    label1LData1.widthHint = 125;
+-        	    label1LData1.heightHint = 15;
+-        	    label1LData1.horizontalSpan = 2;
+-        	    labelActorsLName.setLayoutData(label1LData1);
+-        	}
+-        	{
+-        	    textActorsLName = new Text(groupActorsDetail,
+-        	            SWT.READ_ONLY | SWT.BORDER);
+-        	    GridData text1LData3 = new GridData();
+-        	    text1LData3.horizontalAlignment = GridData.FILL;
+-        	    text1LData3.heightHint = 13;
+-        	    text1LData3.horizontalSpan = 4;
+-        	    text1LData3.grabExcessHorizontalSpace = true;
+-        	    textActorsLName.setLayoutData(text1LData3);
+-        	}// label and buttons for detail      
+-            {
+-                label1 = new Label(groupActorsDetail, SWT.NONE);
+-                label1.setText(l.getString(&quot;actors.groupdetail.labellastname&quot;)
++            labelImagesFName.setSize(125, 15);
++            GridData labelActorNameLData = new GridData();
++            labelActorNameLData.widthHint = 125;
++            labelActorNameLData.heightHint = 15;
++            labelActorNameLData.horizontalSpan = 2;
++            labelImagesFName.setLayoutData(labelActorNameLData);
++        }
++        {
++            textImagesName = new Text(groupImagesDetail, SWT.READ_ONLY
++                    | SWT.BORDER);
++            GridData text1LData2 = new GridData();
++            text1LData2.horizontalAlignment = GridData.FILL;
++            text1LData2.heightHint = 13;
++            text1LData2.horizontalSpan = 4;
++            text1LData2.grabExcessHorizontalSpace = true;
++            textImagesName.setLayoutData(text1LData2);
++        }
++        {
++            labelImagesLName = new Label(groupImagesDetail, SWT.NONE);
++            labelImagesLName.setText(l
++                    .getString(&quot;images.groupdetail.labeldescription&quot;)
+                     + &quot;:&quot;);
+-                label1.setSize(125, 15);
+-                GridData label1LData = new GridData();
+-                label1LData.widthHint = 125;
+-                label1LData.heightHint = 15;
+-                label1LData.horizontalSpan = 2;
+-                label1.setLayoutData(label1LData);
+-            }
++            labelImagesLName.setSize(125, 15);
++            GridData labelImagesFileLData1 = new GridData();
++            labelImagesFileLData1.widthHint = 125;
++            labelImagesFileLData1.heightHint = 15;
++            labelImagesFileLData1.horizontalSpan = 2;
++            labelImagesFileLData1.verticalAlignment = GridData.BEGINNING;
++            labelImagesLName.setLayoutData(labelImagesFileLData1);
++        }
++        {
++            textImagesDescription = new Text(groupImagesDetail, SWT.MULTI
++                    | SWT.V_SCROLL | SWT.BORDER);
++            GridData text1LData3 = new GridData();
++            text1LData3.horizontalAlignment = GridData.FILL;
++            text1LData3.heightHint = 36;
++            text1LData3.horizontalSpan = 4;
++            text1LData3.grabExcessHorizontalSpace = true;
++            textImagesDescription.setLayoutData(text1LData3);
++        }// label and buttons for detail      
++        {
++            labelImagesFile = new Label(groupImagesDetail, SWT.NONE);
++            labelImagesFile.setText(l
++                    .getString(&quot;images.groupdetail.labelselectfile&quot;)
++                    + &quot;:&quot;);
++            labelImagesFile.setSize(125, 15);
++            GridData labelImagesFileLData = new GridData();
++            labelImagesFileLData.widthHint = 125;
++            labelImagesFileLData.heightHint = 15;
++            labelImagesFileLData.horizontalSpan = 2;
++            labelImagesFile.setLayoutData(labelImagesFileLData);
++        }
++        {
++            textFileUrl = new Text(groupImagesDetail, SWT.NONE);
++            textFileUrl.setText(l
++                    .getString(&quot;images.groupdetail.labelselecteddatabase&quot;));
++            textFileUrl.setEditable(false);
++            GridData text1LData = new GridData();
++            text1LData.widthHint = 105;
++            text1LData.heightHint = 15;
++            text1LData.horizontalSpan = 2;
++            textFileUrl.setLayoutData(text1LData);
++        }
++        {
++            //Button for selecting a new image file from filesystem
++            buttonSelectFile = new Button(groupImagesDetail, SWT.PUSH
++                    | SWT.CENTER);
++            buttonSelectFile.setText(l
++                    .getString(&quot;images.groupdetail.buttonselectfile&quot;));
++            currentDir = l.getString(&quot;images.groupdetail.fileselect.title&quot;);
++            buttonSelectFile.setEnabled(false);
++
++            GridData buttonSelectFileLData = new GridData();
++            buttonSelectFile.addSelectionListener(new SelectionAdapter() {
++                //if button is pressed
++                public void widgetSelected(SelectionEvent evt) {
++
++                    String[] filterExtensions = { &quot;*.gif&quot;, &quot;*.jpg&quot;, &quot;*.*&quot; };
++                    FileDialog fileDialog = new FileDialog(getShell(), SWT.OPEN);
++                    fileDialog.setText(currentDir);
++                    fileDialog
++                            .setFilterPath(l
++                                    .getString(&quot;images.groupdetail.fileselect.filterpath&quot;));
++
++                    fileDialog.setFilterExtensions(filterExtensions);
++                    //open the dialog and get the returnvalue
++                    String selectedFile = fileDialog.open();
++                    if (selectedFile != null) {
++
++                        scaledImage = ideaImage = new Image(getDisplay(),
++                                selectedFile);
++
++                        canvasImg.redraw();
++                        textFileUrl.setText(fileDialog.getFilterPath()
++                                + System.getProperty(&quot;file.separator&quot;)
++                                + fileDialog.getFileName());
++
++                        //save the selected dir 
++                        currentDir = fileDialog.getFilterPath();
++
++                        //set the resizescale enable
++                        scaleResize.setEnabled(true);
++                        scaleResize.setSelection(100);
++                        scaleResize.setToolTipText(l
++                                .getString(&quot;images.groupdetail.resize.size&quot;)
++                                + &quot;: 100%&quot;);
++
++                        //reset and resize the scrollbars
++                        resetScrollBars();
++                        resizeScrollBars();
++                    }
++                }
++            });
++            buttonSelectFileLData.horizontalAlignment = GridData.FILL;
++            buttonSelectFileLData.grabExcessHorizontalSpace = true;
++            buttonSelectFileLData.horizontalSpan = 2;
++            buttonSelectFile.setLayoutData(buttonSelectFileLData);
++
++            canvasImg = new Canvas(groupImagesDetail, SWT.NO_REDRAW_RESIZE
++                    | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
++            GridData canvasImgLData = new GridData();
++            canvasImgLData.grabExcessHorizontalSpace = true;
++            canvasImgLData.horizontalAlignment = GridData.FILL;
++            canvasImgLData.horizontalSpan = 6;
++            canvasImgLData.grabExcessVerticalSpace = true;
++            canvasImgLData.verticalAlignment = GridData.FILL;
++            canvasImg.setLayoutData(canvasImgLData);
++            canvasImg.addPaintListener(new PaintListener() {
++                public void paintControl(PaintEvent e) {
++                    if (ideaImage != null &amp;&amp; !ideaImage.isDisposed()) {
++                        paintImage(e);
++                        //e.gc.drawImage(scaledImage, 0, 0);
++                    }
++                }
++            });
++
++            // Set up the image canvas scroll bars.
++            ScrollBar horizontal = canvasImg.getHorizontalBar();
++            horizontal.setVisible(true);
++            horizontal.setMinimum(0);
++            horizontal.setEnabled(false);
++            horizontal.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent event) {
++                    scrollHorizontally((ScrollBar) event.widget);
++                }
++            });
++            ScrollBar vertical = canvasImg.getVerticalBar();
++            vertical.setVisible(true);
++            vertical.setMinimum(0);
++            vertical.setEnabled(false);
++            vertical.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent event) {
++                    scrollVertically((ScrollBar) event.widget);
++                }
++            });
++
++        }
++        {
++            labelImagesResize = new Label(groupImagesDetail, SWT.NONE);
++            labelImagesResize.setText(l
++                    .getString(&quot;images.groupdetail.labelresize&quot;)
++                    + &quot;:&quot;);
++            labelImagesResize.setSize(125, 15);
++            GridData labelImagesResizeLData1 = new GridData();
++            labelImagesResizeLData1.widthHint = 125;
++            labelImagesResizeLData1.heightHint = 15;
++            labelImagesResizeLData1.horizontalSpan = 2;
++            labelImagesResize.setLayoutData(labelImagesResizeLData1);
++        }
++        {
++            scaleResize = new Scale(groupImagesDetail, SWT.NONE);
++            GridData scaleResizeLData = new GridData();
++            scaleResize.setEnabled(false);
++            scaleResize.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++
++                    //set new tooltip, so User can see the current size
++                    scaleResize.setToolTipText(l
++                            .getString(&quot;images.groupdetail.resize.size&quot;)
++                            + &quot;: &quot; + scaleResize.getSelection() + &quot;%&quot;);
++
++                    //skale the image
++                    float scaleFaktor = (float) scaleResize.getSelection() / 100;
++                    if (scaleFaktor &lt; 0.01)
++                        scaleFaktor = (float) 0.01;
++                    int newwidth = (int) (ideaImage.getBounds().width * scaleFaktor);
++                    int newheight = (int) (ideaImage.getBounds().height * scaleFaktor);
++
++                    ImageData newdata = ideaImage.getImageData().scaledTo(
++                            newwidth, newheight);
++
++                    scaledImage = new Image(getDisplay(), newdata);
++
++                    //redraw the image
++                    canvasImg.redraw();
++                    resizeScrollBars();
++                }
++            });
++            scaleResizeLData.grabExcessHorizontalSpace = true;
++            scaleResizeLData.horizontalAlignment = GridData.FILL;
++            scaleResizeLData.horizontalSpan = 4;
++            scaleResize.setLayoutData(scaleResizeLData);
++
++            scaleResize.setMaximum(200);
++            scaleResize.setMinimum(1);
++            scaleResize.setIncrement(5);
++            scaleResize.setPageIncrement(5);
++        }
++        {
++            compositeButtons = new Composite(groupImagesDetail, SWT.EMBEDDED);
++            GridLayout composite2Layout = new GridLayout();
++            composite2Layout.numColumns = 6;
++            GridData composite2LData = new GridData();
++            compositeButtons.setLayout(composite2Layout);
++            composite2LData.verticalAlignment = GridData.END;
++            composite2LData.horizontalAlignment = GridData.CENTER;
++            composite2LData.widthHint = 391;
++            composite2LData.heightHint = 35;
++            composite2LData.horizontalSpan = 6;
++            composite2LData.grabExcessHorizontalSpace = true;
++            compositeButtons.setLayoutData(composite2LData);
+             {
+-                text1 = new Text(groupActorsDetail, SWT.NONE);
+-                text1.setText(&quot;text1&quot;);
+-                text1.setEditable(false);
+-                GridData text1LData = new GridData();
+-                text1LData.widthHint = 105;
+-                text1LData.heightHint = 15;
+-                text1LData.horizontalSpan = 2;
+-                text1.setLayoutData(text1LData);
+-            }
+-            {
+-                button1 = new Button(groupActorsDetail, SWT.PUSH | SWT.CENTER);
+-                button1.setText(&quot;Datei&quot;);
+-                GridData button1LData = new GridData();
+-                button1.addSelectionListener(new SelectionAdapter() {
++                buttonImageNew = new Button(compositeButtons, SWT.PUSH
++                        | SWT.CENTER);
++                buttonImageNew.setText(l.getString(&quot;button.new&quot;));
++                buttonImageNew.addSelectionListener(new SelectionAdapter() {
+                     public void widgetSelected(SelectionEvent evt) {
+-                        String[] filterExtensions = { &quot;*.gif&quot;, &quot;*.jpg&quot;, &quot;*.*&quot; };
+-                        FileDialog fileDialog = new FileDialog(
+-                            getShell(),
+-                            SWT.OPEN);
+-                        fileDialog.setText(&quot;FileDialog Demo&quot;);
+-                        fileDialog.setFilterPath(&quot;C:/&quot;);
+ 
+-                        fileDialog.setFilterExtensions(filterExtensions);
+-                        String selectedFile = fileDialog.open();
+-                        if (selectedFile != null) {
+-                            scaledImage = ideaImage = new Image(
+-                                getDisplay(),
+-                                selectedFile);
+-                            canvas1.redraw();
+-                            text1.setText(fileDialog.getFileName());
+-                            scale1.setEnabled(true);
+-                            resetScrollBars();
+-                            resizeScrollBars();
+-                        }
++                        mode_image = ManagementGui.MODE_ADD;
++
++                        textImagesID.setText(&quot;&quot;);
++                        textImagesName.setText(&quot;&quot;);
++                        textImagesDescription.setText(&quot;&quot;);
++                        textImagesName.setEditable(true);
++                        textImagesDescription.setEditable(true);
++                        buttonSelectFile.setEnabled(true);
++
++                        buttonImageCancel.setEnabled(true);
++                        buttonImageSave.setEnabled(true);
++                        buttonImageNew.setEnabled(false);
++                        buttonImageEdit.setEnabled(false);
++                        buttonImageDelete.setEnabled(false);
++
++                        textImagesSearch.setEditable(false);
++                        tableImagesOverview.setEnabled(false);
++
+                     }
+                 });
+-                button1LData.horizontalAlignment = GridData.FILL;
+-                button1LData.grabExcessHorizontalSpace = true;
+-                button1LData.horizontalSpan = 2;
+-                button1.setLayoutData(button1LData);
+ 
+-                canvas1 = new Canvas(groupActorsDetail, SWT.NO_REDRAW_RESIZE
+-                    | SWT.H_SCROLL
+-                    | SWT.V_SCROLL
+-                    | SWT.BORDER);
+-                GridData canvas1LData = new GridData();
+-                canvas1LData.grabExcessHorizontalSpace = true;
+-                canvas1LData.horizontalAlignment = GridData.FILL;
+-                canvas1LData.horizontalSpan = 6;
+-                canvas1LData.grabExcessVerticalSpace = true;
+-                canvas1LData.verticalAlignment = GridData.FILL;
+-                canvas1.setLayoutData(canvas1LData);
+-                canvas1.addPaintListener(new PaintListener() {
+-                    public void paintControl(PaintEvent e) {
+-                        if (ideaImage != null &amp;&amp; !ideaImage.isDisposed()) {
+-                            paintImage(e);
+-                            //e.gc.drawImage(scaledImage, 0, 0);
+-                        }
++                buttonImageEdit = new Button(compositeButtons, SWT.PUSH
++                        | SWT.CENTER);
++                buttonImageEdit.setText(l.getString(&quot;button.edit&quot;));
++                buttonImageEdit.setEnabled(false);
++                buttonImageEdit.addSelectionListener(new SelectionAdapter() {
++                    public void widgetSelected(SelectionEvent evt) {
++
++                        mode_image = ManagementGui.MODE_EDIT;
++
++                        textImagesID.setEditable(false);
++                        textImagesName.setText(&quot;&quot;);
++                        textImagesName.setEditable(true);
++                        textImagesDescription.setText(&quot;&quot;);
++                        textImagesDescription.setEditable(true);
++                        textImagesName.setFocus();
++
++                        buttonImageCancel.setEnabled(true);
++                        buttonImageSave.setEnabled(true);
++                        buttonImageNew.setEnabled(false);
++                        buttonImageEdit.setEnabled(false);
++                        buttonImageDelete.setEnabled(false);
++
++                        tableImagesOverview.setEnabled(false);
++                        textImagesSearch.setEnabled(false);
++
+                     }
+                 });
+ 
+-                // Set up the image canvas scroll bars.
+-                ScrollBar horizontal = canvas1.getHorizontalBar();
+-                horizontal.setVisible(true);
+-                horizontal.setMinimum(0);
+-                horizontal.setEnabled(false);
+-                horizontal.addSelectionListener(new SelectionAdapter() {
+-                    public void widgetSelected(SelectionEvent event) {
+-                        scrollHorizontally((ScrollBar)event.widget);
++                buttonImageDelete = new Button(compositeButtons, SWT.PUSH
++                        | SWT.CENTER);
++                buttonImageDelete.setText(l.getString(&quot;button.delete&quot;));
++                buttonImageDelete.setEnabled(false);
++                buttonImageDelete.addSelectionListener(new SelectionAdapter() {
++                    public void widgetSelected(SelectionEvent evt) {
++                        logger.debug(&quot;buttonImageDelete.widgetSelected, event=&quot;
++                                + evt);
++
++                        String msg = MessageFormat
++                                .format(
++                                        l
++                                                .getString(&quot;images.groupdetail.deletebutton.question.text&quot;),
++                                        new Object[] { textImagesName.getText() });
++
++                        int question = showMsg(
++                                msg,
++                                l
++                                        .getString(&quot;images.groupdetail.deletebutton.question.header&quot;),
++                                SWT.ICON_QUESTION | SWT.YES | SWT.NO);
++
++                        if (question != SWT.YES) {
++                            return;
++                        }
++
++                        de.hsharz.provirent.objects.Image o = new de.hsharz.provirent.objects.Image();
++                        o.setImageId(new Integer(Integer.parseInt(textImagesID
++                                .getText())));
++                        o.setImageFileName(textImagesName.getText());
++                        o.setImageFileDescription(textImagesDescription
++                                .getText());
++
++                        /**@todo BildDatei holen */
++                        /*
++                         try {
++                         //object speichern
++                         // Fehlerbehandlung
++                         Database.deleteObject(o);
++
++                         //&#220;bersichtsTabelle aktualisieren
++                         refreshImageOverviewTable(textImageSearch
++                         .getText());
++
++                         //Detailansicht leeren
++                         textImageID.setText(&quot;&quot;);
++                         textImageFName.setText(&quot;&quot;);
++                         textImageLName.setText(&quot;&quot;);
++
++                         //in Tabelle n&#228;chsten ausw&#228;hlen
++                         try {
++                         tableImageOverview.select(0);
++                         } catch (Exception ex) {
++                         }
++
++                         //Statusline Nachricht sezten
++                         statusLine
++                         .setStatus(
++                         1,
++                         l
++                         .getString(&quot;images.groupdetail.deletebutton.newok&quot;));
++
++                         } catch (DataBaseException e) {
++                         if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                         //Fehler beim Speichern des Objectes
++
++                         statusLine
++                         .setStatus(
++                         3,
++                         l
++                         .getString(&quot;images.groupdetail.deletebutton.errorsave&quot;));
++                         showMsg(
++                         l
++                         .getString(&quot;images.groupdetail.deletebutton.errorsave&quot;),
++                         l.getString(&quot;error&quot;),
++                         SWT.ICON_ERROR | SWT.OK);
++
++                         } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                         //fehler beim db aufbau
++                         statusLine
++                         .setStatus(
++                         3,
++                         l
++                         .getString(&quot;images.groupdetail.deletebutton.errordb&quot;));
++                         showMsg(
++                         l
++                         .getString(&quot;images.groupdetail.deletebutton.errordb&quot;),
++                         l.getString(&quot;error&quot;),
++                         SWT.ICON_ERROR | SWT.OK);
++
++                         } else {
++                         //@todo
++                         e.printStackTrace();
++                         }
++
++                         }
++                         */
++
+                     }
+                 });
+-                ScrollBar vertical = canvas1.getVerticalBar();
+-                vertical.setVisible(true);
+-                vertical.setMinimum(0);
+-                vertical.setEnabled(false);
+-                vertical.addSelectionListener(new SelectionAdapter() {
+-                    public void widgetSelected(SelectionEvent event) {
+-                        scrollVertically((ScrollBar)event.widget);
+-                    }
+-                });
+-
+             }
+             {
+-                label2 = new Label(groupActorsDetail, SWT.NONE);
+-                label2.setText(l.getString(&quot;actors.groupdetail.labellastname&quot;)
+-                    + &quot;:&quot;);
+-                label2.setSize(125, 15);
+-                GridData label2LData1 = new GridData();
+-                label2LData1.widthHint = 125;
+-                label2LData1.heightHint = 15;
+-                label2LData1.horizontalSpan = 2;
+-                label2.setLayoutData(label2LData1);
++                buttonImageFill = new Button(compositeButtons, SWT.PUSH
++                        | SWT.CENTER);
++                GridData buttonActorFillLData = new GridData();
++                buttonImageFill.setVisible(false);
++                buttonImageFill.setEnabled(false);
++                buttonActorFillLData.widthHint = 30;
++                buttonActorFillLData.heightHint = 23;
++                buttonImageFill.setLayoutData(buttonActorFillLData);
+             }
+             {
+-                scale1 = new Scale(groupActorsDetail, SWT.NONE);
+-                GridData scale1LData = new GridData();
+-                scale1.setEnabled(false);
+-                scale1.addSelectionListener(new SelectionAdapter() {
++                buttonImageSave = new Button(compositeButtons, SWT.PUSH
++                        | SWT.CENTER);
++                buttonImageSave.setText(l.getString(&quot;button.save&quot;));
++                buttonImageSave.setEnabled(false);
++                buttonImageSave.addSelectionListener(new SelectionAdapter() {
+                     public void widgetSelected(SelectionEvent evt) {
+-                        //System.out.println(&quot;scale1.widgetSelected, event=&quot;
+-                        //    + evt);
++                        logger.warn(&quot;buttonImageSave.widgetSelected, event=&quot;
++                                + evt);
+ 
+-                        float scaleFaktor = (float) scale1.getSelection() / 100;
+-                        int newwidth = (int) (ideaImage.getBounds().width * scaleFaktor);
+-                        int newheight = (int) (ideaImage.getBounds().height * scaleFaktor);
++                        if (scaledImage == null) {
++                            statusLine
++                                    .setStatus(
++                                            StatusLineStyledText.STATUS_WARN,
++                                            l
++                                                    .getString(&quot;images.groupdetail.savebutton.warnnoimage&quot;));
++                            return;
++                        }
+ 
+-                        ImageData newdata = ideaImage.getImageData().scaledTo(
+-                            newwidth,
+-                            newheight);
++                        //testen ob Name leer ist
++                        if (textImagesName.getText().trim()
++                                .equalsIgnoreCase(&quot;&quot;)
++                                || textImagesDescription.getText().trim()
++                                        .equalsIgnoreCase(&quot;&quot;)) {
+ 
+-                        scaledImage = new Image(getDisplay(), newdata);
+-                        canvas1.redraw();
++                            showMsg(
++                                    l
++                                            .getString(&quot;images.groupdetail.savebutton.warn.noname.msg&quot;),
++                                    l
++                                            .getString(&quot;images.groupdetail.savebutton.warn.noname.title&quot;),
++                                    SWT.ICON_WARNING | SWT.YES);
+ 
+-                        ImageLoader imageLoader = new ImageLoader();
+-                        imageLoader.data = new ImageData[] { newdata };
+-                        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+-                        imageLoader.save(bos, SWT.IMAGE_GIF);
++                            return;
++                        }
+ 
+-                        imagebytedata = bos.toByteArray();
+-                        resizeScrollBars();
++                        //testen welcher mode
++
++                        if (mode_image == ManagementGui.MODE_ADD) {
++
++                            /**
++                             * @todo eine Exception bekommen wieder leider NOCH nicht mit
++                             * d.h. es muss noch ein r&#252;ckgabewert kommen oder eine Exception 
++                             * &#252;bermitteln werden (aus der DB Klasse)
++                             */
++                            //neues Objekt erzeugen
++                            de.hsharz.provirent.objects.Image tmp = new de.hsharz.provirent.objects.Image();
++                            tmp.setImageFileName(textImagesName.getText());
++                            tmp.setImageFileDescription(textImagesDescription
++                                    .getText());
++
++                            ImageLoader imageLoader = new ImageLoader();
++                            imageLoader.data = new ImageData[] { scaledImage
++                                    .getImageData() };
++                            ByteArrayOutputStream bos = new ByteArrayOutputStream();
++                            imageLoader.save(bos, SWT.IMAGE_GIF);
++
++                            tmp.setImageFile(bos.toByteArray());
++
++                            try {
++                                bos.close();
++                            } catch (IOException e1) {
++                                logger
++                                        .warn(
++                                                &quot;Fehler beim schlie&#223;en des BytearrayOutputstream&quot;,
++                                                e1);
++                            }
++
++                            try {
++                                //object speichern
++                                // Fehlerbehandlung
++                                Object o = Database.saveObject(tmp);
++
++                                // in &#220;bersichtstabelle einf&#252;gen
++                                insertIntoImagesOverviewTable((de.hsharz.provirent.objects.Image) o);
++                                textImagesID
++                                        .setText(((de.hsharz.provirent.objects.Image) o)
++                                                .getImageId()
++                                                + &quot;&quot;);
++
++                                //Statusline Nachricht sezten
++                                statusLine
++                                        .setStatus(
++                                                StatusLineStyledText.STATUS_INFO,
++                                                l
++                                                        .getString(&quot;images.groupdetail.savebutton.newok&quot;));
++
++                            } catch (DataBaseException e) {
++                                if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                                    //Fehler beim Speichern des Objectes
++
++                                    statusLine
++                                            .setStatus(
++                                                    3,
++                                                    l
++                                                            .getString(&quot;images.groupdetail.savebutton.errorsave&quot;));
++                                    showMsg(
++                                            l
++                                                    .getString(&quot;images.groupdetail.savebutton.errorsave&quot;),
++                                            &quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++
++                                } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                                    //fehler beim db aufbau
++                                    statusLine
++                                            .setStatus(
++                                                    3,
++                                                    l
++                                                            .getString(&quot;images.groupdetail.savebutton.errordb&quot;));
++                                    showMsg(
++                                            l
++                                                    .getString(&quot;images.groupdetail.savebutton.errordb&quot;),
++                                            &quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++
++                                } else {
++                                    //@todo
++                                    e.printStackTrace();
++                                }
++
++                            }
++
++                            //alle Buttons auf aktiv setzen
++                            //setImagesGroupButtonSaveCancel();
++
++                        } else if (mode_image == ManagementGui.MODE_EDIT) {
++                            /*
++                             Actor tmp = new Actor(
++                             textImageFName.getText(),
++                             textImageLName.getText());
++                             tmp.setActorId(new Integer(Integer
++                             .parseInt(textImageID.getText())));
++                             try {
++                             //object speichern
++                             // Fehlerbehandlung
++                             Database.saveObject(tmp);
++                             //&#220;bersichtstabelle aktualisieren
++                             refreshImageOverviewTable(textImageSearch
++                             .getText());
++
++                             //Statusline Nachricht sezten
++                             statusLine
++                             .setStatus(
++                             1,
++                             l
++                             .getString(&quot;images.groupdetail.savebutton.editok&quot;));
++
++                             } catch (DataBaseException e) {
++                             if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                             //Fehler beim Speichern des Objectes
++
++                             statusLine
++                             .setStatus(
++                             3,
++                             l
++                             .getString(&quot;images.groupdetail.savebutton.errorsave&quot;));
++                             showMsg(
++                             l
++                             .getString(&quot;images.groupdetail.savebutton.errorsave&quot;),
++                             &quot;Fehler&quot;,
++                             SWT.ICON_ERROR | SWT.OK);
++
++                             } else if (e.getMessage().equalsIgnoreCase(
++                             &quot;2&quot;)) {
++                             //fehler beim db aufbau
++                             statusLine
++                             .setStatus(
++                             3,
++                             l
++                             .getString(&quot;images.groupdetail.savebutton.errordb&quot;));
++                             showMsg(
++                             l
++                             .getString(&quot;images.groupdetail.savebutton.errordb&quot;),
++                             &quot;Fehler&quot;,
++                             SWT.ICON_ERROR | SWT.OK);
++
++                             } else {
++                             //@todo
++                             e.printStackTrace();
++                             }
++
++                             }
++
++                             //alle Buttons auf aktiv setzen
++                             setImageGroupButtonSaveCancel();
++
++                             }
++                             */
++                            /**
++                             * @todo Exception werfen, da nur die zwei Modes sein d&#252;rfen
++                             */
++                        }
+                     }
+                 });
+-                scale1LData.grabExcessHorizontalSpace = true;
+-                scale1LData.horizontalAlignment = GridData.FILL;
+-                scale1LData.horizontalSpan = 4;
+-                scale1.setLayoutData(scale1LData);
+-                scale1.setMaximum(100);
+-                scale1.setMinimum(0);
+-                scale1.setIncrement(10);
+-                scale1.setSelection(100);
++            }
++            {
++                buttonImageCancel = new Button(compositeButtons, SWT.PUSH
++                        | SWT.CENTER);
++                buttonImageCancel.setText(l.getString(&quot;button.cancel&quot;));
++                buttonImageCancel.setEnabled(false);
++                buttonImageCancel.addSelectionListener(new SelectionAdapter() {
++                    public void widgetSelected(SelectionEvent evt) {
++                        System.out
++                                .println(&quot;buttonImageCancel.widgetSelected, event=&quot;
++                                        + evt);
++                        //setImageGroupButtonSaveCancel();
++                    }
++                });
++            }
++        }
+ 
++        // buttons for detail
++    }
++
++    void resizeScrollBars() {
++        // Set the max and thumb for the image canvas scroll bars.
++        ScrollBar horizontal = canvasImg.getHorizontalBar();
++        ScrollBar vertical = canvasImg.getVerticalBar();
++        Rectangle canvasBounds = canvasImg.getClientArea();
++        int width = Math.round(scaledImage.getImageData().width);
++        if (width &gt; canvasBounds.width) {
++            // The image is wider than the canvas.
++            horizontal.setEnabled(true);
++            horizontal.setMaximum(width);
++            horizontal.setThumb(canvasBounds.width);
++            horizontal.setPageIncrement(canvasBounds.width);
++        } else {
++            // The canvas is wider than the image.
++            horizontal.setEnabled(false);
++
++            canvasImg.redraw();
++        }
++        int height = Math.round(scaledImage.getImageData().height);
++        if (height &gt; canvasBounds.height) {
++            // The image is taller than the canvas.
++            vertical.setEnabled(true);
++            vertical.setMaximum(height);
++            vertical.setThumb(canvasBounds.height);
++            vertical.setPageIncrement(canvasBounds.height);
++        } else {
++            // The canvas is taller than the image.
++            vertical.setEnabled(false);
++            canvasImg.redraw();
++
++        }
++    }
++
++    void scrollHorizontally(ScrollBar scrollBar) {
++        if (scaledImage == null)
++            return;
++        Rectangle canvasBounds = canvasImg.getClientArea();
++        int width = Math.round(scaledImage.getImageData().width);
++        int height = Math.round(scaledImage.getImageData().height);
++        if (width &gt; canvasBounds.width) {
++            // Only scroll if the image is bigger than the canvas.
++            int x = -scrollBar.getSelection();
++            if (x + width &lt; canvasBounds.width) {
++                // Don't scroll past the end of the image.
++                x = canvasBounds.width - width;
+             }
++            canvasImg.scroll(x, iy, ix, iy, width, height, false);
++            ix = x;
+ 
+-        	// buttons for detail
+-	}
++        }
++    }
+ 
+-	void resizeScrollBars() {
+-		// Set the max and thumb for the image canvas scroll bars.
+-		ScrollBar horizontal = canvas1.getHorizontalBar();
+-		ScrollBar vertical = canvas1.getVerticalBar();
+-		Rectangle canvasBounds = canvas1.getClientArea();
+-		int width = Math.round(scaledImage.getImageData().width);
+-		if (width &gt; canvasBounds.width) {
+-			// The image is wider than the canvas.
+-			horizontal.setEnabled(true);
+-			horizontal.setMaximum(width);
+-			horizontal.setThumb(canvasBounds.width);
+-			horizontal.setPageIncrement(canvasBounds.width);
+-		} else {
+-			// The canvas is wider than the image.
+-			horizontal.setEnabled(false);
++    void scrollVertically(ScrollBar scrollBar) {
++        if (scaledImage == null)
++            return;
++        Rectangle canvasBounds = canvasImg.getClientArea();
++        int width = Math.round(scaledImage.getImageData().width);
++        int height = Math.round(scaledImage.getImageData().height);
++        if (height &gt; canvasBounds.height) {
++            // Only scroll if the image is bigger than the canvas.
++            int y = -scrollBar.getSelection();
++            if (y + height &lt; canvasBounds.height) {
++                // Don't scroll past the end of the image.
++                y = canvasBounds.height - height;
++            }
++            canvasImg.scroll(ix, y, ix, iy, width, height, false);
++            iy = y;
++        }
++    }
+ 
+-			canvas1.redraw();
+-		}
+-		int height = Math.round(scaledImage.getImageData().height);
+-		if (height &gt; canvasBounds.height) {
+-			// The image is taller than the canvas.
+-			vertical.setEnabled(true);
+-			vertical.setMaximum(height);
+-			vertical.setThumb(canvasBounds.height);
+-			vertical.setPageIncrement(canvasBounds.height);
+-		} else {
+-			// The canvas is taller than the image.
+-			vertical.setEnabled(false);
+-				canvas1.redraw();
+-			
+-		}
+-	}
+-	
+-	
+-	void scrollHorizontally(ScrollBar scrollBar) {
+-		if (scaledImage == null) return;
+-		Rectangle canvasBounds = canvas1.getClientArea();
+-		int width = Math.round(scaledImage.getImageData().width );
+-		int height = Math.round(scaledImage.getImageData().height );
+-		if (width &gt; canvasBounds.width) {
+-			// Only scroll if the image is bigger than the canvas.
+-			int x = -scrollBar.getSelection();
+-			if (x + width &lt; canvasBounds.width) {
+-				// Don't scroll past the end of the image.
+-				x = canvasBounds.width - width;
+-			}
+-			canvas1.scroll(x, iy, ix, iy, width, height, false);
+-			ix = x;
+-			
+-		}
+-	}
+-	
+-	void scrollVertically(ScrollBar scrollBar) {
+-		if (scaledImage == null) return;
+-		Rectangle canvasBounds = canvas1.getClientArea();
+-		int width = Math.round(scaledImage.getImageData().width);
+-		int height = Math.round(scaledImage.getImageData().height);
+-		if (height &gt; canvasBounds.height) {
+-			// Only scroll if the image is bigger than the canvas.
+-			int y = -scrollBar.getSelection();
+-			if (y + height &lt; canvasBounds.height) {
+-				// Don't scroll past the end of the image.
+-				y = canvasBounds.height - height;
+-			}
+-			canvas1.scroll(ix, y, ix, iy, width, height, false);
+-			iy = y;
+-		}
+-	}	
+-	
+-	// Reset the scroll bars to 0.
+-	void resetScrollBars() {
+-		if (scaledImage == null) return;
+-		ix = 0; iy = 0;
+-		resizeScrollBars();
+-		canvas1.getHorizontalBar().setSelection(0);
+-		canvas1.getVerticalBar().setSelection(0);
+-		
+-	}
+-	
+-	
+-	void paintImage(PaintEvent event) {
+-		Image paintImage = scaledImage;
++    // Reset the scroll bars to 0.
++    void resetScrollBars() {
++        if (scaledImage == null)
++            return;
++        ix = 0;
++        iy = 0;
++        resizeScrollBars();
++        canvasImg.getHorizontalBar().setSelection(0);
++        canvasImg.getVerticalBar().setSelection(0);
+ 
+-		int w = Math.round(scaledImage.getImageData().width);
+-		int h = Math.round(scaledImage.getImageData().height);
+-		event.gc.drawImage(
+-			paintImage,
+-			0,
+-			0,
+-			scaledImage.getImageData().width,
+-			scaledImage.getImageData().height,
+-			ix + scaledImage.getImageData().x,
+-			iy + scaledImage.getImageData().y,
+-			w,
+-			h);
+-	}
++    }
+ 
++    void paintImage(PaintEvent event) {
++        Image paintImage = scaledImage;
+ 
+-	
+-	/**
++        int w = Math.round(scaledImage.getImageData().width);
++        int h = Math.round(scaledImage.getImageData().height);
++        event.gc.drawImage(paintImage, 0, 0, scaledImage.getImageData().width,
++                scaledImage.getImageData().height, ix
++                        + scaledImage.getImageData().x, iy
++                        + scaledImage.getImageData().y, w, h);
++    }
++
++    /**
+      * @param text
+      */
+-    private void refreshActorsDetail(final String id) {
+-        Actor object;
++    private void refreshImagesDetail(final String id) {
++        de.hsharz.provirent.objects.Image object = null;
+         try {
+             //since we only can get a String value from the table, we
+             //need to convert this
+-            object = Database.getSingleActor(Integer.parseInt(id));
++            object = (de.hsharz.provirent.objects.Image) Database
++                    .getSingleObject(new de.hsharz.provirent.objects.Image()
++                            .getClass(), Integer.parseInt(id));
+ 
+             if (object == null) {
+-
++                logger.error(&quot;Es wurde null von der Datenbank zur&#252;ckgegeben&quot;);
+                 /*
+                  * 
+                  * @TODO Statusbar aktualiseren
+@@ -728,48 +1131,88 @@
+             return;
+         }
+ 
+-        textActorsID.setText(object.getActorId() + &quot;&quot;);
+-        textActorsFName.setText(object.getFirstName());
+-        textActorsLName.setText(object.getLastName());
++        textImagesID.setText(object.getImageId() + &quot;&quot;);
++        textImagesName.setText(object.getImageFileName());
++        textImagesDescription.setText(object.getImageFileDescription());
+ 
++        if (object.getImageFile() != null &amp;&amp; object.getImageFile().length &gt; 0) {
++            scaledImage = ideaImage = new Image(getDisplay(),
++                    new ByteArrayInputStream(object.getImageFile()));
++            canvasImg.redraw();
++        }
++
++        canvasImg.redraw();
++
+         //Buttons zum l&#246;schen und editieren aktivieren
+ 
+         //Mode auf view setzen
+-        mode_actor = ManagementGui.MODE_VIEW;
+-        
++        mode_image = ManagementGui.MODE_VIEW;
++
+     }
+ 
+     /**
+      * 
+      */
+ 
+-    protected void insertIntoActorsOverviewTable(Actor actor) {
+-        TableItem item = new TableItem(tableActorsOverview, SWT.NONE);
+-        item.setText(new String[] { actor.getActorId() + &quot;&quot;, actor.getFirstName(),
+-                actor.getLastName() });        
++    protected void insertIntoImagesOverviewTable(
++            final de.hsharz.provirent.objects.Image image) {
++        TableItem item = new TableItem(tableImagesOverview, SWT.NONE);
++        item.setText(new String[] { image.getImageId() + &quot;&quot;,
++                image.getImageFileName(), image.getImageFileDescription() });
++        if (image.getImageFile() != null &amp;&amp; image.getImageFile().length &gt; 0) {
++            item.setImage(0, new Image(getDisplay(), new ByteArrayInputStream(
++                    image.getImageFile())));
++        }
++
+     }
+-    
+-    protected void refreshActorsOverviewTable(final String filter) {
+-        /*
+-        if (tableActorsOverview == null) {
+-            System.out
+-                    .println(&quot;Konnte ActorsOverviewtable nicht refreshen, da diese null ist!&quot;);
++
++    protected void refreshImageOverviewTable(final String filter) {
++
++        if (tableImagesOverview == null) {
++            logger
++                    .error(&quot;Konnte ImagesOverviewtable nicht refreshen, da diese null ist!&quot;);
+             return;
+         }
+-        System.out.println(&quot;Versuche nun ActorsOverviewtable zu refreshen. Filter: &quot;
++        logger.debug(&quot;Versuche nun ImagesOverviewtable zu refreshen. Filter: &quot;
+                 + filter);
+-        tableActorsOverview.removeAll();
++        tableImagesOverview.removeAll();
+         TableItem item;
+-        java.util.List Actorlist = Database.getActor(filter);
++        java.util.List Imagelist = Database.getImages(filter);
+ 
+-        for (int i = 0; i &lt; Actorlist.size(); i++) {
++        for (int i = 0; i &lt; Imagelist.size(); i++) {
+ 
+-            Actor o = (Actor) Actorlist.get(i);
+-            item = new TableItem(tableActorsOverview, SWT.NONE);
+-            item.setText(new String[] { o.getActorId() + &quot;&quot;, o.getFirstName(),
+-                    o.getLastName() });
++            de.hsharz.provirent.objects.Image o = (de.hsharz.provirent.objects.Image) Imagelist
++                    .get(i);
++            item = new TableItem(tableImagesOverview, SWT.NONE);
++            
++            /*
++            if (o.getImageFile() != null &amp;&amp; o.getImageFile().length &gt; 0) {
++            System.out.println(&quot;id&quot;+o.getImageId()+&quot; byte:&quot;+o.getImageFile().toString());
++            ImageData imgdata = new ImageData(new ByteArrayInputStream((o.getImageFile())));
++            imgdata.scaledTo(10,10);
++ 
++            Image img = new Image(getDisplay(),imgdata);
++            System.out.println(&quot;Gr&#246;&#223;e: &quot;+img.getBounds());
++            
++                item.setImage(0, new Image(getDisplay(),imgdata));
++            }            
++            */
++            item.setText(new String[] { o.getImageId() + &quot;&quot;,
++                    o.getImageFileName(), o.getImageFileDescription() });
+ 
+         }
+-        */
+     }
+-}
++    
++    private Image createThumbnailImage(byte[] data){
++        ImageData imgdata = new ImageData(new ByteArrayInputStream(data));
++        int maxheight = 10;
++        int maxwidth = 10;
++        imgdata.scaledTo(maxwidth,maxheight);
++            /**
++             * @todo hier noch einen algorithmus zum verkleinern
++             */
++
++        return new Image(getDisplay(),imgdata);
++        
++    }
++}
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-15 15:02:24 UTC (rev 134)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-15 19:37:23 UTC (rev 135)
+@@ -104,13 +104,14 @@
+ 
+     private CTabFolder cTabFolderMain;
+ 
+-    private CTabItem tabItemFormat,tabItemActor,tabItemDirector,tabItemLanguage,tabItemGenre;
++    private CTabItem tabItemFormat,tabItemActor,tabItemDirector,tabItemLanguage,tabItemGenre,tabItemImage;
+ 
+     private CompositeFormate compositeFormate;
+     private CompositeActors compositeActor;
+     private CompositeDirectors compositeDirector;
+     private CompositeGenre compositeGenre;
+     private CompositeLanguage compositeLanguage;
++    private CompositeImage compositeImage;
+     
+ 
+     private MenuItem aboutMenuItem;
+@@ -125,7 +126,7 @@
+     
+     private MenuItem viewVideoFormatMenuItem,viewActorMenuItem,viewGenreMenuItem;
+     private MenuItem viewLanguageMenuItem,viewStatusMenuItem;
+-    private MenuItem viewConditionMenuItem,viewMovieMenuItem,viewDvdMenuItem, viewBillMenuItem;
++    private MenuItem viewConditionMenuItem,viewMovieMenuItem,viewDvdMenuItem, viewBillMenuItem, viewImageMenuItem;
+     
+ 
+     private Shell shell;
+@@ -494,6 +495,23 @@
+             }
+         });   
+ 
++        viewImageMenuItem = new MenuItem(viewMenu, SWT.CHECK);
++        viewImageMenuItem.setText(l.getString(&quot;menu.view.image&quot;));
++        viewImageMenuItem.setSelection(false);
++        viewImageMenuItem.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++				if(tabItemImage == null || tabItemImage.isDisposed()){
++				    initImageTab();
++				    return;   
++				}
++				
++				cTabFolderMain.setSelection(tabItemStatus);
++				viewStatusMenuItem.setSelection(true);
++				cTabFolderMain.showSelection();
++            }
++        });   
++        
++        
+         viewMovieMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewMovieMenuItem.setText(l.getString(&quot;menu.view.movie&quot;));
+         viewMovieMenuItem.setSelection(false);
+@@ -533,7 +551,28 @@
+         cTabFolderMain.setSelection(tabItemStatus);
+     }
+ 
++    private void initImageTab() {
++        tabItemImage = new CTabItem(cTabFolderMain, SWT.NONE);
++        tabItemImage.setText(l.getString(&quot;tab.image.title&quot;));
++        tabItemImage.addDisposeListener(new DisposeListener() {
+ 
++            public void widgetDisposed(DisposeEvent evt) {
++                if(!viewImageMenuItem.isDisposed()){
++                    viewImageMenuItem.setSelection(false);
++                }
++            }
++            
++        });
++        {
++            compositeImage = new CompositeImage(
++                cTabFolderMain,
++                SWT.NONE, statusLine, locale);
++            
++            tabItemImage.setControl(compositeImage);
++        }
++        cTabFolderMain.setSelection(tabItemImage);
++    }
++    
+     /**
+      * init the help menu
+      */
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties	2004-11-15 15:02:24 UTC (rev 134)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties	2004-11-15 19:37:23 UTC (rev 135)
+@@ -21,6 +21,8 @@
+ 
+ menu.view.status=Status
+ 
++menu.view.image=Bilder
++
+ menu.view.movie=Film
+ 
+ menu.view.dvd=DVD
+@@ -36,5 +38,6 @@
+ tab.genre.title=Genre
+ tab.language.title=Sprache/Untertitel
+ tab.Status.title=Status/Zustand
+-tab.movie.title=
++tab.movie.title=Filme
++tab.image.title=Bilder
+ status.resizewarn=Fenster kann Mindestgr&#246;&#223;e nicht unterschreiten.
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml	2004-11-15 15:02:24 UTC (rev 134)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml	2004-11-15 19:37:23 UTC (rev 135)
+@@ -22,7 +22,7 @@
+ 
+  
+       &lt;property name=&quot;imageFile&quot; type=&quot;binary&quot;&gt;
+-      	&lt;column name=&quot;pdffile&quot; sql-type=&quot;BLOB&quot; /&gt;
++      	&lt;column name=&quot;imageFile&quot; sql-type=&quot;BLOB&quot; /&gt;
+       &lt;/property&gt;
+ 				
+       &lt;property name=&quot;imageFileSize&quot; type=&quot;int&quot;&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-15 15:02:24 UTC (rev 134)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-15 19:37:23 UTC (rev 135)
+@@ -44,15 +44,16 @@
+ 
+ import org.apache.log4j.Logger;
+ 
++import de.hsharz.provirent.objects.Actor;
+ import de.hsharz.provirent.objects.AudioFormat;
+ import de.hsharz.provirent.objects.Condition;
+ import de.hsharz.provirent.objects.Director;
+ import de.hsharz.provirent.objects.Genre;
++import de.hsharz.provirent.objects.Image;
+ import de.hsharz.provirent.objects.Language;
+ import de.hsharz.provirent.objects.Status;
+ import de.hsharz.provirent.objects.Subtitle;
+ import de.hsharz.provirent.objects.VideoFormat;
+-import de.hsharz.provirent.objects.Actor;
+ 
+ 
+ /**
+@@ -676,14 +677,14 @@
+ 	}
+ 
+ 	/**
+-	 * This method gets all Actor from the database.
++	 * This method gets all Images from the database.
+ 	 * searches for firstname or lastname or id
+ 	 * @param filter 
+-	 * @return List of Director objects, or an empty List
++	 * @return List of Image objects, or an empty List
+ 	 */
+-	public static List getActor(final String filter){
++	public static List getImages(final String filter){
+ 	    if (logger.isDebugEnabled()) {
+-	        logger.debug(&quot;getActor() - start. String filter= &quot;+filter);
++	        logger.debug(&quot;getImages() - start. String filter= &quot;+filter);
+ 	    }
+ 	    //init the returnlist
+ 	    List returnlist = new ArrayList();
+@@ -695,18 +696,18 @@
+ 	        s = HibernateUtil.currentSession();
+ 	            
+ 	            //init the criteria
+-	            Criteria criteria = s.createCriteria(Actor.class);
++	            Criteria criteria = s.createCriteria(Image.class);
+ 	            //any of the criteria 
+ 	            Disjunction any = Expression.disjunction();
+ 	
+ 	            //if filter not empty
+ 	            if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
+-	                any.add(Expression.like(&quot;firstName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+-	                any.add(Expression.like(&quot;lastName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;imageFileName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;imageFileDescription&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+ 	                
+ 	                //maybe we are searching for the id?
+ 	                try {
+-	                    any.add(Expression.eq(&quot;actorId&quot;, new Integer(Integer.parseInt(filter))));
++	                    any.add(Expression.eq(&quot;imageId&quot;, new Integer(Integer.parseInt(filter))));
+ 	                } catch (Exception e) {
+ 	                }
+ 	                
+@@ -721,7 +722,7 @@
+ 	
+ 	    } catch (Exception e) {
+ 	        logger.error(
+-	                &quot;getActor() - Error while trying to do Transaction&quot;,
++	                &quot;getImages() - Error while trying to do Transaction&quot;,
+ 	                e);
+ 	        returnlist = new ArrayList();
+ 	    } finally {
+@@ -729,24 +730,24 @@
+ 	            // No matter what, close the session
+ 	            HibernateUtil.closeSession();
+ 	        } catch (HibernateException e1) {
+-	            logger.error(&quot;getActor() - Could not Close the Session&quot;, e1);
++	            logger.error(&quot;getImages() - Could not Close the Session&quot;, e1);
+ 	        }
+ 	    }
+ 	
+ 	    if (logger.isDebugEnabled()) {
+-	        logger.debug(&quot;getActor() - end&quot;);
++	        logger.debug(&quot;getImages() - end&quot;);
+ 	    }
+ 	    return returnlist;
+ 	    	
+ 	}
+ 	
+ 	
+-	public static Actor getSingleActor(final int id){
++	public static Object getSingleObject( final Class gclass, final int id){
+ 	    if (logger.isDebugEnabled()) {
+-	        logger.debug(&quot;getSingleActor() - start. int filter= &quot;+id);
++	        logger.debug(&quot;getSingleObject() - start. int filter= &quot;+id);
+ 	    }
+ 	    //init the returnlist
+-	    Actor returnobject = null;
++	    Object returnobject = null;
+ 	
+ 	    Session s = null;
+ 	    Transaction tx = null;
+@@ -754,11 +755,11 @@
+ 	        //get new Session and begin Transaction
+ 	        s = HibernateUtil.currentSession();
+ 	
+-	            returnobject = (Actor)s.get(Actor.class, new Integer(id));
++	            returnobject = (Object)s.get(gclass, new Integer(id));
+ 	
+ 	    } catch (Exception e) {
+ 	        logger.error(
+-	                &quot;getSingleActor() - Error while trying to do Transaction&quot;,
++	                &quot;getSingleObject() - Error while trying to do Transaction&quot;,
+ 	                e);
+ 	        
+ 	    } finally {
+@@ -766,12 +767,12 @@
+ 	            // No matter what, close the session
+ 	            HibernateUtil.closeSession();
+ 	        } catch (HibernateException e1) {
+-	            logger.error(&quot;getSingleActor() - Could not Close the Session&quot;, e1);
++	            logger.error(&quot;getSingleObject() - Could not Close the Session&quot;, e1);
+ 	        }
+ 	    }
+ 	
+ 	    if (logger.isDebugEnabled()) {
+-	        logger.debug(&quot;getSingleActor() - end&quot;);
++	        logger.debug(&quot;getSingleObject() - end&quot;);
+ 	    }
+ 	    return returnobject;
+ 	    	
+@@ -1191,7 +1192,112 @@
+ 	    	
+ 	}
+ 	
++
++	/**
++	 * This method gets all Actor from the database.
++	 * searches for firstname or lastname or id
++	 * @param filter 
++	 * @return List of Actors objects, or an empty List
++	 */
++	public static List getActor(final String filter){
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getActor() - start. String filter= &quot;+filter);
++	    }
++	    //init the returnlist
++	    List returnlist = new ArrayList();
+ 	
++	    Session s = null;
++	    
++	    try {
++	        //get new Session and begin Transaction
++	        s = HibernateUtil.currentSession();
++	            
++	            //init the criteria
++	            Criteria criteria = s.createCriteria(Actor.class);
++	            //any of the criteria 
++	            Disjunction any = Expression.disjunction();
++	
++	            //if filter not empty
++	            if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++	                any.add(Expression.like(&quot;firstName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;lastName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                
++	                //maybe we are searching for the id?
++	                try {
++	                    any.add(Expression.eq(&quot;actorId&quot;, new Integer(Integer.parseInt(filter))));
++	                } catch (Exception e) {
++	                }
++	                
++	            }
++	            //add all criteria
++	            criteria.add(any);
++	            //get the results
++	            returnlist = criteria.list();
++	
++	
++	
++	
++	    } catch (Exception e) {
++	        logger.error(
++	                &quot;getActor() - Error while trying to do Transaction&quot;,
++	                e);
++	        returnlist = new ArrayList();
++	    } finally {
++	        try {
++	            // No matter what, close the session
++	            HibernateUtil.closeSession();
++	        } catch (HibernateException e1) {
++	            logger.error(&quot;getActor() - Could not Close the Session&quot;, e1);
++	        }
++	    }
++	
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getActor() - end&quot;);
++	    }
++	    return returnlist;
++	    	
++	}
++	
++	
++	public static Actor getSingleActor(final int id){
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getSingleActor() - start. int filter= &quot;+id);
++	    }
++	    //init the returnlist
++	    Actor returnobject = null;
++	
++	    Session s = null;
++	    Transaction tx = null;
++	    try {
++	        //get new Session and begin Transaction
++	        s = HibernateUtil.currentSession();
++	
++	            returnobject = (Actor)s.get(Actor.class, new Integer(id));
++	
++	    } catch (Exception e) {
++	        logger.error(
++	                &quot;getSingleActor() - Error while trying to do Transaction&quot;,
++	                e);
++	        
++	    } finally {
++	        try {
++	            // No matter what, close the session
++	            HibernateUtil.closeSession();
++	        } catch (HibernateException e1) {
++	            logger.error(&quot;getSingleActor() - Could not Close the Session&quot;, e1);
++	        }
++	    }
++	
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getSingleActor() - end&quot;);
++	    }
++	    return returnobject;
++	    	
++	}
++	
++	
++	
++	
+ 	/**
+      * Constructor for TestActor.
+      * @param arg0
+
+Modified: project_src/provirent_hibernate/src/log4j.properties
+===================================================================
+--- project_src/provirent_hibernate/src/log4j.properties	2004-11-15 15:02:24 UTC (rev 134)
++++ project_src/provirent_hibernate/src/log4j.properties	2004-11-15 19:37:23 UTC (rev 135)
+@@ -13,7 +13,7 @@
+ 
+ ### set log levels - for more verbose logging change 'info' to 'debug' ###
+ 
+-log4j.rootLogger=warn, stdout
++log4j.rootLogger=debug, stdout
+ log4j.logger.net.sf.hibernate=info
+ log4j.logger.test.provirent.hibernate=debug
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000135.html">[Provirent-svn-commit] r134 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+	<LI>Next message: <A HREF="000137.html">[Provirent-svn-commit] r136 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#136">[ date ]</a>
+              <a href="thread.html#136">[ thread ]</a>
+              <a href="subject.html#136">[ subject ]</a>
+              <a href="author.html#136">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

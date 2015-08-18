@@ -1,0 +1,491 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r283 - docu/latex
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r283%20-%20docu/latex&In-Reply-To=%3C200512121429.jBCETPWn008706%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000283.html">
+   <LINK REL="Next"  HREF="000285.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r283 - docu/latex</H1>
+    <B>pschneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r283%20-%20docu/latex&In-Reply-To=%3C200512121429.jBCETPWn008706%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r283 - docu/latex">pschneider at berlios.de
+       </A><BR>
+    <I>Mon Dec 12 15:29:25 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000283.html">[Provirent-svn-commit] r282 - in docu/latex: . images zeichnungen
+</A></li>
+        <LI>Next message: <A HREF="000285.html">[Provirent-svn-commit] r284 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#284">[ date ]</a>
+              <a href="thread.html#284">[ thread ]</a>
+              <a href="subject.html#284">[ subject ]</a>
+              <a href="author.html#284">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2005-12-12 15:29:20 +0100 (Mon, 12 Dec 2005)
+New Revision: 283
+
+Added:
+   docu/latex/6-Zusammenfassung.tex
+Removed:
+   docu/latex/5-Zusammenfassung.tex
+Modified:
+   docu/latex/3-2-Versionsverwaltung.tex
+   docu/latex/4-1-Versionsverwaltung.tex
+   docu/latex/4-2-Entwicklungsumgebung.tex
+   docu/latex/4-4-JavaWebanwendungen.tex
+   docu/latex/Provirent-Doku.bib
+   docu/latex/Provirent-Doku.tex
+Log:
+Grundlagen Versionsverwaltung abgeschlossen
+
+Modified: docu/latex/3-2-Versionsverwaltung.tex
+===================================================================
+--- docu/latex/3-2-Versionsverwaltung.tex	2005-12-11 18:54:29 UTC (rev 282)
++++ docu/latex/3-2-Versionsverwaltung.tex	2005-12-12 14:29:20 UTC (rev 283)
+@@ -28,40 +28,30 @@
+ 	\label{fig:vvspeicherbedarf}
+ \end{figure}
+ Ein Versionsverwaltungsserver bietet &#252;ber verschiedene Sicherheitsmechanismen \emph{Schutz vor unberechtigtem Zugriff}. Dabei muss sich jeder Entwickler &#252;ber einen definierten Mechanismus authentisieren, meist anhand eines Benutzernamens mit einem dazugeh&#246;ren Passwort. Dazu werden abgestufte Zugriffsrechte f&#252;r verschiedene Projektmitglieder auf einzelne Projektteile vergeben, meist anhand der Zust&#228;ndigkeit der Projektmitglieder. Bei der Speicherung eines neues Versionsstandes im Repository wird immer der Benutzer mit gespeichert, damit ist es m&#246;glich, nachzuvollziehen, welcher Benutzer welche &#196;nderungen vorgenommen hat. Ein weitere wichtige Aufgabe einer Versionsverwaltung ist die \emph{Kostenreduzierung}. Durch die bereits erw&#228;hnten Aufgaben einer Versionsverwaltung verringert sich der organisatorische Aufwand des Projektes, Fehler werden vermieden und ein weltweit aktives Team kann gleichzeitig an dem Projekt arbeiten \citep{Fogel2002,Herold1995,Rechenberger1994,Wikipedia!
+ 2005}. \\
+-In den folgenden zwei Unterabschnitten werden zwei verschiedene Versionsverwaltungen beschrieben.
++Versionsverwaltungen k&#246;nnen, wie andere Software Produkte heutzutage auch, in zwei verschiedene Gruppen eingeteilt werden: die kommerziellen Produkte und die Open-Source Produkte. Bei der kommerziellen Versionsverwaltungssystemen gibt es bspw. Microsoft's Visual SourceSafe\footnote{\url{<A HREF="http://msdn.microsoft.com/ssafe">http://msdn.microsoft.com/ssafe</A>}} oder Borland's Starteam\footnote{\url{<A HREF="http://www.borland.com/starteam/">http://www.borland.com/starteam/</A>}}. In den folgenden zwei Unterabschnitten werden zwei bekannte  Open Source Versionsverwaltungen beschrieben.
+ 
+ 
+ 
+ 
+-
+-
+-
+ %====================================
+ \subsection{Concurrent Versions System - CVS}
++Bei CVS handelt es sich um eine Versionsverwaltung mit einer Client-Server Architektur. Die Entwicklung von CSV begann mit Ansammlung von Shell-Skripten, die in einer Newsgroup 1986 von Dick Grune ver&#246;ffentlicht wurden. Im Jahre 1989 begann Brian Berliner mit sp&#228;terer Hilfe von Jeff Polk mit der eigentlichen Entwicklung von CVS. Das Concurrent Versions System ist ein Kommandozeilen orientiertes System, auf das mit Hilfe verschiedener Client-Interfaces zugegriffen werden kann. Im Laufe der zeit hat sich CVS zu \emph{der} Versionsverwaltung von Open-Source Projekten entwickelt und wird bspw. von sourceforge.net eingesetzt. Innerhalb des Archiv/Repository existieren mehrerer \emph{Module}, die eine Sammlung von Dateien sind und dabei meist ein einzelnes Projekt darstellen. Dadurch, dass jede Datei eine eigene fortlaufende Revisionsnummer besitzt, wurde das \emph{Tagging} eingef&#252;hrt. Mit Hilfe des \emph{Tagging} kann jeder Datei zu einem definierten Zeitpunkt ein einheitliches !
+ Tag vergeben werden. Zu einem Zeitpunkt X, besitzt bspw. \texttt{DateiA.txt} die Revision \emph{1.13} und \texttt{DateiB.txt} die Revision \emph{1.78}. Mit Hilfe eines Tag mit bspw. dem Namen \emph{Alpha 0.18} erhalten beide Dateien dieses zus&#228;tzliche Tag, auf das zu einer sp&#228;teren Version zur&#252;ckgegriffen werden kann. Das Tagging bietet in der Softwareentwicklung eine gute M&#246;glichkeit wichtige Abschnitte des Quellcodes zu markieren, jedoch kann es vorkommen, dass diese Abschnitte separat weiterentwickelt werden m&#252;ssen. Dies ist z.B. der Fall, wenn eine Software ausgeliefert wird, an dieser jedoch weiterentwickelt wird. Dabei ist es notwendig zwei getrennte  Entwicklungszweige fortzuf&#252;hren. Einen Zweig um bei der ausgelieferten Version Fehler zu beheben und kleinere Folgeversionen zu ver&#246;ffentlichen und einen Zweig um die Software weiter zuentwickeln. Diese Vorgehensweise wird als \emph{Branching} bezeichnet und hilft den Entwicklern bei der Entwicklung seinen Produktes auf !
+ unterschiedlichen Entwicklungszweigen. Der Hauptzweig eines Mo!
+ duls wir
+d als \emph{trunk}\footnote{engl. Stamm} bezeichnet und besitzt die Revision \emph{HEAD}. \emph{Merging} bezeichnet das Zusammenf&#252;hren zweier Entwicklungszweige zu einem einzigen Zweig. Dies kann notwendig sein, um bspw. den Wartungszweig einer ausgelieferten Software mit dem Tag \emph{Version 1.0} mit dem Entwicklungszweig zur Version mit dem Tag \emph{Version 2.0} zusammen zuf&#252;hren. Mit Hilfe verschiedener \emph{Trigger} k&#246;nnen Skripte oder Programme im Repository ausgef&#252;hrt werden. Die Trigger k&#246;nnen vor und/oder nach dem Speichern der Dateien aufgef&#252;hrt werden und dabei Einfluss auf das Speichern nehmen. So kann bspw. vor dem Speichern der Quellcode nach bekannten Bugs mit Hilfe verschiedener Programme\footnote{Checkstyle -- \url{<A HREF="http://checkstyle.sourceforge.net/">http://checkstyle.sourceforge.net/</A>} \\Findbugs -- \url{<A HREF="http://findbugs.sourceforge.net/">http://findbugs.sourceforge.net/</A>}} gesucht werden. Im Fehlerfall wird der Quellcode nicht gespeichert und der Entwickler erh&#228;lt eine Fehlermeldung. Nach dem Speichern der Dateien k&#246;nnte ein !
+ weiteres Skript eine automatische Email an alle Projektmitglieder schicken und diese &#252;ber die gespeicherten &#196;nderungen informieren. CVS hat jedoch einige Nachteile: Zum einen k&#246;nnen Dateien nicht umbenannt werden. Um den Dateinamen zu ver&#228;ndern, muss diese Datei aus dem Modul entfernt und mit dem neuen Namen hinzugef&#252;gt werden. Dabei beginnt jedoch die Revision von vorne zu z&#228;hlen und somit kann auch nicht einfach auf die &#228;ltere Version zur&#252;ckgegriffen werden. Zum anderen k&#246;nnen auch Verzeichnisse nicht verschoben bzw. umbenannt werden. Um ein Verzeichniss zu verschieden, muss jede einzelne Datei in dem Verzeichnis aus dem Modul gel&#246;scht und an neuer Stelle als neue Datei neu hinzugef&#252;gt werden. Diese Mi&#223;st&#228;nde f&#252;hrten dazu, dass engachierte Softwareentwickler mit der Entwicklung einer neuer Versionsverwaltung mit dem Namen \emph{Subversion} begonnen haben.\citep{Wikipedia2005,Fogel2002,Price2005}
+ 
+-
+-
+-
+-
+-
+ %====================================
+ \subsection{Subversion - SVN}
+-
+-
+-
+-
+-\begin{figure}[htbp]
++&quot;`Subversion (SVN) ist eine Open-Source-Software zur Versionsverwaltung&quot;', die oft als Nachfolger von CVS bezeichnet wird\citep{Wikipedia2005}. SVN ist ein von CVS unabh&#228;ngigs Projekts und wird seit Anfang 2000 bei CoolabNet entwickelt. Seit dem 31.August 2001 ist Subversion &quot;`self-hosting&quot;', d.h. der Quellcode zu Subversion wird mit Subversion verwaltet. Am 23.Februar 2004 wurde die erste stabile Version 1.0 ver&#246;ffentlicht. Bei der Entwicklung von Subversion wurde auf eine &#228;hnliche Bedienung wie CVS geachtet, damit der Umstieg von CVS auf SVN f&#252;r viele Entwickler einfach ist. Weiterhin unterst&#252;tzt Subversion fast alle Funktionen von CVS, versucht jedoch dessen Nachteile zu vermeiden. In Subversion hat nicht jede Datei eine eigene Revison, sondern das gesamte Projekt eine einheitliche Versionsnummer, &#228;hnlich einem Tag in CVS. &#196;nderungen an einem Projekt werden meist an mehreren Dateien vorgenommen, die nun alle die gleiche Revision besitzen. Im Unterschied zu CVS ben&#246;tigt S!
+ ubversion neben der lokalen Arbeitskopie noch eine weitere zweite Kopie. Dadurch verdoppelt sich der ben&#246;tigte Speicherbedarf bei dem Client, jedoch hat dies zum Vorteil, dass Subversion dadurch weniger Netzwerkzugriffe ben&#246;tigt und bei einem \emph{commit} nur die Unterschiede zur Vorg&#228;ngerversion &#252;bertr&#228;gt und nicht wie CVS die kompletten Dateien. Weiterhin ist das umbenennen und verschieben von Dateien m&#246;glich, die Verwaltung von Verzeichnissen und Metadaten. Die \emph{commits} sind bei SVN atomar, d.h. &#196;nderungen werden entweder komplett oder gar nicht ins Repository aufgenommen und Verbindungsabbr&#252;che f&#252;hren nicht zu inkonsistenten Zust&#228;nden. Der Zugriff auf den Subversionserver, der das Repository in einer Berkeley Datenbank oder seit Version 1.1 im Dateisystem speichert, kann &#252;ber ein eigenen Protokoll, &#252;ber die Secure shell oder &#252;ber ein WebDav-Modul f&#252;r den Apach2 Webserver erfolgen. \Vref{fig:svnarchitekur} verdeutlicht nochmal die gesamte Subversion Architektur. D!
+ abei ist zu sehen, dass &#252;ber Kommandozeilenparameter oder eine!
+ r grafis
+chen Oberfl&#228;che auf die Client-Bibliothek zugegriffen werden kann. Diese Bibliothek kann &#252;ber verschiedene Methoden auf das SVN Repository zugreifen. Dabei gibt es die direkte lokal Zugriffsart oder der Zugriff &#252;ber ein Netzwerk/Internet. Das Repository speichert die Dateien bzw. die Unterschiede der Dateien letztendlich in einer Berkeley Datenbank oder auf dem Dateisystem. Subversion bietet somit fast die gleiche Funktionalit&#228;t die CVS, behebt dessen Nachteile und bietet dazu noch einige Extrafunktionen. \citep{Wikipedia2005,Collins-Sussman2005}
++\begin{figure}[tbp]
+ 	\centering
+ 	\includegraphics[scale=0.65]{images/subversion-architektur.png}
+ 	\caption{Subversion's Architektur \citep[Kap.~1]{Collins-Sussman2005}}
+ 	\label{fig:svnarchitekur}
+ \end{figure}
+ 
+-\url{<A HREF="http://better-scm.berlios.de/comparison/comparison.html">http://better-scm.berlios.de/comparison/comparison.html</A>}
+ 
+ 
+ 
+ 
+ 
++
+ %Hier danach nicht mehr schreiben
+ \label{sec:tech-Versionsverwaltung-ende}
+\ No newline at end of file
+
+Modified: docu/latex/4-1-Versionsverwaltung.tex
+===================================================================
+--- docu/latex/4-1-Versionsverwaltung.tex	2005-12-11 18:54:29 UTC (rev 282)
++++ docu/latex/4-1-Versionsverwaltung.tex	2005-12-12 14:29:20 UTC (rev 283)
+@@ -1,13 +1,7 @@
+ \section{Versionsverwaltung mit Subversion} \label{sec:impl-Versionsverwaltung}
+-\footnote{So wird eine Fussnote gemacht}\\
+-% das ist ein Kommentar
+-\url{http:/www.phil-schneider.de}
+-\citep{Frotscher2004b} Verweis auf eine Literaturquelle
+-\emph{hervorgehoben}\\
+-\textbf{Fett}\\
+-\texttt{Typewriter}\\
+ 
+ 
++
+ 		
+ 
+ 
+
+Modified: docu/latex/4-2-Entwicklungsumgebung.tex
+===================================================================
+--- docu/latex/4-2-Entwicklungsumgebung.tex	2005-12-11 18:54:29 UTC (rev 282)
++++ docu/latex/4-2-Entwicklungsumgebung.tex	2005-12-12 14:29:20 UTC (rev 283)
+@@ -1,6 +1,13 @@
+ \section{Entwicklungsumgebung mit Eclipse} \label{sec:impl-Entwicklungsumgebung}
+ 
+ 
++\footnote{So wird eine Fussnote gemacht}\\
++% das ist ein Kommentar
++\url{http:/www.phil-schneider.de}
++\citep{Frotscher2004b} Verweis auf eine Literaturquelle
++\emph{hervorgehoben}\\
++\textbf{Fett}\\
++\texttt{Typewriter}\\
+ 
+ 
+ 
+
+Modified: docu/latex/4-4-JavaWebanwendungen.tex
+===================================================================
+--- docu/latex/4-4-JavaWebanwendungen.tex	2005-12-11 18:54:29 UTC (rev 282)
++++ docu/latex/4-4-JavaWebanwendungen.tex	2005-12-12 14:29:20 UTC (rev 283)
+@@ -2,6 +2,13 @@
+ 
+ 
+ 
++\footnote{So wird eine Fussnote gemacht}\\
++% das ist ein Kommentar
++\url{http:/www.phil-schneider.de}
++\citep{Frotscher2004b} Verweis auf eine Literaturquelle
++\emph{hervorgehoben}\\
++\textbf{Fett}\\
++\texttt{Typewriter}\\
+ 
+ 
+ 
+
+Deleted: docu/latex/5-Zusammenfassung.tex
+===================================================================
+--- docu/latex/5-Zusammenfassung.tex	2005-12-11 18:54:29 UTC (rev 282)
++++ docu/latex/5-Zusammenfassung.tex	2005-12-12 14:29:20 UTC (rev 283)
+@@ -1,10 +0,0 @@
+-\chapter{Zusammenfassung} \label{sec:Zusamenfassung}
+-
+-
+-K&#246;nnte von weiteren Stundenten weitergef&#252;hrt werden, da das gesamte Projekt in einzelne Module geteilt werden kann.
+-
+-- suchmodul apache lucence
+-- barcodemodul
+-- lagerverteilung der Videos und k&#252;rzeste Wegstreckenberechnung
+-- reports und statistik erstellung mit eclipse birt
+-- GUi (swt) tool f&#252;r das Lager mit touchscreen
+\ No newline at end of file
+
+Copied: docu/latex/6-Zusammenfassung.tex (from rev 281, docu/latex/5-Zusammenfassung.tex)
+===================================================================
+--- docu/latex/5-Zusammenfassung.tex	2005-12-11 18:16:50 UTC (rev 281)
++++ docu/latex/6-Zusammenfassung.tex	2005-12-12 14:29:20 UTC (rev 283)
+@@ -0,0 +1,4 @@
++\chapter{Zusammenfassung} \label{sec:Zusamenfassung}
++
++
++Was wurde in den Abschnitten erz&#228;hlt
+\ No newline at end of file
+
+Modified: docu/latex/Provirent-Doku.bib
+===================================================================
+--- docu/latex/Provirent-Doku.bib	2005-12-11 18:54:29 UTC (rev 282)
++++ docu/latex/Provirent-Doku.bib	2005-12-12 14:29:20 UTC (rev 283)
+@@ -1,117 +1,124 @@
+-This file was created with JabRef 1.8.1.
+-Encoding: Cp1252
+-
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">- at BOOK</A>{Collins-Sussman2005,
+-  title = {Version Control with Subversion},
+-  year = {2005},
+-  author = {Ben Collins-Sussman and Brian W. Fitzpatrick and C. Michael Pilato},
+-  owner = {Philipp Schneider},
+-  timestamp = {2005.11.28},
+-}
+-
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">- at PHDTHESIS</A>{Dai2004,
+-  author = {Liang Dai},
+-  title = {Prototypische Erstellung einer Themenplanung in Rundfunkanstalten
+-	unter Verwendung eines MVC-Frameworks},
+-  school = {Universit&#228;t Dortmund},
+-  year = {2004},
+-  owner = {Philipp Schneider},
+-  pdf = {ausarbeitungLiang.pdf},
+-  url = {<A HREF="http://ls1at6.cs.uni-dortmund.de/HomepageChernuchin/papers/ausarbeitungLiang.pdf">http://ls1at6.cs.uni-dortmund.de/HomepageChernuchin/papers/ausarbeitungLiang.pdf</A>},
+-}
+-
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">- at BOOK</A>{Fogel2002,
+-  title = {Open Source-Projekte mit CVS},
+-  publisher = {mitp-Verlag},
+-  year = {2002},
+-  author = {Karl Fogel and Mashe Bar},
+-  owner = {Philipp Schneider},
+-  timestamp = {2005.12.08},
+-}
+-
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">- at ARTICLE</A>{Frotscher2004,
+-  author = {Thilo Frotscher},
+-  title = {Der Ball ist rund},
+-  journal = {Javamagazin},
+-  year = {2004},
+-  volume = {04},
+-  pages = {95},
+-  owner = {Philipp Schneider},
+-}
+-
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">- at ARTICLE</A>{Frotscher2004a,
+-  author = {Thilo Frotscher},
+-  title = {Das naechste Spiel ist immer das schwerste},
+-  journal = {Javamagazin},
+-  year = {2004},
+-  volume = {05},
+-  pages = {89},
+-  owner = {Philipp Schneider},
+-}
+-
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">- at ARTICLE</A>{Frotscher2004b,
+-  author = {Thilo Frotscher},
+-  title = {Das Runde muss ins Eckige},
+-  journal = {Javamagazin},
+-  year = {2004},
+-  volume = {06},
+-  pages = {60},
+-  owner = {Philipp Schneider},
+-}
+-
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">- at BOOK</A>{Gamma1995,
+-  title = {Design Patterns - Elements of Reusable Object-Oriented Software},
+-  publisher = {Addison-Wesley Professional},
+-  year = {1995},
+-  author = {Erich Gamma and Richard Helm and Ralph Johnson and John Vlissides},
+-  abstract = {Design Patterns is a modern classic in the literature of object-oriented
+-	development, offering timeless and elegant solutions to common problems
+-	in software design. It describes patterns for managing object creation,
+-	composing objects into larger structures, and coordinating control
+-	flow between objects. The book provides numerous examples where
+-	using composition rather than inheritance can improve the reusability
+-	and flexibility of code. Note, though, that it's not a tutorial
+-	but a ca...},
+-  owner = {Philipp Schneider},
+-}
+-
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">- at BOOKLET</A>{Garnier2005,
+-  title = {Struts 1.1 Controller UML diagrams},
+-  author = {Jean-Michel Garnier},
+-  lastchecked = {19. Oktober 2005},
+-  year = {2005},
+-  owner = {Philipp Schneider},
+-  url = {<A HREF="http://rollerjm.free.fr/">http://rollerjm.free.fr/</A>},
+-}
+-
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">- at BOOK</A>{Herold1995,
+-  title = {SCCS und RCS. Versionsverwaltung unter UNIX},
+-  publisher = {Addison-Wesley, M{\&quot;u}nchen},
+-  year = {1995},
+-  author = {Helmut Herold and Manfred Meyer},
+-  isbn = {3893197540},
+-  owner = {Philipp Schneider},
+-}
+-
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">- at BOOK</A>{Rechenberger1994,
+-  title = {Konzepte und Verfahren f{\&quot;u}r die Software-Versionsverwaltung},
+-  publisher = {Universit&#228;tsverlag Rudolf Trauner},
+-  year = {1994},
+-  author = {Christoph Rechenberger},
+-  owner = {Philipp Schneider},
+-  timestamp = {2005.12.08},
+-}
+-
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">- at BOOKLET</A>{Wikipedia2005,
+-  title = {Wikipedia - Enzyklop&#228;die},
+-  author = {Wikipedia},
+-  year = {2005},
+-  owner = {Philipp Schneider},
+-  url = {<A HREF="http://de.wikipedia.org">http://de.wikipedia.org</A>},
+-}
+-
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">- at comment</A>{jabref-meta: selector_journal:Java Spektrum;Javamagazin;}
+-
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">- at comment</A>{jabref-meta: selector_author:D;Olav Maassen;Stephen Stelting;
+-}
+-
++This file was created with JabRef 1.8.
++Encoding: Cp1252
++
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at MANUAL</A>{Collins-Sussman2005,
++  title = {Version Control with Subversion},
++  author = {Ben Collins-Sussman and Brian W. Fitzpatrick and C. Michael Pilato},
++  year = {2005},
++  owner = {Philipp Schneider},
++  timestamp = {2005.11.28},
++}
++
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at PHDTHESIS</A>{Dai2004,
++  author = {Liang Dai},
++  title = {Prototypische Erstellung einer Themenplanung in Rundfunkanstaltenunter
++	Verwendung eines MVC-Frameworks},
++  school = {Universit&#228;t Dortmund},
++  year = {2004},
++  owner = {Philipp Schneider},
++  pdf = {ausarbeitungLiang.pdf},
++  url = {<A HREF="http://ls1at6.cs.uni-dortmund.de/HomepageChernuchin/papers/ausarbeitungLiang.pdf">http://ls1at6.cs.uni-dortmund.de/HomepageChernuchin/papers/ausarbeitungLiang.pdf</A>},
++}
++
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at BOOK</A>{Fogel2002,
++  title = {Open Source-Projekte mit CVS},
++  publisher = {mitp-Verlag},
++  year = {2002},
++  author = {Karl Fogel and Mashe Bar},
++  owner = {Philipp Schneider},
++  timestamp = {2005.12.08},
++}
++
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at ARTICLE</A>{Frotscher2004,
++  author = {Thilo Frotscher},
++  title = {Der Ball ist rund},
++  journal = {Javamagazin},
++  year = {2004},
++  volume = {04},
++  pages = {95},
++  owner = {Philipp Schneider},
++}
++
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at ARTICLE</A>{Frotscher2004a,
++  author = {Thilo Frotscher},
++  title = {Das naechste Spiel ist immer das schwerste},
++  journal = {Javamagazin},
++  year = {2004},
++  volume = {05},
++  pages = {89},
++  owner = {Philipp Schneider},
++}
++
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at ARTICLE</A>{Frotscher2004b,
++  author = {Thilo Frotscher},
++  title = {Das Runde muss ins Eckige},
++  journal = {Javamagazin},
++  year = {2004},
++  volume = {06},
++  pages = {60},
++  owner = {Philipp Schneider},
++}
++
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at BOOK</A>{Gamma1995,
++  title = {Design Patterns - Elements of Reusable Object-Oriented Software},
++  publisher = {Addison-Wesley Professional},
++  year = {1995},
++  author = {Erich Gamma and Richard Helm and Ralph Johnson and John Vlissides},
++  abstract = {Design Patterns is a modern classic in the literature of object-orienteddevelopment,
++	offering timeless and elegant solutions to common problemsin software
++	design. It describes patterns for managing object creation,composing
++	objects into larger structures, and coordinating controlflow between
++	objects. The book provides numerous examples whereusing composition
++	rather than inheritance can improve the reusabilityand flexibility
++	of code. Note, though, that it's not a tutorialbut a ca...},
++  owner = {Philipp Schneider},
++}
++
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at BOOKLET</A>{Garnier2005,
++  title = {Struts 1.1 Controller UML diagrams},
++  author = {Jean-Michel Garnier},
++  lastchecked = {19. Oktober 2005},
++  year = {2005},
++  owner = {Philipp Schneider},
++  url = {<A HREF="http://rollerjm.free.fr/">http://rollerjm.free.fr/</A>},
++}
++
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at BOOK</A>{Herold1995,
++  title = {SCCS und RCS. Versionsverwaltung unter UNIX},
++  publisher = {Addison-Wesley, M{\&quot;u}nchen},
++  year = {1995},
++  author = {Helmut Herold and Manfred Meyer},
++  isbn = {3893197540},
++  owner = {Philipp Schneider},
++}
++
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at MANUAL</A>{Price2005,
++  title = {Version Management with CVS},
++  author = {Derek R. Price},
++  year = {2005},
++  owner = {Philipp Schneider},
++  url = {<A HREF="http://ximbiot.com/cvs/manual/cvs-1.11.21/cvs.html">http://ximbiot.com/cvs/manual/cvs-1.11.21/cvs.html</A>},
++}
++
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at BOOK</A>{Rechenberger1994,
++  title = {Konzepte und Verfahren f{\&quot;u}r die Software-Versionsverwaltung},
++  publisher = {Universit&#228;tsverlag Rudolf Trauner},
++  year = {1994},
++  author = {Christoph Rechenberger},
++  owner = {Philipp Schneider},
++  timestamp = {2005.12.08},
++}
++
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at BOOKLET</A>{Wikipedia2005,
++  title = {Wikipedia - Enzyklop&#228;die},
++  author = {Wikipedia},
++  year = {2005},
++  owner = {Philipp Schneider},
++  url = {<A HREF="http://de.wikipedia.org">http://de.wikipedia.org</A>},
++}
++
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at comment</A>{jabref-meta: selector_journal:Java Spektrum;Javamagazin;}
++
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at comment</A>{jabref-meta: selector_author:D;Olav Maassen;Stephen Stelting;
++}
++
+
+Modified: docu/latex/Provirent-Doku.tex
+===================================================================
+--- docu/latex/Provirent-Doku.tex	2005-12-11 18:54:29 UTC (rev 282)
++++ docu/latex/Provirent-Doku.tex	2005-12-12 14:29:20 UTC (rev 283)
+@@ -142,8 +142,10 @@
+ \include{4-4-JavaWebanwendungen}
+ \include{4-5-Persistenzschichten}
+ %====================================
+-\include{5-Zusammenfassung}
++\include{5-Fazit}
+ %====================================
++\include{6-Zusammenfassung}
++%====================================
+ \include{9-0-Anhaenge}
+ \include{9-1-Literatur}
+ %\include{9-2-Abkuerzungsverzeichnis}
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000283.html">[Provirent-svn-commit] r282 - in docu/latex: . images zeichnungen
+</A></li>
+	<LI>Next message: <A HREF="000285.html">[Provirent-svn-commit] r284 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#284">[ date ]</a>
+              <a href="thread.html#284">[ thread ]</a>
+              <a href="subject.html#284">[ subject ]</a>
+              <a href="author.html#284">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

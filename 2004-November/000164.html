@@ -1,0 +1,269 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r163 - in project_src/provirent_hibernate: . lib src/de/hsharz/provirent src/de/hsharz/provirent/management/gui src/de/hsharz/provirent/objects
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r163%20-%20in%20project_src/provirent_hibernate%3A%20.%20lib%20src/de/hsharz/provirent%20src/de/hsharz/provirent/management/gui%20src/de/hsharz/provirent/objects&In-Reply-To=%3C200411250004.iAP04lkT016701%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000163.html">
+   <LINK REL="Next"  HREF="000165.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r163 - in project_src/provirent_hibernate: . lib src/de/hsharz/provirent src/de/hsharz/provirent/management/gui src/de/hsharz/provirent/objects</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r163%20-%20in%20project_src/provirent_hibernate%3A%20.%20lib%20src/de/hsharz/provirent%20src/de/hsharz/provirent/management/gui%20src/de/hsharz/provirent/objects&In-Reply-To=%3C200411250004.iAP04lkT016701%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r163 - in project_src/provirent_hibernate: . lib src/de/hsharz/provirent src/de/hsharz/provirent/management/gui src/de/hsharz/provirent/objects">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Thu Nov 25 01:04:47 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000163.html">[Provirent-svn-commit] r162 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+        <LI>Next message: <A HREF="000165.html">[Provirent-svn-commit] r164 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#164">[ date ]</a>
+              <a href="thread.html#164">[ thread ]</a>
+              <a href="subject.html#164">[ subject ]</a>
+              <a href="author.html#164">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-25 01:04:42 +0100 (Thu, 25 Nov 2004)
+New Revision: 163
+
+Added:
+   project_src/provirent_hibernate/lib/swtcalendar.jar
+Modified:
+   project_src/provirent_hibernate/.classpath
+   project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.hbm.xml
+Log:
+- SWT Datepicker hinzugef?\195?\188gt, Datum kann jetzt ausgewaehlt werden
+
+Modified: project_src/provirent_hibernate/.classpath
+===================================================================
+--- project_src/provirent_hibernate/.classpath	2004-11-24 23:37:19 UTC (rev 162)
++++ project_src/provirent_hibernate/.classpath	2004-11-25 00:04:42 UTC (rev 163)
+@@ -43,5 +43,6 @@
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;lib/activation.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;lib/mail.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;lib/firebirdsql.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;lib/swtcalendar.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;output&quot; path=&quot;bin&quot;/&gt;
+ &lt;/classpath&gt;
+
+Added: project_src/provirent_hibernate/lib/swtcalendar.jar
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/lib/swtcalendar.jar
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java	2004-11-24 23:37:19 UTC (rev 162)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java	2004-11-25 00:04:42 UTC (rev 163)
+@@ -121,6 +121,12 @@
+         }
+     }
+ 
++    
++    public static String formatCalendar(Calendar cal){
++        
++        return &quot;&quot;;
++    }
++    
+     public static void main(String[] args) {
+         Util h = new Util();
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java	2004-11-24 23:37:19 UTC (rev 162)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java	2004-11-25 00:04:42 UTC (rev 163)
+@@ -1,6 +1,10 @@
+ package de.hsharz.provirent.management.gui;
+ 
++import java.text.DateFormat;
+ import java.text.MessageFormat;
++import java.text.ParseException;
++import java.text.SimpleDateFormat;
++import java.util.Date;
+ import java.util.Locale;
+ import java.util.PropertyResourceBundle;
+ import java.util.ResourceBundle;
+@@ -29,6 +33,8 @@
+ import org.eclipse.swt.widgets.TableColumn;
+ import org.eclipse.swt.widgets.TableItem;
+ import org.eclipse.swt.widgets.Text;
++import org.vafada.swtcalendar.SWTCalendarEvent;
++import org.vafada.swtcalendar.SWTCalendarListener;
+ 
+ import com.cloudgarden.resource.SWTResourceManager;
+ 
+@@ -36,6 +42,7 @@
+ import de.hsharz.provirent.objects.Payment;
+ import de.hsharz.provirent.persistence.DataBaseException;
+ import de.hsharz.provirent.persistence.Database;
++
+ /**
+ * This code was generated using CloudGarden's Jigloo
+ * SWT/Swing GUI Builder, which is free for non-commercial
+@@ -75,6 +82,7 @@
+     
+     private Composite parent;
+     private Composite compositeButtons;
++    private Button changeStartDateButton;
+ 
+     private Group groupPayment;
+ 
+@@ -399,12 +407,58 @@
+             GridData text1LData3 = new GridData();
+             text1LData3.horizontalAlignment = GridData.FILL;
+             text1LData3.heightHint = 13;
+-            text1LData3.horizontalSpan = 4;
++            text1LData3.horizontalSpan = 3;
+             text1LData3.grabExcessHorizontalSpace = true;
+             textstartdate.setLayoutData(text1LData3);
+         }
+         {
++            changeStartDateButton = new Button(groupPaymentDetail, SWT.PUSH
++                | SWT.CENTER);
++            changeStartDateButton.setText(&quot;Change&quot;);
++            GridData text1LData3 = new GridData();
++            changeStartDateButton.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
+ 
++                    final SWTCalendarDialog cal = new SWTCalendarDialog(getDisplay());
++
++                    cal.addDateChangedListener(new SWTCalendarListener() {
++
++                        public void dateChanged(SWTCalendarEvent calendarEvent) {
++
++                            textstartdate.setText( DateFormat.getDateInstance(DateFormat.LONG).format(calendarEvent.getCalendar().getTime()));
++
++                        }
++
++                    });
++
++
++
++                    if (textstartdate.getText() != null &amp;&amp; textstartdate.getText().length() &gt; 0) {
++
++                        try {
++                               cal.setDate(DateFormat.getDateInstance(DateFormat.LONG).parse(textstartdate.getText()));
++
++                        } catch (ParseException pe) {
++
++
++
++                        }
++
++                    }
++
++                    cal.open();                    
++                    
++                    
++                }
++            });
++            text1LData3.horizontalAlignment = GridData.FILL;
++            
++            text1LData3.horizontalSpan = 1;
++            text1LData3.grabExcessHorizontalSpace = true;
++            changeStartDateButton.setLayoutData(text1LData3);
++        }
++        {
++
+             //die Buttons bekommen ein eigenes Composite
+             compositeButtons = new Composite(groupPaymentDetail, SWT.EMBEDDED);
+             GridLayout composite2Layout = new GridLayout();
+@@ -773,7 +827,7 @@
+                 					Double.toString(Payment.getDuration1()),
+                 					Double.toString(Payment.getDuration2()), 
+                 					Double.toString(Payment.getDuration3()),
+-                					Payment.getStartdate().toString()});
++                					DateFormat.getDateInstance(DateFormat.MEDIUM).format(Payment.getStartdate().getTime()) });
+         
+     }
+ 
+@@ -801,7 +855,8 @@
+                     					Double.toString(o.getDuration1()),
+                     					Double.toString(o.getDuration2()), 
+                     					Double.toString(o.getDuration3()),
+-                    					((o.getStartdate()== null)?&quot;&quot;:o.getStartdate().toString())});
++                    			        DateFormat.getDateInstance(DateFormat.MEDIUM).format(o.getStartdate().getTime())
++                    					});
+ 
+         }
+ 
+@@ -1015,8 +1070,10 @@
+         textduration1.setText(Double.toString(object.getDuration1()));
+         textduration2.setText(Double.toString(object.getDuration2()));
+         textduration3.setText(Double.toString(object.getDuration3()));
+-        textstartdate.setText(object.getStartdate().toString());
++        
+ 
++        textstartdate.setText(DateFormat.getDateInstance(DateFormat.LONG).format(object.getStartdate().getTime()));
++
+         //Buttons zum l&#246;schen und editieren aktivieren
+         buttonPaymentEdit.setEnabled(true);
+         buttonPaymentDelete.setEnabled(true);
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.hbm.xml	2004-11-24 23:37:19 UTC (rev 162)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.hbm.xml	2004-11-25 00:04:42 UTC (rev 163)
+@@ -36,16 +36,6 @@
+ 				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.OrderItem&quot; column=&quot;ORDERITEMID&quot;/&gt;
+ 
+  			&lt;/list&gt;
+-
+- 
+-      &lt;property name=&quot;name&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+-      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;
+-				
+- 
+-      &lt;property name=&quot;shortname&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+-      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;
+              
+  
+     &lt;/class&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000163.html">[Provirent-svn-commit] r162 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+	<LI>Next message: <A HREF="000165.html">[Provirent-svn-commit] r164 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#164">[ date ]</a>
+              <a href="thread.html#164">[ thread ]</a>
+              <a href="subject.html#164">[ subject ]</a>
+              <a href="author.html#164">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

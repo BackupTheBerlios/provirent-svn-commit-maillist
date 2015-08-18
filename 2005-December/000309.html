@@ -1,0 +1,600 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r307 - project_src/customer/WEB-INF/src
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r307%20-%20project_src/customer/WEB-INF/src&In-Reply-To=%3C200512191119.jBJBJAVm028915%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000308.html">
+   <LINK REL="Next"  HREF="000311.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r307 - project_src/customer/WEB-INF/src</H1>
+    <B>pschneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r307%20-%20project_src/customer/WEB-INF/src&In-Reply-To=%3C200512191119.jBJBJAVm028915%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r307 - project_src/customer/WEB-INF/src">pschneider at berlios.de
+       </A><BR>
+    <I>Mon Dec 19 12:19:10 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000308.html">[Provirent-svn-commit] r306 - in project_src/customer/WEB-INF/src/de/hsharz/provirent/customer: action form
+</A></li>
+        <LI>Next message: <A HREF="000311.html">[Provirent-svn-commit] r308 - project_src/customer/WEB-INF
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#309">[ date ]</a>
+              <a href="thread.html#309">[ thread ]</a>
+              <a href="subject.html#309">[ subject ]</a>
+              <a href="author.html#309">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2005-12-19 12:19:09 +0100 (Mon, 19 Dec 2005)
+New Revision: 307
+
+Added:
+   project_src/customer/WEB-INF/src/ListObject.java
+   project_src/customer/WEB-INF/src/RandomSampleUtil.java
+   project_src/customer/WEB-INF/src/TestList.java
+Log:
+
+
+Added: project_src/customer/WEB-INF/src/ListObject.java
+===================================================================
+--- project_src/customer/WEB-INF/src/ListObject.java	2005-12-19 11:17:49 UTC (rev 306)
++++ project_src/customer/WEB-INF/src/ListObject.java	2005-12-19 11:19:09 UTC (rev 307)
+@@ -0,0 +1,307 @@
++import java.util.ArrayList;
++import java.util.Date;
++import java.util.List;
++import java.util.Random;
++
++import org.apache.commons.lang.StringUtils;
++import org.apache.commons.lang.builder.ToStringBuilder;
++import org.apache.commons.lang.builder.ToStringStyle;
++
++public class ListObject
++{
++
++    /**
++     * random number generator.
++     */
++    private static Random random = new Random();
++
++    /**
++     * id.
++     */
++    private int id = -1;
++
++    /**
++     * name.
++     */
++    private String name;
++
++    /**
++     * email.
++     */
++    private String email;
++
++    /**
++     * date.
++     */
++    private Date date;
++
++    /**
++     * money.
++     */
++    private double money;
++
++    /**
++     * description.
++     */
++    private String description;
++
++    /**
++     * long description.
++     */
++    private String longDescription;
++
++    /**
++     * status.
++     */
++    private String status;
++
++    /**
++     * url.
++     */
++    private String url;
++
++    /**
++     * sub list used to test nested tables.
++     */
++    private List subList;
++
++    /**
++     * Constructor for ListObject.
++     */
++    public ListObject()
++    {
++        this.id = random.nextInt(99998) + 1;
++        this.money = (random.nextInt(999998) + 1) / 100;
++
++        String firstName = RandomSampleUtil.getRandomWord();
++        String lastName = RandomSampleUtil.getRandomWord();
++
++        this.name = StringUtils.capitalize(firstName) + ' ' + StringUtils.capitalize(lastName);
++
++        this.email = firstName + '-' + lastName + '@' + RandomSampleUtil.getRandomWord() + &quot;.com&quot;; //$NON-NLS-1$
++
++        this.date = RandomSampleUtil.getRandomDate();
++
++        this.description = RandomSampleUtil.getRandomWord() + ' ' //
++            + RandomSampleUtil.getRandomWord() + &quot;...&quot;; //$NON-NLS-1$
++
++        this.longDescription = RandomSampleUtil.getRandomSentence(10);
++
++        this.status = RandomSampleUtil.getRandomWord().toUpperCase();
++
++        // added sublist for testing of nested tables
++        this.subList = new ArrayList();
++        this.subList.add(new SubListItem());
++        this.subList.add(new SubListItem());
++        this.subList.add(new SubListItem());
++
++        this.url = &quot;<A HREF="http://www.">http://www.</A>&quot; + lastName + &quot;.org/&quot;; //$NON-NLS-1$ //$NON-NLS-2$
++    }
++
++    /**
++     * getter for id.
++     * @return int id
++     */
++    public int getId()
++    {
++        return this.id;
++    }
++
++    /**
++     * setter for id.
++     * @param value int id
++     */
++    public void setId(int value)
++    {
++        this.id = value;
++    }
++
++    /**
++     * getter for name.
++     * @return String name
++     */
++    public String getName()
++    {
++        return this.name;
++    }
++
++    /**
++     * getter for email.
++     * @return String email
++     */
++    public String getEmail()
++    {
++        return this.email;
++    }
++
++    /**
++     * setter for email.
++     * @param value String email
++     */
++    public void setEmail(String value)
++    {
++        this.email = value;
++    }
++
++    /**
++     * getter for date.
++     * @return Date
++     */
++    public Date getDate()
++    {
++        return (Date) this.date.clone();
++    }
++
++    /**
++     * getter for money.
++     * @return double money
++     */
++    public double getMoney()
++    {
++        return this.money;
++    }
++
++    /**
++     * getter for description.
++     * @return String description
++     */
++    public String getDescription()
++    {
++        return this.description;
++    }
++
++    /**
++     * getter for long description.
++     * @return String long description
++     */
++    public String getLongDescription()
++    {
++        return this.longDescription;
++    }
++
++    /**
++     * getter for status.
++     * @return String status
++     */
++    public String getStatus()
++    {
++        return this.status;
++    }
++
++    /**
++     * getter for url.
++     * @return String url
++     */
++    public String getUrl()
++    {
++        return this.url;
++    }
++
++    /**
++     * test for null values.
++     * @return null
++     */
++    public String getNullValue()
++    {
++        return null;
++    }
++
++    /**
++     * Returns a simple string representation of the object.
++     * @return String simple representation of the object
++     */
++    public String toString()
++    {
++        return &quot;ListObject(&quot; + this.id + &quot;)&quot;; //$NON-NLS-1$ //$NON-NLS-2$
++    }
++
++    /**
++     * Returns a detailed string representation of the object.
++     * @return String detailed representation of the object
++     */
++    public String toDetailedString()
++    {
++        return &quot;ID:          &quot; //$NON-NLS-1$
++            + this.id + &quot;\n&quot; //$NON-NLS-1$
++            + &quot;Name:        &quot; //$NON-NLS-1$
++            + this.name + &quot;\n&quot; //$NON-NLS-1$
++            + &quot;Email:       &quot; //$NON-NLS-1$
++            + this.email + &quot;\n&quot; //$NON-NLS-1$
++            + &quot;Date:        &quot; //$NON-NLS-1$
++            + this.date + &quot;\n&quot; //$NON-NLS-1$
++            + &quot;Money:       &quot; //$NON-NLS-1$
++            + this.money + &quot;\n&quot; //$NON-NLS-1$
++            + &quot;Description: &quot; //$NON-NLS-1$
++            + this.description + &quot;\n&quot; //$NON-NLS-1$
++            + &quot;Status:      &quot; //$NON-NLS-1$
++            + this.status + &quot;\n&quot; //$NON-NLS-1$
++            + &quot;URL:         &quot; //$NON-NLS-1$
++            + this.url + &quot;\n&quot;; //$NON-NLS-1$
++    }
++
++    /**
++     * Returns the subList.
++     * @return List
++     */
++    public List getSubList()
++    {
++        return this.subList;
++    }
++
++    /**
++     * Inner class used in testing nested tables.
++     * @author Fabrizio Giustina
++     */
++    public static class SubListItem
++    {
++
++        /**
++         * name.
++         */
++        private String itemName;
++
++        /**
++         * email.
++         */
++        private String itemEmail;
++
++        /**
++         * Constructor for SubListItem.
++         */
++        public SubListItem()
++        {
++            this.itemName = RandomSampleUtil.getRandomWord();
++            this.itemEmail = RandomSampleUtil.getRandomEmail();
++        }
++
++        /**
++         * getter for name.
++         * @return String name
++         */
++        public String getName()
++        {
++            return this.itemName;
++        }
++
++        /**
++         * getter for email.
++         * @return String
++         */
++        public String getEmail()
++        {
++            return this.itemEmail;
++        }
++
++        /**
++         * @see java.lang.Object#toString()
++         */
++        public String toString()
++        {
++            return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE) // 
++                .append(&quot;name&quot;, this.itemName) //$NON-NLS-1$
++                .append(&quot;email&quot;, this.itemEmail) //$NON-NLS-1$
++                .toString();
++        }
++    }
++
++}
+
+Added: project_src/customer/WEB-INF/src/RandomSampleUtil.java
+===================================================================
+--- project_src/customer/WEB-INF/src/RandomSampleUtil.java	2005-12-19 11:17:49 UTC (rev 306)
++++ project_src/customer/WEB-INF/src/RandomSampleUtil.java	2005-12-19 11:19:09 UTC (rev 307)
+@@ -0,0 +1,119 @@
++import java.util.Calendar;
++import java.util.Date;
++import java.util.Random;
++
++public final class RandomSampleUtil
++{
++
++    /**
++     * list of words.
++     */
++    private static String[] words = new String[]{&quot;Lorem&quot;, //$NON-NLS-1$
++        &quot;ipsum&quot;, //$NON-NLS-1$
++        &quot;dolor&quot;, //$NON-NLS-1$
++        &quot;sit&quot;, //$NON-NLS-1$
++        &quot;amet&quot;, //$NON-NLS-1$
++        &quot;consetetur&quot;, //$NON-NLS-1$
++        &quot;sadipscing&quot;, //$NON-NLS-1$
++        &quot;elitr&quot;, //$NON-NLS-1$
++        &quot;sed&quot;, //$NON-NLS-1$
++        &quot;diam&quot;, //$NON-NLS-1$
++        &quot;nonumy&quot;, //$NON-NLS-1$
++        &quot;eirmod&quot;, //$NON-NLS-1$
++        &quot;tempor&quot;, //$NON-NLS-1$
++        &quot;invidunt&quot;, //$NON-NLS-1$
++        &quot;ut&quot;, //$NON-NLS-1$
++        &quot;labore&quot;, //$NON-NLS-1$
++        &quot;et&quot;, //$NON-NLS-1$
++        &quot;dolore&quot;, //$NON-NLS-1$
++        &quot;magna&quot;, //$NON-NLS-1$
++        &quot;aliquyam&quot;, //$NON-NLS-1$
++        &quot;erat&quot;, //$NON-NLS-1$
++        &quot;sed&quot;, //$NON-NLS-1$
++        &quot;diam&quot;, //$NON-NLS-1$
++        &quot;voluptua&quot;, //$NON-NLS-1$
++        &quot;At&quot;, //$NON-NLS-1$
++        &quot;vero&quot;, //$NON-NLS-1$
++        &quot;eos&quot;, //$NON-NLS-1$
++        &quot;et&quot;, //$NON-NLS-1$
++        &quot;accusam&quot;, //$NON-NLS-1$
++        &quot;et&quot;, //$NON-NLS-1$
++        &quot;justo&quot;, //$NON-NLS-1$
++        &quot;duo&quot;, //$NON-NLS-1$
++        &quot;dolores&quot;, //$NON-NLS-1$
++        &quot;et&quot;, //$NON-NLS-1$
++        &quot;ea&quot;, //$NON-NLS-1$
++        &quot;rebum&quot;, //$NON-NLS-1$
++        &quot;Stet&quot;, //$NON-NLS-1$
++        &quot;clita&quot;, //$NON-NLS-1$
++        &quot;kasd&quot;, //$NON-NLS-1$
++        &quot;gubergren&quot;, //$NON-NLS-1$
++        &quot;no&quot;, //$NON-NLS-1$
++        &quot;sea&quot;, //$NON-NLS-1$
++        &quot;takimata&quot;, //$NON-NLS-1$
++        &quot;sanctus&quot;, //$NON-NLS-1$
++        &quot;est&quot;}; //$NON-NLS-1$
++
++    /**
++     * random number producer.
++     */
++    private static Random random = new Random();
++
++    /**
++     * utility class, don't instantiate.
++     */
++    private RandomSampleUtil()
++    {
++        super();
++    }
++
++    /**
++     * returns a random word.
++     * @return random word
++     */
++    public static String getRandomWord()
++    {
++        return words[random.nextInt(words.length)];
++    }
++
++    /**
++     * returns a random sentence.
++     * @param wordNumber number of word in the sentence
++     * @return random sentence made of &lt;code&gt;wordNumber&lt;/code&gt; words
++     */
++    public static String getRandomSentence(int wordNumber)
++    {
++        StringBuffer buffer = new StringBuffer(wordNumber * 12);
++
++        int j = 0;
++        while (j &lt; wordNumber)
++        {
++            buffer.append(getRandomWord());
++            buffer.append(&quot; &quot;); //$NON-NLS-1$
++            j++;
++        }
++        return buffer.toString();
++    }
++
++    /**
++     * returns a random email.
++     * @return random email
++     */
++    public static String getRandomEmail()
++    {
++        return getRandomWord() + &quot;@&quot; + getRandomWord() + &quot;.com&quot;; //$NON-NLS-1$ //$NON-NLS-2$
++    }
++
++    /**
++     * returns a random date.
++     * @return random date
++     */
++    public static Date getRandomDate()
++    {
++
++        Calendar calendar = Calendar.getInstance();
++        calendar.add(Calendar.DATE, 365 - random.nextInt(730));
++        return calendar.getTime();
++    }
++}
++
+
+Added: project_src/customer/WEB-INF/src/TestList.java
+===================================================================
+--- project_src/customer/WEB-INF/src/TestList.java	2005-12-19 11:17:49 UTC (rev 306)
++++ project_src/customer/WEB-INF/src/TestList.java	2005-12-19 11:19:09 UTC (rev 307)
+@@ -0,0 +1,84 @@
++import java.util.ArrayList;
++import java.util.Random;
++
++public class TestList extends ArrayList{
++
++    /**
++     * D1597A17A6.
++     */
++    private static final long serialVersionUID = 899149338534L;
++
++    /**
++     * Creats a TestList that is filled with 60 ListObjects suitable for testing.
++     */
++    public TestList()
++    {
++        super();
++
++        for (int j = 0; j &lt; 60; j++)
++        {
++            add(new ListObject());
++        }
++    }
++
++    /**
++     * Creates a TestList that is filled with [size] ListObjects suitable for testing.
++     * @param size int size of the list
++     * @param duplicates boolean put duplicates in the list
++     */
++    public TestList(int size, boolean duplicates)
++    {
++        if (duplicates)
++        {
++            // generate a random number between 1 and 3 and duplicate that many number of times.
++            for (int j = 0; j &lt; size; j++)
++            {
++
++                ListObject object1 = new ListObject();
++                ListObject object2 = new ListObject();
++                ListObject object3 = new ListObject();
++
++                int random = new Random().nextInt(3);
++                for (int k = 0; k &lt;= random; k++)
++                {
++                    add(object1);
++                }
++
++                object1.setId(object2.getId());
++
++                random = new Random().nextInt(3);
++                for (int k = 0; k &lt;= random; k++)
++                {
++                    add(object1);
++                    add(object2);
++                }
++
++                object1.setEmail(object3.getEmail());
++
++                random = new java.util.Random().nextInt(3);
++                for (int k = 0; k &lt;= random; k++)
++                {
++                    add(object1);
++                }
++            }
++        }
++        else
++        {
++            for (int j = 0; j &lt; size; j++)
++            {
++                add(new ListObject());
++            }
++        }
++    }
++
++    /**
++     * Returns a ListObject using get(index) from the Array.
++     * @param index int index of the List object into the array
++     * @return ListObject
++     */
++    public ListObject getItem(int index)
++    {
++        return (ListObject) super.get(index);
++    }
++
++}
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000308.html">[Provirent-svn-commit] r306 - in project_src/customer/WEB-INF/src/de/hsharz/provirent/customer: action form
+</A></li>
+	<LI>Next message: <A HREF="000311.html">[Provirent-svn-commit] r308 - project_src/customer/WEB-INF
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#309">[ date ]</a>
+              <a href="thread.html#309">[ thread ]</a>
+              <a href="subject.html#309">[ subject ]</a>
+              <a href="author.html#309">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

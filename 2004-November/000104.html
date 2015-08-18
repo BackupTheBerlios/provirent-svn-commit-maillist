@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r103 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r103%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200411091821.iA9ILfUu014520%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000103.html">
+   <LINK REL="Next"  HREF="000105.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r103 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r103%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200411091821.iA9ILfUu014520%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r103 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Tue Nov  9 19:21:41 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000103.html">[Provirent-svn-commit] r102 - in project_src: clienttest/src provirent_hibernate/src/de/hsharz/provirent/managment/gui provirent_hibernate/src/de/hsharz/provirent/managment/gui/language provirent_hibernate/src/de/hsharz/provirent/persistence
+</A></li>
+        <LI>Next message: <A HREF="000105.html">[Provirent-svn-commit] r104 - docu
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#104">[ date ]</a>
+              <a href="thread.html#104">[ thread ]</a>
+              <a href="subject.html#104">[ subject ]</a>
+              <a href="author.html#104">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-09 19:21:40 +0100 (Tue, 09 Nov 2004)
+New Revision: 103
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagementGui.java
+Log:
+addDisposeListener entfernt
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagementGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagementGui.java	2004-11-09 17:45:06 UTC (rev 102)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagementGui.java	2004-11-09 18:21:40 UTC (rev 103)
+@@ -524,11 +524,6 @@
+         tabItemFormat = new CTabItem(cTabFolderMain, SWT.NONE);
+         tabItemFormat.setText(l.getString(&quot;tab.format.title&quot;));
+         
+-        tabItemFormat.addDisposeListener(new DisposeListener() {
+-            public void widgetDisposed(DisposeEvent evt) {
+-                viewVideoFormatMenuItem.setSelection(false);
+-           }
+-        });
+         {
+             compositeFormate = new CompositeFormate(
+                 cTabFolderMain,
+@@ -543,12 +538,7 @@
+     private void initDirectorTab() {
+         tabItemDirector = new CTabItem(cTabFolderMain, SWT.NONE);
+         tabItemDirector.setText(l.getString(&quot;tab.director.title&quot;));
+-        
+-        tabItemDirector.addDisposeListener(new DisposeListener() {
+-            public void widgetDisposed(DisposeEvent evt) {
+-                viewDirectorMenuItem.setSelection(false);
+-           }
+-        });        
++      
+         {
+             compositeDirector = new CompositeDirectors(
+                 cTabFolderMain,
+@@ -562,12 +552,7 @@
+     private void initActorTab() {
+         tabItemActor = new CTabItem(cTabFolderMain, SWT.NONE);
+         tabItemActor.setText(l.getString(&quot;tab.actor.title&quot;));
+-        
+-        tabItemActor.addDisposeListener(new DisposeListener() {
+-            public void widgetDisposed(DisposeEvent evt) {
+-                viewActorMenuItem.setSelection(false);
+-           }
+-        });      
++  
+         {
+             compositeActor = new CompositeActors(
+                 cTabFolderMain,
+@@ -582,11 +567,7 @@
+         tabItemGenre = new CTabItem(cTabFolderMain, SWT.NONE);
+         tabItemGenre.setText(l.getString(&quot;tab.genre.title&quot;));
+         
+-        tabItemGenre.addDisposeListener(new DisposeListener() {
+-            public void widgetDisposed(DisposeEvent evt) {
+-                viewGenreMenuItem.setSelection(false);
+-           }
+-        });      
++  
+         {
+             compositeGenre = new CompositeGenre(
+                 cTabFolderMain,
+@@ -600,11 +581,7 @@
+     private void initLanguageTab() {
+         tabItemLanguage = new CTabItem(cTabFolderMain, SWT.NONE);
+         tabItemLanguage.setText(l.getString(&quot;tab.language.title&quot;));
+-        tabItemLanguage.addDisposeListener(new DisposeListener() {
+-            public void widgetDisposed(DisposeEvent evt) {
+-                viewLanguageMenuItem.setSelection(false);
+-           }
+-        });      
++     
+         {
+             compositeLanguage = new CompositeLanguage(
+                 cTabFolderMain,
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000103.html">[Provirent-svn-commit] r102 - in project_src: clienttest/src provirent_hibernate/src/de/hsharz/provirent/managment/gui provirent_hibernate/src/de/hsharz/provirent/managment/gui/language provirent_hibernate/src/de/hsharz/provirent/persistence
+</A></li>
+	<LI>Next message: <A HREF="000105.html">[Provirent-svn-commit] r104 - docu
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#104">[ date ]</a>
+              <a href="thread.html#104">[ thread ]</a>
+              <a href="subject.html#104">[ subject ]</a>
+              <a href="author.html#104">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r301 - docu/latex
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r301%20-%20docu/latex&In-Reply-To=%3C200512172133.jBHLXFCE032549%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000302.html">
+   <LINK REL="Next"  HREF="000304.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r301 - docu/latex</H1>
+    <B>rgriesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r301%20-%20docu/latex&In-Reply-To=%3C200512172133.jBHLXFCE032549%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r301 - docu/latex">rgriesch at berlios.de
+       </A><BR>
+    <I>Sat Dec 17 22:33:15 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000302.html">[Provirent-svn-commit] r300 - docu/latex
+</A></li>
+        <LI>Next message: <A HREF="000304.html">[Provirent-svn-commit] r302 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#303">[ date ]</a>
+              <a href="thread.html#303">[ thread ]</a>
+              <a href="subject.html#303">[ subject ]</a>
+              <a href="author.html#303">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2005-12-17 22:33:14 +0100 (Sat, 17 Dec 2005)
+New Revision: 301
+
+Modified:
+   docu/latex/3-4-GUIJava.tex
+Log:
+SWT - ge?\195?\164ndert
+
+Modified: docu/latex/3-4-GUIJava.tex
+===================================================================
+--- docu/latex/3-4-GUIJava.tex	2005-12-17 19:00:09 UTC (rev 300)
++++ docu/latex/3-4-GUIJava.tex	2005-12-17 21:33:14 UTC (rev 301)
+@@ -59,7 +59,7 @@
+ \subsection{Standard Widget Toolkit und JFace}\label{sec:StandardWidgetToolkitundJFace}
+ SWT ist ebenfalls eine Grafikbibliothek f&#252;r Java und steht f&#252;r Standard Widget Toolkit. Im Gegensatz zu den anderen genannten Grafikbibliotheken ist SWT von IBM und nicht von SUN entwickelt wurden. SWT wurde im Jahr 2001 f&#252;r die Entwicklungsumgebung Eclipse entwickelt. Im Gegensatz zu Swing verwendet SWT die nativen grafischen Elemente des Betriebssystems und schlie&#223;t sich damit AWT an.\\
+ Des Weiteren ist SWT im Gegensatz zu AWT und Swing nicht als plattformunabh&#228;ngig zu betrachten. Dies resultiert daraus, das  SWT die entsprechende Bibliothek f&#252;r den betriebssystemabh&#228;ngigen Code f&#252;r die GUI-Elemente zur Laufzeit ben&#246;tigt. Zus&#228;tzlich werden die  Java-Klassen der SWT-Bibliothek ben&#246;tigt, die auf die betriebsystemabh&#228;nige Bibliothek zugreifen.\\
+-Leider leidet SWT aufgrund des eben beschriebenen Sachverhalts auf einigen nicht Windows-Plattformen an Effizienzproblemen, da bestimmte Funktionalit&#228;ten eventuell nicht verf&#252;gbar sind und dadurch emuliert werden m&#252;ssen.\\
++Leider leidet SWT aufgrund des eben beschriebenen Sachverhalts auf einigen nicht Windows-Plattformen an Effizienzproblemen, da bestimmte Funktionalit&#228;ten eventuell nicht verf&#252;gbar sind und dadurch emuliert werden m&#252;ssen. Aufgrund des nicht voherhersagbaren Zeitpunkts an dem nicht mehr verwendete Objekte durch den Garbage Collector freigegeben werden, hat IBM implementiert das alle erstellten Objekte selbst freigegeben werden m&#252;ssen. Durch diese Vorgehensweise wird sicher gestellt, das der komplette Speicher den ein SWT-Objekt belegt wieder freigegeben wird. Dies bedeutet f&#252;r einen Programmierer zus&#228;tzlichen Aufwand, da der Programmierer daf&#252;r verantwortlich ist erzuegte Objekte wieder freizugeben.\\
+ JFace ist ein UI-Toolkit und setzt aus den gelieferten Basiskomponenten von SWT komplexere Widgets zusammen. JFace kann daher &#252;berall eingesetzt werden wo auch SWT zur Verf&#252;gung steht.\citep[SWT]{Wikipedia2005} \citep{SWTBasic}
+ 		
+ Krueger2003
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000302.html">[Provirent-svn-commit] r300 - docu/latex
+</A></li>
+	<LI>Next message: <A HREF="000304.html">[Provirent-svn-commit] r302 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#303">[ date ]</a>
+              <a href="thread.html#303">[ thread ]</a>
+              <a href="subject.html#303">[ subject ]</a>
+              <a href="author.html#303">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

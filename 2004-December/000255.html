@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r254 - in project_src/website/web: . templates
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r254%20-%20in%20project_src/website/web%3A%20.%20templates&In-Reply-To=%3C200412292200.iBTM0fP6027436%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000254.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r254 - in project_src/website/web: . templates</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r254%20-%20in%20project_src/website/web%3A%20.%20templates&In-Reply-To=%3C200412292200.iBTM0fP6027436%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r254 - in project_src/website/web: . templates">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Wed Dec 29 23:00:41 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000254.html">[Provirent-svn-commit] r253 - in project_src/website: . web web/WEB-INF web/WEB-INF/classes web/WEB-INF/classes/de web/WEB-INF/classes/de/provirent web/WEB-INF/classes/de/provirent/web web/WEB-INF/classes/de/provirent/web/Action web/WEB-INF/classes/de/provirent/web/Form web/WEB-INF/classes/de/provirent/web/objects web/WEB-INF/lib
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#255">[ date ]</a>
+              <a href="thread.html#255">[ thread ]</a>
+              <a href="subject.html#255">[ subject ]</a>
+              <a href="author.html#255">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-12-29 23:00:38 +0100 (Wed, 29 Dec 2004)
+New Revision: 254
+
+Added:
+   project_src/website/web/templates/
+   project_src/website/web/templates/main.jsp
+Log:
+
+
+Added: project_src/website/web/templates/main.jsp
+===================================================================
+--- project_src/website/web/templates/main.jsp	2004-12-29 21:58:46 UTC (rev 253)
++++ project_src/website/web/templates/main.jsp	2004-12-29 22:00:38 UTC (rev 254)
+@@ -0,0 +1,242 @@
++&lt;%@ taglib uri=&quot;/taglib/struts-bean&quot; prefix=&quot;bean&quot; %&gt;
++&lt;%@ taglib uri=&quot;/taglib/struts-html&quot; prefix=&quot;html&quot; %&gt;
++&lt;%@ taglib uri=&quot;/taglib/struts-logic&quot; prefix=&quot;logic&quot; %&gt;
++&lt;%@ taglib uri=&quot;/taglib/struts-tiles&quot; prefix=&quot;tiles&quot; %&gt;
++&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;<A HREF="http://www.w3.org/TR/html4/loose.dtd">http://www.w3.org/TR/html4/loose.dtd</A>&quot;&gt;
++&lt;html&gt;
++&lt;head&gt;
++  &lt;title&gt;&lt;tiles:getAsString name=&quot;title&quot;/&gt;&lt;/title&gt;
++  &lt;html:base/&gt;
++  &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot;&gt;
++  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;&lt;html:rewrite page='/style.css'/&gt;&quot; title=&quot;externe Styles&quot;&gt;
++&lt;/head&gt;
++
++&lt;body&gt;
++&lt;table align=&quot;center&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
++  &lt;tbody&gt;
++    &lt;tr&gt;
++      &lt;td width=&quot;10%&quot;&gt;&nbsp;&lt;/td&gt;
++      &lt;td&gt;&nbsp;&lt;/td&gt;
++      &lt;td width=&quot;10%&quot;&gt;&nbsp;&lt;/td&gt;
++    &lt;/tr&gt;
++    &lt;tr&gt;
++      &lt;td&gt;&nbsp;&lt;/td&gt;
++      &lt;td&gt;
++      &lt;table align=&quot;center&quot; bgcolor=&quot;#c2d9c1&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
++        &lt;tbody&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;7&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td style=&quot;background-image: url(images/border_r.gif);&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td colspan=&quot;5&quot; height=&quot;70&quot;&gt;Logo&lt;/td&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td style=&quot;background-image: url(images/border_r.gif);&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; width=&quot;3&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;7&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td style=&quot;background-image: url(images/border_r.gif);&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;html:img page=&quot;/images/1pxtrans.gif&quot; alt=&quot;&quot;/&gt;&lt;/td&gt;
++            &lt;td colspan=&quot;5&quot; height=&quot;20&quot; valign=&quot;middle&quot;&gt;
++            &lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
++              &lt;tbody&gt;
++                &lt;tr&gt;
++                  &lt;td width=&quot;53%&quot;&gt;
++                    &lt;!--head start--&gt;
++                    &lt;div align=&quot;left&quot;&gt;
++
++                      &lt;logic:present name=&quot;user&quot;&gt;
++                        &lt;span class=&quot;pref&quot;&gt;
++                          &lt;html:link forward=&quot;pref&quot;&gt;Meine Daten&lt;/html:link&gt;&nbsp;
++                          &lt;html:link forward=&quot;basket&quot;&gt;Warenkorb&lt;/html:link&gt;&nbsp;
++                          &lt;html:link forward=&quot;logout&quot;&gt;Logout&lt;/html:link&gt;
++                        &lt;/span&gt;
++
++                      &lt;/logic:present&gt;
++                      &lt;logic:notPresent scope=&quot;session&quot; name=&quot;user&quot;&gt;
++                        &lt;html:form action=&quot;/LogonSubmit&quot; focus=&quot;username&quot; method=&quot;post&quot;&gt;
++                          &lt;span class=&quot;login_label&quot;&gt;Benutzername:&lt;/span&gt;
++                          &lt;html:text property=&quot;username&quot;size=&quot;13&quot; styleClass=&quot;login&quot;/&gt;
++                          &lt;span class=&quot;login_label&quot;&gt;Password:&lt;/span&gt;
++                          &lt;html:password property=&quot;password&quot; size=&quot;13&quot; styleClass=&quot;login&quot; redisplay=&quot;false&quot;/&gt;
++                          &lt;html:submit styleClass=&quot;submit_search&quot; value=&quot;login&quot;/&gt;
++                        &lt;/html:form&gt;
++                      &lt;/logic:notPresent&gt;
++
++                    &lt;/div&gt;
++                  &lt;/td&gt;
++                  &lt;td width=&quot;50%&quot;&gt;
++                    &lt;div class=&quot;head_menue&quot; align=&quot;right&quot;&gt;
++                     	&lt;a href=&quot;index.jsp&quot; class=&quot;head_menue&quot;&gt;&Uuml;bersicht&lt;/a&gt;&nbsp;|&nbsp;&lt;a href=&quot;index.jsp&quot; class=&quot;head_menue&quot;&gt;Impressum&lt;/a&gt;&nbsp;|&nbsp;&lt;a href=&quot;index.jsp&quot; class=&quot;head_menue&quot;&gt;Hilfe&lt;/a&gt;&nbsp;
++                    &lt;/div&gt;
++
++                    &lt;!--head end--&gt;
++                  &lt;/td&gt;
++ &lt;/tr&gt;
++              &lt;/tbody&gt;
++            &lt;/table&gt;
++            &lt;/td&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td style=&quot;background-image: url(images/border_r.gif);&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; width=&quot;3&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;7&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td style=&quot;background-image: url(images/border_r.gif);&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;7&quot; bgcolor=&quot;#f9efd2&quot; height=&quot;2&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td bgcolor=&quot;#f9efd2&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;3&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td colspan=&quot;1&quot; bgcolor=&quot;#f9efd2&quot; width=&quot;2&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td colspan=&quot;3&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td style=&quot;background-image: url(images/border_r.gif);&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td valign=&quot;top&quot;&gt;
++&lt;!--menue start--&gt;
++            &lt;table class=&quot;menue_tbl&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
++              &lt;thead class=&quot;menue_tbl&quot;&gt; &lt;tr&gt;
++                &lt;th&gt;Aktuelles&lt;/th&gt;
++              &lt;/tr&gt;
++              &lt;/thead&gt; &lt;tbody class=&quot;menue_tbl&quot;&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;html:link forward=&quot;search/new&quot;&gt;Neuheiten&lt;/html:link&gt;&lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;html:link forward=&quot;search/top10month&quot;&gt;Top 10 Monat&lt;/html:link&gt;&lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;html:link forward=&quot;search/top100year&quot;&gt;Top 100 Jahr&lt;/html:link&gt;&lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;html:link forward=&quot;search/preview&quot;&gt;Vorschau&lt;/html:link&gt;&lt;/td&gt;
++                &lt;/tr&gt;
++              &lt;/tbody&gt;
++            &lt;/table&gt;
++            &lt;br&gt;
++            &lt;table class=&quot;menue_suche&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
++              &lt;thead class=&quot;menue_tbl&quot;&gt; &lt;tr&gt;
++                &lt;th colspan=&quot;2&quot;&gt;Suche&lt;/th&gt;
++              &lt;/tr&gt;
++            &lt;/thead&gt; &lt;tbody&gt;
++              &lt;tr&gt;
++                &lt;td colspan=&quot;2&quot;&gt;
++
++                  &lt;html:form action=&quot;/SearchSubmit&quot; focus=&quot;username&quot; method=&quot;post&quot;&gt;
++                    &lt;html:text property=&quot;searchfor&quot;size=&quot;13&quot; styleClass=&quot;login&quot;/&gt;
++                  &lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td&gt;
++
++                    &lt;html:select property=&quot;selectName&quot; size=&quot;1&quot; multiple=&quot;false&quot;&gt;
++                      &lt;html:option value=&quot;0&quot;&gt;all&lt;/html:option&gt;
++                      &lt;html:option value=&quot;1&quot;&gt;Movie&lt;/html:option&gt;
++                      &lt;html:option value=&quot;2&quot;&gt;Artist&lt;/html:option&gt;
++                      &lt;html:option value=&quot;3&quot;&gt;Genre&lt;/html:option&gt;
++                    &lt;/html:select&gt;
++
++                  &lt;/td&gt;
++                  &lt;td&gt;
++                    &lt;html:submit styleClass=&quot;submit_search&quot; value=&quot;Suche&quot;/&gt;
++                  &lt;/html:form&gt;
++
++
++
++
++                  &lt;/td&gt;
++                &lt;/tr&gt;
++              &lt;/tbody&gt;
++            &lt;/table&gt;
++            &lt;br&gt;
++            &lt;table class=&quot;menue_tbl&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
++              &lt;thead class=&quot;menue_tbl&quot;&gt; &lt;tr&gt;
++                &lt;th&gt;Genre&lt;/th&gt;
++              &lt;/tr&gt;
++              &lt;/thead&gt; &lt;tbody  class=&quot;menue_tbl&quot;&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;menue_tbl&quot;&gt; Action &lt;/a&gt;&lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;menue_tbl&quot;&gt; Drama &lt;/a&gt;&lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;menue_tbl&quot;&gt; Comedy &lt;/a&gt;&lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td class=&quot;menue_tbl&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;menue_tbl&quot;&gt; Thriller &lt;/a&gt;&lt;/td&gt;
++                &lt;/tr&gt;
++              &lt;/tbody&gt;
++            &lt;/table&gt;
++
++
++&lt;!--menue end--&gt; &lt;/td&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td bgcolor=&quot;#f9efd2&quot; width=&quot;3&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td valign=&quot;top&quot; width=&quot;85%&quot; style=&quot;padding-top:20px; padding-right:1px; padding-left: 1px;&quot;&gt;
++&lt;!--main start--&gt;
++&lt;html:errors/&gt;
++&nbsp;&lt;br /&gt;
++&lt;tiles:insert attribute='contentbody' /&gt;
++
++&lt;!--main end--&gt; &lt;/td&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td style=&quot;background-image: url(images/border_r.gif);&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; width=&quot;3&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;3&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td colspan=&quot;1&quot; bgcolor=&quot;#f9efd2&quot; width=&quot;2&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td colspan=&quot;3&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td style=&quot;background-image: url(images/border_r.gif);&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;7&quot; bgcolor=&quot;#f9efd2&quot; height=&quot;2&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td bgcolor=&quot;#f9efd2&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;1&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;7&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td style=&quot;background-image: url(images/border_r.gif);&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td colspan=&quot;5&quot;&gt;
++            &lt;div class=&quot;copyright&quot;&gt;&copy;
++Remo Griesch,
++Stefan Forstner, Philipp Schneider&lt;br&gt;
++            &lt;/div&gt;
++            &lt;/td&gt;
++            &lt;td bgcolor=&quot;#000000&quot; width=&quot;1&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td style=&quot;background-image: url(images/border_r.gif);&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; width=&quot;3&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;7&quot; bgcolor=&quot;#000000&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td style=&quot;background-image: url(images/border_r.gif);&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++          &lt;tr&gt;
++            &lt;td colspan=&quot;7&quot; style=&quot;background-image: url(images/border.gif);&quot;&gt;&lt;img src=&quot;border_bl.gif&quot; height=&quot;7&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++            &lt;td style=&quot;background-image: url(images/border_br.gif);&quot;&gt;&lt;img src=&quot;images/1pxtrans.gif&quot; height=&quot;1&quot; width=&quot;3&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
++          &lt;/tr&gt;
++        &lt;/tbody&gt;
++      &lt;/table&gt;
++      &lt;/td&gt;
++      &lt;td&gt;&nbsp;&lt;/td&gt;
++    &lt;/tr&gt;
++    &lt;tr&gt;
++      &lt;td&gt;&nbsp;&lt;/td&gt;
++      &lt;td&gt;&nbsp;&lt;/td&gt;
++      &lt;td&gt;&nbsp;&lt;/td&gt;
++    &lt;/tr&gt;
++  &lt;/tbody&gt;
++&lt;/table&gt;
++
++
++
++&lt;/body&gt;
++&lt;/html&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000254.html">[Provirent-svn-commit] r253 - in project_src/website: . web web/WEB-INF web/WEB-INF/classes web/WEB-INF/classes/de web/WEB-INF/classes/de/provirent web/WEB-INF/classes/de/provirent/web web/WEB-INF/classes/de/provirent/web/Action web/WEB-INF/classes/de/provirent/web/Form web/WEB-INF/classes/de/provirent/web/objects web/WEB-INF/lib
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#255">[ date ]</a>
+              <a href="thread.html#255">[ thread ]</a>
+              <a href="subject.html#255">[ subject ]</a>
+              <a href="author.html#255">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,346 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r205 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r205%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200412051844.iB5Ii5mm031396%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000205.html">
+   <LINK REL="Next"  HREF="000207.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r205 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r205%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200412051844.iB5Ii5mm031396%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r205 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Sun Dec  5 19:44:05 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000205.html">[Provirent-svn-commit] r204 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language objects
+</A></li>
+        <LI>Next message: <A HREF="000207.html">[Provirent-svn-commit] r206 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#206">[ date ]</a>
+              <a href="thread.html#206">[ thread ]</a>
+              <a href="subject.html#206">[ subject ]</a>
+              <a href="author.html#206">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-12-05 19:44:04 +0100 (Sun, 05 Dec 2004)
+New Revision: 205
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/SWTCalendarDialog.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/customer.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/payment.properties
+Log:
+- Titel bei der Datumsauswahl hinzugef?\195?\188gt
+- Validate f?\195?\188r Movie hinzugef?\195?\188gt
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java	2004-12-05 15:23:02 UTC (rev 204)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java	2004-12-05 18:44:04 UTC (rev 205)
+@@ -527,7 +527,8 @@
+                             final SWTCalendarDialog cal = new SWTCalendarDialog(
+                                     getDisplay(),
+                                     l
+-                                            .getString(&quot;Customer.groupdetail.birthdaybuttonfinish&quot;));
++                                            .getString(&quot;Customer.groupdetail.birthdaybuttonfinish&quot;),
++                                            l.getString(&quot;Customer.groupdetail.birthday.dialog.title&quot;));
+ 
+                             cal
+                                     .addDateChangedListener(new SWTCalendarListener() {
+@@ -764,7 +765,8 @@
+                             final SWTCalendarDialog cal = new SWTCalendarDialog(
+                                     getDisplay(),
+                                     l
+-                                            .getString(&quot;Customer.groupdetail.registrationdatebuttonfinish&quot;));
++                                            .getString(&quot;Customer.groupdetail.registrationdatebuttonfinish&quot;),
++                                            l.getString(&quot;Customer.groupdetail.registrationdate.dialog.title&quot;));
+ 
+                             cal
+                                     .addDateChangedListener(new SWTCalendarListener() {
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-05 15:23:02 UTC (rev 204)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-05 18:44:04 UTC (rev 205)
+@@ -6,6 +6,7 @@
+ import java.util.ArrayList;
+ import java.util.Calendar;
+ import java.util.Date;
++import java.util.List;
+ import java.util.Locale;
+ import java.util.PropertyResourceBundle;
+ import java.util.ResourceBundle;
+@@ -532,7 +533,8 @@
+                     //open responsible Dialog and insert text
+                     final SWTCalendarDialog cal = new SWTCalendarDialog(
+                             getDisplay(),
+-                            l.getString(&quot;movies.groupdetail.datebuttonfinish&quot;));
++                            l.getString(&quot;movies.groupdetail.datebuttonfinish&quot;),
++                            l.getString(&quot;movies.groupdetail.datedialogtitle&quot;));
+ 
+                     cal.addDateChangedListener(new SWTCalendarListener() {
+                         public void dateChanged(SWTCalendarEvent calendarEvent) {
+@@ -1272,26 +1274,31 @@
+                                         + evt);
+                     }
+ 
+-                    if (textMoviesTitle.getText().trim().equalsIgnoreCase(&quot;&quot;)
+-                            || textMoviesDescription.getText().trim()
+-                                    .equalsIgnoreCase(&quot;&quot;)
+-                            || textMoviesDate.getText().trim()
+-                                    .equalsIgnoreCase(&quot;&quot;)
+-                            || localmovie.getDirector().size() == 0
+-                            || localmovie.getActors().size() == 0
+-                            || localmovie.getGenres().size() == 0
+-                            || localmovie.getImages().size() == 0) {
++                    
++                    
++                    List errors = validateInput();
+ 
++                    if (errors.size() &gt; 0) {
++                        StringBuffer buf = new StringBuffer();
++
++                        for (int i = 0; i &lt; errors.size(); i++) {
++                            buf.append(&quot;- &quot;).append(errors.get(i)).append(&quot;\n&quot;);
++                        }
++
+                         showMsg(
+                                 l
+-                                        .getString(&quot;movies.groupdetail.savebutton.warn.noname.msg&quot;),
++                                        .getString(&quot;movies.groupdetail.savebutton.warn.noitems.msg&quot;)
++                                        + new String(buf),
+                                 l
+-                                        .getString(&quot;movies.groupdetail.savebutton.warn.noname.title&quot;),
++                                        .getString(&quot;movies.groupdetail.savebutton.warn.noitems.title&quot;),
+                                 SWT.ICON_WARNING | SWT.YES);
+-
+                         return;
+-                    }
+ 
++                    }                    
++                    
++                    
++
++
+                     //testen welcher mode
+                     localmovie.setTitle(textMoviesTitle.getText());
+                     localmovie.setDescription(textMoviesDescription.getText());
+@@ -1560,4 +1567,43 @@
+         mode_movie = ManagementGui.MODE_VIEW;
+ 
+     }
++    
++    
++    private List validateInput(){
++        List errors = new ArrayList();
++        
++
++        if( textMoviesTitle.getText().trim().equalsIgnoreCase(&quot;&quot;) ){
++            errors.add(l.getString(&quot;movies.groupdetail.savebutton.warn.notitle&quot;));
++        }
++
++        if( textMoviesDescription.getText().trim().equalsIgnoreCase(&quot;&quot;) ){
++            errors.add(l.getString(&quot;movies.groupdetail.savebutton.warn.nodescription&quot;));
++        }
++        
++        if( textMoviesDate.getText().trim().equalsIgnoreCase(&quot;&quot;) ){
++            errors.add( l.getString(&quot;movies.groupdetail.savebutton.warn.noreleasedate&quot;) );
++        }
++        
++        if( localmovie.getDirector().size() == 0 ){
++            errors.add( l.getString(&quot;movies.groupdetail.savebutton.warn.nodirector&quot;) );
++        }
++        
++        if( localmovie.getActors().size() == 0 ){
++            errors.add( l.getString(&quot;movies.groupdetail.savebutton.warn.noactor&quot;) );
++        }
++        
++        if( localmovie.getGenres().size() == 0 ){
++            errors.add( l.getString(&quot;movies.groupdetail.savebutton.warn.nogenres&quot;) );
++        }
++        
++        if( localmovie.getImages().size() == 0 ){
++            errors.add( l.getString(&quot;movies.groupdetail.savebutton.warn.noimages&quot;) );
++        }
++
++        
++        
++        return errors;
++        
++    }
+ }
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java	2004-12-05 15:23:02 UTC (rev 204)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java	2004-12-05 18:44:04 UTC (rev 205)
+@@ -440,7 +440,8 @@
+                     final SWTCalendarDialog cal = new SWTCalendarDialog(
+                             getDisplay(),
+                             l
+-                                    .getString(&quot;Payment.groupdetail.startdatebuttonfinish&quot;));
++                                    .getString(&quot;Payment.groupdetail.startdatebuttonfinish&quot;),
++                                    l.getString(&quot;Payment.groupdetail.startdatedialogtitle&quot;));
+ 
+                     cal.addDateChangedListener(new SWTCalendarListener() {
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java	2004-12-05 15:23:02 UTC (rev 204)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogMovie.java	2004-12-05 18:44:04 UTC (rev 205)
+@@ -125,6 +125,7 @@
+             int type) {
+         super(parent, style);
+         shell = parent;
++
+         this.movie = movie;
+         initLanguage(locale);
+         this.type = type;
+@@ -134,7 +135,6 @@
+             int type, int x, int y, int width, int height) {
+         super(parent, style);
+         shell = parent;
+-        shell.setText(&quot;Das soll ein Titel sein&quot;);
+         this.movie = movie;
+         initLanguage(locale);
+         this.type = type;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/SWTCalendarDialog.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/SWTCalendarDialog.java	2004-12-05 15:23:02 UTC (rev 204)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/SWTCalendarDialog.java	2004-12-05 18:44:04 UTC (rev 205)
+@@ -5,17 +5,17 @@
+ /*** This code was generated using CloudGarden's Jigloo* SWT/Swing GUI Builder, which is free for non-commercial* use. If Jigloo is being used commercially (ie, by a corporation,* company or business for any purpose whatever) then you* should purchase a license for each developer using Jigloo.* Please visit www.cloudgarden.com for details.* Use of Jigloo implies acceptance of these licensing terms.* ************************************** A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED* for this machine, so Jigloo or this code cannot be used legally* for any corporate or commercial purpose.* **************************************/public class SWTCalendarDialog {
+     private Shell shell;
+     private SWTCalendar swtcal;
+-    private Display display;    
++    private Display display;    private String title =&quot;&quot;;
+ 
+-    public SWTCalendarDialog(Display display, String finishbut) {
+-        this.display = display;
++    public SWTCalendarDialog(final Display display, final String finishbut, final String dialogtitle) {
++        this.display = display;        title = dialogtitle;
+         shell = new Shell(display, SWT.APPLICATION_MODAL | SWT.CLOSE);        GridLayout grid = new GridLayout();        grid.numColumns = 1;        shell.setLayout(grid);
+         swtcal = new SWTCalendar(shell);        Button finish = new Button(shell, SWT.PUSH                | SWT.CENTER);        finish.setText(finishbut);        GridData text1LData3 = new GridData();
+         text1LData3.horizontalAlignment = GridData.FILL;        text1LData3.horizontalSpan = 1;        text1LData3.grabExcessHorizontalSpace = true;        finish.setLayoutData(text1LData3);                finish.addSelectionListener(new SelectionAdapter() {            public void widgetSelected(SelectionEvent evt) {                shell.close();                }});                        }
+ 
+     public void open() {
+         shell.pack();
+-        shell.open();        shell.setText(&quot;Calender Titel&quot;);
++        shell.open();        shell.setText(title);
+         while (!shell.isDisposed()) {
+             if (!display.readAndDispatch()) display.sleep();
+         }
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/customer.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/customer.properties	2004-12-05 15:23:02 UTC (rev 204)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/customer.properties	2004-12-05 18:44:04 UTC (rev 205)
+@@ -36,8 +36,10 @@
+ Customer.groupdetail.regdatelabel=Registrierdatum
+ Customer.groupdetail.registrationdatebuttonchange=&#196;ndern
+ Customer.groupdetail.registrationdatebuttonfinish=Fertig
++Customer.groupdetail.registrationdate.dialog.title=Registrierungstag w&#228;hlen
+ Customer.groupdetail.birthdaybuttonchange=&#196;ndern
+ Customer.groupdetail.birthdaybuttonfinish=Fertig
++Customer.groupdetail.birthday.dialog.title=Geburtstag w&#228;hlen
+ 
+ Customer.groupdetail.savebutton.warn.noitems.title=Datensatz speichern
+ Customer.groupdetail.savebutton.warn.noitems.msg=Der Datensatz kann nicht gespeichert werden, da folgende Werte fehlen:\n
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-12-05 15:23:02 UTC (rev 204)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-12-05 18:44:04 UTC (rev 205)
+@@ -23,8 +23,9 @@
+ movies.groupdetail.labelgenres =Liste der Genre
+ movies.groupdetail.labelimages =Liste der Bilder
+ movies.groupdetail.labeldescription =Beschreibung
+-movies.groupdetail.textdate = (Beispiel: 01.01.2001)
+-movies.groupdetail.datebuttonfinish = Fertig
++movies.groupdetail.textdate =(Beispiel: 01.01.2001)
++movies.groupdetail.datebuttonfinish=Fertig
++movies.groupdetail.datedialogtitle=Bitte w&#228;hlen Sie ein Datum aus
+ 
+ button.new =Neu
+ button.edit =Bearbeiten
+@@ -36,8 +37,18 @@
+ movies.button.deleteitem =L&#246;schen
+ movies.button.changedate =&#196;ndern
+ 
+-movies.groupdetail.savebutton.warn.noname.title =Datensatz speichern
+-movies.groupdetail.savebutton.warn.noname.msg =Der Datensatz kann nicht gespeichert werden. \n Bitte &#252;berpr&#252;fen Sie auf Korrektheit und Vollst&#228;ndigkeit
++movies.groupdetail.savebutton.warn.noitem.title =Datensatz speichern
++movies.groupdetail.savebutton.warn.noitems.msg=Der Datensatz kann nicht gespeichert werden, da folgende Werte fehlen:\n
++movies.groupdetail.savebutton.warn.notitle=Titel
++movies.groupdetail.savebutton.warn.nodescription=Beschreibung
++movies.groupdetail.savebutton.warn.noreleasedate=ErscheinungDatum
++movies.groupdetail.savebutton.warn.noimages=Bilder sind leer
++movies.groupdetail.savebutton.warn.nogenres=Genre
++movies.groupdetail.savebutton.warn.noactor=Schauspieler
++movies.groupdetail.savebutton.warn.nodirector=Regie
++
++
++
+ movies.groupdetail.savebutton.newok =Speichern des neuen Films erfolgreich.
+ movies.groupdetail.savebutton.editok =&#196;ndern des Films erfolgreich.
+ movies.groupdetail.savebutton.errorsave =Datenbankfehler beim Speichern.
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/payment.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/payment.properties	2004-12-05 15:23:02 UTC (rev 204)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/payment.properties	2004-12-05 18:44:04 UTC (rev 205)
+@@ -25,6 +25,7 @@
+ Payment.groupdetail.startdatelabel=G&#252;ltig ab
+ Payment.groupdetail.startdatebuttonchange=&#196;ndern
+ Payment.groupdetail.startdatebuttonfinish=Fertig
++Payment.groupdetail.startdatedialogtitle=W&#228;hlen Sie ein Datum aus
+ 
+ Payment.groupdetail.savebutton.warn.noname.title=Datensatz speichern
+ Payment.groupdetail.savebutton.warn.noname.msg=Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie einen Namen an
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000205.html">[Provirent-svn-commit] r204 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language objects
+</A></li>
+	<LI>Next message: <A HREF="000207.html">[Provirent-svn-commit] r206 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#206">[ date ]</a>
+              <a href="thread.html#206">[ thread ]</a>
+              <a href="subject.html#206">[ subject ]</a>
+              <a href="author.html#206">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

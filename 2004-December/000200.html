@@ -1,0 +1,378 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r199 - in project_src/provirent_hibernate/src/de/hsharz/provirent: . management/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r199%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20.%20management/gui&In-Reply-To=%3C200412021957.iB2JvrVh001388%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000199.html">
+   <LINK REL="Next"  HREF="000201.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r199 - in project_src/provirent_hibernate/src/de/hsharz/provirent: . management/gui</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r199%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20.%20management/gui&In-Reply-To=%3C200412021957.iB2JvrVh001388%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r199 - in project_src/provirent_hibernate/src/de/hsharz/provirent: . management/gui">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Thu Dec  2 20:57:53 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000199.html">[Provirent-svn-commit] r198 - project_src/provirent_hibernate/src/de/hsharz/provirent
+</A></li>
+        <LI>Next message: <A HREF="000201.html">[Provirent-svn-commit] r200 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#200">[ date ]</a>
+              <a href="thread.html#200">[ thread ]</a>
+              <a href="subject.html#200">[ subject ]</a>
+              <a href="author.html#200">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-12-02 20:57:51 +0100 (Thu, 02 Dec 2004)
+New Revision: 199
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java	2004-12-02 19:49:24 UTC (rev 198)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java	2004-12-02 19:57:51 UTC (rev 199)
+@@ -133,8 +133,8 @@
+      * @param text
+      * @return
+      */
+-    public static Calendar getDateByText(String textdate) {
+-        SimpleDateFormat format = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);
++    public static Calendar getDateByText(String textdate, String format_string) {
++        SimpleDateFormat format = new SimpleDateFormat(format_string);
+         Calendar date = Calendar.getInstance();
+         try {
+             date.setTime(format.parse(textdate));
+@@ -145,8 +145,8 @@
+         return date;
+     }
+     
+-    public static String getTextByDate(Calendar date) {
+-        SimpleDateFormat format = new SimpleDateFormat(&quot;dd.MM.yyyy&quot;);       
++    public static String getTextByDate(Calendar date, String format_string) {
++        SimpleDateFormat format = new SimpleDateFormat(format_string);       
+         return date != null ? format.format(date.getTime()) : null;
+     }
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java	2004-12-02 19:49:24 UTC (rev 198)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java	2004-12-02 19:57:51 UTC (rev 199)
+@@ -1,11 +1,8 @@
+ package de.hsharz.provirent.management.gui;
+ 
+-import java.text.DateFormat;
+ import java.text.MessageFormat;
+-import java.text.ParseException;
+ import java.util.Calendar;
+ import java.util.Date;
+-import java.util.Hashtable;
+ import java.util.Locale;
+ import java.util.PropertyResourceBundle;
+ import java.util.ResourceBundle;
+@@ -508,22 +505,13 @@
+ 
+                         public void dateChanged(SWTCalendarEvent calendarEvent) {
+                             String date;
+-                            try {
+-                                date = Util.getTextByDate(calendarEvent.getCalendar());
+-                                textBirthday.setText(date);
+-                            } catch (DataBaseException e) {
+-                                // TODO Auto-generated catch block
+-                                e.printStackTrace();
+-                            }                     
++                            date = Util.getTextByDate(calendarEvent.getCalendar(), &quot;dd.MM.YYYY&quot;);
++                            textBirthday.setText(date);                     
+                         }
+                     });
+                     if (textBirthday.getText() != null &amp;&amp; textBirthday.getText().length() &gt; 0) {
+-                        try {
+-                            Date date = Util.getDateByText(textBirthday.getText()).getTime();
+-                            cal.setDate(date);
+-                        } catch (DataBaseException dbe) {
+-
+-                        }
++                        Date date = Util.getDateByText(textBirthday.getText(), &quot;dd.MM.YYYY&quot;).getTime();
++                        cal.setDate(date);
+                     }
+                     cal.open();                                                          
+                 }
+@@ -748,22 +736,13 @@
+ 
+                         public void dateChanged(SWTCalendarEvent calendarEvent) {
+                             String date = null;
+-                            try {
+-                                date = Util.getTextByDate(calendarEvent.getCalendar());
+-                                textRegistrationDate.setText(date);
+-                            } catch (DataBaseException e) {
+-                                // TODO Auto-generated catch block
+-                                e.printStackTrace();
+-                            }                          
++                            date = Util.getTextByDate(calendarEvent.getCalendar(), &quot;dd.MM.YYYY&quot;);
++                            textRegistrationDate.setText(date);                          
+                         }
+                     });
+                     if (textRegistrationDate.getText() != null &amp;&amp; textRegistrationDate.getText().length() &gt; 0) {
+-                        try {
+-                            Date date = Util.getDateByText(textRegistrationDate.getText()).getTime();
+-                            cal.setDate(date);
+-                        } catch (DataBaseException dbe) {
+-
+-                        }
++                        Date date = Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.YYYY&quot;).getTime();
++                        cal.setDate(date);
+                     }
+                     cal.open();                                                          
+                 }
+@@ -928,7 +907,7 @@
+ 	                o.setUserName(textUserName.getText());
+ 	                Date regdate = null;
+ 	                if (textRegistrationDate.getText() != null) {
+-	                    regdate = Util.getDateByText(textRegistrationDate.getText()).getTime();
++	                    regdate = Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.YYYY&quot;).getTime();
+ 	                }
+ 	                o.setDayOfRegistration(regdate);
+ 	                o.setUserPassword(textPassword.getText());
+@@ -947,7 +926,7 @@
+ 	                p.setEmailAddress(textEmail.getText());
+ 	                Calendar birthday = null;
+ 	                if (textBirthday.getText() != &quot;&quot;) {
+-	                    birthday = Util.getDateByText(textBirthday.getText());
++	                    birthday = Util.getDateByText(textBirthday.getText(), &quot;dd.MM.YYYY&quot;);
+ 	                }
+ 	                p.setDayOfBirth(birthday);
+ 	                o.setPerson(p);
+@@ -1073,7 +1052,7 @@
+     	                o.setUserName(textUserName.getText());
+     	                Date regdate = null;
+     	                if (textRegistrationDate.getText() != &quot;&quot;) {
+-    	                    regdate = Util.getDateByText(textRegistrationDate.getText()).getTime();
++    	                    regdate = Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.YYYY&quot;).getTime();
+     	                }   	          
+     	                o.setDayOfRegistration(regdate);
+     	                o.setUserPassword(textPassword.getText());
+@@ -1092,7 +1071,7 @@
+     	                p.setEmailAddress(textEmail.getText());
+     	                Calendar birthday = null;
+     	                if (textBirthday.getText() != &quot;&quot;) {
+-    	                    birthday = Util.getDateByText(textRegistrationDate.getText());
++    	                    birthday = Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.YYYY&quot;);
+     	                }
+     	                p.setDayOfBirth(birthday);
+     	                o.setPerson(p);
+@@ -1139,7 +1118,7 @@
+     	                Person p = o.getPerson();
+     	                o.setCustomerId(new Integer(Integer.parseInt(textCustomerID.getText())));
+     	                o.setUserName(textUserName.getText());
+-    	                o.setDayOfRegistration(Util.getDateByText(textRegistrationDate.getText()).getTime());
++    	                o.setDayOfRegistration(Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.YYYY&quot;).getTime());
+     	                o.setUserPassword(textPassword.getText());
+     	                o.setHiddenQuestion(textQuestion.getText());
+     	                o.setHiddenAnswer(textAnswer.getText());
+@@ -1155,7 +1134,7 @@
+     	                p.setCity(textCity.getText());
+     	                p.setCountry(textCountry.getText());
+     	                p.setEmailAddress(textEmail.getText());
+-    	                p.setDayOfBirth(Util.getDateByText(textBirthday.getText()));
++    	                p.setDayOfBirth(Util.getDateByText(textBirthday.getText(), &quot;dd.MM.YYYY&quot;));
+     	                o.setPerson(p);
+ 	                
+ 	                    //object speichern
+@@ -1260,13 +1239,13 @@
+         TableItem item = new TableItem(tableCustomer, SWT.NONE);
+         String birthday = &quot;&quot;;
+         if (customer.getPerson().getDayOfBirth() != null) {
+-            birthday = Util.getTextByDate(customer.getPerson().getDayOfBirth());
++            birthday = Util.getTextByDate(customer.getPerson().getDayOfBirth(), &quot;dd.MM.YYYY&quot;);
+         }
+         String regdate = &quot;&quot;;
+         if (customer.getDayOfRegistration() != null) {
+             Calendar cal = Calendar.getInstance();
+             cal.setTime(customer.getDayOfRegistration());
+-            birthday = Util.getTextByDate(cal);            
++            birthday = Util.getTextByDate(cal, &quot;dd.MM.YYYY&quot;);            
+         }
+         item.setText(new String[] { customer.getCustomerId() + &quot;&quot;, 
+                 					customer.getUserName(), 
+@@ -1315,14 +1294,14 @@
+             if (o.getPerson().getDayOfBirth() == null) {
+                 date = &quot;&quot;;
+             } else {
+-                date = Util.getTextByDate(o.getPerson().getDayOfBirth());
++                date = Util.getTextByDate(o.getPerson().getDayOfBirth(), &quot;dd.MM.YYYY&quot;);
+             }
+             item.setText(new String[] { o.getCustomerId() + &quot;&quot;, 
+                     					o.getUserName(), 
+                     					o.getPerson().getLastName(),
+                     					o.getPerson().getFirstName(),
+                     					date,
+-                    					Util.getTextByDate(regdate),              					
++                    					Util.getTextByDate(regdate, &quot;dd.MM.YYYY&quot;),              					
+                     					});
+ 
+         }
+@@ -1569,27 +1548,22 @@
+ 	        temp = object.getHiddenAnswer();
+ 	        textAnswer.setText(temp == null ? &quot;&quot; : temp);
+ 	        
+-	        try {
+-	            String date = null;
+-	            String regdate = null;
+-	            if (object.getPerson().getDayOfBirth() == null) {
+-	                date = &quot;&quot;;
+-	            } else {
+-	                date = Util.getTextByDate(object.getPerson().getDayOfBirth());
+-	            }
+-                textBirthday.setText(date);
+-                if (object.getDayOfRegistration() == null) {
+-                    regdate = &quot;&quot;;
+-                } else {
+-                    Calendar cal = Calendar.getInstance();
+-        	        cal.setTime(object.getDayOfRegistration());
+-        	        regdate = Util.getTextByDate(cal);
+-                }
+-                textRegistrationDate.setText(regdate);
+-            } catch (DataBaseException e1) {
+-                // TODO Auto-generated catch block
+-                e1.printStackTrace();
++	        String date = null;
++            String regdate = null;
++            if (object.getPerson().getDayOfBirth() == null) {
++                date = &quot;&quot;;
++            } else {
++                date = Util.getTextByDate(object.getPerson().getDayOfBirth(), &quot;dd.MM.YYYY&quot;);
+             }
++            textBirthday.setText(date);
++            if (object.getDayOfRegistration() == null) {
++                regdate = &quot;&quot;;
++            } else {
++                Calendar cal = Calendar.getInstance();
++                cal.setTime(object.getDayOfRegistration());
++                regdate = Util.getTextByDate(cal, &quot;dd.MM.YYYY&quot;);
++            }
++            textRegistrationDate.setText(regdate);
+ 	        
+ 	        //Buttons zum l&#246;schen und editieren aktivieren
+ 	        
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-02 19:49:24 UTC (rev 198)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-02 19:57:51 UTC (rev 199)
+@@ -1480,7 +1480,7 @@
+             Movie o = (Movie) Movielist.get(i);
+             item = new TableItem(tableMoviesOverview, SWT.NONE);
+             item.setText(new String[] { o.getMovieId() + &quot;&quot;, o.getTitle(),
+-                    Util.getTextByDate(o.getReleaseDate()) });
++                    Util.getTextByDate(o.getReleaseDate(), &quot;dd.MM.YYYY&quot;) });
+ 
+         }
+     }
+@@ -1512,7 +1512,7 @@
+         movie = object;
+         textMoviesID.setText(object.getMovieId() + &quot;&quot;);
+         textMoviesTitle.setText(object.getTitle());
+-        textMoviesDate.setText(Util.getTextByDate(object.getReleaseDate()));
++        textMoviesDate.setText(Util.getTextByDate(object.getReleaseDate(), &quot;dd.MM.YYYY&quot;));
+ 
+         textMoviesDescription.setText(object.getDescription());
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java	2004-12-02 19:49:24 UTC (rev 198)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java	2004-12-02 19:57:51 UTC (rev 199)
+@@ -606,7 +606,7 @@
+                     o.setDuration1(Float.parseFloat(textduration1.getText()));
+                     o.setDuration2(Float.parseFloat(textduration2.getText()));
+                     o.setDuration3(Float.parseFloat(textduration3.getText()));
+-                    o.setStartdate(Util.getDateByText(textstartdate.getText()));
++                    o.setStartdate(Util.getDateByText(textstartdate.getText(), &quot;dd.MM.YYYY&quot;));
+ 
+                     //object speichern
+                     // Fehlerbehandlung
+@@ -668,10 +668,6 @@
+                         e.printStackTrace();
+                     }
+ 
+-                } catch (ParseException e) {
+-                    /**
+-                     * @todo Fehler beim Parsen des Datums
+-                     */
+                 }
+ 
+             }
+@@ -938,7 +934,7 @@
+                 Payment.getName(), Double.toString(Payment.getDuration1()),
+                 Double.toString(Payment.getDuration2()),
+                 Double.toString(Payment.getDuration3()),
+-                Util.getTextByDate(Payment.getStartdate()) });
++                Util.getTextByDate(Payment.getStartdate(), &quot;dd.MM.YYYY&quot;) });
+ 
+         tablePayment.deselectAll();
+         refreshPaymentDetail(&quot;&quot;);
+@@ -1026,7 +1022,7 @@
+                     Double.toString(o.getDuration1()),
+                     Double.toString(o.getDuration2()),
+                     Double.toString(o.getDuration3()),
+-                    Util.getTextByDate(o.getStartdate()) });
++                    Util.getTextByDate(o.getStartdate(), &quot;dd.MM.YYYY&quot;) });
+ 
+         }
+ 
+@@ -1258,8 +1254,8 @@
+             for (int i = 0; i &lt; vec.size(); i++) {
+                 Calendar date = (Calendar) vec.get(i);
+ 
+-                if (Util.getTextByDate(date).equals(
+-                        Util.getTextByDate(object.getStartdate()))) {
++                if (Util.getTextByDate(date, &quot;dd.MM.YYYY&quot;).equals(
++                        Util.getTextByDate(object.getStartdate(), &quot;dd.MM.YYYY&quot;))) {
+                     buttonPaymentEdit.setEnabled(true);
+ 
+                 }
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000199.html">[Provirent-svn-commit] r198 - project_src/provirent_hibernate/src/de/hsharz/provirent
+</A></li>
+	<LI>Next message: <A HREF="000201.html">[Provirent-svn-commit] r200 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#200">[ date ]</a>
+              <a href="thread.html#200">[ thread ]</a>
+              <a href="subject.html#200">[ subject ]</a>
+              <a href="author.html#200">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

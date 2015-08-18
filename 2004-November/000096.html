@@ -1,0 +1,566 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r95 - in project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui: . language
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r95%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui%3A%20.%20language&In-Reply-To=%3C200411081457.iA8EvZAX025233%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000095.html">
+   <LINK REL="Next"  HREF="000097.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r95 - in project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui: . language</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r95%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui%3A%20.%20language&In-Reply-To=%3C200411081457.iA8EvZAX025233%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r95 - in project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui: . language">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Mon Nov  8 15:57:35 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000095.html">[Provirent-svn-commit] r94 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+        <LI>Next message: <A HREF="000097.html">[Provirent-svn-commit] r96 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#96">[ date ]</a>
+              <a href="thread.html#96">[ thread ]</a>
+              <a href="subject.html#96">[ subject ]</a>
+              <a href="author.html#96">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-08 15:57:34 +0100 (Mon, 08 Nov 2004)
+New Revision: 95
+
+Added:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeDirectors.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/directors.properties
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/main.properties
+Log:
+- composite actors und directors hinzugef?\195?\188gt
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeDirectors.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeDirectors.java	2004-11-06 13:43:17 UTC (rev 94)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/CompositeDirectors.java	2004-11-08 14:57:34 UTC (rev 95)
+@@ -0,0 +1,163 @@
++package de.hsharz.provirent.managment.gui;
++
++import java.util.Locale;
++import java.util.PropertyResourceBundle;
++import java.util.ResourceBundle;
++
++import org.apache.log4j.Logger;
++import org.eclipse.swt.SWT;
++import org.eclipse.swt.layout.GridLayout;
++import org.eclipse.swt.widgets.Button;
++import org.eclipse.swt.widgets.Composite;
++import org.eclipse.swt.widgets.Display;
++import org.eclipse.swt.widgets.Shell;
++
++
++import org.eclipse.swt.widgets.Group;
++import org.eclipse.swt.layout.GridData;
++import org.eclipse.swt.widgets.Text;
++import com.cloudgarden.resource.SWTResourceManager;
++/**
++* This code was generated using CloudGarden's Jigloo
++* SWT/Swing GUI Builder, which is free for non-commercial
++* use. If Jigloo is being used commercially (ie, by a corporation,
++* company or business for any purpose whatever) then you
++* should purchase a license for each developer using Jigloo.
++* Please visit www.cloudgarden.com for details.
++* Use of Jigloo implies acceptance of these licensing terms.
++* *************************************
++* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED
++* for this machine, so Jigloo or this code cannot be used legally
++* for any corporate or commercial purpose.
++* *************************************
++*/
++public class CompositeDirectors extends AbstractComposite{
++
++    {
++        //Register as a resource user - SWTResourceManager will
++        //handle the obtaining and disposing of resources
++        SWTResourceManager.registerResourceUser(this);
++    }
++
++
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger
++            .getLogger(CompositeDirectors.class);
++    
++    
++    private final static int MODE_VIEW = 0;
++
++    private final static int MODE_ADD = 1;
++    private Text text1;
++    private Group groupDirector;
++
++    private final static int MODE_EDIT = 2;
++    
++    private StatusLineStyledText statusLine;
++
++    private ResourceBundle l;
++    
++    private Composite parent;
++    
++    /*
++     * &#196;ndert die Sprache aller Elemente
++     * 
++     * @see de.hsharz.provirent.managment.gui.AbstractComposite#changeLanguage(java.util.Locale)
++     */
++    public void changeLanguage(Locale locale) {
++
++    }
++
++    /* 
++     * Init die Sprache (properties Datei)
++     * @see de.hsharz.provirent.managment.gui.AbstractComposite#initLanguage(java.util.Locale)
++     */
++    public void initLanguage(Locale locale) {
++
++        l = PropertyResourceBundle.getBundle(
++                &quot;de.hsharz.provirent.managment.gui.language.directors&quot;, locale);
++
++    }
++    
++    
++	/**
++	* Auto-generated main method to display this 
++	* org.eclipse.swt.widgets.Composite inside a new Shell.
++	*/
++	public static void main(String[] args) {
++		showGUI();
++	}
++		
++	/**
++	* Auto-generated method to display this 
++	* org.eclipse.swt.widgets.Composite inside a new Shell.
++	*/
++	public static void showGUI() {
++		Display display = Display.getDefault();
++		Shell shell = new Shell(display);
++
++		shell.open();
++		while (!shell.isDisposed()) {
++			if (!display.readAndDispatch())
++				display.sleep();
++		}
++	}
++
++	public CompositeDirectors(Composite p, int style,
++            StatusLineStyledText status, Locale l) {
++	    super(p, style, status, l);
++        parent = p;
++        //Statusline wird gestzt
++        statusLine = status;
++        
++        //sprache wird init
++        initLanguage(l);
++	    
++	    
++		initGUI();
++	}
++
++	private void initGUI() {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - start&quot;);
++        }
++
++        this.setLayout(new GridLayout());
++        this.setSize(816, 540);
++        {
++            groupDirector = new Group(this, SWT.NONE);
++            GridLayout groupDirectorLayout = new GridLayout();
++            GridData groupDirectorLData = new GridData();
++            groupDirectorLData.grabExcessHorizontalSpace = true;
++            groupDirectorLData.grabExcessVerticalSpace = true;
++            groupDirectorLData.horizontalAlignment = GridData.FILL;
++            groupDirectorLData.verticalAlignment = GridData.FILL;
++            groupDirector.setLayoutData(groupDirectorLData);
++            groupDirectorLayout.makeColumnsEqualWidth = true;
++            groupDirector.setLayout(groupDirectorLayout);
++            groupDirector.setText(&quot;Director&quot;);
++            {
++                text1 = new Text(groupDirector, SWT.MULTI | SWT.WRAP);
++                text1.setText(&quot;text1&quot;);
++                GridData text1LData = new GridData();
++                text1.setBackground(SWTResourceManager.getColor(0, 255, 0));
++                text1LData.widthHint = 227;
++                text1LData.heightHint = 132;
++                text1.setLayoutData(text1LData);
++            }
++        }
++
++        this.layout();
++
++
++        
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;initGUI() - end&quot;);
++        }
++	}
++
++	
++
++}
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java	2004-11-06 13:43:17 UTC (rev 94)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java	2004-11-08 14:57:34 UTC (rev 95)
+@@ -91,6 +91,8 @@
+  * *************************************
+  */
+  import de.hsharz.provirent.managment.gui.CompositeFormate;
++ import org.eclipse.swt.events.DisposeListener;
++ import org.eclipse.swt.events.DisposeEvent;
+ /**
+  * @author Philipp Schneider
+  *  
+@@ -107,19 +109,18 @@
+ 
+     public final static int MODE_EDIT = 2;
+ 
+-    private int mode_VideoFormat = 0;
+-
+-    private int mode_AudioFormat = 0;
+-
+     private static final int MAIN_WINDOW_WIDTH = 700;
+ 
+     private static final int MAIN_WINDOW_HEIGHT = 500;
+ 
+     private CTabFolder cTabFolderMain;
+ 
+-    private CTabItem tabItemFormat;
++    private CTabItem tabItemFormat,tabItemActor,tabItemDirector;
+ 
+     private CompositeFormate compositeFormate;
++    private CompositeActors compositeActor;
++    private CompositeDirectors compositeDirector;
++    
+ 
+     private MenuItem aboutMenuItem;
+ 
+@@ -227,7 +228,7 @@
+         shell.setText(l.getString(&quot;mainwindow.title&quot;));
+ 
+         //set the Site
+-        shell.setSize(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
++        shell.setSize(476, 216);
+ 
+         {
+             //Register as a resource user - SWTResourceManager will
+@@ -265,11 +266,70 @@
+ 
+             //the root composite
+             //this init's the maincomposite
+-            initRootComposite();
+-            initStatusComposite();
++            //set up the root composite incl. layout
++            compositeRoot = new Composite(shell, SWT.NONE);
++            GridLayout composite1Layout = new GridLayout();
++            composite1Layout.marginWidth = 0;
++            composite1Layout.marginHeight = 0;
++            composite1Layout.horizontalSpacing = 0;
++            composite1Layout.verticalSpacing = 0;
++            GridData composite1LData = new GridData();
++            compositeRoot.setLayout(composite1Layout);
+ 
+-            initMainTabFolder();
++            composite1LData.verticalAlignment = GridData.FILL;
++            composite1LData.horizontalAlignment = GridData.FILL;
++            composite1LData.grabExcessHorizontalSpace = true;
++            composite1LData.grabExcessVerticalSpace = true;
++            compositeRoot.setLayoutData(composite1LData);
+ 
++            //init the MainComposite
++
++           compositeMain = new Composite(compositeRoot, SWT.EMBEDDED);
++            GridLayout composite3Layout = new GridLayout();
++            composite3Layout.makeColumnsEqualWidth = true;
++            composite3Layout.horizontalSpacing = 0;
++            composite3Layout.marginHeight = 0;
++            composite3Layout.marginWidth = 0;
++            composite3Layout.verticalSpacing = 0;
++            GridData composite3LData = new GridData();
++            compositeMain.setLayout(composite3Layout);
++            compositeMain.setForeground(SWTResourceManager.getColor(0,
++                    255, 0));
++            composite3LData.verticalAlignment = GridData.FILL;
++            composite3LData.horizontalAlignment = GridData.FILL;
++            composite3LData.grabExcessHorizontalSpace = true;
++            composite3LData.grabExcessVerticalSpace = true;
++            compositeMain.setLayoutData(composite3LData);
++        
++            
++            //init Status Composite
++            compositeStatusLine = new Composite(compositeRoot, SWT.EMBEDDED);
++            GridLayout composite2Layout = new GridLayout();
++            composite2Layout.marginWidth = 0;
++            composite2Layout.marginHeight = 0;
++            composite2Layout.makeColumnsEqualWidth = true;
++            composite2Layout.horizontalSpacing = 0;
++            composite2Layout.verticalSpacing = 0;
++            GridData composite2LData = new GridData();
++            compositeStatusLine.setLayout(composite2Layout);
++            composite2LData.horizontalAlignment = GridData.FILL;
++            composite2LData.heightHint = 14;
++            composite2LData.grabExcessHorizontalSpace = true;
++            compositeStatusLine.setLayoutData(composite2LData);
++
++            //StatusLine
++            initStatusLine();
++            
++            //tabFolder
++            cTabFolderMain = new CTabFolder(compositeMain, SWT.CLOSE);
++            
++            GridData cTabFolder1LData = new GridData();
++            cTabFolder1LData.grabExcessHorizontalSpace = true;
++            cTabFolder1LData.horizontalAlignment = GridData.FILL;
++            cTabFolder1LData.grabExcessVerticalSpace = true;
++            cTabFolder1LData.verticalAlignment = GridData.FILL;
++            cTabFolderMain.setLayoutData(cTabFolder1LData);
++
+             initFormatTab();
+ 
+         } catch (Exception e) {
+@@ -348,10 +408,34 @@
+         viewDirectorMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewDirectorMenuItem.setText(l.getString(&quot;menu.view.director&quot;));
+         viewDirectorMenuItem.setSelection(false);
++        viewDirectorMenuItem.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++				if(tabItemDirector == null || tabItemDirector.isDisposed()){
++				    initDirectorTab();
++				    return;   
++				}
++				
++				cTabFolderMain.setSelection(tabItemDirector);
++				viewDirectorMenuItem.setSelection(true);
++            
++            }
++        });        
+ 
+         viewActorMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewActorMenuItem.setText(l.getString(&quot;menu.view.actor&quot;));
+         viewActorMenuItem.setSelection(false);
++        viewActorMenuItem.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++				if(tabItemActor == null || tabItemActor.isDisposed()){
++				    initActorTab();
++				    return;   
++				}
++				
++				cTabFolderMain.setSelection(tabItemActor);
++				viewActorMenuItem.setSelection(true);
++            
++            }
++        });         
+         
+         viewGenreMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewGenreMenuItem.setText(l.getString(&quot;menu.view.genre&quot;));
+@@ -408,65 +492,18 @@
+         }
+ 
+     }
+-
+-    private void initRootComposite() {
+-
+-        //set up the root composite incl. layout
+-        compositeRoot = new Composite(shell, SWT.NONE);
+-        GridLayout composite1Layout = new GridLayout();
+-        composite1Layout.marginWidth = 0;
+-        composite1Layout.marginHeight = 0;
+-        composite1Layout.horizontalSpacing = 0;
+-        composite1Layout.verticalSpacing = 0;
+-        GridData composite1LData = new GridData();
+-        compositeRoot.setLayout(composite1Layout);
+-
+-        composite1LData.verticalAlignment = GridData.FILL;
+-        composite1LData.horizontalAlignment = GridData.FILL;
+-        composite1LData.grabExcessHorizontalSpace = true;
+-        composite1LData.grabExcessVerticalSpace = true;
+-        compositeRoot.setLayoutData(composite1LData);
+-
+-        //init the MainComposite
+-        initMainComposite();
+-    }
+-  
+-
+-    private void initMainComposite(){
+-        compositeMain = new Composite(compositeRoot, SWT.EMBEDDED);
+-        GridLayout composite3Layout = new GridLayout();
+-        composite3Layout.makeColumnsEqualWidth = true;
+-        composite3Layout.horizontalSpacing = 0;
+-        composite3Layout.marginHeight = 0;
+-        composite3Layout.marginWidth = 0;
+-        composite3Layout.verticalSpacing = 0;
+-        GridData composite3LData = new GridData();
+-        compositeMain.setLayout(composite3Layout);
+-        compositeMain.setForeground(SWTResourceManager.getColor(0,
+-                255, 0));
+-        composite3LData.verticalAlignment = GridData.FILL;
+-        composite3LData.horizontalAlignment = GridData.FILL;
+-        composite3LData.grabExcessHorizontalSpace = true;
+-        composite3LData.grabExcessVerticalSpace = true;
+-        compositeMain.setLayoutData(composite3LData);
++   
+     
+-
+-    }
+     
+-    private void initMainTabFolder() {
+-        cTabFolderMain = new CTabFolder(compositeMain, SWT.CLOSE);
+-        //cTabFolderMain.setSelection(null);
+-        GridData cTabFolder1LData = new GridData();
+-        cTabFolder1LData.grabExcessHorizontalSpace = true;
+-        cTabFolder1LData.horizontalAlignment = GridData.FILL;
+-        cTabFolder1LData.grabExcessVerticalSpace = true;
+-        cTabFolder1LData.verticalAlignment = GridData.FILL;
+-        cTabFolderMain.setLayoutData(cTabFolder1LData);
+-    }
+     
+     private void initFormatTab() {
+         tabItemFormat = new CTabItem(cTabFolderMain, SWT.NONE);
+         tabItemFormat.setText(l.getString(&quot;tab.format.title&quot;));
++        tabItemFormat.addDisposeListener(new DisposeListener() {
++            public void widgetDisposed(DisposeEvent evt) {
++                viewFormatMenuItem.setSelection(false);
++           }
++        });
+         {
+             compositeFormate = new CompositeFormate(
+                 cTabFolderMain,
+@@ -477,34 +514,42 @@
+     }
+     
+     
+-
+- 
+-
++    private void initDirectorTab() {
++        tabItemDirector = new CTabItem(cTabFolderMain, SWT.NONE);
++        tabItemDirector.setText(l.getString(&quot;tab.actor.title&quot;));
++        tabItemDirector.addDisposeListener(new DisposeListener() {
++            public void widgetDisposed(DisposeEvent evt) {
++                viewDirectorMenuItem.setSelection(false);
++           }
++        });        
++        {
++            compositeDirector = new CompositeDirectors(
++                cTabFolderMain,
++                SWT.NONE, statusLine, locale);
++            
++            tabItemDirector.setControl(compositeDirector);
++        }
++    }    
+     
++    private void initActorTab() {
++        tabItemActor = new CTabItem(cTabFolderMain, SWT.NONE);
++        tabItemActor.setText(l.getString(&quot;tab.director.title&quot;));
++        tabItemActor.addDisposeListener(new DisposeListener() {
++            public void widgetDisposed(DisposeEvent evt) {
++                viewActorMenuItem.setSelection(false);
++           }
++        });      
++        {
++            compositeActor = new CompositeActors(
++                cTabFolderMain,
++                SWT.NONE, statusLine, locale);
++            
++            tabItemActor.setControl(compositeActor);
++        }
++    }
+ 
+ 
+ 
+-
+-
+-    private void initStatusComposite() {
+-        compositeStatusLine = new Composite(compositeRoot, SWT.EMBEDDED);
+-        GridLayout composite2Layout = new GridLayout();
+-        composite2Layout.marginWidth = 0;
+-        composite2Layout.marginHeight = 0;
+-        composite2Layout.makeColumnsEqualWidth = true;
+-        composite2Layout.horizontalSpacing = 0;
+-        composite2Layout.verticalSpacing = 0;
+-        GridData composite2LData = new GridData();
+-        compositeStatusLine.setLayout(composite2Layout);
+-        composite2LData.horizontalAlignment = GridData.FILL;
+-        composite2LData.heightHint = 14;
+-        composite2LData.grabExcessHorizontalSpace = true;
+-        compositeStatusLine.setLayoutData(composite2LData);
+-
+-        initStatusLine();
+-
+-    }
+-
+     private void initStatusLine() {
+         statusLine = new StatusLineStyledText(compositeStatusLine, SWT.READ_ONLY);
+         statusLine.setText(&quot;&quot;);
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/directors.properties
+===================================================================
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/main.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/main.properties	2004-11-06 13:43:17 UTC (rev 94)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/language/main.properties	2004-11-08 14:57:34 UTC (rev 95)
+@@ -5,8 +5,8 @@
+ menu.file.save=Speichern
+ menu.file.close=Schlie&#223;en
+ menu.file.exit=Beenden
++ 
+ 
+-
+ menu.view=Ansicht
+ 
+ menu.view.format=Formate
+@@ -33,7 +33,8 @@
+ menu.help=Hilfe
+ 
+ tab.format.title=Video-/AudioFormate
+-tab.director.title=
++tab.actor.title=Schauspieler
++tab.director.title=Regie
+ tab.actor.title=
+ tab.genre.title=
+ tab.subtitle.title=
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000095.html">[Provirent-svn-commit] r94 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+	<LI>Next message: <A HREF="000097.html">[Provirent-svn-commit] r96 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#96">[ date ]</a>
+              <a href="thread.html#96">[ thread ]</a>
+              <a href="subject.html#96">[ subject ]</a>
+              <a href="author.html#96">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,816 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r39 - in project_src/provirent_hibernate: . data src/de/hsharz/provirent/objects
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r39%20-%20in%20project_src/provirent_hibernate%3A%20.%20data%20src/de/hsharz/provirent/objects&In-Reply-To=%3C200410121140.i9CBe0cA004435%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000039.html">
+   <LINK REL="Next"  HREF="000041.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r39 - in project_src/provirent_hibernate: . data src/de/hsharz/provirent/objects</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r39%20-%20in%20project_src/provirent_hibernate%3A%20.%20data%20src/de/hsharz/provirent/objects&In-Reply-To=%3C200410121140.i9CBe0cA004435%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r39 - in project_src/provirent_hibernate: . data src/de/hsharz/provirent/objects">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Tue Oct 12 13:40:00 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000039.html">[Provirent-svn-commit] r38 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000041.html">[Provirent-svn-commit] r40 - in project_src: . clienttest clienttest/lib clienttest/src
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#40">[ date ]</a>
+              <a href="thread.html#40">[ thread ]</a>
+              <a href="subject.html#40">[ subject ]</a>
+              <a href="author.html#40">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-12 13:39:59 +0200 (Tue, 12 Oct 2004)
+New Revision: 39
+
+Modified:
+   project_src/provirent_hibernate/build.xml
+   project_src/provirent_hibernate/data/video.log
+   project_src/provirent_hibernate/data/video.properties
+   project_src/provirent_hibernate/data/video.script
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/build.xml
+===================================================================
+--- project_src/provirent_hibernate/build.xml	2004-10-12 11:39:19 UTC (rev 38)
++++ project_src/provirent_hibernate/build.xml	2004-10-12 11:39:59 UTC (rev 39)
+@@ -1,7 +1,7 @@
+ &lt;?xml version=&quot;1.0&quot;?&gt;
+  &lt;project name=&quot;Provirent&quot;
+           default=&quot;schema&quot; basedir=&quot;.&quot;&gt;
+-   &lt;!-- Set up properties containing important project directories --&gt;
++   &lt;!-- schema Set up properties containing important project directories --&gt;
+    &lt;property name=&quot;source.root&quot; value=&quot;src&quot;/&gt;
+    &lt;property name=&quot;class.root&quot; value=&quot;bin&quot;/&gt;
+    &lt;property name=&quot;lib.dir&quot; value=&quot;lib&quot;/&gt;
+
+Modified: project_src/provirent_hibernate/data/video.log
+===================================================================
+--- project_src/provirent_hibernate/data/video.log	2004-10-12 11:39:19 UTC (rev 38)
++++ project_src/provirent_hibernate/data/video.log	2004-10-12 11:39:59 UTC (rev 39)
+@@ -1,167 +1,57 @@
+ /*C2*/CONNECT USER SA
+ SET AUTOCOMMIT FALSE
+-INSERT INTO IMAGE VALUES(1,'01020304',123,'image1.jpg','Bild 1')
+-INSERT INTO IMAGE VALUES(2,'05060708',123,'image2.jpg','Bild 2')
+-INSERT INTO IMAGE VALUES(3,'090a0b0c',123,'image3.jpg','Bild 3')
+-INSERT INTO IMAGE VALUES(4,'0d0e0f10',123,'image4.jpg','Bild 4')
++INSERT INTO CUSTOMER VALUES(21,'2004-10-12 13:34:07.518','kunde1','kunde1',' ',' ')
++INSERT INTO PERSON VALUES(23,'Philipp','Schneider',NULL,'Herr',NULL,'Kastanienring','16','Leipzig','04316','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">egal at phil-schneider.de</A>','1981-04-14 13:34:07.508')
++DELETE FROM PERSON WHERE PERSONID=23
++DELETE FROM CUSTOMER WHERE CUSTOMERID=21
+ COMMIT
+-DELETE FROM IMAGE WHERE IMAGEID=1
+-DELETE FROM IMAGE WHERE IMAGEID=2
+-DELETE FROM IMAGE WHERE IMAGEID=3
+-DELETE FROM IMAGE WHERE IMAGEID=4
++INSERT INTO CUSTOMER VALUES(22,'2004-10-12 13:34:08.018','kunde1','kunde1',' ',' ')
++INSERT INTO PERSON VALUES(24,'Philipp','Schneider',NULL,'Herr',NULL,'Kastanienring','16','Leipzig','04316','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>','1988-09-10 13:34:08.018')
++INSERT INTO CUSTOMER VALUES(23,'2004-10-12 13:34:08.028','kunde2','kunde2',' ',' ')
++INSERT INTO PERSON VALUES(25,'Max','Meier',NULL,'Herr',NULL,'Kohlgartenstr.','67','Wernigerode','38855','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>',NULL)
++INSERT INTO CUSTOMER VALUES(24,'2004-10-12 13:34:08.048','kunde3','kunde3',' ',' ')
++INSERT INTO PERSON VALUES(26,'Thomas','Pech',NULL,'Herr',NULL,'Riebeck.','7a','Leipzig','04317','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde3-provirent at phil-schneider.de</A>',NULL)
+ COMMIT
+-INSERT INTO IMAGE VALUES(5,'01020304',123,'image1.jpg','Bild 1')
+-INSERT INTO IMAGE VALUES(6,'05060708',123,'image2.jpg','Bild 2')
+-INSERT INTO IMAGE VALUES(7,'090a0b0c',123,'image3.jpg','Bild 3')
+-INSERT INTO IMAGE VALUES(8,'0d0e0f10',123,'image4.jpg','Bild 4')
++INSERT INTO ACTOR VALUES(36,'Julianne','Moore')
++INSERT INTO ACTOR VALUES(37,'Christopher','Kovaleski')
++INSERT INTO ACTOR VALUES(38,'Matthew','Pleszewicz')
++INSERT INTO DIRECTOR VALUES(16,'Joseph','Ruben')
++INSERT INTO GENRE VALUES(37,'Thriller','')
++INSERT INTO GENRE VALUES(38,'Drama','')
++INSERT INTO GENRE VALUES(39,'Sci-Fi','')
++INSERT INTO GENRE VALUES(40,'Mystery','')
++INSERT INTO LANGUAGE VALUES(25,'Deutsch','de')
++INSERT INTO LANGUAGE VALUES(26,'Englisch','en')
++INSERT INTO AUDIOFORMAT VALUES(30,'DTS Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(31,'Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(32,'Dolby','')
++INSERT INTO SUBTITLE VALUES(25,'Deutsch','de')
++INSERT INTO SUBTITLE VALUES(26,'Englisch','en')
++INSERT INTO VIDEOFORMAT VALUES(21,'9:13','')
++INSERT INTO VIDEOFORMAT VALUES(22,'16:10','')
++INSERT INTO MOVIE VALUES(8,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 13:34:08.199')
++INSERT INTO IMAGE VALUES(16,NULL,0,NULL,NULL)
++INSERT INTO MOVIEACTORS VALUES(8,36,0)
++INSERT INTO MOVIEACTORS VALUES(8,37,1)
++INSERT INTO MOVIEACTORS VALUES(8,38,2)
++INSERT INTO MOVIEDIRECTORS VALUES(8,16,0)
++INSERT INTO MOVIELANGUAGES VALUES(8,25,0)
++INSERT INTO MOVIELANGUAGES VALUES(8,26,1)
++INSERT INTO MOVIESUBTITLES VALUES(8,25,0)
++INSERT INTO MOVIESUBTITLES VALUES(8,26,1)
++INSERT INTO MOVIEGENRES VALUES(8,37,0)
++INSERT INTO MOVIEGENRES VALUES(8,38,1)
++INSERT INTO MOVIEGENRES VALUES(8,39,2)
++INSERT INTO MOVIEGENRES VALUES(8,40,3)
+ COMMIT
+-INSERT INTO ACTOR VALUES(1,'Johnny','Depp')
+-INSERT INTO ACTOR VALUES(2,'Geoffrey','Rush')
+-INSERT INTO ACTOR VALUES(3,'Gore','Verbinski ')
+-INSERT INTO ACTOR VALUES(4,'Julianne','Moore ')
+-INSERT INTO ACTOR VALUES(5,'Anthony','Edwards ')
+-INSERT INTO ACTOR VALUES(6,'Matthew','Pleszewicz ')
+-INSERT INTO ACTOR VALUES(7,'Christopher','Kovaleski ')
++INSERT INTO MOVIE VALUES(9,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 13:34:08.489')
++INSERT INTO IMAGE VALUES(17,NULL,0,NULL,NULL)
++INSERT INTO MOVIEACTORS VALUES(9,10,0)
++INSERT INTO MOVIEACTORS VALUES(9,28,1)
++INSERT INTO MOVIEDIRECTORS VALUES(9,10,0)
++INSERT INTO MOVIELANGUAGES VALUES(9,24,0)
++INSERT INTO MOVIESUBTITLES VALUES(9,22,0)
++INSERT INTO MOVIEGENRES VALUES(9,28,0)
++INSERT INTO MOVIEAUDIOFORMATES VALUES(9,30,0)
++INSERT INTO MOVIEVIDEOFORMATES VALUES(9,15,0)
+ COMMIT
+-DELETE FROM ACTOR WHERE ACTORID=1
+-DELETE FROM ACTOR WHERE ACTORID=2
+-DELETE FROM ACTOR WHERE ACTORID=3
+-DELETE FROM ACTOR WHERE ACTORID=4
+-DELETE FROM ACTOR WHERE ACTORID=5
+-DELETE FROM ACTOR WHERE ACTORID=6
+-DELETE FROM ACTOR WHERE ACTORID=7
+-COMMIT
+-INSERT INTO ACTOR VALUES(8,'Johnny','Depp')
+-INSERT INTO ACTOR VALUES(9,'Geoffrey','Rush')
+-INSERT INTO ACTOR VALUES(10,'Gore','Verbinski ')
+-INSERT INTO ACTOR VALUES(11,'Julianne','Moore ')
+-INSERT INTO ACTOR VALUES(12,'Anthony','Edwards ')
+-INSERT INTO ACTOR VALUES(13,'Matthew','Pleszewicz ')
+-INSERT INTO ACTOR VALUES(14,'Christopher','Kovaleski ')
+-COMMIT
+-INSERT INTO CONDITION VALUES(1,'neu','')
+-INSERT INTO CONDITION VALUES(2,'leichte Kratzer','')
+-INSERT INTO CONDITION VALUES(3,'mittlere Kratzer','')
+-INSERT INTO CONDITION VALUES(4,'schwere Kratzer','')
+-INSERT INTO CONDITION VALUES(5,'nicht lesbar','')
+-COMMIT
+-DELETE FROM CONDITION WHERE CONDITIONID=1
+-DELETE FROM CONDITION WHERE CONDITIONID=2
+-DELETE FROM CONDITION WHERE CONDITIONID=3
+-DELETE FROM CONDITION WHERE CONDITIONID=4
+-DELETE FROM CONDITION WHERE CONDITIONID=5
+-COMMIT
+-INSERT INTO CONDITION VALUES(6,'neu','')
+-INSERT INTO CONDITION VALUES(7,'leichte Kratzer','')
+-INSERT INTO CONDITION VALUES(8,'mittlere Kratzer','')
+-INSERT INTO CONDITION VALUES(9,'schwere Kratzer','')
+-INSERT INTO CONDITION VALUES(10,'nicht lesbar','')
+-COMMIT
+-INSERT INTO GENRE VALUES(1,'Action','')
+-INSERT INTO GENRE VALUES(2,'Abenteuer','')
+-INSERT INTO GENRE VALUES(3,'Dokumentation','')
+-INSERT INTO GENRE VALUES(4,'Horror','')
+-COMMIT
+-DELETE FROM GENRE WHERE GENREID=1
+-DELETE FROM GENRE WHERE GENREID=2
+-DELETE FROM GENRE WHERE GENREID=3
+-DELETE FROM GENRE WHERE GENREID=4
+-COMMIT
+-INSERT INTO GENRE VALUES(5,'Action','')
+-INSERT INTO GENRE VALUES(6,'Abenteuer','')
+-INSERT INTO GENRE VALUES(7,'Dokumentation','')
+-INSERT INTO GENRE VALUES(8,'Horror','')
+-COMMIT
+-INSERT INTO AUDIOFORMAT VALUES(1,'DTS Surround Sound','')
+-INSERT INTO AUDIOFORMAT VALUES(2,'Surround Sound','')
+-INSERT INTO AUDIOFORMAT VALUES(3,'Dolby','')
+-INSERT INTO AUDIOFORMAT VALUES(4,'Stereo','')
+-COMMIT
+-DELETE FROM AUDIOFORMAT WHERE AUIOFORMATID=1
+-DELETE FROM AUDIOFORMAT WHERE AUIOFORMATID=2
+-DELETE FROM AUDIOFORMAT WHERE AUIOFORMATID=3
+-DELETE FROM AUDIOFORMAT WHERE AUIOFORMATID=4
+-COMMIT
+-INSERT INTO AUDIOFORMAT VALUES(5,'DTS Surround Sound','')
+-INSERT INTO AUDIOFORMAT VALUES(6,'Surround Sound','')
+-INSERT INTO AUDIOFORMAT VALUES(7,'Dolby','')
+-INSERT INTO AUDIOFORMAT VALUES(8,'Stereo','')
+-COMMIT
+-INSERT INTO DIRECTOR VALUES(1,'Bibo','Bergeron')
+-INSERT INTO DIRECTOR VALUES(2,'Vicky','Jenson')
+-INSERT INTO DIRECTOR VALUES(3,'Jay','Russell')
+-INSERT INTO DIRECTOR VALUES(4,'Joseph','Ruben')
+-COMMIT
+-DELETE FROM DIRECTOR WHERE DIRECTORID=1
+-DELETE FROM DIRECTOR WHERE DIRECTORID=2
+-DELETE FROM DIRECTOR WHERE DIRECTORID=3
+-DELETE FROM DIRECTOR WHERE DIRECTORID=4
+-COMMIT
+-INSERT INTO DIRECTOR VALUES(5,'Bibo','Bergeron')
+-INSERT INTO DIRECTOR VALUES(6,'Vicky','Jenson')
+-INSERT INTO DIRECTOR VALUES(7,'Jay','Russell')
+-INSERT INTO DIRECTOR VALUES(8,'Joseph','Ruben')
+-COMMIT
+-INSERT INTO SUBTITLE VALUES(1,'Deutsch','de')
+-INSERT INTO SUBTITLE VALUES(2,'Englisch','en')
+-INSERT INTO SUBTITLE VALUES(3,'Franzoesisch','fr')
+-INSERT INTO SUBTITLE VALUES(4,'Spanisch','es')
+-INSERT INTO SUBTITLE VALUES(5,'Japanisch','jp')
+-COMMIT
+-DELETE FROM SUBTITLE WHERE SUBTITLEID=1
+-DELETE FROM SUBTITLE WHERE SUBTITLEID=2
+-DELETE FROM SUBTITLE WHERE SUBTITLEID=3
+-DELETE FROM SUBTITLE WHERE SUBTITLEID=4
+-DELETE FROM SUBTITLE WHERE SUBTITLEID=5
+-COMMIT
+-INSERT INTO SUBTITLE VALUES(6,'Deutsch','de')
+-INSERT INTO SUBTITLE VALUES(7,'Englisch','en')
+-INSERT INTO SUBTITLE VALUES(8,'Franzoesisch','fr')
+-INSERT INTO SUBTITLE VALUES(9,'Spanisch','es')
+-INSERT INTO SUBTITLE VALUES(10,'Japanisch','jp')
+-COMMIT
+-INSERT INTO STATUS VALUES(1,'ausleihbar','')
+-INSERT INTO STATUS VALUES(2,'verliehen','')
+-INSERT INTO STATUS VALUES(3,'in Bearbeitung','')
+-INSERT INTO STATUS VALUES(4,'noch nicht vorhanden','')
+-COMMIT
+-DELETE FROM STATUS WHERE STATUSID=1
+-DELETE FROM STATUS WHERE STATUSID=2
+-DELETE FROM STATUS WHERE STATUSID=3
+-DELETE FROM STATUS WHERE STATUSID=4
+-COMMIT
+-INSERT INTO STATUS VALUES(5,'ausleihbar','')
+-INSERT INTO STATUS VALUES(6,'verliehen','')
+-INSERT INTO STATUS VALUES(7,'in Bearbeitung','')
+-INSERT INTO STATUS VALUES(8,'noch nicht vorhanden','')
+-COMMIT
+-INSERT INTO VIDEOFORMAT VALUES(1,'2.35:1','')
+-INSERT INTO VIDEOFORMAT VALUES(2,'9:13','')
+-INSERT INTO VIDEOFORMAT VALUES(3,'16:10','')
+-COMMIT
+-DELETE FROM VIDEOFORMAT WHERE VIDEOFORMATID=1
+-DELETE FROM VIDEOFORMAT WHERE VIDEOFORMATID=2
+-DELETE FROM VIDEOFORMAT WHERE VIDEOFORMATID=3
+-COMMIT
+-INSERT INTO VIDEOFORMAT VALUES(4,'2.35:1','')
+-INSERT INTO VIDEOFORMAT VALUES(5,'9:13','')
+-INSERT INTO VIDEOFORMAT VALUES(6,'16:10','')
+-COMMIT
+-INSERT INTO LANGUAGE VALUES(1,'Deutsch','de')
+-INSERT INTO LANGUAGE VALUES(2,'Englisch','en')
+-INSERT INTO LANGUAGE VALUES(3,'Franzoesisch','fr')
+-INSERT INTO LANGUAGE VALUES(4,'Spanisch','es')
+-INSERT INTO LANGUAGE VALUES(5,'Japanisch','jp')
+-COMMIT
+-DELETE FROM LANGUAGE WHERE LANGUAGEID=1
+-DELETE FROM LANGUAGE WHERE LANGUAGEID=2
+-DELETE FROM LANGUAGE WHERE LANGUAGEID=3
+-DELETE FROM LANGUAGE WHERE LANGUAGEID=4
+-DELETE FROM LANGUAGE WHERE LANGUAGEID=5
+-COMMIT
+-INSERT INTO LANGUAGE VALUES(6,'Deutsch','de')
+-INSERT INTO LANGUAGE VALUES(7,'Englisch','en')
+-INSERT INTO LANGUAGE VALUES(8,'Franzoesisch','fr')
+-INSERT INTO LANGUAGE VALUES(9,'Spanisch','es')
+-INSERT INTO LANGUAGE VALUES(10,'Japanisch','jp')
+-COMMIT
+
+Modified: project_src/provirent_hibernate/data/video.properties
+===================================================================
+--- project_src/provirent_hibernate/data/video.properties	2004-10-12 11:39:19 UTC (rev 38)
++++ project_src/provirent_hibernate/data/video.properties	2004-10-12 11:39:59 UTC (rev 39)
+@@ -1,5 +1,5 @@
+ #HSQL database
+-#Sat Oct 09 22:45:42 CEST 2004
++#Tue Oct 12 13:34:02 CEST 2004
+ hsqldb.cache_file_scale=1
+ runtime.gc_interval=0
+ hsqldb.first_identity=0
+
+Modified: project_src/provirent_hibernate/data/video.script
+===================================================================
+--- project_src/provirent_hibernate/data/video.script	2004-10-12 11:39:19 UTC (rev 38)
++++ project_src/provirent_hibernate/data/video.script	2004-10-12 11:39:59 UTC (rev 39)
+@@ -9,15 +9,15 @@
+ CREATE TABLE MOVIEACTORS(MOVIEID INTEGER NOT NULL,ACTORID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEACTORS PRIMARY KEY(MOVIEID,POS))
+ CREATE TABLE MOVIEAUDIOFORMATES(MOVIEID INTEGER NOT NULL,AUDIOFORMATID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEAUDIOFORMATES PRIMARY KEY(MOVIEID,POS))
+ CREATE TABLE STATUS(STATUSID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,STATUSNAME VARCHAR(255) NOT NULL,STATUSSHORTNAME VARCHAR(255) NOT NULL)
+-CREATE TABLE DVD(DVDID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,MOVIE INTEGER,CONDITION INTEGER,STATUS INTEGER,BARCODE VARCHAR(255),CONSTRAINT SYS_CT_1 UNIQUE(BARCODE),CONSTRAINT FK109F29260C3F2 FOREIGN KEY(STATUS) REFERENCES STATUS(STATUSID))
++CREATE TABLE DVD(DVDID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,MOVIE INTEGER,CONDITION INTEGER,STATUS INTEGER,BARCODE VARCHAR(255),CONSTRAINT SYS_CT_272 UNIQUE(BARCODE),CONSTRAINT FK109F29260C3F2 FOREIGN KEY(STATUS) REFERENCES STATUS(STATUSID))
+ CREATE TABLE DIRECTOR(DIRECTORID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,FIRSTNAME VARCHAR(255) NOT NULL,LASTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE ACTOR(ACTORID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,FIRSTNAME VARCHAR(255) NOT NULL,LASTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE AUDIOFORMAT(AUIOFORMATID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE MOVIEVIDEOFORMATES(MOVIEID INTEGER NOT NULL,VIDEOFORMATID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEVIDEOFORMATES PRIMARY KEY(MOVIEID,POS))
+ CREATE TABLE MOVIEORDER(MOVIEORDERID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,CUSTOMER INTEGER,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+-CREATE TABLE MOVIE(MOVIEID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,TITLE VARCHAR(255) NOT NULL,DESCRIPTION VARCHAR(255) NOT NULL,RUNTIME INTEGER,RELEASEDATE DATE)
++CREATE TABLE MOVIE(MOVIEID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,TITLE VARCHAR(255) NOT NULL,DESCRIPTION VARCHAR(255) NOT NULL,RUNTIME INTEGER,RELEASEDATE TIMESTAMP)
+ CREATE TABLE LANGUAGE(LANGUAGEID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+-CREATE TABLE CUSTOMER(CUSTOMERID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,DAYOFREGISTRATION TIMESTAMP NOT NULL,USERNAME VARCHAR(255) NOT NULL,PASSWORD VARCHAR(255) NOT NULL,HIDDENQUESTION VARCHAR(255) NOT NULL,HIDDENANSWER VARCHAR(255) NOT NULL,DAYOFBIRTH TIMESTAMP)
++CREATE TABLE CUSTOMER(CUSTOMERID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,DAYOFREGISTRATION TIMESTAMP NOT NULL,USERNAME VARCHAR(255) NOT NULL,PASSWORD VARCHAR(255) NOT NULL,HIDDENQUESTION VARCHAR(255) NOT NULL,HIDDENANSWER VARCHAR(255) NOT NULL)
+ CREATE TABLE CONDITION(CONDITIONID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,CONDITIONNAME VARCHAR(255) NOT NULL,CONDITIONSHORTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE BILL(BILLID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,CUSTOMER INTEGER,PDFFILE BINARY,PDFFILESIZE INTEGER,CONSTRAINT FK1F1C0724217FDE FOREIGN KEY(CUSTOMER) REFERENCES CUSTOMER(CUSTOMERID))
+ CREATE TABLE MOVIESUBTITLES(MOVIEID INTEGER NOT NULL,SUBTITLEID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIESUBTITLES PRIMARY KEY(MOVIEID,POS),CONSTRAINT FK33A6F22B13769F33 FOREIGN KEY(SUBTITLEID) REFERENCES SUBTITLE(SUBTITLEID),CONSTRAINT FK33A6F22B74ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID))
+@@ -43,3 +43,296 @@
+ ALTER TABLE MOVIEVIDEOFORMATES ADD CONSTRAINT FKDE31730C23D64AD FOREIGN KEY(VIDEOFORMATID) REFERENCES VIDEOFORMAT(VIDEOFORMATID)
+ ALTER TABLE MOVIEORDER ADD CONSTRAINT FKB0BF321E24217FDE FOREIGN KEY(CUSTOMER) REFERENCES CUSTOMER(CUSTOMERID)
+ CREATE USER SA PASSWORD &quot;&quot; ADMIN
++INSERT INTO IMAGE VALUES(5,'01020304',123,'image1.jpg','Bild 1')
++INSERT INTO IMAGE VALUES(6,'05060708',123,'image2.jpg','Bild 2')
++INSERT INTO IMAGE VALUES(7,'090a0b0c',123,'image3.jpg','Bild 3')
++INSERT INTO IMAGE VALUES(8,'0d0e0f10',123,'image4.jpg','Bild 4')
++INSERT INTO IMAGE VALUES(9,NULL,0,NULL,NULL)
++INSERT INTO IMAGE VALUES(10,NULL,0,NULL,NULL)
++INSERT INTO IMAGE VALUES(11,NULL,0,NULL,NULL)
++INSERT INTO IMAGE VALUES(12,NULL,0,NULL,NULL)
++INSERT INTO IMAGE VALUES(13,NULL,0,NULL,NULL)
++INSERT INTO IMAGE VALUES(14,NULL,0,NULL,NULL)
++INSERT INTO IMAGE VALUES(15,NULL,0,NULL,NULL)
++INSERT INTO PERSON VALUES(2,'','',NULL,'',NULL,'','','','','','',NULL)
++INSERT INTO PERSON VALUES(4,'Philipp','Schneider',NULL,'Herr',NULL,'Kastanienring','16','Leipzig','04316','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>','1988-09-10 11:45:05.935')
++INSERT INTO PERSON VALUES(5,'Max','Meier',NULL,'Herr',NULL,'Kohlgartenstr.','67','Wernigerode','38855','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>',NULL)
++INSERT INTO PERSON VALUES(6,'Thomas','Pech',NULL,'Herr',NULL,'Riebeck.','7a','Leipzig','04317','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde3-provirent at phil-schneider.de</A>',NULL)
++INSERT INTO PERSON VALUES(8,'Philipp','Schneider',NULL,'Herr',NULL,'Kastanienring','16','Leipzig','04316','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>','1988-09-10 11:49:41.131')
++INSERT INTO PERSON VALUES(9,'Max','Meier',NULL,'Herr',NULL,'Kohlgartenstr.','67','Wernigerode','38855','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>',NULL)
++INSERT INTO PERSON VALUES(10,'Thomas','Pech',NULL,'Herr',NULL,'Riebeck.','7a','Leipzig','04317','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde3-provirent at phil-schneider.de</A>',NULL)
++INSERT INTO PERSON VALUES(12,'Philipp','Schneider',NULL,'Herr',NULL,'Kastanienring','16','Leipzig','04316','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>','1988-09-10 11:51:22.277')
++INSERT INTO PERSON VALUES(13,'Max','Meier',NULL,'Herr',NULL,'Kohlgartenstr.','67','Wernigerode','38855','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>',NULL)
++INSERT INTO PERSON VALUES(14,'Thomas','Pech',NULL,'Herr',NULL,'Riebeck.','7a','Leipzig','04317','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde3-provirent at phil-schneider.de</A>',NULL)
++INSERT INTO PERSON VALUES(16,'Philipp','Schneider',NULL,'Herr',NULL,'Kastanienring','16','Leipzig','04316','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>','1988-09-10 11:52:31.606')
++INSERT INTO PERSON VALUES(17,'Max','Meier',NULL,'Herr',NULL,'Kohlgartenstr.','67','Wernigerode','38855','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>',NULL)
++INSERT INTO PERSON VALUES(18,'Thomas','Pech',NULL,'Herr',NULL,'Riebeck.','7a','Leipzig','04317','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde3-provirent at phil-schneider.de</A>',NULL)
++INSERT INTO PERSON VALUES(20,'Philipp','Schneider',NULL,'Herr',NULL,'Kastanienring','16','Leipzig','04316','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>','1988-09-10 13:19:23.457')
++INSERT INTO PERSON VALUES(21,'Max','Meier',NULL,'Herr',NULL,'Kohlgartenstr.','67','Wernigerode','38855','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde2-provirent at phil-schneider.de</A>',NULL)
++INSERT INTO PERSON VALUES(22,'Thomas','Pech',NULL,'Herr',NULL,'Riebeck.','7a','Leipzig','04317','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">kunde3-provirent at phil-schneider.de</A>',NULL)
++INSERT INTO GENRE VALUES(5,'Action','')
++INSERT INTO GENRE VALUES(6,'Abenteuer','')
++INSERT INTO GENRE VALUES(7,'Dokumentation','')
++INSERT INTO GENRE VALUES(8,'Horror','')
++INSERT INTO GENRE VALUES(9,'Thriller','')
++INSERT INTO GENRE VALUES(10,'Drama','')
++INSERT INTO GENRE VALUES(11,'Sci-Fi','')
++INSERT INTO GENRE VALUES(12,'Mystery','')
++INSERT INTO GENRE VALUES(13,'Thriller','')
++INSERT INTO GENRE VALUES(14,'Drama','')
++INSERT INTO GENRE VALUES(15,'Sci-Fi','')
++INSERT INTO GENRE VALUES(16,'Mystery','')
++INSERT INTO GENRE VALUES(17,'Thriller','')
++INSERT INTO GENRE VALUES(18,'Drama','')
++INSERT INTO GENRE VALUES(19,'Sci-Fi','')
++INSERT INTO GENRE VALUES(20,'Mystery','')
++INSERT INTO GENRE VALUES(21,'Thriller','')
++INSERT INTO GENRE VALUES(22,'Drama','')
++INSERT INTO GENRE VALUES(23,'Sci-Fi','')
++INSERT INTO GENRE VALUES(24,'Mystery','')
++INSERT INTO GENRE VALUES(25,'Thriller','')
++INSERT INTO GENRE VALUES(26,'Drama','')
++INSERT INTO GENRE VALUES(27,'Sci-Fi','')
++INSERT INTO GENRE VALUES(28,'Mystery','')
++INSERT INTO GENRE VALUES(29,'Thriller','')
++INSERT INTO GENRE VALUES(30,'Drama','')
++INSERT INTO GENRE VALUES(31,'Sci-Fi','')
++INSERT INTO GENRE VALUES(32,'Mystery','')
++INSERT INTO GENRE VALUES(33,'Thriller','')
++INSERT INTO GENRE VALUES(34,'Drama','')
++INSERT INTO GENRE VALUES(35,'Sci-Fi','')
++INSERT INTO GENRE VALUES(36,'Mystery','')
++INSERT INTO SUBTITLE VALUES(6,'Deutsch','de')
++INSERT INTO SUBTITLE VALUES(7,'Englisch','en')
++INSERT INTO SUBTITLE VALUES(8,'Franzoesisch','fr')
++INSERT INTO SUBTITLE VALUES(9,'Spanisch','es')
++INSERT INTO SUBTITLE VALUES(10,'Japanisch','jp')
++INSERT INTO SUBTITLE VALUES(11,'Deutsch','de')
++INSERT INTO SUBTITLE VALUES(12,'Englisch','en')
++INSERT INTO SUBTITLE VALUES(13,'Deutsch','de')
++INSERT INTO SUBTITLE VALUES(14,'Englisch','en')
++INSERT INTO SUBTITLE VALUES(15,'Deutsch','de')
++INSERT INTO SUBTITLE VALUES(16,'Englisch','en')
++INSERT INTO SUBTITLE VALUES(17,'Deutsch','de')
++INSERT INTO SUBTITLE VALUES(18,'Englisch','en')
++INSERT INTO SUBTITLE VALUES(19,'Deutsch','de')
++INSERT INTO SUBTITLE VALUES(20,'Englisch','en')
++INSERT INTO SUBTITLE VALUES(21,'Deutsch','de')
++INSERT INTO SUBTITLE VALUES(22,'Englisch','en')
++INSERT INTO SUBTITLE VALUES(23,'Deutsch','de')
++INSERT INTO SUBTITLE VALUES(24,'Englisch','en')
++INSERT INTO MOVIEDIRECTORS VALUES(1,9,0)
++INSERT INTO MOVIEDIRECTORS VALUES(2,10,0)
++INSERT INTO MOVIEDIRECTORS VALUES(3,11,0)
++INSERT INTO MOVIEDIRECTORS VALUES(4,12,0)
++INSERT INTO MOVIEDIRECTORS VALUES(5,13,0)
++INSERT INTO MOVIEDIRECTORS VALUES(6,14,0)
++INSERT INTO MOVIEDIRECTORS VALUES(7,15,0)
++INSERT INTO MOVIEACTORS VALUES(1,15,0)
++INSERT INTO MOVIEACTORS VALUES(1,16,1)
++INSERT INTO MOVIEACTORS VALUES(1,17,2)
++INSERT INTO MOVIEACTORS VALUES(2,18,0)
++INSERT INTO MOVIEACTORS VALUES(2,19,1)
++INSERT INTO MOVIEACTORS VALUES(2,20,2)
++INSERT INTO MOVIEACTORS VALUES(3,21,0)
++INSERT INTO MOVIEACTORS VALUES(3,22,1)
++INSERT INTO MOVIEACTORS VALUES(3,23,2)
++INSERT INTO MOVIEACTORS VALUES(4,24,0)
++INSERT INTO MOVIEACTORS VALUES(4,25,1)
++INSERT INTO MOVIEACTORS VALUES(4,26,2)
++INSERT INTO MOVIEACTORS VALUES(5,27,0)
++INSERT INTO MOVIEACTORS VALUES(5,28,1)
++INSERT INTO MOVIEACTORS VALUES(5,29,2)
++INSERT INTO MOVIEACTORS VALUES(6,30,0)
++INSERT INTO MOVIEACTORS VALUES(6,31,1)
++INSERT INTO MOVIEACTORS VALUES(6,32,2)
++INSERT INTO MOVIEACTORS VALUES(7,33,0)
++INSERT INTO MOVIEACTORS VALUES(7,34,1)
++INSERT INTO MOVIEACTORS VALUES(7,35,2)
++INSERT INTO STATUS VALUES(5,'ausleihbar','')
++INSERT INTO STATUS VALUES(6,'verliehen','')
++INSERT INTO STATUS VALUES(7,'in Bearbeitung','')
++INSERT INTO STATUS VALUES(8,'noch nicht vorhanden','')
++INSERT INTO DIRECTOR VALUES(5,'Bibo','Bergeron')
++INSERT INTO DIRECTOR VALUES(6,'Vicky','Jenson')
++INSERT INTO DIRECTOR VALUES(7,'Jay','Russell')
++INSERT INTO DIRECTOR VALUES(8,'Joseph','Ruben')
++INSERT INTO DIRECTOR VALUES(9,'Joseph','Ruben')
++INSERT INTO DIRECTOR VALUES(10,'Joseph','Ruben')
++INSERT INTO DIRECTOR VALUES(11,'Joseph','Ruben')
++INSERT INTO DIRECTOR VALUES(12,'Joseph','Ruben')
++INSERT INTO DIRECTOR VALUES(13,'Joseph','Ruben')
++INSERT INTO DIRECTOR VALUES(14,'Joseph','Ruben')
++INSERT INTO DIRECTOR VALUES(15,'Joseph','Ruben')
++INSERT INTO ACTOR VALUES(8,'Johnny','Depp')
++INSERT INTO ACTOR VALUES(9,'Geoffrey','Rush')
++INSERT INTO ACTOR VALUES(10,'Gore','Verbinski ')
++INSERT INTO ACTOR VALUES(11,'Julianne','Moore ')
++INSERT INTO ACTOR VALUES(12,'Anthony','Edwards ')
++INSERT INTO ACTOR VALUES(13,'Matthew','Pleszewicz ')
++INSERT INTO ACTOR VALUES(14,'Christopher','Kovaleski ')
++INSERT INTO ACTOR VALUES(15,'Julianne','Moore')
++INSERT INTO ACTOR VALUES(16,'Christopher','Kovaleski')
++INSERT INTO ACTOR VALUES(17,'Matthew','Pleszewicz')
++INSERT INTO ACTOR VALUES(18,'Julianne','Moore')
++INSERT INTO ACTOR VALUES(19,'Christopher','Kovaleski')
++INSERT INTO ACTOR VALUES(20,'Matthew','Pleszewicz')
++INSERT INTO ACTOR VALUES(21,'Julianne','Moore')
++INSERT INTO ACTOR VALUES(22,'Christopher','Kovaleski')
++INSERT INTO ACTOR VALUES(23,'Matthew','Pleszewicz')
++INSERT INTO ACTOR VALUES(24,'Julianne','Moore')
++INSERT INTO ACTOR VALUES(25,'Christopher','Kovaleski')
++INSERT INTO ACTOR VALUES(26,'Matthew','Pleszewicz')
++INSERT INTO ACTOR VALUES(27,'Julianne','Moore')
++INSERT INTO ACTOR VALUES(28,'Christopher','Kovaleski')
++INSERT INTO ACTOR VALUES(29,'Matthew','Pleszewicz')
++INSERT INTO ACTOR VALUES(30,'Julianne','Moore')
++INSERT INTO ACTOR VALUES(31,'Christopher','Kovaleski')
++INSERT INTO ACTOR VALUES(32,'Matthew','Pleszewicz')
++INSERT INTO ACTOR VALUES(33,'Julianne','Moore')
++INSERT INTO ACTOR VALUES(34,'Christopher','Kovaleski')
++INSERT INTO ACTOR VALUES(35,'Matthew','Pleszewicz')
++INSERT INTO AUDIOFORMAT VALUES(5,'DTS Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(6,'Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(7,'Dolby','')
++INSERT INTO AUDIOFORMAT VALUES(8,'Stereo','')
++INSERT INTO AUDIOFORMAT VALUES(9,'DTS Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(10,'Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(11,'Dolby','')
++INSERT INTO AUDIOFORMAT VALUES(12,'DTS Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(13,'Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(14,'Dolby','')
++INSERT INTO AUDIOFORMAT VALUES(15,'DTS Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(16,'Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(17,'Dolby','')
++INSERT INTO AUDIOFORMAT VALUES(18,'DTS Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(19,'Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(20,'Dolby','')
++INSERT INTO AUDIOFORMAT VALUES(21,'DTS Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(22,'Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(23,'Dolby','')
++INSERT INTO AUDIOFORMAT VALUES(24,'DTS Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(25,'Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(26,'Dolby','')
++INSERT INTO AUDIOFORMAT VALUES(27,'DTS Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(28,'Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(29,'Dolby','')
++INSERT INTO MOVIE VALUES(1,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 11:45:06.086')
++INSERT INTO MOVIE VALUES(2,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 11:49:41.271')
++INSERT INTO MOVIE VALUES(3,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 11:51:22.407')
++INSERT INTO MOVIE VALUES(4,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 11:52:31.736')
++INSERT INTO MOVIE VALUES(5,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 11:52:31.917')
++INSERT INTO MOVIE VALUES(6,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 13:19:23.707')
++INSERT INTO MOVIE VALUES(7,'The Forgotten','A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...',96,'2004-10-12 13:19:24.017')
++INSERT INTO LANGUAGE VALUES(6,'Deutsch','de')
++INSERT INTO LANGUAGE VALUES(7,'Englisch','en')
++INSERT INTO LANGUAGE VALUES(8,'Franzoesisch','fr')
++INSERT INTO LANGUAGE VALUES(9,'Spanisch','es')
++INSERT INTO LANGUAGE VALUES(10,'Japanisch','jp')
++INSERT INTO LANGUAGE VALUES(11,'Deutsch','de')
++INSERT INTO LANGUAGE VALUES(12,'Englisch','en')
++INSERT INTO LANGUAGE VALUES(13,'Deutsch','de')
++INSERT INTO LANGUAGE VALUES(14,'Englisch','en')
++INSERT INTO LANGUAGE VALUES(15,'Deutsch','de')
++INSERT INTO LANGUAGE VALUES(16,'Englisch','en')
++INSERT INTO LANGUAGE VALUES(17,'Deutsch','de')
++INSERT INTO LANGUAGE VALUES(18,'Englisch','en')
++INSERT INTO LANGUAGE VALUES(19,'Deutsch','de')
++INSERT INTO LANGUAGE VALUES(20,'Englisch','en')
++INSERT INTO LANGUAGE VALUES(21,'Deutsch','de')
++INSERT INTO LANGUAGE VALUES(22,'Englisch','en')
++INSERT INTO LANGUAGE VALUES(23,'Deutsch','de')
++INSERT INTO LANGUAGE VALUES(24,'Englisch','en')
++INSERT INTO CUSTOMER VALUES(2,'2004-10-12 11:45:05.935','kunde1','kunde1',' ',' ')
++INSERT INTO CUSTOMER VALUES(3,'2004-10-12 11:45:05.955','kunde2','kunde2',' ',' ')
++INSERT INTO CUSTOMER VALUES(4,'2004-10-12 11:45:05.965','kunde3','kunde3',' ',' ')
++INSERT INTO CUSTOMER VALUES(6,'2004-10-12 11:49:41.131','kunde1','kunde1',' ',' ')
++INSERT INTO CUSTOMER VALUES(7,'2004-10-12 11:49:41.141','kunde2','kunde2',' ',' ')
++INSERT INTO CUSTOMER VALUES(8,'2004-10-12 11:49:41.151','kunde3','kunde3',' ',' ')
++INSERT INTO CUSTOMER VALUES(10,'2004-10-12 11:51:22.277','kunde1','kunde1',' ',' ')
++INSERT INTO CUSTOMER VALUES(11,'2004-10-12 11:51:22.327','kunde2','kunde2',' ',' ')
++INSERT INTO CUSTOMER VALUES(12,'2004-10-12 11:51:22.337','kunde3','kunde3',' ',' ')
++INSERT INTO CUSTOMER VALUES(14,'2004-10-12 11:52:31.606','kunde1','kunde1',' ',' ')
++INSERT INTO CUSTOMER VALUES(15,'2004-10-12 11:52:31.616','kunde2','kunde2',' ',' ')
++INSERT INTO CUSTOMER VALUES(16,'2004-10-12 11:52:31.656','kunde3','kunde3',' ',' ')
++INSERT INTO CUSTOMER VALUES(18,'2004-10-12 13:19:23.457','kunde1','kunde1',' ',' ')
++INSERT INTO CUSTOMER VALUES(19,'2004-10-12 13:19:23.557','kunde2','kunde2',' ',' ')
++INSERT INTO CUSTOMER VALUES(20,'2004-10-12 13:19:23.637','kunde3','kunde3',' ',' ')
++INSERT INTO CONDITION VALUES(6,'neu','')
++INSERT INTO CONDITION VALUES(7,'leichte Kratzer','')
++INSERT INTO CONDITION VALUES(8,'mittlere Kratzer','')
++INSERT INTO CONDITION VALUES(9,'schwere Kratzer','')
++INSERT INTO CONDITION VALUES(10,'nicht lesbar','')
++INSERT INTO MOVIESUBTITLES VALUES(1,11,0)
++INSERT INTO MOVIESUBTITLES VALUES(1,12,1)
++INSERT INTO MOVIESUBTITLES VALUES(2,13,0)
++INSERT INTO MOVIESUBTITLES VALUES(2,14,1)
++INSERT INTO MOVIESUBTITLES VALUES(3,15,0)
++INSERT INTO MOVIESUBTITLES VALUES(3,16,1)
++INSERT INTO MOVIESUBTITLES VALUES(4,17,0)
++INSERT INTO MOVIESUBTITLES VALUES(4,18,1)
++INSERT INTO MOVIESUBTITLES VALUES(5,19,0)
++INSERT INTO MOVIESUBTITLES VALUES(5,20,1)
++INSERT INTO MOVIESUBTITLES VALUES(6,21,0)
++INSERT INTO MOVIESUBTITLES VALUES(6,22,1)
++INSERT INTO MOVIESUBTITLES VALUES(7,23,0)
++INSERT INTO MOVIESUBTITLES VALUES(7,24,1)
++INSERT INTO MOVIEGENRES VALUES(1,9,0)
++INSERT INTO MOVIEGENRES VALUES(1,10,1)
++INSERT INTO MOVIEGENRES VALUES(1,11,2)
++INSERT INTO MOVIEGENRES VALUES(1,12,3)
++INSERT INTO MOVIEGENRES VALUES(2,13,0)
++INSERT INTO MOVIEGENRES VALUES(2,14,1)
++INSERT INTO MOVIEGENRES VALUES(2,15,2)
++INSERT INTO MOVIEGENRES VALUES(2,16,3)
++INSERT INTO MOVIEGENRES VALUES(3,17,0)
++INSERT INTO MOVIEGENRES VALUES(3,18,1)
++INSERT INTO MOVIEGENRES VALUES(3,19,2)
++INSERT INTO MOVIEGENRES VALUES(3,20,3)
++INSERT INTO MOVIEGENRES VALUES(4,21,0)
++INSERT INTO MOVIEGENRES VALUES(4,22,1)
++INSERT INTO MOVIEGENRES VALUES(4,23,2)
++INSERT INTO MOVIEGENRES VALUES(4,24,3)
++INSERT INTO MOVIEGENRES VALUES(5,25,0)
++INSERT INTO MOVIEGENRES VALUES(5,26,1)
++INSERT INTO MOVIEGENRES VALUES(5,27,2)
++INSERT INTO MOVIEGENRES VALUES(5,28,3)
++INSERT INTO MOVIEGENRES VALUES(6,29,0)
++INSERT INTO MOVIEGENRES VALUES(6,30,1)
++INSERT INTO MOVIEGENRES VALUES(6,31,2)
++INSERT INTO MOVIEGENRES VALUES(6,32,3)
++INSERT INTO MOVIEGENRES VALUES(7,33,0)
++INSERT INTO MOVIEGENRES VALUES(7,34,1)
++INSERT INTO MOVIEGENRES VALUES(7,35,2)
++INSERT INTO MOVIEGENRES VALUES(7,36,3)
++INSERT INTO VIDEOFORMAT VALUES(4,'2.35:1','')
++INSERT INTO VIDEOFORMAT VALUES(5,'9:13','')
++INSERT INTO VIDEOFORMAT VALUES(6,'16:10','')
++INSERT INTO VIDEOFORMAT VALUES(7,'9:13','')
++INSERT INTO VIDEOFORMAT VALUES(8,'16:10','')
++INSERT INTO VIDEOFORMAT VALUES(9,'9:13','')
++INSERT INTO VIDEOFORMAT VALUES(10,'16:10','')
++INSERT INTO VIDEOFORMAT VALUES(11,'9:13','')
++INSERT INTO VIDEOFORMAT VALUES(12,'16:10','')
++INSERT INTO VIDEOFORMAT VALUES(13,'9:13','')
++INSERT INTO VIDEOFORMAT VALUES(14,'16:10','')
++INSERT INTO VIDEOFORMAT VALUES(15,'9:13','')
++INSERT INTO VIDEOFORMAT VALUES(16,'16:10','')
++INSERT INTO VIDEOFORMAT VALUES(17,'9:13','')
++INSERT INTO VIDEOFORMAT VALUES(18,'16:10','')
++INSERT INTO VIDEOFORMAT VALUES(19,'9:13','')
++INSERT INTO VIDEOFORMAT VALUES(20,'16:10','')
++INSERT INTO MOVIELANGUAGES VALUES(1,11,0)
++INSERT INTO MOVIELANGUAGES VALUES(1,12,1)
++INSERT INTO MOVIELANGUAGES VALUES(2,13,0)
++INSERT INTO MOVIELANGUAGES VALUES(2,14,1)
++INSERT INTO MOVIELANGUAGES VALUES(3,15,0)
++INSERT INTO MOVIELANGUAGES VALUES(3,16,1)
++INSERT INTO MOVIELANGUAGES VALUES(4,17,0)
++INSERT INTO MOVIELANGUAGES VALUES(4,18,1)
++INSERT INTO MOVIELANGUAGES VALUES(5,19,0)
++INSERT INTO MOVIELANGUAGES VALUES(5,20,1)
++INSERT INTO MOVIELANGUAGES VALUES(6,21,0)
++INSERT INTO MOVIELANGUAGES VALUES(6,22,1)
++INSERT INTO MOVIELANGUAGES VALUES(7,23,0)
++INSERT INTO MOVIELANGUAGES VALUES(7,24,1)
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml	2004-10-12 11:39:19 UTC (rev 38)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml	2004-10-12 11:39:59 UTC (rev 39)
+@@ -41,12 +41,7 @@
+       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+       &lt;/property&gt;
+                          
+-    
+  
+-      &lt;property name=&quot;dayOfBirth&quot; type=&quot;calendar&quot; &gt;
+-      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;
+- 
+  			
+     &lt;/class&gt;
+   &lt;/hibernate-mapping&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java	2004-10-12 11:39:19 UTC (rev 38)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java	2004-10-12 11:39:59 UTC (rev 39)
+@@ -1,7 +1,6 @@
+ package de.hsharz.provirent.objects;
+ 
+ import java.io.Serializable;
+-import java.util.Calendar;
+ import java.util.Date;
+ import org.apache.commons.lang.builder.EqualsBuilder;
+ import org.apache.commons.lang.builder.HashCodeBuilder;
+@@ -31,21 +30,17 @@
+     private String hiddenAnswer;
+ 
+     /** nullable persistent field */
+-    private Calendar dayOfBirth;
+-
+-    /** nullable persistent field */
+     private Date dayOfRegistration;
+ 
+     /** nullable persistent field */
+     private de.hsharz.provirent.objects.Person person;
+ 
+     /** full constructor */
+-    public Customer(String userName, String password, String hiddenQuestion, String hiddenAnswer, Calendar dayOfBirth, Date dayOfRegistration, de.hsharz.provirent.objects.Person person) {
++    public Customer(String userName, String password, String hiddenQuestion, String hiddenAnswer, Date dayOfRegistration, de.hsharz.provirent.objects.Person person) {
+         this.userName = userName;
+         this.password = password;
+         this.hiddenQuestion = hiddenQuestion;
+         this.hiddenAnswer = hiddenAnswer;
+-        this.dayOfBirth = dayOfBirth;
+         this.dayOfRegistration = dayOfRegistration;
+         this.person = person;
+     }
+@@ -102,14 +97,6 @@
+         this.hiddenAnswer = hiddenAnswer;
+     }
+ 
+-    public Calendar getDayOfBirth() {
+-        return this.dayOfBirth;
+-    }
+-
+-    public void setDayOfBirth(Calendar dayOfBirth) {
+-        this.dayOfBirth = dayOfBirth;
+-    }
+-
+     public Date getDayOfRegistration() {
+         return this.dayOfRegistration;
+     }
+@@ -133,7 +120,6 @@
+             .append(&quot;password&quot;, getPassword())
+             .append(&quot;hiddenQuestion&quot;, getHiddenQuestion())
+             .append(&quot;hiddenAnswer&quot;, getHiddenAnswer())
+-            .append(&quot;dayOfBirth&quot;, getDayOfBirth())
+             .append(&quot;dayOfRegistration&quot;, getDayOfRegistration())
+             .toString();
+     }
+@@ -148,7 +134,6 @@
+             .append(this.getPassword(), castOther.getPassword())
+             .append(this.getHiddenQuestion(), castOther.getHiddenQuestion())
+             .append(this.getHiddenAnswer(), castOther.getHiddenAnswer())
+-            .append(this.getDayOfBirth(), castOther.getDayOfBirth())
+             .append(this.getDayOfRegistration(), castOther.getDayOfRegistration())
+             .append(this.getPerson(), castOther.getPerson())
+             .isEquals();
+@@ -161,7 +146,6 @@
+             .append(getPassword())
+             .append(getHiddenQuestion())
+             .append(getHiddenAnswer())
+-            .append(getDayOfBirth())
+             .append(getDayOfRegistration())
+             .append(getPerson())
+             .toHashCode();
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml	2004-10-12 11:39:19 UTC (rev 38)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.hbm.xml	2004-10-12 11:39:59 UTC (rev 39)
+@@ -34,7 +34,7 @@
+         &lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+       &lt;/property&gt;
+  
+-      &lt;property name=&quot;releaseDate&quot; type=&quot;date&quot;&gt;
++      &lt;property name=&quot;releaseDate&quot; type=&quot;calendar&quot;&gt;
+         &lt;meta attribute=&quot;field-description&quot;&gt;When the movie was released or added&lt;/meta&gt;
+ 				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+       &lt;/property&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.java	2004-10-12 11:39:19 UTC (rev 38)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Movie.java	2004-10-12 11:39:59 UTC (rev 39)
+@@ -1,7 +1,7 @@
+ package de.hsharz.provirent.objects;
+ 
+ import java.io.Serializable;
+-import java.util.Date;
++import java.util.Calendar;
+ import java.util.List;
+ import org.apache.commons.lang.builder.EqualsBuilder;
+ import org.apache.commons.lang.builder.HashCodeBuilder;
+@@ -28,7 +28,7 @@
+     private int runtime;
+ 
+     /** nullable persistent field */
+-    private Date releaseDate;
++    private Calendar releaseDate;
+ 
+     /** nullable persistent field */
+     private de.hsharz.provirent.objects.Image mainImage;
+@@ -58,7 +58,7 @@
+     private List videoFormats;
+ 
+     /** full constructor */
+-    public Movie(String title, String description, int runtime, Date releaseDate, de.hsharz.provirent.objects.Image mainImage, List images, List actors, List director, List languages, List subtitles, List genres, List audioFormats, List videoFormats) {
++    public Movie(String title, String description, int runtime, Calendar releaseDate, de.hsharz.provirent.objects.Image mainImage, List images, List actors, List director, List languages, List subtitles, List genres, List audioFormats, List videoFormats) {
+         this.title = title;
+         this.description = description;
+         this.runtime = runtime;
+@@ -130,11 +130,11 @@
+     /** 
+      * When the movie was released or added
+      */
+-    public Date getReleaseDate() {
++    public Calendar getReleaseDate() {
+         return this.releaseDate;
+     }
+ 
+-    public void setReleaseDate(Date releaseDate) {
++    public void setReleaseDate(Calendar releaseDate) {
+         this.releaseDate = releaseDate;
+     }
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.java	2004-10-12 11:39:19 UTC (rev 38)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.java	2004-10-12 11:39:59 UTC (rev 39)
+@@ -10,7 +10,7 @@
+ /** 
+  *         Represents an MovieOrder.
+  *         @author Philipp Schneider
+- *        
++ *       
+ */
+ public class MovieOrder implements Serializable {
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000039.html">[Provirent-svn-commit] r38 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000041.html">[Provirent-svn-commit] r40 - in project_src: . clienttest clienttest/lib clienttest/src
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#40">[ date ]</a>
+              <a href="thread.html#40">[ thread ]</a>
+              <a href="subject.html#40">[ subject ]</a>
+              <a href="author.html#40">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

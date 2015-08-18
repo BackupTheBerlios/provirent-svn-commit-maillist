@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r195 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r195%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200412021736.iB2Hahlx031191%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000195.html">
+   <LINK REL="Next"  HREF="000197.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r195 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r195%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200412021736.iB2Hahlx031191%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r195 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Thu Dec  2 18:36:43 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000195.html">[Provirent-svn-commit] r194 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+        <LI>Next message: <A HREF="000197.html">[Provirent-svn-commit] r196 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#196">[ date ]</a>
+              <a href="thread.html#196">[ thread ]</a>
+              <a href="subject.html#196">[ subject ]</a>
+              <a href="author.html#196">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-12-02 18:36:29 +0100 (Thu, 02 Dec 2004)
+New Revision: 195
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+Log:
+Composite Movie  - um Runtime erweitert
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-02 16:54:50 UTC (rev 194)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-02 17:36:29 UTC (rev 195)
+@@ -96,12 +96,14 @@
+     private Text textMoviesSearch;
+     private Text textMoviesID;
+     private Text textMoviesTitle;
++    private Text textMoviesRuntime;
+     private Text textMoviesDescription;
+     private Text textMoviesDate;
+     
+     private Label labelMoviesSearch;
+     private Label labelMoviesID;
+     private Label labelMoviesTitle;
++    private Label labelMoviesRuntime;
+     private Label labelMoviesDate;
+     private Label labelMoviesDescription;
+     private Label labelMoviesDirectors;
+@@ -463,6 +465,30 @@
+     	    text1LData2.horizontalSpan = 5;
+     	    text1LData2.grabExcessHorizontalSpace = true;
+     	    textMoviesTitle.setLayoutData(text1LData2);        
++    	}
++        {
++            labelMoviesRuntime = new Label(
++                groupMoviesDetail,
++                SWT.NONE);
++            labelMoviesRuntime.setText(l
++                .getString(&quot;movies.groupdetail.labelruntime&quot;)
++                + &quot;:&quot;);
++            labelMoviesRuntime.setSize(125, 15);
++            GridData labelRuntimeLData = new GridData();
++            labelRuntimeLData.heightHint = 15;
++            labelRuntimeLData.horizontalAlignment = GridData.FILL;
++            labelRuntimeLData.verticalAlignment = GridData.BEGINNING;
++            labelMoviesRuntime.setLayoutData(labelRuntimeLData);
++        }
++        {
++    	    textMoviesRuntime = new Text(groupMoviesDetail,
++    	            SWT.READ_ONLY | SWT.BORDER);
++    	    GridData text1LData2 = new GridData();
++    	    text1LData2.horizontalAlignment = GridData.FILL;
++    	    text1LData2.heightHint = 13;
++    	    text1LData2.horizontalSpan = 5;
++    	    text1LData2.grabExcessHorizontalSpace = true;
++    	    textMoviesRuntime.setLayoutData(text1LData2);        
+     	}     
+         {
+             labelMoviesDate = new Label(
+@@ -993,9 +1019,11 @@
+                 
+                 textMoviesID.setText(&quot;&quot;);
+                 textMoviesTitle.setText(&quot;&quot;);
++                textMoviesRuntime.setText(&quot;&quot;);
+                 textMoviesDate.setText(&quot;&quot;);
+                 textMoviesDescription.setText(&quot;&quot;);
+                 textMoviesTitle.setEditable(true);
++                textMoviesRuntime.setEditable(true);
+                 textMoviesDescription.setEditable(true);
+                 textMoviesSearch.setEditable(false);
+                 
+@@ -1038,6 +1066,7 @@
+ 
+                 textMoviesID.setEditable(false);
+                 textMoviesTitle.setEditable(true);
++                textMoviesRuntime.setEditable(true);
+                 textMoviesTitle.setFocus();
+                 textMoviesDescription.setEditable(true);
+                 
+@@ -1102,6 +1131,11 @@
+                     textMoviesID.setText(&quot;&quot;);
+                     textMoviesTitle.setText(&quot;&quot;);
+                     textMoviesDate.setText(&quot;&quot;);
++                    textMoviesDescription.setText(&quot;&quot;);
++                    tableMoviesDirectorsDetail.removeAll();
++                    tableMoviesActorsDetail.removeAll();
++                    tableMoviesGenresDetail.removeAll();
++                    tableMoviesImagesDetail.removeAll();
+                     //in Tabelle n&#228;chsten ausw&#228;hlen
+                     try {
+                         tableMoviesOverview.select(0);
+@@ -1173,8 +1207,13 @@
+                 if(mode_movie == ManagementGui.MODE_ADD)  {
+                     movie.setTitle(textMoviesTitle.getText());
+                     movie.setDescription(textMoviesDescription.getText());
+-                    movie.setReleaseDate(new GregorianCalendar());
+-                    movie.setRuntime(90);
++                    try {
++                        movie.setReleaseDate(Util.getDateByText(textMoviesDate.getText()));
++                    } catch (DataBaseException e1) {
++                        // TODO Auto-generated catch block
++                        e1.printStackTrace();
++                    }
++                    movie.setRuntime(Integer.parseInt(textMoviesRuntime.getText()));
+                 }
+                     /**
+                      * @todo eine Exception bekommen wieder leider NOCH nicht mit
+@@ -1375,11 +1414,12 @@
+         //Fill Imagetable
+         tableMoviesImagesDetail.removeAll();
+         logger.debug(&quot;Anzahl der Bilder: &quot;+object.getImages().size());
++        System.out.println(object.getImages().size());
+         for (int i=0;i&lt;object.getImages().size();i++)  {
+             Image o=(Image)object.getImages().get(i);
+             item = new TableItem(tableMoviesImagesDetail , SWT.NONE);
+             item.setText(new String[] {o.getImageId() 
+-                    + &quot; &quot;,o.getImageFileName()});
++                    + &quot; &quot;,o.getImageFileName()+ &quot;&quot;});
+         }
+         
+         //Enable Buttons for Delete and Edit
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-12-02 16:54:50 UTC (rev 194)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-12-02 17:36:29 UTC (rev 195)
+@@ -16,6 +16,7 @@
+ movies.groupdetail.label =Detail
+ movies.groupdetail.labelid =Film ID
+ movies.groupdetail.labeltitle =Titel
++movies.groupdetail.labelruntime =Filml&#228;nge (in min)
+ movies.groupdetail.labeldate =Erscheinungsdatum
+ movies.groupdetail.labeldirectors =Liste der Regisseure
+ movies.groupdetail.labelactors =Liste der Darsteller
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000195.html">[Provirent-svn-commit] r194 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+	<LI>Next message: <A HREF="000197.html">[Provirent-svn-commit] r196 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#196">[ date ]</a>
+              <a href="thread.html#196">[ thread ]</a>
+              <a href="subject.html#196">[ subject ]</a>
+              <a href="author.html#196">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

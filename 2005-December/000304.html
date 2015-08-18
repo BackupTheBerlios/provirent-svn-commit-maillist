@@ -1,0 +1,402 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r302 - docu/latex
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r302%20-%20docu/latex&In-Reply-To=%3C200512181837.jBIIbI0r022476%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000303.html">
+   <LINK REL="Next"  HREF="000305.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r302 - docu/latex</H1>
+    <B>sforstner at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r302%20-%20docu/latex&In-Reply-To=%3C200512181837.jBIIbI0r022476%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r302 - docu/latex">sforstner at berlios.de
+       </A><BR>
+    <I>Sun Dec 18 19:37:18 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000303.html">[Provirent-svn-commit] r301 - docu/latex
+</A></li>
+        <LI>Next message: <A HREF="000305.html">[Provirent-svn-commit] r303 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#304">[ date ]</a>
+              <a href="thread.html#304">[ thread ]</a>
+              <a href="subject.html#304">[ subject ]</a>
+              <a href="author.html#304">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2005-12-18 19:37:16 +0100 (Sun, 18 Dec 2005)
+New Revision: 302
+
+Modified:
+   docu/latex/3-5-JavaWebanwendungen.tex
+   docu/latex/3-6-Persistenzschichten.tex
+   docu/latex/Provirent-Doku.bib
+Log:
+
+
+Modified: docu/latex/3-5-JavaWebanwendungen.tex
+===================================================================
+--- docu/latex/3-5-JavaWebanwendungen.tex	2005-12-17 21:33:14 UTC (rev 301)
++++ docu/latex/3-5-JavaWebanwendungen.tex	2005-12-18 18:37:16 UTC (rev 302)
+@@ -15,14 +15,12 @@
+ \end{figure}
+ 
+ Die auf dem bekannten Model View Controller 2(MVC2)-Modell basierende JSF-Technologie besteht aus den folgenden zwei Hauptkomponenten:
+-
+ \begin{itemize}
+ 	\item JSF API
+ 	\item JSF Tag Libraries
+ \end{itemize}
+ 
+-Das Pr&#228;sentations-Framework JSF muss die von MVC definierten Komponenten abbilden. Wie in \vref{fig:architecture_jsf} zu sehen ist, wird das Modell durch einfache JavaBeans, aber auch durch EJBs\footnote{Enterprise Java Beans} oder JDOs\footnote{Java Data Objects} abgebildet. Der Controller wird durch Action Handler bzw. Event Listener der jeweiligen UI-Komponenten dargestellt. Im Zentrum des Controllers steht das FacesServlet, welches mit Hilfe der Konfiguration reagieren, agieren und navigieren kann. JSPs und Komponenten sowie deren Renderer, Converter und Validatoren bilden die Views ab. In jeder View, welche meistens durch eine JavaServer Page (JSP) aufgebaut ist, existiert ein entsprechender Component Tree. Dieser beinhaltet alle Komponenten, die in der JSP durch definierte Tags dargestellt werden. Somit hat der Entwickler Zugriff auf alle Komponenten im Laufe des Lebenszyklus der Request-Bearbeitung.
+-
++Das Pr&#228;sentations-Framework JSF muss die von MVC definierten Komponenten abbilden. Wie in \vref{fig:architecture_jsf} zu sehen ist, wird das Modell durch einfache JavaBeans, aber auch durch EJBs\footnote{Enterprise Java Beans} oder JDOs\footnote{Java Data Objects} abgebildet. Der Controller wird durch Action Handler bzw. Event Listener der jeweiligen UI-Komponenten dargestellt. Im Zentrum des Controllers steht das FacesServlet, welches mit Hilfe der Konfiguration reagieren, agieren und navigieren kann. JSPs und Komponenten sowie deren Renderer, Converter und Validatoren bilden die Views ab. In jeder View, welche meistens durch eine JavaServer Page (JSP) aufgebaut ist, existiert ein entsprechender Component Tree. Dieser beinhaltet alle Komponenten, die in der JSP durch definierte Tags dargestellt werden. Somit hat der Entwickler Zugriff auf alle Komponenten im Laufe des Lebenszyklus der Request-Bearbeitung.\\
+ Dieser Lebenszyklus wird zu jeder Anfrage an die JSF-Applikation durchlaufen und enth&#228;lt folgende Phasen:
+  
+ \begin{enumerate}
+@@ -32,7 +30,7 @@
+ 	\item Update Model Values: Die Variablen der Komponenten werden in deren Datenmodellen gespeichert
+ 	\item Invoke Application: Ausf&#252;hrung der Business-Logik
+ 	\item Render Response: Der Component Tree wird aktualisiert und ein Response generiert
+-\end{enumerate}		
++\end{enumerate}
+ 
+ Die Navigation in einer JSF-Applikation wird in einer Konfigurationsdatei definiert. Darin ist f&#252;r jede JSP jeweils eine Navigationsregel festgelegt. Diese Regeln bestehen aus der Aufrufenden Seite sowie verschiedenen Navigationsf&#228;llen. Solche Fallunterscheidungen machen die Navigation abh&#228;ngig von den Ergebnissen der Businesslogik und sorgen f&#252;r die Dynamik der Anwendung. (vgl. \citep[S.~46ff]{Oeztuerk2004})\\
+ 
+@@ -71,10 +69,8 @@
+ \end{itemize}
+ 
+ Die Beans f&#252;r den Systemzustand repr&#228;sentieren die Zustandsinformationen des Systems &#252;ber
+-deren Attribute. Der interne Zustand der Anwendung wird somit durch eine oder mehrere Beans und den Attributen dargestellt. Im Beispiel der Provirent-Anwendung l&#228;sst sich der Einkaufskorb durch ein Bean darstellen, da es beinhaltet, was ein Kunde f&#252;r seine Bestellung ausgew&#228;hlt hat. Zur Darstellung des aktuellen Zustands k&#246;nnen die zugeh&#246;rigen &quot;`get&quot;'- und &quot;`set&quot;'-Methoden aufgerufen werden. Zum Beispiel kann die Anzahl der ausgew&#228;hlten Artikel, die durch das Attribut anzahlArtikel dargestellt wird, &#252;ber den Aufruf der Methode getArtikelAnzahl() abgefragt werden.
+-
+-Die Anwendungslogik kann durch JavaBeans erg&#228;nzt werden. Damit eine Wiederverwendung der Anwendungslogik gew&#228;hrleistet werden kann, sollten die JavaBeans m&#246;glichst so implementiert werden, dass sie unabh&#228;ngig von der Umgebung der Anwendung ausgef&#252;hrt werden k&#246;nnen. Zum Beispiel sollte die Logik zum Speichern von Bestellungen in die Datenbank ausgelagert werden. Hierbei m&#252;ssen die Funktionalit&#228;ten f&#252;r den Zugriff auf die Datenbank korrekt implementiert werden. Diese Methoden der JavaBeans k&#246;nnen dann sowohl in der Struts-Applikation als auch in anderen Umgebungen, wo Datenbankzugriffe gebraucht werden, aufgerufen werden.
+-
++deren Attribute. Der interne Zustand der Anwendung wird somit durch eine oder mehrere Beans und den Attributen dargestellt. Im Beispiel der Provirent-Anwendung l&#228;sst sich der Einkaufskorb durch ein Bean darstellen, da es beinhaltet, was ein Kunde f&#252;r seine Bestellung ausgew&#228;hlt hat. Zur Darstellung des aktuellen Zustands k&#246;nnen die zugeh&#246;rigen &quot;`get&quot;'- und &quot;`set&quot;'-Methoden aufgerufen werden. Zum Beispiel kann die Anzahl der ausgew&#228;hlten Artikel, die durch das Attribut anzahlArtikel dargestellt wird, &#252;ber den Aufruf der Methode getArtikelAnzahl() abgefragt werden.\\
++Die Anwendungslogik kann durch JavaBeans erg&#228;nzt werden. Damit eine Wiederverwendung der Anwendungslogik gew&#228;hrleistet werden kann, sollten die JavaBeans m&#246;glichst so implementiert werden, dass sie unabh&#228;ngig von der Umgebung der Anwendung ausgef&#252;hrt werden k&#246;nnen. Zum Beispiel sollte die Logik zum Speichern von Bestellungen in die Datenbank ausgelagert werden. Hierbei m&#252;ssen die Funktionalit&#228;ten f&#252;r den Zugriff auf die Datenbank korrekt implementiert werden. Diese Methoden der JavaBeans k&#246;nnen dann sowohl in der Struts-Applikation als auch in anderen Umgebungen, wo Datenbankzugriffe gebraucht werden, aufgerufen werden.\\
+ Die ActionForm-Beans dienen zur Behandlung eines Formulars einer Webanwendung. F&#252;r jedes Eingabeformular ist ein entsprechendes ActionForm-Bean vorgesehen. Dieses erm&#246;glicht das Zwischenspeichern von Formulareingabedaten, wobei jedes Eingabefeld einem Attribut der Bean entspricht. Mit der Verwendung von ActionForm Beans ist es m&#246;glich, auf die Daten des Formulars in verschiedenen Bereichen der Anwendung zuzugreifen. Eine solche Bean ist von der Klasse \textit{ActionForm} abgeleitet und kann neben den &quot;`get&quot;'- und &quot;`set&quot;'-Methoden optional noch zwei spezielle Methoden besitzen: \textit{validate}() und \textit{reset}(). Die Methode validate() dient dazu, Eingabedaten aus dem Formular zu validieren. Die Attribute eines Formulars lassen sich durch die Methode reset() zur&#252;cksetzen. Aufgrund der zwingend erforderlichen Namensgleichheit zwischen den Formularelementen und den Attributen der ActionForm Beans wird die Kommunikation zwischen dem Bean und dem HTML-Formular sichergestel!
+ lt.
+ 
+ \subsubsection*{Die Strutskomponente View}
+@@ -88,8 +84,7 @@
+ &lt;\%@ taglib uri=&quot;<A HREF="http://struts.apache.org/tags-tiles">http://struts.apache.org/tags-tiles</A>&quot; prefix=&quot;tiles&quot; \%&gt;
+ \end{lstlisting}
+ 
+-Neben diesen Bibliotheken lassen sich auch noch eine Reihe anderer Tag-Bibliotheken, wie die Java Standard Tag Library (JSTL), integrieren. Wenn die Funktionalit&#228;ten dann immer noch nicht ausreichen sollten, besteht auch die M&#246;glichkeit, eigene Bibliotheken zu erstellen und zu benutzen. Mit der Verwendung solcher Taglibs wird nach \citep{Cavaness2004} f&#252;r eine deutliche Senkung der Entwicklungszeit und die daraus resultierende Steigerung der Produktivit&#228;t erreicht. Auch die Fehlerbehandlung und die Kommunikation mit den ActionForm Beans wird dadurch vereinfacht. 
+-
++Neben diesen Bibliotheken lassen sich auch noch eine Reihe anderer Tag-Bibliotheken, wie die Java Standard Tag Library (JSTL), integrieren. Wenn die Funktionalit&#228;ten dann immer noch nicht ausreichen sollten, besteht auch die M&#246;glichkeit, eigene Bibliotheken zu erstellen und zu benutzen. Mit der Verwendung solcher Taglibs wird nach \citep{Cavaness2004} f&#252;r eine deutliche Senkung der Entwicklungszeit und die daraus resultierende Steigerung der Produktivit&#228;t erreicht. Auch die Fehlerbehandlung und die Kommunikation mit den ActionForm Beans wird dadurch vereinfacht.\\
+ Dar&#252;ber hinaus ist man in der Lage, die Web-Anwendung in mehreren Sprachen zu unterst&#252;tzen. Dabei muss die JSP nicht in mehreren Sprachen auf dem Server hinterlegen werden, sondern es k&#246;nnen hierf&#252;r die vom Struts-Framework bereitgestellten Message-Tags verwendet werden. 
+ 
+ \begin{lstlisting}[language=XML, caption={Struts Message-Tag}, label=code:message_tag, showstringspaces=false]
+@@ -98,15 +93,11 @@
+ &lt;/title&gt;
+ \end{lstlisting}
+ 
+-An dem Pr&#228;fix \textit{bean} in \vref{code:message_tag} ist zu erkennen, dass dieses Tag der \textit{struts-bean.tld} Bibliothek angeh&#246;rt. Das Attribut \textit{key} verweist auf ein Element einer zentral definierten Datei, in der alle Texte einer Sprache enthalten sind. Es handelt sich hierbei um eine Properties-Datei mit Key-Value Paaren, die f&#252;r jede der unterst&#252;tzten Sprachen vorliegt. Die Schl&#252;ssel werden in den Message-Tags angegeben und verweisen auf die entsprechenden Texte (Values) der jeweiligen Sprache, die in jeder dieser Properties-Dateien enthalten sind. Dies hat den Vorteil, dass keine Texte mehr in den Quellcode der JSP geschrieben werden m&#252;ssen, sondern durch den Einsatz der Message-Tags in der gew&#252;nschten Sprache zu Laufzeit eingef&#252;gt werden. Der Name und der Pfad der Properties-Datei sind frei w&#228;hlbar, m&#252;ssen aber in der Konfigurationsdatei des Frameworks definiert werden. Es muss darauf geachtet werden, dass eine sprachenabh&#228;ngige Properties-Datei der Name!
+ nskonvention entspricht, d.h. im Format \verb|&lt;name_der_Message_Datei&gt;_xx.properties|, wobei das \textit{xx} f&#252;r den zweistelligen Code der jeweiligen L&#228;nder bzw. Sprachen steht (z.B. \textit{en} f&#252;r Englisch, d\textit{e} f&#252;r Deutsch). 
+-
+-F&#252;r die Interaktion von JSPs mit den ActionForm Beans wurden die Standard HTML-Tags in den Struts Taglibs um gewisse Funktionalit&#228;ten erweitert. Prinzipiell kommen alle wichtigen HTML-Elemente  darin vor. Zum Beispiel l&#228;sst sich mit Hilfe des Tags \verb|&lt;html:form\&gt;| ein HTML-Formular erstellen. &#220;ber das Pflichtattribut \textit{action} wird angegeben, wie nach dem Absenden der Formulardaten damit verfahren werden soll. Hierbei kann eine URL angegeben werden. Es ist aber g&#228;ngiger, keine Web-Ressourcen, sondern eine Action-Klasse aufzurufen, was durch die Endung \textit{*.do} gekennzeichnet wird und dem Controller mitteilt, in der struts-config.xml nach dem entsprechenden Pfad zu suchen. Ein solcher Pfad stellt die Verkn&#252;pfung von ActionForm Beans und Action Klassen der JSP dar. Anhand dieser Zuordnungen k&#246;nnen die Formulardaten der ActionForm Bean zugewiesen und validiert werden.
+-
+-Wenn durch die \textit{validate}()-Methode ein Fehler festgestellt wird, kann dem Benutzer eine entsprechende Fehlermeldung &#252;ber den Tag \verb|&lt;html:errors\&gt;| mitgeteilt werden. Dieser Tag wird nur aktiv, wenn die mit dem Attribut property definierte Fehlermeldung w&#228;hrend der Validierung erzeugt wurde.
+-
++An dem Pr&#228;fix \textit{bean} in \vref{code:message_tag} ist zu erkennen, dass dieses Tag der \textit{struts-bean.tld} Bibliothek angeh&#246;rt. Das Attribut \textit{key} verweist auf ein Element einer zentral definierten Datei, in der alle Texte einer Sprache enthalten sind. Es handelt sich hierbei um eine Properties-Datei mit Key-Value Paaren, die f&#252;r jede der unterst&#252;tzten Sprachen vorliegt. Die Schl&#252;ssel werden in den Message-Tags angegeben und verweisen auf die entsprechenden Texte (Values) der jeweiligen Sprache, die in jeder dieser Properties-Dateien enthalten sind. Dies hat den Vorteil, dass keine Texte mehr in den Quellcode der JSP geschrieben werden m&#252;ssen, sondern durch den Einsatz der Message-Tags in der gew&#252;nschten Sprache zu Laufzeit eingef&#252;gt werden. Der Name und der Pfad der Properties-Datei sind frei w&#228;hlbar, m&#252;ssen aber in der Konfigurationsdatei des Frameworks definiert werden. Es muss darauf geachtet werden, dass eine sprachenabh&#228;ngige Properties-Datei der Name!
+ nskonvention entspricht, d.h. im Format \verb|&lt;name_der_Message_Datei&gt;_xx.properties|, wobei das \textit{xx} f&#252;r den zweistelligen Code der jeweiligen L&#228;nder bzw. Sprachen steht (z.B. \textit{en} f&#252;r Englisch, d\textit{e} f&#252;r Deutsch).\\
++F&#252;r die Interaktion von JSPs mit den ActionForm Beans wurden die Standard HTML-Tags in den Struts Taglibs um gewisse Funktionalit&#228;ten erweitert. Prinzipiell kommen alle wichtigen HTML-Elemente  darin vor. Zum Beispiel l&#228;sst sich mit Hilfe des Tags \verb|&lt;html:form\&gt;| ein HTML-Formular erstellen. &#220;ber das Pflichtattribut \textit{action} wird angegeben, wie nach dem Absenden der Formulardaten damit verfahren werden soll. Hierbei kann eine URL angegeben werden. Es ist aber g&#228;ngiger, keine Web-Ressourcen, sondern eine Action-Klasse aufzurufen, was durch die Endung \textit{*.do} gekennzeichnet wird und dem Controller mitteilt, in der struts-config.xml nach dem entsprechenden Pfad zu suchen. Ein solcher Pfad stellt die Verkn&#252;pfung von ActionForm Beans und Action Klassen der JSP dar. Anhand dieser Zuordnungen k&#246;nnen die Formulardaten der ActionForm Bean zugewiesen und validiert werden.\\
++Wenn durch die \textit{validate}()-Methode ein Fehler festgestellt wird, kann dem Benutzer eine entsprechende Fehlermeldung &#252;ber den Tag \verb|&lt;html:errors\&gt;| mitgeteilt werden. Dieser Tag wird nur aktiv, wenn die mit dem Attribut property definierte Fehlermeldung w&#228;hrend der Validierung erzeugt wurde.\\
+ Zus&#228;tzlich zu den oben genannten Tags der Struts-Taglibs stehen dem Struts-Framework noch eine Reihe weiterer Tags zur Verf&#252;gung. Es k&#246;nnen auch die Taglibraries der JSTL Spezifikation\footnote{\url{<A HREF="http://java.sun.com/products/jsp/jstl/index.jsp">http://java.sun.com/products/jsp/jstl/index.jsp</A>}} eingesetzt werden.
+ 
+-
+ \subsubsection*{Die Strutskomponente Controller}
+ 
+ Der gesamte Ablauf einer Struts-Anwendung wird &#252;ber den zentral im Struts-Framework vorliegenden Controller gesteuert. Dessen Aufgabe ist es, HTTP-Requests vom Client zu empfangen, diese auszuwerten und zu entscheiden, welche Ma&#223;nahme als n&#228;chstes durchgef&#252;hrt werden soll. Wenn z.B. kein Verarbeitungsschritt mehr notwendig sein sollte, so wird die Anfrage direkt an die JSP weitergeleitet, ansonsten an die spezifische Action-Klasse. Besonders vorteilhaft ist nach \citep{Cavaness2004} die an einem zentralen Punkt liegende Ablaufsteuerung der Anwendung durch den Controller. Bei daran notwendigen &#196;nderungen muss nicht die ganze Anwendung sondern nur ein relativ kleiner Bereich des Programms angepasst werden.
+@@ -119,10 +110,8 @@
+ 	\item verschiedene Klassen, die sich von der Klasse Action ableiten
+ \end{itemize}
+ 
+-Jede Anwendung enth&#228;lt genau ein ActionServlet, das alle Requests des Benutzers verarbeitet. Dieses Servlet sucht in der Struts-Konfigurationsdatei nach der Action f&#252;r den gerade zu bearbeitenden Request. Dar&#252;ber hinaus erzeugt und verwendet es ActionForm Beans f&#252;r das Speichern und Validieren von Daten aus HTML-Formularen und ActionForward Klassen f&#252;r die Fortsetzung des Programmflusses. Das Servlet wird von der Klasse \textit{org.apache.struts.action.ActionServlet} abgeleitet und wird in der Konfigurationsdatei \textit{web.xml} registriert.
+-
+-Bei einem Request an die Web-Applikation, dessen URL mit *.do endet, schaltet sich das Struts-Framework ein, indem das ActionServlet die Anfrage an die in der URL angegebene Action weiterleitet. Dies geschieht &#252;ber ActionMappings, welche in der \textit{struts-config.xml} angegeben sind. 
+-
++Jede Anwendung enth&#228;lt genau ein ActionServlet, das alle Requests des Benutzers verarbeitet. Dieses Servlet sucht in der Struts-Konfigurationsdatei nach der Action f&#252;r den gerade zu bearbeitenden Request. Dar&#252;ber hinaus erzeugt und verwendet es ActionForm Beans f&#252;r das Speichern und Validieren von Daten aus HTML-Formularen und ActionForward Klassen f&#252;r die Fortsetzung des Programmflusses. Das Servlet wird von der Klasse \textit{org.apache.struts.action.ActionServlet} abgeleitet und wird in der Konfigurationsdatei \textit{web.xml} registriert.\\
++Bei einem Request an die Web-Applikation, dessen URL mit *.do endet, schaltet sich das Struts-Framework ein, indem das ActionServlet die Anfrage an die in der URL angegebene Action weiterleitet. Dies geschieht &#252;ber ActionMappings, welche in der \textit{struts-config.xml} angegeben sind. \\
+ Ein solches Mapping wird f&#252;r das Abbilden von speziellen Ereignissen auf die zust&#228;ndigen Action-Klassen ben&#246;tigt, was in Struts durch Eintr&#228;ge in die XML-Datei realisiert wird. Der Ablauf der Anwendung kann somit sehr einfach ver&#228;ndert werden, da lediglich eine Datei angepasst werden muss. Dadurch wird die Datei struts-config.xml zum tats&#228;chlichen Mittelpunkt des Frameworks. Ein weiterer Vorteil der Zentralisierung der ActionMappings liegt darin, dass der Ablauf einer Applikation besser zu verstehen ist, wenn dieser nicht im Quellcode versteckt ist. In \vref{code:struts_config_auszug} wird eine solche Konfiguration dargestellt.
+ 
+ \begin{lstlisting}[language=XML, caption={Auszug aus struts-config.xml}, label=code:struts_config_auszug, showstringspaces=false]
+@@ -158,14 +147,10 @@
+ &lt;/struts-config&gt;
+ \end{lstlisting}
+ 
+-Im Bereich \verb|&lt;form-beans&gt;| wird die Zuordnung der HTML-Formulare zu den entsprechenden ActionForm Beans vorgenommen. &#220;ber das Attribut \textit{name} wird dem ActionForm eine Bezeichnung gegeben, unter der es aufgerufen bzw. initialisiert werden kann, w&#228;hrend \textit{type} den vollst&#228;ndigen Namen der zugeh&#246;rigen Java-Klasse angibt.
+-
+-Der Abschnitt \verb|&lt;global-forwards&gt;| ist dazu notwendig, logische Namen bestimmten URLs (JSPs oder Actions) zuzuordnen. Der Entwickler hat dann die M&#246;glichkeit, im Quellcode diese Namen mit dem Vorteil anzusprechen, dass &#196;nderungen an den URLs nur noch in der Konfigurationsdatei vorgenommen werden m&#252;ssen.
+-
+-Mit \verb|&lt;action-mappings&gt;| wird die Zuordnung bestimmter Request-URLs auf die Action-Klassen definiert. Dabei wird f&#252;r jedes Ereignis ein eigenes \verb|&lt;action&gt;| Element angelegt. Dessen Attribut \textit{path} gibt die URL der Action an. Nach \vref{code:struts_config_auszug} wird z.B. durch den Aufruf der URL <A HREF="http://localhost:8080/customer/Login.do">http://localhost:8080/customer/Login.do</A> das ActionMapping \textit{/login} aufgerufen. &#220;ber das Attribut \textit{type} wird der vollst&#228;ndige Pfad der Action-Klasse angegeben, w&#228;hrend \textit{name} den Namen der zugeordneten ActionForm Bean festlegt. Ein weiteres Attribut \textit{input} gibt die URL einer JSP oder Action an, die f&#252;r die Ausl&#246;sung des ActionEvents verantwortlich ist.
+-
+-Mit dem Element \verb|&lt;forward&gt;| definiert man, &#228;hnlich wie bei den Global Forwards, eine m&#246;gliche URL, die nach dem Ausf&#252;hren der Action-Klasse aufgerufen werden kann. Ein solcher Forward wird einer bestimmten Action zugeordnet, somit kann sie auch nur aus dieser Action-Klasse aufgerufen werden. Der Vorteil der ActionMappings ist, dass man jede beliebige Action-Klasse aufrufen und an jede JSP oder andere Action weiterleiten kann. 
+-
++Im Bereich \verb|&lt;form-beans&gt;| wird die Zuordnung der HTML-Formulare zu den entsprechenden ActionForm Beans vorgenommen. &#220;ber das Attribut \textit{name} wird dem ActionForm eine Bezeichnung gegeben, unter der es aufgerufen bzw. initialisiert werden kann, w&#228;hrend \textit{type} den vollst&#228;ndigen Namen der zugeh&#246;rigen Java-Klasse angibt.\\
++Der Abschnitt \verb|&lt;global-forwards&gt;| ist dazu notwendig, logische Namen bestimmten URLs (JSPs oder Actions) zuzuordnen. Der Entwickler hat dann die M&#246;glichkeit, im Quellcode diese Namen mit dem Vorteil anzusprechen, dass &#196;nderungen an den URLs nur noch in der Konfigurationsdatei vorgenommen werden m&#252;ssen.\\
++Mit \verb|&lt;action-mappings&gt;| wird die Zuordnung bestimmter Request-URLs auf die Action-Klassen definiert. Dabei wird f&#252;r jedes Ereignis ein eigenes \verb|&lt;action&gt;| Element angelegt. Dessen Attribut \textit{path} gibt die URL der Action an. Nach \vref{code:struts_config_auszug} wird z.B. das ActionMapping \textit{/login} durch den Aufruf der URL <A HREF="http://localhost:8080/customer/Login.do">http://localhost:8080/customer/Login.do</A> aufgerufen. &#220;ber das Attribut \textit{type} wird der vollst&#228;ndige Pfad der Action-Klasse angegeben, w&#228;hrend \textit{name} den Namen der zugeordneten ActionForm Bean festlegt. Ein weiteres Attribut \textit{input} gibt die URL einer JSP oder Action an, die f&#252;r die Ausl&#246;sung des ActionEvents verantwortlich ist.\\
++Mit dem Element \verb|&lt;forward&gt;| definiert man, &#228;hnlich wie bei den Global Forwards, eine m&#246;gliche URL, die nach dem Ausf&#252;hren der Action-Klasse aufgerufen werden kann. Ein solcher Forward wird einer bestimmten Action zugeordnet, somit kann sie auch nur aus dieser Action-Klasse aufgerufen werden. Der Vorteil der ActionMappings ist, dass man jede beliebige Action-Klasse aufrufen und an jede JSP oder andere Action weiterleiten kann. \\
+ Action-Klassen sind die Schnittstellen zwischen den Benutzeranfragen und der Gesch&#228;ftslogik. Bei deren Erstellung spielen nach \citep{Goodwill2004} folgende Faktoren eine Rolle:
+ 
+ \begin{itemize}
+
+Modified: docu/latex/3-6-Persistenzschichten.tex
+===================================================================
+--- docu/latex/3-6-Persistenzschichten.tex	2005-12-17 21:33:14 UTC (rev 301)
++++ docu/latex/3-6-Persistenzschichten.tex	2005-12-18 18:37:16 UTC (rev 302)
+@@ -1,33 +1,148 @@
+ \section{Persistenzschichten in Java} 	\label{sec:tech-Persistenzschichten}
+-		\subsection{Java Data Objects} 
+-		\subsection{Hibernate}
+ 		
++\subsection{Java Data Objects} 
++		
++JDO wurde im Rahmen eines von Sun initiierten JCR entwickelt. Neben Sun beteiligten sich zahlreiche weitere Firmen an der Entwicklung der Spezifikation, darunter Ericcson, IBM, Informix, Oracle, Poet, Rational, SAP, Software AG und Versant. Der Spezifikationsprozess begann Mitte 1999 und im April 2002 wurde der &quot;`Final Release&quot;' der Spezifikation ver&#246;ffentlicht, wobei die gesammelten Erfahrungen aller beteiligten Firmen mit objektorientierten Datenbanken eingeflossen sind.\\
++Die JDO-Spezifikation gibt verschiedene APIs (Application Programming Interface)
++und ebenso Richtlinien zu Ihrer Implementierung als sogenannte Contracts vor. SUN selbst
++stellt nur eine Referenzimplementation bereit. Auf dem Markt existieren aber viele
++weitere Implementationen.\\
++JDO kann sehr unterschiedliche (Speicher-) Technologien verwenden. Applikationen mit JDO sollen portabel &#252;ber verschiedene Implementationen wie auch &#252;ber verschiedene Speichertechnologien sein. Hierunter fallen insbesondere relationale und objektorientierte Datenbanksysteme, aber auch Dateisysteme, XML und andere. JDO kann sowohl mit Applikationsservern (Application Server) als auch innerhalb gew&#246;hnlicher (standalone) Java Applikationen eingesetzt werden. Welche Speichertechnologien aber tats&#228;chlich unterst&#252;tzt werden, ist implementationsabh&#228;ngig und kann sehr unterschiedlich sein. (siehe \vref{fig:architecture_jdo})
+ 
++\begin{figure}[h]
++	\centering
++	\includegraphics[scale=1]{images/Architektur-JDO.jpg}
++	\caption{Architektur von JSF \citep[Bild 2.0]{JDO2003}}
++	\label{fig:architecture_jdo}
++\end{figure}
+ 
++Im folgenden werden die nach \citep{Stadtherr2003} wichtigsten Eigenschaften von JDO genannt:
+ 
++\begin{enumerate}
+ 
++\item Unabh&#228;ngigkeit von der JDO-Implementierung: Eine f&#252;r JDO vorbereitete Applikation kann mit einer beliebigen JDO-Implementierung betrieben werden.
+ 
++\item Unabh&#228;ngigkeit vom Datenspeicher: Die API von JDO abstrahiert vollst&#228;ndig von
++dem dahinter liegenden Datenspeicher. Dabei kann es sich um eine flache Datei, eine
++objektorientierte Datenbank oder eine relationale Datenbank handeln.
+ 
++\item Transparente und transitive Persistenz: Transparente Persistenz bedeutet, dass diese nicht im Quellcode sichtbar ist. Wenn z.B. mit setX das Attribut X einer persistenten Instanz ver&#228;ndern und anschlie&#223;end die Transaktion beende wird, dann soll das ge&#228;nderte Attribut automatisch in die Datenbank geschrieben werden. Aufgrund transitiver Persistenz wird ein Objekt auch dann persistent, wenn es bei Transaktionsende &#252;ber einen Pfad von Referenzen von einem bereits persistenten Objekt aus erreichbar ist.
+ 
++\item Klassen-Enhancement: Die JDO-Persistenzschicht einer Applikation wird durch eine
++automatische Instrumentierung der Java-Klassen erzeugt. Diese Instrumentierung
++wird im Englischen Enhancing genannt. Die automatische Instrumentierung der
++Klassen ist der Schl&#252;ssel f&#252;r transparente und transitive Persistenz, da auf diese Art
++die notwendigen Mechanismen vor dem Programmierer versteckt werden k&#246;nnen.
+ 
++\item XML-Metadaten: Die persistenten Klassen m&#252;ssen in einer XML-Datei beschrieben werden. Im einfachsten Fall besteht die Datei nur aus den Namen der persistenten Klassen. Wenn Arrays, Collections oder Maps verwendet werden sollen, m&#252;ssen dazu auch einige wichtige Informationen (z.B. der Typ in der Collection) in dieser Beschreibungsdatei eingetragen werden.
+ 
++\item JDO Query Language: JDOQL ist eine Querysprache, die eng an die Syntax von
++Java angelehnt ist. Sie ist nicht so m&#228;chtig wie SQL, bietet aber die wichtigsten Elemente
++einer Datenbank-Querysprache.
+ 
++\item J2EE Integration: Die JDO-Spezifikation sieht es vor, kompatibel zu den existierenden J2EE-Frameworks zu sein. JDO ist dabei unabh&#228;ngig von den EJB-Konzepten f&#252;r Container Managed Persistence und Bean Managed Persistence.
+ 
++\end{enumerate}
+ 
++\textbf{Fazit:} Da in der Projektplanungsphase die damalige Version von JDO nur eine eingeschr&#228;nkte Abfragesprache und eine mangelnde Standardisierung f&#252;r die Anbindung relationaler
++Datenbanksysteme besa&#223;, was f&#252;r das Projekt als Nachteil anzusehen war, wurde nach anderen M&#246;glichkeiten der Persistierung gesucht. Hierbei erschien Hibernate als die umfassendste L&#246;sung.
+ 
++\newpage
+ 
+ 
++\subsection{Hibernate}
++		
++Hibernate ist ein Open Source-Persistenz-Tool, das basierend auf so genannten Mappings das Bindeglied zwischen JavaBeans und einer Datenbank darstellt. Seit September 2003 geh&#246;rt das Hibernate-Projekt zur JBoss Group und liegt in der aktuellen Version 3.0 kostenlos zum Download\footnote{\url{<A HREF="http://www.hibernate.org">http://www.hibernate.org</A>}} bereit. Zur Zeit werden 16 Datenbanken unterst&#252;tzt, worunter unter anderem Oracle, DB2, MySQL sowie PostgreSQL z&#228;hlen. Zu den weiteren Besonderheiten z&#228;hlen die Hibernate Query Language, Native SQL Queries sowie Lazy- und Outer-Join Fetching zur Steigerung der Performance. Ferner l&#228;sst sich Hibernate problemlos in alle bekannten J2EE Application Server integrieren.\\
++Hibernate stellt den Entwicklern ein umfangreiches Werkzeug f&#252;r die Realisierung einer leistungsf&#228;higen Persistenzschicht zur Verf&#252;gung. Hierbei werden grundlegende Mechanismen f&#252;r das Laden, Speichern, Aktualisieren und L&#246;schen von Java-Objekten, sowie deren Beziehungen, bereitgestellt.\\
++Das Abbilden von Java-Objekten auf eine entsprechende Datenbank erfolgt auf einem &#228;u&#223;erst flexiblen Weg, da sich diese Java-Klassen und die entsprechenden Konfigurationsdateien sehr einfach aus einem bestehenden Datenbankschema generieren lassen. Auch der umgekehrte Weg (Top-Down), d.h. die Generierung eines Datenbankschemas aus bestehenden Java-Klassen, l&#228;sst sich einfach realisieren.
+ 
++\begin{figure}[h]
++	\centering
++	\includegraphics[scale=1]{images/Architektur-Hibernate.jpg}
++	\caption{Architektur von Hibernate \citep[Bild 2.1]{Bauer2004}}
++	\label{fig:architecture_hibernate}
++\end{figure}
+ 
++\vref{fig:architecture_hibernate} stellt die Rollen der wichtigsten Schnittstellen der Business- und Persistenzschicht von Hibernate dar. Dabei agiert die Businessschicht als ein Client der Persistenzschicht. In manchen Anwendungen werden diese beiden Schichten aber auch nicht getrennt dargestellt. Hibernate erm&#246;glicht nach \citep{Bauer2004} auch die Verwendung von bestehenden Java APIs, wie z.B. JDBC, JTA oder JNDI. JDBC bietet abstrakte Funktionalit&#228;ten analog zu relationalen Datenbanken und erlaubt es, fast jede Datenbank &#252;ber einen JDBC Treiber mit Hibernate verwenden zu k&#246;nnen. JNDI und JTA erm&#246;glichen Hibernate die Integration in J2EE Applikationsservern.\\
+ 
++&#220;ber XML-basierte Mapping-Dateien wird das objektrelationale Abbilden der Java-klassen f&#252;r Hibernate-Anwendungen definiert. Eine solche Mapping-Datei wird mit dem Dateinamen-Suffix \textit{.hbm.xml} versehen und wird generell f&#252;r jede persistente Klasse erzeugt. In \vref{code:mapping_hibernate} wird das Prinzip der Mapping-Dateien dargestellt.
+ 
++\begin{lstlisting}[language=XML, caption={Mapping-Datei von Hibernate}, label=code:mapping_hibernate, showstringspaces=false]
++&lt;hibernate-mapping&gt;
++  &lt;class name=&quot;de.hsharz.provirent.objects.Bill&quot; table=&quot;BILL&quot;&gt;
++	
++    &lt;id name=&quot;billId&quot; type=&quot;int&quot; column=&quot;BILLID&quot;&gt;
++      &lt;meta attribute=&quot;scope-set&quot;&gt;public&lt;/meta&gt;
++      &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++      &lt;generator class=&quot;native&quot;/&gt;
++    &lt;/id&gt;
+ 
++    &lt;many-to-one name=&quot;customer&quot; class=&quot;de.hsharz.provirent.objects.Customer&quot;&gt;
++      &lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++    &lt;/many-to-one&gt;
+ 
++    &lt;property name=&quot;pdfFile&quot; type=&quot;binary&quot;&gt;
++      &lt;column name=&quot;pdffile&quot; sql-type=&quot;BLOB&quot; /&gt;
++    &lt;/property&gt;
++				
++    &lt;property name=&quot;pdfFileSize&quot; type=&quot;int&quot;&gt;
++      &lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;      	
++    &lt;/property&gt; 
+ 
++  &lt;/class&gt;
++&lt;/hibernate-mapping&gt;
++\end{lstlisting}
+ 
++In den Mapping-Dateien wird die Zuordnung der einzelnen Attribute (Properties) zu den entsprechenden Tabellenspalten der zugrunde liegenden Datenbank und auch Beziehungen zu anderen persistenten Java-Klassen (Relationen) festgelegt. Die folgende XML-Elemente sollten dabei verwendet werden:
+ 
++\begin{itemize}
+ 
++ \item class: Name der Java-Klasse und deren Zuordnung zur korrespondierenden Tabelle der Datenbank
++ \item id: Attribut(e) der Klasse f&#252;r den Prim&#228;rschl&#252;ssel
++ \item property: Zuordnung der einzelnen Spalten der Datenbanktabelle zu den Properties der Java-Klasse mit zus&#228;tzlichen Angaben &#252;ber den zu mappenden Datentyp und das Erlauben von Null-Werten
++ \item many-to-one: Darstellung einer n:1 Beziehung mit Zuordnung der Spalte aus der Datenbanktabelle zu einer entsprechenden Property und Angabe des Objekttyps der Beziehung
+ 
++\end{itemize}
+ 
++Au&#223;er diesen gibt es noch weitere Attribute. &#220;ber deren Bedeutung informieren die Hibernate-Webseiten.\\
++Standardm&#228;&#223;ig wird Hibernate &#252;ber ein zentrales XML-Dokument konfiguriert. Der Name dieser Datei wird meist mit der Endung .cfg.xml gebildet. Darin werden solche Konfigurationen wie Deklaration der Datenbankverbindung, des Hibernate-Dialektes (abh&#228;ngig vom verwendeten DBMS), sowie zus&#228;tzlichen Optionen festgelegt. Ferner k&#246;nnen auch die Ressourcen der einzelnen Mapping-Dateien angegeben werden, um diese der Java-Applikation bekanntzumachen.\\
++Vor der Verwendung von Hibernate als Persistenzmechanismus in einer Anwendung muss die Hibernate-Umgebung initialisiert werden. Hierbei wird die Klasse \textit{SessionFactory} in der Gesch&#228;ftslogik der Anwendung geladen. Mit Hilfe dieser Klasse l&#228;sst sich eine Session-Instanz erzeugen, die als ein Bindeglied zwischen der Datenbank und der Anwendung fungiert. Nur &#252;ber diese Session ist die Interaktion mit den Datenbankobjekten m&#246;glich. Darunter sind die so genannten &quot;`CRUD-Methoden&quot;' (create, retrieve, update, delete) oder Queries (Abfragen mit HQL\footnote{Hibernate Query Language}) zu verstehen. \vref{code:save_hibernate} illustriert das Speichern des persistenten Objekts \textit{Dvd} in die Datenbank.\\
++
++\begin{lstlisting}[language=Java, caption={Save-Methode der Hibernate-API}, label=code:save_hibernate, showstringspaces=false]
++try {
++  Dvd dvd = (Dvd) session.save(new Dvd());
++} catch (HibernateException e) {
++  logger.error(&quot;Objekt konnte nicht gespeichert werden&quot;, e);
++}
++\end{lstlisting}
++
++Hibernate besitzt auch eine Transaktionsschnittstelle. So lassen sich &#252;ber eine Transaktions-Instanz, die &#252;ber das Session-Objekt erzeugt werden kann, Transaktionen durch geeignete Methoden (\textit{begin}/\textit{commit}/\textit{rollback}) abgrenzen. Diese Schnittstelle ist insofern erweiterbar, dass sie leicht mit anderen Systemen integriert werden kann. Weiterhin stehen dem Entwickler als Transaktionsstrategien sowohl optimistisches als auch pessimistisches Locking  zur Verf&#252;gung.\\
++Ein weiteres Merkmal von Hibernate ist die M&#246;glichkeit der automatischen Generierung von Prim&#228;rschl&#252;sseln, wobei an die 10 verschiedenen M&#246;glichkeiten, wie z.B. Sequenzen, im Vordergrund stehen.\\
++Dar&#252;ber hinaus stellt Hibernate verschiedene Abfragesprachen zur Verf&#252;gung. Hierbei sind die Hibernate Query Language (HQL), Query By Criteria und Query By Example zu nennen. HQL ist an SQL angelehnt, beherrscht aber auch objektorientierte Konzepte wie Vererbung und Assoziationen. Die Anfragen werden dabei in Zeichenketten abgelegt und Hibernate &#252;bergeben. Dieses Konzept l&#228;sst sich in den Referenz-Dokumenten\footnote{siehe \citep{Hibernate2005}} von Hibernate  genauer betrachten. Bei der Verwendung von Query By Criteria werden keine Zeichenketten benutzt, sondern eine Anfrage setzt sich aus einzelnen Ausdr&#252;cken zusammen, die zu einer so genannten \textit{CriteriaQuery} hinzugef&#252;gt werden. Demnach wird die Syntax der Abfragen bereits zur &#220;bersetzungszeit durch den Compiler und nicht erst zur Laufzeit &#252;berpr&#252;ft. Die Query By Example Schnittstelle nutzt das Konzept von Query By Criteria. Hierbei wird eine mit entsprechenden Suchdaten versehene Beispielklasse einer \textit{Crit!
+ eriaQuery} &#252;bergeben, woraufhin diese alle Klassen zur&#252;ckliefert, die den Eigenschaften der &#252;bergebenen Klasse entsprechen.
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
+ %Hier danach nicht mehr schreiben
+ \label{sec:tech-Persistenzschichten-ende}
+\ No newline at end of file
+
+Modified: docu/latex/Provirent-Doku.bib
+===================================================================
+--- docu/latex/Provirent-Doku.bib	2005-12-17 21:33:14 UTC (rev 301)
++++ docu/latex/Provirent-Doku.bib	2005-12-18 18:37:16 UTC (rev 302)
+@@ -1,6 +1,15 @@
+ This file was created with JabRef 1.8.1.
+ Encoding: Cp1252
+ 
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at BOOK</A>{Bauer2004,
++  title = {Hibernate in Action},
++  publisher = {Manning Publications},
++  year = {2004},
++  author = {Bauer, Christian; King, Gavin},
++  owner = {Stefan Forstner},
++  timestamp = {2005.12.18},
++}
++
+ @BOOK{Bill2004,
+   title = {Mastering JavaServer Faces},
+   publisher = {Wiley Publishing Inc., Indianapolis, Indiana.},
+@@ -163,6 +172,17 @@
+   timestamp = {2005.12.15},
+ }
+ 
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at ARTICLE</A>{Stadtherr2003,
++  author = {Stadtherr, Hans},
++  title = {JDO im Einsatz},
++  journal = {Javaspektrum},
++  year = {2003},
++  volume = {3},
++  pages = {5},
++  owner = {Stefan Forstner},
++  timestamp = {2005.12.15},
++}
++
+ @BOOKLET{Wikipedia2005,
+   title = {Wikipedia - Enzyklop&#228;die},
+   author = {Wikipedia},
+@@ -207,6 +227,25 @@
+   url = {<A HREF="http://download.eclipse.org/eclipse/downloads/drops/R-3.1-200506271435/org.eclipse.jdt.doc.isv.3.1.pdf.zip">http://download.eclipse.org/eclipse/downloads/drops/R-3.1-200506271435/org.eclipse.jdt.doc.isv.3.1.pdf.zip</A>},
+ }
+ 
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at MANUAL</A>{Hibernate2005,
++  title = {Hibernate Reference Documentation},
++  address = {<A HREF="http://www.hibernate.org/hib\_docs/v3/reference/en/html\_single/">http://www.hibernate.org/hib\_docs/v3/reference/en/html\_single/</A>},
++  edition = {3.0},
++  year = {2005},
++  owner = {Stefan Forstner},
++  timestamp = {2005.12.18},
++}
++
+<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">+ at MANUAL</A>{JDO2003,
++  title = {Java Data Objects. JSR12. Specification Version 1.0.1},
++  organization = {SUN Microsystems},
++  address = {<A HREF="http://jcp.org/aboutJava/communityprocess/final/jsr012/index2.html">http://jcp.org/aboutJava/communityprocess/final/jsr012/index2.html</A>},
++  month = {May},
++  year = {2003},
++  owner = {Stefan Forstner},
++  timestamp = {2005.12.15},
++}
++
+ @comment{jabref-meta: selector_journal:Java Spektrum;Javamagazin;}
+ 
+ @comment{jabref-meta: selector_author:D;Olav Maassen;Stephen Stelting;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000303.html">[Provirent-svn-commit] r301 - docu/latex
+</A></li>
+	<LI>Next message: <A HREF="000305.html">[Provirent-svn-commit] r303 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#304">[ date ]</a>
+              <a href="thread.html#304">[ thread ]</a>
+              <a href="subject.html#304">[ subject ]</a>
+              <a href="author.html#304">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

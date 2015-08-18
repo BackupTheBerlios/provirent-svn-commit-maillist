@@ -1,0 +1,2312 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r15 - in project_src/provirent_hibernate: bin/de/hsharz/provirent/objects data src/de/hsharz/provirent/objects src/test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r15%20-%20in%20project_src/provirent_hibernate%3A%20bin/de/hsharz/provirent/objects%20data%20src/de/hsharz/provirent/objects%20src/test/provirent/hibernate&In-Reply-To=%3C200410091138.i99BcK7E018299%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000015.html">
+   <LINK REL="Next"  HREF="000017.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r15 - in project_src/provirent_hibernate: bin/de/hsharz/provirent/objects data src/de/hsharz/provirent/objects src/test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r15%20-%20in%20project_src/provirent_hibernate%3A%20bin/de/hsharz/provirent/objects%20data%20src/de/hsharz/provirent/objects%20src/test/provirent/hibernate&In-Reply-To=%3C200410091138.i99BcK7E018299%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r15 - in project_src/provirent_hibernate: bin/de/hsharz/provirent/objects data src/de/hsharz/provirent/objects src/test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Sat Oct  9 13:38:20 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000015.html">[Provirent-svn-commit] r14 - in project_src: . provirent_hibernate provirent_hibernate/data provirent_hibernate/src provirent_hibernate/src/de/hsharz/provirent/objects provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000017.html">[Provirent-svn-commit] r16 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#16">[ date ]</a>
+              <a href="thread.html#16">[ thread ]</a>
+              <a href="subject.html#16">[ subject ]</a>
+              <a href="author.html#16">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-09 13:38:19 +0200 (Sat, 09 Oct 2004)
+New Revision: 15
+
+Added:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Actor.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Actor.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/AudioFormat.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/AudioFormat.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Condition.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Condition.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/DVD.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Director.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Director.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Genre.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Genre.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Language.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Language.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Status.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Status.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Subtitle.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Subtitle.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/VideoFormat.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/VideoFormat.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestDVD.java
+Modified:
+   project_src/provirent_hibernate/bin/de/hsharz/provirent/objects/Customer.class
+   project_src/provirent_hibernate/bin/de/hsharz/provirent/objects/Customer.hbm.xml
+   project_src/provirent_hibernate/bin/de/hsharz/provirent/objects/Dvd.class
+   project_src/provirent_hibernate/bin/de/hsharz/provirent/objects/Movie.class
+   project_src/provirent_hibernate/data/video.log
+   project_src/provirent_hibernate/data/video.properties
+   project_src/provirent_hibernate/data/video.script
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/bin/de/hsharz/provirent/objects/Customer.class
+===================================================================
+(Binary files differ)
+
+Modified: project_src/provirent_hibernate/bin/de/hsharz/provirent/objects/Customer.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/bin/de/hsharz/provirent/objects/Customer.hbm.xml	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/bin/de/hsharz/provirent/objects/Customer.hbm.xml	2004-10-09 11:38:19 UTC (rev 15)
+@@ -9,49 +9,90 @@
+         Represents a single customer.
+         @author Philipp Schneider
+       &lt;/meta&gt;
++ 			
++ 			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
+  
+       &lt;id name=&quot;customerId&quot; type=&quot;int&quot; column=&quot;CUSTOMERID&quot;&gt;
+         &lt;meta attribute=&quot;scope-set&quot;&gt;protected&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+         &lt;generator class=&quot;native&quot;/&gt;
+       &lt;/id&gt;
+  
+-      &lt;property name=&quot;firstName&quot; type=&quot;string&quot; not-null=&quot;true&quot;/&gt;
++ 			&lt;timestamp	name=&quot;dayOfRegistration&quot; /&gt;
+  
+-      &lt;property name=&quot;lastName&quot; type=&quot;string&quot; not-null=&quot;true&quot;/&gt;
++      &lt;property name=&quot;firstName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;      
+  
+-      &lt;property name=&quot;middleName&quot; type=&quot;string&quot; not-null=&quot;true&quot;/&gt;
+- 
+-      &lt;property name=&quot;salutation&quot; type=&quot;string&quot; not-null=&quot;true&quot;/&gt;
+- 
+-      &lt;property name=&quot;title&quot; type=&quot;string&quot; not-null=&quot;true&quot;/&gt;
+- 
+-      &lt;property name=&quot;street&quot; type=&quot;string&quot; not-null=&quot;true&quot;/&gt;
+- 
+-      &lt;property name=&quot;streetNumber&quot; type=&quot;string&quot; not-null=&quot;true&quot; length=&quot;10&quot;/&gt;
+- 
+-      &lt;property name=&quot;city&quot; type=&quot;string&quot; not-null=&quot;true&quot;/&gt;
+- 
+-      &lt;property name=&quot;zipCode&quot; type=&quot;string&quot; not-null=&quot;true&quot; length=&quot;10&quot;/&gt;
+- 
+-      &lt;property name=&quot;country&quot; type=&quot;string&quot; not-null=&quot;true&quot;/&gt;
+- 
+-      &lt;property name=&quot;emailAddress&quot; type=&quot;string&quot; not-null=&quot;true&quot;/&gt;
+- 
+-      &lt;property name=&quot;userName&quot; type=&quot;string&quot; not-null=&quot;true&quot;/&gt;
+-                   
+-      &lt;property name=&quot;password&quot; type=&quot;string&quot; not-null=&quot;true&quot;/&gt;
+-                   
+-      &lt;property name=&quot;hiddenQuestion&quot; type=&quot;string&quot; not-null=&quot;true&quot;/&gt;
+-                   
+-      &lt;property name=&quot;hiddenAnswer&quot; type=&quot;string&quot; not-null=&quot;true&quot;/&gt;
+-                   
++      &lt;property name=&quot;lastName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++       
++      &lt;property name=&quot;middleName&quot; type=&quot;string&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++       
++      &lt;property name=&quot;salutation&quot; type=&quot;string&quot;&gt;
++       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++      
++      &lt;property name=&quot;title&quot; type=&quot;string&quot;&gt;
++       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++      
++      &lt;property name=&quot;street&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++      
++      &lt;property name=&quot;streetNumber&quot; type=&quot;string&quot; not-null=&quot;true&quot; length=&quot;10&quot;&gt;
++       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++      
++      &lt;property name=&quot;city&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++      
++      &lt;property name=&quot;zipCode&quot; type=&quot;string&quot; not-null=&quot;true&quot; length=&quot;10&quot;&gt;
++       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++      
++      &lt;property name=&quot;country&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++      
++      &lt;property name=&quot;emailAddress&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++      
++      &lt;property name=&quot;userName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++                         
++      &lt;property name=&quot;password&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++                         
++      &lt;property name=&quot;hiddenQuestion&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++                         
++      &lt;property name=&quot;hiddenAnswer&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++                         
+ 
+       
+  
+-      &lt;property name=&quot;dayOfBirth&quot; type=&quot;calendar&quot;/&gt;
++      &lt;property name=&quot;dayOfBirth&quot; type=&quot;calendar&quot; &gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
+  
+-      &lt;property name=&quot;dayOfRegistration&quot; type=&quot;calendar&quot; not-null=&quot;true&quot;/&gt;
++ 			
++ &lt;!--
++      &lt;property name=&quot;dayOfRegistration&quot; type=&quot;calendar&quot; not-null=&quot;true&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++--&gt;
+ 
+-
+     &lt;/class&gt;
+   &lt;/hibernate-mapping&gt;
+
+Modified: project_src/provirent_hibernate/bin/de/hsharz/provirent/objects/Dvd.class
+===================================================================
+(Binary files differ)
+
+Modified: project_src/provirent_hibernate/bin/de/hsharz/provirent/objects/Movie.class
+===================================================================
+(Binary files differ)
+
+Modified: project_src/provirent_hibernate/data/video.log
+===================================================================
+--- project_src/provirent_hibernate/data/video.log	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/data/video.log	2004-10-09 11:38:19 UTC (rev 15)
+@@ -1,3 +1,5 @@
+ /*C2*/CONNECT USER SA
+ SET AUTOCOMMIT FALSE
++INSERT INTO CUSTOMER VALUES(1,'2004-10-08 20:26:26.554','Philipp','Schneider',NULL,'Herr',NULL,'Kastanienring','16','Leipzig','04316','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">egal at aol.com</A>','boelkstoff','egal','Wer','ich',NULL)
++COMMIT
+ DISCONNECT
+
+Modified: project_src/provirent_hibernate/data/video.properties
+===================================================================
+--- project_src/provirent_hibernate/data/video.properties	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/data/video.properties	2004-10-09 11:38:19 UTC (rev 15)
+@@ -1,5 +1,5 @@
+ #HSQL database
+-#Fri Oct 08 19:13:40 CEST 2004
++#Fri Oct 08 20:26:25 CEST 2004
+ hsqldb.cache_file_scale=1
+ runtime.gc_interval=0
+ hsqldb.first_identity=0
+
+Modified: project_src/provirent_hibernate/data/video.script
+===================================================================
+--- project_src/provirent_hibernate/data/video.script	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/data/video.script	2004-10-09 11:38:19 UTC (rev 15)
+@@ -5,7 +5,7 @@
+ CREATE TABLE GENRE(GENREID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE MOVIEDIRECTORS(MOVIEID INTEGER NOT NULL,DIRECTORID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEDIRECTORS PRIMARY KEY(MOVIEID,POS))
+ CREATE TABLE MOVIE(MOVIEID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,TITLE VARCHAR(255) NOT NULL,DESCRIPTION VARCHAR(255) NOT NULL,RUNTIME INTEGER,RELEASEDATE DATE)
+-CREATE TABLE CUSTOMER(CUSTOMERID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,FIRSTNAME VARCHAR(255) NOT NULL,LASTNAME VARCHAR(255) NOT NULL,MIDDLENAME VARCHAR(255) NOT NULL,SALUTATION VARCHAR(255) NOT NULL,TITLE VARCHAR(255) NOT NULL,STREET VARCHAR(255) NOT NULL,STREETNUMBER VARCHAR(10) NOT NULL,CITY VARCHAR(255) NOT NULL,ZIPCODE VARCHAR(10) NOT NULL,COUNTRY VARCHAR(255) NOT NULL,EMAILADDRESS VARCHAR(255) NOT NULL,USERNAME VARCHAR(255) NOT NULL,PASSWORD VARCHAR(255) NOT NULL,HIDDENQUESTION VARCHAR(255) NOT NULL,HIDDENANSWER VARCHAR(255) NOT NULL,DAYOFBIRTH TIMESTAMP,DAYOFREGISTRATION TIMESTAMP NOT NULL)
++CREATE TABLE CUSTOMER(CUSTOMERID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,DAYOFREGISTRATION TIMESTAMP NOT NULL,FIRSTNAME VARCHAR(255) NOT NULL,LASTNAME VARCHAR(255) NOT NULL,MIDDLENAME VARCHAR(255),SALUTATION VARCHAR(255),TITLE VARCHAR(255),STREET VARCHAR(255) NOT NULL,STREETNUMBER VARCHAR(10) NOT NULL,CITY VARCHAR(255) NOT NULL,ZIPCODE VARCHAR(10) NOT NULL,COUNTRY VARCHAR(255) NOT NULL,EMAILADDRESS VARCHAR(255) NOT NULL,USERNAME VARCHAR(255) NOT NULL,PASSWORD VARCHAR(255) NOT NULL,HIDDENQUESTION VARCHAR(255) NOT NULL,HIDDENANSWER VARCHAR(255) NOT NULL,DAYOFBIRTH TIMESTAMP)
+ CREATE TABLE LANGUAGE(LANGUAGEID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE CONDITION(CONDITIONID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,CONDITIONNAME VARCHAR(255) NOT NULL,CONDITIONSHORTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE MOVIEACTORS(MOVIEID INTEGER NOT NULL,ACTORID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEACTORS PRIMARY KEY(MOVIEID,POS),CONSTRAINT FK4E77442E74ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID))
+@@ -13,7 +13,7 @@
+ CREATE TABLE MOVIESUBTITLES(MOVIEID INTEGER NOT NULL,SUBTITLEID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIESUBTITLES PRIMARY KEY(MOVIEID,POS),CONSTRAINT FK33A6F22B13769F33 FOREIGN KEY(SUBTITLEID) REFERENCES SUBTITLE(SUBTITLEID),CONSTRAINT FK33A6F22B74ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID))
+ CREATE TABLE MOVIEAUDIOFORMATES(MOVIEID INTEGER NOT NULL,AUDIOFORMATID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEAUDIOFORMATES PRIMARY KEY(MOVIEID,POS),CONSTRAINT FKAA9D138B74ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID),CONSTRAINT FKAA9D138B5EF76108 FOREIGN KEY(AUDIOFORMATID) REFERENCES AUDIOFORMAT(AUIOFORMATID))
+ CREATE TABLE STATUS(STATUSID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,STATUSNAME VARCHAR(255) NOT NULL,STATUSSHORTNAME VARCHAR(255) NOT NULL)
+-CREATE TABLE DVD(DVDID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,MOVIE INTEGER,CONDITION INTEGER,STATUS INTEGER,BARCODE VARCHAR(255),CONSTRAINT SYS_CT_245 UNIQUE(BARCODE),CONSTRAINT FK109F272C17CFB FOREIGN KEY(CONDITION) REFERENCES CONDITION(CONDITIONID),CONSTRAINT FK109F26343F30 FOREIGN KEY(MOVIE) REFERENCES MOVIE(MOVIEID),CONSTRAINT FK109F29260C3F2 FOREIGN KEY(STATUS) REFERENCES STATUS(STATUSID))
++CREATE TABLE DVD(DVDID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,MOVIE INTEGER,CONDITION INTEGER,STATUS INTEGER,BARCODE VARCHAR(255),CONSTRAINT SYS_CT_289 UNIQUE(BARCODE),CONSTRAINT FK109F272C17CFB FOREIGN KEY(CONDITION) REFERENCES CONDITION(CONDITIONID),CONSTRAINT FK109F26343F30 FOREIGN KEY(MOVIE) REFERENCES MOVIE(MOVIEID),CONSTRAINT FK109F29260C3F2 FOREIGN KEY(STATUS) REFERENCES STATUS(STATUSID))
+ CREATE TABLE DIRECTOR(DIRECTORID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,FIRSTNAME VARCHAR(255) NOT NULL,LASTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE VIDEOFORMAT(VIDEOFORMATID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE ACTOR(ACTORID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,FIRSTNAME VARCHAR(255) NOT NULL,LASTNAME VARCHAR(255) NOT NULL)
+@@ -24,53 +24,3 @@
+ ALTER TABLE MOVIEDIRECTORS ADD CONSTRAINT FKD98CD9372A4D99A7 FOREIGN KEY(DIRECTORID) REFERENCES DIRECTOR(DIRECTORID)
+ ALTER TABLE MOVIEACTORS ADD CONSTRAINT FK4E77442EE58E99B0 FOREIGN KEY(ACTORID) REFERENCES ACTOR(ACTORID)
+ CREATE USER SA PASSWORD &quot;&quot; ADMIN
+-INSERT INTO MOVIEVIDEOFORMATES VALUES(1,1,0)
+-INSERT INTO AUDIOFORMAT VALUES(1,'DTS Surround Sound','')
+-INSERT INTO AUDIOFORMAT VALUES(2,'Surround Sound','')
+-INSERT INTO AUDIOFORMAT VALUES(3,'Dolby','')
+-INSERT INTO AUDIOFORMAT VALUES(4,'Stereo','')
+-INSERT INTO SUBTITLE VALUES(1,'Deutsch','de')
+-INSERT INTO SUBTITLE VALUES(2,'Englisch','en')
+-INSERT INTO SUBTITLE VALUES(3,'Franzoesisch','fr')
+-INSERT INTO SUBTITLE VALUES(4,'Spanisch','es')
+-INSERT INTO SUBTITLE VALUES(5,'Japanisch','jp')
+-INSERT INTO GENRE VALUES(1,'Action','')
+-INSERT INTO GENRE VALUES(2,'Abenteuer','')
+-INSERT INTO GENRE VALUES(3,'Dokumentation','')
+-INSERT INTO MOVIEDIRECTORS VALUES(1,1,0)
+-INSERT INTO MOVIE VALUES(1,'Fluch der Karibik','eine interaktive Geschichte eines Piraten',0,NULL)
+-INSERT INTO LANGUAGE VALUES(1,'Deutsch','de')
+-INSERT INTO LANGUAGE VALUES(2,'Englisch','en')
+-INSERT INTO LANGUAGE VALUES(3,'Franzoesisch','fr')
+-INSERT INTO LANGUAGE VALUES(4,'Spanisch','es')
+-INSERT INTO LANGUAGE VALUES(5,'Japanisch','jp')
+-INSERT INTO CONDITION VALUES(1,'neu','')
+-INSERT INTO CONDITION VALUES(2,'leichte Kratzer','')
+-INSERT INTO CONDITION VALUES(3,'mittlere Kratzer','')
+-INSERT INTO CONDITION VALUES(4,'schwere Kratzer','')
+-INSERT INTO CONDITION VALUES(5,'nicht lesbar','')
+-INSERT INTO MOVIEACTORS VALUES(1,1,0)
+-INSERT INTO MOVIEACTORS VALUES(1,2,1)
+-INSERT INTO MOVIEGENRES VALUES(1,1,0)
+-INSERT INTO MOVIESUBTITLES VALUES(1,1,0)
+-INSERT INTO MOVIESUBTITLES VALUES(1,2,1)
+-INSERT INTO MOVIEAUDIOFORMATES VALUES(1,1,0)
+-INSERT INTO MOVIEAUDIOFORMATES VALUES(1,4,1)
+-INSERT INTO STATUS VALUES(1,'ausleihbar','')
+-INSERT INTO STATUS VALUES(2,'verliehen','')
+-INSERT INTO STATUS VALUES(3,'in Bearbeitung','')
+-INSERT INTO DVD VALUES(1,1,1,1,'01246682')
+-INSERT INTO DIRECTOR VALUES(1,'Bibo','Bergeron')
+-INSERT INTO DIRECTOR VALUES(2,'Vicky','Jenson')
+-INSERT INTO DIRECTOR VALUES(3,'Jay','Russell')
+-INSERT INTO DIRECTOR VALUES(4,'Joseph','Ruben')
+-INSERT INTO VIDEOFORMAT VALUES(1,'2.35:1','')
+-INSERT INTO ACTOR VALUES(1,'Johnny','Depp')
+-INSERT INTO ACTOR VALUES(2,'Geoffrey','Rush')
+-INSERT INTO ACTOR VALUES(3,'Gore','Verbinski ')
+-INSERT INTO ACTOR VALUES(4,'Julianne','Moore ')
+-INSERT INTO ACTOR VALUES(5,'Anthony','Edwards ')
+-INSERT INTO ACTOR VALUES(6,'Matthew','Pleszewicz ')
+-INSERT INTO ACTOR VALUES(7,'Christopher','Kovaleski ')
+-INSERT INTO MOVIELANGUAGES VALUES(1,1,0)
+-INSERT INTO MOVIELANGUAGES VALUES(1,2,1)
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Actor.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Actor.hbm.xml	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Actor.hbm.xml	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,33 @@
++&lt;?xml version=&quot;1.0&quot;?&gt;
++&lt;!DOCTYPE hibernate-mapping
++             PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 2.0//EN&quot;
++             &quot;<A HREF="http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd</A>&quot;&gt;
++  &lt;hibernate-mapping&gt;
++ 
++   &lt;class name=&quot;de.hsharz.provirent.objects.Actor&quot; table=&quot;ACTOR&quot;&gt;
++      &lt;meta attribute=&quot;class-description&quot;&gt;
++        Represents an Actor.
++        @author Philipp Schneider
++      &lt;/meta&gt;
++      
++  		
++ 			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
++ 			
++      &lt;id name=&quot;actorId&quot; type=&quot;int&quot; column=&quot;ACTORID&quot;&gt;
++        &lt;meta attribute=&quot;scope-set&quot;&gt;protected&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++        &lt;generator class=&quot;native&quot;/&gt;
++      &lt;/id&gt;
++ 
++      &lt;property name=&quot;firstName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++				
++ 
++      &lt;property name=&quot;lastName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++             
++ 
++    &lt;/class&gt;
++  &lt;/hibernate-mapping&gt;
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Actor.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Actor.java	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Actor.java	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,82 @@
++package de.hsharz.provirent.objects;
++
++import java.io.Serializable;
++import org.apache.commons.lang.builder.EqualsBuilder;
++import org.apache.commons.lang.builder.HashCodeBuilder;
++import org.apache.commons.lang.builder.ToStringBuilder;
++
++
++/** 
++ *         Represents an Actor.
++ *         @author Philipp Schneider
++ *       
++*/
++public class Actor implements Serializable {
++
++    /** identifier field */
++    private Integer actorId;
++
++    /** persistent field */
++    private String firstName;
++
++    /** persistent field */
++    private String lastName;
++
++    /** full constructor */
++    public Actor(String firstName, String lastName) {
++        this.firstName = firstName;
++        this.lastName = lastName;
++    }
++
++    /** default constructor */
++    public Actor() {
++    }
++
++    public Integer getActorId() {
++        return this.actorId;
++    }
++
++    protected void setActorId(Integer actorId) {
++        this.actorId = actorId;
++    }
++
++    public String getFirstName() {
++        return this.firstName;
++    }
++
++    public void setFirstName(String firstName) {
++        this.firstName = firstName;
++    }
++
++    public String getLastName() {
++        return this.lastName;
++    }
++
++    public void setLastName(String lastName) {
++        this.lastName = lastName;
++    }
++
++    public String toString() {
++        return new ToStringBuilder(this)
++            .append(&quot;actorId&quot;, getActorId())
++            .append(&quot;firstName&quot;, getFirstName())
++            .append(&quot;lastName&quot;, getLastName())
++            .toString();
++    }
++
++    public boolean equals(Object other) {
++        if ( (this == other ) ) return true;
++        if ( !(other instanceof Actor) ) return false;
++        Actor castOther = (Actor) other;
++        return new EqualsBuilder()
++            .append(this.getActorId(), castOther.getActorId())
++            .isEquals();
++    }
++
++    public int hashCode() {
++        return new HashCodeBuilder()
++            .append(getActorId())
++            .toHashCode();
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/AudioFormat.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/AudioFormat.hbm.xml	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/AudioFormat.hbm.xml	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,33 @@
++&lt;?xml version=&quot;1.0&quot;?&gt;
++&lt;!DOCTYPE hibernate-mapping
++             PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 2.0//EN&quot;
++             &quot;<A HREF="http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd</A>&quot;&gt;
++  &lt;hibernate-mapping&gt;
++ 
++   &lt;class name=&quot;de.hsharz.provirent.objects.AudioFormat&quot; table=&quot;AUDIOFORMAT&quot;&gt;
++      &lt;meta attribute=&quot;class-description&quot;&gt;
++        Represents an AudioFormat.
++        @author Philipp Schneider
++      &lt;/meta&gt;
++      
++  		
++ 			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
++ 			
++      &lt;id name=&quot;audioFormatId&quot; type=&quot;int&quot; column=&quot;AUIOFORMATID&quot;&gt;
++        &lt;meta attribute=&quot;scope-set&quot;&gt;protected&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++        &lt;generator class=&quot;native&quot;/&gt;
++      &lt;/id&gt;
++ 
++      &lt;property name=&quot;name&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++				
++ 
++      &lt;property name=&quot;shortname&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++             
++ 
++    &lt;/class&gt;
++  &lt;/hibernate-mapping&gt;
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/AudioFormat.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/AudioFormat.java	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/AudioFormat.java	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,82 @@
++package de.hsharz.provirent.objects;
++
++import java.io.Serializable;
++import org.apache.commons.lang.builder.EqualsBuilder;
++import org.apache.commons.lang.builder.HashCodeBuilder;
++import org.apache.commons.lang.builder.ToStringBuilder;
++
++
++/** 
++ *         Represents an AudioFormat.
++ *         @author Philipp Schneider
++ *       
++*/
++public class AudioFormat implements Serializable {
++
++    /** identifier field */
++    private Integer audioFormatId;
++
++    /** persistent field */
++    private String name;
++
++    /** persistent field */
++    private String shortname;
++
++    /** full constructor */
++    public AudioFormat(String name, String shortname) {
++        this.name = name;
++        this.shortname = shortname;
++    }
++
++    /** default constructor */
++    public AudioFormat() {
++    }
++
++    public Integer getAudioFormatId() {
++        return this.audioFormatId;
++    }
++
++    protected void setAudioFormatId(Integer audioFormatId) {
++        this.audioFormatId = audioFormatId;
++    }
++
++    public String getName() {
++        return this.name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public String getShortname() {
++        return this.shortname;
++    }
++
++    public void setShortname(String shortname) {
++        this.shortname = shortname;
++    }
++
++    public String toString() {
++        return new ToStringBuilder(this)
++            .append(&quot;audioFormatId&quot;, getAudioFormatId())
++            .append(&quot;name&quot;, getName())
++            .append(&quot;shortname&quot;, getShortname())
++            .toString();
++    }
++
++    public boolean equals(Object other) {
++        if ( (this == other ) ) return true;
++        if ( !(other instanceof AudioFormat) ) return false;
++        AudioFormat castOther = (AudioFormat) other;
++        return new EqualsBuilder()
++            .append(this.getAudioFormatId(), castOther.getAudioFormatId())
++            .isEquals();
++    }
++
++    public int hashCode() {
++        return new HashCodeBuilder()
++            .append(getAudioFormatId())
++            .toHashCode();
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Condition.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Condition.hbm.xml	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Condition.hbm.xml	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,33 @@
++&lt;?xml version=&quot;1.0&quot;?&gt;
++&lt;!DOCTYPE hibernate-mapping
++             PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 2.0//EN&quot;
++             &quot;<A HREF="http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd</A>&quot;&gt;
++  &lt;hibernate-mapping&gt;
++ 
++   &lt;class name=&quot;de.hsharz.provirent.objects.Condition&quot; table=&quot;CONDITION&quot;&gt;
++      &lt;meta attribute=&quot;class-description&quot;&gt;
++        Represents an Condition.
++        @author Philipp Schneider
++      &lt;/meta&gt;
++      
++  		
++ 			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
++ 			
++      &lt;id name=&quot;conditionId&quot; type=&quot;int&quot; column=&quot;CONDITIONID&quot;&gt;
++        &lt;meta attribute=&quot;scope-set&quot;&gt;protected&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++        &lt;generator class=&quot;native&quot;/&gt;
++      &lt;/id&gt;
++ 
++      &lt;property name=&quot;conditionName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++				
++ 
++      &lt;property name=&quot;conditionshortname&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++             
++ 
++    &lt;/class&gt;
++  &lt;/hibernate-mapping&gt;
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Condition.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Condition.java	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Condition.java	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,82 @@
++package de.hsharz.provirent.objects;
++
++import java.io.Serializable;
++import org.apache.commons.lang.builder.EqualsBuilder;
++import org.apache.commons.lang.builder.HashCodeBuilder;
++import org.apache.commons.lang.builder.ToStringBuilder;
++
++
++/** 
++ *         Represents an Condition.
++ *         @author Philipp Schneider
++ *       
++*/
++public class Condition implements Serializable {
++
++    /** identifier field */
++    private Integer conditionId;
++
++    /** persistent field */
++    private String conditionName;
++
++    /** persistent field */
++    private String conditionshortname;
++
++    /** full constructor */
++    public Condition(String conditionName, String conditionshortname) {
++        this.conditionName = conditionName;
++        this.conditionshortname = conditionshortname;
++    }
++
++    /** default constructor */
++    public Condition() {
++    }
++
++    public Integer getConditionId() {
++        return this.conditionId;
++    }
++
++    protected void setConditionId(Integer conditionId) {
++        this.conditionId = conditionId;
++    }
++
++    public String getConditionName() {
++        return this.conditionName;
++    }
++
++    public void setConditionName(String conditionName) {
++        this.conditionName = conditionName;
++    }
++
++    public String getConditionshortname() {
++        return this.conditionshortname;
++    }
++
++    public void setConditionshortname(String conditionshortname) {
++        this.conditionshortname = conditionshortname;
++    }
++
++    public String toString() {
++        return new ToStringBuilder(this)
++            .append(&quot;conditionId&quot;, getConditionId())
++            .append(&quot;conditionName&quot;, getConditionName())
++            .append(&quot;conditionshortname&quot;, getConditionshortname())
++            .toString();
++    }
++
++    public boolean equals(Object other) {
++        if ( (this == other ) ) return true;
++        if ( !(other instanceof Condition) ) return false;
++        Condition castOther = (Condition) other;
++        return new EqualsBuilder()
++            .append(this.getConditionId(), castOther.getConditionId())
++            .isEquals();
++    }
++
++    public int hashCode() {
++        return new HashCodeBuilder()
++            .append(getConditionId())
++            .toHashCode();
++    }
++
++}
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml	2004-10-09 11:38:19 UTC (rev 15)
+@@ -18,52 +18,10 @@
+         &lt;generator class=&quot;native&quot;/&gt;
+       &lt;/id&gt;
+  
+- 			
++ 			&lt;timestamp	name=&quot;dayOfRegistration&quot; /&gt;
+  
+-      &lt;property name=&quot;firstName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+-      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;      
+  
+-      &lt;property name=&quot;lastName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+-      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;
+-       
+-      &lt;property name=&quot;middleName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+-      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;
+-       
+-      &lt;property name=&quot;salutation&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+-       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;
+       
+-      &lt;property name=&quot;title&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+-       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;
+-      
+-      &lt;property name=&quot;street&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+-       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;
+-      
+-      &lt;property name=&quot;streetNumber&quot; type=&quot;string&quot; not-null=&quot;true&quot; length=&quot;10&quot;&gt;
+-       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;
+-      
+-      &lt;property name=&quot;city&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+-       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;
+-      
+-      &lt;property name=&quot;zipCode&quot; type=&quot;string&quot; not-null=&quot;true&quot; length=&quot;10&quot;&gt;
+-       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;
+-      
+-      &lt;property name=&quot;country&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+-       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;
+-      
+-      &lt;property name=&quot;emailAddress&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+-       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-      &lt;/property&gt;
+-      
+       &lt;property name=&quot;userName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+       &lt;/property&gt;
+@@ -83,10 +41,16 @@
+ 
+       
+  
+-      &lt;property name=&quot;dayOfBirth&quot; type=&quot;calendar&quot;/&gt;
++      &lt;property name=&quot;dayOfBirth&quot; type=&quot;calendar&quot; &gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
+  
+-      &lt;property name=&quot;dayOfRegistration&quot; type=&quot;calendar&quot; not-null=&quot;true&quot;/&gt;
++ 			
++ &lt;!--
++      &lt;property name=&quot;dayOfRegistration&quot; type=&quot;calendar&quot; not-null=&quot;true&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++--&gt;
+ 
+-
+     &lt;/class&gt;
+   &lt;/hibernate-mapping&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java	2004-10-09 11:38:19 UTC (rev 15)
+@@ -2,6 +2,7 @@
+ 
+ import java.io.Serializable;
+ import java.util.Calendar;
++import java.util.Date;
+ import org.apache.commons.lang.builder.EqualsBuilder;
+ import org.apache.commons.lang.builder.HashCodeBuilder;
+ import org.apache.commons.lang.builder.ToStringBuilder;
+@@ -23,13 +24,13 @@
+     /** persistent field */
+     private String lastName;
+ 
+-    /** persistent field */
++    /** nullable persistent field */
+     private String middleName;
+ 
+-    /** persistent field */
++    /** nullable persistent field */
+     private String salutation;
+ 
+-    /** persistent field */
++    /** nullable persistent field */
+     private String title;
+ 
+     /** persistent field */
+@@ -65,11 +66,11 @@
+     /** nullable persistent field */
+     private Calendar dayOfBirth;
+ 
+-    /** persistent field */
+-    private Calendar dayOfRegistration;
++    /** nullable persistent field */
++    private Date dayOfRegistration;
+ 
+     /** full constructor */
+-    public Customer(String firstName, String lastName, String middleName, String salutation, String title, String street, String streetNumber, String city, String zipCode, String country, String emailAddress, String userName, String password, String hiddenQuestion, String hiddenAnswer, Calendar dayOfBirth, Calendar dayOfRegistration) {
++    public Customer(String firstName, String lastName, String middleName, String salutation, String title, String street, String streetNumber, String city, String zipCode, String country, String emailAddress, String userName, String password, String hiddenQuestion, String hiddenAnswer, Calendar dayOfBirth, Date dayOfRegistration) {
+         this.firstName = firstName;
+         this.lastName = lastName;
+         this.middleName = middleName;
+@@ -94,12 +95,9 @@
+     }
+ 
+     /** minimal constructor */
+-    public Customer(String firstName, String lastName, String middleName, String salutation, String title, String street, String streetNumber, String city, String zipCode, String country, String emailAddress, String userName, String password, String hiddenQuestion, String hiddenAnswer, Calendar dayOfRegistration) {
++    public Customer(String firstName, String lastName, String street, String streetNumber, String city, String zipCode, String country, String emailAddress, String userName, String password, String hiddenQuestion, String hiddenAnswer) {
+         this.firstName = firstName;
+         this.lastName = lastName;
+-        this.middleName = middleName;
+-        this.salutation = salutation;
+-        this.title = title;
+         this.street = street;
+         this.streetNumber = streetNumber;
+         this.city = city;
+@@ -110,7 +108,6 @@
+         this.password = password;
+         this.hiddenQuestion = hiddenQuestion;
+         this.hiddenAnswer = hiddenAnswer;
+-        this.dayOfRegistration = dayOfRegistration;
+     }
+ 
+     public Integer getCustomerId() {
+@@ -249,11 +246,11 @@
+         this.dayOfBirth = dayOfBirth;
+     }
+ 
+-    public Calendar getDayOfRegistration() {
++    public Date getDayOfRegistration() {
+         return this.dayOfRegistration;
+     }
+ 
+-    public void setDayOfRegistration(Calendar dayOfRegistration) {
++    public void setDayOfRegistration(Date dayOfRegistration) {
+         this.dayOfRegistration = dayOfRegistration;
+     }
+ 
+@@ -275,6 +272,7 @@
+             .append(&quot;password&quot;, getPassword())
+             .append(&quot;hiddenQuestion&quot;, getHiddenQuestion())
+             .append(&quot;hiddenAnswer&quot;, getHiddenAnswer())
++            .append(&quot;dayOfBirth&quot;, getDayOfBirth())
+             .toString();
+     }
+ 
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/DVD.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/DVD.hbm.xml	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/DVD.hbm.xml	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,115 @@
++&lt;?xml version=&quot;1.0&quot;?&gt;
++&lt;!DOCTYPE hibernate-mapping
++             PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 2.0//EN&quot;
++             &quot;<A HREF="http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd</A>&quot;&gt;
++  &lt;hibernate-mapping&gt;
++ 
++   &lt;class name=&quot;de.hsharz.provirent.objects.Dvd&quot; table=&quot;DVD&quot;&gt;
++      &lt;meta attribute=&quot;class-description&quot;&gt;
++        Represents a single Dvd.
++        @author Philipp Schneider
++      &lt;/meta&gt;
++      
++  		
++ 			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
++ 			
++      &lt;id name=&quot;dvdId&quot; type=&quot;int&quot; column=&quot;DVDID&quot;&gt;
++        &lt;meta attribute=&quot;scope-set&quot;&gt;protected&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++        &lt;generator class=&quot;native&quot;/&gt;
++      &lt;/id&gt;
++ 
++ 
++		 &lt;many-to-one
++				name=&quot;movie&quot;
++				column=&quot;movie&quot;
++				class=&quot;de.hsharz.provirent.objects.Movie&quot;
++				
++		&gt;
++						&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++				&lt;/many-to-one&gt;
++  
++  	&lt;many-to-one name=&quot;condition&quot; class=&quot;de.hsharz.provirent.objects.Condition&quot; column=&quot;CONDITION&quot;/&gt;
++  	
++  	&lt;many-to-one name=&quot;status&quot; class=&quot;de.hsharz.provirent.objects.Status&quot; column=&quot;STATUS&quot;/&gt;
++  
++      &lt;property name=&quot;barcode&quot; type=&quot;string&quot; unique=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++		&lt;!--		
++
++      &lt;property name=&quot;description&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++             
++      &lt;property name=&quot;runtime&quot; type=&quot;int&quot;&gt;
++        &lt;meta attribute=&quot;field-description&quot;&gt;Playing time&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++ 
++      &lt;property name=&quot;releaseDate&quot; type=&quot;date&quot;&gt;
++        &lt;meta attribute=&quot;field-description&quot;&gt;When the movie was released or added&lt;/meta&gt;
++				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++ 
++ 
++ 			&lt;list	name=&quot;actors&quot;
++ 						table=&quot;MOVIEACTORS&quot;
++ 						inverse=&quot;true&quot; &gt;
++				&lt;key column=&quot;MOVIEID&quot;/&gt;
++				&lt;index column=&quot;POS&quot;/&gt;
++				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Actor&quot; column=&quot;ACTORID&quot; /&gt;			
++ 			&lt;/list&gt;
++ 			
++ 			&lt;list	name=&quot;director&quot;
++ 						table=&quot;MOVIEDIRECTORS&quot;
++ 						inverse=&quot;true&quot; &gt;
++				&lt;key column=&quot;MOVIEID&quot;/&gt;
++				&lt;index column=&quot;POS&quot;/&gt;
++				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Director&quot; column=&quot;DIRECTORID&quot; /&gt;			
++ 			&lt;/list&gt; 			
++
++ 			&lt;list	name=&quot;languages&quot;
++ 						table=&quot;MOVIELANGUAGES&quot;
++ 						inverse=&quot;true&quot; &gt;
++				&lt;key column=&quot;MOVIEID&quot;/&gt;
++				&lt;index column=&quot;POS&quot;/&gt;
++				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Language&quot; column=&quot;LANGUAGEID&quot; /&gt;			
++ 			&lt;/list&gt; 			
++
++ 			&lt;list	name=&quot;subtitles&quot;
++ 						table=&quot;MOVIESUBTITLES&quot;
++ 						inverse=&quot;true&quot; &gt;
++				&lt;key column=&quot;MOVIEID&quot;/&gt;
++				&lt;index column=&quot;POS&quot;/&gt;
++				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Subtitle&quot; column=&quot;SUBTITLEID&quot; /&gt;			
++ 			&lt;/list&gt; 	
++
++ 			&lt;list	name=&quot;genres&quot;
++ 						table=&quot;MOVIEGENRES&quot;
++ 						inverse=&quot;true&quot; &gt;
++				&lt;key column=&quot;MOVIEID&quot;/&gt;
++				&lt;index column=&quot;POS&quot;/&gt;
++				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.Genre&quot; column=&quot;GENREID&quot; /&gt;			
++ 			&lt;/list&gt;  			
++
++ 			&lt;list	name=&quot;audioFormats&quot;
++ 						table=&quot;MOVIEAUDIOFORMATES&quot;
++ 						inverse=&quot;true&quot; &gt;
++				&lt;key column=&quot;MOVIEID&quot;/&gt;
++				&lt;index column=&quot;POS&quot;/&gt;
++				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.AudioFormat&quot; column=&quot;AUDIOFORMATID&quot; /&gt;			
++ 			&lt;/list&gt;  
++
++ 			&lt;list	name=&quot;videoFormats&quot;
++ 						table=&quot;MOVIEVIDEOFORMATES&quot;
++ 						inverse=&quot;true&quot; &gt;
++				&lt;key column=&quot;MOVIEID&quot;/&gt;
++				&lt;index column=&quot;POS&quot;/&gt;
++				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.VideoFormat&quot; column=&quot;VIDEOFORMATID&quot; /&gt;			
++ 			&lt;/list&gt; 
++ 			
++ 			--&gt;
++ 			
++    &lt;/class&gt;
++  &lt;/hibernate-mapping&gt;
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Director.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Director.hbm.xml	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Director.hbm.xml	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,33 @@
++&lt;?xml version=&quot;1.0&quot;?&gt;
++&lt;!DOCTYPE hibernate-mapping
++             PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 2.0//EN&quot;
++             &quot;<A HREF="http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd</A>&quot;&gt;
++  &lt;hibernate-mapping&gt;
++ 
++   &lt;class name=&quot;de.hsharz.provirent.objects.Director&quot; table=&quot;DIRECTOR&quot;&gt;
++      &lt;meta attribute=&quot;class-description&quot;&gt;
++        Represents an Director.
++        @author Philipp Schneider
++      &lt;/meta&gt;
++      
++  		
++ 			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
++ 			
++      &lt;id name=&quot;directorId&quot; type=&quot;int&quot; column=&quot;DIRECTORID&quot;&gt;
++        &lt;meta attribute=&quot;scope-set&quot;&gt;protected&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++        &lt;generator class=&quot;native&quot;/&gt;
++      &lt;/id&gt;
++ 
++      &lt;property name=&quot;firstName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++				
++ 
++      &lt;property name=&quot;lastName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++             
++ 
++    &lt;/class&gt;
++  &lt;/hibernate-mapping&gt;
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Director.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Director.java	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Director.java	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,82 @@
++package de.hsharz.provirent.objects;
++
++import java.io.Serializable;
++import org.apache.commons.lang.builder.EqualsBuilder;
++import org.apache.commons.lang.builder.HashCodeBuilder;
++import org.apache.commons.lang.builder.ToStringBuilder;
++
++
++/** 
++ *         Represents an Director.
++ *         @author Philipp Schneider
++ *       
++*/
++public class Director implements Serializable {
++
++    /** identifier field */
++    private Integer directorId;
++
++    /** persistent field */
++    private String firstName;
++
++    /** persistent field */
++    private String lastName;
++
++    /** full constructor */
++    public Director(String firstName, String lastName) {
++        this.firstName = firstName;
++        this.lastName = lastName;
++    }
++
++    /** default constructor */
++    public Director() {
++    }
++
++    public Integer getDirectorId() {
++        return this.directorId;
++    }
++
++    protected void setDirectorId(Integer directorId) {
++        this.directorId = directorId;
++    }
++
++    public String getFirstName() {
++        return this.firstName;
++    }
++
++    public void setFirstName(String firstName) {
++        this.firstName = firstName;
++    }
++
++    public String getLastName() {
++        return this.lastName;
++    }
++
++    public void setLastName(String lastName) {
++        this.lastName = lastName;
++    }
++
++    public String toString() {
++        return new ToStringBuilder(this)
++            .append(&quot;directorId&quot;, getDirectorId())
++            .append(&quot;firstName&quot;, getFirstName())
++            .append(&quot;lastName&quot;, getLastName())
++            .toString();
++    }
++
++    public boolean equals(Object other) {
++        if ( (this == other ) ) return true;
++        if ( !(other instanceof Director) ) return false;
++        Director castOther = (Director) other;
++        return new EqualsBuilder()
++            .append(this.getDirectorId(), castOther.getDirectorId())
++            .isEquals();
++    }
++
++    public int hashCode() {
++        return new HashCodeBuilder()
++            .append(getDirectorId())
++            .toHashCode();
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Genre.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Genre.hbm.xml	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Genre.hbm.xml	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,33 @@
++&lt;?xml version=&quot;1.0&quot;?&gt;
++&lt;!DOCTYPE hibernate-mapping
++             PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 2.0//EN&quot;
++             &quot;<A HREF="http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd</A>&quot;&gt;
++  &lt;hibernate-mapping&gt;
++ 
++   &lt;class name=&quot;de.hsharz.provirent.objects.Genre&quot; table=&quot;GENRE&quot;&gt;
++      &lt;meta attribute=&quot;class-description&quot;&gt;
++        Represents an Genre.
++        @author Philipp Schneider
++      &lt;/meta&gt;
++      
++  		
++ 			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
++ 			
++      &lt;id name=&quot;genreId&quot; type=&quot;int&quot; column=&quot;GENREID&quot;&gt;
++        &lt;meta attribute=&quot;scope-set&quot;&gt;protected&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++        &lt;generator class=&quot;native&quot;/&gt;
++      &lt;/id&gt;
++ 
++      &lt;property name=&quot;name&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++				
++ 
++      &lt;property name=&quot;shortname&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++             
++ 
++    &lt;/class&gt;
++  &lt;/hibernate-mapping&gt;
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Genre.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Genre.java	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Genre.java	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,82 @@
++package de.hsharz.provirent.objects;
++
++import java.io.Serializable;
++import org.apache.commons.lang.builder.EqualsBuilder;
++import org.apache.commons.lang.builder.HashCodeBuilder;
++import org.apache.commons.lang.builder.ToStringBuilder;
++
++
++/** 
++ *         Represents an Genre.
++ *         @author Philipp Schneider
++ *       
++*/
++public class Genre implements Serializable {
++
++    /** identifier field */
++    private Integer genreId;
++
++    /** persistent field */
++    private String name;
++
++    /** persistent field */
++    private String shortname;
++
++    /** full constructor */
++    public Genre(String name, String shortname) {
++        this.name = name;
++        this.shortname = shortname;
++    }
++
++    /** default constructor */
++    public Genre() {
++    }
++
++    public Integer getGenreId() {
++        return this.genreId;
++    }
++
++    protected void setGenreId(Integer genreId) {
++        this.genreId = genreId;
++    }
++
++    public String getName() {
++        return this.name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public String getShortname() {
++        return this.shortname;
++    }
++
++    public void setShortname(String shortname) {
++        this.shortname = shortname;
++    }
++
++    public String toString() {
++        return new ToStringBuilder(this)
++            .append(&quot;genreId&quot;, getGenreId())
++            .append(&quot;name&quot;, getName())
++            .append(&quot;shortname&quot;, getShortname())
++            .toString();
++    }
++
++    public boolean equals(Object other) {
++        if ( (this == other ) ) return true;
++        if ( !(other instanceof Genre) ) return false;
++        Genre castOther = (Genre) other;
++        return new EqualsBuilder()
++            .append(this.getGenreId(), castOther.getGenreId())
++            .isEquals();
++    }
++
++    public int hashCode() {
++        return new HashCodeBuilder()
++            .append(getGenreId())
++            .toHashCode();
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Language.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Language.hbm.xml	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Language.hbm.xml	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,33 @@
++&lt;?xml version=&quot;1.0&quot;?&gt;
++&lt;!DOCTYPE hibernate-mapping
++             PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 2.0//EN&quot;
++             &quot;<A HREF="http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd</A>&quot;&gt;
++  &lt;hibernate-mapping&gt;
++ 
++   &lt;class name=&quot;de.hsharz.provirent.objects.Language&quot; table=&quot;LANGUAGE&quot;&gt;
++      &lt;meta attribute=&quot;class-description&quot;&gt;
++        Represents an Language.
++        @author Philipp Schneider
++      &lt;/meta&gt;
++      
++  		
++ 			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
++ 			
++      &lt;id name=&quot;languageId&quot; type=&quot;int&quot; column=&quot;LANGUAGEID&quot;&gt;
++        &lt;meta attribute=&quot;scope-set&quot;&gt;protected&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++        &lt;generator class=&quot;native&quot;/&gt;
++      &lt;/id&gt;
++ 
++      &lt;property name=&quot;name&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++				
++ 
++      &lt;property name=&quot;shortname&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++             
++ 
++    &lt;/class&gt;
++  &lt;/hibernate-mapping&gt;
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Language.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Language.java	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Language.java	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,82 @@
++package de.hsharz.provirent.objects;
++
++import java.io.Serializable;
++import org.apache.commons.lang.builder.EqualsBuilder;
++import org.apache.commons.lang.builder.HashCodeBuilder;
++import org.apache.commons.lang.builder.ToStringBuilder;
++
++
++/** 
++ *         Represents an Language.
++ *         @author Philipp Schneider
++ *       
++*/
++public class Language implements Serializable {
++
++    /** identifier field */
++    private Integer languageId;
++
++    /** persistent field */
++    private String name;
++
++    /** persistent field */
++    private String shortname;
++
++    /** full constructor */
++    public Language(String name, String shortname) {
++        this.name = name;
++        this.shortname = shortname;
++    }
++
++    /** default constructor */
++    public Language() {
++    }
++
++    public Integer getLanguageId() {
++        return this.languageId;
++    }
++
++    protected void setLanguageId(Integer languageId) {
++        this.languageId = languageId;
++    }
++
++    public String getName() {
++        return this.name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public String getShortname() {
++        return this.shortname;
++    }
++
++    public void setShortname(String shortname) {
++        this.shortname = shortname;
++    }
++
++    public String toString() {
++        return new ToStringBuilder(this)
++            .append(&quot;languageId&quot;, getLanguageId())
++            .append(&quot;name&quot;, getName())
++            .append(&quot;shortname&quot;, getShortname())
++            .toString();
++    }
++
++    public boolean equals(Object other) {
++        if ( (this == other ) ) return true;
++        if ( !(other instanceof Language) ) return false;
++        Language castOther = (Language) other;
++        return new EqualsBuilder()
++            .append(this.getLanguageId(), castOther.getLanguageId())
++            .isEquals();
++    }
++
++    public int hashCode() {
++        return new HashCodeBuilder()
++            .append(getLanguageId())
++            .toHashCode();
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.hbm.xml	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.hbm.xml	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,72 @@
++&lt;?xml version=&quot;1.0&quot;?&gt;
++&lt;!DOCTYPE hibernate-mapping
++             PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 2.0//EN&quot;
++             &quot;<A HREF="http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd</A>&quot;&gt;
++  &lt;hibernate-mapping&gt;
++ 
++   &lt;class name=&quot;de.hsharz.provirent.objects.Person&quot; table=&quot;PERSON&quot;&gt;
++      &lt;meta attribute=&quot;class-description&quot;&gt;
++        Represents a single Person.
++        @author Philipp Schneider
++      &lt;/meta&gt;
++ 			
++ 			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
++ 
++      &lt;id name=&quot;personId&quot; type=&quot;int&quot; column=&quot;PERSONID&quot;&gt;
++        &lt;meta attribute=&quot;scope-set&quot;&gt;protected&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++        &lt;generator class=&quot;native&quot;/&gt;
++      &lt;/id&gt;
++ 
++ 			
++ 
++      &lt;property name=&quot;firstName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;      
++ 
++      &lt;property name=&quot;lastName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++       
++      &lt;property name=&quot;middleName&quot; type=&quot;string&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++       
++      &lt;property name=&quot;salutation&quot; type=&quot;string&quot;&gt;
++       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++      
++      &lt;property name=&quot;title&quot; type=&quot;string&quot;&gt;
++       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++      
++      &lt;property name=&quot;street&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++      
++      &lt;property name=&quot;streetNumber&quot; type=&quot;string&quot; not-null=&quot;true&quot; length=&quot;10&quot;&gt;
++       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++      
++      &lt;property name=&quot;city&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++      
++      &lt;property name=&quot;zipCode&quot; type=&quot;string&quot; not-null=&quot;true&quot; length=&quot;10&quot;&gt;
++       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++      
++      &lt;property name=&quot;country&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++      
++      &lt;property name=&quot;emailAddress&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++      
++      &lt;property name=&quot;dayOfBirth&quot; type=&quot;calendar&quot; &gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++ 
++    &lt;/class&gt;
++  &lt;/hibernate-mapping&gt;
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Status.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Status.hbm.xml	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Status.hbm.xml	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,33 @@
++&lt;?xml version=&quot;1.0&quot;?&gt;
++&lt;!DOCTYPE hibernate-mapping
++             PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 2.0//EN&quot;
++             &quot;<A HREF="http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd</A>&quot;&gt;
++  &lt;hibernate-mapping&gt;
++ 
++   &lt;class name=&quot;de.hsharz.provirent.objects.Status&quot; table=&quot;STATUS&quot;&gt;
++      &lt;meta attribute=&quot;class-description&quot;&gt;
++        Represents an Status.
++        @author Philipp Schneider
++      &lt;/meta&gt;
++      
++  		
++ 			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
++ 			
++      &lt;id name=&quot;statusId&quot; type=&quot;int&quot; column=&quot;STATUSID&quot;&gt;
++        &lt;meta attribute=&quot;scope-set&quot;&gt;protected&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++        &lt;generator class=&quot;native&quot;/&gt;
++      &lt;/id&gt;
++ 
++      &lt;property name=&quot;statusName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++				
++ 
++      &lt;property name=&quot;statusShortname&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++             
++ 
++    &lt;/class&gt;
++  &lt;/hibernate-mapping&gt;
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Status.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Status.java	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Status.java	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,82 @@
++package de.hsharz.provirent.objects;
++
++import java.io.Serializable;
++import org.apache.commons.lang.builder.EqualsBuilder;
++import org.apache.commons.lang.builder.HashCodeBuilder;
++import org.apache.commons.lang.builder.ToStringBuilder;
++
++
++/** 
++ *         Represents an Status.
++ *         @author Philipp Schneider
++ *       
++*/
++public class Status implements Serializable {
++
++    /** identifier field */
++    private Integer statusId;
++
++    /** persistent field */
++    private String statusName;
++
++    /** persistent field */
++    private String statusShortname;
++
++    /** full constructor */
++    public Status(String statusName, String statusShortname) {
++        this.statusName = statusName;
++        this.statusShortname = statusShortname;
++    }
++
++    /** default constructor */
++    public Status() {
++    }
++
++    public Integer getStatusId() {
++        return this.statusId;
++    }
++
++    protected void setStatusId(Integer statusId) {
++        this.statusId = statusId;
++    }
++
++    public String getStatusName() {
++        return this.statusName;
++    }
++
++    public void setStatusName(String statusName) {
++        this.statusName = statusName;
++    }
++
++    public String getStatusShortname() {
++        return this.statusShortname;
++    }
++
++    public void setStatusShortname(String statusShortname) {
++        this.statusShortname = statusShortname;
++    }
++
++    public String toString() {
++        return new ToStringBuilder(this)
++            .append(&quot;statusId&quot;, getStatusId())
++            .append(&quot;statusName&quot;, getStatusName())
++            .append(&quot;statusShortname&quot;, getStatusShortname())
++            .toString();
++    }
++
++    public boolean equals(Object other) {
++        if ( (this == other ) ) return true;
++        if ( !(other instanceof Status) ) return false;
++        Status castOther = (Status) other;
++        return new EqualsBuilder()
++            .append(this.getStatusId(), castOther.getStatusId())
++            .isEquals();
++    }
++
++    public int hashCode() {
++        return new HashCodeBuilder()
++            .append(getStatusId())
++            .toHashCode();
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Subtitle.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Subtitle.hbm.xml	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Subtitle.hbm.xml	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,33 @@
++&lt;?xml version=&quot;1.0&quot;?&gt;
++&lt;!DOCTYPE hibernate-mapping
++             PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 2.0//EN&quot;
++             &quot;<A HREF="http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd</A>&quot;&gt;
++  &lt;hibernate-mapping&gt;
++ 
++   &lt;class name=&quot;de.hsharz.provirent.objects.Subtitle&quot; table=&quot;SUBTITLE&quot;&gt;
++      &lt;meta attribute=&quot;class-description&quot;&gt;
++        Represents an Subtitle.
++        @author Philipp Schneider
++      &lt;/meta&gt;
++      
++  		
++ 			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
++ 			
++      &lt;id name=&quot;subtitleId&quot; type=&quot;int&quot; column=&quot;SUBTITLEID&quot;&gt;
++        &lt;meta attribute=&quot;scope-set&quot;&gt;protected&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++        &lt;generator class=&quot;native&quot;/&gt;
++      &lt;/id&gt;
++ 
++      &lt;property name=&quot;name&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++				
++ 
++      &lt;property name=&quot;shortname&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++             
++ 
++    &lt;/class&gt;
++  &lt;/hibernate-mapping&gt;
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Subtitle.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Subtitle.java	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Subtitle.java	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,82 @@
++package de.hsharz.provirent.objects;
++
++import java.io.Serializable;
++import org.apache.commons.lang.builder.EqualsBuilder;
++import org.apache.commons.lang.builder.HashCodeBuilder;
++import org.apache.commons.lang.builder.ToStringBuilder;
++
++
++/** 
++ *         Represents an Subtitle.
++ *         @author Philipp Schneider
++ *       
++*/
++public class Subtitle implements Serializable {
++
++    /** identifier field */
++    private Integer subtitleId;
++
++    /** persistent field */
++    private String name;
++
++    /** persistent field */
++    private String shortname;
++
++    /** full constructor */
++    public Subtitle(String name, String shortname) {
++        this.name = name;
++        this.shortname = shortname;
++    }
++
++    /** default constructor */
++    public Subtitle() {
++    }
++
++    public Integer getSubtitleId() {
++        return this.subtitleId;
++    }
++
++    protected void setSubtitleId(Integer subtitleId) {
++        this.subtitleId = subtitleId;
++    }
++
++    public String getName() {
++        return this.name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public String getShortname() {
++        return this.shortname;
++    }
++
++    public void setShortname(String shortname) {
++        this.shortname = shortname;
++    }
++
++    public String toString() {
++        return new ToStringBuilder(this)
++            .append(&quot;subtitleId&quot;, getSubtitleId())
++            .append(&quot;name&quot;, getName())
++            .append(&quot;shortname&quot;, getShortname())
++            .toString();
++    }
++
++    public boolean equals(Object other) {
++        if ( (this == other ) ) return true;
++        if ( !(other instanceof Subtitle) ) return false;
++        Subtitle castOther = (Subtitle) other;
++        return new EqualsBuilder()
++            .append(this.getSubtitleId(), castOther.getSubtitleId())
++            .isEquals();
++    }
++
++    public int hashCode() {
++        return new HashCodeBuilder()
++            .append(getSubtitleId())
++            .toHashCode();
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/VideoFormat.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/VideoFormat.hbm.xml	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/VideoFormat.hbm.xml	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,33 @@
++&lt;?xml version=&quot;1.0&quot;?&gt;
++&lt;!DOCTYPE hibernate-mapping
++             PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 2.0//EN&quot;
++             &quot;<A HREF="http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd</A>&quot;&gt;
++  &lt;hibernate-mapping&gt;
++ 
++   &lt;class name=&quot;de.hsharz.provirent.objects.VideoFormat&quot; table=&quot;VIDEOFORMAT&quot;&gt;
++      &lt;meta attribute=&quot;class-description&quot;&gt;
++        Represents an VideoFormat.
++        @author Philipp Schneider
++      &lt;/meta&gt;
++      
++  		
++ 			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
++ 			
++      &lt;id name=&quot;videoFormatId&quot; type=&quot;int&quot; column=&quot;VIDEOFORMATID&quot;&gt;
++        &lt;meta attribute=&quot;scope-set&quot;&gt;protected&lt;/meta&gt;
++        &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
++        &lt;generator class=&quot;native&quot;/&gt;
++      &lt;/id&gt;
++ 
++      &lt;property name=&quot;name&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++				
++ 
++      &lt;property name=&quot;shortname&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
++             
++ 
++    &lt;/class&gt;
++  &lt;/hibernate-mapping&gt;
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/VideoFormat.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/VideoFormat.java	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/VideoFormat.java	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,82 @@
++package de.hsharz.provirent.objects;
++
++import java.io.Serializable;
++import org.apache.commons.lang.builder.EqualsBuilder;
++import org.apache.commons.lang.builder.HashCodeBuilder;
++import org.apache.commons.lang.builder.ToStringBuilder;
++
++
++/** 
++ *         Represents an VideoFormat.
++ *         @author Philipp Schneider
++ *       
++*/
++public class VideoFormat implements Serializable {
++
++    /** identifier field */
++    private Integer videoFormatId;
++
++    /** persistent field */
++    private String name;
++
++    /** persistent field */
++    private String shortname;
++
++    /** full constructor */
++    public VideoFormat(String name, String shortname) {
++        this.name = name;
++        this.shortname = shortname;
++    }
++
++    /** default constructor */
++    public VideoFormat() {
++    }
++
++    public Integer getVideoFormatId() {
++        return this.videoFormatId;
++    }
++
++    protected void setVideoFormatId(Integer videoFormatId) {
++        this.videoFormatId = videoFormatId;
++    }
++
++    public String getName() {
++        return this.name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public String getShortname() {
++        return this.shortname;
++    }
++
++    public void setShortname(String shortname) {
++        this.shortname = shortname;
++    }
++
++    public String toString() {
++        return new ToStringBuilder(this)
++            .append(&quot;videoFormatId&quot;, getVideoFormatId())
++            .append(&quot;name&quot;, getName())
++            .append(&quot;shortname&quot;, getShortname())
++            .toString();
++    }
++
++    public boolean equals(Object other) {
++        if ( (this == other ) ) return true;
++        if ( !(other instanceof VideoFormat) ) return false;
++        VideoFormat castOther = (VideoFormat) other;
++        return new EqualsBuilder()
++            .append(this.getVideoFormatId(), castOther.getVideoFormatId())
++            .isEquals();
++    }
++
++    public int hashCode() {
++        return new HashCodeBuilder()
++            .append(getVideoFormatId())
++            .toHashCode();
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,156 @@
++/*
++ * Created on 07.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.ListIterator;
++
++import net.sf.hibernate.Session;
++import net.sf.hibernate.SessionFactory;
++import net.sf.hibernate.Transaction;
++import net.sf.hibernate.cfg.Configuration;
++import de.hsharz.provirent.objects.*;
++
++
++/**
++ * @author Philipp Schneider
++ *  
++ */
++public class TestCustomer {
++
++    public static void main(String args[]) throws Exception {
++        TestCustomer th = new TestCustomer();
++        th.saveObjects();
++        //th.getObjects();
++    }
++    
++
++        
++
++
++
++    public void getObjects() throws Exception {
++        Configuration config = new Configuration();
++
++        // Tell it about the classes we want mapped, taking advantage
++        // of
++        // the way we've named their mapping documents.
++        config.addClass(Customer.class);
++
++        // Get the session factory we can use for persistence
++        SessionFactory sessionFactory = config.buildSessionFactory();
++
++        // Ask for a session using the JDBC information we've
++        // configured
++        Session session = sessionFactory.openSession();
++        try {
++            int id = 1;
++            Dvd movie = (Dvd) session.get(Dvd.class, new Integer(id));
++            if (movie == null) {
++                System.out.println(&quot;Keine Dvd mit id &quot; + id + &quot;gefunden&quot;);
++                return;
++            }
++            System.out.println(&quot;DVD gefunden: &quot; + movie.toString());
++            
++
++        } finally {
++            // No matter what, close the session
++            session.close();
++        }
++
++        // Clean up after ourselves
++        sessionFactory.close();
++    }
++
++    public void saveObjects() throws Exception {
++        // Create a configuration based on the properties file we've put
++        // in the standard place.
++        Configuration config = new Configuration();
++
++        // Tell it about the classes we want mapped, taking advantage of
++        // the way we've named their mapping documents.
++        config.addClass(Customer.class);
++
++        // Get the session factory we can use for persistence
++        SessionFactory sessionFactory = config.buildSessionFactory();
++
++        // Ask for a session using the JDBC information we've configured
++        Session s = sessionFactory.openSession();
++        Transaction tx = null;
++        try {
++            // Create some data and persist it
++            tx = s.beginTransaction();
++
++            Customer c = new Customer();
++            c.setFirstName(&quot;Philipp&quot;);
++            c.setLastName(&quot;Schneider&quot;);
++            c.setStreet(&quot;Kastanienring&quot;);
++            c.setStreetNumber(&quot;16&quot;);
++            c.setCity(&quot;Leipzig&quot;);
++            c.setZipCode(&quot;04316&quot;);
++            c.setCountry(&quot;Deutschland&quot;);
++            c.setSalutation(&quot;Herr&quot;);
++            c.setEmailAddress(&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">egal at aol.com</A>&quot;);
++            c.setUserName(&quot;boelkstoff&quot;);
++            c.setPassword(&quot;egal&quot;);
++            c.setHiddenQuestion(&quot;Wer&quot;);
++            c.setHiddenAnswer(&quot;ich&quot;);
++            
++            s.save(c);
++            s.flush();
++            
++            System.out.println(&quot;Customer id: &quot; +c.getCustomerId() );
++            System.out.println(&quot;Customer id: &quot; +c.getDayOfRegistration() );
++            
++            
++            
++            // We're done; make our changes permanent
++            tx.commit();
++
++        } catch (Exception e) {
++            if (tx != null) {
++                // Something went wrong; discard all partial changes
++                tx.rollback();
++            }
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        // Clean up after ourselves
++        sessionFactory.close();
++    }
++
++}
+\ No newline at end of file
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestDVD.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestDVD.java	2004-10-08 17:58:02 UTC (rev 14)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestDVD.java	2004-10-09 11:38:19 UTC (rev 15)
+@@ -0,0 +1,292 @@
++/*
++ * Created on 07.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.ListIterator;
++
++import net.sf.hibernate.Session;
++import net.sf.hibernate.SessionFactory;
++import net.sf.hibernate.Transaction;
++import net.sf.hibernate.cfg.Configuration;
++import de.hsharz.provirent.objects.*;
++
++
++/**
++ * @author Philipp Schneider
++ *  
++ */
++public class TestDVD {
++
++    public static void main(String args[]) throws Exception {
++        TestDVD th = new TestDVD();
++        //th.saveObjects();
++        th.getObjects();
++    }
++    
++
++        
++
++
++
++    public void getObjects() throws Exception {
++        Configuration config = new Configuration();
++
++        // Tell it about the classes we want mapped, taking advantage
++        // of
++        // the way we've named their mapping documents.
++        config.addClass(Movie.class).addClass(Actor.class)
++        .addClass(AudioFormat.class).addClass(Condition.class)
++        .addClass(Director.class).addClass(Dvd.class)
++.addClass(Genre.class).addClass(Language.class)
++.addClass(Status.class)
++.addClass(Subtitle.class).addClass(VideoFormat.class);
++
++        // Get the session factory we can use for persistence
++        SessionFactory sessionFactory = config.buildSessionFactory();
++
++        // Ask for a session using the JDBC information we've
++        // configured
++        Session session = sessionFactory.openSession();
++        try {
++            int id = 1;
++            Dvd movie = (Dvd) session.get(Dvd.class, new Integer(id));
++            if (movie == null) {
++                System.out.println(&quot;Keine Dvd mit id &quot; + id + &quot;gefunden&quot;);
++                return;
++            }
++            System.out.println(&quot;DVD gefunden: &quot; + movie.toString());
++            
++
++        } finally {
++            // No matter what, close the session
++            session.close();
++        }
++
++        // Clean up after ourselves
++        sessionFactory.close();
++    }
++
++    public void saveObjects() throws Exception {
++        // Create a configuration based on the properties file we've put
++        // in the standard place.
++        Configuration config = new Configuration();
++
++        // Tell it about the classes we want mapped, taking advantage of
++        // the way we've named their mapping documents.
++        config.addClass(Movie.class).addClass(Actor.class)
++        .addClass(AudioFormat.class).addClass(Condition.class)
++        .addClass(Director.class).addClass(Dvd.class)
++.addClass(Genre.class).addClass(Language.class)
++.addClass(Status.class)
++.addClass(Subtitle.class).addClass(VideoFormat.class);
++
++        // Get the session factory we can use for persistence
++        SessionFactory sessionFactory = config.buildSessionFactory();
++
++        // Ask for a session using the JDBC information we've configured
++        Session s = sessionFactory.openSession();
++        Transaction tx = null;
++        try {
++            // Create some data and persist it
++            tx = s.beginTransaction();
++            
++            Movie movie = new Movie();
++            movie.setTitle(&quot;Fluch der Karibik&quot;);
++            movie.setDescription(&quot;eine interaktive Geschichte eines Piraten&quot;);
++
++            Actor actor1 = new Actor(&quot;Johnny&quot;, &quot;Depp&quot;);
++            Actor actor2 = new Actor(&quot;Geoffrey&quot;, &quot;Rush&quot;);
++            Actor actor3 = new Actor(&quot;Gore&quot;, &quot;Verbinski &quot;);
++            Actor actor4 = new Actor(&quot;Julianne&quot;, &quot;Moore &quot;);
++            Actor actor5 = new Actor(&quot;Anthony&quot;, &quot;Edwards &quot;);
++            Actor actor6 = new Actor(&quot;Matthew&quot;, &quot;Pleszewicz &quot;);
++            Actor actor7 = new Actor(&quot;Christopher&quot;, &quot;Kovaleski &quot;);
++            s.save(actor1);
++            s.save(actor2);
++            s.save(actor3);
++            s.save(actor4);
++            s.save(actor5);
++            s.save(actor6);
++            s.save(actor7);
++            s.flush();
++
++            ArrayList actors = new ArrayList();
++            actors.add(actor1);
++            actors.add(actor2);
++            movie.setActors(actors);
++            
++            
++
++            Director d1 = new Director(&quot;Bibo&quot;,&quot;Bergeron&quot;);
++            Director d2 = new Director(&quot;Vicky&quot;,&quot;Jenson&quot;);
++            Director d3 = new Director(&quot;Jay&quot;,&quot;Russell&quot;);
++            Director d4 = new Director(&quot;Joseph&quot;,&quot;Ruben&quot;);
++            s.save(d1);
++            s.save(d2);
++            s.save(d3);
++            s.save(d4);
++            s.flush();
++
++			movie.setDirector(new ArrayList());
++            movie.getDirector().add(d1);
++
++            Language l1 = new Language(&quot;Deutsch&quot;, &quot;de&quot;);
++            Language l2 = new Language(&quot;Englisch&quot;, &quot;en&quot;);
++            Language l3 = new Language(&quot;Franzoesisch&quot;, &quot;fr&quot;);
++            Language l4 = new Language(&quot;Spanisch&quot;, &quot;es&quot;);
++            Language l5 = new Language(&quot;Japanisch&quot;, &quot;jp&quot;);
++            s.save(l1);
++            s.save(l2);
++            s.save(l3);
++            s.save(l4);
++            s.save(l5);
++            s.flush();
++
++            movie.setLanguages(new ArrayList());
++            movie.getLanguages().add(l1);
++            movie.getLanguages().add(l2);
++            
++            Subtitle s1 = new Subtitle(&quot;Deutsch&quot;, &quot;de&quot;);
++            Subtitle s2 = new Subtitle(&quot;Englisch&quot;, &quot;en&quot;);
++            Subtitle s3 = new Subtitle(&quot;Franzoesisch&quot;, &quot;fr&quot;);
++            Subtitle s4 = new Subtitle(&quot;Spanisch&quot;, &quot;es&quot;);
++            Subtitle s5 = new Subtitle(&quot;Japanisch&quot;, &quot;jp&quot;);        
++            s.save(s1);
++            s.save(s2);
++            s.save(s3);
++            s.save(s4);
++            s.save(s5);
++            s.flush();
++
++            movie.setSubtitles(new ArrayList());
++            movie.getSubtitles().add(s1);
++            movie.getSubtitles().add(s2);
++            
++            Genre g1 = new Genre(&quot;Action&quot;,&quot;&quot;);
++            Genre g2 = new Genre(&quot;Abenteuer&quot;,&quot;&quot;);
++            Genre g3 = new Genre(&quot;Dokumentation&quot;,&quot;&quot;);
++            s.save(g1);
++            s.save(g2);
++            s.save(g3);
++            s.flush();
++       
++            movie.setGenres(new ArrayList());
++            movie.getGenres().add(g1);
++            
++            AudioFormat a1 = new AudioFormat(&quot;DTS Surround Sound&quot;,&quot;&quot;);
++            AudioFormat a2 = new AudioFormat(&quot;Surround Sound&quot;,&quot;&quot;);
++            AudioFormat a3 = new AudioFormat(&quot;Dolby&quot;,&quot;&quot;);
++            AudioFormat a4 = new AudioFormat(&quot;Stereo&quot;,&quot;&quot;);
++            s.save(a1);
++            s.save(a2);
++            s.save(a3);
++            s.save(a4);
++            s.flush();
++             
++            movie.setAudioFormats(new ArrayList());
++            movie.getAudioFormats().add(a1);
++            movie.getAudioFormats().add(a4);
++            
++            VideoFormat v1 = new VideoFormat(&quot;2.35:1&quot;,&quot;&quot;);
++            s.save(v1);
++            s.flush();
++          
++            movie.setVideoFormats(new ArrayList());
++            movie.getVideoFormats().add(v1);
++            
++          
++            s.save(movie);
++
++            System.out.println(&quot;MovieID: &quot; + movie.getMovieId());
++            System.out.println(&quot;Movie Actors vor: &quot; + movie.getActors());
++            s.flush();
++            System.out.println(&quot;Movie Actors nach: &quot; + movie.getActors());
++
++
++            
++
++            Dvd dvd = new Dvd();
++            dvd.setMovie(movie);
++            
++            Status status1 = new Status(&quot;ausleihbar&quot;,&quot;&quot;);
++            Status status2 = new Status(&quot;verliehen&quot;,&quot;&quot;);
++            Status status3 = new Status(&quot;in Bearbeitung&quot;,&quot;&quot;);
++            s.save(status1);
++            s.save(status2);
++            s.save(status3);
++            s.flush();
++
++            dvd.setStatus(status1);
++            
++            Condition con1 = new Condition(&quot;neu&quot;,&quot;&quot;);
++            Condition con2 = new Condition(&quot;leichte Kratzer&quot;,&quot;&quot;);
++            Condition con3 = new Condition(&quot;mittlere Kratzer&quot;,&quot;&quot;);
++            Condition con4 = new Condition(&quot;schwere Kratzer&quot;,&quot;&quot;);
++            Condition con5 = new Condition(&quot;nicht lesbar&quot;,&quot;&quot;);
++            s.save(con1);
++            s.save(con2);
++            s.save(con3);
++            s.save(con4);
++            s.save(con5);
++            s.flush();
++            
++            dvd.setCondition(con1);
++            dvd.setBarcode(&quot;01246682&quot;);
++            
++            s.save(dvd);
++            s.flush();
++            System.out.println(&quot;DVD ID: &quot; + dvd.getDvdId());
++
++            
++            
++            // We're done; make our changes permanent
++            tx.commit();
++
++        } catch (Exception e) {
++            if (tx != null) {
++                // Something went wrong; discard all partial changes
++                tx.rollback();
++            }
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        // Clean up after ourselves
++        sessionFactory.close();
++    }
++
++}
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000015.html">[Provirent-svn-commit] r14 - in project_src: . provirent_hibernate provirent_hibernate/data provirent_hibernate/src provirent_hibernate/src/de/hsharz/provirent/objects provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000017.html">[Provirent-svn-commit] r16 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#16">[ date ]</a>
+              <a href="thread.html#16">[ thread ]</a>
+              <a href="subject.html#16">[ subject ]</a>
+              <a href="author.html#16">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

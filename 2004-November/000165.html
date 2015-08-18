@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r164 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r164%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411250007.iAP07bm7017074%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000164.html">
+   <LINK REL="Next"  HREF="000166.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r164 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r164%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411250007.iAP07bm7017074%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r164 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Thu Nov 25 01:07:37 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000164.html">[Provirent-svn-commit] r163 - in project_src/provirent_hibernate: . lib src/de/hsharz/provirent src/de/hsharz/provirent/management/gui src/de/hsharz/provirent/objects
+</A></li>
+        <LI>Next message: <A HREF="000166.html">[Provirent-svn-commit] r165 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#165">[ date ]</a>
+              <a href="thread.html#165">[ thread ]</a>
+              <a href="subject.html#165">[ subject ]</a>
+              <a href="author.html#165">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-11-25 01:07:35 +0100 (Thu, 25 Nov 2004)
+New Revision: 164
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+Log:
+CompositeMovie -Layout ver?\195?\164ndert
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-11-25 00:04:42 UTC (rev 163)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-11-25 00:07:35 UTC (rev 164)
+@@ -40,6 +40,7 @@
+ import de.hsharz.provirent.persistence.Database;
+ 
+ 
++import org.eclipse.swt.widgets.List;
+ /**
+ * This code was generated using CloudGarden's Jigloo
+ * SWT/Swing GUI Builder, which is free for non-commercial
+@@ -116,6 +117,10 @@
+     
+     private Composite parent;
+     private Composite compositeButtons;
++    private List listMoviesImages;
++    private List listMoviesGenres;
++    private List listMoviesActors;
++    private List listMoviesDirectors;
+     private Text textMoviesDate;
+ 
+     protected int mode_actor;
+@@ -195,7 +200,7 @@
+         }
+ 
+         this.setLayout(new GridLayout());
+-        this.setSize(816, 540);
++        this.setSize(900, 650);
+         {
+             groupMovie = new Group(this, SWT.NONE);
+             GridLayout groupMovieLayout = new GridLayout();
+@@ -586,8 +591,7 @@
+     	    labelMoviesAdvice.setLayoutData(formData2);
+     	}
+         {
+-            textMoviesDescription = new Text(groupMoviesDetail, SWT.MULTI 
+-                    | SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
++            textMoviesDescription = new Text(groupMoviesDetail, SWT.MULTI | SWT.READ_ONLY | SWT.V_SCROLL | SWT.BORDER);
+             GridData formData2 = new GridData();
+     	    formData2.horizontalSpan = 5;
+     	    formData2.verticalSpan = 5;
+@@ -604,8 +608,8 @@
+             GridData text1LData2 = new GridData();
+     	    text1LData2.horizontalAlignment = GridData.FILL;
+     	    text1LData2.heightHint = 20;
+-    	    text1LData2.horizontalSpan = 1;
+     	    text1LData2.grabExcessHorizontalSpace = true;
++    	    text1LData2.verticalSpan = 2;
+     	    buttonMoviesEditDirectors.setLayoutData(text1LData2);        
+             buttonMoviesEditDirectors.addSelectionListener(new SelectionAdapter() {
+                 public void widgetSelected(SelectionEvent evt) {
+@@ -615,15 +619,24 @@
+             });  
+         }
+         {
++            listMoviesDirectors = new List(groupMoviesDetail, SWT.BORDER);
++            GridData listMoviesDirectorsLData = new GridData();
++            listMoviesDirectorsLData.horizontalAlignment = GridData.FILL;
++            listMoviesDirectorsLData.horizontalSpan = 5;
++            listMoviesDirectorsLData.verticalSpan = 2;
++            listMoviesDirectors.setLayoutData(listMoviesDirectorsLData);
++        }
++        {
+             buttonMoviesEditActors = new Button(groupMoviesDetail
+                     , SWT.NONE);
+             buttonMoviesEditActors.setText(l
+                 .getString(&quot;movies.button.editactors&quot;));
+             buttonMoviesEditActors.setEnabled(false);
+             GridData text1LData2 = new GridData();
++            text1LData2.verticalSpan = 2;
++            text1LData2.horizontalSpan = 1;
+     	    text1LData2.horizontalAlignment = GridData.FILL;
+     	    text1LData2.heightHint = 20;
+-    	    text1LData2.horizontalSpan = 5;
+     	    text1LData2.grabExcessHorizontalSpace = true;
+     	    buttonMoviesEditActors.setLayoutData(text1LData2);        
+             buttonMoviesEditActors.addSelectionListener(new SelectionAdapter() {
+@@ -634,6 +647,14 @@
+             });  
+         }
+         {
++            listMoviesActors = new List(groupMoviesDetail, SWT.BORDER);
++            GridData listMoviesActorsLData = new GridData();
++            listMoviesActorsLData.horizontalAlignment = GridData.FILL;
++            listMoviesActorsLData.horizontalSpan = 5;
++            listMoviesActorsLData.verticalSpan = 2;
++            listMoviesActors.setLayoutData(listMoviesActorsLData);
++        }
++        {
+             buttonMoviesEditGenres = new Button(groupMoviesDetail
+                     , SWT.NONE);
+             buttonMoviesEditGenres.setText(l
+@@ -642,8 +663,8 @@
+             GridData text1LData2 = new GridData();
+     	    text1LData2.horizontalAlignment = GridData.FILL;
+     	    text1LData2.heightHint = 20;
+-    	    text1LData2.horizontalSpan = 1;
+     	    text1LData2.grabExcessHorizontalSpace = true;
++    	    text1LData2.verticalSpan = 2;
+     	    buttonMoviesEditGenres.setLayoutData(text1LData2);        
+             buttonMoviesEditGenres.addSelectionListener(new SelectionAdapter() {
+                 public void widgetSelected(SelectionEvent evt) {
+@@ -653,6 +674,14 @@
+             });  
+         }
+         {
++            listMoviesGenres = new List(groupMoviesDetail, SWT.BORDER);
++            GridData listMoviesGenresLData = new GridData();
++            listMoviesGenresLData.horizontalSpan = 5;
++            listMoviesGenresLData.verticalSpan = 2;
++            listMoviesGenresLData.horizontalAlignment = GridData.FILL;
++            listMoviesGenres.setLayoutData(listMoviesGenresLData);
++        }
++        {
+             buttonMoviesEditImages = new Button(groupMoviesDetail
+                     , SWT.NONE);
+             buttonMoviesEditImages.setText(l
+@@ -660,7 +689,7 @@
+             buttonMoviesEditImages.setEnabled(false);
+             GridData text1LData2 = new GridData();
+     	    text1LData2.heightHint = 20;
+-    	    text1LData2.horizontalSpan = 5;
++    	    text1LData2.horizontalSpan = 1;
+     	    text1LData2.horizontalAlignment = GridData.FILL;
+     	    buttonMoviesEditImages.setLayoutData(text1LData2);        
+             buttonMoviesEditImages.addSelectionListener(new SelectionAdapter() {
+@@ -671,6 +700,13 @@
+             });  
+         }
+         {
++            listMoviesImages = new List(groupMoviesDetail, SWT.BORDER);
++            GridData listMoviesImagesLData = new GridData();
++            listMoviesImagesLData.horizontalSpan = 5;
++            listMoviesImagesLData.horizontalAlignment = GridData.FILL;
++            listMoviesImages.setLayoutData(listMoviesImagesLData);
++        }
++        {
+     	    compositeButtons = new Composite(groupMoviesDetail, SWT.EMBEDDED);
+     	    GridLayout composite2Layout = new GridLayout();
+     	    composite2Layout.numColumns = 6;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-25 00:04:42 UTC (rev 163)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-25 00:07:35 UTC (rev 164)
+@@ -94,13 +94,13 @@
+ 
+     public final static int MODE_EDIT = 2;
+ 
+-    private static final int MAIN_WINDOW_WIDTH = 830;
++    private static final int MAIN_WINDOW_WIDTH = 850;
+ 
+-    private static final int MAIN_WINDOW_HEIGHT = 520;
+-    private static final int MIN_WINDOW_WIDTH = 830;
+-    private static final int MIN_WINDOW_HEIGHT = 520;
+-    private static final int MIN_WINDOW_X = 50;
+-    private static final int MIN_WINDOW_Y = 50;
++    private static final int MAIN_WINDOW_HEIGHT = 700;
++    private static final int MIN_WINDOW_WIDTH = 850;
++    private static final int MIN_WINDOW_HEIGHT = 700;
++    private static final int MIN_WINDOW_X = 25;
++    private static final int MIN_WINDOW_Y = 25;
+ 
+     private CTabFolder cTabFolderMain;
+ 
+@@ -230,7 +230,7 @@
+             public void controlResized(ControlEvent evt) {
+                 //TODO add your code for shell.controlResized
+                 //min Size of the Main Window
+-                if (shell.getBounds().height &lt; 520 || shell.getBounds().width &lt; 830) {
++                if (shell.getBounds().height &lt; MIN_WINDOW_HEIGHT || shell.getBounds().width &lt; MIN_WINDOW_WIDTH) {
+                     shell.setBounds(MIN_WINDOW_X,MIN_WINDOW_Y,MIN_WINDOW_WIDTH,MIN_WINDOW_HEIGHT);
+                     statusLine.setStatus(StatusLineStyledText.STATUS_WARN,l.getString(&quot;status.resizewarn&quot;)); 
+                 }                         
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000164.html">[Provirent-svn-commit] r163 - in project_src/provirent_hibernate: . lib src/de/hsharz/provirent src/de/hsharz/provirent/management/gui src/de/hsharz/provirent/objects
+</A></li>
+	<LI>Next message: <A HREF="000166.html">[Provirent-svn-commit] r165 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#165">[ date ]</a>
+              <a href="thread.html#165">[ thread ]</a>
+              <a href="subject.html#165">[ subject ]</a>
+              <a href="author.html#165">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

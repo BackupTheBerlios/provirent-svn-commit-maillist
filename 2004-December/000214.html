@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r213 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r213%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/persistence&In-Reply-To=%3C200412071653.iB7Gr4Mb002136%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000213.html">
+   <LINK REL="Next"  HREF="000216.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r213 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r213%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/persistence&In-Reply-To=%3C200412071653.iB7Gr4Mb002136%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r213 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Tue Dec  7 17:53:04 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000213.html">[Provirent-svn-commit] r212 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000216.html">[Provirent-svn-commit] r214 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#214">[ date ]</a>
+              <a href="thread.html#214">[ thread ]</a>
+              <a href="subject.html#214">[ subject ]</a>
+              <a href="author.html#214">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-12-07 17:53:02 +0100 (Tue, 07 Dec 2004)
+New Revision: 213
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-07 16:20:53 UTC (rev 212)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-07 16:53:02 UTC (rev 213)
+@@ -44,6 +44,8 @@
+ import net.sf.hibernate.Transaction;
+ import net.sf.hibernate.expression.Disjunction;
+ import net.sf.hibernate.expression.Expression;
++import net.sf.hibernate.expression.Order;
++import net.sf.hibernate.type.Type;
+ 
+ import org.apache.log4j.Logger;
+ 
+@@ -56,6 +58,7 @@
+ import de.hsharz.provirent.objects.Image;
+ import de.hsharz.provirent.objects.Language;
+ import de.hsharz.provirent.objects.Movie;
++import de.hsharz.provirent.objects.MovieOrder;
+ import de.hsharz.provirent.objects.Payment;
+ import de.hsharz.provirent.objects.Status;
+ import de.hsharz.provirent.objects.Subtitle;
+@@ -1633,9 +1636,13 @@
+ 
+ 	            if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
+ 	                any.add(Expression.like(&quot;userName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+-	                //any.add(Expression.like(&quot;dayOfRegistration&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                
+ 	                any.add(Expression.like(&quot;p.lastName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+ 	                any.add(Expression.like(&quot;p.firstName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++
++	                // TODO Criteria for Birthday and Registration Date
++	                //any.add(Expression.like(&quot;p.dayOfBirth&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++
+ 	                try{
+ 	                    Calendar cal = Calendar.getInstance();
+ 	                    cal.setTime(DateFormat.getDateInstance(DateFormat.SHORT).parse(filter));
+@@ -1643,6 +1650,7 @@
+ 	                } catch (ParseException pex){
+ 	                    logger.debug(&quot;Fehler beim Parsen des Datums&quot;,pex);
+ 	                }
++	                //any.add(Expression.like(&quot;dayOfRegistration&quot;, &quot;%&quot;+filter+&quot;%&quot;));
+ 	                
+ 	                
+ 	                //maybe we are searching for the id?
+@@ -1732,8 +1740,114 @@
+ 	    
+ 	
+ 	}
++	
++	/**
++	 * This method gets all Customers from the database
++	 * @param filter 
++	 * @return List of Customer objects, or an empty List
++	 */
++	public static List getOrder(final String filter){
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getOrder() - start. String filter= &quot;+filter);
++	    }
++	    //init the returnlist
++	    List returnlist = new ArrayList();
++	
++	    Session s = null;
++	    
++	    try {
++	        //get new Session and begin Transaction
++	        s = HibernateUtil.currentSession();
++	            
++	            //init the criteria
++	            Criteria criteria = s.createCriteria(MovieOrder.class).createAlias(&quot;customer&quot;, &quot;c&quot;).createAlias(&quot;c.person&quot;, &quot;p&quot;);
++	            //Criteria personCriteria = criteria.createCriteria(&quot;person&quot;);
++	            //any of the criteria 
++	            Disjunction any = Expression.disjunction();
+ 
++	            if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {	                
++	                any.add(Expression.like(&quot;c.userName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;p.lastName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;p.firstName&quot;, &quot;%&quot;+filter+&quot;%&quot;));	                
++	                
++	                //maybe we are searching for the id?
++	                try {
++	                    any.add(Expression.eq(&quot;movieOrderId&quot;, new Integer(Integer.parseInt(filter))));
++	                } catch (Exception e) {
++	                }
++	                
++	            }
++	            
++	            //add all criteria
++	            criteria.addOrder(Order.asc(&quot;movieOrderId&quot;));
++	            criteria.add(any);
++	            
++	            //get the results
++	            returnlist = criteria.list();
+ 
++	            logger.debug(&quot;Anzahl der Elemente in R&#252;ckgabeliste: &quot; + returnlist.size());
++	            int i = 0;
++	            
++	    } catch (Exception e) {
++	        logger.error(
++	                &quot;getOrder() - Error while trying to do Transaction&quot;,
++	                e);
++	        returnlist = new ArrayList();
++	    } finally {
++	        try {
++	            // No matter what, close the session
++	            HibernateUtil.closeSession();
++	        } catch (HibernateException e1) {
++	            logger.error(&quot;getOrder() - Could not Close the Session&quot;, e1);
++	        }
++	    }
++	
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getOrder() - end&quot;);
++	    }
++	    return returnlist;	
++	}
++	
++	
++	public static MovieOrder getSingleOrder(final int id){
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getSingleOrder() - start. int filter= &quot;+id);
++	    }
++	    //init the returnlist
++	    MovieOrder returnobject = null;
++	
++	    Session s = null;
++	    Transaction tx = null;
++	    try {
++	        //get new Session and begin Transaction
++	        s = HibernateUtil.currentSession();
++	
++	            returnobject = (MovieOrder)s.get(MovieOrder.class, new Integer(id));
++	
++	    } catch (Exception e) {
++	        logger.error(
++	                &quot;getSingleOrder() - Error while trying to do Transaction&quot;,
++	                e);
++	        
++	    } finally {
++	        try {
++	            // No matter what, close the session
++	            HibernateUtil.closeSession();
++	        } catch (HibernateException e1) {
++	            logger.error(&quot;getSingleOrder() - Could not Close the Session&quot;, e1);
++	        }
++	    }
++	
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getSingleOrder() - end&quot;);
++	    }
++	    return returnobject;
++	    
++	
++	}
++
++
++
+ 	/**
+ 	 * This method gets all Movies from the database.
+ 	 * searches for ID,Title,Date,Description,Actor,Director...
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000213.html">[Provirent-svn-commit] r212 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000216.html">[Provirent-svn-commit] r214 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#214">[ date ]</a>
+              <a href="thread.html#214">[ thread ]</a>
+              <a href="subject.html#214">[ subject ]</a>
+              <a href="author.html#214">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

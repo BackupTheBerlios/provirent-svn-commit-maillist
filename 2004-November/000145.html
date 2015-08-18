@@ -1,0 +1,750 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r144 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r144%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200411171016.iAHAGSDB007156%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000144.html">
+   <LINK REL="Next"  HREF="000146.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r144 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r144%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200411171016.iAHAGSDB007156%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r144 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Wed Nov 17 11:16:28 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000144.html">[Provirent-svn-commit] r143 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+        <LI>Next message: <A HREF="000146.html">[Provirent-svn-commit] r145 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#145">[ date ]</a>
+              <a href="thread.html#145">[ thread ]</a>
+              <a href="subject.html#145">[ subject ]</a>
+              <a href="author.html#145">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-11-17 11:16:25 +0100 (Wed, 17 Nov 2004)
+New Revision: 144
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+Log:
+Composite Movie  - Layout fertiggestellt
+                 - Funktionalit?\195?\164t angefangen
+properties       - entsprechend erweitert
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-11-16 23:24:58 UTC (rev 143)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-11-17 10:16:25 UTC (rev 144)
+@@ -31,6 +31,7 @@
+ 
+ import com.cloudgarden.resource.SWTResourceManager;
+ 
++import de.hsharz.provirent.objects.Actor;
+ import de.hsharz.provirent.objects.Movie;
+ import de.hsharz.provirent.persistence.DataBaseException;
+ import de.hsharz.provirent.persistence.Database;
+@@ -78,6 +79,7 @@
+     private TableColumn tableMoviesOverview_ColumnDate;
+     private TableColumn tableMoviesOverviewDetail_ColumnGenres;
+     private TableColumn tableMoviesOverviewDetail_ColumnActors;
++    private TableColumn tableMoviesOverviewDetail_ColumnDirectors;
+     private TableColumn tableMoviesOverviewDetail_ColumnVideoformats;
+     private TableColumn tableMoviesOverviewDetail_ColumnAudioformats;
+     private TableColumn tableMoviesOverviewDetail_ColumnLanguages;   
+@@ -93,10 +95,13 @@
+     private Text textMoviesSearch;
+     private Text textMoviesID;
+     private Text textMoviesTitle;
++    private Text textMoviesDate;
+     
+     private Label labelMoviesSearch;
+     private Label labelMoviesID;
+     private Label labelMoviesTitle;
++    private Label labelMoviesDate;
++    private Label labelMoviesAdvice;
+     
+     private Button buttonMoviesNew;
+     private Button buttonMoviesSave;
+@@ -104,10 +109,22 @@
+     private Button buttonMoviesCancel;
+     private Button buttonMoviesDelete;
+     private Button buttonMoviesFill;
++    private Button buttonMoviesEditActors;
++    private Button buttonMoviesEditDirectors;
++    private Button buttonMoviesEditGenres;
++    private Button buttonMoviesEditLanguages;
++    private Button buttonMoviesEditSubtitles;
++    private Button buttonMoviesEditAudioformats;
++    private Button buttonMoviesEditVideoformats;
++    private Button buttonMoviesEditImages;
++    private Button buttonMoviesEditDescription;
+     
++    
++    
+     private SashForm sashForm1;
+     
+     private Composite parent;
++    private Composite compositeButtons;
+     
+     protected int mode_actor;
+     
+@@ -386,6 +403,14 @@
+                         }
+                     });
+                 {
++                    tableMoviesOverviewDetail_ColumnDirectors = new TableColumn(
++                        tableMoviesOverviewDetail,
++                        SWT.CENTER);
++                    tableMoviesOverviewDetail_ColumnDirectors.setText(l
++                        .getString(&quot;movies.groupoverviewdetail.columndirectors&quot;));
++                    tableMoviesOverviewDetail_ColumnDirectors.setWidth(80);
++                }
++                {
+                     tableMoviesOverviewDetail_ColumnGenres = new TableColumn(
+                         tableMoviesOverviewDetail,
+                         SWT.CENTER);
+@@ -560,10 +585,530 @@
+     	    text1LData2.horizontalSpan = 4;
+     	    text1LData2.grabExcessHorizontalSpace = true;
+     	    textMoviesTitle.setLayoutData(text1LData2);        
+-    	}// label and buttons for detail      
++    	}     
++        {
++            labelMoviesDate = new Label(
++                groupMoviesDetail,
++                SWT.NONE);
++            labelMoviesDate.setText(l
++                .getString(&quot;movies.groupdetail.labeldate&quot;)
++                + &quot;:&quot;);
++            labelMoviesDate.setSize(125, 15);
++            GridData labelActorNameLData = new GridData();
++            labelActorNameLData.widthHint = 125;
++            labelActorNameLData.heightHint = 15;
++            labelActorNameLData.horizontalSpan = 2;
++            labelMoviesDate
++                .setLayoutData(labelActorNameLData);
++        }
++        {
++    	    textMoviesDate = new Text(groupMoviesDetail,
++    	            SWT.READ_ONLY | SWT.BORDER);
++    	    GridData text1LData2 = new GridData();
++    	    text1LData2.horizontalAlignment = GridData.FILL;
++    	    text1LData2.heightHint = 13;
++    	    text1LData2.horizontalSpan = 4;
++    	    text1LData2.grabExcessHorizontalSpace = true;
++    	    textMoviesDate.setLayoutData(text1LData2);        
++    	    textMoviesDate.setText(l
++                .getString(&quot;movies.groupdetail.textdate&quot;));
++        }// label and text for detail
++        //labels and buttons for Detail
++        {
++    	    labelMoviesAdvice = new Label(groupMoviesDetail, SWT.NONE);
++    	    labelMoviesAdvice.setText(l
++    	            .getString(&quot;movies.groupdetail.labeladvice&quot;)
++    	            + &quot;:&quot;);
++    	    GridData formData2 = new GridData();
++    	    formData2.horizontalSpan = 6;
++    	    formData2.horizontalAlignment = GridData.FILL;
++    	    formData2.grabExcessHorizontalSpace = true;
++    	    formData2.verticalSpan = 3;
++    	    labelMoviesAdvice.setLayoutData(formData2);
++    	}
++        {
++            buttonMoviesEditDescription = new Button(groupMoviesDetail
++                    , SWT.NONE);
++            buttonMoviesEditDescription.setText(l
++                .getString(&quot;movies.button.editdescription&quot;));
++            buttonMoviesEditDescription.setEnabled(false);
++            GridData text1LData2 = new GridData();
++    	    text1LData2.horizontalAlignment = GridData.FILL;
++    	    text1LData2.heightHint = 20;
++    	    text1LData2.horizontalSpan = 1;
++    	    text1LData2.grabExcessHorizontalSpace = true;
++    	    buttonMoviesEditDescription.setLayoutData(text1LData2);        
++            buttonMoviesEditDescription.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++                   // TODO
++                    
++                }
++            });
++        }
++        {
++            buttonMoviesEditDirectors = new Button(groupMoviesDetail
++                    , SWT.NONE);
++            buttonMoviesEditDirectors.setText(l
++                .getString(&quot;movies.button.editdirectors&quot;));
++            buttonMoviesEditDirectors.setEnabled(false);
++            GridData text1LData2 = new GridData();
++    	    text1LData2.horizontalAlignment = GridData.FILL;
++    	    text1LData2.heightHint = 20;
++    	    text1LData2.horizontalSpan = 5;
++    	    text1LData2.grabExcessHorizontalSpace = true;
++    	    buttonMoviesEditDirectors.setLayoutData(text1LData2);        
++            buttonMoviesEditDirectors.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++                   // TODO
++                    
++                }
++            });  
++        }
++        {
++            buttonMoviesEditActors = new Button(groupMoviesDetail
++                    , SWT.NONE);
++            buttonMoviesEditActors.setText(l
++                .getString(&quot;movies.button.editactors&quot;));
++            buttonMoviesEditActors.setEnabled(false);
++            GridData text1LData2 = new GridData();
++    	    text1LData2.horizontalAlignment = GridData.FILL;
++    	    text1LData2.heightHint = 20;
++    	    text1LData2.horizontalSpan = 1;
++    	    text1LData2.grabExcessHorizontalSpace = true;
++    	    buttonMoviesEditActors.setLayoutData(text1LData2);        
++            buttonMoviesEditActors.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++                   // TODO
++                    
++                }
++            });  
++        }
++        {
++            buttonMoviesEditGenres = new Button(groupMoviesDetail
++                    , SWT.NONE);
++            buttonMoviesEditGenres.setText(l
++                .getString(&quot;movies.button.editgenres&quot;));
++            buttonMoviesEditGenres.setEnabled(false);
++            GridData text1LData2 = new GridData();
++    	    text1LData2.horizontalAlignment = GridData.FILL;
++    	    text1LData2.heightHint = 20;
++    	    text1LData2.horizontalSpan = 5;
++    	    text1LData2.grabExcessHorizontalSpace = true;
++    	    buttonMoviesEditGenres.setLayoutData(text1LData2);        
++            buttonMoviesEditGenres.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++                   // TODO
++                    
++                }
++            });  
++        }
++        {
++            buttonMoviesEditSubtitles = new Button(groupMoviesDetail
++                    , SWT.NONE);
++            buttonMoviesEditSubtitles.setText(l
++                .getString(&quot;movies.button.editsubtitles&quot;));
++            buttonMoviesEditSubtitles.setEnabled(false);
++            GridData text1LData2 = new GridData();
++    	    text1LData2.horizontalAlignment = GridData.FILL;
++    	    text1LData2.heightHint = 20;
++    	    text1LData2.horizontalSpan = 1;
++    	    text1LData2.grabExcessHorizontalSpace = true;
++    	    buttonMoviesEditSubtitles.setLayoutData(text1LData2);        
++            buttonMoviesEditSubtitles.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++                   // TODO
++                    
++                }
++            });  
++        }
++        {
++            buttonMoviesEditLanguages = new Button(groupMoviesDetail
++                    , SWT.NONE);
++            buttonMoviesEditLanguages.setText(l
++                .getString(&quot;movies.button.editlanguages&quot;));
++            buttonMoviesEditLanguages.setEnabled(false);
++            GridData text1LData2 = new GridData();
++    	    text1LData2.horizontalAlignment = GridData.FILL;
++    	    text1LData2.heightHint = 20;
++    	    text1LData2.horizontalSpan = 5;
++    	    text1LData2.grabExcessHorizontalSpace = true;
++    	    buttonMoviesEditLanguages.setLayoutData(text1LData2);        
++            buttonMoviesEditLanguages.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++                   // TODO
++                    
++                }
++            });  
++        }
++        {
++            buttonMoviesEditVideoformats = new Button(groupMoviesDetail
++                    , SWT.NONE);
++            buttonMoviesEditVideoformats.setText(l
++                .getString(&quot;movies.button.editvideoformats&quot;));
++            buttonMoviesEditVideoformats.setEnabled(false);
++            GridData text1LData2 = new GridData();
++    	    text1LData2.horizontalAlignment = GridData.FILL;
++    	    text1LData2.heightHint = 20;
++    	    text1LData2.horizontalSpan = 1;
++    	    text1LData2.grabExcessHorizontalSpace = true;
++    	    buttonMoviesEditVideoformats.setLayoutData(text1LData2);        
++            buttonMoviesEditVideoformats.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++                   // TODO
++                    
++                }
++            });  
++        }
++        {
++            buttonMoviesEditAudioformats = new Button(groupMoviesDetail
++                    , SWT.NONE);
++            buttonMoviesEditAudioformats.setText(l
++                .getString(&quot;movies.button.editaudioformats&quot;));
++            buttonMoviesEditAudioformats.setEnabled(false);
++            GridData text1LData2 = new GridData();
++    	    text1LData2.horizontalAlignment = GridData.FILL;
++    	    text1LData2.heightHint = 20;
++    	    text1LData2.horizontalSpan = 5;
++    	    text1LData2.grabExcessHorizontalSpace = true;
++    	    buttonMoviesEditAudioformats.setLayoutData(text1LData2);        
++            buttonMoviesEditAudioformats.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++                   // TODO
++                    
++                }
++            });  
++        }
++        {
++            buttonMoviesEditImages = new Button(groupMoviesDetail
++                    , SWT.NONE);
++            buttonMoviesEditImages.setText(l
++                .getString(&quot;movies.button.editimages&quot;));
++            buttonMoviesEditImages.setEnabled(false);
++            GridData text1LData2 = new GridData();
++    	    text1LData2.heightHint = 20;
++    	    text1LData2.horizontalSpan = 1;
++    	    text1LData2.horizontalAlignment = GridData.FILL;
++    	    buttonMoviesEditImages.setLayoutData(text1LData2);        
++            buttonMoviesEditImages.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++                   // TODO
++                    
++                }
++            });  
++        }
++        {
++    	    compositeButtons = new Composite(groupMoviesDetail, SWT.EMBEDDED);
++    	    GridLayout composite2Layout = new GridLayout();
++    	    composite2Layout.numColumns = 6;
++    	    GridData composite2LData = new GridData();
++    	    compositeButtons.setLayout(composite2Layout);
++    	    composite2LData.verticalAlignment = GridData.END;
++    	    composite2LData.horizontalAlignment = GridData.CENTER;
++    	    composite2LData.widthHint = 391;
++    	    composite2LData.horizontalSpan = 6;
++    	    composite2LData.grabExcessHorizontalSpace = true;
++        	composite2LData.grabExcessVerticalSpace = true;
++        	composite2LData.heightHint = 35;
++        	compositeButtons.setLayoutData(composite2LData);
++    	}
++    	{
++    	    buttonMoviesNew = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++    	    buttonMoviesNew.setText(l.getString(&quot;button.new&quot;));
++    	    buttonMoviesNew.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                
++                mode_actor = ManagementGui.MODE_ADD;
++                
++                textMoviesID.setText(&quot;&quot;);
++                textMoviesTitle.setText(&quot;&quot;);
++                textMoviesDate.setText(&quot;&quot;);
++                textMoviesTitle.setEditable(true);
++                textMoviesDate.setEditable(true);
++                
++                buttonMoviesCancel.setEnabled(true);
++                buttonMoviesSave.setEnabled(true);
++                buttonMoviesNew.setEnabled(false);
++                buttonMoviesEdit.setEnabled(false);
++                buttonMoviesDelete.setEnabled(false);
++                
++                textMoviesSearch.setEditable(false);
++                tableMoviesOverview.setEnabled(false);
++
++            }
++        });
++
++    	    buttonMoviesEdit = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++    	    buttonMoviesEdit.setText(l.getString(&quot;button.edit&quot;));
++    	    buttonMoviesEdit.setEnabled(false);
++    	    buttonMoviesEdit.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++
++                mode_actor = ManagementGui.MODE_EDIT;
++
++                textMoviesID.setEditable(false);
++                textMoviesTitle.setEditable(true);
++                textMoviesTitle.setFocus();
++                textMoviesDate.setEditable(true);
++                
++                buttonMoviesCancel.setEnabled(true);
++                buttonMoviesSave.setEnabled(true);
++                buttonMoviesNew.setEnabled(false);
++                buttonMoviesEdit.setEnabled(false);
++                buttonMoviesDelete.setEnabled(false);
++
++                tableMoviesOverview.setEnabled(false);
++                textMoviesSearch.setEnabled(false);
++                
++            }
++        });
++
++    	    buttonMoviesDelete = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++    	    buttonMoviesDelete.setText(l.getString(&quot;button.delete&quot;));
++    	    buttonMoviesDelete.setEnabled(false);
++    	    buttonMoviesDelete.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonMoviesDelete.widgetSelected, event=&quot;
++                                + evt);
++                
++                
++               String msg = MessageFormat.format(
++                       l.getString(&quot;movies.groupdetail.deletebutton.question.text&quot;),
++                               new Object[]{textMoviesTitle.getText()+&quot; &quot;
++                               +l.getString(&quot;movies.groupdetail.deletebutton.question.gap&quot;)
++                               +&quot; &quot;+textMoviesDate.getText()});
++                
++               int question = showMsg(msg,
++                       l.getString(&quot;movies.groupdetail.deletebutton.question.header&quot;), 
++                       SWT.ICON_QUESTION | SWT.YES | SWT.NO);
++               
++               if (question != SWT.YES){
++                   return;
++               }
++                
++                Movie o = new Movie();
++                o.setMovieId(new Integer(Integer.parseInt(textMoviesID.getText())));
++                o.setTitle(textMoviesTitle.getText());
++                //TODO
++                //entsprechendes Objekt erzeugen
++                //o.setReleaseDate(textMoviesDate.getText());
++                
++                try {
++                    //object speichern
++                    // Fehlerbehandlung
++                    Database.deleteObject(o);
++
++                    //&#220;bersichtsTabelle aktualisieren
++                    refreshMoviesOverviewTable(textMoviesSearch.getText());
++                    
++                    //Detailansicht leeren
++                    textMoviesID.setText(&quot;&quot;);
++                    textMoviesTitle.setText(&quot;&quot;);
++                    textMoviesDate.setText(&quot;&quot;);
++                    tableMoviesOverviewDetail.removeAll();
++                    //in Tabelle n&#228;chsten ausw&#228;hlen
++                    try {
++                        tableMoviesOverview.select(0);
++                    } catch (Exception ex) {}
++                    
++                    //Statusline Nachricht sezten
++                    statusLine.setStatus(1,l.getString(&quot;movies.groupdetail.deletebutton.newok&quot;));
++
++                } catch (DataBaseException e) {
++                    if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                        //Fehler beim Speichern des Objectes
++
++                        statusLine.setStatus(3,l.getString(&quot;movies.groupdetail.deletebutton.errorsave&quot;));
++                        showMsg(l.getString(&quot;movies.groupdetail.deletebutton.errorsave&quot;),
++                                l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                        //fehler beim db aufbau
++                        statusLine.setStatus(3,l.getString(&quot;movies.groupdetail.deletebutton.errordb&quot;));
++                        showMsg(l.getString(&quot;movies.groupdetail.deletebutton.errordb&quot;),
++                                l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else {
++                        //@todo
++                        e.printStackTrace();
++                    }
++                    
++                }                
++                
++
++                }
++
++            }
++    	    );
++
++    	    //leerer nicht sichtbarer Button
++    	    buttonMoviesFill = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++    	    GridData buttonActorFillLData = new GridData();
++    	    buttonMoviesFill.setVisible(false);
++    	    buttonMoviesFill.setEnabled(false);
++    	    buttonActorFillLData.widthHint = 30;
++    	    buttonActorFillLData.heightHint = 23;
++    	    buttonMoviesFill.setLayoutData(buttonActorFillLData);
++
++    	    buttonMoviesSave = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++    	    buttonMoviesSave.setText(l.getString(&quot;button.save&quot;));
++    	    buttonMoviesSave.setEnabled(false);
++    	    buttonMoviesSave.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonMoviesSave.widgetSelected, event=&quot;
++                                + evt);
++
++                
++                //testen ob Name leer ist
++                //TODO
++                //komplette Speichervorgan muss erweitert werden da
++                //Ausma&#223; von Film gr&#246;&#223;er als bei anderen Composite
++                /*
++                if (textActorsFName.getText().trim().equalsIgnoreCase(&quot;&quot;) 
++                    ||  textActorsLName.getText().trim().equalsIgnoreCase(&quot;&quot;)   ) {
++                    
++                    showMsg(l.getString(&quot;actors.groupdetail.savebutton.warn.noname.msg&quot;),
++                            l.getString(&quot;actors.groupdetail.savebutton.warn.noname.title&quot;),
++                            SWT.ICON_WARNING | SWT.YES);
++
++                    	return;
++                }
++                
++                //testen welcher mode
++                
++                if (mode_actor == ManagementGui.MODE_ADD) {
++                */    
++                    /**
++                     * @todo eine Exception bekommen wieder leider NOCH nicht mit
++                     * d.h. es muss noch ein r&#252;ckgabewert kommen oder eine Exception 
++                     * &#252;bermitteln werden (aus der DB Klasse)
++                     */
++                    //neues Objekt erzeugen
++                /*
++                	Actor tmp = new Actor(textActorsFName.getText(),
++                            textActorsLName.getText());
++                    
++                    try {
++                        //object speichern
++                        // Fehlerbehandlung
++                        Object o = Database.saveObject(
++                                new Actor(textActorsFName.getText(),
++                                        textActorsLName.getText()));
++                        
++                        // in &#220;bersichtstabelle einf&#252;gen
++                        insertIntoActorsOverviewTable((Actor)o);
++                        textActorsID.setText( ((Actor)o).getActorId()+&quot;&quot; );
++                        
++                        
++                        //Statusline Nachricht sezten
++                        statusLine.setStatus(1,l.getString(&quot;actors.groupdetail.savebutton.newok&quot;));
++
++                    } catch (DataBaseException e) {
++                        if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                            //Fehler beim Speichern des Objectes
++
++                            statusLine.setStatus(3,l.getString(&quot;actors.groupdetail.savebutton.errorsave&quot;));
++                            showMsg(l.getString(&quot;actors.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                            //fehler beim db aufbau
++                            statusLine.setStatus(3,l.getString(&quot;actors.groupdetail.savebutton.errordb&quot;));
++                            showMsg(l.getString(&quot;actors.groupdetail.savebutton.errordb&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else {
++                            //@todo
++                            e.printStackTrace();
++                        }
++                        
++                    }
++                    
++                    
++                    //alle Buttons auf aktiv setzen
++                    setActorsGroupButtonSaveCancel();
++                    
++                } else if (mode_actor == ManagementGui.MODE_EDIT) {
++                    
++                    Actor tmp = new Actor(textActorsFName.getText(),
++                                    textActorsLName.getText());
++        		tmp.setActorId( new Integer (Integer.parseInt(textActorsID.getText())) );
++                try {
++                    //object speichern
++                    // Fehlerbehandlung
++                    Database.saveObject(tmp);
++                    //&#220;bersichtstabelle aktualisieren
++                    refreshActorsOverviewTable(textActorsSearch.getText());
++                    
++                    //Statusline Nachricht sezten
++                    statusLine.setStatus(1,l.getString(&quot;actors.groupdetail.savebutton.editok&quot;));
++                   
++
++                } catch (DataBaseException e) {
++                    if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                        //Fehler beim Speichern des Objectes
++
++                        statusLine.setStatus(3,l.getString(&quot;actors.groupdetail.savebutton.errorsave&quot;));
++                        showMsg(l.getString(&quot;actors.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                        //fehler beim db aufbau
++                        statusLine.setStatus(3,l.getString(&quot;actors.groupdetail.savebutton.errordb&quot;));
++                        showMsg(l.getString(&quot;actors.groupdetail.savebutton.errordb&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                        
++                    } else {
++                        //@todo
++                        e.printStackTrace();
++                    }
++                    
++                }
++                    
++ 
++                    //alle Buttons auf aktiv setzen
++                    setActorsGroupButtonSaveCancel();
++                    
++                }
++                
++                
++                
++                
++                 // @todo Exception werfen, da nur die zwei Modes sein d&#252;rfen
++                 
++            */   
++            }
++        
++        });
++        
++    	    buttonMoviesCancel = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++    	    buttonMoviesCancel.setText(l.getString(&quot;button.cancel&quot;));
++    	    buttonMoviesCancel.setEnabled(false);
++    	    buttonMoviesCancel.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++                System.out
++                        .println(&quot;buttonMoviesCancel.widgetSelected, event=&quot;
++                                + evt);
++                setMoviesGroupButtonSaveCancel();
++            }
++        });
+     }
++    
++    }
+ 
+     /**
++     * 
++     */
++    protected void setMoviesGroupButtonSaveCancel() {
++        tableMoviesOverview.setEnabled(true);
++        textMoviesTitle.setEditable(false);
++        textMoviesDate.setEditable(false);
++        buttonMoviesCancel.setEnabled(false);
++        buttonMoviesSave.setEnabled(false);
++        buttonMoviesNew.setEnabled(true);
++        buttonMoviesEdit.setEnabled(false);
++        buttonMoviesDelete.setEnabled(false);
++        
++    }
++
++    /**
+      * @param text
+      */
+     protected void refreshMoviesOverviewTable(String text) {
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-11-16 23:24:58 UTC (rev 143)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-11-17 10:16:25 UTC (rev 144)
+@@ -1,5 +1,5 @@
+-error=Fehler
+-movies.group.label=Filme
++error =Fehler
++movies.group.label =Filme
+ 
+ movies.groupoverview.label =&#220;berblick
+ movies.groupoverview.searchlabel =Suche nach
+@@ -9,6 +9,7 @@
+ movies.groupoverview.columndate =Erscheinungsdatum
+ movies.groupoverviewdetail.columngenres =Genre
+ movies.groupoverviewdetail.columnactors =Dartsteller
++movies.groupoverviewdetail.columndirectors =Regisseur
+ movies.groupoverviewdetail.columnvideoformats =Videoformate
+ movies.groupoverviewdetail.columnaudioformats =Audioformate
+ movies.groupoverviewdetail.columnlanguages =Sprachen
+@@ -18,23 +19,35 @@
+ movies.groupdetail.label =Detail
+ movies.groupdetail.labelid =Film ID
+ movies.groupdetail.labeltitle =Titel
++movies.groupdetail.labeldate =Erscheinungsdatum
++movies.groupdetail.labeladvice =Um die Elemente zu Bearbeiten bitte entsprechende Schaltfl&#228;che anklicken
++movies.groupdetail.textdate = (Beispiel: 01.01.2001)
+ 
++button.new =Neu
++button.edit =Bearbeiten
++button.delete =L&#246;schen
++button.save =Speichern
++button.cancel =Abbruch
++movies.button.editdescription =Beschreibung
++movies.button.editactors =Darsteller
++movies.button.editdirectors =Regisseur
++movies.button.editgenres =Genres
++movies.button.editlanguages =Sprachen
++movies.button.editsubtitles =Untertitel
++movies.button.editaudioformats =Audioformate
++movies.button.editvideoformats =Videoformate
++movies.button.editimages =Bilder
+ 
+-button.new=Neu
+-button.edit=Bearbeiten
+-button.delete=L&#246;schen
+-button.save=Speichern
+-button.cancel=Abbruch
++movies.groupdetail.savebutton.warn.noname.title =Datensatz speichern
++movies.groupdetail.savebutton.warn.noname.msg =Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie eine volst&#228;ndigen Namen an
++movies.groupdetail.savebutton.newok =Speichern des neuen Films erfolgreich.
++movies.groupdetail.savebutton.editok =&#196;ndern des Films erfolgreich.
++movies.groupdetail.savebutton.errorsave =Datenbankfehler beim Speichern.
++movies.groupdetail.savebutton.errordb =Datenbankfehler beim Herstellen der Verbindung.(save).
+ 
+-movies.groupdetail.savebutton.warn.noname.title=Datensatz speichern
+-movies.groupdetail.savebutton.warn.noname.msg=Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie eine volst&#228;ndigen Namen an
+-movies.groupdetail.savebutton.newok=Speichern des neuen Films erfolgreich.
+-movies.groupdetail.savebutton.editok=&#196;ndern des Films erfolgreich.
+-movies.groupdetail.savebutton.errorsave=Datenbankfehler beim Speichern.
+-movies.groupdetail.savebutton.errordb=Datenbankfehler beim Herstellen der Verbindung.(save).
+-
+ movies.groupdetail.deletebutton.question.header=Wirklich l&#246;schen?
+ movies.groupdetail.deletebutton.question.text=Wollen Sie den Datensatz {0} wirklich l&#246;schen?
+ movies.groupdetail.deletebutton.newok=Datensatz wurde erfolgreich gel&#246;scht.
+ movies.groupdetail.deletebutton.errorsave=Datenbankfehler beim L&#246;schen.
+-movies.groupdetail.deletebutton.errordb=Datenbankfehler beim Herstellen der Verbindung(del).
+\ No newline at end of file
++movies.groupdetail.deletebutton.errordb=Datenbankfehler beim Herstellen der Verbindung(del).
++movies.groupdetail.deletebutton.question.gap =erschienen am
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000144.html">[Provirent-svn-commit] r143 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+	<LI>Next message: <A HREF="000146.html">[Provirent-svn-commit] r145 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#145">[ date ]</a>
+              <a href="thread.html#145">[ thread ]</a>
+              <a href="subject.html#145">[ subject ]</a>
+              <a href="author.html#145">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

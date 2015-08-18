@@ -1,0 +1,683 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r29 - project_src/provirent_hibernate/src/test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r29%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200410110900.i9B90O03014953%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000029.html">
+   <LINK REL="Next"  HREF="000031.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r29 - project_src/provirent_hibernate/src/test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r29%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200410110900.i9B90O03014953%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r29 - project_src/provirent_hibernate/src/test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Mon Oct 11 11:00:24 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000029.html">[Provirent-svn-commit] r28 - timetable
+</A></li>
+        <LI>Next message: <A HREF="000031.html">[Provirent-svn-commit] r30 - timetable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#30">[ date ]</a>
+              <a href="thread.html#30">[ thread ]</a>
+              <a href="subject.html#30">[ subject ]</a>
+              <a href="author.html#30">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-11 11:00:24 +0200 (Mon, 11 Oct 2004)
+New Revision: 29
+
+Modified:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestActor.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomerOld.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestDirector.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvdOld.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestLanguage.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestPerson.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestSubtitle.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestVideoFormat.java
+Log:
+- s.close entfernt
+- session close ueber hiberutil in finally
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestActor.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestActor.java	2004-10-11 07:37:55 UTC (rev 28)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestActor.java	2004-10-11 09:00:24 UTC (rev 29)
+@@ -183,7 +183,8 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
++
++		                
+             }
+ 
+         } catch (Exception e) {
+@@ -193,10 +194,10 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
++        
+ 
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+@@ -260,7 +261,7 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
++        
+             }
+ 
+         } catch (Exception e) {
+@@ -268,12 +269,13 @@
+                     &quot;testSaveActor() - Error while trying to beginTransaction&quot;,
+                     e);
+             throw e;
++        
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
++        
+ 
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testSaveActor() - end&quot;);
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java	2004-10-11 07:37:55 UTC (rev 28)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java	2004-10-11 09:00:24 UTC (rev 29)
+@@ -177,7 +177,6 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
+             }
+ 
+         } catch (Exception e) {
+@@ -187,11 +186,9 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+-
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+@@ -248,7 +245,7 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
++
+             }
+ 
+         } catch (Exception e) {
+@@ -258,11 +255,9 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+-
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testSaveAudioFormat() - end&quot;);
+         }
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java	2004-10-11 07:37:55 UTC (rev 28)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java	2004-10-11 09:00:24 UTC (rev 29)
+@@ -179,7 +179,6 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
+             }
+ 
+         } catch (Exception e) {
+@@ -189,11 +188,9 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+-
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+@@ -252,7 +249,6 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
+             }
+ 
+         } catch (Exception e) {
+@@ -262,10 +258,9 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+ 
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testSaveCondition() - end&quot;);
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomerOld.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomerOld.java	2004-10-11 07:37:55 UTC (rev 28)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomerOld.java	2004-10-11 09:00:24 UTC (rev 29)
+@@ -164,7 +164,7 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+         // Clean up after ourselves
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestDirector.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestDirector.java	2004-10-11 07:37:55 UTC (rev 28)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestDirector.java	2004-10-11 09:00:24 UTC (rev 29)
+@@ -179,7 +179,7 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
++
+             }
+ 
+         } catch (Exception e) {
+@@ -189,11 +189,9 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+-
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+@@ -250,7 +248,6 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
+             }
+ 
+         } catch (Exception e) {
+@@ -261,11 +258,9 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+-
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testSaveDirector() - end&quot;);
+         }
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvdOld.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvdOld.java	2004-10-11 07:37:55 UTC (rev 28)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvdOld.java	2004-10-11 09:00:24 UTC (rev 29)
+@@ -282,7 +282,7 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+         // Clean up after ourselves
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java	2004-10-11 07:37:55 UTC (rev 28)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java	2004-10-11 09:00:24 UTC (rev 29)
+@@ -178,7 +178,7 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
++
+             }
+ 
+         } catch (Exception e) {
+@@ -188,10 +188,9 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+ 
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+@@ -259,7 +258,7 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+         HibernateUtil.closeSession();
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java	2004-10-11 07:37:55 UTC (rev 28)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java	2004-10-11 09:00:24 UTC (rev 29)
+@@ -198,7 +198,7 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
++
+             }
+ 
+         } catch (Exception e) {
+@@ -208,11 +208,9 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+-
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+@@ -290,7 +288,7 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
++
+             }
+ 
+         } catch (Exception e) {
+@@ -300,11 +298,9 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+-
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testSaveImage() - end&quot;);
+         }
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestLanguage.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestLanguage.java	2004-10-11 07:37:55 UTC (rev 28)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestLanguage.java	2004-10-11 09:00:24 UTC (rev 29)
+@@ -180,7 +180,7 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
++                
+             }
+ 
+         } catch (Exception e) {
+@@ -190,11 +190,11 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+ 
++
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+@@ -253,7 +253,6 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
+             }
+ 
+         } catch (Exception e) {
+@@ -263,10 +262,9 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+ 
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testSaveLanguage() - end&quot;);
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestPerson.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestPerson.java	2004-10-11 07:37:55 UTC (rev 28)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestPerson.java	2004-10-11 09:00:24 UTC (rev 29)
+@@ -104,18 +104,18 @@
+                 List Persons = new ArrayList();
+ 
+                 Person myd1 = new Person();
+-                Person myd2 = new Person();
+-                
+-                Person myd3 = new Person();
+-                
+-                Person myd4 = new Person();
++                myd1.setFirstName(&quot;&quot;);
++                myd1.setLastName(&quot;&quot;);
++                myd1.setStreet(&quot;&quot;);
++                myd1.setStreetNumber(&quot;&quot;);
++                myd1.setCity(&quot;&quot;);
++                myd1.setZipCode(&quot;&quot;);
++                myd1.setCountry(&quot;&quot;);
++                myd1.setSalutation(&quot;&quot;);
++                myd1.setEmailAddress(&quot;&quot;);
+ 
+                 Persons.add(myd1);
+-                Persons.add(myd2);
+-                Persons.add(myd3);
+-                Persons.add(myd4);
+ 
+-
+                 List ids = new ArrayList();
+ 
+                 //save objects
+@@ -180,7 +180,7 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
++
+             }
+ 
+         } catch (Exception e) {
+@@ -190,11 +190,9 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+-
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+@@ -226,21 +224,12 @@
+                 myd1.setStreetNumber(&quot;&quot;);
+                 myd1.setCity(&quot;&quot;);
+                 myd1.setZipCode(&quot;&quot;);
++                myd1.setCountry(&quot;&quot;);
+                 myd1.setSalutation(&quot;&quot;);
+                 myd1.setEmailAddress(&quot;&quot;);
+                 
+                 
+-                Person myd2 = new Person();
+-                
+-                Person myd3 = new Person();
+-                
+-                Person myd4 = new Person();
+-
+                 Persons.add(myd1);
+-                Persons.add(myd2);
+-                Persons.add(myd3);
+-                Persons.add(myd4);
+-
+                 List ids = new ArrayList();
+ 
+                 //save objects
+@@ -263,7 +252,7 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
++
+             }
+ 
+         } catch (Exception e) {
+@@ -273,11 +262,9 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+-
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testSavePerson() - end&quot;);
+         }
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java	2004-10-11 07:37:55 UTC (rev 28)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java	2004-10-11 09:00:24 UTC (rev 29)
+@@ -177,7 +177,6 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
+             }
+ 
+         } catch (Exception e) {
+@@ -187,12 +186,10 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+-
+-        if (logger.isDebugEnabled()) {
++      if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+     }
+@@ -248,7 +245,7 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
++
+             }
+ 
+         } catch (Exception e) {
+@@ -258,10 +255,9 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+ 
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testSaveStatus() - end&quot;);
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestSubtitle.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestSubtitle.java	2004-10-11 07:37:55 UTC (rev 28)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestSubtitle.java	2004-10-11 09:00:24 UTC (rev 29)
+@@ -179,7 +179,7 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
++
+             }
+ 
+         } catch (Exception e) {
+@@ -189,10 +189,9 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+ 
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+@@ -252,7 +251,7 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
++
+             }
+ 
+         } catch (Exception e) {
+@@ -262,11 +261,9 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+-
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testSaveSubtitle() - end&quot;);
+         }
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestVideoFormat.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestVideoFormat.java	2004-10-11 07:37:55 UTC (rev 28)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestVideoFormat.java	2004-10-11 09:00:24 UTC (rev 29)
+@@ -176,7 +176,6 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
+             }
+ 
+         } catch (Exception e) {
+@@ -186,11 +185,9 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+-
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+@@ -246,7 +243,7 @@
+                     // Something went wrong; discard all partial changes
+                     tx.rollback();
+                 }
+-                throw e;
++
+             }
+ 
+         } catch (Exception e) {
+@@ -256,11 +253,9 @@
+             throw e;
+         } finally {
+             // No matter what, close the session
+-            s.close();
++            HibernateUtil.closeSession();
+         }
+ 
+-        HibernateUtil.closeSession();
+-
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testSaveVideoFormat() - end&quot;);
+         }
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000029.html">[Provirent-svn-commit] r28 - timetable
+</A></li>
+	<LI>Next message: <A HREF="000031.html">[Provirent-svn-commit] r30 - timetable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#30">[ date ]</a>
+              <a href="thread.html#30">[ thread ]</a>
+              <a href="subject.html#30">[ subject ]</a>
+              <a href="author.html#30">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

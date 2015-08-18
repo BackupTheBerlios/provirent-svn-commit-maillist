@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r59 - in project_src/provirent_hibernate/src: . com com/cloudgarden com/cloudgarden/resource
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r59%20-%20in%20project_src/provirent_hibernate/src%3A%20.%20com%20com/cloudgarden%20com/cloudgarden/resource&In-Reply-To=%3C200410251237.i9PCb1D0030910%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000059.html">
+   <LINK REL="Next"  HREF="000061.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r59 - in project_src/provirent_hibernate/src: . com com/cloudgarden com/cloudgarden/resource</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r59%20-%20in%20project_src/provirent_hibernate/src%3A%20.%20com%20com/cloudgarden%20com/cloudgarden/resource&In-Reply-To=%3C200410251237.i9PCb1D0030910%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r59 - in project_src/provirent_hibernate/src: . com com/cloudgarden com/cloudgarden/resource">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Mon Oct 25 14:37:01 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000059.html">[Provirent-svn-commit] r58 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+        <LI>Next message: <A HREF="000061.html">[Provirent-svn-commit] r60 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#60">[ date ]</a>
+              <a href="thread.html#60">[ thread ]</a>
+              <a href="subject.html#60">[ subject ]</a>
+              <a href="author.html#60">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-25 14:37:00 +0200 (Mon, 25 Oct 2004)
+New Revision: 59
+
+Added:
+   project_src/provirent_hibernate/src/com/
+   project_src/provirent_hibernate/src/com/cloudgarden/
+   project_src/provirent_hibernate/src/com/cloudgarden/resource/
+   project_src/provirent_hibernate/src/com/cloudgarden/resource/SWTResourceManager.java
+Log:
+- wird f?\195?\188r SWT ben?\195?\182tigt
+
+Added: project_src/provirent_hibernate/src/com/cloudgarden/resource/SWTResourceManager.java
+===================================================================
+--- project_src/provirent_hibernate/src/com/cloudgarden/resource/SWTResourceManager.java	2004-10-25 12:35:24 UTC (rev 58)
++++ project_src/provirent_hibernate/src/com/cloudgarden/resource/SWTResourceManager.java	2004-10-25 12:37:00 UTC (rev 59)
+@@ -0,0 +1,130 @@
++package com.cloudgarden.resource;
++
++import java.util.HashMap;
++import java.util.Iterator;
++import java.util.Vector;
++
++import org.eclipse.swt.events.DisposeEvent;
++import org.eclipse.swt.events.DisposeListener;
++import org.eclipse.swt.graphics.Color;
++import org.eclipse.swt.graphics.Cursor;
++import org.eclipse.swt.graphics.Font;
++import org.eclipse.swt.graphics.FontData;
++import org.eclipse.swt.graphics.Image;
++import org.eclipse.swt.widgets.Control;
++import org.eclipse.swt.widgets.Display;
++import org.eclipse.swt.widgets.Widget;
++
++/**
++ * Class to manage SWT resources (Font, Color, Image and Cursor)
++ * There are no restrictions on the use of this code.
++ */
++public class SWTResourceManager {
++
++	private static HashMap resources = new HashMap();
++	private static Vector users = new Vector();
++	private static SWTResourceManager instance = new SWTResourceManager();
++
++	private static DisposeListener disposeListener = new DisposeListener() {
++		public void widgetDisposed(DisposeEvent e) {
++			users.remove(e.getSource());
++			if (users.size() == 0)
++				dispose();
++		}
++	};
++
++	/**
++	 * This method should be called by *all* Widgets which use resources
++	 * provided by this SWTResourceManager. When widgets are disposed,
++	 * they are removed from the &quot;users&quot; Vector, and when no more
++	 * registered Widgets are left, all resources are disposed.
++	 * &lt;P&gt;
++	 * If this method is not called for all Widgets then it should not be called
++	 * at all, and the &quot;dispose&quot; method should be explicitly called after all
++	 * resources are no longer being used.
++	 */
++	public static void registerResourceUser(Widget widget) {
++		if (users.contains(widget))
++			return;
++		users.add(widget);
++		widget.addDisposeListener(disposeListener);
++	}
++
++	public static void dispose() {
++		Iterator it = resources.keySet().iterator();
++		while (it.hasNext()) {
++			Object resource = resources.get(it.next());
++			if (resource instanceof Font)
++				 ((Font) resource).dispose();
++			else if (resource instanceof Color)
++				 ((Color) resource).dispose();
++			else if (resource instanceof Image)
++				 ((Image) resource).dispose();
++			else if (resource instanceof Cursor)
++				 ((Cursor) resource).dispose();
++		}
++		resources.clear();
++	}
++
++	public static Font getFont(String name, int size, int style) {
++		return getFont(name, size, style, false, false);
++	}
++
++	public static Font getFont(String name, int size, int style, boolean strikeout, boolean underline) {
++		String fontName = name + &quot;|&quot; + size + &quot;|&quot; + style + &quot;|&quot; + strikeout + &quot;|&quot; + underline;
++		if (resources.containsKey(fontName))
++			return (Font) resources.get(fontName);
++		FontData fd = new FontData(name, size, style);
++		if (strikeout || underline) {
++			try {
++				Class lfCls = Class.forName(&quot;org.eclipse.swt.internal.win32.LOGFONT&quot;);
++				Object lf = FontData.class.getField(&quot;data&quot;).get(fd);
++				if (lf != null &amp;&amp; lfCls != null) {
++					if (strikeout)
++						lfCls.getField(&quot;lfStrikeOut&quot;).set(lf, new Byte((byte) 1));
++					if (underline)
++						lfCls.getField(&quot;lfUnderline&quot;).set(lf, new Byte((byte) 1));
++				}
++			} catch (Throwable e) {
++				System.err.println(
++					&quot;Unable to set underline or strikeout&quot; + &quot; (probably on a non-Windows platform). &quot; + e);
++			}
++		}
++		Font font = new Font(Display.getDefault(), fd);
++		resources.put(fontName, font);
++		return font;
++	}
++
++	public static Image getImage(String url, Control widget) {
++		Image img = getImage(url);
++		img.setBackground(widget.getBackground());
++		return img;
++	}
++
++	public static Image getImage(String url) {
++		try {
++			url = url.replace('\\', '/');
++			if (url.startsWith(&quot;/&quot;))
++				url = url.substring(1);
++			if (resources.containsKey(url))
++				return (Image) resources.get(url);
++			Image img = new Image(Display.getDefault(), instance.getClass().getClassLoader().getResourceAsStream(url));
++			if (img != null)
++				resources.put(url, img);
++			return img;
++		} catch (Exception e) {
++			System.err.println(&quot;SWTResourceManager.getImage: Error getting image &quot;+url+&quot;, &quot;+e);
++			return null;
++		}
++	}
++
++	public static Color getColor(int red, int green, int blue) {
++		String name = &quot;COLOR:&quot; + red + &quot;,&quot; + green + &quot;,&quot; + blue;
++		if (resources.containsKey(name))
++			return (Color) resources.get(name);
++		Color color = new Color(Display.getDefault(), red, green, blue);
++		resources.put(name, color);
++		return color;
++	}
++
++}
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000059.html">[Provirent-svn-commit] r58 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+	<LI>Next message: <A HREF="000061.html">[Provirent-svn-commit] r60 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#60">[ date ]</a>
+              <a href="thread.html#60">[ thread ]</a>
+              <a href="subject.html#60">[ subject ]</a>
+              <a href="author.html#60">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

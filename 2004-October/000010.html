@@ -1,0 +1,928 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r9 - project_src/web/src/de/hsharz/provirent/objects
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r9%20-%20project_src/web/src/de/hsharz/provirent/objects&In-Reply-To=%3C200410061904.i96J4c46009952%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000009.html">
+   <LINK REL="Next"  HREF="000011.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r9 - project_src/web/src/de/hsharz/provirent/objects</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r9%20-%20project_src/web/src/de/hsharz/provirent/objects&In-Reply-To=%3C200410061904.i96J4c46009952%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r9 - project_src/web/src/de/hsharz/provirent/objects">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Wed Oct  6 21:04:38 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000009.html">[Provirent-svn-commit] r8 - in project_src/web: . src src/de src/de/hsharz src/de/hsharz/provirent
+</A></li>
+        <LI>Next message: <A HREF="000011.html">[Provirent-svn-commit] r10 - project_src/web/lib
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#10">[ date ]</a>
+              <a href="thread.html#10">[ thread ]</a>
+              <a href="subject.html#10">[ subject ]</a>
+              <a href="author.html#10">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-06 21:04:37 +0200 (Wed, 06 Oct 2004)
+New Revision: 9
+
+Added:
+   project_src/web/src/de/hsharz/provirent/objects/Bill.java
+   project_src/web/src/de/hsharz/provirent/objects/Customer.java
+   project_src/web/src/de/hsharz/provirent/objects/Dvd.java
+   project_src/web/src/de/hsharz/provirent/objects/ManagementStaff.java
+   project_src/web/src/de/hsharz/provirent/objects/Movie.java
+   project_src/web/src/de/hsharz/provirent/objects/Order.java
+   project_src/web/src/de/hsharz/provirent/objects/Staff.java
+   project_src/web/src/de/hsharz/provirent/objects/WarehouseStaff.java
+Log:
+- erste Object Klassen erstellt
+- Customer mit Attributen gefuellt
+- Movies mit Attributen gefuellt
+
+Added: project_src/web/src/de/hsharz/provirent/objects/Bill.java
+===================================================================
+--- project_src/web/src/de/hsharz/provirent/objects/Bill.java	2004-10-06 19:03:31 UTC (rev 8)
++++ project_src/web/src/de/hsharz/provirent/objects/Bill.java	2004-10-06 19:04:37 UTC (rev 9)
+@@ -0,0 +1,41 @@
++/*
++ * Created on 06.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.objects;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class Bill {
++
++}
+
+Added: project_src/web/src/de/hsharz/provirent/objects/Customer.java
+===================================================================
+--- project_src/web/src/de/hsharz/provirent/objects/Customer.java	2004-10-06 19:03:31 UTC (rev 8)
++++ project_src/web/src/de/hsharz/provirent/objects/Customer.java	2004-10-06 19:04:37 UTC (rev 9)
+@@ -0,0 +1,308 @@
++/*
++ * Created on 06.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.objects;
++
++import java.util.Calendar;
++
++import org.apache.commons.lang.builder.ToStringBuilder;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class Customer {
++
++    private int userId;
++    private String firstName;
++    private String lastName;
++    private String middleName;
++    private String salutation; //Herr Frau Firma Familie
++    private String title;
++    private String street;
++    private String streetNumber;
++    private String city;
++    private String zipCode;
++    private String country;
++    private Calendar dayOfBirth;
++    private Calendar dayOfRegistration;
++    private String emailAddress;
++    private String userName;
++    private String password;
++    private String hiddenQuestion;
++    private String hiddenAnswer;
++    
++    
++    
++    /**
++     * @return Returns the city.
++     */
++    public String getCity() {
++        return city;
++    }
++    /**
++     * @param city The city to set.
++     */
++    public void setCity(final String city) {
++        this.city = city;
++    }
++    /**
++     * @return Returns the country.
++     */
++    public String getCountry() {
++        return country;
++    }
++    /**
++     * @param country The country to set.
++     */
++    public void setCountry(final String country) {
++        this.country = country;
++    }
++    /**
++     * @return Returns the dayOfBirth.
++     */
++    public Calendar getDayOfBirth() {
++        return dayOfBirth;
++    }
++    /**
++     * @param dayOfBirth The dayOfBirth to set.
++     */
++    public void setDayOfBirth(final Calendar dayOfBirth) {
++        this.dayOfBirth = dayOfBirth;
++    }
++    /**
++     * @return Returns the dayOfRegistration.
++     */
++    public Calendar getDayOfRegistration() {
++        return dayOfRegistration;
++    }
++    /**
++     * @param dayOfRegistration The dayOfRegistration to set.
++     */
++    public void setDayOfRegistration(final Calendar dayOfRegistration) {
++        this.dayOfRegistration = dayOfRegistration;
++    }
++    /**
++     * @return Returns the emailAddress.
++     */
++    public String getEmailAddress() {
++        return emailAddress;
++    }
++    /**
++     * @param emailAddress The emailAddress to set.
++     */
++    public void setEmailAddress(final String emailAddress) {
++        this.emailAddress = emailAddress;
++    }
++    /**
++     * @return Returns the firstName.
++     */
++    public String getFirstName() {
++        return firstName;
++    }
++    /**
++     * @param firstName The firstName to set.
++     */
++    public void setFirstName(final String firstName) {
++        this.firstName = firstName;
++    }
++    /**
++     * @return Returns the hiddenAnswer.
++     */
++    public String getHiddenAnswer() {
++        return hiddenAnswer;
++    }
++    /**
++     * @param hiddenAnswer The hiddenAnswer to set.
++     */
++    public void setHiddenAnswer(final String hiddenAnswer) {
++        this.hiddenAnswer = hiddenAnswer;
++    }
++    /**
++     * @return Returns the hiddenQuestion.
++     */
++    public String getHiddenQuestion() {
++        return hiddenQuestion;
++    }
++    /**
++     * @param hiddenQuestion The hiddenQuestion to set.
++     */
++    public void setHiddenQuestion(final String hiddenQuestion) {
++        this.hiddenQuestion = hiddenQuestion;
++    }
++    /**
++     * @return Returns the lastName.
++     */
++    public String getLastName() {
++        return lastName;
++    }
++    /**
++     * @param lastName The lastName to set.
++     */
++    public void setLastName(final String lastName) {
++        this.lastName = lastName;
++    }
++    /**
++     * @return Returns the middleName.
++     */
++    public String getMiddleName() {
++        return middleName;
++    }
++    /**
++     * @param middleName The middleName to set.
++     */
++    public void setMiddleName(final String middleName) {
++        this.middleName = middleName;
++    }
++    /**
++     * @return Returns the password.
++     */
++    public String getPassword() {
++        return password;
++    }
++    /**
++     * @param password The password to set.
++     */
++    public void setPassword(final String password) {
++        this.password = password;
++    }
++    /**
++     * @return Returns the salutation.
++     */
++    public String getSalutation() {
++        return salutation;
++    }
++    /**
++     * @param salutation The salutation to set.
++     */
++    public void setSalutation(final String salutation) {
++        this.salutation = salutation;
++    }
++    /**
++     * @return Returns the street.
++     */
++    public String getStreet() {
++        return street;
++    }
++    /**
++     * @param street The street to set.
++     */
++    public void setStreet(final String street) {
++        this.street = street;
++    }
++    /**
++     * @return Returns the streetNumber.
++     */
++    public String getStreetNumber() {
++        return streetNumber;
++    }
++    /**
++     * @param streetNumber The streetNumber to set.
++     */
++    public void setStreetNumber(final String streetNumber) {
++        this.streetNumber = streetNumber;
++    }
++    /**
++     * @return Returns the title.
++     */
++    public String getTitle() {
++        return title;
++    }
++    /**
++     * @param title The title to set.
++     */
++    public void setTitle(final String title) {
++        this.title = title;
++    }
++    /**
++     * @return Returns the userId.
++     */
++    public int getUserId() {
++        return userId;
++    }
++    /**
++     * @param userId The userId to set.
++     */
++    public void setUserId(final int userId) {
++        this.userId = userId;
++    }
++    /**
++     * @return Returns the userName.
++     */
++    public String getUserName() {
++        return userName;
++    }
++    /**
++     * @param userName The userName to set.
++     */
++    public void setUserName(final String userName) {
++        this.userName = userName;
++    }
++    /**
++     * @return Returns the zipCode.
++     */
++    public String getZipCode() {
++        return zipCode;
++    }
++    /**
++     * @param zipCode The zipCode to set.
++     */
++    public void setZipCode(final String zipCode) {
++        this.zipCode = zipCode;
++    }
++    public String toString() {
++        return new ToStringBuilder(this).
++          append(&quot;userId&quot;, userId).
++          append(&quot;salutation&quot;, salutation).
++          append(&quot;title&quot;, title).
++          append(&quot;firstName&quot;, firstName).
++          append(&quot;middleName&quot;, middleName).
++          append(&quot;lastName&quot;, lastName).
++          append(&quot;street&quot;, street).
++          append(&quot;streetNumber&quot;, streetNumber).
++          append(&quot;zipCode&quot;, zipCode).
++          append(&quot;city&quot;, city).
++          append(&quot;country&quot;, country).
++          append(&quot;dayOfBirth&quot;, dayOfBirth).
++          append(&quot;emailAddress&quot;, emailAddress).
++          append(&quot;dayOfRegistration&quot;, dayOfRegistration).
++          append(&quot;userName&quot;, userName).
++          append(&quot;password&quot;, password).
++          append(&quot;hiddenQuestion&quot;, hiddenQuestion).
++          append(&quot;hiddenAnswer&quot;, hiddenAnswer).
++          toString();
++      }
++    
++    
++    
++    
++}
+
+Added: project_src/web/src/de/hsharz/provirent/objects/Dvd.java
+===================================================================
+--- project_src/web/src/de/hsharz/provirent/objects/Dvd.java	2004-10-06 19:03:31 UTC (rev 8)
++++ project_src/web/src/de/hsharz/provirent/objects/Dvd.java	2004-10-06 19:04:37 UTC (rev 9)
+@@ -0,0 +1,41 @@
++/*
++ * Created on 06.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.objects;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class Dvd {
++
++}
+
+Added: project_src/web/src/de/hsharz/provirent/objects/ManagementStaff.java
+===================================================================
+--- project_src/web/src/de/hsharz/provirent/objects/ManagementStaff.java	2004-10-06 19:03:31 UTC (rev 8)
++++ project_src/web/src/de/hsharz/provirent/objects/ManagementStaff.java	2004-10-06 19:04:37 UTC (rev 9)
+@@ -0,0 +1,41 @@
++/*
++ * Created on 06.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.objects;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class ManagementStaff {
++
++}
+
+Added: project_src/web/src/de/hsharz/provirent/objects/Movie.java
+===================================================================
+--- project_src/web/src/de/hsharz/provirent/objects/Movie.java	2004-10-06 19:03:31 UTC (rev 8)
++++ project_src/web/src/de/hsharz/provirent/objects/Movie.java	2004-10-06 19:04:37 UTC (rev 9)
+@@ -0,0 +1,247 @@
++/*
++ * Created on 06.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.objects;
++
++import java.util.Calendar;
++import java.util.Set;
++
++import org.apache.commons.lang.builder.ToStringBuilder;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class Movie {
++
++    private int movieId;
++
++    private String title;
++
++    private String description;
++
++    private int runtime;
++
++    private Set actors;
++
++    private Set directors;
++
++    private Set studios;
++
++    private Set languages;
++
++    private Set subtitles;
++
++    private Set encoding;
++
++    private Set audioTracks;
++
++    private Set aspectRatio;
++
++    private Calendar releaseDate;
++
++
++
++    /**
++     * @return Returns the movieId.
++     */
++    public int getMovieId() {
++        return movieId;
++    }
++    /**
++     * @param movieId The movieId to set.
++     */
++    public void setMovieId(final int movieId) {
++        this.movieId = movieId;
++    }
++    /**
++     * @return Returns the actors.
++     */
++    public Set getActors() {
++        return actors;
++    }
++    /**
++     * @param actors The actors to set.
++     */
++    public void setActors(final Set actors) {
++        this.actors = actors;
++    }
++    /**
++     * @return Returns the aspectRatio.
++     */
++    public Set getAspectRatio() {
++        return aspectRatio;
++    }
++    /**
++     * @param aspectRatio The aspectRatio to set.
++     */
++    public void setAspectRatio(final Set aspectRatio) {
++        this.aspectRatio = aspectRatio;
++    }
++    /**
++     * @return Returns the audioTracks.
++     */
++    public Set getAudioTracks() {
++        return audioTracks;
++    }
++    /**
++     * @param audioTracks The audioTracks to set.
++     */
++    public void setAudioTracks(final Set audioTracks) {
++        this.audioTracks = audioTracks;
++    }
++    /**
++     * @return Returns the description.
++     */
++    public String getDescription() {
++        return description;
++    }
++    /**
++     * @param description The description to set.
++     */
++    public void setDescription(final String description) {
++        this.description = description;
++    }
++    /**
++     * @return Returns the directors.
++     */
++    public Set getDirectors() {
++        return directors;
++    }
++    /**
++     * @param directors The directors to set.
++     */
++    public void setDirectors(final Set directors) {
++        this.directors = directors;
++    }
++    /**
++     * @return Returns the encoding.
++     */
++    public Set getEncoding() {
++        return encoding;
++    }
++    /**
++     * @param encoding The encoding to set.
++     */
++    public void setEncoding(final Set encoding) {
++        this.encoding = encoding;
++    }
++    /**
++     * @return Returns the languages.
++     */
++    public Set getLanguages() {
++        return languages;
++    }
++    /**
++     * @param languages The languages to set.
++     */
++    public void setLanguages(final Set languages) {
++        this.languages = languages;
++    }
++    /**
++     * @return Returns the releaseDate.
++     */
++    public Calendar getReleaseDate() {
++        return releaseDate;
++    }
++    /**
++     * @param releaseDate The releaseDate to set.
++     */
++    public void setReleaseDate(final Calendar releaseDate) {
++        this.releaseDate = releaseDate;
++    }
++    /**
++     * @return Returns the runtime.
++     */
++    public int getRuntime() {
++        return runtime;
++    }
++    /**
++     * @param runtime The runtime to set.
++     */
++    public void setRuntime(final int runtime) {
++        this.runtime = runtime;
++    }
++    /**
++     * @return Returns the studios.
++     */
++    public Set getStudios() {
++        return studios;
++    }
++    /**
++     * @param studios The studios to set.
++     */
++    public void setStudios(final Set studios) {
++        this.studios = studios;
++    }
++    /**
++     * @return Returns the subtitles.
++     */
++    public Set getSubtitles() {
++        return subtitles;
++    }
++    /**
++     * @param subtitles The subtitles to set.
++     */
++    public void setSubtitles(final Set subtitles) {
++        this.subtitles = subtitles;
++    }
++    /**
++     * @return Returns the title.
++     */
++    public String getTitle() {
++        return title;
++    }
++    /**
++     * @param title The title to set.
++     */
++    public void setTitle(final String title) {
++        this.title = title;
++    }
++    public String toString() {
++        return new ToStringBuilder(this).
++          append(&quot;movieId&quot;, movieId).
++          append(&quot;title&quot;, title).
++          append(&quot;description&quot;, description).
++          append(&quot;actors&quot;, actors).
++          append(&quot;directors&quot;, directors).
++          append(&quot;studios&quot;, studios).
++          append(&quot;languages&quot;, languages).
++          append(&quot;subtitles&quot;, subtitles).
++          append(&quot;encoding&quot;, encoding).
++          append(&quot;audioTracks&quot;, audioTracks).
++          append(&quot;aspectRatio&quot;, aspectRatio).
++          append(&quot;releaseDate&quot;, releaseDate).
++          toString();
++      }
++    
++}
+
+Added: project_src/web/src/de/hsharz/provirent/objects/Order.java
+===================================================================
+--- project_src/web/src/de/hsharz/provirent/objects/Order.java	2004-10-06 19:03:31 UTC (rev 8)
++++ project_src/web/src/de/hsharz/provirent/objects/Order.java	2004-10-06 19:04:37 UTC (rev 9)
+@@ -0,0 +1,41 @@
++/*
++ * Created on 06.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.objects;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class Order {
++
++}
+
+Added: project_src/web/src/de/hsharz/provirent/objects/Staff.java
+===================================================================
+--- project_src/web/src/de/hsharz/provirent/objects/Staff.java	2004-10-06 19:03:31 UTC (rev 8)
++++ project_src/web/src/de/hsharz/provirent/objects/Staff.java	2004-10-06 19:04:37 UTC (rev 9)
+@@ -0,0 +1,41 @@
++/*
++ * Created on 06.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.objects;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public abstract class Staff {
++
++}
+
+Added: project_src/web/src/de/hsharz/provirent/objects/WarehouseStaff.java
+===================================================================
+--- project_src/web/src/de/hsharz/provirent/objects/WarehouseStaff.java	2004-10-06 19:03:31 UTC (rev 8)
++++ project_src/web/src/de/hsharz/provirent/objects/WarehouseStaff.java	2004-10-06 19:04:37 UTC (rev 9)
+@@ -0,0 +1,41 @@
++/*
++ * Created on 06.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package de.hsharz.provirent.objects;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class WarehouseStaff {
++
++}
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000009.html">[Provirent-svn-commit] r8 - in project_src/web: . src src/de src/de/hsharz src/de/hsharz/provirent
+</A></li>
+	<LI>Next message: <A HREF="000011.html">[Provirent-svn-commit] r10 - project_src/web/lib
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#10">[ date ]</a>
+              <a href="thread.html#10">[ thread ]</a>
+              <a href="subject.html#10">[ subject ]</a>
+              <a href="author.html#10">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

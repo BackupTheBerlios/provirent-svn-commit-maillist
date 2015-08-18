@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r152 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r152%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411231013.iANADe9b002326%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000152.html">
+   <LINK REL="Next"  HREF="000154.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r152 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r152%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411231013.iANADe9b002326%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r152 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Tue Nov 23 11:13:40 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000152.html">[Provirent-svn-commit] r151 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+        <LI>Next message: <A HREF="000154.html">[Provirent-svn-commit] r153 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#153">[ date ]</a>
+              <a href="thread.html#153">[ thread ]</a>
+              <a href="subject.html#153">[ subject ]</a>
+              <a href="author.html#153">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-23 11:13:39 +0100 (Tue, 23 Nov 2004)
+New Revision: 152
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogActors.java
+Log:
+- list durch tabelle ersetzt
+- mehrere hinzuf?\195?\188gen ergibt exception
+- doppelclick fkt. auch noch nicht
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogActors.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogActors.java	2004-11-23 00:01:30 UTC (rev 151)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/DialogActors.java	2004-11-23 10:13:39 UTC (rev 152)
+@@ -25,6 +25,7 @@
+ import org.eclipse.swt.layout.GridData;
+ import org.eclipse.swt.custom.SashForm;
+ import org.eclipse.swt.widgets.Label;
++import org.eclipse.swt.widgets.TableColumn;
+ import org.eclipse.swt.widgets.TableItem;
+ import org.eclipse.swt.widgets.Text;
+ import org.eclipse.swt.widgets.Button;
+@@ -44,6 +45,7 @@
+ import de.hsharz.provirent.persistence.Database;
+ import org.eclipse.swt.events.MouseAdapter;
+ import org.eclipse.swt.events.MouseEvent;
++import org.eclipse.swt.widgets.Table;
+ public class DialogActors extends org.eclipse.swt.widgets.Dialog {
+     
+ 	private Shell dialogShell;
+@@ -55,8 +57,8 @@
+ 	
+ 	private Label labelDescriptionAdvice;
+ 
+-	private List list1;
+ 	private Button button1;
++	private Table table1 ;
+ 	private Button button2;
+ 	private Text text1;
+ 
+@@ -164,34 +166,42 @@
+         
+                     }
+                     {
+-                        list1 = new List(groupDialogDescription, SWT.MULTI | SWT.V_SCROLL | SWT.BORDER);
+-                        list1.setSize(57, 30);
+-                        GridData list1LData = new GridData();
+-                        list1LData.horizontalSpan = 5;
+-                        list1LData.horizontalAlignment = GridData.FILL;
+-                        list1LData.grabExcessHorizontalSpace = true;
+-                        list1LData.verticalAlignment = GridData.FILL;
+-                        list1LData.grabExcessVerticalSpace = true;
+-                        list1.setLayoutData(list1LData);
++                        table1 =  new Table(groupDialogDescription, SWT.MULTI | SWT.FULL_SELECTION);
++                        GridData table1LData = new GridData();
++                        table1LData.horizontalAlignment = GridData.FILL;
++                        table1LData.horizontalSpan = 5;
++                        table1LData.grabExcessHorizontalSpace = true;
++                        table1LData.verticalAlignment = GridData.FILL;
++                        table1LData.grabExcessVerticalSpace = true;
++                        table1.setLayoutData(table1LData);
++                        {
++                            TableColumn item = new TableColumn(
++                                    table1,
++                                SWT.CENTER);
++                            item.setText(&quot;id&quot;);
++                            item.setWidth(0);
++                            item.setResizable(false);
++                        }                        
++                        {
++                            TableColumn item = new TableColumn(
++                                    table1,
++                                SWT.CENTER);
++                            item.setText(&quot;nachname&quot;);
++                            item.setAlignment(SWT.LEFT);
++                            item.setWidth(100);
++                            
++                        }                        
++                        {
++                            TableColumn item = new TableColumn(
++                                    table1,
++                                SWT.CENTER);
++                            item.setText(&quot;Vorname&quot;);
++                            item.setAlignment(SWT.LEFT);
++                            item.setWidth(100);
++                            
++                        }                        
+                         
+-                        list1.add(&quot;Hallo0&quot;,0);
+-                        list1.add(&quot;Hallo1&quot;,1);
+-                        list1.add(&quot;Hallo2&quot;,2);
+-                        list1.add(&quot;Hallo3&quot;,3);
+-                        list1.add(&quot;Hallo2&quot;,4);
+-                        list1.add(&quot;Hallo5&quot;,5);
+                         
+-            			{
+-                            list1.addMouseListener(new MouseAdapter() {
+-                                public void mouseDoubleClick(MouseEvent evt) {
+-                                    System.out.println(&quot;list1.mouseDoubleClick, event=&quot;
+-                                        + evt);
+-                                    
+-                                    
+-                                    //TODO add your code for list1.mouseDoubleClick
+-                                }
+-                            });
+-            			}                         
+                     }
+                     {
+                         buttonDescriptionAccept = new Button(groupDialogDescription, SWT.PUSH | SWT.CENTER);
+@@ -209,10 +219,11 @@
+                                         .println(&quot;buttonDescriptionAccept.widgetSelected, event=&quot;
+                                             + evt);
+                                     
+-                                    String[] sel = list1.getSelection();
++                                    int[] sel = table1.getSelectionIndices();
+                                     for (int i = 0; i &lt; sel.length; i++) {
+-                                        System.out.println(&quot;Auswahl:&quot;+i+&quot; &quot;+sel[i]);
+-                                        list1.remove(sel[i]);
++                                        System.out.println(&quot;Auswahl:&quot;+i+&quot; &quot;+table1.getItem(sel[i]));
++
++                                        table1.remove(sel[i]);
+                                     }
+                                     
+                                     //TODO add your code for buttonDescriptionAccept.widgetSelected
+@@ -256,20 +267,21 @@
+ 	}
+ 	
+ 	  private void refreshActorsList(final String filter) {
+-	        if (list1 == null || list1.isDisposed()) {
++	        if (table1 == null || table1.isDisposed()) {
+ 	            System.out
+ 	                    .println(&quot;Konnte DialogActors List nicht refreshen, da diese null ist!&quot;);
+ 	            return;
+ 	        }
+ 	        System.out.println(&quot;Versuche nun DialogActors List zu refreshen. Filter: &quot;
+ 	                + filter);
+-	        list1.removeAll();
++	        table1.removeAll();
+ 	        
+ 	        java.util.List actorList = Database.getActor(filter);
+ 
+ 	        for (int i = 0; i &lt; actorList.size(); i++) {
+ 	            Actor o = (Actor)actorList.get(i);
+-	            list1.add(o.getLastName()+&quot;, &quot;+ o.getFirstName()+&quot; (&quot;+o.getActorId() + &quot;)&quot;);
++	            TableItem item = new TableItem(table1, SWT.NONE);
++	            item.setText(new String[] {o.getActorId()+&quot;&quot;,o.getLastName(), o.getFirstName() });
+ 	        }
+-	    }
++	  }
+ }
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000152.html">[Provirent-svn-commit] r151 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+	<LI>Next message: <A HREF="000154.html">[Provirent-svn-commit] r153 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#153">[ date ]</a>
+              <a href="thread.html#153">[ thread ]</a>
+              <a href="subject.html#153">[ subject ]</a>
+              <a href="author.html#153">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

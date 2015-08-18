@@ -1,0 +1,1002 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r125 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r125%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20management/gui/language%20persistence&In-Reply-To=%3C200411111033.iABAXk61007067%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000125.html">
+   <LINK REL="Next"  HREF="000127.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r125 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r125%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20management/gui/language%20persistence&In-Reply-To=%3C200411111033.iABAXk61007067%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r125 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Thu Nov 11 11:33:46 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000125.html">[Provirent-svn-commit] r124 - / html project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+        <LI>Next message: <A HREF="000127.html">[Provirent-svn-commit] r126 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#126">[ date ]</a>
+              <a href="thread.html#126">[ thread ]</a>
+              <a href="subject.html#126">[ subject ]</a>
+              <a href="author.html#126">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-11-11 11:33:45 +0100 (Thu, 11 Nov 2004)
+New Revision: 125
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDirectors.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/directors.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+Log:
+Composite Directors angefangen und beendet
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java	2004-11-11 00:07:47 UTC (rev 124)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java	2004-11-11 10:33:45 UTC (rev 125)
+@@ -567,7 +567,7 @@
+                             
+                         } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
+                             //fehler beim db aufbau
+-                            statusLine.setStatus(3,l.getString(&quot;Actor.groupdetail.deletebutton.errordb&quot;));
++                            statusLine.setStatus(3,l.getString(&quot;actors.groupdetail.deletebutton.errordb&quot;));
+                             showMsg(l.getString(&quot;actors.groupdetail.deletebutton.errordb&quot;),
+                                     l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
+                             
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDirectors.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDirectors.java	2004-11-11 00:07:47 UTC (rev 124)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDirectors.java	2004-11-11 10:33:45 UTC (rev 125)
+@@ -1,20 +1,39 @@
+ package de.hsharz.provirent.management.gui;
+ 
++import java.text.MessageFormat;
+ import java.util.Locale;
+ import java.util.PropertyResourceBundle;
+ import java.util.ResourceBundle;
+ 
+ import org.apache.log4j.Logger;
+ import org.eclipse.swt.SWT;
++import org.eclipse.swt.custom.SashForm;
++import org.eclipse.swt.events.FocusAdapter;
++import org.eclipse.swt.events.FocusEvent;
++import org.eclipse.swt.events.SelectionAdapter;
++import org.eclipse.swt.events.SelectionEvent;
++import org.eclipse.swt.layout.FormAttachment;
++import org.eclipse.swt.layout.FormData;
+ import org.eclipse.swt.layout.GridData;
+ import org.eclipse.swt.layout.GridLayout;
++import org.eclipse.swt.widgets.Button;
+ import org.eclipse.swt.widgets.Composite;
+ import org.eclipse.swt.widgets.Display;
++import org.eclipse.swt.widgets.Event;
+ import org.eclipse.swt.widgets.Group;
++import org.eclipse.swt.widgets.Label;
++import org.eclipse.swt.widgets.Listener;
+ import org.eclipse.swt.widgets.Shell;
++import org.eclipse.swt.widgets.Table;
++import org.eclipse.swt.widgets.TableColumn;
++import org.eclipse.swt.widgets.TableItem;
+ import org.eclipse.swt.widgets.Text;
+ 
+ import com.cloudgarden.resource.SWTResourceManager;
++
++import de.hsharz.provirent.objects.Director;
++import de.hsharz.provirent.persistence.DataBaseException;
++import de.hsharz.provirent.persistence.Database;
+ /**
+ * This code was generated using CloudGarden's Jigloo
+ * SWT/Swing GUI Builder, which is free for non-commercial
+@@ -30,7 +49,6 @@
+ * *************************************
+ */
+ public class CompositeDirectors extends AbstractComposite{
+-
+     {
+         //Register as a resource user - SWTResourceManager will
+         //handle the obtaining and disposing of resources
+@@ -42,22 +60,51 @@
+      * Logger for this class
+      */
+     private static final Logger logger = Logger
+-            .getLogger(CompositeDirectors.class);
++            .getLogger(CompositeActors.class);
+     
+     
+     private final static int MODE_VIEW = 0;
+-
+     private final static int MODE_ADD = 1;
+-    private Text text1;
+-    private Group groupDirector;
+-
+     private final static int MODE_EDIT = 2;
+     
++    private Table tableDirectorsOverview;
++    private TableColumn tableDirectorsOverview_ColumnID;
++    private TableColumn tableDirectorsOverview_ColumnFName;
++    private TableColumn tableDirectorsOverview_ColumnLName;
++    
++    
++    private SashForm sashForm1;
++    private SashForm sashForm2;
++    
++    private Group groupDirector;
++    private Group groupDirectorsOverview;
++    private Group groupDirectorsDetail;
++    
++    private Text textDirectorsSearch;
++    private Text textDirectorsID;
++    private Text textDirectorsFName;
++    private Text textDirectorsLName;
++    
++    private Label labelDirectorsSearch;
++    private Label labelDirectorsID;
++    private Label labelDirectorsFName;
++    private Label labelDirectorsLName;
++    
++    private Button buttonDirectorsNew;
++    private Button buttonDirectorsSave;
++    private Button buttonDirectorsEdit;
++    private Button buttonDirectorsCancel;
++    private Button buttonDirectorsDelete;
++    private Button buttonDirectorsFill;
++    
++    protected int mode_director;
++    
+     private StatusLineStyledText statusLine;
+ 
+     private ResourceBundle l;
+     
+     private Composite parent;
++    private Composite compositeButtons;
+     
+     /*
+      * &#196;ndert die Sprache aller Elemente
+@@ -135,16 +182,22 @@
+             groupDirector.setLayoutData(groupDirectorLData);
+             groupDirectorLayout.makeColumnsEqualWidth = true;
+             groupDirector.setLayout(groupDirectorLayout);
+-            groupDirector.setText(&quot;Director&quot;);
++            groupDirector.setText(l.getString(&quot;directors.group.label&quot;));
+             {
+-                text1 = new Text(groupDirector, SWT.MULTI | SWT.WRAP);
+-                text1.setText(&quot;text1&quot;);
+-                GridData text1LData = new GridData();
+-                text1.setBackground(SWTResourceManager.getColor(0, 255, 0));
+-                text1LData.widthHint = 227;
+-                text1LData.heightHint = 132;
+-                text1.setLayoutData(text1LData);
++                sashForm2 = new SashForm(groupDirector, SWT.NONE);
++                GridData sashForm2LData = new GridData();
++                sashForm2LData.verticalAlignment = GridData.FILL;
++                sashForm2LData.horizontalAlignment = GridData.FILL;
++                sashForm2LData.grabExcessHorizontalSpace = true;
++                sashForm2LData.grabExcessVerticalSpace = true;
++                sashForm2.setLayoutData(sashForm2LData);
++                
++               
+             }
++            // init the rest of the layout
++            initDirectorsOverview();
++            initDirectorsDetail();
++            refreshDirectorsOverviewTable(textDirectorsSearch.getText());
+         }
+ 
+         this.layout();
+@@ -157,5 +210,609 @@
+ 	}
+ 
+ 	
++	private void initDirectorsOverview()  {	    
++//	  Group Actors Overview 
++        {
++            groupDirectorsOverview = new Group(sashForm2,SWT.NONE);
++            GridLayout group1Layout = new GridLayout();
++            group1Layout.numColumns = 8;
++            groupDirectorsOverview.setLayout(group1Layout);
++            groupDirectorsOverview.setText(l.getString(&quot;directors.groupoverview.label&quot;));
++            
++            {// table Actors Overview
++                tableDirectorsOverview = new Table(
++                    groupDirectorsOverview,
++                    SWT.SINGLE
++                        | SWT.FULL_SELECTION
++                        | SWT.V_SCROLL | SWT.BORDER);
++                GridData tableDirectorsOverviewLData = new GridData();
++                tableDirectorsOverview.setHeaderVisible(true);
++                tableDirectorsOverview.setLinesVisible(true);
++                tableDirectorsOverviewLData.horizontalAlignment = GridData.FILL;
++                tableDirectorsOverviewLData.verticalAlignment = GridData.FILL;
++                tableDirectorsOverviewLData.horizontalSpan = 8;
++                tableDirectorsOverviewLData.grabExcessHorizontalSpace = true;
++                tableDirectorsOverviewLData.grabExcessVerticalSpace = true;
++                tableDirectorsOverview.setLayoutData(tableDirectorsOverviewLData);
++                tableDirectorsOverview.addFocusListener(new FocusAdapter() {
++                        public void focusLost(FocusEvent evt) {
++                            System.out
++                                .println(&quot;tableDirectorsOverview.focusLost, event=&quot;
++                                    + evt);
++                        }
++                        public void focusGained(FocusEvent evt) {
++                            System.out
++                                .println(&quot;tableDirectorsOverview.focusGained, event=&quot;
++                                    + evt);
++                        }
++                    });
++                tableDirectorsOverview.addSelectionListener(new SelectionAdapter() {
++                        public void widgetSelected(SelectionEvent evt) {
++                            if (logger.isDebugEnabled()) {
++                                logger
++                                    .debug(&quot;widgetSelected(SelectionEvent evt = &quot;
++                                        + evt
++                                        + &quot;) - start&quot;);
++                            }
+ 
++                            int index = tableDirectorsOverview
++                                .getSelectionIndex();
++
++                            System.out.println(&quot;Table select. id: &quot;
++                                + index
++                                + &quot; TableItem:&quot;
++                                + tableDirectorsOverview.getItem(index)
++                                + &quot; id: &quot;
++                                + tableDirectorsOverview.getItem(index)
++                                    .getText(0));
++
++                            //es wurde ein Element aus Tabelle ausgewaehlt jetzt muss die
++                            //Detailansicht aktualisiert werden
++                            refreshDirectorsDetail(tableDirectorsOverview.getItem(index)
++                                                              .getText(0));
++
++                            if (logger.isDebugEnabled()) {
++                                logger
++                                    .debug(&quot;widgetSelected(SelectionEvent) - end&quot;);
++                            }
++                        }
++                    });
++                {
++                    tableDirectorsOverview_ColumnID = new TableColumn(
++                        tableDirectorsOverview,
++                        SWT.CENTER);
++                    tableDirectorsOverview_ColumnID.setText(l
++                        .getString(&quot;directors.groupoverview.columnid&quot;));
++                    tableDirectorsOverview_ColumnID.setWidth(40);
++                }
++                {
++                    tableDirectorsOverview_ColumnFName = new TableColumn(
++                        tableDirectorsOverview,
++                        SWT.CENTER);
++                    tableDirectorsOverview_ColumnFName.setText(l
++                        .getString(&quot;directors.groupoverview.columnfirstname&quot;));
++                    tableDirectorsOverview_ColumnFName.setWidth(80);
++                }
++                {
++                    tableDirectorsOverview_ColumnLName = new TableColumn(
++                        tableDirectorsOverview,
++                        SWT.CENTER);
++                    tableDirectorsOverview_ColumnLName.setText(l
++                        .getString(&quot;directors.groupoverview.columnlastname&quot;));
++                    tableDirectorsOverview_ColumnLName.setWidth(80);
++                }
++            }
++            // table Actors Overview
++            // Search
++            {
++                //label for Search
++                labelDirectorsSearch = new Label(groupDirectorsOverview, SWT.NONE);
++                labelDirectorsSearch.setText(l
++                        .getString(&quot;directors.groupoverview.searchlabel&quot;)
++                        + &quot;:&quot;);
++                GridData label2LData = new GridData();
++                label2LData.horizontalSpan = 3;
++                labelDirectorsSearch.setLayoutData(label2LData);
++
++                //text Search
++                textDirectorsSearch = new Text(groupDirectorsOverview, SWT.BORDER);
++                GridData text2LData = new GridData();
++                textDirectorsSearch.addFocusListener(new FocusAdapter() {
++                    public void focusLost(FocusEvent evt) {
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;focusLost(FocusEvent evt = &quot; + evt + &quot; &quot;
++                                    + textDirectorsSearch.getText() + &quot;) - start&quot;);
++                        }
++
++                        refreshDirectorsOverviewTable(textDirectorsSearch.getText());
++
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;focusLost(FocusEvent) - end&quot;);
++                        }
++                    }
++                });
++                textDirectorsSearch.addListener(SWT.DefaultSelection, new Listener() {
++                    public void handleEvent(Event e) {
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;handleEvent(Event e = &quot; + e + &quot; &quot;
++                                    + textDirectorsSearch.getText() + &quot;) - start&quot;);
++                        }
++
++                        refreshDirectorsOverviewTable(textDirectorsSearch.getText());
++
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;handleEvent(Event) - end&quot;);
++                        }
++                    }
++                });
++                text2LData.horizontalAlignment = GridData.FILL;
++                text2LData.horizontalSpan = 5;
++                text2LData.grabExcessHorizontalSpace = true;
++                textDirectorsSearch.setLayoutData(text2LData);
++            }// Search                    
++        }
++	}
++	
++	private void initDirectorsDetail()  {	    
++	    // Group Actors Detail
++        {
++            groupDirectorsDetail = new Group(sashForm2, SWT.NONE);
++            GridLayout group2Layout = new GridLayout();
++            GridData group2LData = new GridData();
++            group2Layout.verticalSpacing = 15;
++            group2Layout.numColumns = 6;
++            groupDirectorsDetail.setText(l.getString(&quot;directors.groupdetail.label&quot;));   
++            FormData formData = new FormData();
++            groupDirectorsDetail.setLayout(group2Layout);
++            formData.right = new FormAttachment(100, 100, -5);
++            formData.top = new FormAttachment(0, 100, 5);
++            formData.bottom = new FormAttachment(100, 100, -5);
++            groupDirectorsDetail.setLayoutData(formData);
++        }
++        	// labels and buttons for detail
++        	{
++        	    labelDirectorsID = new Label(groupDirectorsDetail, SWT.NONE);
++        	    labelDirectorsID.setText(l
++        	            .getString(&quot;directors.groupdetail.labelid&quot;)
++        	            + &quot;:&quot;);
++        	    labelDirectorsID.setSize(125, 15);
++        	    GridData formData2 = new GridData();
++        	    formData2.widthHint = 125;
++        	    formData2.heightHint = 15;
++        	    formData2.horizontalSpan = 2;
++        	    labelDirectorsID.setLayoutData(formData2);
++        	}
++        	{
++        	    textDirectorsID = new Text(
++        	            groupDirectorsDetail,
++        	            SWT.READ_ONLY | SWT.BORDER);
++        	    GridData text1LData1 = new GridData();
++        	    text1LData1.horizontalAlignment = GridData.FILL;
++        	    text1LData1.heightHint = 13;
++        	    text1LData1.horizontalSpan = 4;
++        	    text1LData1.grabExcessHorizontalSpace = true;
++        	    textDirectorsID.setLayoutData(text1LData1);
++        	}
++        	{
++                labelDirectorsFName = new Label(
++                    groupDirectorsDetail,
++                    SWT.NONE);
++                labelDirectorsFName.setText(l
++                    .getString(&quot;directors.groupdetail.labelfirstname&quot;)
++                    + &quot;:&quot;);
++                labelDirectorsFName.setSize(125, 15);
++                GridData labelDirectorsFNameLData = new GridData();
++                labelDirectorsFNameLData.widthHint = 125;
++                labelDirectorsFNameLData.heightHint = 15;
++                labelDirectorsFNameLData.horizontalSpan = 2;
++                labelDirectorsFName
++                    .setLayoutData(labelDirectorsFNameLData);
++            }
++            {
++        	    textDirectorsFName = new Text(groupDirectorsDetail,
++        	            SWT.READ_ONLY | SWT.BORDER);
++        	    GridData text1LData2 = new GridData();
++        	    text1LData2.horizontalAlignment = GridData.FILL;
++        	    text1LData2.heightHint = 13;
++        	    text1LData2.horizontalSpan = 4;
++        	    text1LData2.grabExcessHorizontalSpace = true;
++        	    textDirectorsFName.setLayoutData(text1LData2);
++        	}
++            {
++        	    labelDirectorsLName = new Label(groupDirectorsDetail,
++        	            SWT.NONE);
++        	    labelDirectorsLName.setText(l
++        	            .getString(&quot;directors.groupdetail.labellastname&quot;)
++        	            + &quot;:&quot;);
++        	    labelDirectorsLName.setSize(125, 15);
++        	    GridData label1LData1 = new GridData();
++        	    label1LData1.widthHint = 125;
++        	    label1LData1.heightHint = 15;
++        	    label1LData1.horizontalSpan = 2;
++        	    labelDirectorsLName.setLayoutData(label1LData1);
++        	}
++        	{
++        	    textDirectorsLName = new Text(groupDirectorsDetail,
++        	            SWT.READ_ONLY | SWT.BORDER);
++        	    GridData text1LData3 = new GridData();
++        	    text1LData3.horizontalAlignment = GridData.FILL;
++        	    text1LData3.heightHint = 13;
++        	    text1LData3.horizontalSpan = 4;
++        	    text1LData3.grabExcessHorizontalSpace = true;
++        	    textDirectorsLName.setLayoutData(text1LData3);
++        	}// label and buttons for detail      
++        	// buttons for detail
++        	{
++        	    compositeButtons = new Composite(groupDirectorsDetail, SWT.EMBEDDED);
++        	    GridLayout composite2Layout = new GridLayout();
++        	    composite2Layout.numColumns = 6;
++        	    GridData composite2LData = new GridData();
++        	    compositeButtons.setLayout(composite2Layout);
++        	    composite2LData.verticalAlignment = GridData.END;
++        	    composite2LData.horizontalAlignment = GridData.CENTER;
++        	    composite2LData.widthHint = 391;
++        	    composite2LData.horizontalSpan = 6;
++        	    composite2LData.grabExcessHorizontalSpace = true;
++            	composite2LData.grabExcessVerticalSpace = true;
++            	composite2LData.heightHint = 35;
++            	compositeButtons.setLayoutData(composite2LData);
++        	}
++        	{
++        	    buttonDirectorsNew = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++        	    buttonDirectorsNew.setText(l.getString(&quot;button.new&quot;));
++        	    buttonDirectorsNew.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++                    
++                    mode_director = ManagementGui.MODE_ADD;
++                    
++                    textDirectorsID.setText(&quot;&quot;);
++                    textDirectorsFName.setText(&quot;&quot;);
++                    textDirectorsLName.setText(&quot;&quot;);
++                    textDirectorsFName.setEditable(true);
++                    textDirectorsLName.setEditable(true);
++                    
++                    buttonDirectorsCancel.setEnabled(true);
++                    buttonDirectorsSave.setEnabled(true);
++                    buttonDirectorsNew.setEnabled(false);
++                    buttonDirectorsEdit.setEnabled(false);
++                    buttonDirectorsDelete.setEnabled(false);
++                    
++                    textDirectorsSearch.setEditable(false);
++                    tableDirectorsOverview.setEnabled(false);
++
++                }
++            });
++
++        	    buttonDirectorsEdit = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++        	    buttonDirectorsEdit.setText(l.getString(&quot;button.edit&quot;));
++        	    buttonDirectorsEdit.setEnabled(false);
++        	    buttonDirectorsEdit.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++
++                    mode_director = ManagementGui.MODE_EDIT;
++
++                    textDirectorsID.setEditable(false);
++                    textDirectorsFName.setEditable(true);
++                    textDirectorsFName.setFocus();
++                    textDirectorsLName.setEditable(true);
++                    
++                    buttonDirectorsCancel.setEnabled(true);
++                    buttonDirectorsSave.setEnabled(true);
++                    buttonDirectorsNew.setEnabled(false);
++                    buttonDirectorsEdit.setEnabled(false);
++                    buttonDirectorsDelete.setEnabled(false);
++
++                    tableDirectorsOverview.setEnabled(false);
++                    textDirectorsSearch.setEnabled(false);
++                    
++                }
++            });
++
++        	    buttonDirectorsDelete = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++        	    buttonDirectorsDelete.setText(l.getString(&quot;button.delete&quot;));
++        	    buttonDirectorsDelete.setEnabled(false);
++        	    buttonDirectorsDelete.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++                    System.out
++                            .println(&quot;buttonDirectorsDelete.widgetSelected, event=&quot;
++                                    + evt);
++                    
++                    
++                   String msg = MessageFormat.format(
++                           l.getString(&quot;directors.groupdetail.deletebutton.question.text&quot;),
++                                   new Object[]{textDirectorsFName.getText()+&quot; &quot;+textDirectorsLName.getText()});
++                    
++                   int question = showMsg(msg,
++                           l.getString(&quot;directors.groupdetail.deletebutton.question.header&quot;), 
++                           SWT.ICON_QUESTION | SWT.YES | SWT.NO);
++                   
++                   if (question != SWT.YES){
++                       return;
++                   }
++                    
++                    Director o = new Director();
++                    o.setDirectorId(new Integer(Integer.parseInt(textDirectorsID.getText())));
++                    o.setFirstName(textDirectorsFName.getText());
++                    o.setLastName(textDirectorsLName.getText());
++                    
++                    try {
++                        //object speichern
++                        // Fehlerbehandlung
++                        Database.deleteObject(o);
++
++                        //&#220;bersichtsTabelle aktualisieren
++                        refreshDirectorsOverviewTable(textDirectorsSearch.getText());
++                        
++                        //Detailansicht leeren
++                        textDirectorsID.setText(&quot;&quot;);
++                        textDirectorsFName.setText(&quot;&quot;);
++                        textDirectorsLName.setText(&quot;&quot;);
++                        
++                        //in Tabelle n&#228;chsten ausw&#228;hlen
++                        try {
++                            tableDirectorsOverview.select(0);
++                        } catch (Exception ex) {}
++                        
++                        //Statusline Nachricht sezten
++                        statusLine.setStatus(1,l.getString(&quot;directors.groupdetail.deletebutton.newok&quot;));
++
++                    } catch (DataBaseException e) {
++                        if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                            //Fehler beim Speichern des Objectes
++
++                            statusLine.setStatus(3,l.getString(&quot;directors.groupdetail.deletebutton.errorsave&quot;));
++                            showMsg(l.getString(&quot;directors.groupdetail.deletebutton.errorsave&quot;),
++                                    l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                            //fehler beim db aufbau
++                            statusLine.setStatus(3,l.getString(&quot;directors.groupdetail.deletebutton.errordb&quot;));
++                            showMsg(l.getString(&quot;directors.groupdetail.deletebutton.errordb&quot;),
++                                    l.getString(&quot;error&quot;), SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else {
++                            //@todo
++                            e.printStackTrace();
++                        }
++                        
++                    }                
++                    
++
++                    }
++
++                }
++        	    );
++
++        	    //leerer nicht sichtbarer Button
++        	    buttonDirectorsFill = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++        	    GridData buttonActorFillLData = new GridData();
++        	    buttonDirectorsFill.setVisible(false);
++        	    buttonDirectorsFill.setEnabled(false);
++        	    buttonActorFillLData.widthHint = 30;
++        	    buttonActorFillLData.heightHint = 23;
++        	    buttonDirectorsFill.setLayoutData(buttonActorFillLData);
++
++        	    buttonDirectorsSave = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++        	    buttonDirectorsSave.setText(l.getString(&quot;button.save&quot;));
++        	    buttonDirectorsSave.setEnabled(false);
++        	    buttonDirectorsSave.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++                    System.out
++                            .println(&quot;buttonDirectorsSave.widgetSelected, event=&quot;
++                                    + evt);
++
++                    
++                    //testen ob Name leer ist
++                    if (textDirectorsFName.getText().trim().equalsIgnoreCase(&quot;&quot;) 
++                        ||  textDirectorsLName.getText().trim().equalsIgnoreCase(&quot;&quot;)   ) {
++                        
++                        showMsg(l.getString(&quot;directors.groupdetail.savebutton.warn.noname.msg&quot;),
++                                l.getString(&quot;directors.groupdetail.savebutton.warn.noname.title&quot;),
++                                SWT.ICON_WARNING | SWT.YES);
++
++                        	return;
++                    }
++                    
++                    //testen welcher mode
++                    
++                    if (mode_director == ManagementGui.MODE_ADD) {
++                        
++                        /**
++                         * @todo eine Exception bekommen wieder leider NOCH nicht mit
++                         * d.h. es muss noch ein r&#252;ckgabewert kommen oder eine Exception 
++                         * &#252;bermitteln werden (aus der DB Klasse)
++                         */
++                        //neues Objekt erzeugen
++                        Director tmp = new Director(textDirectorsFName.getText(),
++                                textDirectorsLName.getText());
++                        
++                        try {
++                            //object speichern
++                            // Fehlerbehandlung
++                            Object o = Database.saveObject(
++                                    new Director(textDirectorsFName.getText(),
++                                            textDirectorsLName.getText()));
++                            
++                            // in &#220;bersichtstabelle einf&#252;gen
++                            insertIntoDirectorsOverviewTable((Director)o);
++                            textDirectorsID.setText( ((Director)o).getDirectorId()+&quot;&quot; );
++                            
++                            
++                            //Statusline Nachricht sezten
++                            statusLine.setStatus(1,l.getString(&quot;directors.groupdetail.savebutton.newok&quot;));
++
++                        } catch (DataBaseException e) {
++                            if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                                //Fehler beim Speichern des Objectes
++
++                                statusLine.setStatus(3,l.getString(&quot;directors.groupdetail.savebutton.errorsave&quot;));
++                                showMsg(l.getString(&quot;directors.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                                
++                            } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                                //fehler beim db aufbau
++                                statusLine.setStatus(3,l.getString(&quot;directors.groupdetail.savebutton.errordb&quot;));
++                                showMsg(l.getString(&quot;directors.groupdetail.savebutton.errordb&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                                
++                            } else {
++                                //@todo
++                                e.printStackTrace();
++                            }
++                            
++                        }
++                        
++                        
++                        //alle Buttons auf aktiv setzen
++                        setDirectorsGroupButtonSaveCancel();
++                        
++                    } else if (mode_director == ManagementGui.MODE_EDIT) {
++                        
++                        Director tmp = new Director(textDirectorsFName.getText(),
++                                        textDirectorsLName.getText());
++                        tmp.setDirectorId( new Integer (Integer.parseInt(textDirectorsID.getText())) );
++                    try {
++                        //object speichern
++                        // Fehlerbehandlung
++                        Database.saveObject(tmp);
++                        //&#220;bersichtstabelle aktualisieren
++                        refreshDirectorsOverviewTable(textDirectorsSearch.getText());
++                        
++                        //Statusline Nachricht sezten
++                        statusLine.setStatus(1,l.getString(&quot;directors.groupdetail.savebutton.editok&quot;));
++                       
++
++                    } catch (DataBaseException e) {
++                        if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++                            //Fehler beim Speichern des Objectes
++
++                            statusLine.setStatus(3,l.getString(&quot;directors.groupdetail.savebutton.errorsave&quot;));
++                            showMsg(l.getString(&quot;directors.groupdetail.savebutton.errorsave&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++                            //fehler beim db aufbau
++                            statusLine.setStatus(3,l.getString(&quot;directors.groupdetail.savebutton.errordb&quot;));
++                            showMsg(l.getString(&quot;directors.groupdetail.savebutton.errordb&quot;),&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++                            
++                        } else {
++                            //@todo
++                            e.printStackTrace();
++                        }
++                        
++                    }
++                        
++     
++                        //alle Buttons auf aktiv setzen
++                        setDirectorsGroupButtonSaveCancel();
++                        
++                    }
++                    
++                    
++                    
++                    /**
++                     * @todo Exception werfen, da nur die zwei Modes sein d&#252;rfen
++                     */
++                    
++                }
++            });
++
++        	    buttonDirectorsCancel = new Button(compositeButtons, SWT.PUSH | SWT.CENTER);
++        	    buttonDirectorsCancel.setText(l.getString(&quot;button.cancel&quot;));
++        	    buttonDirectorsCancel.setEnabled(false);
++        	    buttonDirectorsCancel.addSelectionListener(new SelectionAdapter() {
++                public void widgetSelected(SelectionEvent evt) {
++                    System.out
++                            .println(&quot;buttonDirectorsCancel.widgetSelected, event=&quot;
++                                    + evt);
++                    setDirectorsGroupButtonSaveCancel();
++                }
++            });
++        }
++	}
++
++	 
++	
++	
++	/**
++     * @param text
++     */
++    private void refreshDirectorsDetail(final String id) {
++        Director object;
++        try {
++            //since we only can get a String value from the table, we
++            //need to convert this
++            object = Database.getSingleDirector(Integer.parseInt(id));
++
++            if (object == null) {
++
++                /*
++                 * 
++                 * @TODO Statusbar aktualiseren
++                 */
++                return;
++            }
++        } catch (Exception e) {
++            //id ist keine Zahl
++            return;
++        }
++
++        textDirectorsID.setText(object.getDirectorId() + &quot;&quot;);
++        textDirectorsFName.setText(object.getFirstName());
++        textDirectorsLName.setText(object.getLastName());
++
++        //Buttons zum l&#246;schen und editieren aktivieren
++        buttonDirectorsEdit.setEnabled(true);
++        buttonDirectorsDelete.setEnabled(true);
++
++        //Mode auf view setzen
++        mode_director = ManagementGui.MODE_VIEW;
++        
++    }
++
++    /**
++     * 
++     */
++    protected void setDirectorsGroupButtonSaveCancel() {
++        buttonDirectorsSave.setEnabled(false);
++        buttonDirectorsCancel.setEnabled(false);
++        buttonDirectorsEdit.setEnabled(true);
++        buttonDirectorsNew.setEnabled(true);
++        buttonDirectorsDelete.setEnabled(true);
++        textDirectorsFName.setEditable(false);
++        textDirectorsLName.setEditable(false);
++        textDirectorsSearch.setEditable(true);
++
++        // ActorTabelle aktivieren
++        tableDirectorsOverview.setEnabled(true);
++
++        //ActorSearch aktivieren
++        textDirectorsSearch.setEnabled(true);        
++    }
++
++    protected void insertIntoDirectorsOverviewTable(Director director) {
++        TableItem item = new TableItem(tableDirectorsOverview, SWT.NONE);
++        item.setText(new String[] { director.getDirectorId() + &quot;&quot;, director.getFirstName(),
++                director.getLastName() });        
++    }
++    
++    protected void refreshDirectorsOverviewTable(final String filter) {
++        if (tableDirectorsOverview == null) {
++            System.out
++                    .println(&quot;Konnte DirectorsOverviewtable nicht refreshen, da diese null ist!&quot;);
++            return;
++        }
++        System.out.println(&quot;Versuche nun DirectorsOverviewtable zu refreshen. Filter: &quot;
++                + filter);
++        tableDirectorsOverview.removeAll();
++        TableItem item;
++        java.util.List Directorlist = Database.getDirector(filter);
++
++        for (int i = 0; i &lt; Directorlist.size(); i++) {
++
++            Director o = (Director) Directorlist.get(i);
++            item = new TableItem(tableDirectorsOverview, SWT.NONE);
++            item.setText(new String[] { o.getDirectorId() + &quot;&quot;, o.getFirstName(),
++                    o.getLastName() });
++
++        }
++    }
+ }
++
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/directors.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/directors.properties	2004-11-11 00:07:47 UTC (rev 124)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/directors.properties	2004-11-11 10:33:45 UTC (rev 125)
+@@ -0,0 +1,33 @@
++error=Fehler
++directors.group.label=Regie
++
++directors.groupoverview.label =&#220;berblick
++directors.groupoverview.searchlabel =Suche nach
++directors.groupoverview.columnid =ID
++directors.groupoverview.columnfirstname =Vorname
++directors.groupoverview.columnlastname =Nachname
++
++
++directors.groupdetail.label =Detail
++directors.groupdetail.labelid =Regisseur ID
++directors.groupdetail.labelfirstname =Vorname
++directors.groupdetail.labellastname =Nachname
++
++button.new=Neu
++button.edit=Bearbeiten
++button.delete=L&#246;schen
++button.save=Speichern
++button.cancel=Abbruch
++
++directors.groupdetail.savebutton.warn.noname.title=Datensatz speichern
++directors.groupdetail.savebutton.warn.noname.msg=Der Datensatz kann nicht gespeichert werden. \n Bitte geben Sie eine volst&#228;ndigen Namen an
++directors.groupdetail.savebutton.newok=Speichern des neuen VideoFormates erfolgreich.
++directors.groupdetail.savebutton.editok=&#196;ndern des VideoFormates erfolgreich.
++directors.groupdetail.savebutton.errorsave=Datenbankfehler beim Speichern.
++directors.groupdetail.savebutton.errordb=Datenbankfehler beim Herstellen der Verbindung.(save).
++
++directors.groupdetail.deletebutton.question.header=Wirklich l&#246;schen?
++directors.groupdetail.deletebutton.question.text=Wollen Sie den Datensatz {0} wirklich l&#246;schen?
++directors.groupdetail.deletebutton.newok=Datensatz wurde erfolgreich gel&#246;scht.
++directors.groupdetail.deletebutton.errorsave=Datenbankfehler beim L&#246;schen.
++directors.groupdetail.deletebutton.errordb=Datenbankfehler beim Herstellen der Verbindung(del).
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-11 00:07:47 UTC (rev 124)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-11 10:33:45 UTC (rev 125)
+@@ -737,7 +737,7 @@
+ 	
+ 	public static Actor getSingleActor(final int id){
+ 	    if (logger.isDebugEnabled()) {
+-	        logger.debug(&quot;getSingleGenre() - start. int filter= &quot;+id);
++	        logger.debug(&quot;getSingleActor() - start. int filter= &quot;+id);
+ 	    }
+ 	    //init the returnlist
+ 	    Actor returnobject = null;
+@@ -771,7 +771,109 @@
+ 	    	
+ 	}
+ 
++	/**
++	 * This method gets all Directors from the database.
++	 * searches for firstname or lastname or id
++	 * @param filter 
++	 * @return List of Director objects, or an empty List
++	 */
++	public static List getDirector(final String filter){
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getDirector() - start. String filter= &quot;+filter);
++	    }
++	    //init the returnlist
++	    List returnlist = new ArrayList();
+ 	
++	    Session s = null;
++	    
++	    try {
++	        //get new Session and begin Transaction
++	        s = HibernateUtil.currentSession();
++	            
++	            //init the criteria
++	            Criteria criteria = s.createCriteria(Director.class);
++	            //any of the criteria 
++	            Disjunction any = Expression.disjunction();
++	
++	            //if filter not empty
++	            if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++	                any.add(Expression.like(&quot;firstName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                any.add(Expression.like(&quot;lastName&quot;, &quot;%&quot;+filter+&quot;%&quot;));
++	                
++	                //maybe we are searching for the id?
++	                try {
++	                    any.add(Expression.eq(&quot;directorId&quot;, new Integer(Integer.parseInt(filter))));
++	                } catch (Exception e) {
++	                }
++	                
++	            }
++	            //add all criteria
++	            criteria.add(any);
++	            //get the results
++	            returnlist = criteria.list();
++	
++	
++	
++	
++	    } catch (Exception e) {
++	        logger.error(
++	                &quot;getDirector() - Error while trying to do Transaction&quot;,
++	                e);
++	        returnlist = new ArrayList();
++	    } finally {
++	        try {
++	            // No matter what, close the session
++	            HibernateUtil.closeSession();
++	        } catch (HibernateException e1) {
++	            logger.error(&quot;getDirector() - Could not Close the Session&quot;, e1);
++	        }
++	    }
++	
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getDirector() - end&quot;);
++	    }
++	    return returnlist;
++	    	
++	}
++	
++	
++	public static Director getSingleDirector(final int id){
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getSingleDirector() - start. int filter= &quot;+id);
++	    }
++	    //init the returnlist
++	    Director returnobject = null;
++	
++	    Session s = null;
++	    Transaction tx = null;
++	    try {
++	        //get new Session and begin Transaction
++	        s = HibernateUtil.currentSession();
++	
++	            returnobject = (Director)s.get(Director.class, new Integer(id));
++	
++	    } catch (Exception e) {
++	        logger.error(
++	                &quot;getSingleDirector() - Error while trying to do Transaction&quot;,
++	                e);
++	        
++	    } finally {
++	        try {
++	            // No matter what, close the session
++	            HibernateUtil.closeSession();
++	        } catch (HibernateException e1) {
++	            logger.error(&quot;getSingleDirector() - Could not Close the Session&quot;, e1);
++	        }
++	    }
++	
++	    if (logger.isDebugEnabled()) {
++	        logger.debug(&quot;getSingleDirector() - end&quot;);
++	    }
++	    return returnobject;
++	    	
++	}
++	
++	
+ 	/**
+      * Constructor for TestActor.
+      * @param arg0
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000125.html">[Provirent-svn-commit] r124 - / html project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+	<LI>Next message: <A HREF="000127.html">[Provirent-svn-commit] r126 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/management/gui/language de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#126">[ date ]</a>
+              <a href="thread.html#126">[ thread ]</a>
+              <a href="subject.html#126">[ subject ]</a>
+              <a href="author.html#126">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

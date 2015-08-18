@@ -1,0 +1,335 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r156 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r156%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/persistence&In-Reply-To=%3C200411232300.iANN0KDR032184%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000156.html">
+   <LINK REL="Next"  HREF="000158.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r156 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r156%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/persistence&In-Reply-To=%3C200411232300.iANN0KDR032184%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r156 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Wed Nov 24 00:00:20 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000156.html">[Provirent-svn-commit] r155 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+        <LI>Next message: <A HREF="000158.html">[Provirent-svn-commit] r157 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#157">[ date ]</a>
+              <a href="thread.html#157">[ thread ]</a>
+              <a href="subject.html#157">[ subject ]</a>
+              <a href="author.html#157">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-24 00:00:04 +0100 (Wed, 24 Nov 2004)
+New Revision: 156
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+Log:
+- methoden zum eingeschr?\195?\164nkten abfragen hinzugef?\195?\188gt
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-23 18:27:32 UTC (rev 155)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-23 23:00:04 UTC (rev 156)
+@@ -39,6 +39,7 @@
+ import net.sf.hibernate.HibernateException;
+ import net.sf.hibernate.Session;
+ import net.sf.hibernate.Transaction;
++import net.sf.hibernate.expression.Conjunction;
+ import net.sf.hibernate.expression.Disjunction;
+ import net.sf.hibernate.expression.Expression;
+ 
+@@ -474,10 +475,22 @@
+ 	 * @param filter 
+ 	 * @return List of Director objects, or an empty List
+ 	 */
+-	public static List getGenre(final String filter){
++    public static List getGenre(final String filter){
++        return getGenreExcept(filter, new ArrayList());
++    }
++    
++	public static List getGenreExcept(final String filter, List genre){
+ 	    if (logger.isDebugEnabled()) {
+-	        logger.debug(&quot;getGenre() - start. String filter= &quot;+filter);
++	        logger.debug(&quot;getGenreExcept() - start. String filter= &quot;+filter);
+ 	    }
++	    
++	    //check if elements in list are Genre Objects
++	    if (genre.size() &gt; 0){
++	        if ( !(genre.get(0) instanceof Genre) ){
++	            logger.error(&quot;Elemente in Liste sind keine Genre&quot;);
++	            return new ArrayList();
++	        }
++	    }	    
+ 	    //init the returnlist
+ 	    List returnlist = new ArrayList();
+ 	
+@@ -504,6 +517,12 @@
+ 	                }
+ 	                
+ 	            }
++	            logger.debug(&quot;Anzahl der Genre:&quot;+genre.size());
++	            for (int i = 0; i &lt; genre.size(); i++) {
++                    Genre tmp = (Genre)genre.get(i);
++                    criteria.add(Expression.not(Expression.eq(&quot;genreId&quot;,tmp.getGenreId())));
++                }	            
++	            
+ 	            //add all criteria
+ 	            criteria.add(any);
+ 	            //get the results
+@@ -514,7 +533,7 @@
+ 	
+ 	    } catch (Exception e) {
+ 	        logger.error(
+-	                &quot;getGenre() - Error while trying to do Transaction&quot;,
++	                &quot;getGenreExcept() - Error while trying to do Transaction&quot;,
+ 	                e);
+ 	        returnlist = new ArrayList();
+ 	    } finally {
+@@ -522,12 +541,12 @@
+ 	            // No matter what, close the session
+ 	            HibernateUtil.closeSession();
+ 	        } catch (HibernateException e1) {
+-	            logger.error(&quot;getGenre() - Could not Close the Session&quot;, e1);
++	            logger.error(&quot;getGenreExcept() - Could not Close the Session&quot;, e1);
+ 	        }
+ 	    }
+ 	
+ 	    if (logger.isDebugEnabled()) {
+-	        logger.debug(&quot;getGenre() - end&quot;);
++	        logger.debug(&quot;getGenreExcept() - end&quot;);
+ 	    }
+ 	    return returnlist;
+ 	    
+@@ -683,9 +702,20 @@
+ 	 * @return List of Image objects, or an empty List
+ 	 */
+ 	public static List getImages(final String filter){
++	    return getImagesExcept(filter, new ArrayList());
++	}
++	public static List getImagesExcept(final String filter, List images){
+ 	    if (logger.isDebugEnabled()) {
+-	        logger.debug(&quot;getImages() - start. String filter= &quot;+filter);
++	        logger.debug(&quot;getImagesExcept() - start. String filter= &quot;+filter);
+ 	    }
++	    //check if elements in list are Director Objects
++	    if (images.size() &gt; 0){
++	        if ( !(images.get(0) instanceof Image) ){
++	            logger.error(&quot;Elemente in Liste sind keine Image&quot;);
++	            return new ArrayList();
++	        }
++	    }	    
++	    
+ 	    //init the returnlist
+ 	    List returnlist = new ArrayList();
+ 	
+@@ -710,8 +740,13 @@
+ 	                    any.add(Expression.eq(&quot;imageId&quot;, new Integer(Integer.parseInt(filter))));
+ 	                } catch (Exception e) {
+ 	                }
+-	                
+ 	            }
++	            logger.debug(&quot;Anzahl der Images:&quot;+images.size());
++	            for (int i = 0; i &lt; images.size(); i++) {
++                    Image tmp = (Image)images.get(i);
++                    criteria.add(Expression.not(Expression.eq(&quot;imageId&quot;,tmp.getImageId())));
++                }
++	            
+ 	            //add all criteria
+ 	            criteria.add(any);
+ 	            //get the results
+@@ -722,7 +757,7 @@
+ 	
+ 	    } catch (Exception e) {
+ 	        logger.error(
+-	                &quot;getImages() - Error while trying to do Transaction&quot;,
++	                &quot;getImagesExcept() - Error while trying to do Transaction&quot;,
+ 	                e);
+ 	        returnlist = new ArrayList();
+ 	    } finally {
+@@ -730,12 +765,12 @@
+ 	            // No matter what, close the session
+ 	            HibernateUtil.closeSession();
+ 	        } catch (HibernateException e1) {
+-	            logger.error(&quot;getImages() - Could not Close the Session&quot;, e1);
++	            logger.error(&quot;getImagesExcept() - Could not Close the Session&quot;, e1);
+ 	        }
+ 	    }
+ 	
+ 	    if (logger.isDebugEnabled()) {
+-	        logger.debug(&quot;getImages() - end&quot;);
++	        logger.debug(&quot;getImagesExcept() - end&quot;);
+ 	    }
+ 	    return returnlist;
+ 	    	
+@@ -1097,9 +1132,24 @@
+ 	 * @return List of Director objects, or an empty List
+ 	 */
+ 	public static List getDirector(final String filter){
++	    return getDirectorExcept(filter, new ArrayList());
++	    
++	}
++	
++	public static List getDirectorExcept(final String filter, List directors){
+ 	    if (logger.isDebugEnabled()) {
+-	        logger.debug(&quot;getDirector() - start. String filter= &quot;+filter);
++	        logger.debug(&quot;getDirectorExcept() - start. String filter= &quot;+filter);
+ 	    }
++	
++	    //check if elements in list are Director Objects
++	    if (directors.size() &gt; 0){
++	        if ( !(directors.get(0) instanceof Director) ){
++	            logger.error(&quot;Elemente in Liste sind keine Director&quot;);
++	            return new ArrayList();
++	        }
++	    }
++	    
++	    
+ 	    //init the returnlist
+ 	    List returnlist = new ArrayList();
+ 	
+@@ -1126,6 +1176,13 @@
+ 	                }
+ 	                
+ 	            }
++	            
++	            logger.debug(&quot;Anzahl der Directors:&quot;+directors.size());
++	            for (int i = 0; i &lt; directors.size(); i++) {
++                    Director tmp = (Director)directors.get(i);
++                    criteria.add(Expression.not(Expression.eq(&quot;directorId&quot;,tmp.getDirectorId())));
++                }
++	            
+ 	            //add all criteria
+ 	            criteria.add(any);
+ 	            //get the results
+@@ -1136,7 +1193,7 @@
+ 	
+ 	    } catch (Exception e) {
+ 	        logger.error(
+-	                &quot;getDirector() - Error while trying to do Transaction&quot;,
++	                &quot;getDirectorExcept() - Error while trying to do Transaction&quot;,
+ 	                e);
+ 	        returnlist = new ArrayList();
+ 	    } finally {
+@@ -1144,12 +1201,12 @@
+ 	            // No matter what, close the session
+ 	            HibernateUtil.closeSession();
+ 	        } catch (HibernateException e1) {
+-	            logger.error(&quot;getDirector() - Could not Close the Session&quot;, e1);
++	            logger.error(&quot;getDirectorExcept() - Could not Close the Session&quot;, e1);
+ 	        }
+ 	    }
+ 	
+ 	    if (logger.isDebugEnabled()) {
+-	        logger.debug(&quot;getDirector() - end&quot;);
++	        logger.debug(&quot;getDirectorExcept() - end&quot;);
+ 	    }
+ 	    return returnlist;
+ 	    	
+@@ -1200,9 +1257,29 @@
+ 	 * @return List of Actors objects, or an empty List
+ 	 */
+ 	public static List getActor(final String filter){
++	    return getActorExcept(filter, new ArrayList());	    	
++	}
++	
++	
++	
++	/**
++	 * This method gets all Actor from the database.
++	 * searches for firstname or lastname or id
++	 * @param filter 
++	 * @return List of Actors objects, or an empty List
++	 */
++	public static List getActorExcept(final String filter, List actors){
+ 	    if (logger.isDebugEnabled()) {
+ 	        logger.debug(&quot;getActor() - start. String filter= &quot;+filter);
+ 	    }
++	    //check if elements in list are Actor Objects
++	    if (actors.size() &gt; 0){
++	        if ( !(actors.get(0) instanceof Actor) ){
++	            logger.error(&quot;Elemente in Liste sind keine Actors&quot;);
++	            return new ArrayList();
++	        }
++	    }
++	    
+ 	    //init the returnlist
+ 	    List returnlist = new ArrayList();
+ 	
+@@ -1229,14 +1306,20 @@
+ 	                }
+ 	                
+ 	            }
+-	            //add all criteria
++	            logger.debug(&quot;Anzahl der Actors:&quot;+actors.size());
++	            for (int i = 0; i &lt; actors.size(); i++) {
++                    Actor tmp = (Actor)actors.get(i);
++                    logger.debug(&quot;Actor: &quot;+tmp.getActorId());
++                    criteria.add(Expression.not(Expression.eq(&quot;actorId&quot;,tmp.getActorId())));
++                }
++
++	            //add all filter criteria
+ 	            criteria.add(any);
++	            
+ 	            //get the results
+ 	            returnlist = criteria.list();
+ 	
+ 	
+-	
+-	
+ 	    } catch (Exception e) {
+ 	        logger.error(
+ 	                &quot;getActor() - Error while trying to do Transaction&quot;,
+@@ -1256,9 +1339,8 @@
+ 	    }
+ 	    return returnlist;
+ 	    	
+-	}
++	}	
+ 	
+-	
+ 	public static Actor getSingleActor(final int id){
+ 	    if (logger.isDebugEnabled()) {
+ 	        logger.debug(&quot;getSingleActor() - start. int filter= &quot;+id);
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000156.html">[Provirent-svn-commit] r155 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+	<LI>Next message: <A HREF="000158.html">[Provirent-svn-commit] r157 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#157">[ date ]</a>
+              <a href="thread.html#157">[ thread ]</a>
+              <a href="subject.html#157">[ subject ]</a>
+              <a href="author.html#157">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

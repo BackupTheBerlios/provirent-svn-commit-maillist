@@ -1,0 +1,332 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r35 - project_src/provirent_hibernate/src/test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r35%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200410111750.i9BHoR2T019432%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000035.html">
+   <LINK REL="Next"  HREF="000037.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r35 - project_src/provirent_hibernate/src/test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r35%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200410111750.i9BHoR2T019432%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r35 - project_src/provirent_hibernate/src/test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Mon Oct 11 19:50:27 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000035.html">[Provirent-svn-commit] r34 - timetable
+</A></li>
+        <LI>Next message: <A HREF="000037.html">[Provirent-svn-commit] r36 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#36">[ date ]</a>
+              <a href="thread.html#36">[ thread ]</a>
+              <a href="subject.html#36">[ subject ]</a>
+              <a href="author.html#36">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-11 19:50:25 +0200 (Mon, 11 Oct 2004)
+New Revision: 35
+
+Added:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsComplexObjects.java
+Modified:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java
+Log:
+- TestCustomer erstellt eine Customer und loescht diesen wieder
+- AllTestComplexObject test die komplizierten Objekte, sollte aber immer nach einem erfolgreichen Test von AllTestSimpleObjects aufgerufen werden
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsComplexObjects.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsComplexObjects.java	2004-10-11 15:56:27 UTC (rev 34)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsComplexObjects.java	2004-10-11 17:50:25 UTC (rev 35)
+@@ -0,0 +1,51 @@
++/*
++ * Created on 11.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import junit.framework.Test;
++import junit.framework.TestSuite;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class AllTestsComplexObjects {
++
++    public static Test suite() {
++        TestSuite suite = new TestSuite(&quot;Test for test.provirent.hibernate&quot;);
++        //$JUnit-BEGIN$
++        suite.addTestSuite(TestCustomer.class);
++        //$JUnit-END$
++        return suite;
++    }
++}
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java	2004-10-11 15:56:27 UTC (rev 34)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java	2004-10-11 17:50:25 UTC (rev 35)
+@@ -1,5 +1,20 @@
+ package test.provirent.hibernate;
++
++import java.util.ArrayList;
++import java.util.Date;
++import java.util.Calendar;
++import java.util.Iterator;
++import java.util.List;
++
+ import junit.framework.TestCase;
++import net.sf.hibernate.Session;
++import net.sf.hibernate.Transaction;
++
++import org.apache.log4j.Logger;
++
++import de.hsharz.provirent.objects.Condition;
++import de.hsharz.provirent.objects.Customer;
++import de.hsharz.provirent.objects.Person;
+ /*
+  * Created on 09.10.2004
+  *
+@@ -38,19 +53,39 @@
+  *
+  */
+ public class TestCustomer extends TestCase {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(TestCustomer.class);
+ 
+     /*
+      * @see TestCase#setUp()
+      */
+     protected void setUp() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - start&quot;);
++        }
++
+         super.setUp();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - end&quot;);
++        }
+     }
+ 
+     /*
+      * @see TestCase#tearDown()
+      */
+     protected void tearDown() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - start&quot;);
++        }
++
+         super.tearDown();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - end&quot;);
++        }
+     }
+ 
+     /**
+@@ -60,5 +95,135 @@
+     public TestCustomer(String arg0) {
+         super(arg0);
+     }
++    
+ 
++    
++    public void testCustomer() throws Exception{
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCustomer() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                List customer = new ArrayList();
++                
++                //create new objects
++
++                Customer c = new Customer();
++                c.setUserName(&quot;kunde1&quot;);
++                c.setPassword(&quot;kunde1&quot;);
++                c.setHiddenQuestion(&quot; &quot;);
++                c.setHiddenAnswer(&quot; &quot;);
++
++                
++                Date birth = new Date();
++                birth.setMonth(4);
++                birth.setYear(1981);
++                birth.setDate(14);
++                
++                Calendar birthday = Calendar.getInstance();
++                birthday.setTime(birth);
++                
++                c.setDayOfBirth(birthday);
++                
++                
++                Person person = new Person();
++                person.setFirstName(&quot;Philipp&quot;);
++                person.setLastName(&quot;Schneider&quot;);
++                person.setStreet(&quot;Kastanienring&quot;);
++                person.setStreetNumber(&quot;16&quot;);
++                person.setCity(&quot;Leipzig&quot;);
++                person.setZipCode(&quot;04316&quot;);
++                person.setCountry(&quot;Deutschland&quot;);
++                person.setSalutation(&quot;Herr&quot;);
++                person.setEmailAddress(&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">egal at phil-schneider.de</A>&quot;);
++                
++                c.setPerson(person);
++                
++                customer.add(c);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = customer.iterator(); iter.hasNext();) {
++                    Customer custe = (Customer) iter.next();
++                    ids.add((Integer) s.save(custe));
++
++                }
++                s.flush();
++
++                
++                int id = c.getCustomerId().intValue();
++                //get Condition from Hibernate
++                Customer dbc = (Customer) s.get(Customer.class, new Integer(id));
++                assertNotNull(&quot;Can't get Customer&quot; + id + &quot; from DB&quot;, dbc);
++                if (dbc == null) {
++                    if (logger.isDebugEnabled()) {
++                        logger.debug(&quot;testCustomer() Kein object mit id &quot;
++                                + id + &quot;gefunden.&quot;);
++                    }
++                    return;
++                }
++                //are both equal?
++                assertEquals(
++                        &quot;Select: Customer aus DB nicht gleich meiner. DB: &quot;
++                                + dbc + &quot; My:&quot; + c, c, dbc); 
++
++                //Update
++
++                //delete the object
++                s.delete(c);
++                s.flush();
++                
++                dbc = c = null;
++
++                Object obj = s.get(Customer.class, new Integer(id));
++
++                //should be null, because data deleted
++                assertNull(&quot;Deleted: Customer ID:&quot; + id + &quot;, but still in DB&quot;, obj);
++
++                
++                tx.commit();
++
++                System.out.println(&quot;Customer der gespeichert wurde: &quot; + customer.toString());
++                
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;TestCreatingCustomer() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;TestCreatingCustomer() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            HibernateUtil.closeSession();
++        }
++        
++        
++        
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;TestCreatingCustomer() - end&quot;);
++        }
++    }
++    
++    
+ }
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000035.html">[Provirent-svn-commit] r34 - timetable
+</A></li>
+	<LI>Next message: <A HREF="000037.html">[Provirent-svn-commit] r36 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#36">[ date ]</a>
+              <a href="thread.html#36">[ thread ]</a>
+              <a href="subject.html#36">[ subject ]</a>
+              <a href="author.html#36">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

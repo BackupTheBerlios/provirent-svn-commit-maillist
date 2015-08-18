@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r73 - in project_src/provirent_hibernate: . src/de/hsharz/provirent
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r73%20-%20in%20project_src/provirent_hibernate%3A%20.%20src/de/hsharz/provirent&In-Reply-To=%3C200411011807.iA1I7BEb019014%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000073.html">
+   <LINK REL="Next"  HREF="000075.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r73 - in project_src/provirent_hibernate: . src/de/hsharz/provirent</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r73%20-%20in%20project_src/provirent_hibernate%3A%20.%20src/de/hsharz/provirent&In-Reply-To=%3C200411011807.iA1I7BEb019014%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r73 - in project_src/provirent_hibernate: . src/de/hsharz/provirent">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Mon Nov  1 19:07:11 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000073.html">[Provirent-svn-commit] r72 - project_src/provirent_hibernate/lib
+</A></li>
+        <LI>Next message: <A HREF="000075.html">[Provirent-svn-commit] r74 - docu
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#74">[ date ]</a>
+              <a href="thread.html#74">[ thread ]</a>
+              <a href="subject.html#74">[ subject ]</a>
+              <a href="author.html#74">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-01 19:07:10 +0100 (Mon, 01 Nov 2004)
+New Revision: 73
+
+Modified:
+   project_src/provirent_hibernate/.classpath
+   project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java
+Log:
+- methode zum Email versand hinzugef?\195?\188gt
+
+Modified: project_src/provirent_hibernate/.classpath
+===================================================================
+--- project_src/provirent_hibernate/.classpath	2004-11-01 17:36:55 UTC (rev 72)
++++ project_src/provirent_hibernate/.classpath	2004-11-01 18:07:10 UTC (rev 73)
+@@ -40,5 +40,7 @@
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;lib/xerces-2.4.0.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;lib/xml-apis.jar&quot;/&gt;
+ 	&lt;classpathentry sourcepath=&quot;ECLIPSE_HOME/plugins/org.eclipse.platform.source.win32.win32.x86_3.0.1/src/org.eclipse.swt.win32_3.0.1/ws/win32/swtsrc.zip&quot; kind=&quot;var&quot; path=&quot;ECLIPSE_HOME/plugins/org.eclipse.swt.win32_3.0.1/ws/win32/swt.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;lib/activation.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;lib/mail.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;output&quot; path=&quot;bin&quot;/&gt;
+ &lt;/classpath&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java	2004-11-01 17:36:55 UTC (rev 72)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/Util.java	2004-11-01 18:07:10 UTC (rev 73)
+@@ -32,24 +32,75 @@
+  */
+ package de.hsharz.provirent;
+ 
++import java.io.UnsupportedEncodingException;
+ import java.security.MessageDigest;
++import java.util.Properties;
+ 
++import javax.mail.Address;
++import javax.mail.Message;
++import javax.mail.MessagingException;
++import javax.mail.Session;
++import javax.mail.Transport;
++import javax.mail.internet.InternetAddress;
++import javax.mail.internet.MimeMessage;
++
+ import org.apache.log4j.Logger;
+ 
+ /**
+  * @author Philipp Schneider
+- *
++ *  
+  */
+ public class Util {
+     /**
+      * Logger for this class
+      */
+     private static final Logger logger = Logger.getLogger(Util.class);
+-    
+-    static public String createHash(final String s) {
+-        
++
++    private static final String MAIL_SERVER = &quot;phil-schneider.de&quot;;
++
++    private static final String MAIL_PORT = &quot;&quot;;
++
++    private static final String MAIL_USER = &quot;web2_103p9&quot;;
++
++    private static final String MAIL_PASS = &quot;jboss14&quot;;
++
++    public Util() {
++
++    }
++
++    public static void sendemail(final String toEmail, final String toName,
++            final String subject, final String plainText, final String htmlText)
++            throws MessagingException, UnsupportedEncodingException {
++
++        Properties props = new Properties();
++        Session session = Session.getDefaultInstance(props, null);
++        MimeMessage message = new MimeMessage(session);
++
++        message.setContent(htmlText, &quot;text/html&quot;);
++        message.setContent(plainText, &quot;text/plain&quot;);
++        message.setSubject(subject);
++
++        Address address = new InternetAddress(
++                &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">provirent-test at phil-schneider.de</A>&quot;, &quot;Provirent test&quot;);
++        message.setFrom(address);
++        message.setReplyTo(new Address[] { address });
++
++        Address toaddress = new InternetAddress(toEmail, toName);
++        message.addRecipient(Message.RecipientType.TO, toaddress);
++
++        message.saveChanges(); // implicit with send()
++        Transport transport = session.getTransport(&quot;smtp&quot;);
++        transport.connect(MAIL_SERVER, MAIL_USER, MAIL_PASS);
++        transport.sendMessage(message, message.getAllRecipients());
++        transport.close();
++
++    }
++
++    public static String createHash(final String s) {
++
+         try {
+-            byte[] encryptbyte = MessageDigest.getInstance(&quot;SHA-1&quot;).digest(s.getBytes());
++            byte[] encryptbyte = MessageDigest.getInstance(&quot;SHA-1&quot;).digest(
++                    s.getBytes());
+             StringBuffer sb = new StringBuffer();
+ 
+             //create a StringBuffer for the hash
+@@ -58,11 +109,15 @@
+             }
+ 
+             return new String(sb);
+-            
++
+         } catch (Exception ex) {
+-            logger.error(&quot;Fehler beim HashCode erstellen.&quot;,ex);
++            logger.error(&quot;Fehler beim HashCode erstellen.&quot;, ex);
+             return null;
+         }
+     }
+ 
+-}
++    public static void main(String[] args) {
++        Util h = new Util();
++
++    }
++}
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000073.html">[Provirent-svn-commit] r72 - project_src/provirent_hibernate/lib
+</A></li>
+	<LI>Next message: <A HREF="000075.html">[Provirent-svn-commit] r74 - docu
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#74">[ date ]</a>
+              <a href="thread.html#74">[ thread ]</a>
+              <a href="subject.html#74">[ subject ]</a>
+              <a href="author.html#74">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

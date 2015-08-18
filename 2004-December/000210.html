@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r209 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r209%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200412062250.iB6MoMS1016521%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000209.html">
+   <LINK REL="Next"  HREF="000211.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r209 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r209%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200412062250.iB6MoMS1016521%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r209 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Mon Dec  6 23:50:22 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000209.html">[Provirent-svn-commit] r208 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence
+</A></li>
+        <LI>Next message: <A HREF="000211.html">[Provirent-svn-commit] r210 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#210">[ date ]</a>
+              <a href="thread.html#210">[ thread ]</a>
+              <a href="subject.html#210">[ subject ]</a>
+              <a href="author.html#210">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-12-06 23:50:18 +0100 (Mon, 06 Dec 2004)
+New Revision: 209
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+Log:
+Composite Movie  -Fehler bei Datum beseitigt
+                 -l?\195?\182schen funktioniert
+                 -speichern &quot;erfolgreich&quot;
+                  aber film wird nicht in die Datenbank                      eingef?\195?\188gt
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-06 21:32:16 UTC (rev 208)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeMovie.java	2004-12-06 22:50:18 UTC (rev 209)
+@@ -1421,7 +1421,7 @@
+                 movie2.getMovieId() + &quot; &quot;,
+                 movie2.getTitle() + &quot; &quot;,
+                 DateFormat.getDateInstance(DateFormat.SHORT).format(
+-                        movie2.getReleaseDate()) });
++                        movie2.getReleaseDate().getTime()) });
+     }
+ 
+     /**
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-12-06 21:32:16 UTC (rev 208)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/movies.properties	2004-12-06 22:50:18 UTC (rev 209)
+@@ -37,7 +37,7 @@
+ movies.button.deleteitem =L&#246;schen
+ movies.button.changedate =&#196;ndern
+ 
+-movies.groupdetail.savebutton.warn.noitem.title =Datensatz speichern
++movies.groupdetail.savebutton.warn.noitems.title =Datensatz speichern
+ movies.groupdetail.savebutton.warn.noitems.msg=Der Datensatz kann nicht gespeichert werden, da folgende Werte fehlen:\n
+ movies.groupdetail.savebutton.warn.notitle=Titel
+ movies.groupdetail.savebutton.warn.nodescription=Beschreibung
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000209.html">[Provirent-svn-commit] r208 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence
+</A></li>
+	<LI>Next message: <A HREF="000211.html">[Provirent-svn-commit] r210 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#210">[ date ]</a>
+              <a href="thread.html#210">[ thread ]</a>
+              <a href="subject.html#210">[ subject ]</a>
+              <a href="author.html#210">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

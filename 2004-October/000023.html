@@ -1,0 +1,1501 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r22 - project_src/provirent_hibernate/src/test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r22%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200410091822.i99IMGEu015900%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000022.html">
+   <LINK REL="Next"  HREF="000024.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r22 - project_src/provirent_hibernate/src/test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r22%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200410091822.i99IMGEu015900%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r22 - project_src/provirent_hibernate/src/test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Sat Oct  9 20:22:16 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000022.html">[Provirent-svn-commit] r21 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000024.html">[Provirent-svn-commit] r23 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#23">[ date ]</a>
+              <a href="thread.html#23">[ thread ]</a>
+              <a href="subject.html#23">[ subject ]</a>
+              <a href="author.html#23">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-09 20:22:16 +0200 (Sat, 09 Oct 2004)
+New Revision: 22
+
+Added:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestActor.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestBill.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestDVD.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestDirector.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestLanguage.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestOrder.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestOrderItem.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestPerson.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestSubtitle.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestVideoFormat.java
+Log:
+- TestCase Klassen zum testen der einzelnen Objeke hinzugefuegt
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,116 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import net.sf.hibernate.HibernateException;
++import net.sf.hibernate.Session;
++import net.sf.hibernate.SessionFactory;
++import net.sf.hibernate.cfg.Configuration;
++
++import org.apache.commons.logging.Log;
++import org.apache.commons.logging.LogFactory;
++
++import de.hsharz.provirent.objects.Actor;
++import de.hsharz.provirent.objects.AudioFormat;
++import de.hsharz.provirent.objects.Bill;
++import de.hsharz.provirent.objects.Condition;
++import de.hsharz.provirent.objects.Customer;
++import de.hsharz.provirent.objects.Director;
++import de.hsharz.provirent.objects.Dvd;
++import de.hsharz.provirent.objects.Genre;
++import de.hsharz.provirent.objects.Image;
++import de.hsharz.provirent.objects.Language;
++import de.hsharz.provirent.objects.Movie;
++import de.hsharz.provirent.objects.Order;
++import de.hsharz.provirent.objects.OrderItem;
++import de.hsharz.provirent.objects.Person;
++import de.hsharz.provirent.objects.Status;
++import de.hsharz.provirent.objects.Subtitle;
++import de.hsharz.provirent.objects.VideoFormat;
++
++/**
++ * @author Philipp Schneider
++ *  
++ */
++public class HibernateUtil {
++
++    private static Log log = LogFactory.getLog(HibernateUtil.class);
++
++    private static final SessionFactory sessionFactory;
++    static {
++        try {
++            //     Create the SessionFactory
++            Configuration cfg = new Configuration();
++            cfg
++            .addClass(Movie.class).addClass(Actor.class)
++            .addClass(AudioFormat.class).addClass(Condition.class)
++            .addClass(Director.class).addClass(Dvd.class)
++            .addClass(Genre.class).addClass(Language.class)
++            .addClass(Status.class).addClass(Bill.class)
++            .addClass(Subtitle.class).addClass(VideoFormat.class)
++            .addClass(Customer.class).addClass(Image.class)
++            .addClass(Order.class).addClass(OrderItem.class)
++            .addClass(Person.class);
++
++
++            sessionFactory = cfg.buildSessionFactory();
++        } catch (Throwable ex) {
++            log.error(&quot;Initial SessionFactory creation failed.&quot;, ex);
++            throw new ExceptionInInitializerError(ex);
++        }
++    }
++
++    public static final ThreadLocal session = new ThreadLocal();
++
++    public static Session currentSession() throws HibernateException {
++        Session s = (Session) session.get();
++        //     Open a new Session, if this Thread has none yet
++        if (s == null) {
++            s = sessionFactory.openSession();
++            session.set(s);
++        }
++        
++        log.debug(&quot;HibernateUtil.currentSession() - Connected? &quot; + s.isConnected());
++        log.debug(&quot;HibernateUtil.currentSession() - Open? &quot; + s.isOpen());
++        
++        return s;
++    }
++
++    public static void closeSession() throws HibernateException {
++        Session s = (Session) session.get();
++        session.set(null);
++        if (s != null)
++            s.close();
++    }
++
++}
+\ No newline at end of file
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestActor.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestActor.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestActor.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,65 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import junit.framework.TestCase;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestActor extends TestCase {
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
++
++    /**
++     * Constructor for TestActor.
++     * @param arg0
++     */
++    public TestActor(String arg0) {
++        super(arg0);
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,65 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import junit.framework.TestCase;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestAudioFormat extends TestCase {
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
++
++    /**
++     * Constructor for TestAudioFormat.
++     * @param arg0
++     */
++    public TestAudioFormat(String arg0) {
++        super(arg0);
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestBill.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestBill.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestBill.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,65 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import junit.framework.TestCase;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestBill extends TestCase {
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
++
++    /**
++     * Constructor for TestBill.
++     * @param arg0
++     */
++    public TestBill(String arg0) {
++        super(arg0);
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,65 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import junit.framework.TestCase;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestCondition extends TestCase {
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
++
++    /**
++     * Constructor for TestCondition.
++     * @param arg0
++     */
++    public TestCondition(String arg0) {
++        super(arg0);
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,64 @@
++package test.provirent.hibernate;
++import junit.framework.TestCase;
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestCustomer extends TestCase {
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
++
++    /**
++     * Constructor for TestCustomer.
++     * @param arg0
++     */
++    public TestCustomer(String arg0) {
++        super(arg0);
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestDVD.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestDVD.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestDVD.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,64 @@
++package test.provirent.hibernate;
++import junit.framework.TestCase;
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestDvd extends TestCase {
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
++
++    /**
++     * Constructor for TestDvd.
++     * @param arg0
++     */
++    public TestDvd(String arg0) {
++        super(arg0);
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestDirector.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestDirector.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestDirector.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,153 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import org.apache.log4j.Logger;
++
++import junit.framework.TestCase;
++import de.hsharz.provirent.objects.*;
++
++import net.sf.hibernate.Session;
++import net.sf.hibernate.Transaction;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestDirector extends TestCase {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(TestDirector.class);
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - start&quot;);
++        }
++
++        super.setUp();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - end&quot;);
++        }
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - start&quot;);
++        }
++
++        super.tearDown();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - end&quot;);
++        }
++    }
++
++    public void testCreating() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - start&quot;);
++        }
++
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++
++                if (logger.isDebugEnabled()) {
++                    logger.debug(&quot;testCreating() - Connected? &quot;
++                            + s.isConnected());
++                    logger.debug(&quot;testCreating() - Open? &quot; + s.isOpen());
++                }
++
++                Director d1 = new Director(&quot;Bibo&quot;, &quot;Bergeron&quot;);
++                Director d2 = new Director(&quot;Vicky&quot;, &quot;Jenson&quot;);
++                Director d3 = new Director(&quot;Jay&quot;, &quot;Russell&quot;);
++                Director d4 = new Director(&quot;Joseph&quot;, &quot;Ruben&quot;);
++                s.save(d1);
++                s.save(d2);
++                s.save(d3);
++                s.save(d4);
++                s.flush();
++
++                tx.commit();
++                
++                
++                
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testCreating() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testCreating() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++        
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - end&quot;);
++        }
++    }
++
++    /**
++     * Constructor for TestDirector.
++     * @param arg0
++     */
++    public TestDirector(String arg0) {
++        super(arg0);
++    }
++
++}
+\ No newline at end of file
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,64 @@
++package test.provirent.hibernate;
++import junit.framework.TestCase;
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestGenre extends TestCase {
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
++
++    /**
++     * Constructor for TestGenre.
++     * @param arg0
++     */
++    public TestGenre(String arg0) {
++        super(arg0);
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,64 @@
++package test.provirent.hibernate;
++import junit.framework.TestCase;
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestImage extends TestCase {
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
++
++    /**
++     * Constructor for TestImage.
++     * @param arg0
++     */
++    public TestImage(String arg0) {
++        super(arg0);
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestLanguage.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestLanguage.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestLanguage.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,64 @@
++package test.provirent.hibernate;
++import junit.framework.TestCase;
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestLanguage extends TestCase {
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
++
++    /**
++     * Constructor for TestLanguage.
++     * @param arg0
++     */
++    public TestLanguage(String arg0) {
++        super(arg0);
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,65 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import junit.framework.TestCase;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestMovie extends TestCase {
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
++
++    /**
++     * Constructor for TestMovie.
++     * @param arg0
++     */
++    public TestMovie(String arg0) {
++        super(arg0);
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestOrder.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestOrder.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestOrder.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,65 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import junit.framework.TestCase;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestOrder extends TestCase {
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
++
++    /**
++     * Constructor for TestOrder.
++     * @param arg0
++     */
++    public TestOrder(String arg0) {
++        super(arg0);
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestOrderItem.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestOrderItem.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestOrderItem.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,65 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import junit.framework.TestCase;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestOrderItem extends TestCase {
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
++
++    /**
++     * Constructor for TestOrderItem.
++     * @param arg0
++     */
++    public TestOrderItem(String arg0) {
++        super(arg0);
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestPerson.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestPerson.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestPerson.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,65 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import junit.framework.TestCase;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestPerson extends TestCase {
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
++
++    /**
++     * Constructor for TestPerson.
++     * @param arg0
++     */
++    public TestPerson(String arg0) {
++        super(arg0);
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,65 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import junit.framework.TestCase;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestStatus extends TestCase {
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
++
++    /**
++     * Constructor for TestStatus.
++     * @param arg0
++     */
++    public TestStatus(String arg0) {
++        super(arg0);
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestSubtitle.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestSubtitle.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestSubtitle.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,65 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import junit.framework.TestCase;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestSubtitle extends TestCase {
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
++
++    /**
++     * Constructor for TestSubtitle.
++     * @param arg0
++     */
++    public TestSubtitle(String arg0) {
++        super(arg0);
++    }
++
++}
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/TestVideoFormat.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestVideoFormat.java	2004-10-09 18:20:37 UTC (rev 21)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestVideoFormat.java	2004-10-09 18:22:16 UTC (rev 22)
+@@ -0,0 +1,65 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import junit.framework.TestCase;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class TestVideoFormat extends TestCase {
++
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
++    }
++
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
++    }
++
++    /**
++     * Constructor for TestVideoFormat.
++     * @param arg0
++     */
++    public TestVideoFormat(String arg0) {
++        super(arg0);
++    }
++
++}
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000022.html">[Provirent-svn-commit] r21 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000024.html">[Provirent-svn-commit] r23 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#23">[ date ]</a>
+              <a href="thread.html#23">[ thread ]</a>
+              <a href="subject.html#23">[ subject ]</a>
+              <a href="author.html#23">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

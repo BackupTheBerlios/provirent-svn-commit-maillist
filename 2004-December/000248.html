@@ -1,0 +1,888 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r247 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r247%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20management/gui/language%20persistence&In-Reply-To=%3C200412141842.iBEIgNDv011891%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000247.html">
+   <LINK REL="Next"  HREF="000249.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r247 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r247%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20management/gui/language%20persistence&In-Reply-To=%3C200412141842.iBEIgNDv011891%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r247 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Tue Dec 14 19:42:23 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000247.html">[Provirent-svn-commit] r246 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+        <LI>Next message: <A HREF="000249.html">[Provirent-svn-commit] r248 - in project_src: . clienttest/src website website/Tomcat website/Tomcat/work website/Tomcat/work/web website/Tomcat/work/web/loader website/Tomcat/work/web/loader/META-INF website/Tomcat/work/web/loader/META-INF/tlds website/Tomcat/work/web/loader/org website/Tomcat/work/web/loader/org/apache website/Tomcat/work/web/loader/org/apache/commons website/Tomcat/work/web/loader/org/apache/commons/validator website/Tomcat/work/web/loader/org/apache/commons/validator/resources website/Tomcat/work/web/loader/org/apache/struts website/Tomcat/work/web/loader/org/apache/struts/action website/Tomcat/work/web/loader/org/apache/struts/actions website/Tomcat/work/web/loader/org/apache/struts/resources website/Tomcat/work/web/loader/org/apache/struts/taglib website/Tomcat/work/web/loader/org/apache/struts/taglib/bean website/Tomcat/work/web/loader/org/apache/struts/taglib/html website/Tomcat/work/web/loader/org/apache/struts/taglib/logic website/Tomcat/work/web/loader/org/apac! he/struts/util website/bak website/bak/web website/classes website/classes/Generated Source website/classes/Generated Source/.jsp website/classes/Generated Source/.jsp/web website/classes/Generated Source/.jsp/web/org website/classes/Generated Source/.jsp/web/org/apache website/classes/Generated Source/.jsp/web/org/apache/jsp website/classes/Generated Source/.jsp/web/org/apache/jsp/templates website/classes/jsp cache website/classes/jsp cache/web website/classes/jsp cache/web/org website/classes/jsp cache/web/org/apache website/classes/jsp cache/web/org/apache/jsp website/classes/jsp cache/web/org/apache/jsp/templates website/classes/jsp cache/web/package cache website/src website/test website/web website/web/WEB-INF website/web/WEB-INF/lib website/web/WEB-INF/taglib website/web/images website/web/templates
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#248">[ date ]</a>
+              <a href="thread.html#248">[ thread ]</a>
+              <a href="subject.html#248">[ subject ]</a>
+              <a href="author.html#248">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-12-14 19:42:22 +0100 (Tue, 14 Dec 2004)
+New Revision: 247
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+Log:
+Composite DVD  - erweitert
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java	2004-12-14 18:17:51 UTC (rev 246)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDVD.java	2004-12-14 18:42:22 UTC (rev 247)
+@@ -1,5 +1,10 @@
+ package de.hsharz.provirent.management.gui;
+ 
++import java.text.DateFormat;
++import java.text.MessageFormat;
++import java.text.ParseException;
++import java.util.ArrayList;
++import java.util.Calendar;
+ import java.util.Locale;
+ import java.util.PropertyResourceBundle;
+ import java.util.ResourceBundle;
+@@ -32,7 +37,11 @@
+ 
+ import com.cloudgarden.resource.SWTResourceManager;
+ 
++import de.hsharz.provirent.objects.Actor;
++import de.hsharz.provirent.objects.Director;
+ import de.hsharz.provirent.objects.Dvd;
++import de.hsharz.provirent.objects.Genre;
++import de.hsharz.provirent.objects.Image;
+ import de.hsharz.provirent.objects.Language;
+ import de.hsharz.provirent.objects.Subtitle;
+ import de.hsharz.provirent.objects.VideoFormat;
+@@ -41,6 +50,7 @@
+ import de.hsharz.provirent.objects.PaymentCategory;
+ import de.hsharz.provirent.objects.Condition;
+ import de.hsharz.provirent.objects.Status;
++import de.hsharz.provirent.persistence.DataBaseException;
+ import de.hsharz.provirent.persistence.Database;
+ 
+ /**
+@@ -142,6 +152,8 @@
+     
+     private Composite compositeDVDEditAudioformat;
+     
++    private Composite compositeButtons;
++    
+     private Button buttonDVDAddLanguages;
+     
+     private Button buttonDVDDeleteLanguages;
+@@ -158,6 +170,18 @@
+     
+     private Button buttonDVDDeleteAudioformat;
+     
++    private Button buttonDVDNew;
++    
++    private Button buttonDVDDelete;
++    
++    private Button buttonDVDEdit;
++    
++    private Button buttonDVDCancel;
++    
++    private Button buttonDVDSave;
++    
++    private Button buttonDVDFill;
++    
+     private SashForm sashForm1;
+     
+     private int mode_dvd;
+@@ -265,7 +289,7 @@
+             // init the rest of the layout
+             initDVDOverview();
+             initDVDDetail();
+-            //refreshDVDOverviewTable(textDVDSearch.getText());
++            refreshDVDOverviewTable(textDVDSearch.getText());
+         }
+ 
+         this.layout();
+@@ -477,6 +501,7 @@
+             for(int i=0;i&lt;l.size();i++)  {
+                 comboDVDMovie.add(((Movie)l.get(i)).getTitle(),i);
+             }
++            comboDVDMovie.setEnabled(false);
+         }
+         {
+             labelDVDPayment = new Label(groupDVDDetail, SWT.NONE);
+@@ -496,6 +521,7 @@
+             for(int i=0;i&lt;l.size();i++)  {
+                 comboDVDPayment.add(((PaymentCategory)l.get(i)).getName(),i);
+             }
++            comboDVDPayment.setEnabled(false);
+         }
+         {
+             labelDVDStatus = new Label(groupDVDDetail, SWT.NONE);
+@@ -516,6 +542,7 @@
+             for(int i=0;i&lt;l.size();i++)  {
+                 comboDVDStatus.add(((Status)l.get(i)).getStatusName(),i);
+             }
++            comboDVDStatus.setEnabled(false);
+         }
+         {
+             labelDVDCondition = new Label(groupDVDDetail, SWT.NONE);
+@@ -536,8 +563,9 @@
+             for(int i=0;i&lt;l.size();i++)  {
+                 comboDVDCondition.add(((Condition)l.get(i)).getConditionName(),i);
+             }
++            comboDVDCondition.setEnabled(false);
+         }
+-//      EditDirectors
++        //      EditLanguages
+ 		{
+ 
+ 			compositeDVDEditLanguages = new Composite(groupDVDDetail,
+@@ -669,8 +697,8 @@
+ 								.getString(&quot;dvd.groupoverviewdetail.columnlanguages&quot;));
+ 				tableDVDDetail_ColumnName.setWidth(200);
+ 			}
+-		}// EditDirectors
+-		// Edit Actors
++		}// Edit Languages
++		// Edit Subtitles
+ 		{
+ 			compositeDVDEditSubtitles = new Composite(groupDVDDetail,
+ 					SWT.NONE);
+@@ -791,8 +819,8 @@
+ 						.getString(&quot;dvd.groupoverviewdetail.columnsubtitles&quot;));
+ 				tableDVDDetail_ColumnName.setWidth(200);
+ 			}
+-		}//Edit Actors
+-		//Edit Genres
++		}//Edit Subtitles
++		//Edit Videoformat
+ 		{
+ 			compositeDVDEditVideoformat = new Composite(groupDVDDetail,
+ 					SWT.NONE);
+@@ -911,8 +939,8 @@
+ 						.getString(&quot;dvd.groupoverviewdetail.columnvideoformat&quot;));
+ 				tableDVDDetail_ColumnName.setWidth(200);
+ 			}
+-		}// Edit Genre
+-		// Edit Images
++		}// Edit Videoformat
++		// Edit Audioformat
+ 		{
+ 			compositeDVDEditAudioformat = new Composite(groupDVDDetail,
+ 					SWT.NONE);
+@@ -1032,25 +1060,505 @@
+ 						.getString(&quot;dvd.groupoverviewdetail.columnaudioformat&quot;));
+ 				tableDVDDetail_ColumnName.setWidth(200);
+ 			}
+-		}// Edit Images
++		}// Edit Audioformat
++		{
++			compositeButtons = new Composite(groupDVDDetail, SWT.EMBEDDED);
++			GridLayout composite2Layout = new GridLayout();
++			composite2Layout.numColumns = 6;
++			GridData composite2LData = new GridData();
++			compositeButtons.setLayout(composite2Layout);
++			composite2LData.verticalAlignment = GridData.END;
++			composite2LData.horizontalAlignment = GridData.CENTER;
++			composite2LData.widthHint = 391;
++			composite2LData.horizontalSpan = 6;
++			composite2LData.grabExcessHorizontalSpace = true;
++			composite2LData.grabExcessVerticalSpace = true;
++			composite2LData.heightHint = 35;
++			compositeButtons.setLayoutData(composite2LData);
++		}
++		{
++			buttonDVDNew = new Button(compositeButtons, SWT.PUSH
++					| SWT.CENTER);
++			buttonDVDNew.setText(l.getString(&quot;button.new&quot;));
++			buttonDVDNew.addSelectionListener(new SelectionAdapter() {
++				public void widgetSelected(SelectionEvent evt) {
++
++					mode_dvd = ManagementGui.MODE_ADD;
++
++					textDVDID.setText(&quot;&quot;);
++					textDVDBarcode.setText(&quot;&quot;);
++					textDVDBarcode.setEditable(true);
++					textDVDSearch.setEditable(false);
++					comboDVDMovie.setEnabled(true);
++					comboDVDPayment.setEnabled(true);
++					comboDVDStatus.setEnabled(true);
++					comboDVDCondition.setEnabled(true);
++					
++					buttonDVDCancel.setEnabled(true);
++					buttonDVDSave.setEnabled(true);
++					buttonDVDNew.setEnabled(false);
++					buttonDVDEdit.setEnabled(false);
++					buttonDVDDelete.setEnabled(false);
++					buttonDVDAddLanguages.setEnabled(true);
++					buttonDVDDeleteLanguages.setEnabled(true);
++					buttonDVDAddSubtitles.setEnabled(true);
++					buttonDVDDeleteSubtitles.setEnabled(true);
++					buttonDVDAddVideoformat.setEnabled(true);
++					buttonDVDDeleteVideoformat.setEnabled(true);
++					buttonDVDAddAudioformat.setEnabled(true);
++					buttonDVDDeleteAudioformat.setEnabled(true);
++
++					tableDVDOverview.setEnabled(false);
++					tableDVDLanguagesDetail.removeAll();
++					tableDVDSubtitlesDetail.removeAll();
++					tableDVDVideoformatDetail.removeAll();
++					tableDVDAudioformatDetail.removeAll();
++
++					localdvd = new Dvd();
++					localdvd.setLanguages(new ArrayList());
++					localdvd.setSubtitles(new ArrayList());
++					localdvd.setVideoFormats(new ArrayList());
++					localdvd.setAudioFormats(new ArrayList());
++				}
++			});
++
++			buttonDVDEdit = new Button(compositeButtons, SWT.PUSH
++					| SWT.CENTER);
++			buttonDVDEdit.setText(l.getString(&quot;button.edit&quot;));
++			buttonDVDEdit.setEnabled(false);
++			buttonDVDEdit.addSelectionListener(new SelectionAdapter() {
++				public void widgetSelected(SelectionEvent evt) {
++
++					mode_dvd = ManagementGui.MODE_EDIT;
++
++					textDVDBarcode.setEditable(true);
++					textDVDSearch.setEditable(false);
++					comboDVDMovie.setEnabled(true);
++					comboDVDPayment.setEnabled(true);
++					comboDVDStatus.setEnabled(true);
++					comboDVDCondition.setEnabled(true);
++					
++					buttonDVDCancel.setEnabled(true);
++					buttonDVDSave.setEnabled(true);
++					buttonDVDNew.setEnabled(false);
++					buttonDVDEdit.setEnabled(false);
++					buttonDVDDelete.setEnabled(false);
++					buttonDVDAddLanguages.setEnabled(true);
++					buttonDVDDeleteLanguages.setEnabled(true);
++					buttonDVDAddSubtitles.setEnabled(true);
++					buttonDVDDeleteSubtitles.setEnabled(true);
++					buttonDVDAddVideoformat.setEnabled(true);
++					buttonDVDDeleteVideoformat.setEnabled(true);
++					buttonDVDAddAudioformat.setEnabled(true);
++					buttonDVDDeleteAudioformat.setEnabled(true);
++
++					tableDVDOverview.setEnabled(false);
++
++				}
++			});
++
++			buttonDVDDelete = new Button(compositeButtons, SWT.PUSH
++					| SWT.CENTER);
++			buttonDVDDelete.setText(l.getString(&quot;button.delete&quot;));
++			buttonDVDDelete.setEnabled(false);
++			buttonDVDDelete.addSelectionListener(new SelectionAdapter() {
++				public void widgetSelected(SelectionEvent evt) {
++					if (logger.isDebugEnabled()) {
++						logger.debug(&quot;widgetSelected(SelectionEvent) - buttonDVDDelete.widgetSelected, event=&quot;
++										+ evt);
++					}
++
++					String msg = MessageFormat
++							.format(l.getString(&quot;dvd.groupdetail.deletebutton.question.text&quot;),
++									new Object[] { localdvd.getMovie().getTitle()
++											+ &quot; &quot; });
++
++					int question = showMsg(
++							msg,
++							l
++									.getString(&quot;dvd.groupdetail.deletebutton.question.header&quot;),
++							SWT.ICON_QUESTION | SWT.YES | SWT.NO);
++
++					if (question != SWT.YES) {
++						return;
++					}
++
++					try {
++						//object speichern
++						// Fehlerbehandlung
++						Database.deleteObject(localdvd);
++
++						//&#220;bersichtsTabelle aktualisieren
++						refreshDVDOverviewTable(textDVDSearch.getText());
++
++						//Detailansicht leeren
++						textDVDID.setText(&quot;&quot;);
++						textDVDBarcode.setText(&quot;&quot;);
++						tableDVDLanguagesDetail.removeAll();
++						tableDVDSubtitlesDetail.removeAll();
++						tableDVDVideoformatDetail.removeAll();
++						tableDVDAudioformatDetail.removeAll();
++						//in Tabelle n&#228;chsten ausw&#228;hlen
++						try {
++							tableDVDOverview.select(0);
++						} catch (Exception ex) {
++						}
++
++						//Statusline Nachricht sezten
++						statusLine
++								.setStatus(
++										1,
++										l
++												.getString(&quot;dvd.groupdetail.deletebutton.newok&quot;));
++
++					} catch (DataBaseException e) {
++						if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++							//Fehler beim Speichern des Objectes
++
++							statusLine
++									.setStatus(
++											3,
++											l
++													.getString(&quot;dvd.groupdetail.deletebutton.errorsave&quot;));
++							showMsg(
++									l
++											.getString(&quot;dvd.groupdetail.deletebutton.errorsave&quot;),
++									l.getString(&quot;error&quot;), SWT.ICON_ERROR
++											| SWT.OK);
++
++						} else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++							//fehler beim db aufbau
++							statusLine
++									.setStatus(
++											3,
++											l
++													.getString(&quot;dvd.groupdetail.deletebutton.errordb&quot;));
++							showMsg(
++									l
++											.getString(&quot;dvd.groupdetail.deletebutton.errordb&quot;),
++									l.getString(&quot;error&quot;), SWT.ICON_ERROR
++											| SWT.OK);
++
++						} else {
++							//@todo
++							logger.error(&quot;widgetSelected(SelectionEvent)&quot;, e);
++						}
++
++					}
++
++				}
++
++			});
++
++			//leerer nicht sichtbarer Button
++			buttonDVDFill = new Button(compositeButtons, SWT.PUSH
++					| SWT.CENTER);
++			GridData buttonActorFillLData = new GridData();
++			buttonDVDFill.setVisible(false);
++			buttonDVDFill.setEnabled(false);
++			buttonActorFillLData.widthHint = 30;
++			buttonActorFillLData.heightHint = 23;
++			buttonDVDFill.setLayoutData(buttonActorFillLData);
++
++			buttonDVDSave = new Button(compositeButtons, SWT.PUSH
++					| SWT.CENTER);
++			buttonDVDSave.setText(l.getString(&quot;button.save&quot;));
++			buttonDVDSave.setEnabled(false);
++			buttonDVDSave.addSelectionListener(new SelectionAdapter() {
++				public void widgetSelected(SelectionEvent evt) {
++					if (logger.isDebugEnabled()) {
++						logger
++								.debug(&quot;widgetSelected(SelectionEvent) - buttonDVDSave.widgetSelected, event=&quot;
++										+ evt);
++					}
++
++					/*List errors = validateInput();
++
++					if (errors.size() &gt; 0) {
++						StringBuffer buf = new StringBuffer();
++
++						for (int i = 0; i &lt; errors.size(); i++) {
++							buf.append(&quot;- &quot;).append(errors.get(i)).append(&quot;\n&quot;);
++						}
++
++						showMsg(
++								l
++										.getString(&quot;dvd.groupdetail.savebutton.warn.noitems.msg&quot;)
++										+ new String(buf),
++								l
++										.getString(&quot;dvd.groupdetail.savebutton.warn.noitems.title&quot;),
++								SWT.ICON_WARNING | SWT.YES);
++						return;
++
++					}
++					*/
++					//testen welcher mode
++					localdvd.setBarcode(textDVDBarcode.getText());
++					
++					/*
++					try {
++						localmovie.setRuntime(Integer
++								.parseInt(textMoviesRuntime.getText()));
++					} catch (Exception ex) {
++						logger.error(&quot;widgetSelected(SelectionEvent)&quot;, ex);
++						showMsg(
++								l
++										.getString(&quot;movies.groupdetail.savebutton.warn.noname.msg&quot;),
++								l
++										.getString(&quot;movies.groupdetail.savebutton.warn.noname.title&quot;),
++								SWT.ICON_WARNING | SWT.YES);
++						return;
++					}
++					*/
++					/**
++					 * @todo eine Exception bekommen wieder leider NOCH nicht
++					 *       mit d.h. es muss noch ein r&#252;ckgabewert kommen oder
++					 *       eine Exception &#252;bermitteln werden (aus der DB
++					 *       Klasse)
++					 */
++					//neues Objekt erzeugen
++					try {
++						//object speichern
++						// Fehlerbehandlung
++
++						if (mode_dvd == ManagementGui.MODE_ADD) {
++
++							logger.debug(&quot;Objektid: &quot; + localdvd.getDvdId()
++									+ &quot; vor speichern&quot;);
++							Database.saveObject(localdvd);
++							logger.debug(&quot;Objektid: &quot; + localdvd.getDvdId()
++									+ &quot; nach speichern&quot;);
++
++							// in &#220;bersichtstabelle einf&#252;gen
++							insertIntoMoviesOverviewTable(localdvd);
++							textDVDID.setText(localdvd.getDvdId() + &quot;&quot;);
++						} else if (mode_dvd == ManagementGui.MODE_EDIT) {
++							Database.updateObject(localdvd);
++						}
++						//Statusline Nachricht sezten
++						statusLine
++								.setStatus(
++										1,
++										l
++												.getString(&quot;dvd.groupdetail.savebutton.newok&quot;));
++					} catch (DataBaseException e) {
++						logger.debug(&quot;DataBaseException: &quot; + e);
++						if (e.getMessage().equalsIgnoreCase(&quot;1&quot;)) {
++							//Fehler beim Speichern des Objectes
++
++							statusLine
++									.setStatus(
++											3,
++											l
++													.getString(&quot;dvd.groupdetail.savebutton.errorsave&quot;));
++							showMsg(
++									l
++											.getString(&quot;dvd.groupdetail.savebutton.errorsave&quot;),
++									&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++
++						} else if (e.getMessage().equalsIgnoreCase(&quot;2&quot;)) {
++							//fehler beim db aufbau
++							statusLine
++									.setStatus(
++											3,
++											l
++													.getString(&quot;dvd.groupdetail.savebutton.errordb&quot;));
++							showMsg(
++									l
++											.getString(&quot;dvd.groupdetail.savebutton.errordb&quot;),
++									&quot;Fehler&quot;, SWT.ICON_ERROR | SWT.OK);
++
++						} else {
++							//@todo
++							logger.error(&quot;widgetSelected(SelectionEvent)&quot;, e);
++						}
++
++					} catch (Exception ex) {
++						logger.debug(&quot;Unbekannte Exception: &quot;, ex);
++					}
++
++					//activate buttons
++					setDVDGroupButtonSaveCancel();
++
++				}
++
++			});
++
++			buttonDVDCancel = new Button(compositeButtons, SWT.PUSH
++					| SWT.CENTER);
++			buttonDVDCancel.setText(l.getString(&quot;button.cancel&quot;));
++			buttonDVDCancel.setEnabled(false);
++			buttonDVDCancel.addSelectionListener(new SelectionAdapter() {
++				public void widgetSelected(SelectionEvent evt) {
++					if (logger.isDebugEnabled()) {
++						logger
++								.debug(&quot;widgetSelected(SelectionEvent) - buttonDVDCancel.widgetSelected, event=&quot;
++										+ evt);
++					}
++					setDVDGroupButtonSaveCancel();
++				}
++			});
++		}
++
+     }
+ 
+-    
++
+     /**
+-     * @param text
++     * 
+      */
+-    private void refreshDVDOverviewTable(String text) {
++    private void setDVDGroupButtonSaveCancel() {
++		textDVDBarcode.setEditable(false);
++		textDVDSearch.setEditable(true);
++		comboDVDMovie.setEnabled(false);
++		comboDVDPayment.setEnabled(false);
++		comboDVDStatus.setEnabled(false);
++		comboDVDCondition.setEnabled(false);
++		
++		buttonDVDCancel.setEnabled(false);
++		buttonDVDSave.setEnabled(false);
++		buttonDVDNew.setEnabled(true);
++		buttonDVDEdit.setEnabled(false);
++		buttonDVDDelete.setEnabled(false);
++		buttonDVDAddLanguages.setEnabled(false);
++		buttonDVDDeleteLanguages.setEnabled(false);
++		buttonDVDAddSubtitles.setEnabled(false);
++		buttonDVDDeleteSubtitles.setEnabled(false);
++		buttonDVDAddVideoformat.setEnabled(false);
++		buttonDVDDeleteVideoformat.setEnabled(false);
++		buttonDVDAddAudioformat.setEnabled(false);
++		buttonDVDDeleteAudioformat.setEnabled(false);
++
++		tableDVDOverview.setEnabled(true);
++		tableDVDLanguagesDetail.removeAll();
++		tableDVDSubtitlesDetail.removeAll();
++		tableDVDVideoformatDetail.removeAll();
++		tableDVDAudioformatDetail.removeAll();
++
++        
++    }
++
++    /**
++     * @param localdvd2
++     */
++    private void insertIntoMoviesOverviewTable(Dvd localdvd2) {
+         // TODO Auto-generated method stub
+         
+     }
++
++    /**
++     * @param text
++     */
++    private void refreshDVDOverviewTable(String filter) {
++        if (tableDVDOverview == null) {
++			if (logger.isDebugEnabled()) {
++				logger
++						.debug(&quot;refreshDVDOverviewTable(String) - Konnte DVDOverviewtable nicht refreshen, da diese null ist!&quot;);
++			}
++			return;
++		}
++		if (logger.isDebugEnabled()) {
++			logger
++					.debug(&quot;refreshDVDOverviewTable(String) - Versuche nun DVDOverviewtable zu refreshen. Filter: &quot;
++							+ filter);
++		}
++		tableDVDOverview.removeAll();
++		TableItem item;
++		java.util.List DVDlist = Database.getDVD(filter);
++
++		for (int i = 0; i &lt; DVDlist.size(); i++) {
++
++			Dvd o = (Dvd) DVDlist.get(i);
++			item = new TableItem(tableDVDOverview, SWT.NONE);
++			item.setText(new String[] {
++					o.getDvdId() + &quot;&quot;,
++					o.getMovie().getTitle()+&quot;&quot;,
++					o.getStatus().getStatusName()+&quot;&quot;,
++					o.getCondition().getConditionName()+&quot;&quot;
++					 });
++
++		}
++
++    }
+   
+     
+     /**
+      * @param text
+      */
+-    protected void refreshDVDDetail(String text) {
++    protected void refreshDVDDetail(String id) {
+         // TODO Auto-generated method stub
+-        
++        Dvd object;
++		try {
++			//since we only can get a String value from the table, we
++			//need to convert this
++			object = Database.getSingleDVD(Integer.parseInt(id));
++
++			if (object == null) {
++
++				/*
++				 * 
++				 * @TODO Statusbar aktualiseren
++				 */
++				return;
++			}
++		} catch (Exception e) {
++			// TODO: handle exception
++			//id ist keine Zahl
++			return;
++		}
++		localdvd = object;
++		textDVDID.setText(object.getDvdId() + &quot;&quot;);
++		textDVDBarcode.setText(object.getBarcode());
++		comboDVDMovie.setText(object.getMovie().getTitle());
++		comboDVDPayment.setText(object.getPaymentCategory().getName());
++		comboDVDStatus.setText(object.getStatus().getStatusName());
++		comboDVDCondition.setText(object.getCondition().getConditionName());
++		
++		TableItem item;
++		// Fill Directorstable
++		tableDVDLanguagesDetail.removeAll();
++		for (int i = 0; i &lt; object.getLanguages().size(); i++) {
++			Language o = (Language) object.getLanguages().get(i);
++			item = new TableItem(tableDVDLanguagesDetail, SWT.NONE);
++			item.setText(new String[] { o.getLanguageId() + &quot;&quot;,
++					o.getName()});
++		}
++
++		//Fill Actorstable
++		tableDVDSubtitlesDetail.removeAll();
++		for (int i = 0; i &lt; object.getSubtitles().size(); i++) {
++			Subtitle o = (Subtitle) object.getSubtitles().get(i);
++			item = new TableItem(tableDVDSubtitlesDetail, SWT.NONE);
++			item.setText(new String[] { o.getSubtitleId() + &quot;&quot;,
++					o.getName()  });
++		}
++
++		//Fill Genretable
++		tableDVDVideoformatDetail.removeAll();
++		logger.debug(&quot;Anzahl der Videoformate: &quot; + object.getVideoFormats().size());
++		for (int i = 0; i &lt; object.getVideoFormats().size(); i++) {
++			VideoFormat o = (VideoFormat) object.getVideoFormats().get(i);
++			logger.debug(i + &quot; &quot; + o);
++			item = new TableItem(tableDVDVideoformatDetail, SWT.NONE);
++			item.setText(new String[] { o.getVideoFormatId() + &quot;&quot;,
++							o.getName() + &quot;&quot; });
++		}
++
++		//Fill Imagetable
++		tableDVDAudioformatDetail.removeAll();
++		logger.debug(&quot;Anzahl der Audioformate: &quot; + object.getAudioFormats().size());
++		for (int i = 0; i &lt; object.getAudioFormats().size(); i++) {
++			AudioFormat o = (AudioFormat) object.getAudioFormats().get(i);
++			item = new TableItem(tableDVDAudioformatDetail, SWT.NONE);
++			item.setText(new String[] { o.getAudioFormatId() + &quot;&quot;,
++					o.getName() + &quot;&quot; });
++		}
++
++		//Enable Buttons for Delete and Edit
++		buttonDVDEdit.setEnabled(true);
++		buttonDVDDelete.setEnabled(true);
++
++		//Change mode to view
++		mode_dvd = ManagementGui.MODE_VIEW;
+     }
+ 
+ }
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties	2004-12-14 18:17:51 UTC (rev 246)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/dvds.properties	2004-12-14 18:42:22 UTC (rev 247)
+@@ -16,10 +16,22 @@
+ dvd.groupdetail.labelvideoformat =Videoformat
+ dvd.groupdetail.labelaudioformat =Audioformat
+ 
++button.new =Neu
++button.edit =Bearbeiten
++button.delete =L&#246;schen
++button.save =Speichern
++button.cancel =Abbruch
+ dvd.button.additem =Hinzuf&#252;gen
+ dvd.button.deleteitem = L&#246;schen
+ 
+ dvd.groupoverviewdetail.columnlanguages =Sprache
+ dvd.groupoverviewdetail.columnsubtitles =Untertitel
+ dvd.groupoverviewdetail.columnvideoformat =Videoformat
+-dvd.groupoverviewdetail.columnaudioformat =Audioformat
+\ No newline at end of file
++dvd.groupoverviewdetail.columnaudioformat =Audioformat
++
++dvd.groupdetail.deletebutton.question.header=Wirklich l&#246;schen?
++dvd.groupdetail.deletebutton.question.text=Wollen Sie den Datensatz {0} wirklich l&#246;schen?
++dvd.groupdetail.deletebutton.newok=Datensatz wurde erfolgreich gel&#246;scht.
++dvd.groupdetail.deletebutton.errorsave=Datenbankfehler beim L&#246;schen.
++dvd.groupdetail.deletebutton.errordb=Datenbankfehler beim Herstellen der Verbindung(del).
++
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-14 18:17:51 UTC (rev 246)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-14 18:42:22 UTC (rev 247)
+@@ -63,7 +63,7 @@
+ import de.hsharz.provirent.objects.Status;
+ import de.hsharz.provirent.objects.Subtitle;
+ import de.hsharz.provirent.objects.VideoFormat;
+-
++import de.hsharz.provirent.objects.Dvd;
+ /**
+  * @author Philipp Schneider
+  *
+@@ -1942,10 +1942,10 @@
+ 
+ 	
+ 	/**
+-	 * This method gets all Movies from the database.
+-	 * searches for ID,Title,Date,Description,Actor,Director...
++	 * This method gets all PaymentCategory from the database.
++	 * searches for ID
+ 	 * @param filter 
+-	 * @return List of Movie objects, or an empty List
++	 * @return List of PaymentCategory objects, or an empty List
+ 	 */
+ 	public static List getPaymentCategory() {
+ 		if (logger.isDebugEnabled()) {
+@@ -1983,5 +1983,104 @@
+ 
+ 	}
+ 	
++	/**
++	 * This method gets all DVDs from the database.
++	 * searches for ID,Title,...
++	 * @param filter 
++	 * @return List of Dvd objects, or an empty List
++	 */
++	public static List getDVD(final String filter) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getDVD() - start. String filter= &quot; + filter);
++		}
++		//init the returnlist
++		List returnlist = new ArrayList();
++
++		Session s = null;
++
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			//init the criteria
++			Criteria criteria = s.createCriteria(Dvd.class);
++			//any of the criteria 
++			Disjunction any = Expression.disjunction();
++
++			//if filter not empty
++			if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
++				any.add(Expression.like(&quot;barcode&quot;, &quot;%&quot; + filter + &quot;%&quot;));
++				
++				//maybe we are searching for the id?
++				try {
++					any.add(Expression.eq(&quot;dvdId&quot;, new Integer(Integer
++							.parseInt(filter))));
++				} catch (Exception e) {
++				}
++
++			}
++
++			//add all criteria
++			criteria.add(any);
++			//get the results
++			returnlist = criteria.list();
++
++		} catch (Exception e) {
++			logger
++					.error(&quot;getDVD() - Error while trying to do Transaction&quot;,
++							e);
++			returnlist = new ArrayList();
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getDVD() - Could not Close the Session&quot;, e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getDVD() - end&quot;);
++		}
++		return returnlist;
++
++	}
++
++	public static Dvd getSingleDVD(final int id) {
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleDVD) - start. int filter= &quot; + id);
++		}
++		//init the returnlist
++		Dvd returnobject = null;
++
++		Session s = null;
++		Transaction tx = null;
++		try {
++			//get new Session and begin Transaction
++			s = HibernateUtil.currentSession();
++
++			returnobject = (Dvd) s.get(Dvd.class, new Integer(id));
++
++		} catch (Exception e) {
++			logger.error(
++					&quot;getSingleDVD() - Error while trying to do Transaction&quot;,
++					e);
++
++		} finally {
++			try {
++				// No matter what, close the session
++				HibernateUtil.closeSession();
++			} catch (HibernateException e1) {
++				logger.error(&quot;getSingleDVD() - Could not Close the Session&quot;,
++						e1);
++			}
++		}
++
++		if (logger.isDebugEnabled()) {
++			logger.debug(&quot;getSingleDVD() - end&quot;);
++		}
++		return returnobject;
++
++	}
+ }
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000247.html">[Provirent-svn-commit] r246 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+	<LI>Next message: <A HREF="000249.html">[Provirent-svn-commit] r248 - in project_src: . clienttest/src website website/Tomcat website/Tomcat/work website/Tomcat/work/web website/Tomcat/work/web/loader website/Tomcat/work/web/loader/META-INF website/Tomcat/work/web/loader/META-INF/tlds website/Tomcat/work/web/loader/org website/Tomcat/work/web/loader/org/apache website/Tomcat/work/web/loader/org/apache/commons website/Tomcat/work/web/loader/org/apache/commons/validator website/Tomcat/work/web/loader/org/apache/commons/validator/resources website/Tomcat/work/web/loader/org/apache/struts website/Tomcat/work/web/loader/org/apache/struts/action website/Tomcat/work/web/loader/org/apache/struts/actions website/Tomcat/work/web/loader/org/apache/struts/resources website/Tomcat/work/web/loader/org/apache/struts/taglib website/Tomcat/work/web/loader/org/apache/struts/taglib/bean website/Tomcat/work/web/loader/org/apache/struts/taglib/html website/Tomcat/work/web/loader/org/apache/struts/taglib/logic website/Tomcat/work/web/loader/org/apac! he/struts/util website/bak website/bak/web website/classes website/classes/Generated Source website/classes/Generated Source/.jsp website/classes/Generated Source/.jsp/web website/classes/Generated Source/.jsp/web/org website/classes/Generated Source/.jsp/web/org/apache website/classes/Generated Source/.jsp/web/org/apache/jsp website/classes/Generated Source/.jsp/web/org/apache/jsp/templates website/classes/jsp cache website/classes/jsp cache/web website/classes/jsp cache/web/org website/classes/jsp cache/web/org/apache website/classes/jsp cache/web/org/apache/jsp website/classes/jsp cache/web/org/apache/jsp/templates website/classes/jsp cache/web/package cache website/src website/test website/web website/web/WEB-INF website/web/WEB-INF/lib website/web/WEB-INF/taglib website/web/images website/web/templates
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#248">[ date ]</a>
+              <a href="thread.html#248">[ thread ]</a>
+              <a href="subject.html#248">[ subject ]</a>
+              <a href="author.html#248">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

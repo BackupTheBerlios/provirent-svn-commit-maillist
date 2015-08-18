@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r246 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r246%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200412141817.iBEIHqLS010692%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000246.html">
+   <LINK REL="Next"  HREF="000248.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r246 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r246%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui%3A%20.%20language&In-Reply-To=%3C200412141817.iBEIHqLS010692%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r246 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Tue Dec 14 19:17:52 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000246.html">[Provirent-svn-commit] r245 - in project_src/provirent_hibernate/src: com/cloudgarden/resource de/hsharz/provirent/management/gui de/hsharz/provirent/storehouse/gui test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000248.html">[Provirent-svn-commit] r247 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#247">[ date ]</a>
+              <a href="thread.html#247">[ thread ]</a>
+              <a href="subject.html#247">[ subject ]</a>
+              <a href="author.html#247">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-12-14 19:17:51 +0100 (Tue, 14 Dec 2004)
+New Revision: 246
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeOrder.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/order.properties
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeOrder.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeOrder.java	2004-12-13 22:32:57 UTC (rev 245)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeOrder.java	2004-12-14 18:17:51 UTC (rev 246)
+@@ -737,8 +737,8 @@
+ 					//object speichern
+ 					// Fehlerbehandlung
+ 					aktMovieOrder.getMovieOrderItems().remove(aktOrderItem);
++					Database.updateObject(aktMovieOrder);
+ 					Database.deleteObject(aktOrderItem);
+-					Database.updateObject(aktMovieOrder);
+ 					
+ 					//&#220;bersichtsTabelle aktualisieren
+ 					refreshOrderItemTable(aktMovieOrder.getMovieOrderId().toString());
+@@ -928,6 +928,7 @@
+                     //&#220;bersichtsTabelle aktualisieren
+                     refreshOrderTable(textOrderSearch.getText());
+                     
++                    
+                     //Detailansicht leeren
+                     textOrderId.setText(&quot;&quot;);
+                     textOrderCustomerName.setText(&quot;&quot;);
+@@ -1112,12 +1113,8 @@
+                             + textOrderSearch.getText() + &quot;) - start&quot;);
+                 }
+                 
+-                /* TODO
+-                try {
+-                    refreshOrderTable(textOrderSearch.getText());
+-                } catch (DataBaseException e) {
+-                    logger.error(&quot;focusLost(FocusEvent)&quot;, e);
+-                }*/
++                
++                refreshOrderTable(textOrderSearch.getText());
+ 
+                 if (logger.isDebugEnabled()) {
+                     logger.debug(&quot;focusLost(FocusEvent) - end&quot;);
+@@ -1132,12 +1129,8 @@
+                             + textOrderSearch.getText() + &quot;) - start&quot;);
+                 }
+                 
+-                /* TODO
+-                try {
+-                    refreshOrderTable(textOrderSearch.getText());
+-                } catch (DataBaseException e1) {
+-                    logger.error(&quot;handleEvent(Event)&quot;, e1);
+-                }*/
++                
++                refreshOrderTable(textOrderSearch.getText());
+ 
+                 if (logger.isDebugEnabled()) {
+                     logger.debug(&quot;handleEvent(Event) - end&quot;);
+@@ -1178,6 +1171,7 @@
+                 //Detailansicht aktualisiert werden
+                 String tabItem = tableOrder.getItem(index).getText(0);
+                 refreshOrderDetails(tabItem);
++                refreshOrderItemDetails(&quot;&quot;);
+                 refreshOrderItemTable(tabItem);
+ 
+             }
+@@ -1253,79 +1247,94 @@
+      * @param text
+      */
+     private void refreshOrderItemDetails(final String id) {
+-        try {
+-            //since we only can get a String value from the table, we
+-            //need to convert this
+-            aktOrderItem = (OrderItem) Database.getSingleObject(OrderItem.class, Integer.parseInt(id));
+-
+-            if (aktOrderItem == null) {
+-
+-                /*
+-                 * 
+-                 * @TODO Statusbar aktualiseren
+-                 */
+-                return;
+-            }
+-        } catch (Exception e) {
+-            // TODO: handle exception
+-            //id ist keine Zahl
+-            return;
+-        }
+-
+-        textOrderItemId.setText(aktOrderItem.getOrderItemId() + &quot;&quot;);
+-        textOrderItemDvdId.setText(aktOrderItem.getDvd().getDvdId() + &quot;&quot;);
+-        textOrderItemMovieName.setText(aktOrderItem.getDvd().getMovie().getTitle() + &quot;&quot;);
+-        Calendar cal = aktOrderItem.getOrderTime();
+-        if (cal == null) {
+-            textOrderItemOrderDate.setText(&quot;&quot;);
++        if (id == &quot;&quot;) {
++//          Detailansicht leeren
++			textOrderItemId.setText(&quot;&quot;);
++			textOrderItemDvdId.setText(&quot;&quot;);
++			textOrderItemMovieName.setText(&quot;&quot;);
++			textOrderItemOrderDate.setText(&quot;&quot;);
++			textOrderItemSenderDate.setText(&quot;&quot;);
++			textOrderItemReceivingDate.setText(&quot;&quot;);
++			textOrderItemConditionSend.setText(&quot;&quot;);
++			textOrderItemConditionReceiving.setText(&quot;&quot;);
++			textOrderItemDuration.setText(&quot;&quot;);
++			textOrderItemPayment.setText(&quot;&quot;);
+         } else {
+-            textOrderItemOrderDate.setText(DateFormat
+-                    .getDateInstance(DateFormat.MEDIUM).format(
+-                            cal.getTime()));
++        
++	        try {
++	            //since we only can get a String value from the table, we
++	            //need to convert this
++	            aktOrderItem = (OrderItem) Database.getSingleObject(OrderItem.class, Integer.parseInt(id));
++	
++	            if (aktOrderItem == null) {
++	
++	                /*
++	                 * 
++	                 * @TODO Statusbar aktualiseren
++	                 */
++	                return;
++	            }
++	        } catch (Exception e) {
++	            // TODO: handle exception
++	            //id ist keine Zahl
++	            return;
++	        }
++	
++	        textOrderItemId.setText(aktOrderItem.getOrderItemId() + &quot;&quot;);
++	        textOrderItemDvdId.setText(aktOrderItem.getDvd().getDvdId() + &quot;&quot;);
++	        textOrderItemMovieName.setText(aktOrderItem.getDvd().getMovie().getTitle() + &quot;&quot;);
++	        Calendar cal = aktOrderItem.getOrderTime();
++	        if (cal == null) {
++	            textOrderItemOrderDate.setText(&quot;&quot;);
++	        } else {
++	            textOrderItemOrderDate.setText(DateFormat
++	                    .getDateInstance(DateFormat.MEDIUM).format(
++	                            cal.getTime()));
++	        }
++	        cal = aktOrderItem.getSenderTime();
++	        if (cal == null) {
++	            textOrderItemSenderDate.setText(&quot;&quot;);
++	        } else {
++	            textOrderItemSenderDate.setText(DateFormat
++	                    .getDateInstance(DateFormat.MEDIUM).format(
++	                            cal.getTime()));
++	        }
++	        cal = aktOrderItem.getReceivingTime();
++	        if (cal == null) {
++	            textOrderItemReceivingDate.setText(&quot;&quot;);
++	        } else {
++	            textOrderItemReceivingDate.setText(DateFormat
++	                    .getDateInstance(DateFormat.MEDIUM).format(
++	                            cal.getTime()));
++	        }
++	        Condition con = aktOrderItem.getConditionSend();
++	        if(con == null) {
++	            textOrderItemConditionSend.setText(&quot;&quot;);
++	        } else {
++	            textOrderItemConditionSend.setText(con.getConditionName());
++	        }
++	        con = aktOrderItem.getConditionSend();
++	        if(con == null) {
++	            textOrderItemConditionReceiving.setText(&quot;&quot;);
++	        } else {
++	            textOrderItemConditionReceiving.setText(con.getConditionName());
++	        }
++	        textOrderItemDuration.setText(aktOrderItem.getDuration() + &quot;&quot;);
++	        Payment pay = aktOrderItem.getPayment();
++	        if (pay == null) {
++	            textOrderItemPayment.setText(&quot;&quot;);
++	        } else {
++	            textOrderItemPayment.setText(pay.getPaymentCategory().getName());
++	        }
++	        
++	        
++	
++	        buttonOrderItemDelete.setEnabled(true);
++	
++	        //Mode auf view setzen
++	        mode_Order = ManagementGui.MODE_VIEW;
+         }
+-        cal = aktOrderItem.getSenderTime();
+-        if (cal == null) {
+-            textOrderItemSenderDate.setText(&quot;&quot;);
+-        } else {
+-            textOrderItemSenderDate.setText(DateFormat
+-                    .getDateInstance(DateFormat.MEDIUM).format(
+-                            cal.getTime()));
+-        }
+-        cal = aktOrderItem.getReceivingTime();
+-        if (cal == null) {
+-            textOrderItemReceivingDate.setText(&quot;&quot;);
+-        } else {
+-            textOrderItemReceivingDate.setText(DateFormat
+-                    .getDateInstance(DateFormat.MEDIUM).format(
+-                            cal.getTime()));
+-        }
+-        Condition con = aktOrderItem.getConditionSend();
+-        if(con == null) {
+-            textOrderItemConditionSend.setText(&quot;&quot;);
+-        } else {
+-            textOrderItemConditionSend.setText(con.getConditionName());
+-        }
+-        con = aktOrderItem.getConditionSend();
+-        if(con == null) {
+-            textOrderItemConditionReceiving.setText(&quot;&quot;);
+-        } else {
+-            textOrderItemConditionReceiving.setText(con.getConditionName());
+-        }
+-        textOrderItemDuration.setText(aktOrderItem.getDuration() + &quot;&quot;);
+-        Payment pay = aktOrderItem.getPayment();
+-        if (pay == null) {
+-            textOrderItemPayment.setText(&quot;&quot;);
+-        } else {
+-            textOrderItemPayment.setText(pay.getPaymentCategory().getName());
+-        }
+         
+-        
+-
+-        buttonOrderItemDelete.setEnabled(true);
+-
+-        //Mode auf view setzen
+-        mode_Order = ManagementGui.MODE_VIEW;
+-        
+     }
+ 
+     /* (non-Javadoc)
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/order.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/order.properties	2004-12-13 22:32:57 UTC (rev 245)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/order.properties	2004-12-14 18:17:51 UTC (rev 246)
+@@ -41,46 +41,13 @@
+ Order.groupdetail.orderitems.conditionreceiving=Zustand nachher
+ Order.groupdetail.orderitems.duration=Verleihdauer
+ Order.groupdetail.orderitems.payment=Preisklasse
+-Order.groupdetail.idlabel=Benutzer ID
+-Order.groupdetail.usernamelabel=Benutzername
+-Order.groupdetail.lastnamelabel=Nachname
+-Order.groupdetail.firstnamelabel=Vorname
+-Order.groupdetail.middlenamelabel=2.Vorname(n)
+-Order.groupdetail.emaillabel=Emailadresse
+-Order.groupdetail.birthdaylabel=Geburtsdatum
+-Order.groupdetail.questionlabel=Geheime Frage
+-Order.groupdetail.answerlabel=Geheime Antwort
+-Order.groupdetail.salutationlabel=Anrede
+-Order.groupdetail.titlelabel=Titel
+-Order.groupdetail.streetlabel=Strasse u. Nummer
+-Order.groupdetail.citylabel=Stadt
+-Order.groupdetail.zipcodelabel=Zip Code
+-Order.groupdetail.countrylabel=Land
+-Order.groupdetail.passwordlabel=Passwort
+-Order.groupdetail.regdatelabel=Registrierdatum
+-Order.groupdetail.registrationdatebuttonchange=&#196;ndern
+-Order.groupdetail.registrationdatebuttonfinish=Fertig
+-Order.groupdetail.registrationdate.dialog.title=Registrierungstag w&#228;hlen
+-Order.groupdetail.birthdaybuttonchange=&#196;ndern
+-Order.groupdetail.birthdaybuttonfinish=Fertig
+-Order.groupdetail.birthday.dialog.title=Geburtstag w&#228;hlen
++Order.groupdetail.orderitems.senderdatebuttonchange=&#196;ndern
++Order.groupdetail.orderitems.senderdatebuttonfinish=Fertig
++Order.groupdetail.orderitems.senderdate.dialog.title=Versendet am
++Order.groupdetail.orderitems.receivingdatebuttonchange=&#196;ndern
++Order.groupdetail.orderitems.receivingdatebuttonfinish=Fertig
++Order.groupdetail.orderitems.receivingdate.dialog.title=Erhalten am
+ 
+-Order.groupdetail.savebutton.warn.noitems.title=Datensatz speichern
+-Order.groupdetail.savebutton.warn.noitems.msg=Der Datensatz kann nicht gespeichert werden, da folgende Werte fehlen:\n
+-Order.groupdetail.savebutton.warn.nousername=Username
+-Order.groupdetail.savebutton.warn.nolastname=Nachname
+-Order.groupdetail.savebutton.warn.nofirstname=Vorname
+-Order.groupdetail.savebutton.warn.nostreet=Strasse
+-Order.groupdetail.savebutton.warn.nonumber=Hausnummer
+-Order.groupdetail.savebutton.warn.nozipcode=PLZ
+-Order.groupdetail.savebutton.warn.nocity=Stadt
+-Order.groupdetail.savebutton.warn.nocountry=Land
+-Order.groupdetail.savebutton.warn.noemail=Emailadresse
+-Order.groupdetail.savebutton.warn.noquestion=Geheimefrage
+-Order.groupdetail.savebutton.warn.noanswer=Geheimeantwort
+-Order.groupdetail.savebutton.warn.noregistrationdate=Registrierungsdatum
+-Order.groupdetail.savebutton.warn.nobirthday=Geburtstag
+-
+ Order.groupdetail.savebutton.newok=Speichern des neuen Benutzers erfolgreich.
+ Order.groupdetail.savebutton.editok=&#196;ndern des Benutzers erfolgreich.
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000246.html">[Provirent-svn-commit] r245 - in project_src/provirent_hibernate/src: com/cloudgarden/resource de/hsharz/provirent/management/gui de/hsharz/provirent/storehouse/gui test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000248.html">[Provirent-svn-commit] r247 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#247">[ date ]</a>
+              <a href="thread.html#247">[ thread ]</a>
+              <a href="subject.html#247">[ subject ]</a>
+              <a href="author.html#247">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

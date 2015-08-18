@@ -1,0 +1,3448 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r26 - in project_src/provirent_hibernate: data src/de/hsharz/provirent/objects src/test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r26%20-%20in%20project_src/provirent_hibernate%3A%20data%20src/de/hsharz/provirent/objects%20src/test/provirent/hibernate&In-Reply-To=%3C200410092045.i99KjwiH019492%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000026.html">
+   <LINK REL="Next"  HREF="000028.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r26 - in project_src/provirent_hibernate: data src/de/hsharz/provirent/objects src/test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r26%20-%20in%20project_src/provirent_hibernate%3A%20data%20src/de/hsharz/provirent/objects%20src/test/provirent/hibernate&In-Reply-To=%3C200410092045.i99KjwiH019492%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r26 - in project_src/provirent_hibernate: data src/de/hsharz/provirent/objects src/test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Sat Oct  9 22:45:58 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000026.html">[Provirent-svn-commit] r25 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+        <LI>Next message: <A HREF="000028.html">[Provirent-svn-commit] r27 - timetable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#27">[ date ]</a>
+              <a href="thread.html#27">[ thread ]</a>
+              <a href="subject.html#27">[ subject ]</a>
+              <a href="author.html#27">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-09 22:45:57 +0200 (Sat, 09 Oct 2004)
+New Revision: 26
+
+Modified:
+   project_src/provirent_hibernate/data/video.log
+   project_src/provirent_hibernate/data/video.properties
+   project_src/provirent_hibernate/data/video.script
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Bill.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestActor.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestDirector.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvdOld.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestLanguage.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestPerson.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestSubtitle.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestVideoFormat.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/data/video.log
+===================================================================
+--- project_src/provirent_hibernate/data/video.log	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/data/video.log	2004-10-09 20:45:57 UTC (rev 26)
+@@ -1,7 +1,167 @@
+ /*C2*/CONNECT USER SA
+ SET AUTOCOMMIT FALSE
++INSERT INTO IMAGE VALUES(1,'01020304',123,'image1.jpg','Bild 1')
++INSERT INTO IMAGE VALUES(2,'05060708',123,'image2.jpg','Bild 2')
++INSERT INTO IMAGE VALUES(3,'090a0b0c',123,'image3.jpg','Bild 3')
++INSERT INTO IMAGE VALUES(4,'0d0e0f10',123,'image4.jpg','Bild 4')
++COMMIT
++DELETE FROM IMAGE WHERE IMAGEID=1
++DELETE FROM IMAGE WHERE IMAGEID=2
++DELETE FROM IMAGE WHERE IMAGEID=3
++DELETE FROM IMAGE WHERE IMAGEID=4
++COMMIT
++INSERT INTO IMAGE VALUES(5,'01020304',123,'image1.jpg','Bild 1')
++INSERT INTO IMAGE VALUES(6,'05060708',123,'image2.jpg','Bild 2')
++INSERT INTO IMAGE VALUES(7,'090a0b0c',123,'image3.jpg','Bild 3')
++INSERT INTO IMAGE VALUES(8,'0d0e0f10',123,'image4.jpg','Bild 4')
++COMMIT
++INSERT INTO ACTOR VALUES(1,'Johnny','Depp')
++INSERT INTO ACTOR VALUES(2,'Geoffrey','Rush')
++INSERT INTO ACTOR VALUES(3,'Gore','Verbinski ')
++INSERT INTO ACTOR VALUES(4,'Julianne','Moore ')
++INSERT INTO ACTOR VALUES(5,'Anthony','Edwards ')
++INSERT INTO ACTOR VALUES(6,'Matthew','Pleszewicz ')
++INSERT INTO ACTOR VALUES(7,'Christopher','Kovaleski ')
++COMMIT
++DELETE FROM ACTOR WHERE ACTORID=1
++DELETE FROM ACTOR WHERE ACTORID=2
++DELETE FROM ACTOR WHERE ACTORID=3
++DELETE FROM ACTOR WHERE ACTORID=4
++DELETE FROM ACTOR WHERE ACTORID=5
++DELETE FROM ACTOR WHERE ACTORID=6
++DELETE FROM ACTOR WHERE ACTORID=7
++COMMIT
++INSERT INTO ACTOR VALUES(8,'Johnny','Depp')
++INSERT INTO ACTOR VALUES(9,'Geoffrey','Rush')
++INSERT INTO ACTOR VALUES(10,'Gore','Verbinski ')
++INSERT INTO ACTOR VALUES(11,'Julianne','Moore ')
++INSERT INTO ACTOR VALUES(12,'Anthony','Edwards ')
++INSERT INTO ACTOR VALUES(13,'Matthew','Pleszewicz ')
++INSERT INTO ACTOR VALUES(14,'Christopher','Kovaleski ')
++COMMIT
++INSERT INTO CONDITION VALUES(1,'neu','')
++INSERT INTO CONDITION VALUES(2,'leichte Kratzer','')
++INSERT INTO CONDITION VALUES(3,'mittlere Kratzer','')
++INSERT INTO CONDITION VALUES(4,'schwere Kratzer','')
++INSERT INTO CONDITION VALUES(5,'nicht lesbar','')
++COMMIT
++DELETE FROM CONDITION WHERE CONDITIONID=1
++DELETE FROM CONDITION WHERE CONDITIONID=2
++DELETE FROM CONDITION WHERE CONDITIONID=3
++DELETE FROM CONDITION WHERE CONDITIONID=4
++DELETE FROM CONDITION WHERE CONDITIONID=5
++COMMIT
++INSERT INTO CONDITION VALUES(6,'neu','')
++INSERT INTO CONDITION VALUES(7,'leichte Kratzer','')
++INSERT INTO CONDITION VALUES(8,'mittlere Kratzer','')
++INSERT INTO CONDITION VALUES(9,'schwere Kratzer','')
++INSERT INTO CONDITION VALUES(10,'nicht lesbar','')
++COMMIT
++INSERT INTO GENRE VALUES(1,'Action','')
++INSERT INTO GENRE VALUES(2,'Abenteuer','')
++INSERT INTO GENRE VALUES(3,'Dokumentation','')
++INSERT INTO GENRE VALUES(4,'Horror','')
++COMMIT
++DELETE FROM GENRE WHERE GENREID=1
++DELETE FROM GENRE WHERE GENREID=2
++DELETE FROM GENRE WHERE GENREID=3
++DELETE FROM GENRE WHERE GENREID=4
++COMMIT
++INSERT INTO GENRE VALUES(5,'Action','')
++INSERT INTO GENRE VALUES(6,'Abenteuer','')
++INSERT INTO GENRE VALUES(7,'Dokumentation','')
++INSERT INTO GENRE VALUES(8,'Horror','')
++COMMIT
++INSERT INTO AUDIOFORMAT VALUES(1,'DTS Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(2,'Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(3,'Dolby','')
++INSERT INTO AUDIOFORMAT VALUES(4,'Stereo','')
++COMMIT
++DELETE FROM AUDIOFORMAT WHERE AUIOFORMATID=1
++DELETE FROM AUDIOFORMAT WHERE AUIOFORMATID=2
++DELETE FROM AUDIOFORMAT WHERE AUIOFORMATID=3
++DELETE FROM AUDIOFORMAT WHERE AUIOFORMATID=4
++COMMIT
++INSERT INTO AUDIOFORMAT VALUES(5,'DTS Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(6,'Surround Sound','')
++INSERT INTO AUDIOFORMAT VALUES(7,'Dolby','')
++INSERT INTO AUDIOFORMAT VALUES(8,'Stereo','')
++COMMIT
+ INSERT INTO DIRECTOR VALUES(1,'Bibo','Bergeron')
+ INSERT INTO DIRECTOR VALUES(2,'Vicky','Jenson')
+ INSERT INTO DIRECTOR VALUES(3,'Jay','Russell')
+ INSERT INTO DIRECTOR VALUES(4,'Joseph','Ruben')
+ COMMIT
++DELETE FROM DIRECTOR WHERE DIRECTORID=1
++DELETE FROM DIRECTOR WHERE DIRECTORID=2
++DELETE FROM DIRECTOR WHERE DIRECTORID=3
++DELETE FROM DIRECTOR WHERE DIRECTORID=4
++COMMIT
++INSERT INTO DIRECTOR VALUES(5,'Bibo','Bergeron')
++INSERT INTO DIRECTOR VALUES(6,'Vicky','Jenson')
++INSERT INTO DIRECTOR VALUES(7,'Jay','Russell')
++INSERT INTO DIRECTOR VALUES(8,'Joseph','Ruben')
++COMMIT
++INSERT INTO SUBTITLE VALUES(1,'Deutsch','de')
++INSERT INTO SUBTITLE VALUES(2,'Englisch','en')
++INSERT INTO SUBTITLE VALUES(3,'Franzoesisch','fr')
++INSERT INTO SUBTITLE VALUES(4,'Spanisch','es')
++INSERT INTO SUBTITLE VALUES(5,'Japanisch','jp')
++COMMIT
++DELETE FROM SUBTITLE WHERE SUBTITLEID=1
++DELETE FROM SUBTITLE WHERE SUBTITLEID=2
++DELETE FROM SUBTITLE WHERE SUBTITLEID=3
++DELETE FROM SUBTITLE WHERE SUBTITLEID=4
++DELETE FROM SUBTITLE WHERE SUBTITLEID=5
++COMMIT
++INSERT INTO SUBTITLE VALUES(6,'Deutsch','de')
++INSERT INTO SUBTITLE VALUES(7,'Englisch','en')
++INSERT INTO SUBTITLE VALUES(8,'Franzoesisch','fr')
++INSERT INTO SUBTITLE VALUES(9,'Spanisch','es')
++INSERT INTO SUBTITLE VALUES(10,'Japanisch','jp')
++COMMIT
++INSERT INTO STATUS VALUES(1,'ausleihbar','')
++INSERT INTO STATUS VALUES(2,'verliehen','')
++INSERT INTO STATUS VALUES(3,'in Bearbeitung','')
++INSERT INTO STATUS VALUES(4,'noch nicht vorhanden','')
++COMMIT
++DELETE FROM STATUS WHERE STATUSID=1
++DELETE FROM STATUS WHERE STATUSID=2
++DELETE FROM STATUS WHERE STATUSID=3
++DELETE FROM STATUS WHERE STATUSID=4
++COMMIT
++INSERT INTO STATUS VALUES(5,'ausleihbar','')
++INSERT INTO STATUS VALUES(6,'verliehen','')
++INSERT INTO STATUS VALUES(7,'in Bearbeitung','')
++INSERT INTO STATUS VALUES(8,'noch nicht vorhanden','')
++COMMIT
++INSERT INTO VIDEOFORMAT VALUES(1,'2.35:1','')
++INSERT INTO VIDEOFORMAT VALUES(2,'9:13','')
++INSERT INTO VIDEOFORMAT VALUES(3,'16:10','')
++COMMIT
++DELETE FROM VIDEOFORMAT WHERE VIDEOFORMATID=1
++DELETE FROM VIDEOFORMAT WHERE VIDEOFORMATID=2
++DELETE FROM VIDEOFORMAT WHERE VIDEOFORMATID=3
++COMMIT
++INSERT INTO VIDEOFORMAT VALUES(4,'2.35:1','')
++INSERT INTO VIDEOFORMAT VALUES(5,'9:13','')
++INSERT INTO VIDEOFORMAT VALUES(6,'16:10','')
++COMMIT
++INSERT INTO LANGUAGE VALUES(1,'Deutsch','de')
++INSERT INTO LANGUAGE VALUES(2,'Englisch','en')
++INSERT INTO LANGUAGE VALUES(3,'Franzoesisch','fr')
++INSERT INTO LANGUAGE VALUES(4,'Spanisch','es')
++INSERT INTO LANGUAGE VALUES(5,'Japanisch','jp')
++COMMIT
++DELETE FROM LANGUAGE WHERE LANGUAGEID=1
++DELETE FROM LANGUAGE WHERE LANGUAGEID=2
++DELETE FROM LANGUAGE WHERE LANGUAGEID=3
++DELETE FROM LANGUAGE WHERE LANGUAGEID=4
++DELETE FROM LANGUAGE WHERE LANGUAGEID=5
++COMMIT
++INSERT INTO LANGUAGE VALUES(6,'Deutsch','de')
++INSERT INTO LANGUAGE VALUES(7,'Englisch','en')
++INSERT INTO LANGUAGE VALUES(8,'Franzoesisch','fr')
++INSERT INTO LANGUAGE VALUES(9,'Spanisch','es')
++INSERT INTO LANGUAGE VALUES(10,'Japanisch','jp')
++COMMIT
+
+Modified: project_src/provirent_hibernate/data/video.properties
+===================================================================
+--- project_src/provirent_hibernate/data/video.properties	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/data/video.properties	2004-10-09 20:45:57 UTC (rev 26)
+@@ -1,5 +1,5 @@
+ #HSQL database
+-#Sat Oct 09 18:39:41 CEST 2004
++#Sat Oct 09 22:45:42 CEST 2004
+ hsqldb.cache_file_scale=1
+ runtime.gc_interval=0
+ hsqldb.first_identity=0
+
+Modified: project_src/provirent_hibernate/data/video.script
+===================================================================
+--- project_src/provirent_hibernate/data/video.script	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/data/video.script	2004-10-09 20:45:57 UTC (rev 26)
+@@ -1,31 +1,34 @@
+-CREATE TABLE MOVIEFORMAT(MOVIEFORMATID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+-CREATE TABLE ORDERORDERITEMS(ORDERID INTEGER NOT NULL,ORDERITEMID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_ORDERORDERITEMS PRIMARY KEY(ORDERID,POS))
+-CREATE TABLE MOVIEIMAGES(MOVIEID INTEGER NOT NULL,IMAGEID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEIMAGES PRIMARY KEY(MOVIEID,POS))
++CREATE TABLE IMAGE(IMAGEID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,PDFFILE BINARY,IMAGEFILESIZE INTEGER,IMAGEFILENAME VARCHAR(255),IMAGEFILEDESCRIPTION VARCHAR(255))
++CREATE TABLE MOVIEIMAGES(MOVIEID INTEGER NOT NULL,IMAGEID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEIMAGES PRIMARY KEY(MOVIEID,POS),CONSTRAINT FK5CA231889CC15796 FOREIGN KEY(IMAGEID) REFERENCES IMAGE(IMAGEID))
+ CREATE TABLE PERSON(PERSONID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,FIRSTNAME VARCHAR(255) NOT NULL,LASTNAME VARCHAR(255) NOT NULL,MIDDLENAME VARCHAR(255),SALUTATION VARCHAR(255),TITLE VARCHAR(255),STREET VARCHAR(255) NOT NULL,STREETNUMBER VARCHAR(10) NOT NULL,CITY VARCHAR(255) NOT NULL,ZIPCODE VARCHAR(10) NOT NULL,COUNTRY VARCHAR(255) NOT NULL,EMAILADDRESS VARCHAR(255) NOT NULL,DAYOFBIRTH TIMESTAMP)
+ CREATE TABLE GENRE(GENREID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE SUBTITLE(SUBTITLEID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE MOVIEDIRECTORS(MOVIEID INTEGER NOT NULL,DIRECTORID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEDIRECTORS PRIMARY KEY(MOVIEID,POS))
++CREATE TABLE MOVIEORDERORDERITEMS(MOVIEORDERID INTEGER NOT NULL,ORDERITEMID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEORDERORDERITEMS PRIMARY KEY(MOVIEORDERID,POS))
+ CREATE TABLE ORDERITEM(ORDERITEMID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,ORDERTIME TIMESTAMP NOT NULL,SENDERTIME TIMESTAMP,RECEIVINGTIME TIMESTAMP,CUSTOMER INTEGER,DVD INTEGER,DURATION INTEGER NOT NULL,CONDITIONSEND INTEGER,CONDITIONRECEIVING INTEGER)
+ CREATE TABLE MOVIEACTORS(MOVIEID INTEGER NOT NULL,ACTORID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEACTORS PRIMARY KEY(MOVIEID,POS))
+ CREATE TABLE MOVIEAUDIOFORMATES(MOVIEID INTEGER NOT NULL,AUDIOFORMATID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEAUDIOFORMATES PRIMARY KEY(MOVIEID,POS))
+ CREATE TABLE STATUS(STATUSID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,STATUSNAME VARCHAR(255) NOT NULL,STATUSSHORTNAME VARCHAR(255) NOT NULL)
+-CREATE TABLE DVD(DVDID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,MOVIE INTEGER,CONDITION INTEGER,STATUS INTEGER,BARCODE VARCHAR(255),CONSTRAINT SYS_CT_579 UNIQUE(BARCODE),CONSTRAINT FK109F29260C3F2 FOREIGN KEY(STATUS) REFERENCES STATUS(STATUSID))
++CREATE TABLE DVD(DVDID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,MOVIE INTEGER,CONDITION INTEGER,STATUS INTEGER,BARCODE VARCHAR(255),CONSTRAINT SYS_CT_1 UNIQUE(BARCODE),CONSTRAINT FK109F29260C3F2 FOREIGN KEY(STATUS) REFERENCES STATUS(STATUSID))
+ CREATE TABLE DIRECTOR(DIRECTORID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,FIRSTNAME VARCHAR(255) NOT NULL,LASTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE ACTOR(ACTORID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,FIRSTNAME VARCHAR(255) NOT NULL,LASTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE AUDIOFORMAT(AUIOFORMATID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE MOVIEVIDEOFORMATES(MOVIEID INTEGER NOT NULL,VIDEOFORMATID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEVIDEOFORMATES PRIMARY KEY(MOVIEID,POS))
++CREATE TABLE MOVIEORDER(MOVIEORDERID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,CUSTOMER INTEGER,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE MOVIE(MOVIEID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,TITLE VARCHAR(255) NOT NULL,DESCRIPTION VARCHAR(255) NOT NULL,RUNTIME INTEGER,RELEASEDATE DATE)
+ CREATE TABLE LANGUAGE(LANGUAGEID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE CUSTOMER(CUSTOMERID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,DAYOFREGISTRATION TIMESTAMP NOT NULL,USERNAME VARCHAR(255) NOT NULL,PASSWORD VARCHAR(255) NOT NULL,HIDDENQUESTION VARCHAR(255) NOT NULL,HIDDENANSWER VARCHAR(255) NOT NULL,DAYOFBIRTH TIMESTAMP)
+ CREATE TABLE CONDITION(CONDITIONID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,CONDITIONNAME VARCHAR(255) NOT NULL,CONDITIONSHORTNAME VARCHAR(255) NOT NULL)
++CREATE TABLE BILL(BILLID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,CUSTOMER INTEGER,PDFFILE BINARY,PDFFILESIZE INTEGER,CONSTRAINT FK1F1C0724217FDE FOREIGN KEY(CUSTOMER) REFERENCES CUSTOMER(CUSTOMERID))
+ CREATE TABLE MOVIESUBTITLES(MOVIEID INTEGER NOT NULL,SUBTITLEID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIESUBTITLES PRIMARY KEY(MOVIEID,POS),CONSTRAINT FK33A6F22B13769F33 FOREIGN KEY(SUBTITLEID) REFERENCES SUBTITLE(SUBTITLEID),CONSTRAINT FK33A6F22B74ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID))
+ CREATE TABLE MOVIEGENRES(MOVIEID INTEGER NOT NULL,GENREID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEGENRES PRIMARY KEY(MOVIEID,POS),CONSTRAINT FK58CDD660260A4DBE FOREIGN KEY(GENREID) REFERENCES GENRE(GENREID),CONSTRAINT FK58CDD66074ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID))
+ CREATE TABLE VIDEOFORMAT(VIDEOFORMATID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE MOVIELANGUAGES(MOVIEID INTEGER NOT NULL,LANGUAGEID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIELANGUAGES PRIMARY KEY(MOVIEID,POS),CONSTRAINT FK6D6C92EB12651673 FOREIGN KEY(LANGUAGEID) REFERENCES LANGUAGE(LANGUAGEID),CONSTRAINT FK6D6C92EB74ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID))
+-ALTER TABLE ORDERORDERITEMS ADD CONSTRAINT FK7D3D9AE0708F81C FOREIGN KEY(ORDERITEMID) REFERENCES ORDERITEM(ORDERITEMID)
+ ALTER TABLE MOVIEIMAGES ADD CONSTRAINT FK5CA2318874ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID)
+ ALTER TABLE MOVIEDIRECTORS ADD CONSTRAINT FKD98CD93774ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID)
+ ALTER TABLE MOVIEDIRECTORS ADD CONSTRAINT FKD98CD9372A4D99A7 FOREIGN KEY(DIRECTORID) REFERENCES DIRECTOR(DIRECTORID)
++ALTER TABLE MOVIEORDERORDERITEMS ADD CONSTRAINT FK764251D07DBB2BB9 FOREIGN KEY(MOVIEORDERID) REFERENCES MOVIEORDER(MOVIEORDERID)
++ALTER TABLE MOVIEORDERORDERITEMS ADD CONSTRAINT FK764251D0708F81C FOREIGN KEY(ORDERITEMID) REFERENCES ORDERITEM(ORDERITEMID)
+ ALTER TABLE ORDERITEM ADD CONSTRAINT FK8ECABB4118612 FOREIGN KEY(DVD) REFERENCES DVD(DVDID)
+ ALTER TABLE ORDERITEM ADD CONSTRAINT FK8ECABB41B83A405 FOREIGN KEY(CONDITIONRECEIVING) REFERENCES CONDITION(CONDITIONID)
+ ALTER TABLE ORDERITEM ADD CONSTRAINT FK8ECABB4151CEAB43 FOREIGN KEY(CONDITIONSEND) REFERENCES CONDITION(CONDITIONID)
+@@ -38,4 +41,5 @@
+ ALTER TABLE DVD ADD CONSTRAINT FK109F26343F30 FOREIGN KEY(MOVIE) REFERENCES MOVIE(MOVIEID)
+ ALTER TABLE MOVIEVIDEOFORMATES ADD CONSTRAINT FKDE3173074ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID)
+ ALTER TABLE MOVIEVIDEOFORMATES ADD CONSTRAINT FKDE31730C23D64AD FOREIGN KEY(VIDEOFORMATID) REFERENCES VIDEOFORMAT(VIDEOFORMATID)
++ALTER TABLE MOVIEORDER ADD CONSTRAINT FKB0BF321E24217FDE FOREIGN KEY(CUSTOMER) REFERENCES CUSTOMER(CUSTOMERID)
+ CREATE USER SA PASSWORD &quot;&quot; ADMIN
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Bill.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Bill.hbm.xml	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Bill.hbm.xml	2004-10-09 20:45:57 UTC (rev 26)
+@@ -30,7 +30,7 @@
+ 
+  
+       &lt;property name=&quot;pdfFile&quot; type=&quot;binary&quot;&gt;
+-      	&lt;column name=&quot;pdffile&quot; sql-type=&quot;blob&quot; /&gt;
++      	&lt;column name=&quot;pdffile&quot; sql-type=&quot;binary&quot; /&gt;
+       &lt;/property&gt;
+ 				
+       &lt;property name=&quot;pdfFileSize&quot; type=&quot;int&quot;&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Image.hbm.xml	2004-10-09 20:45:57 UTC (rev 26)
+@@ -22,7 +22,7 @@
+ 
+  
+       &lt;property name=&quot;imageFile&quot; type=&quot;binary&quot;&gt;
+-      	&lt;column name=&quot;pdffile&quot; sql-type=&quot;BYTEA&quot; /&gt;
++      	&lt;column name=&quot;pdffile&quot; sql-type=&quot;BINARY&quot; /&gt;
+       &lt;/property&gt;
+ 				
+       &lt;property name=&quot;imageFileSize&quot; type=&quot;int&quot;&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.hbm.xml	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.hbm.xml	2004-10-09 20:45:57 UTC (rev 26)
+@@ -4,9 +4,9 @@
+              &quot;<A HREF="http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd</A>&quot;&gt;
+   &lt;hibernate-mapping&gt;
+  
+-   &lt;class name=&quot;de.hsharz.provirent.objects.Order&quot; table=&quot;ORDER&quot;&gt;
++   &lt;class name=&quot;de.hsharz.provirent.objects.MovieOrder&quot; table=&quot;MOVIEORDER&quot;&gt;
+       &lt;meta attribute=&quot;class-description&quot;&gt;
+-        Represents an Order.
++        Represents an MovieOrder.
+         @author Philipp Schneider
+       &lt;/meta&gt;
+       
+@@ -14,7 +14,7 @@
+  			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
+  			&lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+  			
+-      &lt;id name=&quot;orderId&quot; type=&quot;int&quot; column=&quot;ORDERID&quot;&gt;
++      &lt;id name=&quot;movieOrderId&quot; type=&quot;int&quot; column=&quot;MOVIEORDERID&quot;&gt;
+         &lt;meta attribute=&quot;scope-set&quot;&gt;protected&lt;/meta&gt;
+         &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+         &lt;generator class=&quot;native&quot;/&gt;
+@@ -27,11 +27,11 @@
+ 		 	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+ 		 &lt;/many-to-one&gt;
+ 
+- 			&lt;list	name=&quot;orderItems&quot;
+- 						table=&quot;ORDERORDERITEMS&quot;
++ 			&lt;list	name=&quot;movieOrderItems&quot;
++ 						table=&quot;MOVIEORDERORDERITEMS&quot;
+  						&gt;
+ 				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-				&lt;key column=&quot;ORDERID&quot;/&gt;
++				&lt;key column=&quot;MOVIEORDERID&quot;/&gt;
+ 				&lt;index column=&quot;POS&quot;/&gt;
+ 				&lt;many-to-many class=&quot;de.hsharz.provirent.objects.OrderItem&quot; column=&quot;ORDERITEMID&quot;/&gt;
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.java	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/MovieOrder.java	2004-10-09 20:45:57 UTC (rev 26)
+@@ -8,14 +8,14 @@
+ 
+ 
+ /** 
+- *         Represents an Order.
++ *         Represents an MovieOrder.
+  *         @author Philipp Schneider
+- *       
++ *        
+ */
+-public class Order implements Serializable {
++public class MovieOrder implements Serializable {
+ 
+     /** identifier field */
+-    private Integer orderId;
++    private Integer movieOrderId;
+ 
+     /** persistent field */
+     private String name;
+@@ -27,33 +27,33 @@
+     private de.hsharz.provirent.objects.Customer customer;
+ 
+     /** persistent field */
+-    private List orderItems;
++    private List movieOrderItems;
+ 
+     /** full constructor */
+-    public Order(String name, String shortname, de.hsharz.provirent.objects.Customer customer, List orderItems) {
++    public MovieOrder(String name, String shortname, de.hsharz.provirent.objects.Customer customer, List movieOrderItems) {
+         this.name = name;
+         this.shortname = shortname;
+         this.customer = customer;
+-        this.orderItems = orderItems;
++        this.movieOrderItems = movieOrderItems;
+     }
+ 
+     /** default constructor */
+-    public Order() {
++    public MovieOrder() {
+     }
+ 
+     /** minimal constructor */
+-    public Order(String name, String shortname, List orderItems) {
++    public MovieOrder(String name, String shortname, List movieOrderItems) {
+         this.name = name;
+         this.shortname = shortname;
+-        this.orderItems = orderItems;
++        this.movieOrderItems = movieOrderItems;
+     }
+ 
+-    public Integer getOrderId() {
+-        return this.orderId;
++    public Integer getMovieOrderId() {
++        return this.movieOrderId;
+     }
+ 
+-    protected void setOrderId(Integer orderId) {
+-        this.orderId = orderId;
++    protected void setMovieOrderId(Integer movieOrderId) {
++        this.movieOrderId = movieOrderId;
+     }
+ 
+     public String getName() {
+@@ -80,44 +80,44 @@
+         this.customer = customer;
+     }
+ 
+-    public List getOrderItems() {
+-        return this.orderItems;
++    public List getMovieOrderItems() {
++        return this.movieOrderItems;
+     }
+ 
+-    public void setOrderItems(List orderItems) {
+-        this.orderItems = orderItems;
++    public void setMovieOrderItems(List movieOrderItems) {
++        this.movieOrderItems = movieOrderItems;
+     }
+ 
+     public String toString() {
+         return new ToStringBuilder(this)
+-            .append(&quot;orderId&quot;, getOrderId())
++            .append(&quot;movieOrderId&quot;, getMovieOrderId())
+             .append(&quot;name&quot;, getName())
+             .append(&quot;shortname&quot;, getShortname())
+             .append(&quot;customer&quot;, getCustomer())
+-            .append(&quot;orderItems&quot;, getOrderItems())
++            .append(&quot;movieOrderItems&quot;, getMovieOrderItems())
+             .toString();
+     }
+ 
+     public boolean equals(Object other) {
+         if ( (this == other ) ) return true;
+-        if ( !(other instanceof Order) ) return false;
+-        Order castOther = (Order) other;
++        if ( !(other instanceof MovieOrder) ) return false;
++        MovieOrder castOther = (MovieOrder) other;
+         return new EqualsBuilder()
+-            .append(this.getOrderId(), castOther.getOrderId())
++            .append(this.getMovieOrderId(), castOther.getMovieOrderId())
+             .append(this.getName(), castOther.getName())
+             .append(this.getShortname(), castOther.getShortname())
+             .append(this.getCustomer(), castOther.getCustomer())
+-            .append(this.getOrderItems(), castOther.getOrderItems())
++            .append(this.getMovieOrderItems(), castOther.getMovieOrderItems())
+             .isEquals();
+     }
+ 
+     public int hashCode() {
+         return new HashCodeBuilder()
+-            .append(getOrderId())
++            .append(getMovieOrderId())
+             .append(getName())
+             .append(getShortname())
+             .append(getCustomer())
+-            .append(getOrderItems())
++            .append(getMovieOrderItems())
+             .toHashCode();
+     }
+ 
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java	2004-10-09 20:45:57 UTC (rev 26)
+@@ -51,7 +51,7 @@
+ import de.hsharz.provirent.objects.Image;
+ import de.hsharz.provirent.objects.Language;
+ import de.hsharz.provirent.objects.Movie;
+-import de.hsharz.provirent.objects.Order;
++import de.hsharz.provirent.objects.MovieOrder;
+ import de.hsharz.provirent.objects.OrderItem;
+ import de.hsharz.provirent.objects.Person;
+ import de.hsharz.provirent.objects.Status;
+@@ -79,7 +79,7 @@
+             .addClass(Status.class).addClass(Bill.class)
+             .addClass(Subtitle.class).addClass(VideoFormat.class)
+             .addClass(Customer.class).addClass(Image.class)
+-            .addClass(Order.class).addClass(OrderItem.class)
++            .addClass(MovieOrder.class).addClass(OrderItem.class)
+             .addClass(Person.class);
+ 
+ 
+@@ -99,10 +99,6 @@
+             s = sessionFactory.openSession();
+             session.set(s);
+         }
+-        
+-        log.debug(&quot;HibernateUtil.currentSession() - Connected? &quot; + s.isConnected());
+-        log.debug(&quot;HibernateUtil.currentSession() - Open? &quot; + s.isOpen());
+-        
+         return s;
+     }
+ 
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestActor.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestActor.java	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestActor.java	2004-10-09 20:45:57 UTC (rev 26)
+@@ -32,28 +32,254 @@
+  */
+ package test.provirent.hibernate;
+ 
++import java.util.ArrayList;
++import java.util.Iterator;
++import java.util.List;
++
+ import junit.framework.TestCase;
++import net.sf.hibernate.Session;
++import net.sf.hibernate.Transaction;
+ 
++import org.apache.log4j.Logger;
++
++import de.hsharz.provirent.objects.Actor;
++
+ /**
+  * @author Philipp Schneider
+  *
+  */
+ public class TestActor extends TestCase {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(TestActor.class);
+ 
+     /*
+      * @see TestCase#setUp()
+      */
+     protected void setUp() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - start&quot;);
++        }
++
+         super.setUp();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - end&quot;);
++        }
+     }
+ 
+     /*
+      * @see TestCase#tearDown()
+      */
+     protected void tearDown() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - start&quot;);
++        }
++
+         super.tearDown();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - end&quot;);
++        }
+     }
+ 
++    public void testActor() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Actors = new ArrayList();
++
++                Actor myd1 = new Actor(&quot;Johnny&quot;, &quot;Depp&quot;);
++                Actor myd2 = new Actor(&quot;Geoffrey&quot;, &quot;Rush&quot;);
++                Actor myd3 = new Actor(&quot;Gore&quot;, &quot;Verbinski &quot;);
++                Actor myd4 = new Actor(&quot;Julianne&quot;, &quot;Moore &quot;);
++                Actor myd5 = new Actor(&quot;Anthony&quot;, &quot;Edwards &quot;);
++                Actor myd6 = new Actor(&quot;Matthew&quot;, &quot;Pleszewicz &quot;);
++                Actor myd7 = new Actor(&quot;Christopher&quot;, &quot;Kovaleski &quot;);
++
++                Actors.add(myd1);
++                Actors.add(myd2);
++                Actors.add(myd3);
++                Actors.add(myd4);
++                Actors.add(myd5);
++                Actors.add(myd6);
++                Actors.add(myd7);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Actors.iterator(); iter.hasNext();) {
++                    Actor dir = (Actor) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++                for (int i = 0; i &lt; ids.size(); i++) {
++                    int id = ((Integer) ids.get(i)).intValue();
++                    Actor myd = (Actor) Actors.get(i);
++
++                    //get Actor from Hibernate
++                    Actor dbd = (Actor) s.get(Actor.class, new Integer(id));
++                    assertNotNull(&quot;Can't get Actor&quot; + id + &quot; from DB&quot;, dbd);
++                    if (dbd == null) {
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;testCreating()Kein object mit id &quot;
++                                    + id + &quot;gefunden.&quot;);
++                        }
++                        return;
++                    }
++                    //are both equal?
++                    assertEquals(
++                            &quot;Select: Actor aus DB nicht gleich meiner. DB: &quot;
++                                    + dbd + &quot; My:&quot; + myd, myd, dbd);
++
++                    //Update
++
++                    //delete the object
++                    s.delete(myd);
++                    s.flush();
++
++                    dbd = myd = null;
++
++                    Object obj = s.get(Actor.class, new Integer(id));
++
++                    //should be null, because data deleted
++                    assertNull(&quot;Deleted: Actor&quot; + id + &quot;, but still in DB&quot;, obj);
++
++                    if (logger.isDebugEnabled()) {
++                        logger
++                                .debug(&quot;testCreating() - Actor aus DB gleich meiner? DB: &quot;
++                                        + dbd + &quot; My:&quot; + myd);
++                    }
++
++                }
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testCreating() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testCreating() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - end&quot;);
++        }
++    }
++
++    public void testSaveActor() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveActor() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Actors = new ArrayList();
++
++                Actor myd1 = new Actor(&quot;Johnny&quot;, &quot;Depp&quot;);
++                Actor myd2 = new Actor(&quot;Geoffrey&quot;, &quot;Rush&quot;);
++                Actor myd3 = new Actor(&quot;Gore&quot;, &quot;Verbinski &quot;);
++                Actor myd4 = new Actor(&quot;Julianne&quot;, &quot;Moore &quot;);
++                Actor myd5 = new Actor(&quot;Anthony&quot;, &quot;Edwards &quot;);
++                Actor myd6 = new Actor(&quot;Matthew&quot;, &quot;Pleszewicz &quot;);
++                Actor myd7 = new Actor(&quot;Christopher&quot;, &quot;Kovaleski &quot;);
++
++                Actors.add(myd1);
++                Actors.add(myd2);
++                Actors.add(myd3);
++                Actors.add(myd4);
++                Actors.add(myd5);
++                Actors.add(myd6);
++                Actors.add(myd7);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Actors.iterator(); iter.hasNext();) {
++                    Actor dir = (Actor) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testSaveActor() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testSaveActor() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveActor() - end&quot;);
++        }
++    }
++
+     /**
+      * Constructor for TestActor.
+      * @param arg0
+@@ -62,4 +288,4 @@
+         super(arg0);
+     }
+ 
+-}
++}
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestAudioFormat.java	2004-10-09 20:45:57 UTC (rev 26)
+@@ -32,28 +32,242 @@
+  */
+ package test.provirent.hibernate;
+ 
++import java.util.ArrayList;
++import java.util.Iterator;
++import java.util.List;
++
+ import junit.framework.TestCase;
++import net.sf.hibernate.Session;
++import net.sf.hibernate.Transaction;
+ 
++import org.apache.log4j.Logger;
++
++import de.hsharz.provirent.objects.AudioFormat;
++
+ /**
+  * @author Philipp Schneider
+  *
+  */
+ public class TestAudioFormat extends TestCase {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(TestAudioFormat.class);
+ 
+     /*
+      * @see TestCase#setUp()
+      */
+     protected void setUp() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - start&quot;);
++        }
++
+         super.setUp();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - end&quot;);
++        }
+     }
+ 
+     /*
+      * @see TestCase#tearDown()
+      */
+     protected void tearDown() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - start&quot;);
++        }
++
+         super.tearDown();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - end&quot;);
++        }
+     }
+ 
++    public void testAudioFormat() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List AudioFormats = new ArrayList();
++
++                AudioFormat myd1 = new AudioFormat(&quot;DTS Surround Sound&quot;,&quot;&quot;);
++                AudioFormat myd2 = new AudioFormat(&quot;Surround Sound&quot;,&quot;&quot;);
++                AudioFormat myd3 = new AudioFormat(&quot;Dolby&quot;,&quot;&quot;);
++                AudioFormat myd4 = new AudioFormat(&quot;Stereo&quot;,&quot;&quot;);
++
++                AudioFormats.add(myd1);
++                AudioFormats.add(myd2);
++                AudioFormats.add(myd3);
++                AudioFormats.add(myd4);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = AudioFormats.iterator(); iter.hasNext();) {
++                    AudioFormat dir = (AudioFormat) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++                for (int i = 0; i &lt; ids.size(); i++) {
++                    int id = ((Integer) ids.get(i)).intValue();
++                    AudioFormat myd = (AudioFormat) AudioFormats.get(i);
++
++                    //get AudioFormat from Hibernate
++                    AudioFormat dbd = (AudioFormat) s.get(AudioFormat.class, new Integer(id));
++                    assertNotNull(&quot;Can't get AudioFormat&quot; + id + &quot; from DB&quot;, dbd);
++                    if (dbd == null) {
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;testCreating()Kein object mit id &quot;
++                                    + id + &quot;gefunden.&quot;);
++                        }
++                        return;
++                    }
++                    //are both equal?
++                    assertEquals(
++                            &quot;Select: AudioFormat aus DB nicht gleich meiner. DB: &quot;
++                                    + dbd + &quot; My:&quot; + myd, myd, dbd);
++
++                    //Update
++
++                    //delete the object
++                    s.delete(myd);
++                    s.flush();
++
++                    dbd = myd = null;
++
++                    Object obj = s.get(AudioFormat.class, new Integer(id));
++
++                    //should be null, because data deleted
++                    assertNull(&quot;Deleted: AudioFormat&quot; + id + &quot;, but still in DB&quot;, obj);
++
++                    if (logger.isDebugEnabled()) {
++                        logger
++                                .debug(&quot;testCreating() - AudioFormat aus DB gleich meiner? DB: &quot;
++                                        + dbd + &quot; My:&quot; + myd);
++                    }
++
++                }
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testCreating() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testCreating() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - end&quot;);
++        }
++    }
++
++    public void testSaveAudioFormat() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveAudioFormat() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List AudioFormats = new ArrayList();
++
++                AudioFormat myd1 = new AudioFormat(&quot;DTS Surround Sound&quot;,&quot;&quot;);
++                AudioFormat myd2 = new AudioFormat(&quot;Surround Sound&quot;,&quot;&quot;);
++                AudioFormat myd3 = new AudioFormat(&quot;Dolby&quot;,&quot;&quot;);
++                AudioFormat myd4 = new AudioFormat(&quot;Stereo&quot;,&quot;&quot;);
++
++                AudioFormats.add(myd1);
++                AudioFormats.add(myd2);
++                AudioFormats.add(myd3);
++                AudioFormats.add(myd4);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = AudioFormats.iterator(); iter.hasNext();) {
++                    AudioFormat dir = (AudioFormat) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testSaveAudioFormat() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testSaveAudioFormat() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveAudioFormat() - end&quot;);
++        }
++    }
++
+     /**
+      * Constructor for TestAudioFormat.
+      * @param arg0
+@@ -62,4 +276,4 @@
+         super(arg0);
+     }
+ 
+-}
++}
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java	2004-10-09 20:45:57 UTC (rev 26)
+@@ -32,28 +32,246 @@
+  */
+ package test.provirent.hibernate;
+ 
++import java.util.ArrayList;
++import java.util.Iterator;
++import java.util.List;
++
+ import junit.framework.TestCase;
++import net.sf.hibernate.Session;
++import net.sf.hibernate.Transaction;
+ 
++import org.apache.log4j.Logger;
++
++import de.hsharz.provirent.objects.Condition;
++
+ /**
+  * @author Philipp Schneider
+  *
+  */
+ public class TestCondition extends TestCase {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(TestCondition.class);
+ 
+     /*
+      * @see TestCase#setUp()
+      */
+     protected void setUp() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - start&quot;);
++        }
++
+         super.setUp();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - end&quot;);
++        }
+     }
+ 
+     /*
+      * @see TestCase#tearDown()
+      */
+     protected void tearDown() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - start&quot;);
++        }
++
+         super.tearDown();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - end&quot;);
++        }
+     }
+ 
++    public void testCondition() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Conditions = new ArrayList();
++
++                Condition myd1 = new Condition(&quot;neu&quot;,&quot;&quot;);
++                Condition myd2 = new Condition(&quot;leichte Kratzer&quot;,&quot;&quot;);
++                Condition myd3 = new Condition(&quot;mittlere Kratzer&quot;,&quot;&quot;);
++                Condition myd4 = new Condition(&quot;schwere Kratzer&quot;,&quot;&quot;);
++                Condition myd5 = new Condition(&quot;nicht lesbar&quot;,&quot;&quot;);
++
++                Conditions.add(myd1);
++                Conditions.add(myd2);
++                Conditions.add(myd3);
++                Conditions.add(myd4);
++                Conditions.add(myd5);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Conditions.iterator(); iter.hasNext();) {
++                    Condition dir = (Condition) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++                for (int i = 0; i &lt; ids.size(); i++) {
++                    int id = ((Integer) ids.get(i)).intValue();
++                    Condition myd = (Condition) Conditions.get(i);
++
++                    //get Condition from Hibernate
++                    Condition dbd = (Condition) s.get(Condition.class, new Integer(id));
++                    assertNotNull(&quot;Can't get Condition&quot; + id + &quot; from DB&quot;, dbd);
++                    if (dbd == null) {
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;testCreating()Kein object mit id &quot;
++                                    + id + &quot;gefunden.&quot;);
++                        }
++                        return;
++                    }
++                    //are both equal?
++                    assertEquals(
++                            &quot;Select: Condition aus DB nicht gleich meiner. DB: &quot;
++                                    + dbd + &quot; My:&quot; + myd, myd, dbd);
++
++                    //Update
++
++                    //delete the object
++                    s.delete(myd);
++                    s.flush();
++
++                    dbd = myd = null;
++
++                    Object obj = s.get(Condition.class, new Integer(id));
++
++                    //should be null, because data deleted
++                    assertNull(&quot;Deleted: Condition&quot; + id + &quot;, but still in DB&quot;, obj);
++
++                    if (logger.isDebugEnabled()) {
++                        logger
++                                .debug(&quot;testCreating() - Condition aus DB gleich meiner? DB: &quot;
++                                        + dbd + &quot; My:&quot; + myd);
++                    }
++
++                }
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testCreating() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testCreating() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - end&quot;);
++        }
++    }
++
++    public void testSaveCondition() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveCondition() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Conditions = new ArrayList();
++
++                Condition myd1 = new Condition(&quot;neu&quot;,&quot;&quot;);
++                Condition myd2 = new Condition(&quot;leichte Kratzer&quot;,&quot;&quot;);
++                Condition myd3 = new Condition(&quot;mittlere Kratzer&quot;,&quot;&quot;);
++                Condition myd4 = new Condition(&quot;schwere Kratzer&quot;,&quot;&quot;);
++                Condition myd5 = new Condition(&quot;nicht lesbar&quot;,&quot;&quot;);
++
++                Conditions.add(myd1);
++                Conditions.add(myd2);
++                Conditions.add(myd3);
++                Conditions.add(myd4);
++                Conditions.add(myd5);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Conditions.iterator(); iter.hasNext();) {
++                    Condition dir = (Condition) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testSaveCondition() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testSaveCondition() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveCondition() - end&quot;);
++        }
++    }
++
+     /**
+      * Constructor for TestCondition.
+      * @param arg0
+@@ -62,4 +280,4 @@
+         super(arg0);
+     }
+ 
+-}
++}
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestDirector.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestDirector.java	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestDirector.java	2004-10-09 20:45:57 UTC (rev 26)
+@@ -32,14 +32,18 @@
+  */
+ package test.provirent.hibernate;
+ 
+-import org.apache.log4j.Logger;
++import java.util.ArrayList;
++import java.util.Iterator;
++import java.util.List;
+ 
+ import junit.framework.TestCase;
+-import de.hsharz.provirent.objects.*;
+-
+ import net.sf.hibernate.Session;
+ import net.sf.hibernate.Transaction;
+ 
++import org.apache.log4j.Logger;
++
++import de.hsharz.provirent.objects.Director;
++
+ /**
+  * @author Philipp Schneider
+  *
+@@ -80,38 +84,91 @@
+         }
+     }
+ 
+-    public void testCreating() throws Exception {
++    public void testDirector() throws Exception {
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - start&quot;);
+         }
+ 
++        //get new Session and begin Transaction
+         Session s = HibernateUtil.currentSession();
+         Transaction tx = null;
+         try {
+             tx = s.beginTransaction();
+ 
+             try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
+ 
+-                if (logger.isDebugEnabled()) {
+-                    logger.debug(&quot;testCreating() - Connected? &quot;
+-                            + s.isConnected());
+-                    logger.debug(&quot;testCreating() - Open? &quot; + s.isOpen());
++                //cretae new objects
++                List directors = new ArrayList();
++
++                Director myd1 = new Director(&quot;Bibo&quot;, &quot;Bergeron&quot;);
++                Director myd2 = new Director(&quot;Vicky&quot;, &quot;Jenson&quot;);
++                Director myd3 = new Director(&quot;Jay&quot;, &quot;Russell&quot;);
++                Director myd4 = new Director(&quot;Joseph&quot;, &quot;Ruben&quot;);
++
++                directors.add(myd1);
++                directors.add(myd2);
++                directors.add(myd3);
++                directors.add(myd4);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = directors.iterator(); iter.hasNext();) {
++                    Director dir = (Director) iter.next();
++                    ids.add((Integer) s.save(dir));
++
+                 }
+-
+-                Director d1 = new Director(&quot;Bibo&quot;, &quot;Bergeron&quot;);
+-                Director d2 = new Director(&quot;Vicky&quot;, &quot;Jenson&quot;);
+-                Director d3 = new Director(&quot;Jay&quot;, &quot;Russell&quot;);
+-                Director d4 = new Director(&quot;Joseph&quot;, &quot;Ruben&quot;);
+-                s.save(d1);
+-                s.save(d2);
+-                s.save(d3);
+-                s.save(d4);
+                 s.flush();
+ 
+                 tx.commit();
+-                
+-                
+-                
++
++                for (int i = 0; i &lt; ids.size(); i++) {
++                    int id = ((Integer) ids.get(i)).intValue();
++                    Director myd = (Director) directors.get(i);
++
++                    //get Director from Hibernate
++                    Director dbd = (Director) s.get(Director.class,
++                            new Integer(id));
++                    assertNotNull(&quot;Can't get Director&quot; + id + &quot; from DB&quot;, dbd);
++                    if (dbd == null) {
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;testCreating()Kein object mit id &quot;
++                                    + id + &quot;gefunden.&quot;);
++                        }
++                        return;
++                    }
++                    //are both equal?
++                    assertEquals(
++                            &quot;Select: Director aus DB nicht gleich meiner. DB: &quot;
++                                    + dbd + &quot; My:&quot; + myd, myd, dbd);
++
++                    //Update
++
++                    //delete the object
++                    s.delete(myd);
++                    s.flush();
++
++                    dbd = myd = null;
++
++                    Object obj = s.get(Director.class, new Integer(id));
++
++                    //should be null, because data deleted
++                    assertNull(&quot;Deleted: Director&quot; + id + &quot;, but still in DB&quot;,
++                            obj);
++
++                    if (logger.isDebugEnabled()) {
++                        logger
++                                .debug(&quot;testCreating() - Director aus DB gleich meiner? DB: &quot;
++                                        + dbd + &quot; My:&quot; + myd);
++                    }
++
++                }
++
++                tx.commit();
++
+             } catch (Exception e) {
+                 if (tx != null) {
+                     logger
+@@ -136,12 +193,84 @@
+         }
+ 
+         HibernateUtil.closeSession();
+-        
++
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+         }
+     }
+ 
++    public void testSaveDirector() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveDirector() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List directors = new ArrayList();
++
++                Director myd1 = new Director(&quot;Bibo&quot;, &quot;Bergeron&quot;);
++                Director myd2 = new Director(&quot;Vicky&quot;, &quot;Jenson&quot;);
++                Director myd3 = new Director(&quot;Jay&quot;, &quot;Russell&quot;);
++                Director myd4 = new Director(&quot;Joseph&quot;, &quot;Ruben&quot;);
++
++                directors.add(myd1);
++                directors.add(myd2);
++                directors.add(myd3);
++                directors.add(myd4);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = directors.iterator(); iter.hasNext();) {
++                    Director dir = (Director) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testSaveDirector() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger
++                    .error(
++                            &quot;testSaveDirector() - Error while trying to beginTransaction&quot;,
++                            e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveDirector() - end&quot;);
++        }
++    }
++
+     /**
+      * Constructor for TestDirector.
+      * @param arg0
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvdOld.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvdOld.java	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvdOld.java	2004-10-09 20:45:57 UTC (rev 26)
+@@ -47,10 +47,10 @@
+  * @author Philipp Schneider
+  *  
+  */
+-public class TestDVDOld {
++public class TestDvdOld {
+ 
+     public static void main(String args[]) throws Exception {
+-        TestDVDOld th = new TestDVDOld();
++        TestDvdOld th = new TestDvdOld();
+         //th.saveObjects();
+         th.getObjects();
+     }
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestGenre.java	2004-10-09 20:45:57 UTC (rev 26)
+@@ -1,5 +1,3 @@
+-package test.provirent.hibernate;
+-import junit.framework.TestCase;
+ /*
+  * Created on 09.10.2004
+  *
+@@ -32,27 +30,245 @@
+  * POSSIBILITY OF SUCH DAMAGE.
+  *
+  */
++package test.provirent.hibernate;
+ 
++import java.util.ArrayList;
++import java.util.Iterator;
++import java.util.List;
++
++import junit.framework.TestCase;
++import net.sf.hibernate.Session;
++import net.sf.hibernate.Transaction;
++
++import org.apache.log4j.Logger;
++
++import de.hsharz.provirent.objects.Genre;
++
+ /**
+  * @author Philipp Schneider
+  *
+  */
+ public class TestGenre extends TestCase {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(TestGenre.class);
+ 
+     /*
+      * @see TestCase#setUp()
+      */
+     protected void setUp() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - start&quot;);
++        }
++
+         super.setUp();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - end&quot;);
++        }
+     }
+ 
+     /*
+      * @see TestCase#tearDown()
+      */
+     protected void tearDown() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - start&quot;);
++        }
++
+         super.tearDown();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - end&quot;);
++        }
+     }
+ 
++    public void testGenre() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Genres = new ArrayList();
++
++                Genre myd1 = new Genre(&quot;Action&quot;,&quot;&quot;);
++                Genre myd2 = new Genre(&quot;Abenteuer&quot;,&quot;&quot;);
++                Genre myd3 = new Genre(&quot;Dokumentation&quot;,&quot;&quot;);
++                Genre myd4 = new Genre(&quot;Horror&quot;,&quot;&quot;);
++
++                Genres.add(myd1);
++                Genres.add(myd2);
++                Genres.add(myd3);
++                Genres.add(myd4);
++                
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Genres.iterator(); iter.hasNext();) {
++                    Genre dir = (Genre) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++                for (int i = 0; i &lt; ids.size(); i++) {
++                    int id = ((Integer) ids.get(i)).intValue();
++                    Genre myd = (Genre) Genres.get(i);
++
++                    //get Genre from Hibernate
++                    Genre dbd = (Genre) s.get(Genre.class, new Integer(id));
++                    assertNotNull(&quot;Can't get Genre&quot; + id + &quot; from DB&quot;, dbd);
++                    if (dbd == null) {
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;testCreating()Kein object mit id &quot;
++                                    + id + &quot;gefunden.&quot;);
++                        }
++                        return;
++                    }
++                    //are both equal?
++                    assertEquals(
++                            &quot;Select: Genre aus DB nicht gleich meiner. DB: &quot;
++                                    + dbd + &quot; My:&quot; + myd, myd, dbd);
++
++                    //Update
++
++                    //delete the object
++                    s.delete(myd);
++                    s.flush();
++
++                    dbd = myd = null;
++
++                    Object obj = s.get(Genre.class, new Integer(id));
++
++                    //should be null, because data deleted
++                    assertNull(&quot;Deleted: Genre&quot; + id + &quot;, but still in DB&quot;, obj);
++
++                    if (logger.isDebugEnabled()) {
++                        logger
++                                .debug(&quot;testCreating() - Genre aus DB gleich meiner? DB: &quot;
++                                        + dbd + &quot; My:&quot; + myd);
++                    }
++
++                }
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testCreating() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testCreating() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - end&quot;);
++        }
++    }
++
++    public void testSaveGenre() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveGenre() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Genres = new ArrayList();
++
++                Genre myd1 = new Genre(&quot;Action&quot;,&quot;&quot;);
++                Genre myd2 = new Genre(&quot;Abenteuer&quot;,&quot;&quot;);
++                Genre myd3 = new Genre(&quot;Dokumentation&quot;,&quot;&quot;);
++                Genre myd4 = new Genre(&quot;Horror&quot;,&quot;&quot;);
++
++                Genres.add(myd1);
++                Genres.add(myd2);
++                Genres.add(myd3);
++                Genres.add(myd4);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Genres.iterator(); iter.hasNext();) {
++                    Genre dir = (Genre) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testSaveGenre() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testSaveGenre() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveGenre() - end&quot;);
++        }
++    }
++
+     /**
+      * Constructor for TestGenre.
+      * @param arg0
+@@ -61,4 +277,4 @@
+         super(arg0);
+     }
+ 
+-}
++}
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java	2004-10-09 20:45:57 UTC (rev 26)
+@@ -1,5 +1,3 @@
+-package test.provirent.hibernate;
+-import junit.framework.TestCase;
+ /*
+  * Created on 09.10.2004
+  *
+@@ -32,27 +30,286 @@
+  * POSSIBILITY OF SUCH DAMAGE.
+  *
+  */
++package test.provirent.hibernate;
+ 
++import java.util.ArrayList;
++import java.util.Iterator;
++import java.util.List;
++
++import junit.framework.TestCase;
++import net.sf.hibernate.Session;
++import net.sf.hibernate.Transaction;
++
++import org.apache.log4j.Logger;
++
++import de.hsharz.provirent.objects.Image;
++
+ /**
+  * @author Philipp Schneider
+  *
+  */
+ public class TestImage extends TestCase {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(TestImage.class);
+ 
+     /*
+      * @see TestCase#setUp()
+      */
+     protected void setUp() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - start&quot;);
++        }
++
+         super.setUp();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - end&quot;);
++        }
+     }
+ 
+     /*
+      * @see TestCase#tearDown()
+      */
+     protected void tearDown() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - start&quot;);
++        }
++
+         super.tearDown();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - end&quot;);
++        }
+     }
+ 
++    public void testImage() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Images = new ArrayList();
++
++                Image myd1 = new Image();
++                myd1.setImageFile(new byte[]{1,2,3,4});
++                myd1.setImageFileDescription(&quot;Bild 1&quot;);
++                myd1.setImageFileName(&quot;image1.jpg&quot;);
++                myd1.setImageFileSize(123);
++                
++                Image myd2 = new Image();
++                myd2.setImageFile(new byte[]{5,6,7,8});
++                myd2.setImageFileDescription(&quot;Bild 2&quot;);
++                myd2.setImageFileName(&quot;image2.jpg&quot;);
++                myd2.setImageFileSize(123);
++
++                Image myd3 = new Image();
++                myd3.setImageFile(new byte[]{9,10,11,12});
++                myd3.setImageFileDescription(&quot;Bild 3&quot;);
++                myd3.setImageFileName(&quot;image3.jpg&quot;);
++                myd3.setImageFileSize(123);
++
++                Image myd4 = new Image();
++                myd4.setImageFile(new byte[]{13,14,15,16});
++                myd4.setImageFileDescription(&quot;Bild 4&quot;);
++                myd4.setImageFileName(&quot;image4.jpg&quot;);
++                myd4.setImageFileSize(123);
++
++                
++                
++                Images.add(myd1);
++                Images.add(myd2);
++                Images.add(myd3);
++                Images.add(myd4);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Images.iterator(); iter.hasNext();) {
++                    Image dir = (Image) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++                for (int i = 0; i &lt; ids.size(); i++) {
++                    int id = ((Integer) ids.get(i)).intValue();
++                    Image myd = (Image) Images.get(i);
++
++                    //get Image from Hibernate
++                    Image dbd = (Image) s.get(Image.class, new Integer(id));
++                    assertNotNull(&quot;Can't get Image&quot; + id + &quot; from DB&quot;, dbd);
++                    if (dbd == null) {
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;testCreating()Kein object mit id &quot;
++                                    + id + &quot;gefunden.&quot;);
++                        }
++                        return;
++                    }
++                    //are both equal?
++                    assertEquals(
++                            &quot;Select: Image aus DB nicht gleich meiner. DB: &quot;
++                                    + dbd + &quot; My:&quot; + myd, myd, dbd);
++
++                    //Update
++
++                    //delete the object
++                    s.delete(myd);
++                    s.flush();
++
++                    dbd = myd = null;
++
++                    Object obj = s.get(Image.class, new Integer(id));
++
++                    //should be null, because data deleted
++                    assertNull(&quot;Deleted: Image&quot; + id + &quot;, but still in DB&quot;, obj);
++
++                    if (logger.isDebugEnabled()) {
++                        logger
++                                .debug(&quot;testCreating() - Image aus DB gleich meiner? DB: &quot;
++                                        + dbd + &quot; My:&quot; + myd);
++                    }
++
++                }
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testCreating() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testCreating() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - end&quot;);
++        }
++    }
++
++    public void testSaveImage() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveImage() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Images = new ArrayList();
++
++                Image myd1 = new Image();
++                myd1.setImageFile(new byte[]{1,2,3,4});
++                myd1.setImageFileDescription(&quot;Bild 1&quot;);
++                myd1.setImageFileName(&quot;image1.jpg&quot;);
++                myd1.setImageFileSize(123);
++                
++                Image myd2 = new Image();
++                myd2.setImageFile(new byte[]{5,6,7,8});
++                myd2.setImageFileDescription(&quot;Bild 2&quot;);
++                myd2.setImageFileName(&quot;image2.jpg&quot;);
++                myd2.setImageFileSize(123);
++
++                Image myd3 = new Image();
++                myd3.setImageFile(new byte[]{9,10,11,12});
++                myd3.setImageFileDescription(&quot;Bild 3&quot;);
++                myd3.setImageFileName(&quot;image3.jpg&quot;);
++                myd3.setImageFileSize(123);
++
++                Image myd4 = new Image();
++                myd4.setImageFile(new byte[]{13,14,15,16});
++                myd4.setImageFileDescription(&quot;Bild 4&quot;);
++                myd4.setImageFileName(&quot;image4.jpg&quot;);
++                myd4.setImageFileSize(123);
++
++                
++                
++                Images.add(myd1);
++                Images.add(myd2);
++                Images.add(myd3);
++                Images.add(myd4);
++                
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Images.iterator(); iter.hasNext();) {
++                    Image dir = (Image) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testSaveImage() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testSaveImage() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveImage() - end&quot;);
++        }
++    }
++
+     /**
+      * Constructor for TestImage.
+      * @param arg0
+@@ -61,4 +318,4 @@
+         super(arg0);
+     }
+ 
+-}
++}
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestLanguage.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestLanguage.java	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestLanguage.java	2004-10-09 20:45:57 UTC (rev 26)
+@@ -1,5 +1,3 @@
+-package test.provirent.hibernate;
+-import junit.framework.TestCase;
+ /*
+  * Created on 09.10.2004
+  *
+@@ -32,27 +30,249 @@
+  * POSSIBILITY OF SUCH DAMAGE.
+  *
+  */
++package test.provirent.hibernate;
+ 
++import java.util.ArrayList;
++import java.util.Iterator;
++import java.util.List;
++
++import junit.framework.TestCase;
++import net.sf.hibernate.Session;
++import net.sf.hibernate.Transaction;
++
++import org.apache.log4j.Logger;
++
++import de.hsharz.provirent.objects.Language;
++import de.hsharz.provirent.objects.Subtitle;
++
+ /**
+  * @author Philipp Schneider
+  *
+  */
+ public class TestLanguage extends TestCase {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(TestLanguage.class);
+ 
+     /*
+      * @see TestCase#setUp()
+      */
+     protected void setUp() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - start&quot;);
++        }
++
+         super.setUp();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - end&quot;);
++        }
+     }
+ 
+     /*
+      * @see TestCase#tearDown()
+      */
+     protected void tearDown() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - start&quot;);
++        }
++
+         super.tearDown();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - end&quot;);
++        }
+     }
+ 
++    public void testLanguage() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Languages = new ArrayList();
++
++                Language myd1 = new Language(&quot;Deutsch&quot;, &quot;de&quot;);
++                Language myd2 = new Language(&quot;Englisch&quot;, &quot;en&quot;);
++                Language myd3 = new Language(&quot;Franzoesisch&quot;, &quot;fr&quot;);
++                Language myd4 = new Language(&quot;Spanisch&quot;, &quot;es&quot;);
++                Language myd5 = new Language(&quot;Japanisch&quot;, &quot;jp&quot;);  
++
++                Languages.add(myd1);
++                Languages.add(myd2);
++                Languages.add(myd3);
++                Languages.add(myd4);
++                Languages.add(myd5);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Languages.iterator(); iter.hasNext();) {
++                    Language dir = (Language) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++                for (int i = 0; i &lt; ids.size(); i++) {
++                    int id = ((Integer) ids.get(i)).intValue();
++                    Language myd = (Language) Languages.get(i);
++
++                    //get Language from Hibernate
++                    Language dbd = (Language) s.get(Language.class, new Integer(id));
++                    assertNotNull(&quot;Can't get Language&quot; + id + &quot; from DB&quot;, dbd);
++                    if (dbd == null) {
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;testCreating()Kein object mit id &quot;
++                                    + id + &quot;gefunden.&quot;);
++                        }
++                        return;
++                    }
++                    //are both equal?
++                    assertEquals(
++                            &quot;Select: Language aus DB nicht gleich meiner. DB: &quot;
++                                    + dbd + &quot; My:&quot; + myd, myd, dbd);
++
++                    //Update
++
++                    //delete the object
++                    s.delete(myd);
++                    s.flush();
++
++                    dbd = myd = null;
++
++                    Object obj = s.get(Language.class, new Integer(id));
++
++                    //should be null, because data deleted
++                    assertNull(&quot;Deleted: Language&quot; + id + &quot;, but still in DB&quot;, obj);
++
++                    if (logger.isDebugEnabled()) {
++                        logger
++                                .debug(&quot;testCreating() - Language aus DB gleich meiner? DB: &quot;
++                                        + dbd + &quot; My:&quot; + myd);
++                    }
++
++                }
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testCreating() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testCreating() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - end&quot;);
++        }
++    }
++
++    public void testSaveLanguage() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveLanguage() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Languages = new ArrayList();
++
++                Language myd1 = new Language(&quot;Deutsch&quot;, &quot;de&quot;);
++                Language myd2 = new Language(&quot;Englisch&quot;, &quot;en&quot;);
++                Language myd3 = new Language(&quot;Franzoesisch&quot;, &quot;fr&quot;);
++                Language myd4 = new Language(&quot;Spanisch&quot;, &quot;es&quot;);
++                Language myd5 = new Language(&quot;Japanisch&quot;, &quot;jp&quot;);  
++
++                Languages.add(myd1);
++                Languages.add(myd2);
++                Languages.add(myd3);
++                Languages.add(myd4);
++                Languages.add(myd5);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Languages.iterator(); iter.hasNext();) {
++                    Language dir = (Language) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testSaveLanguage() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testSaveLanguage() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveLanguage() - end&quot;);
++        }
++    }
++
+     /**
+      * Constructor for TestLanguage.
+      * @param arg0
+@@ -61,4 +281,4 @@
+         super(arg0);
+     }
+ 
+-}
++}
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestPerson.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestPerson.java	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestPerson.java	2004-10-09 20:45:57 UTC (rev 26)
+@@ -32,28 +32,257 @@
+  */
+ package test.provirent.hibernate;
+ 
++import java.util.ArrayList;
++import java.util.Iterator;
++import java.util.List;
++
+ import junit.framework.TestCase;
++import net.sf.hibernate.Session;
++import net.sf.hibernate.Transaction;
+ 
++import org.apache.log4j.Logger;
++
++import de.hsharz.provirent.objects.Person;
++
+ /**
+  * @author Philipp Schneider
+  *
+  */
+ public class TestPerson extends TestCase {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(TestPerson.class);
+ 
+     /*
+      * @see TestCase#setUp()
+      */
+     protected void setUp() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - start&quot;);
++        }
++
+         super.setUp();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - end&quot;);
++        }
+     }
+ 
+     /*
+      * @see TestCase#tearDown()
+      */
+     protected void tearDown() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - start&quot;);
++        }
++
+         super.tearDown();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - end&quot;);
++        }
+     }
+ 
++    public void testPerson() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Persons = new ArrayList();
++
++                Person myd1 = new Person();
++                Person myd2 = new Person();
++                
++                Person myd3 = new Person();
++                
++                Person myd4 = new Person();
++
++                Persons.add(myd1);
++                Persons.add(myd2);
++                Persons.add(myd3);
++                Persons.add(myd4);
++
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Persons.iterator(); iter.hasNext();) {
++                    Person dir = (Person) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++                for (int i = 0; i &lt; ids.size(); i++) {
++                    int id = ((Integer) ids.get(i)).intValue();
++                    Person myd = (Person) Persons.get(i);
++
++                    //get Person from Hibernate
++                    Person dbd = (Person) s.get(Person.class, new Integer(id));
++                    assertNotNull(&quot;Can't get Person&quot; + id + &quot; from DB&quot;, dbd);
++                    if (dbd == null) {
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;testCreating()Kein object mit id &quot;
++                                    + id + &quot;gefunden.&quot;);
++                        }
++                        return;
++                    }
++                    //are both equal?
++                    assertEquals(
++                            &quot;Select: Person aus DB nicht gleich meiner. DB: &quot;
++                                    + dbd + &quot; My:&quot; + myd, myd, dbd);
++
++                    //Update
++
++                    //delete the object
++                    s.delete(myd);
++                    s.flush();
++
++                    dbd = myd = null;
++
++                    Object obj = s.get(Person.class, new Integer(id));
++
++                    //should be null, because data deleted
++                    assertNull(&quot;Deleted: Person&quot; + id + &quot;, but still in DB&quot;, obj);
++
++                    if (logger.isDebugEnabled()) {
++                        logger
++                                .debug(&quot;testCreating() - Person aus DB gleich meiner? DB: &quot;
++                                        + dbd + &quot; My:&quot; + myd);
++                    }
++
++                }
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testCreating() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testCreating() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - end&quot;);
++        }
++    }
++
++    public void testSavePerson() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSavePerson() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Persons = new ArrayList();
++
++                Person myd1 = new Person();
++                myd1.setFirstName(&quot;&quot;);
++                myd1.setLastName(&quot;&quot;);
++                myd1.setStreet(&quot;&quot;);
++                myd1.setStreetNumber(&quot;&quot;);
++                myd1.setCity(&quot;&quot;);
++                myd1.setZipCode(&quot;&quot;);
++                myd1.setSalutation(&quot;&quot;);
++                myd1.setEmailAddress(&quot;&quot;);
++                
++                
++                Person myd2 = new Person();
++                
++                Person myd3 = new Person();
++                
++                Person myd4 = new Person();
++
++                Persons.add(myd1);
++                Persons.add(myd2);
++                Persons.add(myd3);
++                Persons.add(myd4);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Persons.iterator(); iter.hasNext();) {
++                    Person dir = (Person) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testSavePerson() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testSavePerson() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSavePerson() - end&quot;);
++        }
++    }
++
+     /**
+      * Constructor for TestPerson.
+      * @param arg0
+@@ -62,4 +291,4 @@
+         super(arg0);
+     }
+ 
+-}
++}
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestStatus.java	2004-10-09 20:45:57 UTC (rev 26)
+@@ -32,28 +32,242 @@
+  */
+ package test.provirent.hibernate;
+ 
++import java.util.ArrayList;
++import java.util.Iterator;
++import java.util.List;
++
+ import junit.framework.TestCase;
++import net.sf.hibernate.Session;
++import net.sf.hibernate.Transaction;
+ 
++import org.apache.log4j.Logger;
++
++import de.hsharz.provirent.objects.Status;
++
+ /**
+  * @author Philipp Schneider
+  *
+  */
+ public class TestStatus extends TestCase {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(TestStatus.class);
+ 
+     /*
+      * @see TestCase#setUp()
+      */
+     protected void setUp() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - start&quot;);
++        }
++
+         super.setUp();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - end&quot;);
++        }
+     }
+ 
+     /*
+      * @see TestCase#tearDown()
+      */
+     protected void tearDown() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - start&quot;);
++        }
++
+         super.tearDown();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - end&quot;);
++        }
+     }
+ 
++    public void testStatus() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Statuss = new ArrayList();
++
++                Status myd1 = new Status(&quot;ausleihbar&quot;,&quot;&quot;);
++                Status myd2 = new Status(&quot;verliehen&quot;,&quot;&quot;);
++                Status myd3 = new Status(&quot;in Bearbeitung&quot;,&quot;&quot;);
++                Status myd4 = new Status(&quot;noch nicht vorhanden&quot;,&quot;&quot;);
++
++                Statuss.add(myd1);
++                Statuss.add(myd2);
++                Statuss.add(myd3);
++                Statuss.add(myd4);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Statuss.iterator(); iter.hasNext();) {
++                    Status dir = (Status) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++                for (int i = 0; i &lt; ids.size(); i++) {
++                    int id = ((Integer) ids.get(i)).intValue();
++                    Status myd = (Status) Statuss.get(i);
++
++                    //get Status from Hibernate
++                    Status dbd = (Status) s.get(Status.class, new Integer(id));
++                    assertNotNull(&quot;Can't get Status&quot; + id + &quot; from DB&quot;, dbd);
++                    if (dbd == null) {
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;testCreating()Kein object mit id &quot;
++                                    + id + &quot;gefunden.&quot;);
++                        }
++                        return;
++                    }
++                    //are both equal?
++                    assertEquals(
++                            &quot;Select: Status aus DB nicht gleich meiner. DB: &quot;
++                                    + dbd + &quot; My:&quot; + myd, myd, dbd);
++
++                    //Update
++
++                    //delete the object
++                    s.delete(myd);
++                    s.flush();
++
++                    dbd = myd = null;
++
++                    Object obj = s.get(Status.class, new Integer(id));
++
++                    //should be null, because data deleted
++                    assertNull(&quot;Deleted: Status&quot; + id + &quot;, but still in DB&quot;, obj);
++
++                    if (logger.isDebugEnabled()) {
++                        logger
++                                .debug(&quot;testCreating() - Status aus DB gleich meiner? DB: &quot;
++                                        + dbd + &quot; My:&quot; + myd);
++                    }
++
++                }
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testCreating() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testCreating() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - end&quot;);
++        }
++    }
++
++    public void testSaveStatus() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveStatus() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Statuss = new ArrayList();
++
++                Status myd1 = new Status(&quot;ausleihbar&quot;,&quot;&quot;);
++                Status myd2 = new Status(&quot;verliehen&quot;,&quot;&quot;);
++                Status myd3 = new Status(&quot;in Bearbeitung&quot;,&quot;&quot;);
++                Status myd4 = new Status(&quot;noch nicht vorhanden&quot;,&quot;&quot;);
++
++                Statuss.add(myd1);
++                Statuss.add(myd2);
++                Statuss.add(myd3);
++                Statuss.add(myd4);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Statuss.iterator(); iter.hasNext();) {
++                    Status dir = (Status) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testSaveStatus() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testSaveStatus() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveStatus() - end&quot;);
++        }
++    }
++
+     /**
+      * Constructor for TestStatus.
+      * @param arg0
+@@ -62,4 +276,4 @@
+         super(arg0);
+     }
+ 
+-}
++}
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestSubtitle.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestSubtitle.java	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestSubtitle.java	2004-10-09 20:45:57 UTC (rev 26)
+@@ -32,28 +32,246 @@
+  */
+ package test.provirent.hibernate;
+ 
++import java.util.ArrayList;
++import java.util.Iterator;
++import java.util.List;
++
+ import junit.framework.TestCase;
++import net.sf.hibernate.Session;
++import net.sf.hibernate.Transaction;
+ 
++import org.apache.log4j.Logger;
++
++import de.hsharz.provirent.objects.Subtitle;
++
+ /**
+  * @author Philipp Schneider
+  *
+  */
+ public class TestSubtitle extends TestCase {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(TestSubtitle.class);
+ 
+     /*
+      * @see TestCase#setUp()
+      */
+     protected void setUp() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - start&quot;);
++        }
++
+         super.setUp();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - end&quot;);
++        }
+     }
+ 
+     /*
+      * @see TestCase#tearDown()
+      */
+     protected void tearDown() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - start&quot;);
++        }
++
+         super.tearDown();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - end&quot;);
++        }
+     }
+ 
++    public void testSubtitle() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Subtitles = new ArrayList();
++
++                Subtitle myd1 = new Subtitle(&quot;Deutsch&quot;, &quot;de&quot;);
++                Subtitle myd2 = new Subtitle(&quot;Englisch&quot;, &quot;en&quot;);
++                Subtitle myd3 = new Subtitle(&quot;Franzoesisch&quot;, &quot;fr&quot;);
++                Subtitle myd4 = new Subtitle(&quot;Spanisch&quot;, &quot;es&quot;);
++                Subtitle myd5 = new Subtitle(&quot;Japanisch&quot;, &quot;jp&quot;); 
++
++                Subtitles.add(myd1);
++                Subtitles.add(myd2);
++                Subtitles.add(myd3);
++                Subtitles.add(myd4);
++                Subtitles.add(myd5);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Subtitles.iterator(); iter.hasNext();) {
++                    Subtitle dir = (Subtitle) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++                for (int i = 0; i &lt; ids.size(); i++) {
++                    int id = ((Integer) ids.get(i)).intValue();
++                    Subtitle myd = (Subtitle) Subtitles.get(i);
++
++                    //get Subtitle from Hibernate
++                    Subtitle dbd = (Subtitle) s.get(Subtitle.class, new Integer(id));
++                    assertNotNull(&quot;Can't get Subtitle&quot; + id + &quot; from DB&quot;, dbd);
++                    if (dbd == null) {
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;testCreating()Kein object mit id &quot;
++                                    + id + &quot;gefunden.&quot;);
++                        }
++                        return;
++                    }
++                    //are both equal?
++                    assertEquals(
++                            &quot;Select: Subtitle aus DB nicht gleich meiner. DB: &quot;
++                                    + dbd + &quot; My:&quot; + myd, myd, dbd);
++
++                    //Update
++
++                    //delete the object
++                    s.delete(myd);
++                    s.flush();
++
++                    dbd = myd = null;
++
++                    Object obj = s.get(Subtitle.class, new Integer(id));
++
++                    //should be null, because data deleted
++                    assertNull(&quot;Deleted: Subtitle&quot; + id + &quot;, but still in DB&quot;, obj);
++
++                    if (logger.isDebugEnabled()) {
++                        logger
++                                .debug(&quot;testCreating() - Subtitle aus DB gleich meiner? DB: &quot;
++                                        + dbd + &quot; My:&quot; + myd);
++                    }
++
++                }
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testCreating() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testCreating() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - end&quot;);
++        }
++    }
++
++    public void testSaveSubtitle() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveSubtitle() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List Subtitles = new ArrayList();
++
++                Subtitle myd1 = new Subtitle(&quot;Deutsch&quot;, &quot;de&quot;);
++                Subtitle myd2 = new Subtitle(&quot;Englisch&quot;, &quot;en&quot;);
++                Subtitle myd3 = new Subtitle(&quot;Franzoesisch&quot;, &quot;fr&quot;);
++                Subtitle myd4 = new Subtitle(&quot;Spanisch&quot;, &quot;es&quot;);
++                Subtitle myd5 = new Subtitle(&quot;Japanisch&quot;, &quot;jp&quot;); 
++
++                Subtitles.add(myd1);
++                Subtitles.add(myd2);
++                Subtitles.add(myd3);
++                Subtitles.add(myd4);
++                Subtitles.add(myd5);
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = Subtitles.iterator(); iter.hasNext();) {
++                    Subtitle dir = (Subtitle) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testSaveSubtitle() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testSaveSubtitle() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveSubtitle() - end&quot;);
++        }
++    }
++
+     /**
+      * Constructor for TestSubtitle.
+      * @param arg0
+@@ -62,4 +280,4 @@
+         super(arg0);
+     }
+ 
+-}
++}
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestVideoFormat.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestVideoFormat.java	2004-10-09 20:29:33 UTC (rev 25)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestVideoFormat.java	2004-10-09 20:45:57 UTC (rev 26)
+@@ -32,28 +32,240 @@
+  */
+ package test.provirent.hibernate;
+ 
++import java.util.ArrayList;
++import java.util.Iterator;
++import java.util.List;
++
+ import junit.framework.TestCase;
++import net.sf.hibernate.Session;
++import net.sf.hibernate.Transaction;
+ 
++import org.apache.log4j.Logger;
++
++import de.hsharz.provirent.objects.VideoFormat;
++
+ /**
+  * @author Philipp Schneider
+  *
+  */
+ public class TestVideoFormat extends TestCase {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(TestVideoFormat.class);
+ 
+     /*
+      * @see TestCase#setUp()
+      */
+     protected void setUp() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - start&quot;);
++        }
++
+         super.setUp();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;setUp() - end&quot;);
++        }
+     }
+ 
+     /*
+      * @see TestCase#tearDown()
+      */
+     protected void tearDown() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - start&quot;);
++        }
++
+         super.tearDown();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;tearDown() - end&quot;);
++        }
+     }
+ 
++    public void testVideoFormat() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List VideoFormats = new ArrayList();
++
++                VideoFormat myd1 = new VideoFormat(&quot;2.35:1&quot;,&quot;&quot;);
++                VideoFormat myd2 = new VideoFormat(&quot;9:13&quot;,&quot;&quot;);
++                VideoFormat myd3 = new VideoFormat(&quot;16:10&quot;, &quot;&quot;);
++                
++                VideoFormats.add(myd1);
++                VideoFormats.add(myd2);
++                VideoFormats.add(myd3);
++
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = VideoFormats.iterator(); iter.hasNext();) {
++                    VideoFormat dir = (VideoFormat) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++                for (int i = 0; i &lt; ids.size(); i++) {
++                    int id = ((Integer) ids.get(i)).intValue();
++                    VideoFormat myd = (VideoFormat) VideoFormats.get(i);
++
++                    //get VideoFormat from Hibernate
++                    VideoFormat dbd = (VideoFormat) s.get(VideoFormat.class, new Integer(id));
++                    assertNotNull(&quot;Can't get VideoFormat&quot; + id + &quot; from DB&quot;, dbd);
++                    if (dbd == null) {
++                        if (logger.isDebugEnabled()) {
++                            logger.debug(&quot;testCreating()Kein object mit id &quot;
++                                    + id + &quot;gefunden.&quot;);
++                        }
++                        return;
++                    }
++                    //are both equal?
++                    assertEquals(
++                            &quot;Select: VideoFormat aus DB nicht gleich meiner. DB: &quot;
++                                    + dbd + &quot; My:&quot; + myd, myd, dbd);
++
++                    //Update
++
++                    //delete the object
++                    s.delete(myd);
++                    s.flush();
++
++                    dbd = myd = null;
++
++                    Object obj = s.get(VideoFormat.class, new Integer(id));
++
++                    //should be null, because data deleted
++                    assertNull(&quot;Deleted: VideoFormat&quot; + id + &quot;, but still in DB&quot;, obj);
++
++                    if (logger.isDebugEnabled()) {
++                        logger
++                                .debug(&quot;testCreating() - VideoFormat aus DB gleich meiner? DB: &quot;
++                                        + dbd + &quot; My:&quot; + myd);
++                    }
++
++                }
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testCreating() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testCreating() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testCreating() - end&quot;);
++        }
++    }
++
++    public void testSaveVideoFormat() throws Exception {
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveVideoFormat() - start&quot;);
++        }
++
++        //get new Session and begin Transaction
++        Session s = HibernateUtil.currentSession();
++        Transaction tx = null;
++        try {
++            tx = s.beginTransaction();
++
++            try {
++                //is DB open and connected
++                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++
++                //cretae new objects
++                List VideoFormats = new ArrayList();
++
++                VideoFormat myd1 = new VideoFormat(&quot;2.35:1&quot;,&quot;&quot;);
++                VideoFormat myd2 = new VideoFormat(&quot;9:13&quot;,&quot;&quot;);
++                VideoFormat myd3 = new VideoFormat(&quot;16:10&quot;, &quot;&quot;);
++                
++                VideoFormats.add(myd1);
++                VideoFormats.add(myd2);
++                VideoFormats.add(myd3);
++                
++
++                List ids = new ArrayList();
++
++                //save objects
++                for (Iterator iter = VideoFormats.iterator(); iter.hasNext();) {
++                    VideoFormat dir = (VideoFormat) iter.next();
++                    ids.add((Integer) s.save(dir));
++
++                }
++                s.flush();
++
++                tx.commit();
++
++            } catch (Exception e) {
++                if (tx != null) {
++                    logger
++                            .error(
++                                    &quot;testSaveVideoFormat() - Something went wrong here; discard all partial changes&quot;,
++                                    e);
++
++                    // Something went wrong; discard all partial changes
++                    tx.rollback();
++                }
++                throw e;
++            }
++
++        } catch (Exception e) {
++            logger.error(
++                    &quot;testSaveVideoFormat() - Error while trying to beginTransaction&quot;,
++                    e);
++            throw e;
++        } finally {
++            // No matter what, close the session
++            s.close();
++        }
++
++        HibernateUtil.closeSession();
++
++        if (logger.isDebugEnabled()) {
++            logger.debug(&quot;testSaveVideoFormat() - end&quot;);
++        }
++    }
++
+     /**
+      * Constructor for TestVideoFormat.
+      * @param arg0
+@@ -62,4 +274,4 @@
+         super(arg0);
+     }
+ 
+-}
++}
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000026.html">[Provirent-svn-commit] r25 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+	<LI>Next message: <A HREF="000028.html">[Provirent-svn-commit] r27 - timetable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#27">[ date ]</a>
+              <a href="thread.html#27">[ thread ]</a>
+              <a href="subject.html#27">[ subject ]</a>
+              <a href="author.html#27">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

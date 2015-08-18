@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r217 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r217%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language&In-Reply-To=%3C200412071656.iB7Gu8de002591%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000217.html">
+   <LINK REL="Next"  HREF="000219.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r217 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r217%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language&In-Reply-To=%3C200412071656.iB7Gu8de002591%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r217 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Tue Dec  7 17:56:08 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000217.html">[Provirent-svn-commit] r216 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+        <LI>Next message: <A HREF="000219.html">[Provirent-svn-commit] r218 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#218">[ date ]</a>
+              <a href="thread.html#218">[ thread ]</a>
+              <a href="subject.html#218">[ subject ]</a>
+              <a href="author.html#218">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-12-07 17:56:07 +0100 (Tue, 07 Dec 2004)
+New Revision: 217
+
+Added:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/order.properties
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties	2004-12-07 16:55:16 UTC (rev 216)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/main.properties	2004-12-07 16:56:07 UTC (rev 217)
+@@ -17,6 +17,8 @@
+ 
+ menu.view.customer=Kunden
+ 
++menu.view.order=Bestellungen
++
+ menu.view.payment=Preisklassen
+ 
+ menu.view.genre=Genre
+@@ -40,6 +42,7 @@
+ tab.actor.title=Darsteller
+ tab.customer.title=Kunden
+ tab.director.title=Regie
++tab.Order.title=Bestellungen
+ tab.genre.title=Genre
+ tab.language.title=Sprache/Untertitel
+ tab.Status.title=Status/Zustand
+
+Added: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/order.properties
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/order.properties	2004-12-07 16:55:16 UTC (rev 216)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language/order.properties	2004-12-07 16:56:07 UTC (rev 217)
+@@ -0,0 +1,79 @@
++
++error=Fehler
++button.new=Neu
++button.edit=Bearbeiten
++button.delete=L&#246;schen
++button.save=Speichern
++button.cancel=Abbruch
++
++Order.group.label=Bestellungen
++Order.groupoverview.label=&#220;berblick
++Order.groupoverview.columnid=Id
++Order.groupoverview.columnusername=Benutzername
++Order.groupoverview.columnlastname=Nachname
++Order.groupoverview.columnfirstname=Vorname
++
++OrderItems.groupoverview.columnid=Id
++OrderItems.groupoverview.columndvdid=DVD Id
++OrderItems.groupoverview.columnmoviename=Filmname
++OrderItems.groupoverview.columnordertime=Bestelldatum
++OrderItems.groupoverview.columnsendertime=Versendet am
++OrderItems.groupoverview.columnreceivingtime=Erhalten am
++OrderItems.groupoverview.columnpayment=Bezahlung
++OrderItems.groupoverview.columnduration=Verleihdauer
++OrderItems.groupoverview.columnconditionsend=Zustand vorher
++OrderItems.groupoverview.columnconditionreceiving=Zustand nachher
++
++Order.groupoverview.searchlabel=Suche nach
++Order.groupdetail.label=Detail
++Order.groupdetail.idlabel=Benutzer ID
++Order.groupdetail.usernamelabel=Benutzername
++Order.groupdetail.lastnamelabel=Nachname
++Order.groupdetail.firstnamelabel=Vorname
++Order.groupdetail.middlenamelabel=2.Vorname(n)
++Order.groupdetail.emaillabel=Emailadresse
++Order.groupdetail.birthdaylabel=Geburtsdatum
++Order.groupdetail.questionlabel=Geheime Frage
++Order.groupdetail.answerlabel=Geheime Antwort
++Order.groupdetail.salutationlabel=Anrede
++Order.groupdetail.titlelabel=Titel
++Order.groupdetail.streetlabel=Strasse u. Nummer
++Order.groupdetail.citylabel=Stadt
++Order.groupdetail.zipcodelabel=Zip Code
++Order.groupdetail.countrylabel=Land
++Order.groupdetail.passwordlabel=Passwort
++Order.groupdetail.regdatelabel=Registrierdatum
++Order.groupdetail.registrationdatebuttonchange=&#196;ndern
++Order.groupdetail.registrationdatebuttonfinish=Fertig
++Order.groupdetail.registrationdate.dialog.title=Registrierungstag w&#228;hlen
++Order.groupdetail.birthdaybuttonchange=&#196;ndern
++Order.groupdetail.birthdaybuttonfinish=Fertig
++Order.groupdetail.birthday.dialog.title=Geburtstag w&#228;hlen
++
++Order.groupdetail.savebutton.warn.noitems.title=Datensatz speichern
++Order.groupdetail.savebutton.warn.noitems.msg=Der Datensatz kann nicht gespeichert werden, da folgende Werte fehlen:\n
++Order.groupdetail.savebutton.warn.nousername=Username
++Order.groupdetail.savebutton.warn.nolastname=Nachname
++Order.groupdetail.savebutton.warn.nofirstname=Vorname
++Order.groupdetail.savebutton.warn.nostreet=Strasse
++Order.groupdetail.savebutton.warn.nonumber=Hausnummer
++Order.groupdetail.savebutton.warn.nozipcode=PLZ
++Order.groupdetail.savebutton.warn.nocity=Stadt
++Order.groupdetail.savebutton.warn.nocountry=Land
++Order.groupdetail.savebutton.warn.noemail=Emailadresse
++Order.groupdetail.savebutton.warn.noquestion=Geheimefrage
++Order.groupdetail.savebutton.warn.noanswer=Geheimeantwort
++Order.groupdetail.savebutton.warn.noregistrationdate=Registrierungsdatum
++Order.groupdetail.savebutton.warn.nobirthday=Geburtstag
++
++Order.groupdetail.savebutton.newok=Speichern des neuen Benutzers erfolgreich.
++Order.groupdetail.savebutton.editok=&#196;ndern des Benutzers erfolgreich.
++
++Order.groupdetail.savebutton.errorsave=Datenbankfehler beim Speichern.
++Order.groupdetail.savebutton.errordb=Datenbankfehler beim Herstellen der Verbindung.(save).
++
++Order.groupdetail.deletebutton.question.header=Wirklich l&#246;schen?
++Order.groupdetail.deletebutton.question.text=Wollen Sie den Datensatz {0} wirklich l&#246;schen?
++Order.groupdetail.deletebutton.newok=Datensatz wurde erfolgreich gel&#246;scht.
++Order.groupdetail.deletebutton.errorsave=Datenbankfehler beim L&#246;schen.
++Order.groupdetail.deletebutton.errordb=Datenbankfehler beim Herstellen der Verbindung(del).
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000217.html">[Provirent-svn-commit] r216 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+	<LI>Next message: <A HREF="000219.html">[Provirent-svn-commit] r218 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#218">[ date ]</a>
+              <a href="thread.html#218">[ thread ]</a>
+              <a href="subject.html#218">[ subject ]</a>
+              <a href="author.html#218">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

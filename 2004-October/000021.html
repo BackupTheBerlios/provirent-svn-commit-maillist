@@ -1,0 +1,729 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r20 - / project_src/provirent_hibernate project_src/provirent_hibernate/bin project_src/provirent_hibernate/data project_src/provirent_hibernate/src project_src/provirent_hibernate/src/test/provirent/hibernate timetable
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r20%20-%20/%20project_src/provirent_hibernate%20project_src/provirent_hibernate/bin%20project_src/provirent_hibernate/data%20project_src/provirent_hibernate/src%20project_src/provirent_hibernate/src/test/provirent/hibernate%20timetable&In-Reply-To=%3C200410091817.i99IHn1i015741%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000020.html">
+   <LINK REL="Next"  HREF="000022.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r20 - / project_src/provirent_hibernate project_src/provirent_hibernate/bin project_src/provirent_hibernate/data project_src/provirent_hibernate/src project_src/provirent_hibernate/src/test/provirent/hibernate timetable</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r20%20-%20/%20project_src/provirent_hibernate%20project_src/provirent_hibernate/bin%20project_src/provirent_hibernate/data%20project_src/provirent_hibernate/src%20project_src/provirent_hibernate/src/test/provirent/hibernate%20timetable&In-Reply-To=%3C200410091817.i99IHn1i015741%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r20 - / project_src/provirent_hibernate project_src/provirent_hibernate/bin project_src/provirent_hibernate/data project_src/provirent_hibernate/src project_src/provirent_hibernate/src/test/provirent/hibernate timetable">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Sat Oct  9 20:17:49 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000020.html">[Provirent-svn-commit] r19 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+        <LI>Next message: <A HREF="000022.html">[Provirent-svn-commit] r21 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#21">[ date ]</a>
+              <a href="thread.html#21">[ thread ]</a>
+              <a href="subject.html#21">[ subject ]</a>
+              <a href="author.html#21">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-09 20:17:46 +0200 (Sat, 09 Oct 2004)
+New Revision: 20
+
+Added:
+   timetable/
+   timetable/pschneider.txt
+Modified:
+   project_src/provirent_hibernate/bin/hibernate.properties
+   project_src/provirent_hibernate/bin/log4j.properties
+   project_src/provirent_hibernate/build.xml
+   project_src/provirent_hibernate/data/video.log
+   project_src/provirent_hibernate/data/video.properties
+   project_src/provirent_hibernate/data/video.script
+   project_src/provirent_hibernate/src/hibernate.properties
+   project_src/provirent_hibernate/src/log4j.properties
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestDVD.java
+Log:
+- timetable hinzugefuegt
+
+Modified: project_src/provirent_hibernate/bin/hibernate.properties
+===================================================================
+--- project_src/provirent_hibernate/bin/hibernate.properties	2004-10-09 14:19:12 UTC (rev 19)
++++ project_src/provirent_hibernate/bin/hibernate.properties	2004-10-09 18:17:46 UTC (rev 20)
+@@ -2,4 +2,5 @@
+ hibernate.connection.driver_class=org.hsqldb.jdbcDriver
+ hibernate.connection.url=jdbc:hsqldb:data/video
+ hibernate.connection.username=sa
+-hibernate.connection.password=
+\ No newline at end of file
++hibernate.connection.password=
++hibernate.jdbc.use_streams_for_binary=true
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/bin/log4j.properties
+===================================================================
+--- project_src/provirent_hibernate/bin/log4j.properties	2004-10-09 14:19:12 UTC (rev 19)
++++ project_src/provirent_hibernate/bin/log4j.properties	2004-10-09 18:17:46 UTC (rev 20)
+@@ -6,15 +6,16 @@
+ 
+ 
+ ### direct messages to file hibernate.log ###
+-log4j.appender.file=org.apache.log4j.FileAppender
+-log4j.appender.file.File=hibernate.log
+-log4j.appender.file.layout=org.apache.log4j.PatternLayout
+-log4j.appender.file.layout.ConversionPattern=%d{ABSOLUTE} %5p %c{1}:%L - %m%n
++#log4j.appender.file=org.apache.log4j.FileAppender
++#log4j.appender.file.File=hibernate.log
++#log4j.appender.file.layout=org.apache.log4j.PatternLayout
++#log4j.appender.file.layout.ConversionPattern=%d{ABSOLUTE} %5p %c{1}:%L - %m%n
+ 
+ ### set log levels - for more verbose logging change 'info' to 'debug' ###
+ 
+ log4j.rootLogger=warn, stdout
+ log4j.logger.net.sf.hibernate=info
++log4j.logger.test.provirent.hibernate=debug
+ 
+ ### log just the SQL
+ #log4j.logger.net.sf.hibernate.SQL=debug
+@@ -23,7 +24,7 @@
+ log4j.logger.net.sf.hibernate.type=info
+ 
+ ### log schema export/update ###
+-log4j.logger.net.sf.hibernate.tool.hbm2ddl=debug
++log4j.logger.net.sf.hibernate.tool.hbm2ddl=infp
+ 
+ ### log cache activity ###
+ #log4j.logger.net.sf.hibernate.cache=debug
+
+Modified: project_src/provirent_hibernate/build.xml
+===================================================================
+--- project_src/provirent_hibernate/build.xml	2004-10-09 14:19:12 UTC (rev 19)
++++ project_src/provirent_hibernate/build.xml	2004-10-09 18:17:46 UTC (rev 20)
+@@ -55,6 +55,7 @@
+         &lt;fileset dir=&quot;${source.root}&quot; &gt;
+           &lt;include name=&quot;**/*.properties&quot;/&gt;
+           &lt;include name=&quot;**/*.hbm.xml&quot;/&gt;
++          &lt;include name=&quot;**/*.cfg.xml&quot;/&gt;
+         &lt;/fileset&gt;
+       &lt;/copy&gt;
+     &lt;/target&gt;
+
+Modified: project_src/provirent_hibernate/data/video.log
+===================================================================
+--- project_src/provirent_hibernate/data/video.log	2004-10-09 14:19:12 UTC (rev 19)
++++ project_src/provirent_hibernate/data/video.log	2004-10-09 18:17:46 UTC (rev 20)
+@@ -1,5 +1,7 @@
+ /*C2*/CONNECT USER SA
+ SET AUTOCOMMIT FALSE
+-INSERT INTO CUSTOMER VALUES(1,'2004-10-08 20:26:26.554','Philipp','Schneider',NULL,'Herr',NULL,'Kastanienring','16','Leipzig','04316','Deutschland','<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">egal at aol.com</A>','boelkstoff','egal','Wer','ich',NULL)
++INSERT INTO DIRECTOR VALUES(1,'Bibo','Bergeron')
++INSERT INTO DIRECTOR VALUES(2,'Vicky','Jenson')
++INSERT INTO DIRECTOR VALUES(3,'Jay','Russell')
++INSERT INTO DIRECTOR VALUES(4,'Joseph','Ruben')
+ COMMIT
+-DISCONNECT
+
+Modified: project_src/provirent_hibernate/data/video.properties
+===================================================================
+--- project_src/provirent_hibernate/data/video.properties	2004-10-09 14:19:12 UTC (rev 19)
++++ project_src/provirent_hibernate/data/video.properties	2004-10-09 18:17:46 UTC (rev 20)
+@@ -1,5 +1,5 @@
+ #HSQL database
+-#Fri Oct 08 20:26:25 CEST 2004
++#Sat Oct 09 18:39:41 CEST 2004
+ hsqldb.cache_file_scale=1
+ runtime.gc_interval=0
+ hsqldb.first_identity=0
+
+Modified: project_src/provirent_hibernate/data/video.script
+===================================================================
+--- project_src/provirent_hibernate/data/video.script	2004-10-09 14:19:12 UTC (rev 19)
++++ project_src/provirent_hibernate/data/video.script	2004-10-09 18:17:46 UTC (rev 20)
+@@ -1,26 +1,41 @@
+ CREATE TABLE MOVIEFORMAT(MOVIEFORMATID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+-CREATE TABLE MOVIEVIDEOFORMATES(MOVIEID INTEGER NOT NULL,VIDEOFORMATID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEVIDEOFORMATES PRIMARY KEY(MOVIEID,POS))
+-CREATE TABLE AUDIOFORMAT(AUIOFORMATID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
++CREATE TABLE ORDERORDERITEMS(ORDERID INTEGER NOT NULL,ORDERITEMID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_ORDERORDERITEMS PRIMARY KEY(ORDERID,POS))
++CREATE TABLE MOVIEIMAGES(MOVIEID INTEGER NOT NULL,IMAGEID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEIMAGES PRIMARY KEY(MOVIEID,POS))
++CREATE TABLE PERSON(PERSONID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,FIRSTNAME VARCHAR(255) NOT NULL,LASTNAME VARCHAR(255) NOT NULL,MIDDLENAME VARCHAR(255),SALUTATION VARCHAR(255),TITLE VARCHAR(255),STREET VARCHAR(255) NOT NULL,STREETNUMBER VARCHAR(10) NOT NULL,CITY VARCHAR(255) NOT NULL,ZIPCODE VARCHAR(10) NOT NULL,COUNTRY VARCHAR(255) NOT NULL,EMAILADDRESS VARCHAR(255) NOT NULL,DAYOFBIRTH TIMESTAMP)
++CREATE TABLE GENRE(GENREID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE SUBTITLE(SUBTITLEID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+-CREATE TABLE GENRE(GENREID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE MOVIEDIRECTORS(MOVIEID INTEGER NOT NULL,DIRECTORID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEDIRECTORS PRIMARY KEY(MOVIEID,POS))
++CREATE TABLE ORDERITEM(ORDERITEMID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,ORDERTIME TIMESTAMP NOT NULL,SENDERTIME TIMESTAMP,RECEIVINGTIME TIMESTAMP,CUSTOMER INTEGER,DVD INTEGER,DURATION INTEGER NOT NULL,CONDITIONSEND INTEGER,CONDITIONRECEIVING INTEGER)
++CREATE TABLE MOVIEACTORS(MOVIEID INTEGER NOT NULL,ACTORID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEACTORS PRIMARY KEY(MOVIEID,POS))
++CREATE TABLE MOVIEAUDIOFORMATES(MOVIEID INTEGER NOT NULL,AUDIOFORMATID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEAUDIOFORMATES PRIMARY KEY(MOVIEID,POS))
++CREATE TABLE STATUS(STATUSID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,STATUSNAME VARCHAR(255) NOT NULL,STATUSSHORTNAME VARCHAR(255) NOT NULL)
++CREATE TABLE DVD(DVDID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,MOVIE INTEGER,CONDITION INTEGER,STATUS INTEGER,BARCODE VARCHAR(255),CONSTRAINT SYS_CT_579 UNIQUE(BARCODE),CONSTRAINT FK109F29260C3F2 FOREIGN KEY(STATUS) REFERENCES STATUS(STATUSID))
++CREATE TABLE DIRECTOR(DIRECTORID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,FIRSTNAME VARCHAR(255) NOT NULL,LASTNAME VARCHAR(255) NOT NULL)
++CREATE TABLE ACTOR(ACTORID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,FIRSTNAME VARCHAR(255) NOT NULL,LASTNAME VARCHAR(255) NOT NULL)
++CREATE TABLE AUDIOFORMAT(AUIOFORMATID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
++CREATE TABLE MOVIEVIDEOFORMATES(MOVIEID INTEGER NOT NULL,VIDEOFORMATID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEVIDEOFORMATES PRIMARY KEY(MOVIEID,POS))
+ CREATE TABLE MOVIE(MOVIEID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,TITLE VARCHAR(255) NOT NULL,DESCRIPTION VARCHAR(255) NOT NULL,RUNTIME INTEGER,RELEASEDATE DATE)
+-CREATE TABLE CUSTOMER(CUSTOMERID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,DAYOFREGISTRATION TIMESTAMP NOT NULL,FIRSTNAME VARCHAR(255) NOT NULL,LASTNAME VARCHAR(255) NOT NULL,MIDDLENAME VARCHAR(255),SALUTATION VARCHAR(255),TITLE VARCHAR(255),STREET VARCHAR(255) NOT NULL,STREETNUMBER VARCHAR(10) NOT NULL,CITY VARCHAR(255) NOT NULL,ZIPCODE VARCHAR(10) NOT NULL,COUNTRY VARCHAR(255) NOT NULL,EMAILADDRESS VARCHAR(255) NOT NULL,USERNAME VARCHAR(255) NOT NULL,PASSWORD VARCHAR(255) NOT NULL,HIDDENQUESTION VARCHAR(255) NOT NULL,HIDDENANSWER VARCHAR(255) NOT NULL,DAYOFBIRTH TIMESTAMP)
+ CREATE TABLE LANGUAGE(LANGUAGEID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
++CREATE TABLE CUSTOMER(CUSTOMERID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,DAYOFREGISTRATION TIMESTAMP NOT NULL,USERNAME VARCHAR(255) NOT NULL,PASSWORD VARCHAR(255) NOT NULL,HIDDENQUESTION VARCHAR(255) NOT NULL,HIDDENANSWER VARCHAR(255) NOT NULL,DAYOFBIRTH TIMESTAMP)
+ CREATE TABLE CONDITION(CONDITIONID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,CONDITIONNAME VARCHAR(255) NOT NULL,CONDITIONSHORTNAME VARCHAR(255) NOT NULL)
+-CREATE TABLE MOVIEACTORS(MOVIEID INTEGER NOT NULL,ACTORID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEACTORS PRIMARY KEY(MOVIEID,POS),CONSTRAINT FK4E77442E74ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID))
++CREATE TABLE MOVIESUBTITLES(MOVIEID INTEGER NOT NULL,SUBTITLEID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIESUBTITLES PRIMARY KEY(MOVIEID,POS),CONSTRAINT FK33A6F22B13769F33 FOREIGN KEY(SUBTITLEID) REFERENCES SUBTITLE(SUBTITLEID),CONSTRAINT FK33A6F22B74ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID))
+ CREATE TABLE MOVIEGENRES(MOVIEID INTEGER NOT NULL,GENREID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEGENRES PRIMARY KEY(MOVIEID,POS),CONSTRAINT FK58CDD660260A4DBE FOREIGN KEY(GENREID) REFERENCES GENRE(GENREID),CONSTRAINT FK58CDD66074ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID))
+-CREATE TABLE MOVIESUBTITLES(MOVIEID INTEGER NOT NULL,SUBTITLEID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIESUBTITLES PRIMARY KEY(MOVIEID,POS),CONSTRAINT FK33A6F22B13769F33 FOREIGN KEY(SUBTITLEID) REFERENCES SUBTITLE(SUBTITLEID),CONSTRAINT FK33A6F22B74ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID))
+-CREATE TABLE MOVIEAUDIOFORMATES(MOVIEID INTEGER NOT NULL,AUDIOFORMATID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIEAUDIOFORMATES PRIMARY KEY(MOVIEID,POS),CONSTRAINT FKAA9D138B74ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID),CONSTRAINT FKAA9D138B5EF76108 FOREIGN KEY(AUDIOFORMATID) REFERENCES AUDIOFORMAT(AUIOFORMATID))
+-CREATE TABLE STATUS(STATUSID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,STATUSNAME VARCHAR(255) NOT NULL,STATUSSHORTNAME VARCHAR(255) NOT NULL)
+-CREATE TABLE DVD(DVDID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,MOVIE INTEGER,CONDITION INTEGER,STATUS INTEGER,BARCODE VARCHAR(255),CONSTRAINT SYS_CT_289 UNIQUE(BARCODE),CONSTRAINT FK109F272C17CFB FOREIGN KEY(CONDITION) REFERENCES CONDITION(CONDITIONID),CONSTRAINT FK109F26343F30 FOREIGN KEY(MOVIE) REFERENCES MOVIE(MOVIEID),CONSTRAINT FK109F29260C3F2 FOREIGN KEY(STATUS) REFERENCES STATUS(STATUSID))
+-CREATE TABLE DIRECTOR(DIRECTORID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,FIRSTNAME VARCHAR(255) NOT NULL,LASTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE VIDEOFORMAT(VIDEOFORMATID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SHORTNAME VARCHAR(255) NOT NULL)
+-CREATE TABLE ACTOR(ACTORID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1)  NOT NULL PRIMARY KEY,FIRSTNAME VARCHAR(255) NOT NULL,LASTNAME VARCHAR(255) NOT NULL)
+ CREATE TABLE MOVIELANGUAGES(MOVIEID INTEGER NOT NULL,LANGUAGEID INTEGER NOT NULL,POS INTEGER NOT NULL,CONSTRAINT SYS_PK_MOVIELANGUAGES PRIMARY KEY(MOVIEID,POS),CONSTRAINT FK6D6C92EB12651673 FOREIGN KEY(LANGUAGEID) REFERENCES LANGUAGE(LANGUAGEID),CONSTRAINT FK6D6C92EB74ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID))
+-ALTER TABLE MOVIEVIDEOFORMATES ADD CONSTRAINT FKDE3173074ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID)
+-ALTER TABLE MOVIEVIDEOFORMATES ADD CONSTRAINT FKDE31730C23D64AD FOREIGN KEY(VIDEOFORMATID) REFERENCES VIDEOFORMAT(VIDEOFORMATID)
++ALTER TABLE ORDERORDERITEMS ADD CONSTRAINT FK7D3D9AE0708F81C FOREIGN KEY(ORDERITEMID) REFERENCES ORDERITEM(ORDERITEMID)
++ALTER TABLE MOVIEIMAGES ADD CONSTRAINT FK5CA2318874ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID)
+ ALTER TABLE MOVIEDIRECTORS ADD CONSTRAINT FKD98CD93774ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID)
+ ALTER TABLE MOVIEDIRECTORS ADD CONSTRAINT FKD98CD9372A4D99A7 FOREIGN KEY(DIRECTORID) REFERENCES DIRECTOR(DIRECTORID)
++ALTER TABLE ORDERITEM ADD CONSTRAINT FK8ECABB4118612 FOREIGN KEY(DVD) REFERENCES DVD(DVDID)
++ALTER TABLE ORDERITEM ADD CONSTRAINT FK8ECABB41B83A405 FOREIGN KEY(CONDITIONRECEIVING) REFERENCES CONDITION(CONDITIONID)
++ALTER TABLE ORDERITEM ADD CONSTRAINT FK8ECABB4151CEAB43 FOREIGN KEY(CONDITIONSEND) REFERENCES CONDITION(CONDITIONID)
++ALTER TABLE ORDERITEM ADD CONSTRAINT FK8ECABB4124217FDE FOREIGN KEY(CUSTOMER) REFERENCES CUSTOMER(CUSTOMERID)
++ALTER TABLE MOVIEACTORS ADD CONSTRAINT FK4E77442E74ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID)
+ ALTER TABLE MOVIEACTORS ADD CONSTRAINT FK4E77442EE58E99B0 FOREIGN KEY(ACTORID) REFERENCES ACTOR(ACTORID)
++ALTER TABLE MOVIEAUDIOFORMATES ADD CONSTRAINT FKAA9D138B74ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID)
++ALTER TABLE MOVIEAUDIOFORMATES ADD CONSTRAINT FKAA9D138B5EF76108 FOREIGN KEY(AUDIOFORMATID) REFERENCES AUDIOFORMAT(AUIOFORMATID)
++ALTER TABLE DVD ADD CONSTRAINT FK109F272C17CFB FOREIGN KEY(CONDITION) REFERENCES CONDITION(CONDITIONID)
++ALTER TABLE DVD ADD CONSTRAINT FK109F26343F30 FOREIGN KEY(MOVIE) REFERENCES MOVIE(MOVIEID)
++ALTER TABLE MOVIEVIDEOFORMATES ADD CONSTRAINT FKDE3173074ECCC2B FOREIGN KEY(MOVIEID) REFERENCES MOVIE(MOVIEID)
++ALTER TABLE MOVIEVIDEOFORMATES ADD CONSTRAINT FKDE31730C23D64AD FOREIGN KEY(VIDEOFORMATID) REFERENCES VIDEOFORMAT(VIDEOFORMATID)
+ CREATE USER SA PASSWORD &quot;&quot; ADMIN
+
+Modified: project_src/provirent_hibernate/src/hibernate.properties
+===================================================================
+--- project_src/provirent_hibernate/src/hibernate.properties	2004-10-09 14:19:12 UTC (rev 19)
++++ project_src/provirent_hibernate/src/hibernate.properties	2004-10-09 18:17:46 UTC (rev 20)
+@@ -2,4 +2,5 @@
+ hibernate.connection.driver_class=org.hsqldb.jdbcDriver
+ hibernate.connection.url=jdbc:hsqldb:data/video
+ hibernate.connection.username=sa
+-hibernate.connection.password=
+\ No newline at end of file
++hibernate.connection.password=
++hibernate.jdbc.use_streams_for_binary=true
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/log4j.properties
+===================================================================
+--- project_src/provirent_hibernate/src/log4j.properties	2004-10-09 14:19:12 UTC (rev 19)
++++ project_src/provirent_hibernate/src/log4j.properties	2004-10-09 18:17:46 UTC (rev 20)
+@@ -15,6 +15,7 @@
+ 
+ log4j.rootLogger=warn, stdout
+ log4j.logger.net.sf.hibernate=info
++log4j.logger.test.provirent.hibernate=debug
+ 
+ ### log just the SQL
+ #log4j.logger.net.sf.hibernate.SQL=debug
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java	2004-10-09 14:19:12 UTC (rev 19)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestCustomer.java	2004-10-09 18:17:46 UTC (rev 20)
+@@ -1,5 +1,7 @@
++package test.provirent.hibernate;
++import junit.framework.TestCase;
+ /*
+- * Created on 07.10.2004
++ * Created on 09.10.2004
+  *
+  * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
+  * All rights reserved.
+@@ -30,127 +32,33 @@
+  * POSSIBILITY OF SUCH DAMAGE.
+  *
+  */
+-package test.provirent.hibernate;
+ 
+-import java.util.ArrayList;
+-import java.util.List;
+-import java.util.ListIterator;
+-
+-import net.sf.hibernate.Session;
+-import net.sf.hibernate.SessionFactory;
+-import net.sf.hibernate.Transaction;
+-import net.sf.hibernate.cfg.Configuration;
+-import de.hsharz.provirent.objects.*;
+-
+-
+ /**
+  * @author Philipp Schneider
+- *  
++ *
+  */
+-public class TestCustomer {
++public class TestCustomer extends TestCase {
+ 
+-    public static void main(String args[]) throws Exception {
+-        TestCustomer th = new TestCustomer();
+-        th.saveObjects();
+-        //th.getObjects();
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
+     }
+-    
+ 
+-        
+-
+-
+-
+-    public void getObjects() throws Exception {
+-        Configuration config = new Configuration();
+-
+-        // Tell it about the classes we want mapped, taking advantage
+-        // of
+-        // the way we've named their mapping documents.
+-        config.addClass(Customer.class);
+-
+-        // Get the session factory we can use for persistence
+-        SessionFactory sessionFactory = config.buildSessionFactory();
+-
+-        // Ask for a session using the JDBC information we've
+-        // configured
+-        Session session = sessionFactory.openSession();
+-        try {
+-            int id = 1;
+-            Dvd movie = (Dvd) session.get(Dvd.class, new Integer(id));
+-            if (movie == null) {
+-                System.out.println(&quot;Keine Dvd mit id &quot; + id + &quot;gefunden&quot;);
+-                return;
+-            }
+-            System.out.println(&quot;DVD gefunden: &quot; + movie.toString());
+-            
+-
+-        } finally {
+-            // No matter what, close the session
+-            session.close();
+-        }
+-
+-        // Clean up after ourselves
+-        sessionFactory.close();
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
+     }
+ 
+-    public void saveObjects() throws Exception {
+-        // Create a configuration based on the properties file we've put
+-        // in the standard place.
+-        Configuration config = new Configuration();
+-
+-        // Tell it about the classes we want mapped, taking advantage of
+-        // the way we've named their mapping documents.
+-        config.addClass(Customer.class);
+-
+-        // Get the session factory we can use for persistence
+-        SessionFactory sessionFactory = config.buildSessionFactory();
+-
+-        // Ask for a session using the JDBC information we've configured
+-        Session s = sessionFactory.openSession();
+-        Transaction tx = null;
+-        try {
+-            // Create some data and persist it
+-            tx = s.beginTransaction();
+-
+-            Customer c = new Customer();
+-            c.setFirstName(&quot;Philipp&quot;);
+-            c.setLastName(&quot;Schneider&quot;);
+-            c.setStreet(&quot;Kastanienring&quot;);
+-            c.setStreetNumber(&quot;16&quot;);
+-            c.setCity(&quot;Leipzig&quot;);
+-            c.setZipCode(&quot;04316&quot;);
+-            c.setCountry(&quot;Deutschland&quot;);
+-            c.setSalutation(&quot;Herr&quot;);
+-            c.setEmailAddress(&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">egal at aol.com</A>&quot;);
+-            c.setUserName(&quot;boelkstoff&quot;);
+-            c.setPassword(&quot;egal&quot;);
+-            c.setHiddenQuestion(&quot;Wer&quot;);
+-            c.setHiddenAnswer(&quot;ich&quot;);
+-            
+-            s.save(c);
+-            s.flush();
+-            
+-            System.out.println(&quot;Customer id: &quot; +c.getCustomerId() );
+-            System.out.println(&quot;Customer id: &quot; +c.getDayOfRegistration() );
+-            
+-            
+-            
+-            // We're done; make our changes permanent
+-            tx.commit();
+-
+-        } catch (Exception e) {
+-            if (tx != null) {
+-                // Something went wrong; discard all partial changes
+-                tx.rollback();
+-            }
+-            throw e;
+-        } finally {
+-            // No matter what, close the session
+-            s.close();
+-        }
+-
+-        // Clean up after ourselves
+-        sessionFactory.close();
++    /**
++     * Constructor for TestCustomer.
++     * @param arg0
++     */
++    public TestCustomer(String arg0) {
++        super(arg0);
+     }
+ 
+-}
+\ No newline at end of file
++}
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestDVD.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestDVD.java	2004-10-09 14:19:12 UTC (rev 19)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestDVD.java	2004-10-09 18:17:46 UTC (rev 20)
+@@ -1,5 +1,7 @@
++package test.provirent.hibernate;
++import junit.framework.TestCase;
+ /*
+- * Created on 07.10.2004
++ * Created on 09.10.2004
+  *
+  * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
+  * All rights reserved.
+@@ -30,263 +32,33 @@
+  * POSSIBILITY OF SUCH DAMAGE.
+  *
+  */
+-package test.provirent.hibernate;
+ 
+-import java.util.ArrayList;
+-import java.util.List;
+-import java.util.ListIterator;
+-
+-import net.sf.hibernate.Session;
+-import net.sf.hibernate.SessionFactory;
+-import net.sf.hibernate.Transaction;
+-import net.sf.hibernate.cfg.Configuration;
+-import de.hsharz.provirent.objects.*;
+-
+-
+ /**
+  * @author Philipp Schneider
+- *  
++ *
+  */
+-public class TestDVD {
++public class TestDvd extends TestCase {
+ 
+-    public static void main(String args[]) throws Exception {
+-        TestDVD th = new TestDVD();
+-        //th.saveObjects();
+-        th.getObjects();
++    /*
++     * @see TestCase#setUp()
++     */
++    protected void setUp() throws Exception {
++        super.setUp();
+     }
+-    
+ 
+-        
+-
+-
+-
+-    public void getObjects() throws Exception {
+-        Configuration config = new Configuration();
+-
+-        // Tell it about the classes we want mapped, taking advantage
+-        // of
+-        // the way we've named their mapping documents.
+-        config.addClass(Movie.class).addClass(Actor.class)
+-        .addClass(AudioFormat.class).addClass(Condition.class)
+-        .addClass(Director.class).addClass(Dvd.class)
+-.addClass(Genre.class).addClass(Language.class)
+-.addClass(Status.class)
+-.addClass(Subtitle.class).addClass(VideoFormat.class);
+-
+-        // Get the session factory we can use for persistence
+-        SessionFactory sessionFactory = config.buildSessionFactory();
+-
+-        // Ask for a session using the JDBC information we've
+-        // configured
+-        Session session = sessionFactory.openSession();
+-        try {
+-            int id = 1;
+-            Dvd movie = (Dvd) session.get(Dvd.class, new Integer(id));
+-            if (movie == null) {
+-                System.out.println(&quot;Keine Dvd mit id &quot; + id + &quot;gefunden&quot;);
+-                return;
+-            }
+-            System.out.println(&quot;DVD gefunden: &quot; + movie.toString());
+-            
+-
+-        } finally {
+-            // No matter what, close the session
+-            session.close();
+-        }
+-
+-        // Clean up after ourselves
+-        sessionFactory.close();
++    /*
++     * @see TestCase#tearDown()
++     */
++    protected void tearDown() throws Exception {
++        super.tearDown();
+     }
+ 
+-    public void saveObjects() throws Exception {
+-        // Create a configuration based on the properties file we've put
+-        // in the standard place.
+-        Configuration config = new Configuration();
+-
+-        // Tell it about the classes we want mapped, taking advantage of
+-        // the way we've named their mapping documents.
+-        config.addClass(Movie.class).addClass(Actor.class)
+-        .addClass(AudioFormat.class).addClass(Condition.class)
+-        .addClass(Director.class).addClass(Dvd.class)
+-.addClass(Genre.class).addClass(Language.class)
+-.addClass(Status.class)
+-.addClass(Subtitle.class).addClass(VideoFormat.class);
+-
+-        // Get the session factory we can use for persistence
+-        SessionFactory sessionFactory = config.buildSessionFactory();
+-
+-        // Ask for a session using the JDBC information we've configured
+-        Session s = sessionFactory.openSession();
+-        Transaction tx = null;
+-        try {
+-            // Create some data and persist it
+-            tx = s.beginTransaction();
+-            
+-            Movie movie = new Movie();
+-            movie.setTitle(&quot;Fluch der Karibik&quot;);
+-            movie.setDescription(&quot;eine interaktive Geschichte eines Piraten&quot;);
+-
+-            Actor actor1 = new Actor(&quot;Johnny&quot;, &quot;Depp&quot;);
+-            Actor actor2 = new Actor(&quot;Geoffrey&quot;, &quot;Rush&quot;);
+-            Actor actor3 = new Actor(&quot;Gore&quot;, &quot;Verbinski &quot;);
+-            Actor actor4 = new Actor(&quot;Julianne&quot;, &quot;Moore &quot;);
+-            Actor actor5 = new Actor(&quot;Anthony&quot;, &quot;Edwards &quot;);
+-            Actor actor6 = new Actor(&quot;Matthew&quot;, &quot;Pleszewicz &quot;);
+-            Actor actor7 = new Actor(&quot;Christopher&quot;, &quot;Kovaleski &quot;);
+-            s.save(actor1);
+-            s.save(actor2);
+-            s.save(actor3);
+-            s.save(actor4);
+-            s.save(actor5);
+-            s.save(actor6);
+-            s.save(actor7);
+-            s.flush();
+-
+-            ArrayList actors = new ArrayList();
+-            actors.add(actor1);
+-            actors.add(actor2);
+-            movie.setActors(actors);
+-            
+-            
+-
+-            Director d1 = new Director(&quot;Bibo&quot;,&quot;Bergeron&quot;);
+-            Director d2 = new Director(&quot;Vicky&quot;,&quot;Jenson&quot;);
+-            Director d3 = new Director(&quot;Jay&quot;,&quot;Russell&quot;);
+-            Director d4 = new Director(&quot;Joseph&quot;,&quot;Ruben&quot;);
+-            s.save(d1);
+-            s.save(d2);
+-            s.save(d3);
+-            s.save(d4);
+-            s.flush();
+-
+-			movie.setDirector(new ArrayList());
+-            movie.getDirector().add(d1);
+-
+-            Language l1 = new Language(&quot;Deutsch&quot;, &quot;de&quot;);
+-            Language l2 = new Language(&quot;Englisch&quot;, &quot;en&quot;);
+-            Language l3 = new Language(&quot;Franzoesisch&quot;, &quot;fr&quot;);
+-            Language l4 = new Language(&quot;Spanisch&quot;, &quot;es&quot;);
+-            Language l5 = new Language(&quot;Japanisch&quot;, &quot;jp&quot;);
+-            s.save(l1);
+-            s.save(l2);
+-            s.save(l3);
+-            s.save(l4);
+-            s.save(l5);
+-            s.flush();
+-
+-            movie.setLanguages(new ArrayList());
+-            movie.getLanguages().add(l1);
+-            movie.getLanguages().add(l2);
+-            
+-            Subtitle s1 = new Subtitle(&quot;Deutsch&quot;, &quot;de&quot;);
+-            Subtitle s2 = new Subtitle(&quot;Englisch&quot;, &quot;en&quot;);
+-            Subtitle s3 = new Subtitle(&quot;Franzoesisch&quot;, &quot;fr&quot;);
+-            Subtitle s4 = new Subtitle(&quot;Spanisch&quot;, &quot;es&quot;);
+-            Subtitle s5 = new Subtitle(&quot;Japanisch&quot;, &quot;jp&quot;);        
+-            s.save(s1);
+-            s.save(s2);
+-            s.save(s3);
+-            s.save(s4);
+-            s.save(s5);
+-            s.flush();
+-
+-            movie.setSubtitles(new ArrayList());
+-            movie.getSubtitles().add(s1);
+-            movie.getSubtitles().add(s2);
+-            
+-            Genre g1 = new Genre(&quot;Action&quot;,&quot;&quot;);
+-            Genre g2 = new Genre(&quot;Abenteuer&quot;,&quot;&quot;);
+-            Genre g3 = new Genre(&quot;Dokumentation&quot;,&quot;&quot;);
+-            s.save(g1);
+-            s.save(g2);
+-            s.save(g3);
+-            s.flush();
+-       
+-            movie.setGenres(new ArrayList());
+-            movie.getGenres().add(g1);
+-            
+-            AudioFormat a1 = new AudioFormat(&quot;DTS Surround Sound&quot;,&quot;&quot;);
+-            AudioFormat a2 = new AudioFormat(&quot;Surround Sound&quot;,&quot;&quot;);
+-            AudioFormat a3 = new AudioFormat(&quot;Dolby&quot;,&quot;&quot;);
+-            AudioFormat a4 = new AudioFormat(&quot;Stereo&quot;,&quot;&quot;);
+-            s.save(a1);
+-            s.save(a2);
+-            s.save(a3);
+-            s.save(a4);
+-            s.flush();
+-             
+-            movie.setAudioFormats(new ArrayList());
+-            movie.getAudioFormats().add(a1);
+-            movie.getAudioFormats().add(a4);
+-            
+-            VideoFormat v1 = new VideoFormat(&quot;2.35:1&quot;,&quot;&quot;);
+-            s.save(v1);
+-            s.flush();
+-          
+-            movie.setVideoFormats(new ArrayList());
+-            movie.getVideoFormats().add(v1);
+-            
+-          
+-            s.save(movie);
+-
+-            System.out.println(&quot;MovieID: &quot; + movie.getMovieId());
+-            System.out.println(&quot;Movie Actors vor: &quot; + movie.getActors());
+-            s.flush();
+-            System.out.println(&quot;Movie Actors nach: &quot; + movie.getActors());
+-
+-
+-            
+-
+-            Dvd dvd = new Dvd();
+-            dvd.setMovie(movie);
+-            
+-            Status status1 = new Status(&quot;ausleihbar&quot;,&quot;&quot;);
+-            Status status2 = new Status(&quot;verliehen&quot;,&quot;&quot;);
+-            Status status3 = new Status(&quot;in Bearbeitung&quot;,&quot;&quot;);
+-            s.save(status1);
+-            s.save(status2);
+-            s.save(status3);
+-            s.flush();
+-
+-            dvd.setStatus(status1);
+-            
+-            Condition con1 = new Condition(&quot;neu&quot;,&quot;&quot;);
+-            Condition con2 = new Condition(&quot;leichte Kratzer&quot;,&quot;&quot;);
+-            Condition con3 = new Condition(&quot;mittlere Kratzer&quot;,&quot;&quot;);
+-            Condition con4 = new Condition(&quot;schwere Kratzer&quot;,&quot;&quot;);
+-            Condition con5 = new Condition(&quot;nicht lesbar&quot;,&quot;&quot;);
+-            s.save(con1);
+-            s.save(con2);
+-            s.save(con3);
+-            s.save(con4);
+-            s.save(con5);
+-            s.flush();
+-            
+-            dvd.setCondition(con1);
+-            dvd.setBarcode(&quot;01246682&quot;);
+-            
+-            s.save(dvd);
+-            s.flush();
+-            System.out.println(&quot;DVD ID: &quot; + dvd.getDvdId());
+-
+-            
+-            
+-            // We're done; make our changes permanent
+-            tx.commit();
+-
+-        } catch (Exception e) {
+-            if (tx != null) {
+-                // Something went wrong; discard all partial changes
+-                tx.rollback();
+-            }
+-            throw e;
+-        } finally {
+-            // No matter what, close the session
+-            s.close();
+-        }
+-
+-        // Clean up after ourselves
+-        sessionFactory.close();
++    /**
++     * Constructor for TestDvd.
++     * @param arg0
++     */
++    public TestDvd(String arg0) {
++        super(arg0);
+     }
+ 
+-}
+\ No newline at end of file
++}
+
+Added: timetable/pschneider.txt
+===================================================================
+--- timetable/pschneider.txt	2004-10-09 14:19:12 UTC (rev 19)
++++ timetable/pschneider.txt	2004-10-09 18:17:46 UTC (rev 20)
+@@ -0,0 +1,5 @@
++07.10.2004 2 Setup Homepage, SVN
++07.10.2004 2 Hibernate mapping files
++08.10.2004 5 Hibernate mapping files
++09.10.2004 3 Hibernate mapping files
++09.10.2004 2 JUnit Object Test
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000020.html">[Provirent-svn-commit] r19 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+	<LI>Next message: <A HREF="000022.html">[Provirent-svn-commit] r21 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#21">[ date ]</a>
+              <a href="thread.html#21">[ thread ]</a>
+              <a href="subject.html#21">[ subject ]</a>
+              <a href="author.html#21">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

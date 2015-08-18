@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r323 - docu/latex
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r323%20-%20docu/latex&In-Reply-To=%3C200512200911.jBK9BuUY032227%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000324.html">
+   <LINK REL="Next"  HREF="000326.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r323 - docu/latex</H1>
+    <B>pschneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r323%20-%20docu/latex&In-Reply-To=%3C200512200911.jBK9BuUY032227%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r323 - docu/latex">pschneider at berlios.de
+       </A><BR>
+    <I>Tue Dec 20 10:11:56 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000324.html">[Provirent-svn-commit] r322 - docu/latex
+</A></li>
+        <LI>Next message: <A HREF="000326.html">[Provirent-svn-commit] r324 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#325">[ date ]</a>
+              <a href="thread.html#325">[ thread ]</a>
+              <a href="subject.html#325">[ subject ]</a>
+              <a href="author.html#325">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2005-12-20 10:11:36 +0100 (Tue, 20 Dec 2005)
+New Revision: 323
+
+Modified:
+   docu/latex/3-2-Versionsverwaltung.tex
+   docu/latex/3-3-Entwicklungsumgebung.tex
+   docu/latex/4-1-Versionsverwaltung.tex
+Log:
+
+
+Modified: docu/latex/3-2-Versionsverwaltung.tex
+===================================================================
+--- docu/latex/3-2-Versionsverwaltung.tex	2005-12-20 08:08:26 UTC (rev 322)
++++ docu/latex/3-2-Versionsverwaltung.tex	2005-12-20 09:11:36 UTC (rev 323)
+@@ -36,11 +36,11 @@
+ 
+ %====================================
+ \subsection{Concurrent Versions System - CVS}
+-Bei CVS handelt es sich um eine Versionsverwaltung mit einer Client-Server Architektur. Die Entwicklung von CSV begann mit Ansammlung von Shell-Skripten, die in einer Newsgroup 1986 von Dick Grune ver&#246;ffentlicht wurden. Im Jahre 1989 begann Brian Berliner mit sp&#228;terer Hilfe von Jeff Polk mit der eigentlichen Entwicklung von CVS. Das Concurrent Versions System ist ein Kommandozeilen orientiertes System, auf das mit Hilfe verschiedener Client-Interfaces zugegriffen werden kann. Im Laufe der zeit hat sich CVS zu \emph{der} Versionsverwaltung von Open-Source Projekten entwickelt und wird bspw. von sourceforge.net eingesetzt. Innerhalb des Archiv/Repository existieren mehrerer \emph{Module}, die eine Sammlung von Dateien sind und dabei meist ein einzelnes Projekt darstellen. Dadurch, dass jede Datei eine eigene fortlaufende Revisionsnummer besitzt, wurde das \emph{Tagging} eingef&#252;hrt. Mit Hilfe des \emph{Tagging} kann jeder Datei zu einem definierten Zeitpunkt ein einheitliches !
+ Tag vergeben werden. Zu einem Zeitpunkt X, besitzt bspw. \texttt{DateiA.txt} die Revision \emph{1.13} und \texttt{DateiB.txt} die Revision \emph{1.78}. Mit Hilfe eines Tag mit bspw. dem Namen \emph{Alpha 0.18} erhalten beide Dateien dieses zus&#228;tzliche Tag, auf das zu einer sp&#228;teren Version zur&#252;ckgegriffen werden kann. Das Tagging bietet in der Softwareentwicklung eine gute M&#246;glichkeit wichtige Abschnitte des Quellcodes zu markieren, jedoch kann es vorkommen, dass diese Abschnitte separat weiterentwickelt werden m&#252;ssen. Dies ist z.B. der Fall, wenn eine Software ausgeliefert wird, an dieser jedoch weiterentwickelt wird. Dabei ist es notwendig zwei getrennte  Entwicklungszweige fortzuf&#252;hren. Einen Zweig um bei der ausgelieferten Version Fehler zu beheben und kleinere Folgeversionen zu ver&#246;ffentlichen und einen Zweig um die Software weiter zuentwickeln. Diese Vorgehensweise wird als \emph{Branching} bezeichnet und hilft den Entwicklern bei der Entwicklung seinen Produktes auf !
+ unterschiedlichen Entwicklungszweigen. Der Hauptzweig eines Mo!
+ duls wir
+d als \emph{trunk}\footnote{engl. Stamm} bezeichnet und besitzt die Revision \emph{HEAD}. \emph{Merging} bezeichnet das Zusammenf&#252;hren zweier Entwicklungszweige zu einem einzigen Zweig. Dies kann notwendig sein, um bspw. den Wartungszweig einer ausgelieferten Software mit dem Tag \emph{Version 1.0} mit dem Entwicklungszweig zur Version mit dem Tag \emph{Version 2.0} zusammen zuf&#252;hren. Mit Hilfe verschiedener \emph{Trigger} k&#246;nnen Skripte oder Programme im Repository ausgef&#252;hrt werden. Die Trigger k&#246;nnen vor und/oder nach dem Speichern der Dateien aufgef&#252;hrt werden und dabei Einfluss auf das Speichern nehmen. So kann bspw. vor dem Speichern der Quellcode nach bekannten Bugs mit Hilfe verschiedener Programme\footnote{Checkstyle -- \url{<A HREF="http://checkstyle.sourceforge.net/">http://checkstyle.sourceforge.net/</A>} \\Findbugs -- \url{<A HREF="http://findbugs.sourceforge.net/">http://findbugs.sourceforge.net/</A>}} gesucht werden. Im Fehlerfall wird der Quellcode nicht gespeichert und der Entwickler erh&#228;lt eine Fehlermeldung. Nach dem Speichern der Dateien k&#246;nnte ein !
+ weiteres Skript eine automatische Email an alle Projektmitglieder schicken und diese &#252;ber die gespeicherten &#196;nderungen informieren. CVS hat jedoch einige Nachteile: Zum einen k&#246;nnen Dateien nicht umbenannt werden. Um den Dateinamen zu ver&#228;ndern, muss diese Datei aus dem Modul entfernt und mit dem neuen Namen hinzugef&#252;gt werden. Dabei beginnt jedoch die Revision von vorne zu z&#228;hlen und somit kann auch nicht einfach auf die &#228;ltere Version zur&#252;ckgegriffen werden. Zum anderen k&#246;nnen auch Verzeichnisse nicht verschoben bzw. umbenannt werden. Um ein Verzeichniss zu verschieden, muss jede einzelne Datei in dem Verzeichnis aus dem Modul gel&#246;scht und an neuer Stelle als neue Datei neu hinzugef&#252;gt werden. Diese Mi&#223;st&#228;nde f&#252;hrten dazu, dass engachierte Softwareentwickler mit der Entwicklung einer neuer Versionsverwaltung mit dem Namen \emph{Subversion} begonnen haben.\citep{Wikipedia2005,Fogel2002,Price2005}
++Bei CVS handelt es sich um eine Versionsverwaltung mit einer Client-Server Architektur. Die Entwicklung von CSV begann mit Ansammlung von Shell-Skripten, die in einer Newsgroup 1986 von Dick Grune ver&#246;ffentlicht wurden. Im Jahre 1989 begann Brian Berliner mit sp&#228;terer Hilfe von Jeff Polk mit der eigentlichen Entwicklung von CVS. Das Concurrent Versions System ist ein Kommandozeilen orientiertes System, auf das mit Hilfe verschiedener Client-Interfaces zugegriffen werden kann. Im Laufe der Zeit hat sich CVS zu \emph{der} Versionsverwaltung von Open-Source Projekten entwickelt und wird bspw. von sourceforge.net eingesetzt. Innerhalb des Archiv/Repository existieren mehrerer \emph{Module}, die eine Sammlung von Dateien sind und dabei meist ein einzelnes Projekt darstellen. Dadurch, dass jede Datei eine eigene fortlaufende Revisionsnummer besitzt, wurde das \emph{Tagging} eingef&#252;hrt. Mit Hilfe des \emph{Tagging} kann jeder Datei zu einem definierten Zeitpunkt ein einheitliches !
+ Tag vergeben werden. Zu einem Zeitpunkt X, besitzt bspw. \texttt{DateiA.txt} die Revision \emph{1.13} und \texttt{DateiB.txt} die Revision \emph{1.78}. Mit Hilfe eines Tag mit bspw. dem Namen \emph{Alpha 0.18} erhalten beide Dateien dieses zus&#228;tzliche Tag, auf das zu einer sp&#228;teren Version zur&#252;ckgegriffen werden kann. Das Tagging bietet in der Softwareentwicklung eine gute M&#246;glichkeit wichtige Abschnitte des Quellcodes zu markieren, jedoch kann es vorkommen, dass diese Abschnitte separat weiterentwickelt werden m&#252;ssen. Dies ist z.B. der Fall, wenn eine Software ausgeliefert wird, an dieser jedoch weiterentwickelt wird. Dabei ist es notwendig zwei getrennte  Entwicklungszweige fortzuf&#252;hren. Einen Zweig um bei der ausgelieferten Version Fehler zu beheben und kleinere Folgeversionen zu ver&#246;ffentlichen und einen Zweig um die Software weiter zuentwickeln. Diese Vorgehensweise wird als \emph{Branching} bezeichnet und hilft den Entwicklern bei der Entwicklung seinen Produktes auf !
+ unterschiedlichen Entwicklungszweigen. Der Hauptzweig eines Mo!
+ duls wir
+d als \emph{trunk}\footnote{engl. Stamm} bezeichnet und besitzt die Revision \emph{HEAD}. \emph{Merging} bezeichnet das Zusammenf&#252;hren zweier Entwicklungszweige zu einem einzigen Zweig. Dies kann notwendig sein, um bspw. den Wartungszweig einer ausgelieferten Software mit dem Tag \emph{Version 1.0} mit dem Entwicklungszweig zur Version mit dem Tag \emph{Version 2.0} zusammen zuf&#252;hren. Mit Hilfe verschiedener \emph{Trigger} k&#246;nnen Skripte oder Programme im Repository ausgef&#252;hrt werden. Die Trigger k&#246;nnen vor und/oder nach dem Speichern der Dateien aufgef&#252;hrt werden und dabei Einfluss auf das Speichern nehmen. So kann bspw. vor dem Speichern der Quellcode nach bekannten Bugs mit Hilfe verschiedener Programme\footnote{Checkstyle -- \url{<A HREF="http://checkstyle.sourceforge.net/">http://checkstyle.sourceforge.net/</A>} \\Findbugs -- \url{<A HREF="http://findbugs.sourceforge.net/">http://findbugs.sourceforge.net/</A>}} gesucht werden. Im Fehlerfall wird der Quellcode nicht gespeichert und der Entwickler erh&#228;lt eine Fehlermeldung. Nach dem Speichern der Dateien k&#246;nnte ein !
+ Skript eine automatische Email an alle Projektmitglieder schicken und diese &#252;ber die gespeicherten &#196;nderungen informieren. CVS hat jedoch einige Nachteile: Zum einen k&#246;nnen Dateien nicht umbenannt werden. Um den Dateinamen zu ver&#228;ndern, muss diese Datei aus dem Modul entfernt und mit dem neuen Namen hinzugef&#252;gt werden. Dabei beginnt jedoch die Revision von vorne zu z&#228;hlen und somit kann auch nicht auf die &#228;ltere Version zur&#252;ckgegriffen werden. Zum anderen k&#246;nnen auch Verzeichnisse nicht verschoben bzw. umbenannt werden. Um ein Verzeichnis zu verschieden, muss jede einzelne Datei in dem Verzeichnis aus dem Modul gel&#246;scht und an neuer Stelle als neue Datei hinzugef&#252;gt werden. Diese Mi&#223;st&#228;nde f&#252;hrten dazu, dass einige Softwareentwickler mit der Entwicklung einer neuer Versionsverwaltung mit dem Namen \emph{Subversion} begonnen haben.\citep{Wikipedia2005,Fogel2002,Price2005}
+ 
+ %====================================
+ \subsection{Subversion - SVN} \label{tech-svn}
+-&quot;`Subversion (SVN) ist eine Open-Source-Software zur Versionsverwaltung&quot;', die oft als Nachfolger von CVS bezeichnet wird\citep{Wikipedia2005}. SVN ist ein von CVS unabh&#228;ngigs Projekts und wird seit Anfang 2000 bei CoolabNet entwickelt. Seit dem 31.August 2001 ist Subversion &quot;`self-hosting&quot;', d.h. der Quellcode zu Subversion wird mit Subversion verwaltet. Am 23.Februar 2004 wurde die erste stabile Version 1.0 ver&#246;ffentlicht. Bei der Entwicklung von Subversion wurde auf eine &#228;hnliche Bedienung wie CVS geachtet, damit der Umstieg von CVS auf SVN f&#252;r viele Entwickler einfach ist. Weiterhin unterst&#252;tzt Subversion fast alle Funktionen von CVS, versucht jedoch dessen Nachteile zu vermeiden. In Subversion hat nicht jede Datei eine eigene Revison, sondern das gesamte Projekt eine einheitliche Versionsnummer, &#228;hnlich einem Tag in CVS. &#196;nderungen an einem Projekt werden meist an mehreren Dateien vorgenommen, die nun alle die gleiche Revision besitzen. Im Unterschied zu CVS ben&#246;tigt S!
+ ubversion neben der lokalen Arbeitskopie noch eine weitere zweite Kopie. Dadurch verdoppelt sich der ben&#246;tigte Speicherbedarf bei dem Client, jedoch hat dies zum Vorteil, dass Subversion dadurch weniger Netzwerkzugriffe ben&#246;tigt und bei einem \emph{commit} nur die Unterschiede zur Vorg&#228;ngerversion &#252;bertr&#228;gt und nicht wie CVS die kompletten Dateien. Weiterhin ist das umbenennen und verschieben von Dateien m&#246;glich, die Verwaltung von Verzeichnissen und Metadaten. Die \emph{commits} sind bei SVN atomar, d.h. &#196;nderungen werden entweder komplett oder gar nicht ins Repository aufgenommen und Verbindungsabbr&#252;che f&#252;hren nicht zu inkonsistenten Zust&#228;nden. Der Zugriff auf den Subversionserver, der das Repository in einer Berkeley Datenbank oder seit Version 1.1 im Dateisystem speichert, kann &#252;ber ein eigenen Protokoll, &#252;ber die Secure shell oder &#252;ber ein WebDav-Modul f&#252;r den Apach2 Webserver erfolgen. \Vref{fig:svnarchitekur} verdeutlicht nochmal die gesamte Subversion Architektur. D!
+ abei ist zu sehen, dass &#252;ber Kommandozeilenparameter oder eine!
+ r grafis
+chen Oberfl&#228;che auf die Client-Bibliothek zugegriffen werden kann. Diese Bibliothek kann &#252;ber verschiedene Methoden auf das SVN Repository zugreifen. Dabei gibt es die direkte lokal Zugriffsart oder der Zugriff &#252;ber ein Netzwerk/Internet. Das Repository speichert die Dateien bzw. die Unterschiede der Dateien letztendlich in einer Berkeley Datenbank oder auf dem Dateisystem. Subversion bietet somit fast die gleiche Funktionalit&#228;t die CVS, behebt dessen Nachteile und bietet dazu noch einige Extrafunktionen. \citep{Wikipedia2005,Collins-Sussman2005}
++&quot;`Subversion (SVN) ist eine Open-Source-Software zur Versionsverwaltung&quot;', die oft als Nachfolger von CVS bezeichnet wird\citep{Wikipedia2005}. SVN ist ein von CVS unabh&#228;ngiges Projekt und wird seit Anfang 2000 bei CoolabNet entwickelt. Seit dem 31.August 2001 ist Subversion &quot;`self-hosting&quot;', d.h. der Quellcode zu Subversion wird mit Subversion verwaltet. Am 23.Februar 2004 wurde die erste stabile Version 1.0 ver&#246;ffentlicht. Bei der Entwicklung von Subversion wurde auf eine &#228;hnliche Bedienung wie CVS geachtet, damit der Umstieg von CVS auf SVN f&#252;r viele Entwickler einfach ist. Weiterhin unterst&#252;tzt Subversion fast alle Funktionen von CVS, versucht jedoch dessen Nachteile zu vermeiden. In Subversion hat nicht jede Datei eine eigene Revision, sondern das gesamte Projekt eine einheitliche Versionsnummer, &#228;hnlich einem Tag in CVS. &#196;nderungen an einem Projekt werden meist an mehreren Dateien vorgenommen, die nun alle die gleiche Revision besitzen. Im Unterschied zu CVS ben&#246;tigt !
+ Subversion neben der lokalen Arbeitskopie noch eine weitere zweite Kopie. Dadurch verdoppelt sich der ben&#246;tigte Speicherbedarf bei dem Client, jedoch hat dies zum Vorteil, dass Subversion dadurch weniger Netzwerkzugriffe ben&#246;tigt und bei einem \emph{commit} nur die Unterschiede zur Vorg&#228;ngerversion &#252;bertr&#228;gt, nicht wie CVS die kompletten Dateien. Weiterhin ist das Umbenennen und Verschieben von Dateien m&#246;glich, die Verwaltung von Verzeichnissen und Metadaten. Die \emph{commits} sind bei SVN atomar, d.h. &#196;nderungen werden entweder komplett oder gar nicht ins Repository aufgenommen und Verbindungsabbr&#252;che f&#252;hren nicht zu inkonsistenten Zust&#228;nden. Der Zugriff auf den Subversionserver, der das Repository in einer Berkeley Datenbank oder seit Version 1.1 im Dateisystem speichert, kann &#252;ber ein eigenes Protokoll, &#252;ber die Secure Shell oder &#252;ber ein WebDav-Modul f&#252;r den Apach2 Webserver erfolgen. \Vref{fig:svnarchitekur} verdeutlicht nochmal die gesamte Subversion Architektur. Dab!
+ ei ist zu sehen, dass &#252;ber Kommandozeilenparameter oder einer !
+ grafisch
+en Oberfl&#228;che auf die Client-Bibliothek zugegriffen werden kann. Diese Bibliothek kann &#252;ber verschiedene Methoden auf das SVN Repository zugreifen. Dabei gibt es die direkte lokale Zugriffsart oder der Zugriff &#252;ber ein Netzwerk/Internet. Das Repository speichert die Dateien bzw. die Unterschiede der Dateien letztendlich in einer Berkeley Datenbank oder auf dem Dateisystem. Subversion bietet somit fast die gleiche Funktionalit&#228;t die CVS, behebt dessen Nachteile und bietet dazu noch einige Extrafunktionen. \citep{Wikipedia2005,Collins-Sussman2005}
+ \begin{figure}[tbp]
+ 	\centering
+ 	\includegraphics[scale=0.65]{images/subversion-architektur.png}
+
+Modified: docu/latex/3-3-Entwicklungsumgebung.tex
+===================================================================
+--- docu/latex/3-3-Entwicklungsumgebung.tex	2005-12-20 08:08:26 UTC (rev 322)
++++ docu/latex/3-3-Entwicklungsumgebung.tex	2005-12-20 09:11:36 UTC (rev 323)
+@@ -49,18 +49,5 @@
+ 
+ 
+ 
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+ %Hier danach nicht mehr schreiben
+ \label{sec:tech-Entwicklungsumgebung-ende}
+\ No newline at end of file
+
+Modified: docu/latex/4-1-Versionsverwaltung.tex
+===================================================================
+--- docu/latex/4-1-Versionsverwaltung.tex	2005-12-20 08:08:26 UTC (rev 322)
++++ docu/latex/4-1-Versionsverwaltung.tex	2005-12-20 09:11:36 UTC (rev 323)
+@@ -1,17 +1,17 @@
+ \chapter{Implementierung} \label{sec:Implementierung}
+ \section{Versionsverwaltung mit Subversion} \label{sec:impl-Versionsverwaltung}
+-Als Versionsverwaltung wurde Subversion verwendet. Dies hat mehrere Gr&#252;nde: Zum einen war Subversion zu diesem Zeitpunkt eine neue und z.T. auch unbekannte Technologie, die somit ihren Reiz hatte. Zum anderen wurde Subversion als Nachfolger von CVS angepriesen und sollte viele Nachteile eliminieren. Eins der wichtigen Vorteile von Subversion ist die geringe Netzwerklast. Bei einem &quot;`Commit&quot;' werden nur die Unterschiede zur Vorg&#228;ngerversion &#252;bertragen und nicht wie bei CVS jede Datei komplett. Um Subversion verwenden zu k&#246;nnen, wurde ein Rechner mit einem installieren Subversion Server ben&#246;tigt, der m&#246;glichst 24h im Internet verf&#252;gbar ist. Um mit einem Client auf einen Subversion Server zuzugreifen, gibt es verschiedene &#220;bertragungsprotokolle: Ein eigenes Subversion protokoll (svn), eine Kombination aus Secure Shell und dem eigenen Protokoll (ssh+svn), &#252;ber http oder &#252;ber https. Die sicherste Methode &#252;ber ssh+svn, jedoch erfordert diese die Installation eines SSH Server, was!
+  unter Linux, dank verschiedener Anleitungen, einfach geht, jedoch unter Windows nicht so einfach zu realisieren ist. Unter Windows wurde zu Testzwecken ein Apache2 Webserver mit einem Zertifikat zur &#220;bertragung von Daten per https installiert. Dieser Webserver wurde mit dem Subversion Server kombiniert und jeglicher Datentransfer f&#252;r Subversion erfolgte &#252;ber https und dessen eingestellen Port. Der Nachteil war jedoch, dass keiner die M&#246;glichkeit hatte, einen PC 24h online zur Verf&#252;gung zu stellen. So wurde nach einiger Suche im Internet der Open Source Anbieter Berlios Developer\footnote{\url{<A HREF="http://developer.berlios.de/">http://developer.berlios.de/</A>}} entdeckt. Dort k&#246;nnen Open-Source Projekte ihre Quellcodes in einer Subversion Versionsverwaltung mittels ssh+svn kostenlos speichern. Bei Berlios ist das Repository bereits erstellt, bei unseren Testsystem musste dies mit einem einfachen Befehl manuell erfolgen:
++Als Versionsverwaltung wurde Subversion verwendet. Dies hat mehrere Gr&#252;nde: Zum einen war Subversion zu diesem Zeitpunkt eine neue und z.T. auch unbekannte Technologie, die somit ihren Reiz hatte. Zum anderen wurde Subversion als Nachfolger von CVS angepriesen und sollte viele Nachteile eliminieren. Einer der wichtigen Vorteile von Subversion ist die geringe Netzwerklast. Bei einem &quot;`Commit&quot;' werden nur die Unterschiede zur Vorg&#228;ngerversion &#252;bertragen und nicht wie bei CVS jede Datei komplett. Um Subversion verwenden zu k&#246;nnen, wurde ein Rechner mit einem installieren Subversion Server ben&#246;tigt, der m&#246;glichst 24h im Internet verf&#252;gbar ist. Um mit einem Client auf einen Subversion Server zuzugreifen, gibt es verschiedene &#220;bertragungsprotokolle: Ein eigenes Subversion protokoll (svn), eine Kombination aus Secure Shell und dem eigenen Protokoll (ssh+svn), &#252;ber http oder &#252;ber https. Die sicherste Methode ist &#252;ber ssh+svn, jedoch erfordert diese die Installation eines SSH Server!
+ , was unter Linux, dank verschiedener Anleitungen, einfach geht, jedoch unter Windows nicht so einfach zu realisieren ist. Unter Windows wurde zu Testzwecken ein Apache2 Webserver mit einem Zertifikat zur &#220;bertragung von Daten per https installiert. Dieser Webserver wurde mit dem Subversion Server kombiniert und jeglicher Datentransfer f&#252;r Subversion erfolgte &#252;ber https und dessen eingestellen Port. Der Nachteil war jedoch, dass keiner die M&#246;glichkeit hatte, einen PC 24h online zur Verf&#252;gung zu stellen. So wurde nach einiger Suche im Internet der Open Source Anbieter Berlios Developer\footnote{\url{<A HREF="http://developer.berlios.de/">http://developer.berlios.de/</A>}} entdeckt. Dort k&#246;nnen Open-Source Projekte ihre Quellcodes in einer Subversion Versionsverwaltung mittels ssh+svn kostenlos speichern. Bei Berlios ist das Repository bereits erstellt, bei unseren Testsystem musste dies mit einem einfachen Befehl manuell erfolgen:
+ \begin{verbatim}
+ svnadmin create f:/subversion/phil/daten
+ \end{verbatim}
+-Durch diesen Befehl wurde in dem angegebenen Verzeichniss durch den Befehl \texttt{svadmin create} ein neues Repository erzeugt, das im Dateisystem auf dem Server die folgende Verzeichnissstruktur wie in \vref{fig:svnverzeichniss} zu sehen ist, besitzt.
++Durch diesen Befehl wurde in dem angegebenen Verzeichnis ein neues Repository erzeugt, das im Dateisystem auf dem Server die folgende Verzeichnisstruktur wie in \vref{fig:svnverzeichniss} zu sehen ist, erzeugt.
+ \begin{figure}[htbp]
+ 	\centering
+ 	\includegraphics[scale=1.0]{images/svn-verzeichniss-struktur.jpg}
+-	\caption{Verzeichnissstruktur des Repository auf dem Server}
++	\caption{Verzeichnisstruktur des Repository auf dem Server}
+ 	\label{fig:svnverzeichniss}
+ \end{figure}
+-Im Verzeichniss \texttt{conf} befinden sich zwei wichtige Dateien. In der svnserve.conf, wie in \vref{code:svnserve} zu sehen, sind grundlegende Eigenschaften wie Zugangsberechntigungen, Begr&#252;&#223;ung und Passwortdatei festgelegt. In der Passwortdatei, wie in \vref{code:svnuser} zu sehen, werden Benutzernamen und Passw&#246;rter f&#252;r die Benutzer dieses Repository vergeben. Diese Methode der Authentisierung ist jedoch nicht zu empfehlen, da die Passw&#246;rter in diesen Dateien lesbar sind und diese Datei, zus&#228;tzlich zu anderen bereits vorhandenen Zugangslisten, aktuell gehalten werden muss.
++Im Verzeichnis \texttt{conf} befinden sich zwei wichtige Dateien. In der \texttt{svnserve.conf}, wie in \vref{code:svnserve} zu sehen, sind grundlegende Eigenschaften wie Zugangsberechtigungen, Begr&#252;&#223;ung und Passwortdatei festgelegt. In der Passwortdatei, wie in \vref{code:svnuser} zu sehen, werden Benutzernamen und Passw&#246;rter f&#252;r die Benutzer dieses Repository vergeben. Diese Methode der Authentisierung ist jedoch nicht zu empfehlen, da die Passw&#246;rter in dieser Datei lesbar sind und diese Datei, zus&#228;tzlich zu anderen bereits vorhandenen Zugangslisten, aktuell gehalten werden muss.
+ \begin{lstlisting}[language=Java, showstringspaces=false, caption={Datei /conf/svnserve.conf},label=code:svnserve]
+ [general]
+ anon-access = none
+@@ -23,16 +23,16 @@
+ [users]
+ pschneider = geheim
+ \end{lstlisting}
+-Eine bessere M&#246;glichkeit der Authentisierung w&#228;re die &#220;berpr&#252;fung, bevor der Benutzer Zugang zum System erh&#228;lt. Bei einer ssh+svn erfolgt die Authensisierung durch ssh und bei https erfolgt diese &#252;ber htaccess, in beiden F&#228;llen wird dabei wahrscheinlich auf einen vorhandenen Authentisierungsinfrastruktur zur&#252;ckgegriffen.\\
++Eine bessere M&#246;glichkeit der Authentisierung w&#228;re die &#220;berpr&#252;fung, bevor der Benutzer Zugang zum System erh&#228;lt. Bei \emph{ssh+svn} erfolgt die Authensisierung durch ssh und bei https erfolgt diese &#252;ber htaccess, in beiden F&#228;llen wird dabei wahrscheinlich auf eine vorhandene Authentisierungsinfrastruktur zur&#252;ckgegriffen.\\
+ \begin{figure}[htbp]
+ 	\centering
+ 	\includegraphics[scale=0.75]{images/svn-verzeichniss-client.jpg}
+ 	\caption{Ansicht des Clients TortoiseSVN}
+ 	\label{fig:svnclient}
+ \end{figure}
+-In unserem Projekt wurde als Client f&#252;r den Zugriff auf das Subversionrepository TortoiseSvn\footnote{\url{<A HREF="http://tortoisesvn.tigris.org/">http://tortoisesvn.tigris.org/</A>}} verwendet. Dabei handelt es sich wie in \vref{fig:svnclient} zu sehen, um eine Windows-Shellerweiterung, die sich in den Explorer integriert. Ist ein Verzeichniss oder eine Datei Teil eines Projektes, das in einer Subversionversionsverwaltung gespeichert wird, sind diese durch kleine farbige Symbole markiert. Diese Symbole geben den Zustand der Dateien an, ob diese aktuell sind, ver&#228;ndert wurde oder ob eventuelle Konflikte bestehen. Weiterhin k&#246;nnen damit auch alle anderen Aktionen wie Log Datei betrachten, R&#252;ckg&#228;nging, Tagging/Merging und Verschiebungen wie in \vref{fig:svnclient} zu sehen, vorgenommen werden. Mit TortoiseSVN ist auch m&#246;glich nur ein bestimmtes Verzeichnis des meist sehr strukturiertes Projektes auszuchecken und zu bearbeiten. Dazu wird 
+-\texttt{TortoiseSVN $\Rightarrow$ Wechseln zu }
+-wie in \vref{fig:svnwechselnzu} zu sehen ausgew&#228;hlt. In dem sich &#246;ffnenden Dialog wird das entsprechende Verzeichnis im Repository gew&#228;hlt und die lokale Arbeitskopie wird automatisch auf die entsprechenden Verzeichnisse und Dateien aktualisiert.\\
++In unserem Projekt wurde als Client f&#252;r den Zugriff auf das Subversionrepository TortoiseSvn\footnote{\url{<A HREF="http://tortoisesvn.tigris.org/">http://tortoisesvn.tigris.org/</A>}} verwendet. Dabei handelt es sich wie in \vref{fig:svnclient} zu sehen, um eine Windows-Shellerweiterung, die sich in den Explorer integriert. Ist ein Verzeichnis oder eine Datei Teil eines Projektes, das in einer Subversionversionsverwaltung gespeichert wird, sind diese durch kleine farbige Symbole markiert. Diese Symbole geben den Zustand der Dateien an, ob diese aktuell sind, ver&#228;ndert wurden oder ob eventuelle Konflikte bestehen. Weiterhin k&#246;nnen damit auch alle anderen Aktionen wie Log Datei betrachten, R&#252;ckg&#228;nging, Tagging/Merging und Verschiebungen wie in \vref{fig:svnclient} zu sehen, vorgenommen werden. Mit TortoiseSVN ist es auch m&#246;glich nur ein bestimmtes Verzeichnis des meist sehr strukturiertes Projektes auszuchecken und zu bearbeiten. Dazu wird 
++\texttt{TortoiseSVN $\Rightarrow$ Wechseln zu }, 
++wie in \vref{fig:svnwechselnzu} zu sehen, ausgew&#228;hlt. In dem sich &#246;ffnenden Dialog wird das entsprechende Verzeichnis im Repository gew&#228;hlt und die lokale Arbeitskopie wird automatisch auf die entsprechenden Verzeichnise und Dateien aktualisiert.\\
+ \begin{figure}[htbp]
+ 	\centering
+ 	\includegraphics[scale=0.75]{images/svn-wechselnzu.jpg}
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000324.html">[Provirent-svn-commit] r322 - docu/latex
+</A></li>
+	<LI>Next message: <A HREF="000326.html">[Provirent-svn-commit] r324 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#325">[ date ]</a>
+              <a href="thread.html#325">[ thread ]</a>
+              <a href="subject.html#325">[ subject ]</a>
+              <a href="author.html#325">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

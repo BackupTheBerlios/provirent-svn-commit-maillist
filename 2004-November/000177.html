@@ -1,0 +1,536 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r176 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r176%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/objects%20de/hsharz/provirent/persistence%20test/provirent/hibernate&In-Reply-To=%3C200411291920.iATJKbZ4032500%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000176.html">
+   <LINK REL="Next"  HREF="000178.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r176 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r176%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/management/gui%20de/hsharz/provirent/objects%20de/hsharz/provirent/persistence%20test/provirent/hibernate&In-Reply-To=%3C200411291920.iATJKbZ4032500%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r176 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Mon Nov 29 20:20:37 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000176.html">[Provirent-svn-commit] r175 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000178.html">[Provirent-svn-commit] r177 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#177">[ date ]</a>
+              <a href="thread.html#177">[ thread ]</a>
+              <a href="subject.html#177">[ subject ]</a>
+              <a href="author.html#177">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-11-29 20:20:36 +0100 (Mon, 29 Nov 2004)
+New Revision: 176
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java	2004-11-29 18:29:26 UTC (rev 175)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositePayment.java	2004-11-29 19:20:36 UTC (rev 176)
+@@ -4,9 +4,12 @@
+ import java.text.MessageFormat;
+ import java.text.ParseException;
+ import java.util.Calendar;
++import java.util.Enumeration;
++import java.util.Hashtable;
+ import java.util.Locale;
+ import java.util.PropertyResourceBundle;
+ import java.util.ResourceBundle;
++import java.util.Vector;
+ 
+ import org.apache.log4j.Logger;
+ import org.eclipse.swt.SWT;
+@@ -116,7 +119,7 @@
+     private Table tablePayment;
+     private TableColumn tableColumn;
+ 
+-    
++    Hashtable list = null;
+ 
+     private final static int MODE_EDIT = 2;
+     
+@@ -609,9 +612,11 @@
+                     textduration2.setText(&quot;&quot;);
+                     textduration3.setText(&quot;&quot;);
+                     textstartdate.setText(&quot;&quot;);
++                    buttonPaymentEdit.setEnabled(false);
++                    buttonPaymentDelete.setEnabled(false);
+                     //in Tabelle n&#228;chsten ausw&#228;hlen
+                     try {
+-                        tablePayment.select(0);
++                        tablePayment.deselectAll();
+                     } catch (Exception ex) {}
+                     
+                     //Statusline Nachricht sezten
+@@ -673,6 +678,9 @@
+                     	return;
+                 }
+                 
++                buttonPaymentEdit.setEnabled(false);
++                buttonPaymentDelete.setEnabled(false);
++                
+                 //testen welcher mode
+                 
+                 if (mode_Payment == ManagementGui.MODE_ADD) {
+@@ -693,17 +701,14 @@
+                             			Float.parseFloat(textduration2.getText()), 
+                             			Float.parseFloat(textduration3.getText()),
+                             			tmp_cal);
+-                    
+-                    
++                                        
+                         //object speichern
+                         // Fehlerbehandlung
+                         Object o = Database.saveObject(tmp);
+                         
+                         // in &#220;bersichtstabelle einf&#252;gen
+-                        insertIntoPaymentTable((Payment)o);
+-                        textPaymentID.setText( ((Payment)o).getPaymentId()+&quot;&quot; );
+-                        
+-                        
++                        insertIntoPaymentTable((Payment)o);                        
++                                                
+                         //Statusline Nachricht sezten
+                         statusLine.setStatus(1,l.getString(&quot;Payment.groupdetail.savebutton.newok&quot;));
+ 
+@@ -731,8 +736,10 @@
+                     }
+                     
+                     
+-                    //alle Buttons auf aktiv setzen
++//                  alle Buttons auf aktiv setzen
+                     setPaymentGroupButtonSaveCancel();
++                    buttonPaymentDelete.setEnabled(false);
++                    buttonPaymentEdit.setEnabled(false);
+                     
+                 } else if (mode_Payment == ManagementGui.MODE_EDIT) {
+                     try {
+@@ -780,10 +787,10 @@
+                         
+                     }
+                     
+- 
+                     //alle Buttons auf aktiv setzen
+                     setPaymentGroupButtonSaveCancel();
+-                    
++                    buttonPaymentDelete.setEnabled(false);
++                    buttonPaymentEdit.setEnabled(false);
+                 }
+                 
+                 
+@@ -836,16 +843,26 @@
+ 
+     /**
+      * @param Payment
++     * @throws DataBaseException
+      */
+-    protected void insertIntoPaymentTable(Payment Payment) {
++    protected void insertIntoPaymentTable(Payment Payment) throws DataBaseException {
+         TableItem item = new TableItem(tablePayment, SWT.NONE);
+         item.setText(new String[] { Payment.getPaymentId() + &quot;&quot;, 
+                 					Payment.getName(), 
+                 					Double.toString(Payment.getDuration1()),
+                 					Double.toString(Payment.getDuration2()), 
+                 					Double.toString(Payment.getDuration3()),
+-                					DateFormat.getDateInstance(DateFormat.MEDIUM).format(Payment.getStartdate().getTime()) });
++                					Util.getTextByDate(Payment.getStartdate()) });
+         
++        tablePayment.deselectAll();
++        refreshPaymentDetail(&quot;&quot;);
++        
++        try {
++            refreshPaymentTable(textPaymentSearch.getText());
++        } catch (DataBaseException e) {
++            // TODO Auto-generated catch block
++            e.printStackTrace();
++        }
+     }
+ 
+     /**
+@@ -863,6 +880,56 @@
+         tablePayment.removeAll();
+         TableItem item;
+         java.util.List Paymentlist = Database.getPayment(filter);
++        list = new Hashtable();
++        for (int i = 0; i &lt; Paymentlist.size(); i++) {
++            Payment paym = (Payment) Paymentlist.get(i);
++            String name = paym.getName();
++            
++            if (list.containsKey(name)) {
++                Vector vec = (Vector) list.get(name);
++                vec.add(paym.getStartdate());
++            } else {
++                Vector vec = new Vector();
++                vec.add(paym.getStartdate());
++                
++                list.put(paym.getName(), vec);
++            }
++        }
++        Enumeration keys = list.keys();
++        while (keys.hasMoreElements()) {
++            String key = (String) keys.nextElement();
++            Vector vec = (Vector) list.get(key);
++            Vector aktDates = new Vector();
++            Calendar temp = null;
++            for (int i = 0; i &lt; vec.size(); i++) {
++                Calendar today = Calendar.getInstance();
++                if (temp == null) {
++                    temp = (Calendar) vec.get(i);
++                    if (temp.after(today)) {
++                        aktDates.add(temp);
++                        temp = null;
++                        continue;
++                    } else{
++	                    aktDates.add(0, temp);
++	                    continue;
++                    }
++                }  
++                Calendar date = (Calendar) vec.get(i);
++                
++                if (!date.after(today)) {
++                    if (date.after(temp)) {
++                        temp = date;
++                        aktDates.set(0, date);
++                    }
++                    
++                } else {
++                    aktDates.add(date);
++                }
++                                    
++            }
++            list.remove(key);
++            list.put(key, aktDates);
++        }
+ 
+         for (int i = 0; i &lt; Paymentlist.size(); i++) {
+ 
+@@ -1074,38 +1141,61 @@
+      * @param text
+      */
+     protected void refreshPaymentDetail(final String id) {
+-        Payment object;
+-        try {
+-            //since we only can get a String value from the table, we
+-            //need to convert this
+-            object = Database.getSinglePayment(Integer.parseInt(id));
+-
+-            if (object == null) {
+-
+-                /*
+-                 * 
+-                 * @TODO Statusbar aktualiseren
+-                 */
+-                return;
+-            }
+-        } catch (Exception e) {
+-            //id ist keine Zahl
+-            return;
++        if (!id.equals(&quot;&quot;) &amp;&amp; id != null) {
++	        Payment object;
++	        try {
++	            //since we only can get a String value from the table, we
++	            //need to convert this
++	            object = Database.getSinglePayment(Integer.parseInt(id));
++	
++	            if (object == null) {
++	
++	                /*
++	                 * 
++	                 * @TODO Statusbar aktualiseren
++	                 */
++	                return;
++	            }
++	        } catch (Exception e) {
++	            //id ist keine Zahl
++	            return;
++	        }
++	
++	        textPaymentID.setText(object.getPaymentId() + &quot;&quot;);
++	        textPaymentName.setText(object.getName());
++	        textduration1.setText(Double.toString(object.getDuration1()));
++	        textduration2.setText(Double.toString(object.getDuration2()));
++	        textduration3.setText(Double.toString(object.getDuration3()));
++	        textstartdate.setText(DateFormat.getDateInstance(DateFormat.LONG).format(object.getStartdate().getTime()));
++	        //Buttons zum l&#246;schen und editieren aktivieren
++	        
++	        buttonPaymentEdit.setEnabled(false);
++	        buttonPaymentDelete.setEnabled(true);
++	        Vector vec = (Vector) list.get(object.getName());
++	        
++	        for (int i = 0; i &lt; vec.size(); i++) {
++	            Calendar date = (Calendar) vec.get(i);
++	            try {
++	                if (Util.getTextByDate(date).equals(Util.getTextByDate(object.getStartdate()))) {
++	                    buttonPaymentEdit.setEnabled(true);
++	                    
++	                }
++	            } catch (DataBaseException e1) {
++	                // TODO Auto-generated catch block
++	                e1.printStackTrace();
++	            }
++	        }
++        } else {
++            textPaymentID.setText(&quot;&quot;);
++            textPaymentName.setText(&quot;&quot;);
++            textduration1.setText(&quot;&quot;);
++            textduration2.setText(&quot;&quot;);
++            textduration3.setText(&quot;&quot;);
++            textstartdate.setText(&quot;&quot;);
++            buttonPaymentEdit.setEnabled(false);
++            buttonPaymentDelete.setEnabled(false);
+         }
+ 
+-        textPaymentID.setText(object.getPaymentId() + &quot;&quot;);
+-        textPaymentName.setText(object.getName());
+-        textduration1.setText(Double.toString(object.getDuration1()));
+-        textduration2.setText(Double.toString(object.getDuration2()));
+-        textduration3.setText(Double.toString(object.getDuration3()));
+-        
+-
+-        textstartdate.setText(DateFormat.getDateInstance(DateFormat.LONG).format(object.getStartdate().getTime()));
+-
+-        //Buttons zum l&#246;schen und editieren aktivieren
+-        buttonPaymentEdit.setEnabled(true);
+-        buttonPaymentDelete.setEnabled(true);
+-
+         //Mode auf view setzen
+         mode_Payment = ManagementGui.MODE_VIEW;
+         
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.hbm.xml	2004-11-29 18:29:26 UTC (rev 175)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.hbm.xml	2004-11-29 19:20:36 UTC (rev 176)
+@@ -49,6 +49,10 @@
+ 		 &gt;
+ 			 	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+ 		 &lt;/many-to-one&gt;
++		 
++		 &lt;many-to-one name=&quot;payment&quot; class=&quot;de.hsharz.provirent.objects.Payment&quot;&gt;
++				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++		 &lt;/many-to-one&gt;
+ 
+ 				
+  
+@@ -70,7 +74,7 @@
+ 				class=&quot;de.hsharz.provirent.objects.Condition&quot;
+ 		 &gt;
+ 			 	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+-		 &lt;/many-to-one&gt; 
++		 &lt;/many-to-one&gt;
+  
+     &lt;/class&gt;
+   &lt;/hibernate-mapping&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.java	2004-11-29 18:29:26 UTC (rev 175)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/OrderItem.java	2004-11-29 19:20:36 UTC (rev 176)
+@@ -37,19 +37,23 @@
+     private de.hsharz.provirent.objects.Dvd dvd;
+ 
+     /** nullable persistent field */
++    private de.hsharz.provirent.objects.Payment payment;
++
++    /** nullable persistent field */
+     private de.hsharz.provirent.objects.Condition conditionSend;
+ 
+     /** nullable persistent field */
+     private de.hsharz.provirent.objects.Condition conditionReceiving;
+ 
+     /** full constructor */
+-    public OrderItem(Calendar senderTime, Calendar receivingTime, int duration, Date orderTime, de.hsharz.provirent.objects.Customer customer, de.hsharz.provirent.objects.Dvd dvd, de.hsharz.provirent.objects.Condition conditionSend, de.hsharz.provirent.objects.Condition conditionReceiving) {
++    public OrderItem(Calendar senderTime, Calendar receivingTime, int duration, Date orderTime, de.hsharz.provirent.objects.Customer customer, de.hsharz.provirent.objects.Dvd dvd, de.hsharz.provirent.objects.Payment payment, de.hsharz.provirent.objects.Condition conditionSend, de.hsharz.provirent.objects.Condition conditionReceiving) {
+         this.senderTime = senderTime;
+         this.receivingTime = receivingTime;
+         this.duration = duration;
+         this.orderTime = orderTime;
+         this.customer = customer;
+         this.dvd = dvd;
++        this.payment = payment;
+         this.conditionSend = conditionSend;
+         this.conditionReceiving = conditionReceiving;
+     }
+@@ -119,6 +123,14 @@
+         this.dvd = dvd;
+     }
+ 
++    public de.hsharz.provirent.objects.Payment getPayment() {
++        return this.payment;
++    }
++
++    public void setPayment(de.hsharz.provirent.objects.Payment payment) {
++        this.payment = payment;
++    }
++
+     public de.hsharz.provirent.objects.Condition getConditionSend() {
+         return this.conditionSend;
+     }
+@@ -144,6 +156,7 @@
+             .append(&quot;orderTime&quot;, getOrderTime())
+             .append(&quot;customer&quot;, getCustomer())
+             .append(&quot;dvd&quot;, getDvd())
++            .append(&quot;payment&quot;, getPayment())
+             .append(&quot;conditionSend&quot;, getConditionSend())
+             .append(&quot;conditionReceiving&quot;, getConditionReceiving())
+             .toString();
+@@ -161,6 +174,7 @@
+             .append(this.getOrderTime(), castOther.getOrderTime())
+             .append(this.getCustomer(), castOther.getCustomer())
+             .append(this.getDvd(), castOther.getDvd())
++            .append(this.getPayment(), castOther.getPayment())
+             .append(this.getConditionSend(), castOther.getConditionSend())
+             .append(this.getConditionReceiving(), castOther.getConditionReceiving())
+             .isEquals();
+@@ -175,6 +189,7 @@
+             .append(getOrderTime())
+             .append(getCustomer())
+             .append(getDvd())
++            .append(getPayment())
+             .append(getConditionSend())
+             .append(getConditionReceiving())
+             .toHashCode();
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-29 18:29:26 UTC (rev 175)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-11-29 19:20:36 UTC (rev 176)
+@@ -33,15 +33,12 @@
+ package de.hsharz.provirent.persistence;
+ 
+ import java.util.ArrayList;
+-import java.util.Calendar;
+-import java.util.Hashtable;
+ import java.util.List;
+ 
+ import net.sf.hibernate.Criteria;
+ import net.sf.hibernate.HibernateException;
+ import net.sf.hibernate.Session;
+ import net.sf.hibernate.Transaction;
+-import net.sf.hibernate.expression.Conjunction;
+ import net.sf.hibernate.expression.Disjunction;
+ import net.sf.hibernate.expression.Expression;
+ 
+@@ -1451,6 +1448,8 @@
+ 	            Criteria criteria = s.createCriteria(Payment.class);
+ 	            //any of the criteria 
+ 	            Disjunction any = Expression.disjunction();
++&lt;&lt;&lt;&lt;&lt;&lt;&lt; .mine
++=======
+ 	          
+ 	            /*
+ 	            any.add(Expression.sql(&quot;Select * from PAYMENT where name like '&quot; + 
+@@ -1458,8 +1457,10 @@
+ 	                    		&quot;' and startdate = (select startdate from PAYMENT where name like '&quot; + 
+ 	                    		name +
+ 	                    						   &quot;')&quot;));
++&gt;&gt;&gt;&gt;&gt;&gt;&gt; .r175
+ 	            
+ 	            */
++	            
+ 	
+ 	            //if filter not empty
+ 	            if (filter != null &amp;&amp; !filter.equalsIgnoreCase(&quot;&quot;)) {
+@@ -1480,13 +1481,9 @@
+ 	            criteria.add(any);
+ 	            //get the results
+ 	            returnlist = criteria.list();
+-	            Hashtable list = new Hashtable();
+-	            for (int i = 0; i &lt; returnlist.size(); i++) {
+-	                Payment paym = (Payment) returnlist.get(i);
+-	                list.put(paym.getName(), paym.getStartdate());
+-	            }
+ 	            
+ 	            
++	            int i = 0;
+ 	
+ 	
+ 	
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java	2004-11-29 18:29:26 UTC (rev 175)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java	2004-11-29 19:20:36 UTC (rev 176)
+@@ -244,16 +244,31 @@
+                 date3.set(2005,1,16);
+                 Calendar date4 = Calendar.getInstance();
+                 date4.set(2005,11,8);
++                Calendar date5 = Calendar.getInstance();
++                date5.set(2004,10,12);
++                Calendar date6 = Calendar.getInstance();
++                date6.set(2004,10,28);
++                Calendar date7 = Calendar.getInstance();
++                date7.set(2004,10,29);
++                Calendar date8 = Calendar.getInstance();
++                date8.set(2004,10,20);
+                 Payment myp1 = new Payment(&quot;A&quot;, 2.00d, 4.00d, 8.00d,date1);
+                 Payment myp2 = new Payment(&quot;B&quot;, 3.00d, 6.00d, 12.00d,date2);
+                 Payment myp3 = new Payment(&quot;C&quot;, 4.00d, 8.00d, 14.00d,date3);
+                 Payment myp4 = new Payment(&quot;D&quot;, 5.00d, 10.00d, 20.00d,date4);
+-
++                Payment myp5 = new Payment(&quot;A&quot;, 2.00d, 4.00d, 8.00d,date5);
++                Payment myp6= new Payment(&quot;A&quot;, 3.00d, 6.00d, 12.00d,date6);
++                Payment myp7 = new Payment(&quot;A&quot;, 4.00d, 8.00d, 14.00d,date7);
++                Payment myp8 = new Payment(&quot;B&quot;, 5.00d, 10.00d, 20.00d,date8);
+                 
+                 Payments.add(myp1);
+                 Payments.add(myp2);
+                 Payments.add(myp3);
+                 Payments.add(myp4);
++                Payments.add(myp5);
++                Payments.add(myp6);
++                Payments.add(myp7);
++                Payments.add(myp8);
+ 
+                 List ids = new ArrayList();
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000176.html">[Provirent-svn-commit] r175 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000178.html">[Provirent-svn-commit] r177 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#177">[ date ]</a>
+              <a href="thread.html#177">[ thread ]</a>
+              <a href="subject.html#177">[ subject ]</a>
+              <a href="author.html#177">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,911 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r212 - project_src/provirent_hibernate/src/test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r212%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200412071620.iB7GKs7a000851%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000212.html">
+   <LINK REL="Next"  HREF="000214.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r212 - project_src/provirent_hibernate/src/test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r212%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200412071620.iB7GKs7a000851%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r212 - project_src/provirent_hibernate/src/test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Tue Dec  7 17:20:54 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000212.html">[Provirent-svn-commit] r211 - in project_src/provirent_hibernate/src: de/hsharz/provirent/objects test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000214.html">[Provirent-svn-commit] r213 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#213">[ date ]</a>
+              <a href="thread.html#213">[ thread ]</a>
+              <a href="subject.html#213">[ subject ]</a>
+              <a href="author.html#213">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-12-07 17:20:53 +0100 (Tue, 07 Dec 2004)
+New Revision: 212
+
+Added:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Blade_1.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Blade_2.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Blade_3.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Blade_main.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Forgotten_1.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Forgotten_2.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Forgotten_main.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Incredibles_1.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Incredibles_2.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Incredibles_main.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Kranks_1.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Kranks_2.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Kranks_main.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Polar_1.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Polar_2.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Polar_3.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Polar_main.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Treasure_1.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Treasure_2.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Treasure_3.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Treasure_4.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Treasure_main.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Twelve_1.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Twelve_2.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Twelve_3.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/Twelve_main.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/closer_1.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/closer_2.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/closer_3.jpg
+   project_src/provirent_hibernate/src/test/provirent/hibernate/closer_main.jpg
+Modified:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestActor.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestDirector.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java
+Log:
+TestBilder hinzugef?\195?\188gt
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Blade_1.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Blade_1.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Blade_2.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Blade_2.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Blade_3.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Blade_3.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Blade_main.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Blade_main.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Forgotten_1.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Forgotten_1.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Forgotten_2.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Forgotten_2.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Forgotten_main.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Forgotten_main.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Incredibles_1.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Incredibles_1.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Incredibles_2.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Incredibles_2.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Incredibles_main.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Incredibles_main.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Kranks_1.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Kranks_1.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Kranks_2.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Kranks_2.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Kranks_main.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Kranks_main.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Polar_1.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Polar_1.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Polar_2.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Polar_2.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Polar_3.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Polar_3.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Polar_main.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Polar_main.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestActor.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestActor.java	2004-12-07 10:16:46 UTC (rev 211)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestActor.java	2004-12-07 16:20:53 UTC (rev 212)
+@@ -221,7 +221,7 @@
+                 assertTrue(&quot;Db Open? &quot;, s.isOpen());
+ 
+                 //cretae new objects
+-                List Actors = new ArrayList();
++                List actors = new ArrayList();
+ 
+                 Actor myd1 = new Actor(&quot;Johnny&quot;, &quot;Depp&quot;);
+                 Actor myd2 = new Actor(&quot;Geoffrey&quot;, &quot;Rush&quot;);
+@@ -231,18 +231,44 @@
+                 Actor myd6 = new Actor(&quot;Matthew&quot;, &quot;Pleszewicz &quot;);
+                 Actor myd7 = new Actor(&quot;Christopher&quot;, &quot;Kovaleski &quot;);
+ 
+-                Actors.add(myd1);
+-                Actors.add(myd2);
+-                Actors.add(myd3);
+-                Actors.add(myd4);
+-                Actors.add(myd5);
+-                Actors.add(myd6);
+-                Actors.add(myd7);
++                actors.add(myd1);
++                actors.add(myd2);
++                actors.add(myd3);
++                actors.add(myd4);
++                actors.add(myd5);
++                actors.add(myd6);
++                actors.add(myd7);
++                actors.add(new Actor(&quot;Ben&quot;,&quot;Stiller&quot;));
++                actors.add(new Actor(&quot;Vince&quot;,&quot;Vaughn&quot;));
++                actors.add(new Actor(&quot;Christine&quot;,&quot;Taylor&quot;));
++                actors.add(new Actor(&quot;Matt&quot;,&quot;Damon&quot;));
++                actors.add(new Actor(&quot;Joan&quot;,&quot;Allen&quot;));
++                actors.add(new Actor(&quot;Franka&quot;,&quot;Potente&quot;));
++                actors.add(new Actor(&quot;Julia&quot;, &quot;Stiles&quot;));
++                actors.add(new Actor(&quot;George Clooney&quot;,&quot;&quot;));
++                actors.add(new Actor(&quot;Brad Pitt&quot;,&quot;&quot;));
++                actors.add(new Actor(&quot;Julia Roberts&quot;,&quot;&quot;));
++                actors.add(new Actor(&quot;Wesley Snipes&quot;,&quot;&quot;));
++                actors.add(new Actor(&quot;Nicolas Cage&quot;,&quot;&quot;));
++                actors.add(new Actor(&quot;Diane Kruger&quot;,&quot;&quot;));
++                actors.add(new Actor(&quot;Sean Bean&quot;,&quot;&quot;));
++                actors.add(new Actor(&quot;Tom&quot;,&quot;Hanks&quot;));
++                actors.add(new Actor(&quot;Colin&quot;,&quot;Farrell&quot;));
++                actors.add(new Actor(&quot;Anthony&quot;,&quot;Hopkins&quot;));
++                actors.add(new Actor(&quot;Angelina&quot;,&quot;Jolie&quot;));
++                actors.add(new Actor(&quot;Johnny&quot;,&quot;Depp&quot;));
++                actors.add(new Actor(&quot;Kate&quot;,&quot;Winslet&quot;));
++                actors.add(new Actor(&quot;Ren&#233;e&quot;,&quot;Zellweger&quot;));
++                actors.add(new Actor(&quot;Jamie&quot;,&quot;Foxx&quot;));
++                actors.add(new Actor(&quot;Regina&quot;,&quot;King&quot;));
++                actors.add(new Actor(&quot;Kerry&quot;,&quot;Washington&quot;));
++                
++                
+ 
+                 List ids = new ArrayList();
+ 
+                 //save objects
+-                for (Iterator iter = Actors.iterator(); iter.hasNext();) {
++                for (Iterator iter = actors.iterator(); iter.hasNext();) {
+                     Actor dir = (Actor) iter.next();
+                     ids.add((Integer) s.save(dir));
+ 
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestDirector.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestDirector.java	2004-12-07 10:16:46 UTC (rev 211)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestDirector.java	2004-12-07 16:20:53 UTC (rev 212)
+@@ -216,15 +216,24 @@
+                 //cretae new objects
+                 List directors = new ArrayList();
+ 
+-                Director myd1 = new Director(&quot;Bibo&quot;, &quot;Bergeron&quot;);
+-                Director myd2 = new Director(&quot;Vicky&quot;, &quot;Jenson&quot;);
+-                Director myd3 = new Director(&quot;Jay&quot;, &quot;Russell&quot;);
+-                Director myd4 = new Director(&quot;Joseph&quot;, &quot;Ruben&quot;);
+ 
+-                directors.add(myd1);
+-                directors.add(myd2);
+-                directors.add(myd3);
+-                directors.add(myd4);
++                directors.add(new Director(&quot;Bibo&quot;, &quot;Bergeron&quot;));
++                directors.add(new Director(&quot;Vicky&quot;, &quot;Jenson&quot;));
++                directors.add(new Director(&quot;Jay&quot;, &quot;Russell&quot;));
++                directors.add(new Director(&quot;Joseph&quot;, &quot;Ruben&quot;));
++                directors.add(new Director(&quot;Taylor&quot;,&quot;Hackford&quot;));
++                directors.add(new Director(&quot;Beeban&quot;,&quot;Kidron&quot;));
++                directors.add(new Director(&quot;Marc&quot;,&quot;Forster&quot;));
++                directors.add(new Director(&quot;Oliver&quot;,&quot;Stone&quot;));
++                directors.add(new Director(&quot;Stephen&quot;,&quot;Hillenburg&quot;));
++                directors.add(new Director(&quot;Mike&quot;,&quot;Nichols&quot;));
++                directors.add(new Director(&quot;Brad&quot;,&quot;Bird&quot;));
++                directors.add(new Director(&quot;Robert&quot;,&quot;Zemeckis&quot;));
++                directors.add(new Director(&quot;Joe&quot;,&quot;Roth&quot;));
++                directors.add(new Director(&quot;Jon&quot;,&quot;Turteltaub&quot;));
++                directors.add(new Director(&quot;Steven&quot;,&quot;Soderbergh&quot;));
++                directors.add(new Director(&quot;Brad&quot;,&quot;Silberling&quot;));
++                directors.add(new Director(&quot;Martin&quot;,&quot;Scorsese&quot;));
+ 
+                 List ids = new ArrayList();
+ 
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java	2004-12-07 10:16:46 UTC (rev 211)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestImage.java	2004-12-07 16:20:53 UTC (rev 212)
+@@ -34,6 +34,7 @@
+ 
+ import java.io.File;
+ import java.io.FileInputStream;
++import java.io.FilenameFilter;
+ import java.io.InputStream;
+ import java.util.ArrayList;
+ import java.util.Iterator;
+@@ -93,129 +94,129 @@
+         }
+         /*
+ 
+-        //get new Session and begin Transaction
+-        Session s = HibernateUtil.currentSession();
+-        Transaction tx = null;
+-        try {
+-            tx = s.beginTransaction();
++         //get new Session and begin Transaction
++         Session s = HibernateUtil.currentSession();
++         Transaction tx = null;
++         try {
++         tx = s.beginTransaction();
+ 
+-            try {
+-                //is DB open and connected
+-                assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
+-                assertTrue(&quot;Db Open? &quot;, s.isOpen());
++         try {
++         //is DB open and connected
++         assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++         assertTrue(&quot;Db Open? &quot;, s.isOpen());
+ 
+ 
+ 
+ 
+-                //cretae new objects
+-                List Images = new ArrayList();
++         //cretae new objects
++         List Images = new ArrayList();
+ 
+-                Image myd1 = new Image();
+-                myd1.setImageFile(new byte[] { 1, 2, 3, 4 });
+-                myd1.setImageFileDescription(&quot;Bild 1&quot;);
+-                myd1.setImageFileName(&quot;image1.jpg&quot;);
+-                myd1.setImageFileSize(123);
++         Image myd1 = new Image();
++         myd1.setImageFile(new byte[] { 1, 2, 3, 4 });
++         myd1.setImageFileDescription(&quot;Bild 1&quot;);
++         myd1.setImageFileName(&quot;image1.jpg&quot;);
++         myd1.setImageFileSize(123);
+ 
+-                Image myd2 = new Image();
+-                myd2.setImageFile(new byte[] { 5, 6, 7, 8 });
+-                myd2.setImageFileDescription(&quot;Bild 2&quot;);
+-                myd2.setImageFileName(&quot;image2.jpg&quot;);
+-                myd2.setImageFileSize(123);
++         Image myd2 = new Image();
++         myd2.setImageFile(new byte[] { 5, 6, 7, 8 });
++         myd2.setImageFileDescription(&quot;Bild 2&quot;);
++         myd2.setImageFileName(&quot;image2.jpg&quot;);
++         myd2.setImageFileSize(123);
+ 
+-                Image myd3 = new Image();
+-                myd3.setImageFile(new byte[] { 9, 10, 11, 12 });
+-                myd3.setImageFileDescription(&quot;Bild 3&quot;);
+-                myd3.setImageFileName(&quot;image3.jpg&quot;);
+-                myd3.setImageFileSize(123);
++         Image myd3 = new Image();
++         myd3.setImageFile(new byte[] { 9, 10, 11, 12 });
++         myd3.setImageFileDescription(&quot;Bild 3&quot;);
++         myd3.setImageFileName(&quot;image3.jpg&quot;);
++         myd3.setImageFileSize(123);
+ 
+-                Image myd4 = new Image();
+-                myd4.setImageFile(new byte[] { 13, 14, 15, 16 });
+-                myd4.setImageFileDescription(&quot;Bild 4&quot;);
+-                myd4.setImageFileName(&quot;image4.jpg&quot;);
+-                myd4.setImageFileSize(123);
++         Image myd4 = new Image();
++         myd4.setImageFile(new byte[] { 13, 14, 15, 16 });
++         myd4.setImageFileDescription(&quot;Bild 4&quot;);
++         myd4.setImageFileName(&quot;image4.jpg&quot;);
++         myd4.setImageFileSize(123);
+ 
+-                Images.add(myd1);
+-                Images.add(myd2);
+-                Images.add(myd3);
+-                Images.add(myd4);
++         Images.add(myd1);
++         Images.add(myd2);
++         Images.add(myd3);
++         Images.add(myd4);
+ 
+-                List ids = new ArrayList();
++         List ids = new ArrayList();
+ 
+-                //save objects
+-                for (Iterator iter = Images.iterator(); iter.hasNext();) {
+-                    Image dir = (Image) iter.next();
+-                    ids.add((Integer) s.save(dir));
++         //save objects
++         for (Iterator iter = Images.iterator(); iter.hasNext();) {
++         Image dir = (Image) iter.next();
++         ids.add((Integer) s.save(dir));
+ 
+-                }
+-                s.flush();
++         }
++         s.flush();
+ 
+-                tx.commit();
++         tx.commit();
+ 
+-                for (int i = 0; i &lt; ids.size(); i++) {
+-                    int id = ((Integer) ids.get(i)).intValue();
+-                    Image myd = (Image) Images.get(i);
++         for (int i = 0; i &lt; ids.size(); i++) {
++         int id = ((Integer) ids.get(i)).intValue();
++         Image myd = (Image) Images.get(i);
+ 
+-                    //get Image from Hibernate
+-                    Image dbd = (Image) s.get(Image.class, new Integer(id));
+-                    assertNotNull(&quot;Can't get Image&quot; + id + &quot; from DB&quot;, dbd);
+-                    if (dbd == null) {
+-                        if (logger.isDebugEnabled()) {
+-                            logger.debug(&quot;testCreating()Kein object mit id &quot;
+-                                    + id + &quot;gefunden.&quot;);
+-                        }
+-                        return;
+-                    }
+-                    //are both equal?
+-                    assertEquals(
+-                            &quot;Select: Image aus DB nicht gleich meiner. DB: &quot;
+-                                    + dbd + &quot; My:&quot; + myd, myd, dbd);
++         //get Image from Hibernate
++         Image dbd = (Image) s.get(Image.class, new Integer(id));
++         assertNotNull(&quot;Can't get Image&quot; + id + &quot; from DB&quot;, dbd);
++         if (dbd == null) {
++         if (logger.isDebugEnabled()) {
++         logger.debug(&quot;testCreating()Kein object mit id &quot;
++         + id + &quot;gefunden.&quot;);
++         }
++         return;
++         }
++         //are both equal?
++         assertEquals(
++         &quot;Select: Image aus DB nicht gleich meiner. DB: &quot;
++         + dbd + &quot; My:&quot; + myd, myd, dbd);
+ 
+-                    //Update
++         //Update
+ 
+-                    //delete the object
+-                    s.delete(myd);
+-                    s.flush();
++         //delete the object
++         s.delete(myd);
++         s.flush();
+ 
+-                    dbd = myd = null;
++         dbd = myd = null;
+ 
+-                    Object obj = s.get(Image.class, new Integer(id));
++         Object obj = s.get(Image.class, new Integer(id));
+ 
+-                    //should be null, because data deleted
+-                    assertNull(&quot;Deleted: Image&quot; + id + &quot;, but still in DB&quot;, obj);
++         //should be null, because data deleted
++         assertNull(&quot;Deleted: Image&quot; + id + &quot;, but still in DB&quot;, obj);
+ 
+-                    if (logger.isDebugEnabled()) {
+-                        logger
+-                                .debug(&quot;testCreating() - Image aus DB gleich meiner? DB: &quot;
+-                                        + dbd + &quot; My:&quot; + myd);
+-                    }
++         if (logger.isDebugEnabled()) {
++         logger
++         .debug(&quot;testCreating() - Image aus DB gleich meiner? DB: &quot;
++         + dbd + &quot; My:&quot; + myd);
++         }
+ 
+-                }
++         }
+ 
+-                tx.commit();
++         tx.commit();
+ 
+-            } catch (Exception e) {
+-                if (tx != null) {
+-                    logger
+-                            .error(
+-                                    &quot;testCreating() - Something went wrong here; discard all partial changes&quot;,
+-                                    e);
++         } catch (Exception e) {
++         if (tx != null) {
++         logger
++         .error(
++         &quot;testCreating() - Something went wrong here; discard all partial changes&quot;,
++         e);
+ 
+-                    // Something went wrong; discard all partial changes
+-                    tx.rollback();
+-                }
++         // Something went wrong; discard all partial changes
++         tx.rollback();
++         }
+ 
+-            }
++         }
+ 
+-        } catch (Exception e) {
+-            logger.error(
+-                    &quot;testCreating() - Error while trying to beginTransaction&quot;,
+-                    e);
+-            throw e;
+-        } finally {
+-            // No matter what, close the session
+-            HibernateUtil.closeSession();
+-        }
+-        */
++         } catch (Exception e) {
++         logger.error(
++         &quot;testCreating() - Error while trying to beginTransaction&quot;,
++         e);
++         throw e;
++         } finally {
++         // No matter what, close the session
++         HibernateUtil.closeSession();
++         }
++         */
+ 
+         if (logger.isDebugEnabled()) {
+             logger.debug(&quot;testCreating() - end&quot;);
+@@ -238,69 +239,55 @@
+                 assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
+                 assertTrue(&quot;Db Open? &quot;, s.isOpen());
+ 
+-                //cretae new objects
+-                List Images = new ArrayList();
+-                File file = new File(this.getClass()
++                File oneimage = new File(this.getClass()
+                         .getResource(&quot;logo.gif&quot;).getFile());
+-                
+-                InputStream is = new  FileInputStream(file);
++                String path = this.getClass().getResource(&quot;logo.gif&quot;).getPath();
++                path = path.substring(0, path.lastIndexOf(&quot;/&quot;));
++                logger.debug(&quot;Path: &quot; + path);
++                File dir = new File(path);
+ 
+-                long length = file.length();
+-                
+-                byte[] bytes = new byte[(int)length];
++                FilenameFilter filter = new FilenameFilter() {
++                    public boolean accept(File dir, String name) {
++                        return (name.endsWith(&quot;.gif&quot;) || name.endsWith(&quot;.jpg&quot;));
++                    }
++                };
++                File[] files = dir.listFiles(filter);
++                for (int i = 0; i &lt; files.length; i++) {
+ 
+-                // Read in the bytes
+-                int offset = 0;
+-                int numRead = 0;
+-                while (offset &lt; bytes.length
+-                        &amp;&amp; (numRead = is.read(bytes, offset, bytes.length
+-                                - offset)) &gt;= 0) {
+-                    offset += numRead;
+-                }
++                    Image image = new Image();
+ 
+-                is.close();                
+-                
+-                System.out.println(&quot;bytes l&#228;nge &quot;+bytes.length );
+-                
+-                Image myd1 = new Image();
+-                myd1.setImageFile(bytes);
+-                myd1.setImageFileDescription(&quot;Bild 1&quot;);
+-                myd1.setImageFileName(&quot;image1.jpg&quot;);
+-                myd1.setImageFileSize(123);
++                    //create new objects
++                    File file = files[i];
+ 
+-                Image myd2 = new Image();
+-                myd2.setImageFile(bytes);
+-                myd2.setImageFileDescription(&quot;Bild 2&quot;);
+-                myd2.setImageFileName(&quot;image2.jpg&quot;);
+-                myd2.setImageFileSize(123);
++                    InputStream is = new FileInputStream(file);
+ 
+-                Image myd3 = new Image();
+-                myd3.setImageFile(bytes);
+-                myd3.setImageFileDescription(&quot;Bild 3&quot;);
+-                myd3.setImageFileName(&quot;image3.jpg&quot;);
+-                myd3.setImageFileSize(123);
++                    long length = file.length();
+ 
+-                Image myd4 = new Image();
+-                myd4.setImageFile(bytes);
+-                myd4.setImageFileDescription(&quot;Bild 4&quot;);
+-                myd4.setImageFileName(&quot;image4.jpg&quot;);
+-                myd4.setImageFileSize(123);
++                    byte[] bytes = new byte[(int) length];
+ 
+-                Images.add(myd1);
+-                Images.add(myd2);
+-                Images.add(myd3);
+-                Images.add(myd4);
++                    // Read in the bytes
++                    int offset = 0;
++                    int numRead = 0;
++                    while (offset &lt; bytes.length
++                            &amp;&amp; (numRead = is.read(bytes, offset, bytes.length
++                                    - offset)) &gt;= 0) {
++                        offset += numRead;
++                    }
+ 
+-                List ids = new ArrayList();
++                    is.close();
+ 
+-                //save objects
+-                for (Iterator iter = Images.iterator(); iter.hasNext();) {
+-                    Image dir = (Image) iter.next();
+-                    ids.add((Integer) s.save(dir));
++                    logger.debug(&quot;bytes l&#228;nge &quot; + bytes.length);
+ 
+-                }
+-                s.flush();
++                    image.setImageFile(bytes);
++                    image.setImageFileDescription(file.getName());
++                    image.setImageFileName(file.getName());
++                    image.setImageFileSize(bytes.length);
+ 
++                    //Save Image
++                    s.save(image);
++
++                    s.flush();
++                }
+                 tx.commit();
+ 
+             } catch (Exception e) {
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java	2004-12-07 10:16:46 UTC (rev 211)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java	2004-12-07 16:20:53 UTC (rev 212)
+@@ -272,14 +272,26 @@
+                 
+                 logger.debug(&quot;Erstelle Movie Objekt&quot;);
+                 
++                List data = new ArrayList();
++                data.add(new String[]{&quot;The Forgotten&quot;,&quot;96&quot;,&quot;A grieving mother, Telly Parada, is struggling to cope with the loss of her 9-year-old son. She is stunned...&quot;,&quot;Forgotten_main.jpg&quot;,&quot;Forgotten_1.gif&quot;,&quot;Forgotten_2.gif&quot; });
++                data.add(new String[]{&quot;Ocean's Twelve&quot;,&quot;128&quot;,&quot;With Tess (Roberts) and Rusty (Pitt) at his side, Daniel Ocean (Clooney) must find one more conspirator before he can pull off heists in three different European cities -- Paris, Rome, and Amsterdam.&quot;,&quot;Twelve_main.gif&quot;,&quot;Twelve_1.gif&quot;,&quot;Twelve_2.gif&quot;,&quot;Twelve_3.gif&quot;});
++                data.add(new String[]{&quot;Blade: Trinity&quot;,&quot;156&quot;,&quot;Framed by the Vampire Nation for a series of brutal murders, the Daywalker (Snipes) finds allies in a group of vampire hunters, the Nightstalkers, and together they wage a battle that leads all the way to Dracula himself.&quot;,&quot;Blade_main.gif&quot;,&quot;Blade_1.gif&quot;,&quot;Blade_2.gif&quot;,&quot;Blade_3.gif&quot;});
++                data.add(new String[]{&quot;National Treasure&quot;,&quot;126&quot;,&quot;Benjamin Franklin Gates (Cage) descends from a family of treasure-seekers who've all hunted for the same thing: a war chest hidden by the Founding Fathers prior to the Revolutionary War. Ben's close to discovering its whereabouts, as is his competition, though the FBI is also hip to the hunt.&quot;,&quot;Treasure_main.gif&quot;,&quot;Treasure_1.gif&quot;,&quot;Treasure_2.gif&quot;,&quot;Treasure_3.gif&quot;,&quot;Treasure_4.gif&quot;});
++                data.add(new String[]{&quot;Christmas with the Kranks&quot;,&quot;92&quot;,&quot;Upon receiving a last-minute call from their daughter, Luther and Nora Krank (Allen and Curtis) ditch their vacation plans and scramble to get their home in shape to celebrate Christmas.&quot;,&quot;Kranks_main.gif&quot;,&quot;Kranks_1.gif&quot;,&quot;Kranks_2.gif&quot;});
++                data.add(new String[]{&quot;The Polar Express&quot;,&quot;215&quot;,&quot;A boy's belief in Santa Claus is restored on Christmas Eve when a steam train pulls up in front of his house and whisks him away to the North Pole.&quot;,&quot;Polar_main.gif&quot;,&quot;Polar_1.gif&quot;,&quot;Polar_2.gif&quot;,&quot;Polar_3.gif&quot;});
++                data.add(new String[]{&quot;The Incredibles&quot;,&quot;186&quot;,&quot;Years after their last assignment, a husband and wife superhero team, who currently maintain a ho-hum suburban existence, respond a cryptic communiqu&#233; from a remote island base.&quot;,&quot;Incredibles_main.gif&quot;,&quot;Incredibles_1.gif&quot;,&quot;Incredibles_2.gif&quot;});
++                data.add(new String[]{&quot;Closer&quot;,&quot;145&quot;,&quot;Two couples are drawn together by undeniable attraction and a series of chance encounters.&quot;,&quot;closer_main.gif&quot;,&quot;closer_1.gif&quot;,&quot;closer_2.gif&quot;,&quot;closer_3.gif&quot;});
++                
++                for(int k =0; k&lt; data.size(); k++){
++                    
++                    String[] sdata = (String[])data.get(k);
+                 //create new movie objects
+                 Movie movie = new Movie();
+                 //set simple properties
+-                movie.setDescription(&quot;A grieving mother, Telly Parada, &quot; +
+-                        &quot;is struggling to cope with the loss of her &quot;
+-                        +&quot;9-year-old son. She is stunned...&quot;);
+-                movie.setRuntime(96);
+-                movie.setTitle(&quot;The Forgotten&quot;);
++                movie.setTitle(sdata[0]);
++                movie.setDescription(sdata[2]);
++                movie.setRuntime(Integer.parseInt(sdata[1]));
++                
+                 Calendar cal = Calendar.getInstance();
+                 cal.set(Calendar.HOUR,0);
+                 cal.set(Calendar.MINUTE,0);
+@@ -341,6 +353,10 @@
+                 movie.setGenres(movieprops);
+                 
+                 
++                
++                //set MainImage
++                
++                
+                 //try to get Images from db
+                 dbprops =  s.find(&quot;from Image as image&quot;);
+                 assertNotNull(&quot;testCreateDBMovie(): Can't get Image from DB. Null&quot;, dbprops);
+@@ -393,6 +409,8 @@
+                 assertNotNull(&quot;testCreateDBMovie(): Can't get Movie from DB. Null&quot;, dbprops);
+                 assertTrue(&quot;testCreateDBMovie(): Can not find Movie in DB&quot;, dbprops.size() &gt;0);
+                 
++                }
++                
+                 for (int i = 0; i &lt; dbprops.size(); i++) {
+                     Movie m = (Movie)dbprops.get(i);
+                     logger.debug(i+&quot; Movie:&quot;+m + &quot; Actors: &quot;+m.getActors()+&quot; Director: &quot;+m.getDirector()+&quot; Images: &quot;+m.getImages()+ &quot; Genre: &quot;+m.getGenres());
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Treasure_1.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Treasure_1.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Treasure_2.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Treasure_2.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Treasure_3.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Treasure_3.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Treasure_4.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Treasure_4.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Treasure_main.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Treasure_main.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Twelve_1.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Twelve_1.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Twelve_2.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Twelve_2.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Twelve_3.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Twelve_3.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/Twelve_main.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/Twelve_main.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/closer_1.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/closer_1.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/closer_2.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/closer_2.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/closer_3.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/closer_3.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/closer_main.jpg
+===================================================================
+(Binary files differ)
+
+
+Property changes on: project_src/provirent_hibernate/src/test/provirent/hibernate/closer_main.jpg
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000212.html">[Provirent-svn-commit] r211 - in project_src/provirent_hibernate/src: de/hsharz/provirent/objects test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000214.html">[Provirent-svn-commit] r213 - project_src/provirent_hibernate/src/de/hsharz/provirent/persistence
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#213">[ date ]</a>
+              <a href="thread.html#213">[ thread ]</a>
+              <a href="subject.html#213">[ subject ]</a>
+              <a href="author.html#213">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

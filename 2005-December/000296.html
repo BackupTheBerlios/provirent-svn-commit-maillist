@@ -1,0 +1,2901 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r294 - / docu/latex/images project_src/clienttest/src project_src/customer project_src/customer/WEB-INF project_src/customer/jsp
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r294%20-%20/%20docu/latex/images%20project_src/clienttest/src%20project_src/customer%20project_src/customer/WEB-INF%20project_src/customer/jsp&In-Reply-To=%3C200512142235.jBEMZpYm018178%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000295.html">
+   <LINK REL="Next"  HREF="000297.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r294 - / docu/latex/images project_src/clienttest/src project_src/customer project_src/customer/WEB-INF project_src/customer/jsp</H1>
+    <B>sforstner at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r294%20-%20/%20docu/latex/images%20project_src/clienttest/src%20project_src/customer%20project_src/customer/WEB-INF%20project_src/customer/jsp&In-Reply-To=%3C200512142235.jBEMZpYm018178%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r294 - / docu/latex/images project_src/clienttest/src project_src/customer project_src/customer/WEB-INF project_src/customer/jsp">sforstner at berlios.de
+       </A><BR>
+    <I>Wed Dec 14 23:35:51 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000295.html">[Provirent-svn-commit] r293 - docu/latex
+</A></li>
+        <LI>Next message: <A HREF="000297.html">[Provirent-svn-commit] r295 - in docu/latex: . images
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#296">[ date ]</a>
+              <a href="thread.html#296">[ thread ]</a>
+              <a href="subject.html#296">[ subject ]</a>
+              <a href="author.html#296">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2005-12-14 23:35:26 +0100 (Wed, 14 Dec 2005)
+New Revision: 294
+
+Added:
+   docu/latex/images/Architektur-JSF.JPG
+   logo.pspimage
+   project_src/clienttest/src/Sha.java
+Removed:
+   project_src/customer/WEB-INF/c.tld
+   project_src/customer/WEB-INF/fmt.tld
+   project_src/customer/WEB-INF/fn.tld
+   project_src/customer/WEB-INF/permittedTaglibs.tld
+   project_src/customer/WEB-INF/scriptfree.tld
+   project_src/customer/WEB-INF/sql.tld
+   project_src/customer/WEB-INF/vkb.tld
+   project_src/customer/WEB-INF/x.tld
+Modified:
+   VIDEO
+   project_src/customer/.classpath
+   project_src/customer/.project
+   project_src/customer/WEB-INF/tiles-defs.xml
+   project_src/customer/WEB-INF/web.xml
+   project_src/customer/index.jsp
+   project_src/customer/jsp/main_navigation.jsp
+   project_src/customer/jsp/main_template.jsp
+   project_src/customer/jsp/movie_list.jsp
+Log:
+
+
+Modified: VIDEO
+===================================================================
+(Binary files differ)
+
+Added: docu/latex/images/Architektur-JSF.JPG
+===================================================================
+(Binary files differ)
+
+
+Property changes on: docu/latex/images/Architektur-JSF.JPG
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: logo.pspimage
+===================================================================
+(Binary files differ)
+
+
+Property changes on: logo.pspimage
+___________________________________________________________________
+Name: svn:mime-type
+   + application/octet-stream
+
+Added: project_src/clienttest/src/Sha.java
+===================================================================
+--- project_src/clienttest/src/Sha.java	2005-12-14 22:31:23 UTC (rev 293)
++++ project_src/clienttest/src/Sha.java	2005-12-14 22:35:26 UTC (rev 294)
+@@ -0,0 +1,92 @@
++/*
++ * Created on 23.11.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++
++import java.sql.*;
++import java.lang.*;
++import java.io.*;
++import java.util.*;
++import java.security.MessageDigest;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class Sha {
++
++    public void doIt() throws IOException,
++    java.security.NoSuchAlgorithmException{
++        //Deine
++        //String password = &quot;f53nu1ki&quot;;
++        //String sha1     = &quot;65aa257d16685el8ac4aef8fb9529aafc744b13&quot;;
++
++        //Meine
++        String password = &quot;f53nu1ki&quot;;
++        String sha1 = &quot;65aa257d16685e18ac4aef8fb9529aafc744b13&quot;;
++
++        //String password = &quot;admin&quot;;
++        //String sha1     = &quot;d033e22ae348aeb566fc214aec3585c4da997&quot;;
++
++        MessageDigest md = MessageDigest.getInstance(&quot;SHA-1&quot;);
++        byte[] encryptbyte = md.digest(password.getBytes());
++        StringBuffer sb = new StringBuffer();
++
++        //create a StringBuffer for the hash
++        for (int i = 0; i &lt; encryptbyte.length; i++) {
++            sb.append(Integer.toHexString(encryptbyte[i] &amp; 0xff));
++        }
++
++        //System.out.println(sha1);
++        //System.out.println(sb);
++
++        if (sha1.equalsIgnoreCase(new String(sb))){
++            System.out.println(&quot;ok&quot;);
++        } else {
++            System.out.println(&quot;Falsch&quot;);
++        }
++        
++        
++    }
++    
++    public static void main(String[] args) throws IOException,
++            java.security.NoSuchAlgorithmException {
++
++        Sha sha = new Sha();
++        for (int i = 0; i &lt; 100; i++) {
++            sha.doIt();
++        }
++        sha.doIt();
++
++
++    }
++
++}
+\ No newline at end of file
+
+Modified: project_src/customer/.classpath
+===================================================================
+--- project_src/customer/.classpath	2005-12-14 22:31:23 UTC (rev 293)
++++ project_src/customer/.classpath	2005-12-14 22:35:26 UTC (rev 294)
+@@ -4,21 +4,65 @@
+ 	&lt;classpathentry kind=&quot;var&quot; path=&quot;TOMCAT_HOME/common/lib/servlet-api.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;var&quot; path=&quot;TOMCAT_HOME/common/lib/jasper-runtime.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;var&quot; path=&quot;TOMCAT_HOME/common/lib/jsp-api.jar&quot;/&gt;
+-	&lt;classpathentry kind=&quot;src&quot; path=&quot;WEB-INF/src&quot;/&gt;
+-	&lt;classpathentry kind=&quot;src&quot; path=&quot;work&quot;/&gt;
++	&lt;classpathentry output=&quot;WEB-INF/classes&quot; kind=&quot;src&quot; path=&quot;WEB-INF/src&quot;/&gt;
++	&lt;classpathentry output=&quot;WEB-INF/classes&quot; kind=&quot;src&quot; path=&quot;work&quot;/&gt;
++	&lt;classpathentry kind=&quot;con&quot; path=&quot;com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/.svn&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/README.txt&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/activation.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/ant-1.5.3.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/ant-optional-1.5.3.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/antlr.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/apache.license.txt&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/c3p0-0.8.4.5.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/c3p0.license.txt&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/cglib-full-2.0.2.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/commons-beanutils.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/commons-collections.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/commons-dbcp-1.2.1.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/commons-digester.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/commons-fileupload.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/commons-lang-2.0.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/commons-logging.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/commons-pool-1.2.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/commons-validator.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/concurrent-1.3.3.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/connector.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/connector.licence.txt&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/displaytag-1.0.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/dom4j-1.4.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/ehcache-0.9.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/firebirdsql.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/hibernate-tools.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/hibernate2.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/jaas.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/jaas.licence.txt&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/jakarta-oro.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/jboss-cache.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/jboss-common.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/jboss-jmx.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/jboss-system.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/jcs-1.0-dev.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/jdbc2_0-stdext.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/jdbc2_0-stdext.licence.txt&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/jdom.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/jdom.license.txt&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/jgroups-2.2.3.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/jta.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/jta.licence.txt&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/junit-3.8.1.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/log4j-1.2.9.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/mail.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/odmg-3.0.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/oscache-2.0.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/provirent-objects.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/proxool-0.8.3.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/standard.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/struts.jar&quot;/&gt;
+-	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/provirent-objects.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/swarmcache-1.0rc2.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/velocity-1.3.1.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/xalan-2.4.0.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/xerces-2.4.0.jar&quot;/&gt;
++	&lt;classpathentry kind=&quot;lib&quot; path=&quot;WEB-INF/lib/xml-apis.jar&quot;/&gt;
+ 	&lt;classpathentry kind=&quot;output&quot; path=&quot;WEB-INF/classes&quot;/&gt;
+ &lt;/classpath&gt;
+
+Modified: project_src/customer/.project
+===================================================================
+--- project_src/customer/.project	2005-12-14 22:31:23 UTC (rev 293)
++++ project_src/customer/.project	2005-12-14 22:35:26 UTC (rev 294)
+@@ -6,13 +6,44 @@
+ 	&lt;/projects&gt;
+ 	&lt;buildSpec&gt;
+ 		&lt;buildCommand&gt;
++			&lt;name&gt;com.genuitec.eclipse.j2eedt.core.WebClasspathBuilder&lt;/name&gt;
++			&lt;arguments&gt;
++			&lt;/arguments&gt;
++		&lt;/buildCommand&gt;
++		&lt;buildCommand&gt;
+ 			&lt;name&gt;org.eclipse.jdt.core.javabuilder&lt;/name&gt;
+ 			&lt;arguments&gt;
+ 			&lt;/arguments&gt;
+ 		&lt;/buildCommand&gt;
++		&lt;buildCommand&gt;
++			&lt;name&gt;com.genuitec.eclipse.j2eedt.core.J2EEProjectValidator&lt;/name&gt;
++			&lt;arguments&gt;
++			&lt;/arguments&gt;
++		&lt;/buildCommand&gt;
++		&lt;buildCommand&gt;
++			&lt;name&gt;com.genuitec.eclipse.j2eedt.core.DeploymentDescriptorValidator&lt;/name&gt;
++			&lt;arguments&gt;
++			&lt;/arguments&gt;
++		&lt;/buildCommand&gt;
++		&lt;buildCommand&gt;
++			&lt;name&gt;com.ibm.etools.validation.validationbuilder&lt;/name&gt;
++			&lt;arguments&gt;
++			&lt;/arguments&gt;
++		&lt;/buildCommand&gt;
++		&lt;buildCommand&gt;
++			&lt;name&gt;com.genuitec.eclipse.ast.deploy.core.DeploymentBuilder&lt;/name&gt;
++			&lt;arguments&gt;
++			&lt;/arguments&gt;
++		&lt;/buildCommand&gt;
++		&lt;buildCommand&gt;
++			&lt;name&gt;com.ibm.sse.model.structuredbuilder&lt;/name&gt;
++			&lt;arguments&gt;
++			&lt;/arguments&gt;
++		&lt;/buildCommand&gt;
+ 	&lt;/buildSpec&gt;
+ 	&lt;natures&gt;
++		&lt;nature&gt;com.genuitec.eclipse.ast.deploy.core.deploymentnature&lt;/nature&gt;
++		&lt;nature&gt;com.genuitec.eclipse.j2eedt.core.webnature&lt;/nature&gt;
+ 		&lt;nature&gt;org.eclipse.jdt.core.javanature&lt;/nature&gt;
+-		&lt;nature&gt;com.sysdeo.eclipse.tomcat.tomcatnature&lt;/nature&gt;
+ 	&lt;/natures&gt;
+ &lt;/projectDescription&gt;
+
+Deleted: project_src/customer/WEB-INF/c.tld
+===================================================================
+--- project_src/customer/WEB-INF/c.tld	2005-12-14 22:31:23 UTC (rev 293)
++++ project_src/customer/WEB-INF/c.tld	2005-12-14 22:35:26 UTC (rev 294)
+@@ -1,563 +0,0 @@
+-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+-
+-&lt;taglib xmlns=&quot;<A HREF="http://java.sun.com/xml/ns/j2ee">http://java.sun.com/xml/ns/j2ee</A>&quot;
+-    xmlns:xsi=&quot;<A HREF="http://www.w3.org/2001/XMLSchema-instance">http://www.w3.org/2001/XMLSchema-instance</A>&quot;
+-    xsi:schemaLocation=&quot;<A HREF="http://java.sun.com/xml/ns/j2ee">http://java.sun.com/xml/ns/j2ee</A> <A HREF="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd</A>&quot;
+-    version=&quot;2.0&quot;&gt;
+-    
+-  &lt;description&gt;JSTL 1.1 core library&lt;/description&gt;
+-  &lt;display-name&gt;JSTL core&lt;/display-name&gt;
+-  &lt;tlib-version&gt;1.1&lt;/tlib-version&gt;
+-  &lt;short-name&gt;c&lt;/short-name&gt;
+-  &lt;uri&gt;<A HREF="http://java.sun.com/jsp/jstl/core&lt;/uri">http://java.sun.com/jsp/jstl/core&lt;/uri</A>&gt;
+-
+-  &lt;validator&gt;
+-    &lt;description&gt;
+-        Provides core validation features for JSTL tags.
+-    &lt;/description&gt;
+-    &lt;validator-class&gt;
+-        org.apache.taglibs.standard.tlv.JstlCoreTLV
+-    &lt;/validator-class&gt;
+-  &lt;/validator&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Catches any Throwable that occurs in its body and optionally
+-        exposes it.
+-    &lt;/description&gt;
+-    &lt;name&gt;catch&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.common.core.CatchTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable for the
+-exception thrown from a nested action. The type of the
+-scoped variable is the type of the exception thrown.
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-	Simple conditional tag that establishes a context for
+-	mutually exclusive conditional operations, marked by
+-	&lt;when&gt; and &lt;otherwise&gt;
+-    &lt;/description&gt;
+-    &lt;name&gt;choose&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.common.core.ChooseTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-	Simple conditional tag, which evalutes its body if the
+-	supplied condition is true and optionally exposes a Boolean
+-	scripting variable representing the evaluation of this condition
+-    &lt;/description&gt;
+-    &lt;name&gt;if&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.core.IfTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-The test condition that determines whether or
+-not the body content should be processed.
+-        &lt;/description&gt;
+-        &lt;name&gt;test&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-	&lt;type&gt;boolean&lt;/type&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable for the
+-resulting value of the test condition. The type
+-of the scoped variable is Boolean.        
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope for var.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Retrieves an absolute or relative URL and exposes its contents
+-        to either the page, a String in 'var', or a Reader in 'varReader'.
+-    &lt;/description&gt;
+-    &lt;name&gt;import&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.core.ImportTag&lt;/tag-class&gt;
+-    &lt;tei-class&gt;org.apache.taglibs.standard.tei.ImportTEI&lt;/tei-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-The URL of the resource to import.
+-        &lt;/description&gt;
+-        &lt;name&gt;url&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable for the
+-resource's content. The type of the scoped
+-variable is String.
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope for var.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable for the
+-resource's content. The type of the scoped
+-variable is Reader.
+-        &lt;/description&gt;
+-        &lt;name&gt;varReader&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the context when accessing a relative
+-URL resource that belongs to a foreign
+-context.
+-        &lt;/description&gt;
+-        &lt;name&gt;context&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Character encoding of the content at the input
+-resource.
+-        &lt;/description&gt;
+-        &lt;name&gt;charEncoding&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-	The basic iteration tag, accepting many different
+-        collection types and supporting subsetting and other
+-        functionality
+-    &lt;/description&gt;
+-    &lt;name&gt;forEach&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.core.ForEachTag&lt;/tag-class&gt;
+-    &lt;tei-class&gt;org.apache.taglibs.standard.tei.ForEachTEI&lt;/tei-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Collection of items to iterate over.
+-        &lt;/description&gt;
+-	&lt;name&gt;items&lt;/name&gt;
+-	&lt;required&gt;false&lt;/required&gt;
+-	&lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-	&lt;type&gt;java.lang.Object&lt;/type&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-If items specified:
+-Iteration begins at the item located at the
+-specified index. First item of the collection has
+-index 0.
+-If items not specified:
+-Iteration begins with index set at the value
+-specified.
+-        &lt;/description&gt;
+-	&lt;name&gt;begin&lt;/name&gt;
+-	&lt;required&gt;false&lt;/required&gt;
+-	&lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-	&lt;type&gt;int&lt;/type&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-If items specified:
+-Iteration ends at the item located at the
+-specified index (inclusive).
+-If items not specified:
+-Iteration ends when index reaches the value
+-specified.
+-        &lt;/description&gt;
+-	&lt;name&gt;end&lt;/name&gt;
+-	&lt;required&gt;false&lt;/required&gt;
+-	&lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-	&lt;type&gt;int&lt;/type&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Iteration will only process every step items of
+-the collection, starting with the first one.
+-        &lt;/description&gt;
+-	&lt;name&gt;step&lt;/name&gt;
+-	&lt;required&gt;false&lt;/required&gt;
+-	&lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-	&lt;type&gt;int&lt;/type&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable for the
+-current item of the iteration. This scoped
+-variable has nested visibility. Its type depends
+-on the object of the underlying collection.
+-        &lt;/description&gt;
+-	&lt;name&gt;var&lt;/name&gt;
+-	&lt;required&gt;false&lt;/required&gt;
+-	&lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable for the
+-status of the iteration. Object exported is of type
+-javax.servlet.jsp.jstl.core.LoopTagStatus. This scoped variable has nested
+-visibility.
+-        &lt;/description&gt;
+-	&lt;name&gt;varStatus&lt;/name&gt;
+-	&lt;required&gt;false&lt;/required&gt;
+-	&lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-	Iterates over tokens, separated by the supplied delimeters
+-    &lt;/description&gt;
+-    &lt;name&gt;forTokens&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.core.ForTokensTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-String of tokens to iterate over.
+-        &lt;/description&gt;
+-	&lt;name&gt;items&lt;/name&gt;
+-	&lt;required&gt;true&lt;/required&gt;
+-	&lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-	&lt;type&gt;java.lang.String&lt;/type&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-The set of delimiters (the characters that
+-separate the tokens in the string).
+-        &lt;/description&gt;
+-	&lt;name&gt;delims&lt;/name&gt;
+-	&lt;required&gt;true&lt;/required&gt;
+-	&lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-	&lt;type&gt;java.lang.String&lt;/type&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Iteration begins at the token located at the
+-specified index. First token has index 0.
+-        &lt;/description&gt;
+-	&lt;name&gt;begin&lt;/name&gt;
+-	&lt;required&gt;false&lt;/required&gt;
+-	&lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-	&lt;type&gt;int&lt;/type&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Iteration ends at the token located at the
+-specified index (inclusive).
+-        &lt;/description&gt;
+-	&lt;name&gt;end&lt;/name&gt;
+-	&lt;required&gt;false&lt;/required&gt;
+-	&lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-	&lt;type&gt;int&lt;/type&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Iteration will only process every step tokens
+-of the string, starting with the first one.
+-        &lt;/description&gt;
+-	&lt;name&gt;step&lt;/name&gt;
+-	&lt;required&gt;false&lt;/required&gt;
+-	&lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-	&lt;type&gt;int&lt;/type&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable for the
+-current item of the iteration. This scoped
+-variable has nested visibility.
+-        &lt;/description&gt;
+-	&lt;name&gt;var&lt;/name&gt;
+-	&lt;required&gt;false&lt;/required&gt;
+-	&lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable for the
+-status of the iteration. Object exported is of
+-type
+-javax.servlet.jsp.jstl.core.LoopTag
+-Status. This scoped variable has nested
+-visibility.
+-        &lt;/description&gt;
+-	&lt;name&gt;varStatus&lt;/name&gt;
+-	&lt;required&gt;false&lt;/required&gt;
+-	&lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Like &lt;%= ... &gt;, but for expressions.
+-    &lt;/description&gt; 
+-    &lt;name&gt;out&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.core.OutTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Expression to be evaluated.
+-        &lt;/description&gt;
+-        &lt;name&gt;value&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Default value if the resulting value is null.
+-        &lt;/description&gt;
+-        &lt;name&gt;default&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Determines whether characters &lt;,&gt;,&amp;,',&quot; in the
+-resulting string should be converted to their
+-corresponding character entity codes. Default value is
+-true.
+-        &lt;/description&gt;
+-        &lt;name&gt;escapeXml&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Subtag of &lt;choose&gt; that follows &lt;when&gt; tags
+-        and runs only if all of the prior conditions evaluated to
+-        'false'
+-    &lt;/description&gt;
+-    &lt;name&gt;otherwise&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.common.core.OtherwiseTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Adds a parameter to a containing 'import' tag's URL.
+-    &lt;/description&gt;
+-    &lt;name&gt;param&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.core.ParamTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the query string parameter.
+-        &lt;/description&gt;
+-        &lt;name&gt;name&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Value of the parameter.
+-        &lt;/description&gt;
+-        &lt;name&gt;value&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Redirects to a new URL.
+-    &lt;/description&gt;
+-    &lt;name&gt;redirect&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.core.RedirectTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-The URL of the resource to redirect to.
+-        &lt;/description&gt;
+-        &lt;name&gt;url&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the context when redirecting to a relative URL
+-resource that belongs to a foreign context.
+-        &lt;/description&gt;
+-        &lt;name&gt;context&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Removes a scoped variable (from a particular scope, if specified).
+-    &lt;/description&gt;
+-    &lt;name&gt;remove&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.common.core.RemoveTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;empty&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the scoped variable to be removed.
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope for var.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+- &lt;tag&gt;
+-    &lt;description&gt;
+-        Sets the result of an expression evaluation in a 'scope'
+-    &lt;/description&gt;
+-    &lt;name&gt;set&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.core.SetTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable to hold the value
+-specified in the action. The type of the scoped variable is
+-whatever type the value expression evaluates to.
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Expression to be evaluated.
+-        &lt;/description&gt;
+-        &lt;name&gt;value&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Target object whose property will be set. Must evaluate to
+-a JavaBeans object with setter property property, or to a
+-java.util.Map object.
+-        &lt;/description&gt;
+-        &lt;name&gt;target&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the property to be set in the target object.
+-        &lt;/description&gt;
+-        &lt;name&gt;property&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope for var.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Creates a URL with optional query parameters.
+-    &lt;/description&gt;
+-    &lt;name&gt;url&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.core.UrlTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable for the
+-processed url. The type of the scoped variable is
+-String.
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope for var.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-URL to be processed.
+-        &lt;/description&gt;
+-        &lt;name&gt;value&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the context when specifying a relative URL
+-resource that belongs to a foreign context.
+-        &lt;/description&gt;
+-        &lt;name&gt;context&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-	Subtag of &lt;choose&gt; that includes its body if its
+-	condition evalutes to 'true'
+-    &lt;/description&gt;
+-    &lt;name&gt;when&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.core.WhenTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-The test condition that determines whether or not the
+-body content should be processed.
+-        &lt;/description&gt;
+-        &lt;name&gt;test&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-	&lt;type&gt;boolean&lt;/type&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-&lt;/taglib&gt;
+
+Deleted: project_src/customer/WEB-INF/fmt.tld
+===================================================================
+--- project_src/customer/WEB-INF/fmt.tld	2005-12-14 22:31:23 UTC (rev 293)
++++ project_src/customer/WEB-INF/fmt.tld	2005-12-14 22:35:26 UTC (rev 294)
+@@ -1,671 +0,0 @@
+-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+-
+-&lt;taglib xmlns=&quot;<A HREF="http://java.sun.com/xml/ns/j2ee">http://java.sun.com/xml/ns/j2ee</A>&quot;
+-    xmlns:xsi=&quot;<A HREF="http://www.w3.org/2001/XMLSchema-instance">http://www.w3.org/2001/XMLSchema-instance</A>&quot;
+-    xsi:schemaLocation=&quot;<A HREF="http://java.sun.com/xml/ns/j2ee">http://java.sun.com/xml/ns/j2ee</A> <A HREF="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd</A>&quot;
+-    version=&quot;2.0&quot;&gt;
+-    
+-  &lt;description&gt;JSTL 1.1 i18n-capable formatting library&lt;/description&gt;
+-  &lt;display-name&gt;JSTL fmt&lt;/display-name&gt;
+-  &lt;tlib-version&gt;1.1&lt;/tlib-version&gt;
+-  &lt;short-name&gt;fmt&lt;/short-name&gt;
+-  &lt;uri&gt;<A HREF="http://java.sun.com/jsp/jstl/fmt&lt;/uri">http://java.sun.com/jsp/jstl/fmt&lt;/uri</A>&gt;
+-
+-  &lt;validator&gt;
+-    &lt;description&gt;
+-        Provides core validation features for JSTL tags.
+-    &lt;/description&gt;
+-    &lt;validator-class&gt;
+-        org.apache.taglibs.standard.tlv.JstlFmtTLV
+-    &lt;/validator-class&gt;
+-  &lt;/validator&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Sets the request character encoding
+-    &lt;/description&gt;
+-    &lt;name&gt;requestEncoding&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.fmt.RequestEncodingTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;empty&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of character encoding to be applied when
+-decoding request parameters.
+-        &lt;/description&gt;
+-        &lt;name&gt;value&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Stores the given locale in the locale configuration variable
+-    &lt;/description&gt;
+-    &lt;name&gt;setLocale&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.fmt.SetLocaleTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;empty&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-A String value is interpreted as the
+-printable representation of a locale, which
+-must contain a two-letter (lower-case)
+-language code (as defined by ISO-639),
+-and may contain a two-letter (upper-case)
+-country code (as defined by ISO-3166).
+-Language and country codes must be
+-separated by hyphen (-) or underscore
+-(_).        
+-	&lt;/description&gt;
+-        &lt;name&gt;value&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Vendor- or browser-specific variant.
+-See the java.util.Locale javadocs for
+-more information on variants.
+-        &lt;/description&gt;
+-        &lt;name&gt;variant&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope of the locale configuration variable.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Specifies the time zone for any time formatting or parsing actions
+-        nested in its body
+-    &lt;/description&gt;
+-    &lt;name&gt;timeZone&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.fmt.TimeZoneTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-The time zone. A String value is interpreted as
+-a time zone ID. This may be one of the time zone
+-IDs supported by the Java platform (such as
+-&quot;America/Los_Angeles&quot;) or a custom time zone
+-ID (such as &quot;GMT-8&quot;). See
+-java.util.TimeZone for more information on
+-supported time zone formats.
+-        &lt;/description&gt;
+-        &lt;name&gt;value&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Stores the given time zone in the time zone configuration variable
+-    &lt;/description&gt;
+-    &lt;name&gt;setTimeZone&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.fmt.SetTimeZoneTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;empty&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-The time zone. A String value is interpreted as
+-a time zone ID. This may be one of the time zone
+-IDs supported by the Java platform (such as
+-&quot;America/Los_Angeles&quot;) or a custom time zone
+-ID (such as &quot;GMT-8&quot;). See java.util.TimeZone for
+-more information on supported time zone
+-formats.
+-        &lt;/description&gt;
+-        &lt;name&gt;value&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable which
+-stores the time zone of type
+-java.util.TimeZone.
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope of var or the time zone configuration
+-variable.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Loads a resource bundle to be used by its tag body
+-    &lt;/description&gt;
+-    &lt;name&gt;bundle&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.fmt.BundleTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Resource bundle base name. This is the bundle's
+-fully-qualified resource name, which has the same
+-form as a fully-qualified class name, that is, it uses
+-&quot;.&quot; as the package component separator and does not
+-have any file type (such as &quot;.class&quot; or &quot;.properties&quot;)
+-suffix.
+-        &lt;/description&gt;
+-        &lt;name&gt;basename&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Prefix to be prepended to the value of the message
+-key of any nested &lt;fmt:message&gt; action.
+-        &lt;/description&gt;
+-        &lt;name&gt;prefix&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Loads a resource bundle and stores it in the named scoped variable or
+-        the bundle configuration variable
+-    &lt;/description&gt;
+-    &lt;name&gt;setBundle&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.fmt.SetBundleTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;empty&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Resource bundle base name. This is the bundle's
+-fully-qualified resource name, which has the same
+-form as a fully-qualified class name, that is, it uses
+-&quot;.&quot; as the package component separator and does not
+-have any file type (such as &quot;.class&quot; or &quot;.properties&quot;)
+-suffix.
+-        &lt;/description&gt;
+-        &lt;name&gt;basename&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable which stores
+-the i18n localization context of type
+-javax.servlet.jsp.jstl.fmt.LocalizationC
+-ontext.
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope of var or the localization context
+-configuration variable.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Maps key to localized message and performs parametric replacement
+-    &lt;/description&gt;
+-    &lt;name&gt;message&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.fmt.MessageTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Message key to be looked up.
+-        &lt;/description&gt;
+-        &lt;name&gt;key&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Localization context in whose resource
+-bundle the message key is looked up.
+-        &lt;/description&gt;
+-        &lt;name&gt;bundle&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable
+-which stores the localized message.
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope of var.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Supplies an argument for parametric replacement to a containing
+-        &lt;message&gt; tag
+-    &lt;/description&gt;
+-    &lt;name&gt;param&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.fmt.ParamTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Argument used for parametric replacement.
+-        &lt;/description&gt;
+-        &lt;name&gt;value&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Formats a numeric value as a number, currency, or percentage
+-    &lt;/description&gt;
+-    &lt;name&gt;formatNumber&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.fmt.FormatNumberTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Numeric value to be formatted.
+-        &lt;/description&gt;
+-        &lt;name&gt;value&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Specifies whether the value is to be
+-formatted as number, currency, or
+-percentage.
+-        &lt;/description&gt;
+-        &lt;name&gt;type&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Custom formatting pattern.
+-        &lt;/description&gt;
+-        &lt;name&gt;pattern&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-ISO 4217 currency code. Applied only
+-when formatting currencies (i.e. if type is
+-equal to &quot;currency&quot;); ignored otherwise.
+-        &lt;/description&gt;
+-        &lt;name&gt;currencyCode&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Currency symbol. Applied only when
+-formatting currencies (i.e. if type is equal
+-to &quot;currency&quot;); ignored otherwise.
+-        &lt;/description&gt;
+-        &lt;name&gt;currencySymbol&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Specifies whether the formatted output
+-will contain any grouping separators.
+-        &lt;/description&gt;
+-        &lt;name&gt;groupingUsed&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Maximum number of digits in the integer
+-portion of the formatted output.
+-        &lt;/description&gt;
+-        &lt;name&gt;maxIntegerDigits&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Minimum number of digits in the integer
+-portion of the formatted output.
+-        &lt;/description&gt;
+-        &lt;name&gt;minIntegerDigits&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Maximum number of digits in the
+-fractional portion of the formatted output.
+-        &lt;/description&gt;
+-        &lt;name&gt;maxFractionDigits&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Minimum number of digits in the
+-fractional portion of the formatted output.
+-        &lt;/description&gt;
+-        &lt;name&gt;minFractionDigits&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable
+-which stores the formatted result as a
+-String.
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope of var.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Parses the string representation of a number, currency, or percentage
+-    &lt;/description&gt;
+-    &lt;name&gt;parseNumber&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.fmt.ParseNumberTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-String to be parsed.
+-        &lt;/description&gt;
+-        &lt;name&gt;value&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Specifies whether the string in the value
+-attribute should be parsed as a number,
+-currency, or percentage.
+-        &lt;/description&gt;
+-        &lt;name&gt;type&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Custom formatting pattern that determines
+-how the string in the value attribute is to be
+-parsed.
+-        &lt;/description&gt;
+-        &lt;name&gt;pattern&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Locale whose default formatting pattern (for
+-numbers, currencies, or percentages,
+-respectively) is to be used during the parse
+-operation, or to which the pattern specified
+-via the pattern attribute (if present) is
+-applied.
+-        &lt;/description&gt;
+-        &lt;name&gt;parseLocale&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Specifies whether just the integer portion of
+-the given value should be parsed.
+-        &lt;/description&gt;
+-        &lt;name&gt;integerOnly&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable which
+-stores the parsed result (of type
+-java.lang.Number).
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope of var.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Formats a date and/or time using the supplied styles and pattern
+-    &lt;/description&gt;
+-    &lt;name&gt;formatDate&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.fmt.FormatDateTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;empty&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Date and/or time to be formatted.
+-        &lt;/description&gt;
+-        &lt;name&gt;value&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Specifies whether the time, the date, or both
+-the time and date components of the given
+-date are to be formatted. 
+-        &lt;/description&gt;
+-        &lt;name&gt;type&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Predefined formatting style for dates. Follows
+-the semantics defined in class
+-java.text.DateFormat. Applied only
+-when formatting a date or both a date and
+-time (i.e. if type is missing or is equal to
+-&quot;date&quot; or &quot;both&quot;); ignored otherwise.
+-        &lt;/description&gt;
+-        &lt;name&gt;dateStyle&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Predefined formatting style for times. Follows
+-the semantics defined in class
+-java.text.DateFormat. Applied only
+-when formatting a time or both a date and
+-time (i.e. if type is equal to &quot;time&quot; or &quot;both&quot;);
+-ignored otherwise.
+-        &lt;/description&gt;
+-        &lt;name&gt;timeStyle&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Custom formatting style for dates and times.
+-        &lt;/description&gt;
+-        &lt;name&gt;pattern&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Time zone in which to represent the formatted
+-time.
+-        &lt;/description&gt;
+-        &lt;name&gt;timeZone&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable which
+-stores the formatted result as a String.
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope of var.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Parses the string representation of a date and/or time
+-    &lt;/description&gt;
+-    &lt;name&gt;parseDate&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.fmt.ParseDateTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Date string to be parsed.
+-        &lt;/description&gt;
+-        &lt;name&gt;value&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Specifies whether the date string in the
+-value attribute is supposed to contain a
+-time, a date, or both.
+-        &lt;/description&gt;
+-        &lt;name&gt;type&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Predefined formatting style for days
+-which determines how the date
+-component of the date string is to be
+-parsed. Applied only when formatting a
+-date or both a date and time (i.e. if type
+-is missing or is equal to &quot;date&quot; or &quot;both&quot;);
+-ignored otherwise.
+-        &lt;/description&gt;
+-        &lt;name&gt;dateStyle&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Predefined formatting styles for times
+-which determines how the time
+-component in the date string is to be
+-parsed. Applied only when formatting a
+-time or both a date and time (i.e. if type
+-is equal to &quot;time&quot; or &quot;both&quot;); ignored
+-otherwise.
+-        &lt;/description&gt;
+-        &lt;name&gt;timeStyle&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Custom formatting pattern which
+-determines how the date string is to be
+-parsed.
+-        &lt;/description&gt;
+-        &lt;name&gt;pattern&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Time zone in which to interpret any time
+-information in the date string.
+-        &lt;/description&gt;
+-        &lt;name&gt;timeZone&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Locale whose predefined formatting styles
+-for dates and times are to be used during
+-the parse operation, or to which the
+-pattern specified via the pattern
+-attribute (if present) is applied.
+-        &lt;/description&gt;
+-        &lt;name&gt;parseLocale&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable in
+-which the parsing result (of type
+-java.util.Date) is stored.
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope of var.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-&lt;/taglib&gt;
+
+Deleted: project_src/customer/WEB-INF/fn.tld
+===================================================================
+--- project_src/customer/WEB-INF/fn.tld	2005-12-14 22:31:23 UTC (rev 293)
++++ project_src/customer/WEB-INF/fn.tld	2005-12-14 22:35:26 UTC (rev 294)
+@@ -1,207 +0,0 @@
+-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+-
+-&lt;taglib xmlns=&quot;<A HREF="http://java.sun.com/xml/ns/j2ee">http://java.sun.com/xml/ns/j2ee</A>&quot;
+-  xmlns:xsi=&quot;<A HREF="http://www.w3.org/2001/XMLSchema-instance">http://www.w3.org/2001/XMLSchema-instance</A>&quot;
+-  xsi:schemaLocation=&quot;<A HREF="http://java.sun.com/xml/ns/j2ee">http://java.sun.com/xml/ns/j2ee</A> <A HREF="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd</A>&quot;
+-  version=&quot;2.0&quot;&gt;
+-    
+-  &lt;description&gt;JSTL 1.1 functions library&lt;/description&gt;
+-  &lt;display-name&gt;JSTL functions&lt;/display-name&gt;
+-  &lt;tlib-version&gt;1.1&lt;/tlib-version&gt;
+-  &lt;short-name&gt;fn&lt;/short-name&gt;
+-  &lt;uri&gt;<A HREF="http://java.sun.com/jsp/jstl/functions&lt;/uri">http://java.sun.com/jsp/jstl/functions&lt;/uri</A>&gt;
+-
+-  &lt;function&gt;
+-    &lt;description&gt;
+-      Tests if an input string contains the specified substring.
+-    &lt;/description&gt;
+-    &lt;name&gt;contains&lt;/name&gt;
+-    &lt;function-class&gt;org.apache.taglibs.standard.functions.Functions&lt;/function-class&gt;
+-    &lt;function-signature&gt;boolean contains(java.lang.String, java.lang.String)&lt;/function-signature&gt;
+-    &lt;example&gt;
+-      &lt;c:if test=&quot;${fn:contains(name, searchString)}&quot;&gt;
+-    &lt;/example&gt;
+-  &lt;/function&gt;
+-
+-  &lt;function&gt;
+-    &lt;description&gt;
+-      Tests if an input string contains the specified substring in a case insensitive way.
+-    &lt;/description&gt;
+-    &lt;name&gt;containsIgnoreCase&lt;/name&gt;
+-    &lt;function-class&gt;org.apache.taglibs.standard.functions.Functions&lt;/function-class&gt;
+-    &lt;function-signature&gt;boolean containsIgnoreCase(java.lang.String, java.lang.String)&lt;/function-signature&gt;
+-    &lt;example&gt;
+-      &lt;c:if test=&quot;${fn:containsIgnoreCase(name, searchString)}&quot;&gt;
+-    &lt;/example&gt;
+-  &lt;/function&gt;
+-
+-  &lt;function&gt;
+-    &lt;description&gt;
+-      Tests if an input string ends with the specified suffix.
+-    &lt;/description&gt;
+-    &lt;name&gt;endsWith&lt;/name&gt;
+-    &lt;function-class&gt;org.apache.taglibs.standard.functions.Functions&lt;/function-class&gt;
+-    &lt;function-signature&gt;boolean endsWith(java.lang.String, java.lang.String)&lt;/function-signature&gt;
+-    &lt;example&gt;
+-      &lt;c:if test=&quot;${fn:endsWith(filename, &quot;.txt&quot;)}&quot;&gt;
+-    &lt;/example&gt;
+-  &lt;/function&gt;
+-
+-  &lt;function&gt;
+-    &lt;description&gt;
+-      Escapes characters that could be interpreted as XML markup.
+-    &lt;/description&gt;
+-    &lt;name&gt;escapeXml&lt;/name&gt;
+-    &lt;function-class&gt;org.apache.taglibs.standard.functions.Functions&lt;/function-class&gt;
+-    &lt;function-signature&gt;java.lang.String escapeXml(java.lang.String)&lt;/function-signature&gt;
+-    &lt;example&gt;
+-      ${fn:escapeXml(param:info)}
+-    &lt;/example&gt;
+-  &lt;/function&gt;
+-
+-  &lt;function&gt;
+-    &lt;description&gt;
+-      Returns the index withing a string of the first occurrence of a specified substring.
+-    &lt;/description&gt;
+-    &lt;name&gt;indexOf&lt;/name&gt;
+-    &lt;function-class&gt;org.apache.taglibs.standard.functions.Functions&lt;/function-class&gt;
+-    &lt;function-signature&gt;int indexOf(java.lang.String, java.lang.String)&lt;/function-signature&gt;
+-    &lt;example&gt;
+-      ${fn:indexOf(name, &quot;-&quot;)}
+-    &lt;/example&gt;
+-  &lt;/function&gt;
+-
+-  &lt;function&gt;
+-    &lt;description&gt;
+-      Joins all elements of an array into a string.
+-    &lt;/description&gt;
+-    &lt;name&gt;join&lt;/name&gt;
+-    &lt;function-class&gt;org.apache.taglibs.standard.functions.Functions&lt;/function-class&gt;
+-    &lt;function-signature&gt;java.lang.String join(java.lang.String[], java.lang.String)&lt;/function-signature&gt;
+-    &lt;example&gt;
+-      ${fn:join(array, &quot;;&quot;)}
+-    &lt;/example&gt;
+-  &lt;/function&gt;
+-
+-  &lt;function&gt;
+-    &lt;description&gt;
+-      Returns the number of items in a collection, or the number of characters in a string.
+-    &lt;/description&gt;
+-    &lt;name&gt;length&lt;/name&gt;
+-    &lt;function-class&gt;org.apache.taglibs.standard.functions.Functions&lt;/function-class&gt;
+-    &lt;function-signature&gt;int length(java.lang.Object)&lt;/function-signature&gt;
+-    &lt;example&gt;
+-      You have ${fn:length(shoppingCart.products)} in your shopping cart.
+-    &lt;/example&gt;
+-  &lt;/function&gt;
+-
+-  &lt;function&gt;
+-    &lt;description&gt;
+-      Returns a string resulting from replacing in an input string all occurrences
+-      of a &quot;before&quot; string into an &quot;after&quot; substring.
+-    &lt;/description&gt;
+-    &lt;name&gt;replace&lt;/name&gt;
+-    &lt;function-class&gt;org.apache.taglibs.standard.functions.Functions&lt;/function-class&gt;
+-    &lt;function-signature&gt;java.lang.String replace(java.lang.String, java.lang.String, java.lang.String)&lt;/function-signature&gt;
+-    &lt;example&gt;
+-      ${fn:replace(text, &quot;-&quot;, &quot;&#149;&quot;)}
+-    &lt;/example&gt;
+-  &lt;/function&gt;
+-
+-  &lt;function&gt;
+-    &lt;description&gt;
+-      Splits a string into an array of substrings.
+-    &lt;/description&gt;
+-    &lt;name&gt;split&lt;/name&gt;
+-    &lt;function-class&gt;org.apache.taglibs.standard.functions.Functions&lt;/function-class&gt;
+-    &lt;function-signature&gt;java.lang.String[] split(java.lang.String, java.lang.String)&lt;/function-signature&gt;
+-    &lt;example&gt;
+-      ${fn:split(customerNames, &quot;;&quot;)}
+-    &lt;/example&gt;
+-  &lt;/function&gt;
+-
+-  &lt;function&gt;
+-    &lt;description&gt;
+-      Tests if an input string starts with the specified prefix.
+-    &lt;/description&gt;
+-    &lt;name&gt;startsWith&lt;/name&gt;
+-    &lt;function-class&gt;org.apache.taglibs.standard.functions.Functions&lt;/function-class&gt;
+-    &lt;function-signature&gt;boolean startsWith(java.lang.String, java.lang.String)&lt;/function-signature&gt;
+-    &lt;example&gt;
+-      &lt;c:if test=&quot;${fn:startsWith(product.id, &quot;100-&quot;)}&quot;&gt;
+-    &lt;/example&gt;
+-  &lt;/function&gt;
+-
+-  &lt;function&gt;
+-    &lt;description&gt;
+-      Returns a subset of a string.
+-    &lt;/description&gt;
+-    &lt;name&gt;substring&lt;/name&gt;
+-    &lt;function-class&gt;org.apache.taglibs.standard.functions.Functions&lt;/function-class&gt;
+-    &lt;function-signature&gt;java.lang.String substring(java.lang.String, int, int)&lt;/function-signature&gt;
+-    &lt;example&gt;
+-      P.O. Box: ${fn:substring(zip, 6, -1)}
+-    &lt;/example&gt;
+-  &lt;/function&gt;
+-
+-  &lt;function&gt;
+-    &lt;description&gt;
+-      Returns a subset of a string following a specific substring.
+-    &lt;/description&gt;
+-    &lt;name&gt;substringAfter&lt;/name&gt;
+-    &lt;function-class&gt;org.apache.taglibs.standard.functions.Functions&lt;/function-class&gt;
+-    &lt;function-signature&gt;java.lang.String substringAfter(java.lang.String, java.lang.String)&lt;/function-signature&gt;
+-    &lt;example&gt;
+-      P.O. Box: ${fn:substringAfter(zip, &quot;-&quot;)}
+-    &lt;/example&gt;
+-  &lt;/function&gt;
+-
+-  &lt;function&gt;
+-    &lt;description&gt;
+-      Returns a subset of a string before a specific substring.
+-    &lt;/description&gt;
+-    &lt;name&gt;substringBefore&lt;/name&gt;
+-    &lt;function-class&gt;org.apache.taglibs.standard.functions.Functions&lt;/function-class&gt;
+-    &lt;function-signature&gt;java.lang.String substringBefore(java.lang.String, java.lang.String)&lt;/function-signature&gt;
+-    &lt;example&gt;
+-      Zip (without P.O. Box): ${fn:substringBefore(zip, &quot;-&quot;)}
+-    &lt;/example&gt;
+-  &lt;/function&gt;
+-
+-  &lt;function&gt;
+-    &lt;description&gt;
+-      Converts all of the characters of a string to lower case.
+-    &lt;/description&gt;
+-    &lt;name&gt;toLowerCase&lt;/name&gt;
+-    &lt;function-class&gt;org.apache.taglibs.standard.functions.Functions&lt;/function-class&gt;
+-    &lt;function-signature&gt;java.lang.String toLowerCase(java.lang.String)&lt;/function-signature&gt;
+-    &lt;example&gt;
+-      Product name: ${fn.toLowerCase(product.name)}
+-    &lt;/example&gt;
+-  &lt;/function&gt;
+-
+-  &lt;function&gt;
+-    &lt;description&gt;
+-      Converts all of the characters of a string to upper case.
+-    &lt;/description&gt;
+-    &lt;name&gt;toUpperCase&lt;/name&gt;
+-    &lt;function-class&gt;org.apache.taglibs.standard.functions.Functions&lt;/function-class&gt;
+-    &lt;function-signature&gt;java.lang.String toUpperCase(java.lang.String)&lt;/function-signature&gt;
+-    &lt;example&gt;
+-      Product name: ${fn.UpperCase(product.name)}
+-    &lt;/example&gt;
+-  &lt;/function&gt;
+-
+-  &lt;function&gt;
+-    &lt;description&gt;
+-      Removes white spaces from both ends of a string.
+-    &lt;/description&gt;
+-    &lt;name&gt;trim&lt;/name&gt;
+-    &lt;function-class&gt;org.apache.taglibs.standard.functions.Functions&lt;/function-class&gt;
+-    &lt;function-signature&gt;java.lang.String trim(java.lang.String)&lt;/function-signature&gt;
+-    &lt;example&gt;
+-      Name: ${fn.trim(name)}
+-    &lt;/example&gt;  
+-  &lt;/function&gt;
+-
+-&lt;/taglib&gt;
+
+Deleted: project_src/customer/WEB-INF/permittedTaglibs.tld
+===================================================================
+--- project_src/customer/WEB-INF/permittedTaglibs.tld	2005-12-14 22:31:23 UTC (rev 293)
++++ project_src/customer/WEB-INF/permittedTaglibs.tld	2005-12-14 22:35:26 UTC (rev 294)
+@@ -1,34 +0,0 @@
+-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+-
+-&lt;taglib xmlns=&quot;<A HREF="http://java.sun.com/xml/ns/j2ee">http://java.sun.com/xml/ns/j2ee</A>&quot;
+-    xmlns:xsi=&quot;<A HREF="http://www.w3.org/2001/XMLSchema-instance">http://www.w3.org/2001/XMLSchema-instance</A>&quot;
+-    xsi:schemaLocation=&quot;<A HREF="http://java.sun.com/xml/ns/j2ee">http://java.sun.com/xml/ns/j2ee</A> <A HREF="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd</A>&quot;
+-    version=&quot;2.0&quot;&gt;
+-  &lt;description&gt;
+-    Restricts JSP pages to the JSTL tag libraries
+-  &lt;/description&gt;    
+-  &lt;display-name&gt;permittedTaglibs&lt;/display-name&gt;
+-  &lt;tlib-version&gt;1.1&lt;/tlib-version&gt;
+-  &lt;short-name&gt;permittedTaglibs&lt;/short-name&gt;
+-  &lt;uri&gt;<A HREF="http://jakarta.apache.org/taglibs/standard/permittedTaglibs&lt;/uri">http://jakarta.apache.org/taglibs/standard/permittedTaglibs&lt;/uri</A>&gt;
+-
+-  &lt;validator&gt;
+-    &lt;validator-class&gt;
+-	javax.servlet.jsp.jstl.tlv.PermittedTaglibsTLV
+-    &lt;/validator-class&gt;        
+-    &lt;init-param&gt;
+-      &lt;description&gt;
+-        Whitespace-separated list of taglib URIs to permit.  This example
+-	TLD for the Standard Taglib allows only JSTL 'el' taglibs to be
+-	imported.
+-      &lt;/description&gt;        
+-      &lt;param-name&gt;permittedTaglibs&lt;/param-name&gt;
+-      &lt;param-value&gt;
+-	<A HREF="http://java.sun.com/jsp/jstl/core">http://java.sun.com/jsp/jstl/core</A>
+-	<A HREF="http://java.sun.com/jsp/jstl/fmt">http://java.sun.com/jsp/jstl/fmt</A>
+-	<A HREF="http://java.sun.com/jsp/jstl/sql">http://java.sun.com/jsp/jstl/sql</A>
+-	<A HREF="http://java.sun.com/jsp/jstl/xml">http://java.sun.com/jsp/jstl/xml</A>
+-      &lt;/param-value&gt;
+-    &lt;/init-param&gt;
+-  &lt;/validator&gt;
+-&lt;/taglib&gt;
+
+Deleted: project_src/customer/WEB-INF/scriptfree.tld
+===================================================================
+--- project_src/customer/WEB-INF/scriptfree.tld	2005-12-14 22:31:23 UTC (rev 293)
++++ project_src/customer/WEB-INF/scriptfree.tld	2005-12-14 22:35:26 UTC (rev 294)
+@@ -1,51 +0,0 @@
+-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+-
+-&lt;taglib xmlns=&quot;<A HREF="http://java.sun.com/xml/ns/j2ee">http://java.sun.com/xml/ns/j2ee</A>&quot;
+-    xmlns:xsi=&quot;<A HREF="http://www.w3.org/2001/XMLSchema-instance">http://www.w3.org/2001/XMLSchema-instance</A>&quot;
+-    xsi:schemaLocation=&quot;<A HREF="http://java.sun.com/xml/ns/j2ee">http://java.sun.com/xml/ns/j2ee</A> <A HREF="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd</A>&quot;
+-    version=&quot;2.0&quot;&gt;
+-  &lt;description&gt;
+-    Validates JSP pages to prohibit use of scripting elements.
+-  &lt;/description&gt;
+-  &lt;tlib-version&gt;1.1&lt;/tlib-version&gt;
+-  &lt;short-name&gt;scriptfree&lt;/short-name&gt;
+-  &lt;uri&gt;<A HREF="http://jakarta.apache.org/taglibs/standard/scriptfree&lt;/uri">http://jakarta.apache.org/taglibs/standard/scriptfree&lt;/uri</A>&gt;
+-
+-  &lt;validator&gt;
+-    &lt;description&gt;
+-      Validates prohibitions against scripting elements.
+-    &lt;/description&gt;
+-    &lt;validator-class&gt;
+-    javax.servlet.jsp.jstl.tlv.ScriptFreeTLV
+-    &lt;/validator-class&gt;
+-    &lt;init-param&gt;
+-      &lt;description&gt;
+-        Controls whether or not declarations are considered valid.
+-      &lt;/description&gt;
+-      &lt;param-name&gt;allowDeclarations&lt;/param-name&gt;
+-      &lt;param-value&gt;false&lt;/param-value&gt;
+-    &lt;/init-param&gt;
+-    &lt;init-param&gt;
+-      &lt;description&gt;
+-        Controls whether or not scriptlets are considered valid.
+-      &lt;/description&gt;
+-      &lt;param-name&gt;allowScriptlets&lt;/param-name&gt;
+-      &lt;param-value&gt;false&lt;/param-value&gt;
+-    &lt;/init-param&gt;
+-    &lt;init-param&gt;
+-      &lt;description&gt;
+-        Controls whether or not top-level expressions are considered valid.
+-      &lt;/description&gt;
+-      &lt;param-name&gt;allowExpressions&lt;/param-name&gt;
+-      &lt;param-value&gt;false&lt;/param-value&gt;
+-    &lt;/init-param&gt;
+-    &lt;init-param&gt;
+-      &lt;description&gt;
+-        Controls whether or not expressions used to supply request-time
+-        attribute values are considered valid.
+-      &lt;/description&gt;
+-      &lt;param-name&gt;allowRTExpressions&lt;/param-name&gt;
+-      &lt;param-value&gt;false&lt;/param-value&gt;
+-    &lt;/init-param&gt;
+-  &lt;/validator&gt;
+-&lt;/taglib&gt;
+
+Deleted: project_src/customer/WEB-INF/sql.tld
+===================================================================
+--- project_src/customer/WEB-INF/sql.tld	2005-12-14 22:31:23 UTC (rev 293)
++++ project_src/customer/WEB-INF/sql.tld	2005-12-14 22:35:26 UTC (rev 294)
+@@ -1,289 +0,0 @@
+-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+-
+-&lt;taglib xmlns=&quot;<A HREF="http://java.sun.com/xml/ns/j2ee">http://java.sun.com/xml/ns/j2ee</A>&quot;
+-    xmlns:xsi=&quot;<A HREF="http://www.w3.org/2001/XMLSchema-instance">http://www.w3.org/2001/XMLSchema-instance</A>&quot;
+-    xsi:schemaLocation=&quot;<A HREF="http://java.sun.com/xml/ns/j2ee">http://java.sun.com/xml/ns/j2ee</A> <A HREF="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd</A>&quot;
+-    version=&quot;2.0&quot;&gt;
+-    
+-  &lt;description&gt;JSTL 1.1 sql library&lt;/description&gt;
+-  &lt;display-name&gt;JSTL sql&lt;/display-name&gt;
+-  &lt;tlib-version&gt;1.1&lt;/tlib-version&gt;
+-  &lt;short-name&gt;sql&lt;/short-name&gt;
+-  &lt;uri&gt;<A HREF="http://java.sun.com/jsp/jstl/sql&lt;/uri">http://java.sun.com/jsp/jstl/sql&lt;/uri</A>&gt;
+-
+-  &lt;validator&gt;
+-    &lt;description&gt;
+-        Provides core validation features for JSTL tags.
+-    &lt;/description&gt;
+-    &lt;validator-class&gt;
+-        org.apache.taglibs.standard.tlv.JstlSqlTLV
+-    &lt;/validator-class&gt;
+-  &lt;/validator&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Provides nested database action elements with a shared Connection,
+-        set up to execute all statements as one transaction.
+-    &lt;/description&gt;
+-    &lt;name&gt;transaction&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.sql.TransactionTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-DataSource associated with the database to access. A
+-String value represents a relative path to a JNDI
+-resource or the parameters for the JDBC
+-DriverManager facility.
+-        &lt;/description&gt;
+-        &lt;name&gt;dataSource&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Transaction isolation level. If not specified, it is the
+-isolation level the DataSource has been configured
+-with.
+-        &lt;/description&gt;
+-        &lt;name&gt;isolation&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Executes the SQL query defined in its body or through the
+-        sql attribute.
+-    &lt;/description&gt;
+-    &lt;name&gt;query&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.sql.QueryTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable for the
+-query result. The type of the scoped variable is
+-javax.servlet.jsp.jstl.sql.
+-Result (see Chapter 16 &quot;Java APIs&quot;).
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope of var.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-SQL query statement.
+-        &lt;/description&gt;
+-        &lt;name&gt;sql&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Data source associated with the database to
+-query. A String value represents a relative path
+-to a JNDI resource or the parameters for the
+-DriverManager class.
+-        &lt;/description&gt;
+-        &lt;name&gt;dataSource&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-The returned Result object includes the rows
+-starting at the specified index. The first row of
+-the original query result set is at index 0. If not
+-specified, rows are included starting from the
+-first row at index 0.
+-        &lt;/description&gt;
+-        &lt;name&gt;startRow&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-The maximum number of rows to be included in
+-the query result. If not specified, or set to -1, no
+-limit on the maximum number of rows is
+-enforced.
+-        &lt;/description&gt;
+-        &lt;name&gt;maxRows&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Executes the SQL update defined in its body or through the
+-        sql attribute.
+-    &lt;/description&gt;
+-    &lt;name&gt;update&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.sql.UpdateTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable for the result
+-of the database update. The type of the scoped
+-variable is java.lang.Integer.
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope of var.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-SQL update statement.
+-        &lt;/description&gt;
+-        &lt;name&gt;sql&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Data source associated with the database to update.
+-A String value represents a relative path to a JNDI
+-resource or the parameters for the JDBC
+-DriverManager class.
+-        &lt;/description&gt;
+-        &lt;name&gt;dataSource&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Sets a parameter in an SQL statement to the specified value.
+-    &lt;/description&gt;
+-    &lt;name&gt;param&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.sql.ParamTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Parameter value.
+-        &lt;/description&gt;
+-        &lt;name&gt;value&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Sets a parameter in an SQL statement to the specified java.util.Date value.
+-    &lt;/description&gt;
+-    &lt;name&gt;dateParam&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.sql.DateParamTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;empty&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Parameter value for DATE, TIME, or
+-TIMESTAMP column in a database table.
+-        &lt;/description&gt;
+-        &lt;name&gt;value&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-One of &quot;date&quot;, &quot;time&quot; or &quot;timestamp&quot;.
+-        &lt;/description&gt;
+-        &lt;name&gt;type&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Creates a simple DataSource suitable only for prototyping.
+-    &lt;/description&gt;
+-    &lt;name&gt;setDataSource&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.sql.SetDataSourceTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;empty&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable
+-for the data source specified. Type can
+-be String or DataSource.
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-If var is specified, scope of the
+-exported variable. Otherwise, scope of
+-the data source configuration variable.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Data source. If specified as a string, it
+-can either be a relative path to a JNDI
+-resource, or a JDBC parameters string
+-as defined in Section 10.1.1.
+-        &lt;/description&gt;
+-        &lt;name&gt;dataSource&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-JDBC parameter: driver class name.
+-        &lt;/description&gt;
+-        &lt;name&gt;driver&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-JDBC parameter: URL associated with
+-the database.
+-        &lt;/description&gt;
+-        &lt;name&gt;url&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-JDBC parameter: database user on
+-whose behalf the connection to the
+-database is being made.
+-        &lt;/description&gt;
+-        &lt;name&gt;user&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-JDBC parameter: user password
+-        &lt;/description&gt;
+-        &lt;name&gt;password&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-&lt;/taglib&gt;
+
+Modified: project_src/customer/WEB-INF/tiles-defs.xml
+===================================================================
+--- project_src/customer/WEB-INF/tiles-defs.xml	2005-12-14 22:31:23 UTC (rev 293)
++++ project_src/customer/WEB-INF/tiles-defs.xml	2005-12-14 22:35:26 UTC (rev 294)
+@@ -7,7 +7,7 @@
+ 
+     &lt;definition name=&quot;provirent.default&quot;
+ 				path=&quot;/jsp/main_template.jsp&quot; &gt;
+-		&lt;put name=&quot;members&quot; value=&quot;/jsp/main_members.jsp&quot; /&gt;
++		&lt;put name=&quot;mitglieder&quot; value=&quot;/jsp/main_members.jsp&quot; /&gt;
+ 		&lt;put name=&quot;navigation&quot; value=&quot;/jsp/main_navigation.jsp&quot; /&gt;
+ 		&lt;put name=&quot;inhalt&quot; value=&quot;/jsp/main_index.jsp&quot; /&gt;
+     &lt;/definition&gt;
+
+Deleted: project_src/customer/WEB-INF/vkb.tld
+===================================================================
+--- project_src/customer/WEB-INF/vkb.tld	2005-12-14 22:31:23 UTC (rev 293)
++++ project_src/customer/WEB-INF/vkb.tld	2005-12-14 22:35:26 UTC (rev 294)
+@@ -1,144 +0,0 @@
+-&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;
+-&lt;!DOCTYPE taglib PUBLIC &quot;-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN&quot;
+-&quot;<A HREF="http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd</A>&quot;&gt;
+-&lt;!-- a tag library descriptor --&gt;
+-&lt;taglib&gt;
+-&lt;!-- after this the default space is
+-&quot;<A HREF="http://java.sun.com/j2ee/dtds/jsptaglibrary_1_2.dtd">http://java.sun.com/j2ee/dtds/jsptaglibrary_1_2.dtd</A>&quot;
+---&gt;
+-&lt;tlibversion&gt;1.0&lt;/tlibversion&gt;
+-&lt;jspversion&gt;1.1&lt;/jspversion&gt;
+-&lt;shortname&gt;vkb&lt;/shortname&gt;
+-&lt;urn&gt;&lt;/urn&gt;
+-&lt;info&gt;
+-A tag library for VKB intern webpresentation.
+-&lt;/info&gt;
+-&lt;tag&gt;
+-	&lt;name&gt;wf&lt;/name&gt;
+-	&lt;tagclass&gt;com.vkb.scharf.admin.taglib.WorkingFrameTag&lt;/tagclass&gt;
+-	&lt;info&gt;&lt;/info&gt;
+-	&lt;bodycontent&gt;jsp&lt;/bodycontent&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;width&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;type&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-
+-	&lt;attribute&gt;
+-		&lt;name&gt;titleKey&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;titleName&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;titleProperty&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;arg0&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;arg1&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-&lt;/tag&gt;
+-
+-&lt;tag&gt;
+-	&lt;name&gt;navi&lt;/name&gt;
+-	&lt;tagclass&gt;com.vkb.scharf.admin.taglib.NavigationTag&lt;/tagclass&gt;
+-	&lt;info&gt;Navigation&lt;/info&gt;
+-	&lt;bodycontent&gt;EMPTY&lt;/bodycontent&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;level&lt;/name&gt;
+-		&lt;required&gt;true&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;link&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;titleKey&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;titleName&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;titleProperty&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;arg0&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;arg1&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-&lt;/tag&gt;
+-
+-
+-&lt;tag&gt;
+-	&lt;name&gt;submit&lt;/name&gt;
+-	&lt;tagclass&gt;com.vkb.scharf.admin.taglib.SubmitTag&lt;/tagclass&gt;
+-	&lt;info&gt;Navigation&lt;/info&gt;
+-	&lt;bodycontent&gt;EMPTY&lt;/bodycontent&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;property&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;titleKey&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;titleName&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;titleProperty&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;onclick&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-
+-&lt;/tag&gt;
+-
+-&lt;tag&gt;
+-	&lt;name&gt;button&lt;/name&gt;
+-	&lt;tagclass&gt;com.vkb.scharf.admin.taglib.ButtonTag&lt;/tagclass&gt;
+-	&lt;info&gt;Navigation&lt;/info&gt;
+-	&lt;bodycontent&gt;EMPTY&lt;/bodycontent&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;property&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;titleKey&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;titleName&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;titleProperty&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-	&lt;attribute&gt;
+-		&lt;name&gt;onclick&lt;/name&gt;
+-		&lt;required&gt;false&lt;/required&gt;
+-	&lt;/attribute&gt;
+-
+-&lt;/tag&gt;
+-
+-&lt;/taglib&gt;
+\ No newline at end of file
+
+Modified: project_src/customer/WEB-INF/web.xml
+===================================================================
+--- project_src/customer/WEB-INF/web.xml	2005-12-14 22:31:23 UTC (rev 293)
++++ project_src/customer/WEB-INF/web.xml	2005-12-14 22:35:26 UTC (rev 294)
+@@ -69,16 +69,6 @@
+     &lt;taglib-location&gt;/WEB-INF/struts-tiles.tld&lt;/taglib-location&gt;
+   &lt;/taglib&gt;
+ 
+-  &lt;taglib&gt;
+-    &lt;taglib-uri&gt;/tags/taglibs-log.tld&lt;/taglib-uri&gt;
+-    &lt;taglib-location&gt;/WEB-INF/taglibs-log.tld&lt;/taglib-location&gt;
+-  &lt;/taglib&gt;
+-  
+-  &lt;taglib&gt;
+-    &lt;taglib-uri&gt;/tags/c.tld&lt;/taglib-uri&gt;
+-    &lt;taglib-location&gt;/WEB-INF/c.tld&lt;/taglib-location&gt;
+-  &lt;/taglib&gt;
+-
+ 	&lt;taglib&gt; 
+ 	    &lt;taglib-uri&gt;<A HREF="http://displaytag.sf.net&lt;/taglib-uri">http://displaytag.sf.net&lt;/taglib-uri</A>&gt; 
+ 	    &lt;taglib-location&gt;/WEB-INF/displaytag-12.tld&lt;/taglib-location&gt;
+
+Deleted: project_src/customer/WEB-INF/x.tld
+===================================================================
+--- project_src/customer/WEB-INF/x.tld	2005-12-14 22:31:23 UTC (rev 293)
++++ project_src/customer/WEB-INF/x.tld	2005-12-14 22:35:26 UTC (rev 294)
+@@ -1,448 +0,0 @@
+-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+-
+-&lt;taglib xmlns=&quot;<A HREF="http://java.sun.com/xml/ns/j2ee">http://java.sun.com/xml/ns/j2ee</A>&quot;
+-    xmlns:xsi=&quot;<A HREF="http://www.w3.org/2001/XMLSchema-instance">http://www.w3.org/2001/XMLSchema-instance</A>&quot;
+-    xsi:schemaLocation=&quot;<A HREF="http://java.sun.com/xml/ns/j2ee">http://java.sun.com/xml/ns/j2ee</A> <A HREF="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd</A>&quot;
+-    version=&quot;2.0&quot;&gt;
+-    
+-  &lt;description&gt;JSTL 1.1 XML library&lt;/description&gt;
+-  &lt;display-name&gt;JSTL XML&lt;/display-name&gt;
+-  &lt;tlib-version&gt;1.1&lt;/tlib-version&gt;
+-  &lt;short-name&gt;x&lt;/short-name&gt;
+-  &lt;uri&gt;<A HREF="http://java.sun.com/jsp/jstl/xml&lt;/uri">http://java.sun.com/jsp/jstl/xml&lt;/uri</A>&gt;
+-
+-  &lt;validator&gt;
+-    &lt;description&gt;
+-        Provides validation features for JSTL XML tags.
+-    &lt;/description&gt;
+-    &lt;validator-class&gt;
+-	org.apache.taglibs.standard.tlv.JstlXmlTLV
+-    &lt;/validator-class&gt;
+-  &lt;/validator&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Simple conditional tag that establishes a context for
+-        mutually exclusive conditional operations, marked by
+-        &lt;when&gt; and &lt;otherwise&gt;
+-    &lt;/description&gt;
+-    &lt;name&gt;choose&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.common.core.ChooseTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-	Like &lt;%= ... &gt;, but for XPath expressions.
+-    &lt;/description&gt;
+-    &lt;name&gt;out&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.xml.ExprTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;empty&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-XPath expression to be evaluated.
+-        &lt;/description&gt;
+-        &lt;name&gt;select&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Determines whether characters &lt;,&gt;,&amp;,',&quot; in the
+-resulting string should be converted to their
+-corresponding character entity codes. Default
+-value is true.
+-        &lt;/description&gt;
+-        &lt;name&gt;escapeXml&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        XML conditional tag, which evalutes its body if the
+-        supplied XPath expression evalutes to 'true' as a boolean
+-    &lt;/description&gt;
+-    &lt;name&gt;if&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.common.xml.IfTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-The test condition that tells whether or not the
+-body content should be processed.
+-        &lt;/description&gt;
+-        &lt;name&gt;select&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable for the
+-resulting value of the test condition. The type
+-of the scoped variable is Boolean.
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope for var.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-	XML iteration tag.
+-    &lt;/description&gt;
+-    &lt;name&gt;forEach&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.common.xml.ForEachTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable for the
+-current item of the iteration. This scoped variable
+-has nested visibility. Its type depends on the
+-result of the XPath expression in the select
+-attribute.
+-        &lt;/description&gt;
+-	&lt;name&gt;var&lt;/name&gt;
+-	&lt;required&gt;false&lt;/required&gt;
+-	&lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-XPath expression to be evaluated.
+-        &lt;/description&gt;
+-	&lt;name&gt;select&lt;/name&gt;
+-	&lt;required&gt;true&lt;/required&gt;
+-	&lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Iteration begins at the item located at the
+-specified index. First item of the collection has
+-index 0.
+-        &lt;/description&gt;
+-	&lt;name&gt;begin&lt;/name&gt;
+-	&lt;required&gt;false&lt;/required&gt;
+-	&lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-	&lt;type&gt;int&lt;/type&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Iteration ends at the item located at the specified
+-index (inclusive).
+-        &lt;/description&gt;
+-	&lt;name&gt;end&lt;/name&gt;
+-	&lt;required&gt;false&lt;/required&gt;
+-	&lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-	&lt;type&gt;int&lt;/type&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Iteration will only process every step items of
+-the collection, starting with the first one.
+-        &lt;/description&gt;
+-	&lt;name&gt;step&lt;/name&gt;
+-	&lt;required&gt;false&lt;/required&gt;
+-	&lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-	&lt;type&gt;int&lt;/type&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable for the
+-status of the iteration. Object exported is of type
+-javax.servlet.jsp.jstl.core.LoopTagStatus. This scoped variable has nested visibility.
+-        &lt;/description&gt;
+-	&lt;name&gt;varStatus&lt;/name&gt;
+-	&lt;required&gt;false&lt;/required&gt;
+-	&lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-	Subtag of &lt;choose&gt; that follows &lt;when&gt; tags
+-	and runs only if all of the prior conditions evaluated to
+-	'false'
+-    &lt;/description&gt;
+-    &lt;name&gt;otherwise&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.common.core.OtherwiseTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Adds a parameter to a containing 'transform' tag's Transformer
+-    &lt;/description&gt;
+-    &lt;name&gt;param&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.xml.ParamTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the transformation parameter.
+-        &lt;/description&gt;
+-        &lt;name&gt;name&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Value of the parameter.
+-        &lt;/description&gt;
+-        &lt;name&gt;value&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-	Parses XML content from 'source' attribute or 'body'
+-    &lt;/description&gt;
+-    &lt;name&gt;parse&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.xml.ParseTag&lt;/tag-class&gt;
+-    &lt;tei-class&gt;org.apache.taglibs.standard.tei.XmlParseTEI&lt;/tei-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable for
+-the parsed XML document. The type of the
+-scoped variable is implementation
+-dependent.
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable for
+-the parsed XML document. The type of the
+-scoped variable is
+-org.w3c.dom.Document.
+-        &lt;/description&gt;
+-        &lt;name&gt;varDom&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope for var.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope for varDom.
+-        &lt;/description&gt;
+-        &lt;name&gt;scopeDom&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Deprecated. Use attribute 'doc' instead.
+-        &lt;/description&gt;
+-        &lt;name&gt;xml&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Source XML document to be parsed.
+-        &lt;/description&gt;
+-        &lt;name&gt;doc&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-The system identifier (URI) for parsing the
+-XML document.
+-        &lt;/description&gt;
+-        &lt;name&gt;systemId&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Filter to be applied to the source
+-document.
+-        &lt;/description&gt;
+-        &lt;name&gt;filter&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-	Saves the result of an XPath expression evaluation in a 'scope'
+-    &lt;/description&gt;
+-    &lt;name&gt;set&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.common.xml.SetTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;empty&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported scoped variable to hold
+-the value specified in the action. The type of the
+-scoped variable is whatever type the select
+-expression evaluates to.
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-XPath expression to be evaluated.
+-        &lt;/description&gt;
+-	&lt;name&gt;select&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope for var.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-	Conducts a transformation given a source XML document
+-	and an XSLT stylesheet
+-    &lt;/description&gt;
+-    &lt;name&gt;transform&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.rt.xml.TransformTag&lt;/tag-class&gt;
+-    &lt;tei-class&gt;org.apache.taglibs.standard.tei.XmlTransformTEI&lt;/tei-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Name of the exported
+-scoped variable for the
+-transformed XML
+-document. The type of the
+-scoped variable is
+-org.w3c.dom.Document.
+-        &lt;/description&gt;
+-        &lt;name&gt;var&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Scope for var.
+-        &lt;/description&gt;
+-        &lt;name&gt;scope&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Result
+-Object that captures or
+-processes the transformation
+-result.
+-        &lt;/description&gt;
+-        &lt;name&gt;result&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Deprecated. Use attribute
+-'doc' instead.
+-        &lt;/description&gt;
+-        &lt;name&gt;xml&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Source XML document to be
+-transformed. (If exported by
+-&lt;x:set&gt;, it must correspond
+-to a well-formed XML
+-document, not a partial
+-document.)
+-        &lt;/description&gt;
+-        &lt;name&gt;doc&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-Deprecated. Use attribute
+-'docSystemId' instead.
+-        &lt;/description&gt;
+-        &lt;name&gt;xmlSystemId&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-The system identifier (URI)
+-for parsing the XML
+-document.
+-        &lt;/description&gt;
+-        &lt;name&gt;docSystemId&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-javax.xml.transform.Source
+-Transformation stylesheet as
+-a String, Reader, or
+-Source object.
+-        &lt;/description&gt;
+-	&lt;name&gt;xslt&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-The system identifier (URI)
+-for parsing the XSLT
+-stylesheet.
+-        &lt;/description&gt;
+-	&lt;name&gt;xsltSystemId&lt;/name&gt;
+-        &lt;required&gt;false&lt;/required&gt;
+-        &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-  &lt;tag&gt;
+-    &lt;description&gt;
+-        Subtag of &lt;choose&gt; that includes its body if its
+-        expression evalutes to 'true'
+-    &lt;/description&gt;
+-    &lt;name&gt;when&lt;/name&gt;
+-    &lt;tag-class&gt;org.apache.taglibs.standard.tag.common.xml.WhenTag&lt;/tag-class&gt;
+-    &lt;body-content&gt;JSP&lt;/body-content&gt;
+-    &lt;attribute&gt;
+-        &lt;description&gt;
+-The test condition that tells whether or
+-not the body content should be
+-processed
+-        &lt;/description&gt;
+-        &lt;name&gt;select&lt;/name&gt;
+-        &lt;required&gt;true&lt;/required&gt;
+-        &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;
+-    &lt;/attribute&gt;
+-  &lt;/tag&gt;
+-
+-&lt;/taglib&gt;
+
+Modified: project_src/customer/index.jsp
+===================================================================
+--- project_src/customer/index.jsp	2005-12-14 22:31:23 UTC (rev 293)
++++ project_src/customer/index.jsp	2005-12-14 22:35:26 UTC (rev 294)
+@@ -1,2 +1,3 @@
+-&lt;%@ taglib uri=&quot;<A HREF="http://java.sun.com/jsp/jstl/core">http://java.sun.com/jsp/jstl/core</A>&quot; prefix=&quot;c&quot; %&gt;
+-&lt;c:redirect url=&quot;/index.do&quot; /&gt;
+\ No newline at end of file
++&lt;%@ taglib uri=&quot;<A HREF="http://struts.apache.org/tags-logic">http://struts.apache.org/tags-logic</A>&quot; prefix=&quot;logic&quot; %&gt;
++
++&lt;logic:redirect forward=&quot;index&quot; /&gt;
+\ No newline at end of file
+
+Modified: project_src/customer/jsp/main_navigation.jsp
+===================================================================
+--- project_src/customer/jsp/main_navigation.jsp	2005-12-14 22:31:23 UTC (rev 293)
++++ project_src/customer/jsp/main_navigation.jsp	2005-12-14 22:35:26 UTC (rev 294)
+@@ -1,6 +1,5 @@
+ &lt;%@ taglib uri=&quot;/tags/struts-bean.tld&quot;  prefix=&quot;bean&quot;  %&gt;
+ &lt;%@ taglib uri=&quot;/tags/struts-html.tld&quot;  prefix=&quot;html&quot;  %&gt;
+-&lt;%@ taglib uri=&quot;/tags/c.tld&quot; prefix=&quot;c&quot; %&gt;
+ 
+ 
+             &lt;table class=&quot;menue_tbl&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+
+Modified: project_src/customer/jsp/main_template.jsp
+===================================================================
+--- project_src/customer/jsp/main_template.jsp	2005-12-14 22:31:23 UTC (rev 293)
++++ project_src/customer/jsp/main_template.jsp	2005-12-14 22:35:26 UTC (rev 294)
+@@ -1,9 +1,7 @@
+ &lt;%@ taglib uri=&quot;/tags/struts-tiles.tld&quot;  prefix=&quot;tiles&quot;  %&gt;
+ &lt;%@ taglib uri=&quot;/tags/struts-html.tld&quot;  prefix=&quot;html&quot;  %&gt;
+ &lt;%@ taglib uri=&quot;/tags/struts-bean.tld&quot;  prefix=&quot;bean&quot;  %&gt;
+-&lt;%@ taglib uri=&quot;/tags/c.tld&quot; prefix=&quot;c&quot; %&gt;
+ &lt;%@ taglib uri=&quot;/tags/struts-logic.tld&quot;  prefix=&quot;logic&quot;  %&gt;
+-&lt;%@ taglib uri=&quot;/tags/taglibs-log.tld&quot; prefix=&quot;log&quot; %&gt;
+ &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;<A HREF="http://www.w3.org/TR/html4/loose.dtd">http://www.w3.org/TR/html4/loose.dtd</A>&quot;&gt;
+ &lt;html:html&gt;
+ &lt;head&gt;
+@@ -49,10 +47,10 @@
+ 				 &lt;td&gt;
+ &lt;!--head start--&gt;
+ 
+-&lt;tiles:insert attribute=&quot;members&quot; /&gt;
++&lt;tiles:insert attribute=&quot;mitglieder&quot; /&gt;
+ 
+ &lt;!--head end--&gt;
+-                  &lt;/td&gt;
++          &lt;/td&gt;
+ 				&lt;/tr&gt;
+               &lt;/tbody&gt;
+             &lt;/table&gt;
+
+Modified: project_src/customer/jsp/movie_list.jsp
+===================================================================
+--- project_src/customer/jsp/movie_list.jsp	2005-12-14 22:31:23 UTC (rev 293)
++++ project_src/customer/jsp/movie_list.jsp	2005-12-14 22:35:26 UTC (rev 294)
+@@ -37,10 +37,8 @@
+               &lt;/tbody&gt;
+             &lt;/table&gt;
+ 
+-&lt;display:table name=&quot;sessionScope.sessiongenrelist&quot;  pagesize=&quot;2&quot; class=&quot;list&quot;&gt;
++&lt;display:table name=&quot;sessiongenrelist&quot;  pagesize=&quot;2&quot; class=&quot;list&quot;&gt;
+ 	&lt;display:column property=&quot;id&quot; /&gt;
+-	&lt;display:column property=&quot;id&quot; /&gt;
+-	&lt;display:column property=&quot;id&quot; /&gt;
+ 
+ &lt;/display:table&gt; 
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000295.html">[Provirent-svn-commit] r293 - docu/latex
+</A></li>
+	<LI>Next message: <A HREF="000297.html">[Provirent-svn-commit] r295 - in docu/latex: . images
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#296">[ date ]</a>
+              <a href="thread.html#296">[ thread ]</a>
+              <a href="subject.html#296">[ subject ]</a>
+              <a href="author.html#296">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

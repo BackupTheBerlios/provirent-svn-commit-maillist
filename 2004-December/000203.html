@@ -1,0 +1,606 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r202 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui objects persistence
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r202%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20objects%20persistence&In-Reply-To=%3C200412031517.iB3FHHAr029973%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000202.html">
+   <LINK REL="Next"  HREF="000204.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r202 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui objects persistence</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r202%20-%20in%20project_src/provirent_hibernate/src/de/hsharz/provirent%3A%20management/gui%20objects%20persistence&In-Reply-To=%3C200412031517.iB3FHHAr029973%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r202 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui objects persistence">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Fri Dec  3 16:17:17 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000202.html">[Provirent-svn-commit] r201 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence
+</A></li>
+        <LI>Next message: <A HREF="000204.html">[Provirent-svn-commit] r203 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#203">[ date ]</a>
+              <a href="thread.html#203">[ thread ]</a>
+              <a href="subject.html#203">[ subject ]</a>
+              <a href="author.html#203">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-12-03 16:17:16 +0100 (Fri, 03 Dec 2004)
+New Revision: 202
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+Log:
+- Customer ver?\195?\164ndert, timestamp entfernt
+- Customer Datumsformat ver?\195?\164ndert
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java	2004-12-03 13:01:28 UTC (rev 201)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeCustomer.java	2004-12-03 15:17:16 UTC (rev 202)
+@@ -1,6 +1,8 @@
+ package de.hsharz.provirent.management.gui;
+ 
++import java.text.DateFormat;
+ import java.text.MessageFormat;
++import java.text.ParseException;
+ import java.util.Calendar;
+ import java.util.Date;
+ import java.util.Locale;
+@@ -735,13 +737,28 @@
+                     cal.addDateChangedListener(new SWTCalendarListener() {
+ 
+                         public void dateChanged(SWTCalendarEvent calendarEvent) {
++                            textRegistrationDate.setText(DateFormat.getDateInstance(
++                                    DateFormat.LONG).format(
++                                    calendarEvent.getCalendar().getTime()));
++
++                            
++                            /*
+                             String date = null;
+                             date = Util.getTextByDate(calendarEvent.getCalendar(), &quot;dd.MM.yyyy&quot;);
+-                            textRegistrationDate.setText(date);                          
++                            textRegistrationDate.setText(date);
++                            */                          
+                         }
+                     });
+                     if (textRegistrationDate.getText() != null &amp;&amp; textRegistrationDate.getText().length() &gt; 0) {
+-                        Date date = Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.yyyy&quot;).getTime();
++                        Date date;
++                        try {
++                            date = DateFormat.getDateInstance(DateFormat.LONG)
++                            .parse(textRegistrationDate.getText());
++                        } catch (ParseException e) {
++                            // TODO Auto-generated catch block
++                            e.printStackTrace();
++                            return;
++                        }
+                         cal.setDate(date);
+                     }
+                     cal.open();                                                          
+@@ -901,40 +918,10 @@
+                    return;
+                }
+                 try {
+-	                Customer o = new Customer();
+-	                Person p = new Person();
+-	                o.setCustomerId(new Integer(Integer.parseInt(textCustomerID.getText())));
+-	                o.setUserName(textUserName.getText());
+-	                Date regdate = null;
+-	                if (textRegistrationDate.getText() != null) {
+-	                    regdate = Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.yyyy&quot;).getTime();
+-	                }
+-	                o.setDayOfRegistration(regdate);
+-	                o.setUserPassword(textPassword.getText());
+-	                o.setHiddenQuestion(textQuestion.getText());
+-	                o.setHiddenAnswer(textAnswer.getText());
+-	                p.setLastName(textLastName.getText());
+-	                p.setFirstName(textFirstName.getText());
+-	                p.setMiddleName(textMiddleName.getText());
+-	                p.setSalutation(textSalutation.getText());
+-	                p.setTitle(textTitle.getText());
+-	                p.setStreet(textStreet.getText());
+-	                p.setStreetNumber(textNumber.getText());
+-	                p.setZipCode(textZipCode.getText());
+-	                p.setCity(textCity.getText());
+-	                p.setCountry(textCountry.getText());
+-	                p.setEmailAddress(textEmail.getText());
+-	                Calendar birthday = null;
+-	                if (textBirthday.getText() != &quot;&quot;) {
+-	                    birthday = Util.getDateByText(textBirthday.getText(), &quot;dd.MM.yyyy&quot;);
+-	                }
+-	                p.setDayOfBirth(birthday);
+-	                o.setPerson(p);
+ 	                
+                     //object l&#246;schen
+                     // Fehlerbehandlung
+ 	                
+-                   // Database.deleteObject(o);
+ 	                Database.deleteObject(localCustomer);
+ 	                
+                     //&#220;bersichtsTabelle aktualisieren
+@@ -1050,11 +1037,22 @@
+                         Customer o = new Customer();
+     	                Person p = new Person();
+     	                o.setUserName(textUserName.getText());
++    	                
++    	                /*
+     	                Date regdate = null;
+     	                if (textRegistrationDate.getText() != &quot;&quot;) {
+     	                    regdate = Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.yyyy&quot;).getTime();
+     	                }   	          
+     	                o.setDayOfRegistration(regdate);
++    	                */
++    	                Calendar cal = Calendar.getInstance();
++    	                cal.setTime(DateFormat.getDateInstance(
++                                    DateFormat.LONG).parse(
++                                    textRegistrationDate.getText()));
++    	                o.setDayOfRegistration(cal);
++    	                
++    	                
++    	                
+     	                o.setUserPassword(textPassword.getText());
+     	                o.setHiddenQuestion(textQuestion.getText());
+     	                o.setHiddenAnswer(textAnswer.getText());
+@@ -1077,7 +1075,7 @@
+     	                o.setPerson(p);
+                                         
+                         //object speichern
+-                        // Fehlerbehandlung
++                        // Fehlerbehandlung 
+                         Object newCust = Database.saveObject(o);
+                         
+                         // in &#220;bersichtstabelle einf&#252;gen
+@@ -1103,6 +1101,8 @@
+                             e.printStackTrace();
+                         }
+                         
++                    } catch (ParseException pex){
++                        pex.printStackTrace();
+                     }
+                     
+                     
+@@ -1113,13 +1113,26 @@
+                     
+                 } else if (mode_Customer == ManagementGui.MODE_EDIT) {
+                     try {
+-                        
++                        logger.debug(&quot;LocalCustomer: &quot;+localCustomer);
++                        logger.debug(&quot;LocalPerson: &quot;+localCustomer.getPerson());
+                         //Customer o = localCustomer;
+     	                //Person p = o.getPerson();
+     	                
+     	                //o.setCustomerId(new Integer(Integer.parseInt(textCustomerID.getText())));
+     	                localCustomer.setUserName(textUserName.getText());
+-    	                localCustomer.setDayOfRegistration(Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.yyyy&quot;).getTime());
++    	                
++    	                
++    	                //localCustomer.setDayOfRegistration(Util.getDateByText(textRegistrationDate.getText(), &quot;dd.MM.yyyy&quot;).getTime());
++    	                
++    	                Calendar cal = Calendar.getInstance();
++    	                cal.setTime(DateFormat.getDateInstance(
++                                    DateFormat.LONG).parse(
++                                    textRegistrationDate.getText()));
++    	                localCustomer.setDayOfRegistration(cal);
++
++    	                
++    	                
++    	                
+     	                localCustomer.setUserPassword(textPassword.getText());
+     	                localCustomer.setHiddenQuestion(textQuestion.getText());
+     	                localCustomer.setHiddenAnswer(textAnswer.getText());
+@@ -1141,7 +1154,9 @@
+ 	                */
+ 	                    //object speichern
+ 	                    // Fehlerbehandlung
+-	                    Database.saveObject(localCustomer);
++    	                logger.debug(&quot;Versuche edit zu speichern: &quot;+localCustomer);
++    	                
++	                    Database.updateObject(localCustomer);
+ 	                    //&#220;bersichtstabelle aktualisieren
+ 	                    refreshCustomerTable(textCustomerSearch.getText());
+ 	                    
+@@ -1166,6 +1181,8 @@
+ 	                        e.printStackTrace();
+ 	                    }
+                     
++                    } catch (ParseException pex){
++                        pex.printStackTrace();
+                     }
+                     
+                     //alle Buttons auf aktiv setzen
+@@ -1246,7 +1263,7 @@
+         String regdate = &quot;&quot;;
+         if (customer.getDayOfRegistration() != null) {
+             Calendar cal = Calendar.getInstance();
+-            cal.setTime(customer.getDayOfRegistration());
++            cal = (customer.getDayOfRegistration());
+             birthday = Util.getTextByDate(cal, &quot;dd.MM.yyyy&quot;);            
+         }
+         item.setText(new String[] { customer.getCustomerId() + &quot;&quot;, 
+@@ -1291,7 +1308,7 @@
+             
+             item = new TableItem(tableCustomer, SWT.NONE);
+             Calendar regdate = Calendar.getInstance();
+-            regdate.setTime(o.getDayOfRegistration());
++            regdate = (o.getDayOfRegistration());
+             String date = null;
+             if (o.getPerson().getDayOfBirth() == null) {
+                 date = &quot;&quot;;
+@@ -1550,22 +1567,32 @@
+ 	        temp = object.getHiddenAnswer();
+ 	        textAnswer.setText(temp == null ? &quot;&quot; : temp);
+ 	        
+-	        String date = null;
+-            String regdate = null;
++
+             if (object.getPerson().getDayOfBirth() == null) {
+-                date = &quot;&quot;;
++                textBirthday.setText(&quot;&quot;);
+             } else {
+-                date = Util.getTextByDate(object.getPerson().getDayOfBirth(), &quot;dd.MM.yyyy&quot;);
++                
++                textBirthday.setText(DateFormat.getDateInstance(
++                        DateFormat.LONG).format(
++                                object.getPerson().getDayOfBirth().getTime()));
++
++                
++                //date = Util.getTextByDate(object.getPerson().getDayOfBirth(), &quot;dd.MM.yyyy&quot;);
+             }
+-            textBirthday.setText(date);
++            
+             if (object.getDayOfRegistration() == null) {
+-                regdate = &quot;&quot;;
++                textRegistrationDate.setText(&quot;&quot;);
+             } else {
++                textRegistrationDate.setText(DateFormat.getDateInstance(
++                        DateFormat.LONG).format(
++                                object.getDayOfRegistration().getTime()));
++                /*
+                 Calendar cal = Calendar.getInstance();
+-                cal.setTime(object.getDayOfRegistration());
++                cal = (object.getDayOfRegistration());
+                 regdate = Util.getTextByDate(cal, &quot;dd.MM.yyyy&quot;);
++                */
+             }
+-            textRegistrationDate.setText(regdate);
++            
+ 	        
+ 	        //Buttons zum l&#246;schen und editieren aktivieren
+ 	        
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml	2004-12-03 13:01:28 UTC (rev 201)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.hbm.xml	2004-12-03 15:17:16 UTC (rev 202)
+@@ -13,20 +13,22 @@
+  			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
+  			&lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+  
+-      &lt;id name=&quot;customerId&quot; type=&quot;int&quot; column=&quot;CUSTOMERID&quot;&gt;
++      &lt;id name=&quot;customerId&quot; type=&quot;int&quot; column=&quot;CUSTOMERID&quot; unsaved-value=&quot;null&quot;&gt;
+         &lt;meta attribute=&quot;scope-set&quot;&gt;public&lt;/meta&gt;
+         &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+         &lt;generator class=&quot;sequence&quot;&gt;
+-			&lt;param name=&quot;sequence&quot;&gt;customer_id_sequence&lt;/param&gt;
+-		&lt;/generator&gt;
++					&lt;param name=&quot;sequence&quot;&gt;customer_id_sequence&lt;/param&gt;
++				&lt;/generator&gt;
+       &lt;/id&gt;
++
+  
+- 			&lt;timestamp	name=&quot;dayOfRegistration&quot;&gt;
+- 				&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+- 			&lt;/timestamp&gt;
++      &lt;property name=&quot;dayOfRegistration&quot; type=&quot;calendar&quot; &gt;
++      	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++      &lt;/property&gt;
+  
+-	&lt;many-to-one name=&quot;person&quot; class=&quot;de.hsharz.provirent.objects.Person&quot; column=&quot;person_id&quot; unique=&quot;true&quot; cascade=&quot;all&quot;/&gt;
+- 
++	&lt;many-to-one name=&quot;person&quot; class=&quot;de.hsharz.provirent.objects.Person&quot; column=&quot;person_id&quot; unique=&quot;true&quot; cascade=&quot;all&quot;&gt;
++		&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
++	&lt;/many-to-one&gt;
+       
+       &lt;property name=&quot;userName&quot; type=&quot;string&quot; not-null=&quot;true&quot;&gt;
+       	&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java	2004-12-03 13:01:28 UTC (rev 201)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Customer.java	2004-12-03 15:17:16 UTC (rev 202)
+@@ -1,7 +1,7 @@
+ package de.hsharz.provirent.objects;
+ 
+ import java.io.Serializable;
+-import java.util.Date;
++import java.util.Calendar;
+ import org.apache.commons.lang.builder.EqualsBuilder;
+ import org.apache.commons.lang.builder.HashCodeBuilder;
+ import org.apache.commons.lang.builder.ToStringBuilder;
+@@ -17,6 +17,9 @@
+     /** identifier field */
+     private Integer customerId;
+ 
++    /** nullable persistent field */
++    private Calendar dayOfRegistration;
++
+     /** persistent field */
+     private String userName;
+ 
+@@ -30,18 +33,15 @@
+     private String hiddenAnswer;
+ 
+     /** nullable persistent field */
+-    private Date dayOfRegistration;
+-
+-    /** nullable persistent field */
+     private de.hsharz.provirent.objects.Person person;
+ 
+     /** full constructor */
+-    public Customer(String userName, String userPassword, String hiddenQuestion, String hiddenAnswer, Date dayOfRegistration, de.hsharz.provirent.objects.Person person) {
++    public Customer(Calendar dayOfRegistration, String userName, String userPassword, String hiddenQuestion, String hiddenAnswer, de.hsharz.provirent.objects.Person person) {
++        this.dayOfRegistration = dayOfRegistration;
+         this.userName = userName;
+         this.userPassword = userPassword;
+         this.hiddenQuestion = hiddenQuestion;
+         this.hiddenAnswer = hiddenAnswer;
+-        this.dayOfRegistration = dayOfRegistration;
+         this.person = person;
+     }
+ 
+@@ -63,8 +63,16 @@
+ 
+     public void setCustomerId(Integer customerId) {
+         this.customerId = customerId;
++    } 
++
++    public Calendar getDayOfRegistration() {
++        return this.dayOfRegistration;
+     }
+ 
++    public void setDayOfRegistration(Calendar dayOfRegistration) {
++        this.dayOfRegistration = dayOfRegistration;
++    }
++
+     public String getUserName() {
+         return this.userName;
+     }
+@@ -97,14 +105,6 @@
+         this.hiddenAnswer = hiddenAnswer;
+     }
+ 
+-    public Date getDayOfRegistration() {
+-        return this.dayOfRegistration;
+-    }
+-
+-    public void setDayOfRegistration(Date dayOfRegistration) {
+-        this.dayOfRegistration = dayOfRegistration;
+-    }
+-
+     public de.hsharz.provirent.objects.Person getPerson() {
+         return this.person;
+     }
+@@ -116,11 +116,12 @@
+     public String toString() {
+         return new ToStringBuilder(this)
+             .append(&quot;customerId&quot;, getCustomerId())
++            .append(&quot;dayOfRegistration&quot;, getDayOfRegistration())
+             .append(&quot;userName&quot;, getUserName())
+             .append(&quot;userPassword&quot;, getUserPassword())
+             .append(&quot;hiddenQuestion&quot;, getHiddenQuestion())
+             .append(&quot;hiddenAnswer&quot;, getHiddenAnswer())
+-            .append(&quot;dayOfRegistration&quot;, getDayOfRegistration())
++            .append(&quot;person&quot;, getPerson())
+             .toString();
+     }
+ 
+@@ -130,11 +131,11 @@
+         Customer castOther = (Customer) other;
+         return new EqualsBuilder()
+             .append(this.getCustomerId(), castOther.getCustomerId())
++            .append(this.getDayOfRegistration(), castOther.getDayOfRegistration())
+             .append(this.getUserName(), castOther.getUserName())
+             .append(this.getUserPassword(), castOther.getUserPassword())
+             .append(this.getHiddenQuestion(), castOther.getHiddenQuestion())
+             .append(this.getHiddenAnswer(), castOther.getHiddenAnswer())
+-            .append(this.getDayOfRegistration(), castOther.getDayOfRegistration())
+             .append(this.getPerson(), castOther.getPerson())
+             .isEquals();
+     }
+@@ -142,11 +143,11 @@
+     public int hashCode() {
+         return new HashCodeBuilder()
+             .append(getCustomerId())
++            .append(getDayOfRegistration())
+             .append(getUserName())
+             .append(getUserPassword())
+             .append(getHiddenQuestion())
+             .append(getHiddenAnswer())
+-            .append(getDayOfRegistration())
+             .append(getPerson())
+             .toHashCode();
+     }
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.hbm.xml	2004-12-03 13:01:28 UTC (rev 201)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Person.hbm.xml	2004-12-03 15:17:16 UTC (rev 202)
+@@ -13,12 +13,12 @@
+  			&lt;meta attribute=&quot;implement-equals&quot;&gt;true&lt;/meta&gt;
+  			&lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+  			
+-      &lt;id name=&quot;personId&quot; type=&quot;int&quot; column=&quot;PERSONID&quot;&gt;
++      &lt;id name=&quot;personId&quot; type=&quot;int&quot; column=&quot;PERSONID&quot; unsaved-value=&quot;null&quot;&gt;
+         &lt;meta attribute=&quot;scope-set&quot;&gt;public&lt;/meta&gt;
+         &lt;meta attribute=&quot;use-in-equals&quot;&gt;true&lt;/meta&gt;
+         &lt;generator class=&quot;sequence&quot;&gt;
+-			&lt;param name=&quot;sequence&quot;&gt;person_id_sequence&lt;/param&gt;
+-		&lt;/generator&gt;
++					&lt;param name=&quot;sequence&quot;&gt;person_id_sequence&lt;/param&gt;
++				&lt;/generator&gt;
+       &lt;/id&gt;
+ 	  
+ 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-03 13:01:28 UTC (rev 201)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/persistence/Database.java	2004-12-03 15:17:16 UTC (rev 202)
+@@ -166,6 +166,7 @@
+         
+ 
+     }
++
+     public static Object saveObject(Object o) throws DataBaseException{
+         if (logger.isDebugEnabled()) {
+             logger
+@@ -180,7 +181,6 @@
+             try {
+                 //get new Session and begin Transaction
+                 s = HibernateUtil.currentSession();
+-                tx = s.beginTransaction();
+                 try{
+                     s.saveOrUpdate(o);
+                 } catch (HibernateException e) {
+@@ -190,7 +190,6 @@
+                 }
+                 s.flush();
+                
+-                tx.commit();
+                 
+             } catch (HibernateException e) {
+                 //exception = 2;
+@@ -229,9 +228,13 @@
+         return o;
+     }
+     
+-    public static void deleteObjectWithId(final Class deleteclass, final Integer id) throws DataBaseException{
++
++
++    public static Object updateObject(Object o) throws DataBaseException{
+         if (logger.isDebugEnabled()) {
+-            logger.debug(&quot;deleteObjectWithId(Class = &quot; + deleteclass.getName()+&quot; Id: &quot;+id+ &quot;) - start&quot;);
++            logger
++                    .debug(&quot;updateObject(Object o = &quot; + o
++                            + &quot;) - start&quot;);
+         }
+         int exception =0;
+         
+@@ -241,31 +244,24 @@
+             try {
+                 //get new Session and begin Transaction
+                 s = HibernateUtil.currentSession();
+-                tx = s.beginTransaction();
+-                
+                 try{
+-                    s.delete(&quot;&quot;);
+-                
++                		logger.debug(&quot;Object &quot;+o.getClass().getName() + &quot; String:&quot;+o);
++                    s.update(o);
+                 } catch (HibernateException e) {
+-                    logger.error(&quot;deleteObjectWithId(). Fehler beim Speichern/Updaten &quot;
+-                            + &quot;des Objectes:&quot; + deleteclass.getName() + &quot; ID: &quot;+id+&quot; Exception: &quot; + e);
++                    logger.error(&quot;updateObject(). Fehler beim Updaten &quot;
++                            +&quot;des Objectes:&quot;+o+&quot; Exception: &quot;+e);
+                     exception = 1;
+                 }
++                s.flush();
+                
+                 
+-
+-                //s.flush();
+-                
+-                tx.commit();
+-                
+-                
+             } catch (HibernateException e) {
+-                exception = 2;
+-                logger.error(&quot;Message &quot;+  e.getMessages().toString()); 
++                //exception = 2;
+                 logger
+-                        .error(
+-                                &quot;deleteObjectWithId(Object) - Something went wrong here; discard all partial changes&quot;,
+-                                e);
++                .error(
++                        &quot;updateObject() - Something went wrong here; discard all partial changes&quot;,
++                        e);
++                
+                 if (tx != null) {
+                     try {
+                         // Something went wrong; discard all partial changes
+@@ -281,10 +277,7 @@
+                     HibernateUtil.closeSession();
+                 } catch (HibernateException e1) {
+                     
+-                    logger
+-                            .error(
+-                                    &quot;deleteObjectWithId(Object) - Could not Close the Session&quot;,
+-                                    e1);
++                    logger.error(&quot;updateObject() - Could not Close the Session&quot;, e1);
+                     
+                 }
+             }
+@@ -294,10 +287,11 @@
+             }
+             
+         if (logger.isDebugEnabled()) {
+-            logger.debug(&quot;deleteObjectWithId(Object) - end&quot;);
++            logger.debug(&quot;updateObject(VideoFormat) - end&quot;);
+         }
++        return o;
+     }
+-  
++
+     
+     public static void deleteObject(Object o) throws DataBaseException{
+         if (logger.isDebugEnabled()) {
+@@ -319,7 +313,7 @@
+                     
+                 
+                 } catch (HibernateException e) {
+-                    logger.error(&quot;deleteObject(). Fehler beim Speichern/Updaten &quot;
++                    logger.error(&quot;deleteObject(). Fehler beim L&#246;schen &quot;
+                             + &quot;des Objectes:&quot; + o + &quot; Exception: &quot; + e);
+                     exception = 1;
+                 }
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000202.html">[Provirent-svn-commit] r201 - in project_src/provirent_hibernate/src/de/hsharz/provirent: management/gui management/gui/language persistence
+</A></li>
+	<LI>Next message: <A HREF="000204.html">[Provirent-svn-commit] r203 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#203">[ date ]</a>
+              <a href="thread.html#203">[ thread ]</a>
+              <a href="subject.html#203">[ subject ]</a>
+              <a href="author.html#203">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

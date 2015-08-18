@@ -1,0 +1,305 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r94 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r94%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200411061343.iA6DhI8h001705%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000094.html">
+   <LINK REL="Next"  HREF="000096.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r94 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r94%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui&In-Reply-To=%3C200411061343.iA6DhI8h001705%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r94 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Sat Nov  6 14:43:18 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000094.html">[Provirent-svn-commit] r93 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+        <LI>Next message: <A HREF="000096.html">[Provirent-svn-commit] r95 - in project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#95">[ date ]</a>
+              <a href="thread.html#95">[ thread ]</a>
+              <a href="subject.html#95">[ subject ]</a>
+              <a href="author.html#95">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-11-06 14:43:17 +0100 (Sat, 06 Nov 2004)
+New Revision: 94
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java	2004-11-04 19:59:24 UTC (rev 93)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui/ManagmentGui.java	2004-11-06 13:43:17 UTC (rev 94)
+@@ -191,18 +191,10 @@
+      */
+     public static void main(String[] args) {
+         ManagmentGui inst = new ManagmentGui();
+-        inst.showGUI();
+         inst.run();
+     }
+ 
+-    /**
+-     * Auto-generated method to display this org.eclipse.swt.widgets.Composite
+-     * inside a new Shell.
+-     */
+-    public void showGUI() {
+ 
+-    }
+-
+     public void run() {
+         shell.open();
+         while (!shell.isDisposed()) {
+@@ -224,7 +216,7 @@
+         l = PropertyResourceBundle.getBundle(
+                 &quot;de.hsharz.provirent.managment.gui.language.main&quot;, locale);
+ 
+-        //hier muss noch was gemacht werden
++        //@todo hier muss noch was gemacht werden
+         if (l == null) {
+             System.exit(-1586);
+         }
+@@ -234,28 +226,60 @@
+         shell = new Shell(display);
+         shell.setText(l.getString(&quot;mainwindow.title&quot;));
+ 
++        //set the Site
++        shell.setSize(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
++
+         {
+             //Register as a resource user - SWTResourceManager will
+             //handle the obtaining and disposing of resources
+             SWTResourceManager.registerResourceUser(shell);
+         }
++        //set the layout for the shell
++        FillLayout thisLayout = new FillLayout(SWT.HORIZONTAL);
++        shell.setLayout(thisLayout);
++        
++       
+ 
+-        //shell.setLayout(new FormLayout());
+-        shell.setLayout(new FillLayout());
+-
+-        shell.layout();
+-
+         //init the db, so it saves time later
+         //does that in a new Thread
+         initDB();
+         
+         //init the rest
+         initGUI();
++        
++        shell.layout();
+ 
+     }
+ 
++    private void initGUI() {
++        try {
++
++            //set't the menu
++            rootMenu = new Menu(shell, SWT.BAR);
++            shell.setMenuBar(rootMenu);
++
++            //init the other menu's
++            initFileMenu();
++            initViewMenu();
++            initHelpMenu();
++
++            //the root composite
++            //this init's the maincomposite
++            initRootComposite();
++            initStatusComposite();
++
++            initMainTabFolder();
++
++            initFormatTab();
++
++        } catch (Exception e) {
++            e.printStackTrace();
++        }
++    }    
++    
++    
+     /**
+-     *  init the File menu
++     * init the File menu
+      */
+     private void initFileMenu() {
+         if (rootMenu == null) {
+@@ -385,19 +409,6 @@
+ 
+     }
+ 
+-    
+-    private void initFormatTab() {
+-        tabItemFormat = new CTabItem(cTabFolderMain, SWT.NONE);
+-        tabItemFormat.setText(l.getString(&quot;tab.format.title&quot;));
+-        {
+-            compositeFormate = new CompositeFormate(
+-                cTabFolderMain,
+-                SWT.NONE, statusLine, locale);
+-            
+-            tabItemFormat.setControl(compositeFormate);
+-        }
+-    }
+-    
+     private void initRootComposite() {
+ 
+         //set up the root composite incl. layout
+@@ -419,9 +430,8 @@
+         //init the MainComposite
+         initMainComposite();
+     }
+-    
++  
+ 
+-
+     private void initMainComposite(){
+         compositeMain = new Composite(compositeRoot, SWT.EMBEDDED);
+         GridLayout composite3Layout = new GridLayout();
+@@ -440,79 +450,42 @@
+         composite3LData.grabExcessVerticalSpace = true;
+         compositeMain.setLayoutData(composite3LData);
+     
+-        //init the MainTabFolder
++
+     }
+     
+     private void initMainTabFolder() {
+-        
++        cTabFolderMain = new CTabFolder(compositeMain, SWT.CLOSE);
++        //cTabFolderMain.setSelection(null);
++        GridData cTabFolder1LData = new GridData();
++        cTabFolder1LData.grabExcessHorizontalSpace = true;
++        cTabFolder1LData.horizontalAlignment = GridData.FILL;
++        cTabFolder1LData.grabExcessVerticalSpace = true;
++        cTabFolder1LData.verticalAlignment = GridData.FILL;
++        cTabFolderMain.setLayoutData(cTabFolder1LData);
+     }
+     
+-    private void initGUI() {
+-        try {
++    private void initFormatTab() {
++        tabItemFormat = new CTabItem(cTabFolderMain, SWT.NONE);
++        tabItemFormat.setText(l.getString(&quot;tab.format.title&quot;));
++        {
++            compositeFormate = new CompositeFormate(
++                cTabFolderMain,
++                SWT.NONE, statusLine, locale);
++            
++            tabItemFormat.setControl(compositeFormate);
++        }
++    }
++    
++    
+ 
+-            //set't the menu
+-            rootMenu = new Menu(shell, SWT.BAR);
+-            shell.setMenuBar(rootMenu);
++ 
+ 
+-            //init the other menu's
+-            initFileMenu();
+-            initViewMenu();
+-            initHelpMenu();
++    
+ 
+-            //set the layout for the shell
+-            FillLayout thisLayout = new FillLayout(SWT.HORIZONTAL);
+-            shell.setLayout(thisLayout);
+ 
+-            //set the Site
+-            shell.setSize(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
+-            {
+-                //the root composite
+-                //this init's the maincomposite
+-                initRootComposite();
+-                initStatusComposite();
+ 
+-                {
+-                    {
+-                        cTabFolderMain = new CTabFolder(compositeMain, SWT.CLOSE);
+-                        //cTabFolderMain.setSelection(null);
+-                        GridData cTabFolder1LData = new GridData();
+-                        cTabFolder1LData.grabExcessHorizontalSpace = true;
+-                        cTabFolder1LData.horizontalAlignment = GridData.FILL;
+-                        cTabFolder1LData.grabExcessVerticalSpace = true;
+-                        cTabFolder1LData.verticalAlignment = GridData.FILL;
+-                        cTabFolderMain.setLayoutData(cTabFolder1LData);
+-                        {
+-                            initFormatTab();
+-                            /*
+-                            tabItemFormat = new CTabItem(cTabFolderMain, SWT.NONE);
+-                            tabItemFormat.setText(&quot;Formate&quot;);
+-                            {
+-                                compositeFormate = new CompositeFormate(
+-                                    cTabFolderMain,
+-                                    SWT.NONE, statusLine, locale);
+-                                
+-                                tabItemFormat.setControl(compositeFormate);
+-                            }
+-                            */
+-                        }
+-                    }
+-                }
+-                {
+-                    //init the Composite for statusline
+-                    
+-                    //compositeFormate.setStatusLine(statusLine);
+ 
+-                }
+-            }
+-            shell.layout();
+-        } catch (Exception e) {
+-            e.printStackTrace();
+-        }
+-    }
+ 
+-
+-
+-
+     private void initStatusComposite() {
+         compositeStatusLine = new Composite(compositeRoot, SWT.EMBEDDED);
+         GridLayout composite2Layout = new GridLayout();
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000094.html">[Provirent-svn-commit] r93 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+	<LI>Next message: <A HREF="000096.html">[Provirent-svn-commit] r95 - in project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#95">[ date ]</a>
+              <a href="thread.html#95">[ thread ]</a>
+              <a href="subject.html#95">[ subject ]</a>
+              <a href="author.html#95">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

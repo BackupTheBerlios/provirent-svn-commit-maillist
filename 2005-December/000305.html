@@ -1,0 +1,297 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r303 - docu/latex
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r303%20-%20docu/latex&In-Reply-To=%3C200512182337.jBINbJZ4024720%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000304.html">
+   <LINK REL="Next"  HREF="000306.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r303 - docu/latex</H1>
+    <B>rgriesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r303%20-%20docu/latex&In-Reply-To=%3C200512182337.jBINbJZ4024720%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r303 - docu/latex">rgriesch at berlios.de
+       </A><BR>
+    <I>Mon Dec 19 00:37:19 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000304.html">[Provirent-svn-commit] r302 - docu/latex
+</A></li>
+        <LI>Next message: <A HREF="000306.html">[Provirent-svn-commit] r304 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#305">[ date ]</a>
+              <a href="thread.html#305">[ thread ]</a>
+              <a href="subject.html#305">[ subject ]</a>
+              <a href="author.html#305">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2005-12-19 00:37:16 +0100 (Mon, 19 Dec 2005)
+New Revision: 303
+
+Modified:
+   docu/latex/3-4-GUIJava.tex
+   docu/latex/4-3-GUIJava.tex
+Log:
+Textteile korrigiert und erweitert
+neue ?\195?\156berschrift f?\195?\188r mein Kapitel
+
+Remo
+
+Modified: docu/latex/3-4-GUIJava.tex
+===================================================================
+--- docu/latex/3-4-GUIJava.tex	2005-12-18 18:37:16 UTC (rev 302)
++++ docu/latex/3-4-GUIJava.tex	2005-12-18 23:37:16 UTC (rev 303)
+@@ -1,11 +1,11 @@
+-\section{grafischen Benutzerschnittstellen in Java} \label{sec:tech-Benutzerschnittstellen}
++\section{grafische Benutzerschnittstellen in Java} \label{sec:tech-Benutzerschnittstellen}
+ \subsection{Abstract Window Toolkit - AWT}
+-Die Abk&#252;rzung AWT steht f&#252;r Abstract Window Toolkit. AWT stellt eine Standard-API f&#252;r die Erzeugung und Darstellung von plattformunabh&#228;ngigen Benutzerschnittstellen f&#252;r grafische Oberfl&#228;chen in Java zur Verf&#252;gung. AWT verwendet die nativen GUI-Komponenten des jeweiligen Betriebssystem zur Darstellung der grafischen Oberfl&#228;chen. Da diese nativen GUI-Komponenten teilweise mit umfangreichen Betriebssystem Ressourcen verbunden sind, wird AWT auch als Heavyweight-Framework bzw. die einzelnen GUI-Elemenete als Heavyweight-Components bezeichnet.\\ 
++Die Abk&#252;rzung AWT steht f&#252;r Abstract Window Toolkit. AWT stellt eine Standard-API f&#252;r die Erzeugung und Darstellung von plattformunabh&#228;ngigen Benutzerschnittstellen f&#252;r grafische Oberfl&#228;chen in Java zur Verf&#252;gung. AWT verwendet die nativen GUI-Komponenten des jeweiligen Betriebssystem zur Darstellung der grafischen Oberfl&#228;chen. Da diese nativen GUI-Komponenten teilweise mit umfangreichen Betriebssystemressourcen verbunden sind, wird AWT auch als Heavyweight-Framework bzw. die einzelnen GUI-Elemenete als Heavyweight-Components bezeichnet.\\ 
+ Seit dem JDK ( Java Development Kit ) 1.0 steht AWT als Grafik-Bibliothek f&#252;r die Anwender zur Verf&#252;gung. Dabei l&#228;sst sich AWT in 4 Gruppen unterteilen:
+ \begin{itemize}
+-	\item Grafische Primitivoperationen zum Zeichen von Linien oder F&#252;llen von Fl&#228;chen und zur Ausgabe von Text
+-	\item	Methoden zur Steuerung von des Programmablaufs &#252;ber Nachrichten durch Tastatur-, Maus- oder Fensterereignisse.
+-	\item portables Design f&#252;r Dialogboxen f&#252;r Darstellung der Dialogelemente und die Kommunikation mit dem Anwender
++	\item Grafische Primitivoperationen zum Zeichnen von Linien oder F&#252;llen von Fl&#228;chen und zur Ausgabe von Text
++	\item	Methoden zur Steuerung des Programmablaufs &#252;ber Nachrichten durch Tastatur-, Maus- oder Fensterereignisse.
++	\item Portables Design f&#252;r Dialogboxen zur Darstellung der Dialogelemente und die Kommunikation mit dem Anwender
+ 	\item Fortgeschrittene Grafikfunktionen f&#252;r die Bearbeitung und Darstellung von Bitmaps, sowie zur Ausgabe von Sound
+ \end{itemize}
+ Aufgrund der hohen Performance-Anspr&#252;che von AWT, besonders f&#252;r gro&#223;e GUI-Anwendungen, wurde es im JDK 1.1 von SUN massiv ver&#228;ndert. Dabei wurden viele Fehler behoben und auch viele Methodennamen ver&#228;ndert. Des Weiteren wurde das Event Handling-Modell, also der Transfer von GUI-Ereignissen, komplett &#252;berarbeitet. Dazu wurde AWT die F&#228;higkeit gegeben GUI-Ereignisse an beliebige Objekte zu &#252;bergeben und dort abzuarbeiten. Aufgrund dieser F&#228;higkeit erreicht man eine klare Trennung zwischen Benutzeroberfl&#228;che und Applikationslogik.\citep{Krueger2003}
+@@ -16,51 +16,51 @@
+ \subsection{Swing}
+ Swing ist eine weitere Grafikbibliothek die im JDK 1.1 als Add-on verf&#252;gbar war und seit Version 1.2 fester Bestandteil des Java Development Kit ist. Swing wurde von SUN entwickelt um die grafische Benutzeroberfl&#228;che von Java Programmen zu verbessern, da man folgende Eigenschaften von AWT als nachteilig ansah:
+ \begin{itemize}
+-	\item Aufgrund der Verwendung der jeweiligen nativen GUI-Elemente des eingesetzten Betriebssystems, war es sehr schwer einen einheitliches Look-an-Feel ( Aussehen ) zu realisieren.
+-	\item Um das Verhalten der verschiedenen GUI-Elemete der einzelnen Betriebssystemen ann&#228;hernd anzugleichen war sehr viel Portierungsaufwand notwendig.
++	\item Aufgrund der Verwendung der jeweiligen nativen GUI-Elemente des eingesetzten Betriebssystems, war es sehr schwer ein einheitliches Look-an-Feel ( Aussehen ) zu realisieren.
++	\item Um das Verhalten der verschiedenen GUI-Elemente der einzelnen Betriebssysteme ann&#228;hernd anzugleichen war sehr viel Portierungsaufwand notwendig.
+ 	\item Des Weiteren gibt es in AWT nur eine Grundmenge an Dialogelementen mit denen sich aufwendige grafische Oberfl&#228;chen nur mit sehr viel Zeitaufwand realisieren lassen.
+ \end{itemize}
+ Das Ziel der Entwickler war es diese Nachteile mit Swing zu beseitigen.\\
+-Der erste Schritt die Nachteile zu beseitigen ist, das mit Swing nur noch eingeschr&#228;nkt auf die jeweiligen nativen GUI-Elemente zugreift. Die restlichen GUI-Elemente werden von Swing selbst erzeugt und gezeichnet.
++Um einen Teil der Nachteile zu beseitigen, greift Swing nur noch eingeschr&#228;nkt auf die jeweiligen nativen GUI-Elemente zu. Die restlichen GUI-Elemente werden von Swing selbst erzeugt und gezeichnet.
+ \begin{itemize}
+-	\item Aufgrund dieser Vorgehensweise entf&#228;llt ein Gro&#223;teil der plattformspezifischen Besonderheiten weg.
++	\item Aufgrund dieser Vorgehensweise f&#228;llt ein Gro&#223;teil der plattformspezifischen Besonderheiten weg.
+ 	\item Des Weiteren entf&#228;llt die unterschiedliche Bedienung und Darstellung zwischen den verschiedenen Betriebssystemen, so dass ein Anwender auf allen Betriebssystemen dasselbe Aussehen vorfindet.
+ 	\item Zus&#228;tzlich ist SWING nicht mehr angewiesen auf den kleinsten gemeinsamen Nenner der GUI-Elemente der Betriebsysteme aufzubauen, sondern kann unabh&#228;ngig davon komplexere GUI-Elemente bereitstellen ohne auf das jeweilige Betriebssystem zu achten. Au&#223;erdem stehen in Swing dem Programmierer viel mehr Dialogelemente zur Verf&#252;gung als das bei AWT der Fall war.
+ \end{itemize}
+ 
+ \subsubsection{Leichtgewicht-Komponenten}
+-Aus diesem Grund werden die GUI-Elemente in Swing als Lightweight-Components bezeichnet, da sie nicht mehr &#252;ber die betriebssystemspezifische Klassen erstellt werden m&#252;ssen sondern durch Komponenten-Klassen mit Hilfe von Primitivoperationen erzeugt werden.\\
+-Mit Hilfe der Leichtgewicht-Komponenten war es zus&#228;tzlich m&#246;glich Tooltips ( kleine Fenster mit n&#252;tzlichen Informationen ) unabh&#228;ngig vom verwendeten Grafiksystem und einen Debug-Modus ( Debug-Grafik ), zum Finden von Fehlern w&#228;hrend der Erzeugung von grafischen Oberfl&#228;chen, zu implementieren.
++Die GUI-Elemente in Swing werden als Lightweight-Components bezeichnet, da sie nicht mehr &#252;ber die betriebssystemspezifische Klassen erstellt werden m&#252;ssen, sondern durch Komponenten-Klassen mit Hilfe von Primitivoperationen erzeugt werden.\\
++Mit Hilfe der Leichtgewicht-Komponenten war es zus&#228;tzlich m&#246;glich, Tooltips ( kleine Fenster mit n&#252;tzlichen Informationen ) unabh&#228;ngig vom verwendeten Grafiksystem und einem Debug-Modus ( Debug-Grafik ) zum Finden von Fehlern w&#228;hrend der Erzeugung von grafischen Oberfl&#228;chen zu implementieren.
+ 
+ 
+ \subsubsection{Pluggable Look-and-Feel}
+-Eine der spektakul&#228;rsten Eigenschaften von Swing ist das Look-and-Feel der GUI-Elemente zur  Laufzeit zu ver&#228;ndern. Dabei hat der Anwender die M&#246;glichkeit zwischen einer bestimmte Menge an Look-and-Feels auszuw&#228;hlen. Des Weiteren ist es m&#246;glich auch eigene Look-and-Feels zu erstellen.\\
+-Die Entscheidung welches Look-and-Feel verwendet werden soll, muss dazu nicht w&#228;hrend der Design-Phase entschieden werden. Sondern man kann dem Anwender ein Men&#252; zur Verf&#252;gung stellen indem er er w&#228;hrend der Laufzeit das ihm passende Look-and-Feel ausw&#228;hlt. Das Umschalten erfolgt praktisch ohne weiteren Aufwand des Programms, sondern wird von einem User-Interface-Manager erledigt, der alle notwendigen Ma&#223;nahmen ausf&#252;hrt.
++Eine der spektakul&#228;rsten Eigenschaften von Swing ist das Look-and-Feel der GUI-Elemente zur  Laufzeit zu ver&#228;ndern. Dabei hat der Anwender die M&#246;glichkeit zwischen einer bestimmten Menge an Look-and-Feels auszuw&#228;hlen. Des Weiteren ist es m&#246;glich auch eigene Look-and-Feels zu erstellen.\\
++Die Entscheidung, welches Look-and-Feel verwendet werden soll, muss dazu nicht w&#228;hrend der Design-Phase entschieden werden. Man kann dem Anwender ein Men&#252; zur Verf&#252;gung stellen, indem er w&#228;hrend der Laufzeit das ihm passende Look-and-Feel ausw&#228;hlt. Das Umschalten erfolgt praktisch ohne weiteren Aufwand des Programmes, es wird von einem User-Interface-Manager erledigt, der alle notwendigen Ma&#223;nahmen ausf&#252;hrt.
+ 
+ 
+ \subsubsection{Das Model-View-Controller Prinzip}
+ Beim Model-View-Controller Prinzip wird nicht die gesamte Funktionalit&#228;t in eine Klasse gepackt sondern in drei Bestandteile zerlegt:
+ \begin{itemize}
+-	\item Das Modell enth&#228;lt die Daten des Dialogelements und speichert seinen Zustand.
++	\item Das Modell enth&#228;lt die Daten des Dialogelementes und speichert seinen Zustand.
+ 	\item Der View ist f&#252;r die grafische Darstellung der Komponente verantwortlich.
+-	\item Der Controller wirkt als Verbindungsglied zwischen dem Modell und View und st&#246;&#223;t bei Ereignissen die notwendigen Ma&#223;nahmen zur Ver&#228;nderung von Modell und View an.
++	\item Der Controller wirkt als Verbindungsglied zwischen dem Modell und dem View und st&#246;&#223;t bei Ereignissen die notwendigen Ma&#223;nahmen zur Ver&#228;nderung von Modell und View an.
+ \end{itemize}
+ Eine wichtige Eigenschaft bei diesem Prinzip ist, dass ein Modell mehrere Views gleichzeitig haben kann. Dazu werden bei Ver&#228;nderungen am Modell die Views benachrichtigt und aktualisieren sich entsprechend.\\
+-Bei Swing sind der View und der Controller in einer Klasse untergebracht, dadurch wird die Komplexit&#228;t reduziert. Au&#223;erdem ist in den meisten F&#228;llen der Controller so einfach strukturiert, das es sich gar nicht lohnt ihn in einer zus&#228;tzlichen Klasse zu implementieren.\\
++Bei Swing sind der View und der Controller in einer Klasse untergebracht, dadurch wird die Komplexit&#228;t reduziert. Au&#223;erdem ist in den meisten F&#228;llen der Controller so einfach strukturiert, dass es sich gar nicht lohnt ihn in einer zus&#228;tzlichen Klasse zu implementieren.\\
+ Die hier genannten Eigenschaften bringen aber auch Nachteile mit sich:
+ \begin{itemize}
+-	\item Swing-Anwendungen sind ressourcenhungrig. Da alle Komponenten selbst gezeichnet werden m&#252;ssen, erfordert es die dementsprechende CPU-Leistung und Hauptspeicher.
+-	\item Im JDK 1.2 gab es Speicherprobleme mit Swing-Elementen, da diese den Speicher den sie belegten nicht wieder komplett freigaben und sich dadurch der verf&#252;gbare Speicher mit der Zeit verringerte.
+-	\item F&#252;r Applet-Programmierer gab es keine Browser mit eingebauter Swing- Unterst&#252;tzung und m&#252;ssen dies dem Anwender durch einen zus&#228;tzlichen Download und Installationsschritt zumuten oder auf AWT zur&#252;ckgreifen.
++	\item Swing-Anwendungen sind ressourcenhungrig. Da alle Komponenten selbst gezeichnet werden m&#252;ssen, erfordert es eine h&#246;here CPU-Leistung und Hauptspeicher.
++	\item Im JDK 1.2 gab es Speicherprobleme mit Swing-Elementen, da diese den Speicher, den sie belegten, nicht wieder komplett freigaben und sich dadurch der verf&#252;gbare Speicher mit der Zeit verringerte.
++	\item F&#252;r Applet-Programmierer gab es keine Browser mit eingebauter Swing-Unterst&#252;tzung, dies muss dem Anwender durch einen zus&#228;tzlichen Download ( der enstsprechenden Bibliothek ) und Installationsschritt zugemutet werden. Eine andere Alternative w&#228;re auf AWT zur&#252;ckzugreifen.
+ \end{itemize}
+ Aufgrund der steigenden Rechenleistung der PCs und der im JDK 1.3 verbesserten Swing-Grafikbibliothek konnten jedoch viele der Probleme behoben werden. \citep{Krueger2003}
+ 
+ 
+ \subsection{Standard Widget Toolkit und JFace}\label{sec:StandardWidgetToolkitundJFace}
+ SWT ist ebenfalls eine Grafikbibliothek f&#252;r Java und steht f&#252;r Standard Widget Toolkit. Im Gegensatz zu den anderen genannten Grafikbibliotheken ist SWT von IBM und nicht von SUN entwickelt wurden. SWT wurde im Jahr 2001 f&#252;r die Entwicklungsumgebung Eclipse entwickelt. Im Gegensatz zu Swing verwendet SWT die nativen grafischen Elemente des Betriebssystems und schlie&#223;t sich damit AWT an.\\
+-Des Weiteren ist SWT im Gegensatz zu AWT und Swing nicht als plattformunabh&#228;ngig zu betrachten. Dies resultiert daraus, das  SWT die entsprechende Bibliothek f&#252;r den betriebssystemabh&#228;ngigen Code f&#252;r die GUI-Elemente zur Laufzeit ben&#246;tigt. Zus&#228;tzlich werden die  Java-Klassen der SWT-Bibliothek ben&#246;tigt, die auf die betriebsystemabh&#228;nige Bibliothek zugreifen.\\
+-Leider leidet SWT aufgrund des eben beschriebenen Sachverhalts auf einigen nicht Windows-Plattformen an Effizienzproblemen, da bestimmte Funktionalit&#228;ten eventuell nicht verf&#252;gbar sind und dadurch emuliert werden m&#252;ssen. Aufgrund des nicht voherhersagbaren Zeitpunkts an dem nicht mehr verwendete Objekte durch den Garbage Collector freigegeben werden, hat IBM implementiert das alle erstellten Objekte selbst freigegeben werden m&#252;ssen. Durch diese Vorgehensweise wird sicher gestellt, das der komplette Speicher den ein SWT-Objekt belegt wieder freigegeben wird. Dies bedeutet f&#252;r einen Programmierer zus&#228;tzlichen Aufwand, da der Programmierer daf&#252;r verantwortlich ist erzuegte Objekte wieder freizugeben.\\
+-JFace ist ein UI-Toolkit und setzt aus den gelieferten Basiskomponenten von SWT komplexere Widgets zusammen. JFace kann daher &#252;berall eingesetzt werden wo auch SWT zur Verf&#252;gung steht.\citep[SWT]{Wikipedia2005} \citep{SWTBasic}
++Des Weiteren ist SWT, im Gegensatz zu AWT und Swing, nicht als plattformunabh&#228;ngig zu betrachten. Dies resultiert daraus, dass  SWT die entsprechende Bibliothek f&#252;r den betriebssystemabh&#228;ngigen Code f&#252;r die GUI-Elemente zur Laufzeit ben&#246;tigt. Zus&#228;tzlich werden die  Java-Klassen der SWT-Bibliothek ben&#246;tigt, die auf die betriebsystemabh&#228;ngige Bibliothek zugreifen.\\
++Leider leidet SWT aufgrund des eben beschriebenen Sachverhaltes auf einigen nicht Windows-Plattformen an Effizienzproblemen, da bestimmte Funktionalit&#228;ten eventuell nicht verf&#252;gbar sind und dadurch emuliert werden m&#252;ssen. Aufgrund des nicht vorhersagbaren Zeitpunktes an dem nicht mehr verwendete Objekte durch den Garbage Collector freigegeben werden, hat IBM implementiert, dass alle erstellten Objekte selbst freigegeben werden m&#252;ssen. Durch diese Vorgehensweise wird sicher gestellt, dass der komplette Speicher, den ein SWT-Objekt belegt, wieder freigegeben wird. Dies bedeutet f&#252;r einen Programmierer zus&#228;tzlichen Aufwand, da der Programmierer daf&#252;r verantwortlich ist, erzeugte Objekte wieder freizugeben.\\
++JFace ist ein UI-Toolkit und setzt aus den gelieferten Basiskomponenten von SWT komplexere Widgets zusammen. JFace kann daher &#252;berall eingesetzt werden, wo auch SWT zur Verf&#252;gung steht.\citep[SWT]{Wikipedia2005} \citep{SWTBasic}
+ 		
+ Krueger2003
+ SWTBasic
+
+Modified: docu/latex/4-3-GUIJava.tex
+===================================================================
+--- docu/latex/4-3-GUIJava.tex	2005-12-18 18:37:16 UTC (rev 302)
++++ docu/latex/4-3-GUIJava.tex	2005-12-18 23:37:16 UTC (rev 303)
+@@ -1,19 +1,19 @@
+-\section{grafischen Benutzerschnittstellen mit SWT} \label{sec:impl-Benutzerschnittstellen}
+-Dieses Kapitel beginnt mit der Vorstellung allgemeiner Komponenten, die w&#228;hrend der Implementierung verwendet wurden. Danach wird auf den Aufbau der grafischen Benutzeroberfl&#228;che und dazu auf einzelne Klassen eingegangen, um einen &#220;berblick &#252;ber die gesamte Implementierung zu vermitteln. Aufgrund dessen das dieses Projekt noch nicht beendet wurde, sind nicht alle hier erw&#228;hnten Funktionalit&#228;ten bereits vollst&#228;ndig realisiert.
++\section{Management Anwendung mit SWT} \label{sec:impl-Benutzerschnittstellen}
++Dieses Kapitel beginnt mit der Vorstellung allgemeiner Komponenten, die w&#228;hrend der Implementierung verwendet wurden. Danach wird auf den Aufbau der grafischen Benutzeroberfl&#228;che und dazu auf einzelne Klassen eingegangen, um einen &#220;berblick &#252;ber die gesamte Implementierung zu vermitteln. Aufgrund dessen, dass dieses Projekt noch nicht beendet wurde, sind nicht alle hier erw&#228;hnten Funktionalit&#228;ten bereits vollst&#228;ndig realisiert.
+ 
+ \subsection{Log4j} \label{sec:Log4j}
+-Log4j\footnote{\url{org.apache.log4j}} wurde w&#228;hrend der Implementierung der einzelnen Klassen genutzt um evtl. Debug- und Fehlermeldungen &#252;ber eine gemeinsame Schnittstelle zu verwalten. Dabei unterst&#252;tzt Log4j Hierarchien, das bedeutet man kann Logger-Ausgaben einer bestimmten Hierarchie zuordnen und dadurch entscheiden welche Ausgaben man im Moment ben&#246;tigt.\\
++Log4j\footnote{\url{org.apache.log4j}} wurde w&#228;hrend der Implementierung der einzelnen Klassen genutzt um evtl. Debug- und Fehlermeldungen &#252;ber eine gemeinsame Schnittstelle zu verwalten. Dabei unterst&#252;tzt Log4j Hierarchien, das bedeutet man kann Logger-Ausgaben einer bestimmten Hierarchie zuordnen und dadurch entscheiden, welche Ausgaben man im Moment ben&#246;tigt.\\
+ Aufgrund dieser Debug- und Fehlermeldungen konnte das Programmverhalten bei Bedienungsfehlern entsprechend angepasst werden. Des Weiteren konnte auf diese Weise der Programmablauf verfolgt und evtl. Fehler in der Programmierung beseitigt werden.
+ 
+ \subsection{PropertyResourceBundle-Klasse} \label{sec:PropertyResourceBundleKlasse}
+-Die PropertyResourceBundle-Klasse befindet sich java.util package. Um die M&#246;glichkeit zu haben vor und w&#228;hrend des Programmablaufs die Sprache im Programm zu &#228;ndern, sind, anstatt des eigentlichen Namen von Buttons oder der Inhalt von Hilfetexten, entsprechende Bezeichner definiert wurden. Diese Bezeichner befinden sich mit dem zugeh&#246;rigen Inhalten in verschiedenen Textdateien. Mit Hilfe der PropertyResourceBundle-Klasse k&#246;nnen nun die entsprechenden Dateien ausgelesen werden und ersetzen die definierten Bezeichner mit dem eigentlichen Inhalt. Dazu wird die Datei ausgelesen und ein entsprechendes ResourceBundle erzeugt, &#252;ber den man Zugriff auf die definierten Bezeichner und deren Inhalt hat. Dadurch ist es m&#246;glich verschiedene Sprachen zu unterst&#252;tzen, indem man f&#252;r jede Sprache entsprechende Dateien erzeugt bei denen die selben Bezeichner definiert sind, der Inhalt aber in der entsprechenden Sprache vorliegt.
++Die PropertyResourceBundle-Klasse befindet sich java.util package. Um die M&#246;glichkeit zu haben, vor und w&#228;hrend des Programmablaufs die Sprache im Programm zu &#228;ndern, sind, anstatt des eigentlichen Namens von Buttons oder der Inhalte von Hilfetexten, entsprechende Bezeichner definiert wurden. Diese Bezeichner befinden sich mit dem zugeh&#246;rigen Inhalten in verschiedenen Textdateien. Mit Hilfe der PropertyResourceBundle-Klasse k&#246;nnen nun die entsprechenden Dateien ausgelesen werden und ersetzen die definierten Bezeichner mit dem eigentlichen Inhalt. Dazu wird die Datei ausgelesen und ein entsprechendes ResourceBundle erzeugt, &#252;ber den man Zugriff auf die definierten Bezeichner und deren Inhalt hat. Es ist m&#246;glich verschiedene Sprachen zu unterst&#252;tzen, indem man f&#252;r jede Sprache entsprechende Dateien erzeugt, bei denen die selben Bezeichner definiert sind, der Inhalt aber in der entsprechenden Sprache vorliegt.
+ 
+ \subsection{Locale-Klasse} \label{sec:LocaleKlasse}
+-Mit Hilfe der Locale-Klasse ( java.util package ) ist man in der Lage sich an bestimmte geographische, politische oder kulturelle Eigenschaften bestimmter Gebiete anzupassen. Im Zusammenhang mit diesem Projekt wird Locale dazu verwendet sich der entsprechenden Zeitzone und, wenn vom Programm unterst&#252;tzt, die dortige Sprache als Standard-Sprache zu &#252;bernehmen. Das Einstellen der Region,Sprache,etc. muss aber durch den Benutzer erfolgen.
++Mit Hilfe der Locale-Klasse ( java.util package ) ist man in der Lage sich an bestimmte geographische, politische oder kulturelle Eigenschaften bestimmter Gebiete anzupassen. Im Zusammenhang mit diesem Projekt wird Locale dazu verwendet, die entsprechende Zeitzone und, wenn vom Programm unterst&#252;tzt, die dortige Sprache als Standard-Sprache zu &#252;bernehmen. Das Einstellen der Region,Sprache,etc. muss aber durch den Benutzer erfolgen.
+ 
+ \subsection{Aufbau der grafischen Benutzeroberfl&#228;che} \label{sec:AufbauDerGrafischenBenutzeroberflaeche}
+ F&#252;r die grafische Benutzeroberfl&#228;che wurde auf die SWT-Bibliothek zur&#252;ckgegriffen. Die Entwicklungsumgebung Eclipse baut auch auf SWT auf. Aus diesem Grund stand die SWT-Bibliothek ohne weiteren Aufwand zur Verf&#252;gung. Auf die einzelnen Klassen von SWT wird hier nicht eingegangen, da sich der Umfang des Dokumentes erheblich erh&#246;ht. Alle verwendeten grafischen Komponenten f&#252;r Fenster, Buttons, Textfelder, etc. wurden aus der SWT-Bibliothek verwendet. Genauere Informationen k&#246;nnen &#252;ber die API abgefragt werden.\\
+-Die grafische Oberfl&#228;che baut sich aus einem Hauptfenster ( mit Men&#252;leiste ) auf, das es erlaubt zwischen den einzelnen Unterfenster ( Men&#252;punkten ) zu navigieren und &#252;ber eine Statusleiste verf&#252;gt, die entsprechende Meldungen bei Fehlern oder erfolgreichen Abschlie&#223;en von implementierten Aktionen informiert. Die Untermen&#252;s werden &#252;ber das Hauptfenster aufgerufen, erhalten gleichzeitig den Fokus und werden damit dem Benutzer angezeigt. Um zwischen den verschiedenen Untermen&#252;s zu navigieren kann zum einen das entsprechende Men&#252; aufgerufen werden und zum anderen wird jedes ge&#246;ffnete Men&#252; als Reiter dargestellt. &#220;ber diesen Reiter kann der Fokus auf das gew&#252;nschte Men&#252; gegeben werden. In einzelnen Untermen&#252;s werden f&#252;r kritische Eingaben entsprechende Dialogboxen verwendet, die die Bedienung vereinfachen und verhindern das ein Benutzer falsche Angaben machen kann.\\
++Die grafische Oberfl&#228;che baut sich aus einem Hauptfenster ( mit Men&#252;leiste ) und einer Statusleiste auf. Das Hauptfenster erlaubt es, zwischen den einzelnen Unterfenstern ( Men&#252;punkten ) zu navigieren. Die Statusleiste informiert &#252;ber entsprechende Meldungen bei Fehlern oder erfolgreiches Abschlie&#223;en von Aktionen. Die Untermen&#252;s werden &#252;ber das Hauptfenster aufgerufen, erhalten gleichzeitig den Fokus und werden damit dem Benutzer angezeigt. Um zwischen den verschiedenen Untermen&#252;s zu navigieren, kann zum einen das entsprechende Men&#252; aufgerufen werden und zum anderen wird jedes ge&#246;ffnete Men&#252; als Reiter dargestellt. &#220;ber diesen Reiter kann der Fokus auf das gew&#252;nschte Men&#252; gegeben werden. In einzelnen Untermen&#252;s werden f&#252;r kritische Eingaben entsprechende Dialogboxen verwendet, die die Bedienung vereinfachen und verhindern, dass ein Benutzer falsche Angaben machen kann.\\
+ Der oben vorgestellte Aufbau wird durch folgenden Klassen realisiert:\\
+ \begin{enumerate}
+ 	\item SWTResourceManager ( realisiert das korrekte Freigeben der grafischen Objekte, siehe \vref{sec:StandardWidgetToolkitundJFace})
+@@ -40,17 +40,17 @@
+ 			\item CompositeStatus ( Untermen&#252; f&#252;r den Zustand von DVDs )
+ 			
+ 		\end{enumerate}
+-	\item StatusLineStyledText ( definiert das Aussehen der Statusleiste bei Fehler oder anderen Ereignissen )
++	\item StatusLineStyledText ( definiert das Aussehen der Statusleiste bei Fehlern oder anderen Ereignissen )
+ 	\item SWTCalendarDialog ( bietet eine grafische Kalenderoberfl&#228;che, zur einfacheren Eingabe von Datum- und Zeitangaben )
+ 	\item ColorDef ( definiert Farben f&#252;r festgelegte Ereignisse )
+ \end{enumerate}
+ 
+ \subsection{SWTResourceManager-Klasse} \label{sec:SWTResourceManagerKlasse}
+-Diese Klasse ist verantwortlich daf&#252;r, das grafische Objekte ( Fenster, Buttons, etc. ) wieder freigegeben werden. Dazu wird bei einem nicht mehr verwendeten Objekt die dispose()-Methode aufgerufen und gibt somit das Objekt und den damit verbundenen Speicherplatz wieder frei.
++Diese Klasse ist verantwortlich daf&#252;r, das grafische Objekte ( Fenster, Buttons, etc. ) wieder freigegeben werden. Dazu wird bei einem nicht mehr verwendeten Objekt die dispose()-Methode aufgerufen und somit das Objekt und der damit verbundene Speicherplatz wieder freigegeben.
+ 
+ \subsection{ManagementGui-Klasse} \label{sec:ManagementGuiKlasse}
+-Die ManagementGui-Klasse erzeugt das Hauptfenster indem die anderen Untermen&#252;s angezeigt werden. Des Weiteren wird eine Men&#252;leiste und eine Statusleiste implementiert.\\
+-Dazu wird als Erstes das Hauptfenster erzeugt, der Titel des Fensters &#252;ber Locale l&#160;ermittelt und an das Fenster &#252;bergeben. Die Gr&#246;&#223;e des Fensters ist in Konstanten festgelegt, da sich aufgrund von Bildschirmeinstellungen die jeweilige Aufl&#246;sung sich von System zu System unterscheiden kann.
++Die ManagementGui-Klasse erzeugt das Hauptfenster, indem die anderen Untermen&#252;s angezeigt werden. Des Weiteren wird eine Men&#252;leiste und eine Statusleiste implementiert.\\
++Dazu wird als Erstes das Hauptfenster erzeugt, der Titel des Fensters &#252;ber Locale l&#160;ermittelt und an das Fenster &#252;bergeben. Die Gr&#246;&#223;e des Fensters ist in Konstanten festgelegt, da aufgrund von Bildschirmeinstellungen die jeweilige Aufl&#246;sung sich von System zu System unterscheiden kann.
+ \begin{lstlisting}[language=Java, showstringspaces=false]
+ display&#160;=&#160;Display.getDefault();
+ shell&#160;=&#160;new&#160;Shell(display);
+@@ -70,7 +70,7 @@
+ initHelpMenu();
+ \end{lstlisting}
+ 
+-Das \texttt{ViewMenu} beinhaltet alle implementierten und ausw&#228;hlbaren Untermen&#252;s. Die Bezeichnung der einzelnen Men&#252;punkte ist wieder in Locale \texttt{l} festgelegt. Nachdem der Men&#252;punkt erzeugt wurde, werden die einzelnen Untermen&#252;punkte erzeugt und festgelegt ob sie bereits nach dem Start aktiv sein sollen. Der folgende Quellcodeabschnitt zeigt diese Vorgehensweise mit dem Men&#252;punkt \texttt{menu.view} und dem Untermen&#252;
++Das \texttt{ViewMenu} beinhaltet alle implementierten und ausw&#228;hlbaren Untermen&#252;s. Die Bezeichnung der einzelnen Men&#252;punkte ist wieder in Locale \texttt{l} festgelegt. Nachdem der Men&#252;punkt erzeugt wurde, werden die einzelnen Untermen&#252;punkte erstellt. Danach wird festgelegt, ob die Untermen&#252;s bereits nach dem Start aktiv sein sollen. Der folgende Quellcodeabschnitt zeigt diese Vorgehensweise mit dem Men&#252;punkt \texttt{menu.view} und dem Untermen&#252;
+ \texttt{menu.view.format}.
+ 
+ \begin{lstlisting}[language=Java, showstringspaces=false]
+@@ -83,7 +83,7 @@
+ viewVideoFormatMenuItem.setSelection(false);
+ \end{lstlisting}
+ 
+-Darauf wird dem Untermen&#252;punkt ein \texttt{SelectionListener} zugeordnet der die entsprechende Behandlung festlegt, wenn der Untermen&#252;punkt ausgew&#228;hlt wurde. Bevor das Hauptfenster angezeigt werden kann, wird vorher noch das Layout des Fensters festgelegt und die Statusleiste initialisiert.
++Darauf wird dem Untermen&#252;punkt ein \texttt{SelectionListener} zugeordnet, der die entsprechende Behandlung festlegt, wenn der Untermen&#252;punkt ausgew&#228;hlt wurde. Bevor das Hauptfenster angezeigt werden kann, wird vorher noch das Layout des Fensters festgelegt und die Statusleiste initialisiert.
+ 
+ \begin{lstlisting}[language=Java, showstringspaces=false]
+ //init&#160;the&#160;MainComposite
+@@ -95,7 +95,7 @@
+ \end{lstlisting}
+ 
+ 
+-Das fertige Hauptfenster sieht wie in \vref{fig:fensterstart} zu sehen aus.
++Das fertige Hauptfenster sieht wie in \vref{fig:fensterstart} aus.
+ \begin{figure}[htbp]
+ 	\centering
+ 	\includegraphics[scale=0.5]{images/Fenster_Start}
+@@ -105,7 +105,7 @@
+ 
+ 
+ \subsection{CompositeDVD-Klasse} \label{sec:CompositeDVDKlasse}
+-Die CompositeDVD-Klasse legt das Aussehen und Verhalten des DVD-Men&#252;punktes fest. Wird der DVD-Men&#252;punkt aufgerufen, sorgt die ManagementGui-Klasse daf&#252;r das das DVD-Fenster den Fokus erh&#228;lt und f&#252;gt den DVD-Reiter zu den bereits vorhandenen Reitern hinzu. Die Erzeugung des DVD-Fensters ist &#228;hnlich des Hauptfensters. Der Unterschied besteht darin, das zus&#228;tzlich die ganzen Eigenschaften die ein DVD-Objekt besitzt mit Hilfe des Men&#252;punktes bearbeitet werden k&#246;nnen m&#252;ssen. Dazu wird eine Reihe von Buttons, Labels, Tables, Comboboxen, etc.. ben&#246;tigt.\\
++Die CompositeDVD-Klasse legt das Aussehen und Verhalten des DVD-Men&#252;punktes fest. Wird der DVD-Men&#252;punkt aufgerufen, sorgt die ManagementGui-Klasse daf&#252;r, dass das DVD-Fenster den Fokus erh&#228;lt, ein DVD-Reiter erstellt und zu den bereits vorhandenen Reitern hinzugef&#252;gt wird. Zus&#228;tzlich m&#252;ssen die ganzen Eigenschaften, die ein DVD-Objekt besitzt, mit Hilfe des Men&#252;punktes bearbeitet werden k&#246;nnen. Dazu wird eine Reihe von Buttons, Labels, Tables, Comboboxen, etc. ben&#246;tigt.\\
+ Die grafische Oberfl&#228;che wird im DVD-Fenster in eine linke und rechte H&#228;lfte unterteilt. In der linken H&#228;lfte werden alle DVD-Objekte angezeigt, die sich in der Datenbank befinden. Des Weiteren befindet sich auf der linken Seite ein Suchfeld um die evtl. Massen an DVD-Objekten einfacher zu handhaben. Auf der rechten Seite des DVD-Fensters befindet sich die Editor-Umgebung. Mit Hilfe der verschiedenen Textfelder, Buttons, Comboboxen im Editor k&#246;nnen nun existierende DVDs bearbeitet und neue DVDs in die Datenbank eingef&#252;gt werden.
+ \begin{lstlisting}[language=Java, showstringspaces=false]
+ if&#160;(mode_dvd&#160;==&#160;ManagementGui.MODE_ADD)&#160;&#160;&#160;{
+@@ -124,12 +124,12 @@
+ 	\label{fig:dvdfenster}
+ \end{figure}
+ 
+-Wie oben beschrieben, werden auf der linken Seite des Fenster die in der Datenbank vorhandenen Objekte angezeigt und darunter befindet sich das Suchfeld. Auf der rechten Seiten befinden sich mehrere Buttons, Textfelder, etc. die je nach gew&#252;nschter T&#228;tigkeit aktiviert oder deaktivert sind. Auf diese Art und Weise lassen sich Benutzerfehler verhindern, da je nach gew&#252;nschter T&#228;tigkeit nur die in diesem Zustand m&#246;glichen Aktionen ( Buttons,Textfelder,etc. ) funktionst&#252;chtig sind.\\
+-Wird das DVD-Fenster geschlossen wechselt der Fokus zum n&#228;chsten vorhandenen Reiter, ansonsten ist nur das Hauptfenster sichtbar.\\
++Wie oben beschrieben, werden auf der linken Seite des Fenster die in der Datenbank vorhandenen Objekte angezeigt und darunter befindet sich das Suchfeld. Auf der rechten Seiten befinden sich mehrere Buttons, Textfelder, etc., die je nach gew&#252;nschter T&#228;tigkeit aktiviert oder deaktivert sind. Auf diese Art und Weise lassen sich Benutzerfehler verhindern, da je nach gew&#252;nschter T&#228;tigkeit nur die in diesem Zustand m&#246;glichen Aktionen ( Buttons,Textfelder,etc. ) funktionst&#252;chtig sind.\\
++Wird das DVD-Fenster geschlossen, wechselt der Fokus zum n&#228;chsten vorhandenen Reiter, ansonsten ist nur das Hauptfenster sichtbar.\\
+ Die anderen Untermen&#252;s sind je nach Funktionalit&#228;t komplexer oder weniger komplexer aufgebaut. Trotzdem sind sie im Gro&#223;en und Ganzen identisch zum DVD-Fenster. Aus diesem Grund werden sie hier nicht weiter behandelt.
+ 
+ \subsection{DialogDVD-Klasse} \label{sec:DialogDVDKlasse}
+-Zur einfacheren Handhabung wurden f&#252;r bestimmte Felder, die zum Beispiel mehrere Werte erlauben oder von Benutzern unterschiedlich eingegeben werden k&#246;nnten, Dialogfenster erstellt, um die Eingabe durch den Benutzer einheitlich zu halten. Die DialiogDVD-Klasse realisiert mehrere Dialogfenster unter anderem f&#252;r die Auswahl der Sprache und Untertitel die eine DVD unterst&#252;tzt. Wie der folgenden Quellcodeauschnitt zeigt, wird dazu der gew&#252;nschte Dialogtyp &#252;bergeben und dementsprechend behandelt.
++Zur einfacheren Handhabung wurden f&#252;r bestimmte Felder, die zum Beispiel mehrere Werte erlauben oder von Benutzern unterschiedlich eingegeben werden k&#246;nnten, Dialogfenster erstellt, um die Eingabe durch den Benutzer einheitlich zu halten. Die DialogDVD-Klasse realisiert mehrere Dialogfenster unter anderem f&#252;r die Auswahl der Sprache und der Untertitel, die eine DVD unterst&#252;tzt. Wie der folgende Quellcodeausschnitt zeigt, wird dazu der gew&#252;nschte Dialogtyp &#252;bergeben und dementsprechend behandelt.
+ \begin{lstlisting}[language=Java, showstringspaces=false]
+ if&#160;(type&#160;==&#160;TYPE_LANGUAGE)&#160;{
+   groupDialogDescription.setText(l.getString(&quot;dvd.dialog.title.language&quot;));
+@@ -138,7 +138,7 @@
+ ...
+ \end{lstlisting}
+ 
+-Die folgende (siehe \vref{fig:dvddialogfenster}) Grafik zeigt das Dialogfenster um die Sprachen die eine DVD unterst&#252;tzt auszuw&#228;hlen:
++Die folgende (siehe \vref{fig:dvddialogfenster}) Grafik zeigt das Dialogfenster um die Sprachen, die eine DVD unterst&#252;tzt, auszuw&#228;hlen:
+ \begin{figure}[htbp]
+ 	\centering
+ 	\includegraphics[scale=1.0]{images/Dialog_DVD_Sprachen}
+@@ -146,7 +146,7 @@
+ 	\label{fig:dvddialogfenster}
+ \end{figure}
+ 
+-Je nach verwendeten Dialog steht dem Benutzer ein Suchfeld zur Verf&#252;gung und eine Auswahl an erlaubten Werten. Aus diesen kann &#252;ber das Dialogfenster eine bestimmte Menge ausgew&#228;hlt werden. Die Menge wird &#252;ber eine Liste an die aufrufende Klasse zur&#252;ckgegeben und von ihr f&#252;r das entsprechende Feld &#252;bernommen. Doppelte Eingaben werden dabei durch das Ausblenden bereits ausgew&#228;hlter Werte verhindert.\\
++Je nach verwendetem Dialog steht dem Benutzer ein Suchfeld zur Verf&#252;gung und eine Auswahl an erlaubten Werten. Aus diesen kann &#252;ber das Dialogfenster eine bestimmte Menge ausgew&#228;hlt werden. Die Menge wird &#252;ber eine Liste an die aufrufende Klasse zur&#252;ckgegeben und von ihr f&#252;r das entsprechende Feld &#252;bernommen. Doppelte Eingaben werden dabei durch das Ausblenden bereits ausgew&#228;hlter Werte verhindert.\\
+ Die DialogMovie-Klasse geht in &#228;hnlicher Weise vor und wird deshalb hier nicht weiter behandelt.\\
+ Die SWTCalendarDialog-Klasse realisiert ein Dialogfenster f&#252;r Datum-Eingaben, dazu existiert in der SWT-Bibliothek eine daf&#252;r bereits entwickelte Klasse. Diese SWTCalender-Klasse wird in der SWTCalendarDialog-Klasse verwendet und muss als Argument das anzuzeigende Dialogfenster erhalten.
+ \begin{lstlisting}[language=Java, showstringspaces=false]
+@@ -162,7 +162,7 @@
+ \end{figure}
+ 
+ \subsection{StatusLineStyledText- und ColorDef-Klasse} \label{sec:StatusLineStyledTextUndColorDefKlasse}
+-Beide Klassen realisieren ein einheitliches Aussehen der Statusleiste bzw. Farben f&#252;r die verschiedenen Men&#252;s. In der ColorDef-Klasse sind verschiedenen Farben definiert, um bei Fehlermeldungen oder Ereignisse ein einheitliches Farbschema zu haben. Die StatusLineStyledText-Klasse nutzt dieses Farbschema f&#252;r ensprechende Ausgabe auf der Statuszeile.
++Beide Klassen realisieren ein einheitliches Aussehen der Statusleiste bzw. der Farben f&#252;r die verschiedenen Men&#252;s. In der ColorDef-Klasse sind verschiedene Farben definiert, um bei Fehlermeldungen oder Ereignissen ein einheitliches Farbschema zu haben. Die StatusLineStyledText-Klasse nutzt dieses Farbschema f&#252;r entsprechende Ausgaben auf der Statuszeile.
+ 
+ \subsection{Zusammenfassung}
+ \label{sec:Zusammenfassung}
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000304.html">[Provirent-svn-commit] r302 - docu/latex
+</A></li>
+	<LI>Next message: <A HREF="000306.html">[Provirent-svn-commit] r304 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#305">[ date ]</a>
+              <a href="thread.html#305">[ thread ]</a>
+              <a href="subject.html#305">[ subject ]</a>
+              <a href="author.html#305">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

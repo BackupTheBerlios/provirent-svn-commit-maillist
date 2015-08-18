@@ -1,0 +1,338 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r231 - project_src/provirent_hibernate/src/test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r231%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200412091955.iB9JtwfC031831%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000231.html">
+   <LINK REL="Next"  HREF="000233.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r231 - project_src/provirent_hibernate/src/test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r231%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200412091955.iB9JtwfC031831%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r231 - project_src/provirent_hibernate/src/test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Thu Dec  9 20:55:58 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000231.html">[Provirent-svn-commit] r230 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+        <LI>Next message: <A HREF="000233.html">[Provirent-svn-commit] r232 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#232">[ date ]</a>
+              <a href="thread.html#232">[ thread ]</a>
+              <a href="subject.html#232">[ subject ]</a>
+              <a href="author.html#232">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-12-09 20:55:57 +0100 (Thu, 09 Dec 2004)
+New Revision: 231
+
+Modified:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java	2004-12-08 22:25:31 UTC (rev 230)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/HibernateUtil.java	2004-12-09 19:55:57 UTC (rev 231)
+@@ -32,7 +32,6 @@
+  */
+ package test.provirent.hibernate;
+ 
+-
+ import net.sf.hibernate.HibernateException;
+ import net.sf.hibernate.Session;
+ import net.sf.hibernate.SessionFactory;
+@@ -80,18 +79,16 @@
+         try {
+             //     Create the SessionFactory
+             Configuration cfg = new Configuration();
+-            cfg
+-            .addClass(Movie.class).addClass(Actor.class)
+-            .addClass(AudioFormat.class).addClass(Condition.class)
+-            .addClass(Director.class).addClass(Dvd.class)
+-            .addClass(Genre.class).addClass(Language.class)
+-            .addClass(Status.class).addClass(Bill.class)
+-            .addClass(Subtitle.class).addClass(VideoFormat.class)
+-            .addClass(Customer.class).addClass(Image.class)
+-            .addClass(MovieOrder.class).addClass(OrderItem.class)
+-            .addClass(Person.class).addClass(Payment.class);
++            cfg.addClass(Movie.class).addClass(Actor.class).addClass(
++                    AudioFormat.class).addClass(Condition.class).addClass(
++                    Director.class).addClass(Dvd.class).addClass(Genre.class)
++                    .addClass(Language.class).addClass(Status.class).addClass(
++                            Bill.class).addClass(Subtitle.class).addClass(
++                            VideoFormat.class).addClass(Customer.class)
++                    .addClass(Image.class).addClass(MovieOrder.class).addClass(
++                            OrderItem.class).addClass(Person.class).addClass(
++                            Payment.class);
+ 
+-
+             sessionFactory = cfg.buildSessionFactory();
+         } catch (Throwable ex) {
+             log.error(&quot;Initial SessionFactory creation failed.&quot;, ex);
+@@ -134,45 +131,76 @@
+         }
+     }
+ 
+-    
+-	public static Image getImagename(final String filter, Session s){
++    public static Image getImagename(final String filter, Session s) {
+         if (logger.isDebugEnabled()) {
+             logger
+                     .debug(&quot;getImagename(String filter = &quot; + filter
+                             + &quot;) - start&quot;);
+         }
+-	    
+-	    //init the returnlist
+-	    Image returnimg = null;
+ 
+-	    
+-	    try {
++        //init the returnlist
++        Image returnimg = null;
+ 
+-	            
++        try {
+ 
+-	        returnimg = (Image) s.createCriteria(Image.class).add(
++            returnimg = (Image) s.createCriteria(Image.class).add(
+                     Expression.eq(&quot;imageFileName&quot;, filter)).list().get(0);
+-            
+-            if (logger.isDebugEnabled()) {
+-                logger.debug(&quot;getImagename(String) - end&quot;);
+-            }
+-	
+ 
+-	
+-	
+-	    } catch (Exception e) {
++        } catch (Exception e) {
+             logger.error(&quot;getImagename(String)&quot;, e);
+ 
+-	        logger.error(
+-	                &quot;getImagename() - Error while trying to do Transaction&quot;,
+-	                e);
+-	        returnimg = null;
+-	    }
+-	    return returnimg;
+-	    	
+-	}
+-	
+-	
++            returnimg = null;
++        }
++        return returnimg;
++
++    }
+     
++    public static Condition getCondition(final String filter, Session s) {
++        if (logger.isDebugEnabled()) {
++            logger
++                    .debug(&quot;getCondition(String filter = &quot; + filter
++                            + &quot;) - start&quot;);
++        }
++
++        //init the returnlist
++        Condition returnobject = null;
++
++        try {
++
++            returnobject = (Condition) s.createCriteria(Condition.class).add(
++                    Expression.eq(&quot;conditionName&quot;, filter)).list().get(0);
++
++        } catch (Exception e) {
++            logger.error(&quot;getCondition(String)&quot;, e);
++
++            returnobject = null;
++        }
++        return returnobject;
++
++    }
++
+     
++    public static Status getStatus(final String filter, Session s) {
++        if (logger.isDebugEnabled()) {
++            logger
++                    .debug(&quot;getStatus(String filter = &quot; + filter
++                            + &quot;) - start&quot;);
++        }
++
++        //init the returnlist
++        Status returnobject = null;
++
++        try {
++
++            returnobject = (Status) s.createCriteria(Status.class).add(
++                    Expression.eq(&quot;statusName&quot;, filter)).list().get(0);
++
++        } catch (Exception e) {
++            logger.error(&quot;getStatus(String)&quot;, e);
++
++            returnobject = null;
++        }
++        return returnobject;
++
++    }
+ }
+\ No newline at end of file
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java	2004-12-08 22:25:31 UTC (rev 230)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestCondition.java	2004-12-09 19:55:57 UTC (rev 231)
+@@ -220,7 +220,7 @@
+                 Condition myd3 = new Condition(&quot;mittlere Kratzer&quot;,&quot;&quot;);
+                 Condition myd4 = new Condition(&quot;schwere Kratzer&quot;,&quot;&quot;);
+                 Condition myd5 = new Condition(&quot;nicht lesbar&quot;,&quot;&quot;);
+-
++                
+                 Conditions.add(myd1);
+                 Conditions.add(myd2);
+                 Conditions.add(myd3);
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java	2004-12-08 22:25:31 UTC (rev 230)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java	2004-12-09 19:55:57 UTC (rev 231)
+@@ -1,7 +1,19 @@
+ package test.provirent.hibernate;
+ 
++import java.util.ArrayList;
++
+ import junit.framework.TestCase;
++import net.sf.hibernate.HibernateException;
++import net.sf.hibernate.Session;
++import net.sf.hibernate.Transaction;
+ 
++import org.apache.log4j.Logger;
++
++import de.hsharz.provirent.objects.Condition;
++import de.hsharz.provirent.objects.Dvd;
++import de.hsharz.provirent.objects.Movie;
++import de.hsharz.provirent.objects.Status;
++
+ /*
+  * Created on 09.10.2004
+  *
+@@ -40,6 +52,10 @@
+  *
+  */
+ public class TestDvd extends TestCase {
++    /**
++     * Logger for this class
++     */
++    private static final Logger logger = Logger.getLogger(TestDvd.class);
+ 
+ 	/*
+ 	 * @see TestCase#setUp()
+@@ -63,4 +79,68 @@
+ 		super(arg0);
+ 	}
+ 
++	
++	public void testCreateDvd(){
++	    
++        Session s = null;
++        Transaction tx = null;
++        RandomRange random;
++        
++	    
++	    try{
++	        //s= HibernateUtil.currentSession();
++	        //tx = s.beginTransaction();
++	        if(false)
++	            throw new HibernateException(&quot;&quot;);
++	        
++            //is DB open and connected
++            //assertTrue(&quot;Connected to Db? &quot;, s.isConnected());
++            //assertTrue(&quot;Db Open? &quot;, s.isOpen());
++	        
++            
++            Dvd dvd = new Dvd();
++            
++            
++            random = new RandomRange(1205, 4523682);
++            
++            dvd.setBarcode(random.getNumbers(1).get(0)+&quot;&quot;);
++            
++            if (HibernateUtil.getCondition(&quot;neu&quot;,s) != null){
++                dvd.setCondition(HibernateUtil.getCondition(&quot;neu&quot;,s));
++            } else {
++                fail(&quot;Konnte keine Condition neu aus DB bekommen&quot;);
++            }
++            
++            if (HibernateUtil.getStatus(&quot;ausleihbar&quot;,s) != null){
++                dvd.setStatus(HibernateUtil.getStatus(&quot;ausleihbar&quot;,s));
++            } else {
++                fail(&quot;Konnte keinen Status ausleihbar aus DB bekommen&quot;);
++            }
++            
++            
++            dvd.setMovie(new Movie());
++            
++            
++            dvd.setLanguages(new ArrayList());
++            dvd.setSubtitles(new ArrayList());
++            
++            dvd.setAudioFormats(new ArrayList());
++            dvd.setVideoFormats(new ArrayList());
++	        
++	        
++	    }  catch (HibernateException hex){
++	        fail(&quot;Fehler beim Session oder Transaction aufbau&quot;);
++	        logger.error(&quot;Fehler beim Session oder Transaction aufbau&quot;,hex);
++	        
++    } finally {
++        try {
++            // No matter what, close the session
++            HibernateUtil.closeSession();
++        } catch (HibernateException e) {
++            // TODO Auto-generated catch block
++            e.printStackTrace();
++        }
++    }
++	    
++	}
+ }
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000231.html">[Provirent-svn-commit] r230 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+	<LI>Next message: <A HREF="000233.html">[Provirent-svn-commit] r232 - project_src/provirent_hibernate/src/test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#232">[ date ]</a>
+              <a href="thread.html#232">[ thread ]</a>
+              <a href="subject.html#232">[ subject ]</a>
+              <a href="author.html#232">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

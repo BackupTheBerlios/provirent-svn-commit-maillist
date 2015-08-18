@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r75 - in project_src/strutstest: WEB-INF/classes/resources WEB-INF/src/resources pages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r75%20-%20in%20project_src/strutstest%3A%20WEB-INF/classes/resources%20WEB-INF/src/resources%20pages&In-Reply-To=%3C200411021317.iA2DHeOF019596%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000075.html">
+   <LINK REL="Next"  HREF="000077.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r75 - in project_src/strutstest: WEB-INF/classes/resources WEB-INF/src/resources pages</H1>
+    <B>Stefan at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r75%20-%20in%20project_src/strutstest%3A%20WEB-INF/classes/resources%20WEB-INF/src/resources%20pages&In-Reply-To=%3C200411021317.iA2DHeOF019596%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r75 - in project_src/strutstest: WEB-INF/classes/resources WEB-INF/src/resources pages">sforstner at sheep.berlios.de
+       </A><BR>
+    <I>Tue Nov  2 14:17:40 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000075.html">[Provirent-svn-commit] r74 - docu
+</A></li>
+        <LI>Next message: <A HREF="000077.html">[Provirent-svn-commit] r76 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#76">[ date ]</a>
+              <a href="thread.html#76">[ thread ]</a>
+              <a href="subject.html#76">[ subject ]</a>
+              <a href="author.html#76">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: sforstner
+Date: 2004-11-02 14:17:39 +0100 (Tue, 02 Nov 2004)
+New Revision: 75
+
+Added:
+   project_src/strutstest/pages/RegistrateForm.jsp
+Modified:
+   project_src/strutstest/WEB-INF/classes/resources/MessageResources_de.properties
+   project_src/strutstest/WEB-INF/src/resources/MessageResources_de.properties
+   project_src/strutstest/pages/EingabeFormular.jsp
+Log:
+
+
+Modified: project_src/strutstest/WEB-INF/classes/resources/MessageResources_de.properties
+===================================================================
+--- project_src/strutstest/WEB-INF/classes/resources/MessageResources_de.properties	2004-11-01 19:01:13 UTC (rev 74)
++++ project_src/strutstest/WEB-INF/classes/resources/MessageResources_de.properties	2004-11-02 13:17:39 UTC (rev 75)
+@@ -33,3 +33,21 @@
+ error.username.required=Fehler: Benutzername wird ben&#246;tigt!
+ error.password.required=Fehler: Passwort wird ben&#246;tigt!
+ 
++registrate.title=Professional Video Rental
++registrate.heading=Registrierung
++registrate.message=Bitte f&#252;llen Sie folgendes Formular aus, um sich f&#252;r die Benutzung von Provirent anzumelden!
++registrate.UserName=Benutzername
++registrate.LastName=Nachname
++registrate.FirstName=Vorname
++registrate.Password=Passwort
++registrate.RePassword=Passwort wiederholen
++registrate.Email=Email-Adresse
++error.registrate.username.required=Fehler: Benutzername wird ben&#246;tigt!
++error.registrate.lastname.required=Fehler: Nachname wird ben&#246;tigt!
++error.registrate.firstname.required=Fehler: Vorname wird ben&#246;tigt!
++error.registrate.password.required=Fehler: Passwort wird ben&#246;tigt!
++error.registrate.repassword.required=Fehler: Bitte das Passwort 2x eingeben!
++error.registrate.repassword.notidentic=Fehler: Wiederholung des Passwortes stimmt nicht mit Passwort &#252;berein! 
++error.registrate.email.required=Fehler: Email-Adresse wird ben&#246;tigt!
++
++
+
+Modified: project_src/strutstest/WEB-INF/src/resources/MessageResources_de.properties
+===================================================================
+--- project_src/strutstest/WEB-INF/src/resources/MessageResources_de.properties	2004-11-01 19:01:13 UTC (rev 74)
++++ project_src/strutstest/WEB-INF/src/resources/MessageResources_de.properties	2004-11-02 13:17:39 UTC (rev 75)
+@@ -33,3 +33,21 @@
+ error.username.required=Fehler: Benutzername wird ben&#246;tigt!
+ error.password.required=Fehler: Passwort wird ben&#246;tigt!
+ 
++registrate.title=Professional Video Rental
++registrate.heading=Registrierung
++registrate.message=Bitte f&#252;llen Sie folgendes Formular aus, um sich f&#252;r die Benutzung von Provirent anzumelden!
++registrate.UserName=Benutzername
++registrate.LastName=Nachname
++registrate.FirstName=Vorname
++registrate.Password=Passwort
++registrate.RePassword=Passwort wiederholen
++registrate.Email=Email-Adresse
++error.registrate.username.required=Fehler: Benutzername wird ben&#246;tigt!
++error.registrate.lastname.required=Fehler: Nachname wird ben&#246;tigt!
++error.registrate.firstname.required=Fehler: Vorname wird ben&#246;tigt!
++error.registrate.password.required=Fehler: Passwort wird ben&#246;tigt!
++error.registrate.repassword.required=Fehler: Bitte das Passwort 2x eingeben!
++error.registrate.repassword.notidentic=Fehler: Wiederholung des Passwortes stimmt nicht mit Passwort &#252;berein! 
++error.registrate.email.required=Fehler: Email-Adresse wird ben&#246;tigt!
++
++
+
+Modified: project_src/strutstest/pages/EingabeFormular.jsp
+===================================================================
+--- project_src/strutstest/pages/EingabeFormular.jsp	2004-11-01 19:01:13 UTC (rev 74)
++++ project_src/strutstest/pages/EingabeFormular.jsp	2004-11-02 13:17:39 UTC (rev 75)
+@@ -25,6 +25,8 @@
+     &lt;font color=red&gt;&lt;html:errors property=&quot;password&quot; /&gt;&lt;/font&gt;&lt;/p&gt;
+ &lt;p&gt; &lt;html:submit property=&quot;action&quot; value=&quot;Weiter&quot; /&gt;
+     &lt;html:submit property=&quot;action&quot; value=&quot;Abbrechen&quot; /&gt;&lt;/p&gt;
++&lt;p&gt; &lt;html:link property=&quot;action&quot; value=&quot;registrate&quot;&lt;/p&gt;
++
+ &lt;/html:form&gt;
+ 
+ &lt;/body&gt;
+
+Added: project_src/strutstest/pages/RegistrateForm.jsp
+===================================================================
+--- project_src/strutstest/pages/RegistrateForm.jsp	2004-11-01 19:01:13 UTC (rev 74)
++++ project_src/strutstest/pages/RegistrateForm.jsp	2004-11-02 13:17:39 UTC (rev 75)
+@@ -0,0 +1,44 @@
++&lt;%@ taglib uri=&quot;/WEB-INF/struts-bean.tld&quot;  prefix=&quot;bean&quot;  %&gt;
++&lt;%@ taglib uri=&quot;/WEB-INF/struts-html.tld&quot;  prefix=&quot;html&quot;  %&gt;
++&lt;%@ taglib uri=&quot;/WEB-INF/struts-logic.tld&quot; prefix=&quot;logic&quot; %&gt;
++
++&lt;html:html locale=&quot;true&quot;&gt;
++&lt;head&gt;
++  &lt;title&gt;&lt;bean:message key=&quot;registrate.title&quot; /&gt;&lt;/title&gt;
++  &lt;html:base /&gt;
++&lt;/head&gt;
++&lt;body bgcolor=&quot;white&quot;&gt;
++
++&lt;logic:notPresent name=&quot;org.apache.struts.action.MESSAGE&quot; scope=&quot;application&quot;&gt;
++  &lt;font color=&quot;red&quot;&gt;ERROR: Application resources not loaded&lt;/font&gt;
++&lt;/logic:notPresent&gt;
++
++&lt;h3&gt;&lt;bean:message key=&quot;registrate.heading&quot; /&gt;&lt;/h3&gt;
++&lt;p&gt; &lt;bean:message key=&quot;registrate.message&quot; /&gt;&lt;/p&gt;
++
++&lt;html:form action=&quot;/htmlFormActionPath&quot; focus=&quot;username&quot;&gt;
++&lt;p&gt; &lt;bean:message key=&quot;registrate.UserName&quot; /&gt;:
++    &lt;html:text property=&quot;username&quot; size=&quot;40&quot; maxlength=&quot;40&quot; /&gt;&lt;br/&gt;
++    &lt;font color=red&gt;&lt;html:errors property=&quot;username&quot; /&gt;&lt;/font&gt;&lt;/p&gt;
++&lt;p&gt; &lt;bean:message key=&quot;registrate.LastName&quot; /&gt;:
++    &lt;html:text property=&quot;lastname&quot; size=&quot;40&quot; maxlength=&quot;40&quot; /&gt;&lt;br/&gt;
++    &lt;font color=red&gt;&lt;html:errors property=&quot;lastname&quot; /&gt;&lt;/font&gt;&lt;/p&gt;
++&lt;p&gt; &lt;bean:message key=&quot;registrate.FirstName&quot; /&gt;:
++    &lt;html:text property=&quot;firstname&quot; size=&quot;40&quot; maxlength=&quot;40&quot; /&gt;&lt;br/&gt;
++    &lt;font color=red&gt;&lt;html:errors property=&quot;firstname&quot; /&gt;&lt;/font&gt;&lt;/p&gt;
++&lt;p&gt; &lt;bean:message key=&quot;registrate.Password&quot; /&gt;:
++    &lt;html:text property=&quot;password&quot; size=&quot;40&quot; maxlength=&quot;40&quot; /&gt;&lt;br/&gt;
++    &lt;font color=red&gt;&lt;html:errors property=&quot;password&quot; /&gt;&lt;/font&gt;&lt;/p&gt;
++&lt;p&gt; &lt;bean:message key=&quot;registrate.RePassword&quot; /&gt;:
++    &lt;html:text property=&quot;repassword&quot; size=&quot;40&quot; maxlength=&quot;40&quot; /&gt;&lt;br/&gt;
++    &lt;font color=red&gt;&lt;html:errors property=&quot;repassword&quot; /&gt;&lt;/font&gt;&lt;/p&gt;
++&lt;p&gt; &lt;bean:message key=&quot;registrate.Email&quot; /&gt;:
++    &lt;html:text property=&quot;email&quot; size=&quot;40&quot; maxlength=&quot;40&quot; /&gt;&lt;br/&gt;
++    &lt;font color=red&gt;&lt;html:errors property=&quot;email&quot; /&gt;&lt;/font&gt;&lt;/p&gt;
++&lt;p&gt; &lt;html:submit property=&quot;action&quot; value=&quot;Registrate&quot; /&gt;
++    &lt;html:submit property=&quot;action&quot; value=&quot;Cancel&quot; /&gt;&lt;/p&gt;
++
++&lt;/html:form&gt;
++
++&lt;/body&gt;
++&lt;/html:html&gt;
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000075.html">[Provirent-svn-commit] r74 - docu
+</A></li>
+	<LI>Next message: <A HREF="000077.html">[Provirent-svn-commit] r76 - project_src/provirent_hibernate/src/de/hsharz/provirent/managment/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#76">[ date ]</a>
+              <a href="thread.html#76">[ thread ]</a>
+              <a href="subject.html#76">[ subject ]</a>
+              <a href="author.html#76">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

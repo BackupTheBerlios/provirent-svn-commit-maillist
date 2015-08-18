@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r31 - project_src/provirent_hibernate/src/test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-October/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r31%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200410111352.i9BDqjfp000213%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000031.html">
+   <LINK REL="Next"  HREF="000033.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r31 - project_src/provirent_hibernate/src/test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r31%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200410111352.i9BDqjfp000213%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r31 - project_src/provirent_hibernate/src/test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Mon Oct 11 15:52:45 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000031.html">[Provirent-svn-commit] r30 - timetable
+</A></li>
+        <LI>Next message: <A HREF="000033.html">[Provirent-svn-commit] r32 - project_src/provirent_hibernate/bin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#32">[ date ]</a>
+              <a href="thread.html#32">[ thread ]</a>
+              <a href="subject.html#32">[ subject ]</a>
+              <a href="author.html#32">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-10-11 15:52:44 +0200 (Mon, 11 Oct 2004)
+New Revision: 31
+
+Added:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsSimpleObjects.java
+Log:
+- TestSuite for all simple objects
+
+Added: project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsSimpleObjects.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsSimpleObjects.java	2004-10-11 09:58:41 UTC (rev 30)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/AllTestsSimpleObjects.java	2004-10-11 13:52:44 UTC (rev 31)
+@@ -0,0 +1,61 @@
++/*
++ * Created on 09.10.2004
++ *
++ * Copyright (c) 2004/2005, Remo Griesch/Stefan Forstner/Philipp Schneider
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * - Redistributions of source code must retain the above copyright notice,
++ * this list of conditions and the following disclaimer.
++ * - Redistributions in binary form must reproduce the above copyright notice,
++ * this list of conditions and the following disclaimer in the documentation
++ * and/or other materials provided with the distribution.
++ * - Neither the name of the Remo Griesch/Stefan Forstner/Philipp Schneider nor
++ * the names of its contributors may be used to endorse or promote products
++ * derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ *
++ */
++package test.provirent.hibernate;
++
++import junit.framework.Test;
++import junit.framework.TestSuite;
++
++/**
++ * @author Philipp Schneider
++ *
++ */
++public class AllTestsSimpleObjects {
++
++    public static Test suite() {
++        TestSuite suite = new TestSuite(&quot;Test for test.provirent.hibernate&quot;);
++        //$JUnit-BEGIN$
++        suite.addTestSuite(TestImage.class);
++        suite.addTestSuite(TestActor.class);
++        suite.addTestSuite(TestCondition.class);
++        suite.addTestSuite(TestGenre.class);
++        suite.addTestSuite(TestAudioFormat.class);
++        suite.addTestSuite(TestDirector.class);
++        suite.addTestSuite(TestSubtitle.class);
++        suite.addTestSuite(TestStatus.class);
++        suite.addTestSuite(TestVideoFormat.class);
++        suite.addTestSuite(TestLanguage.class);
++        suite.addTestSuite(TestPerson.class);
++        //$JUnit-END$
++        return suite;
++    }
++}
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000031.html">[Provirent-svn-commit] r30 - timetable
+</A></li>
+	<LI>Next message: <A HREF="000033.html">[Provirent-svn-commit] r32 - project_src/provirent_hibernate/bin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#32">[ date ]</a>
+              <a href="thread.html#32">[ thread ]</a>
+              <a href="subject.html#32">[ subject ]</a>
+              <a href="author.html#32">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

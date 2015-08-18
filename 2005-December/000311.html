@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r308 - project_src/customer/WEB-INF
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r308%20-%20project_src/customer/WEB-INF&In-Reply-To=%3C200512191137.jBJBbkec007942%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000309.html">
+   <LINK REL="Next"  HREF="000310.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r308 - project_src/customer/WEB-INF</H1>
+    <B>pschneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r308%20-%20project_src/customer/WEB-INF&In-Reply-To=%3C200512191137.jBJBbkec007942%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r308 - project_src/customer/WEB-INF">pschneider at berlios.de
+       </A><BR>
+    <I>Mon Dec 19 12:37:46 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000309.html">[Provirent-svn-commit] r307 - project_src/customer/WEB-INF/src
+</A></li>
+        <LI>Next message: <A HREF="000310.html">[Provirent-svn-commit] r309 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#311">[ date ]</a>
+              <a href="thread.html#311">[ thread ]</a>
+              <a href="subject.html#311">[ subject ]</a>
+              <a href="author.html#311">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2005-12-19 12:37:43 +0100 (Mon, 19 Dec 2005)
+New Revision: 308
+
+Modified:
+   project_src/customer/WEB-INF/log4j.properties
+   project_src/customer/WEB-INF/struts-config.xml
+   project_src/customer/WEB-INF/tiles-defs.xml
+   project_src/customer/WEB-INF/web.xml
+Log:
+
+
+Modified: project_src/customer/WEB-INF/log4j.properties
+===================================================================
+--- project_src/customer/WEB-INF/log4j.properties	2005-12-19 11:19:09 UTC (rev 307)
++++ project_src/customer/WEB-INF/log4j.properties	2005-12-19 11:37:43 UTC (rev 308)
+@@ -7,7 +7,7 @@
+ 
+ ### direct messages to file hibernate.log ###
+ log4j.appender.file1=org.apache.log4j.FileAppender
+-log4j.appender.file1.File=provirent-customer.log
++log4j.appender.file1.File=c:/provirent-customer.log
+ log4j.appender.file1.layout=org.apache.log4j.PatternLayout
+ log4j.appender.file1.layout.ConversionPattern=%d{ABSOLUTE} %5p %c{1}:%L - %m%n
+ 
+@@ -17,10 +17,9 @@
+ log4j.logger.net.sf.hibernate=info
+ 
+ 
+-log4j.de.hsharz.provirent.customer=debug, file1
++log4j.logger.de.hsharz.provirent.customer=debug, stdout
+ 
+ 
+-
+ ### log just the SQL
+ #log4j.logger.net.sf.hibernate.SQL=debug
+ 
+
+Modified: project_src/customer/WEB-INF/struts-config.xml
+===================================================================
+--- project_src/customer/WEB-INF/struts-config.xml	2005-12-19 11:19:09 UTC (rev 307)
++++ project_src/customer/WEB-INF/struts-config.xml	2005-12-19 11:37:43 UTC (rev 308)
+@@ -4,7 +4,7 @@
+     &lt;form-beans&gt;
+ 
+ 		&lt;form-bean 	name=&quot;NullForm&quot; 
+-					type=&quot;org.apache.struts.action.DynaActionForm&quot; /&gt;
++					type=&quot;de.hsharz.provirent.customer.form.DynaActionForm&quot; /&gt;
+ 
+ 		&lt;form-bean 	name=&quot;LoginForm&quot; 
+ 					type=&quot;de.hsharz.provirent.customer.form.LoginForm&quot; /&gt;
+@@ -91,18 +91,31 @@
+ 		
+     	&lt;action path=&quot;/index&quot;
+ 				forward=&quot;provirent.index&quot; /&gt;
+-			
+-			&lt;action path=&quot;/genre/*&quot;
+-					type=&quot;de.hsharz.provirent.customer.action.GenreAction&quot;
+-          name=&quot;NullForm&quot;
+-					forward=&quot;provirent.movie.list&quot;/&gt;
+-		
+-		
++
++
++   		&lt;action path=&quot;/Genre/*&quot;
++   				parameter=&quot;{1}&quot;
++					type=&quot;de.hsharz.provirent.customer.action.GenreAction&quot; 
++					input=&quot;provirent.movie.list&quot; /&gt;
++		   		&lt;forward
++   					name=&quot;success&quot;
++   					path=&quot;/ShowGenre.do&quot;
++   				/&gt;
++   		&lt;/action&gt;
++
++   		&lt;action path=&quot;/ShowGenre&quot;
++				forward=&quot;provirent.movie.list&quot; /&gt;
++   		
++   		
+    		&lt;action path=&quot;/Login&quot; 
+-   				input=&quot;vkb.scharf.admin.login&quot; 
+-				type=&quot;de.hsharz.provirent.customer.action.LoginAction&quot;
+-				name=&quot;LoginForm&quot;
+-				validate=&quot;true&quot; &gt;
++   				input=&quot;provirent.index&quot; 
++					type=&quot;de.hsharz.provirent.customer.action.LoginAction&quot;
++					name=&quot;LoginForm&quot;
++					validate=&quot;true&quot; &gt;
++   				&lt;forward
++   					name=&quot;success&quot;
++   					path=&quot;/index.do&quot;
++   				/&gt;
+    		&lt;/action&gt;
+    		
+ &lt;!--		
+
+Modified: project_src/customer/WEB-INF/tiles-defs.xml
+===================================================================
+--- project_src/customer/WEB-INF/tiles-defs.xml	2005-12-19 11:19:09 UTC (rev 307)
++++ project_src/customer/WEB-INF/tiles-defs.xml	2005-12-19 11:37:43 UTC (rev 308)
+@@ -7,20 +7,25 @@
+ 
+     &lt;definition name=&quot;provirent.default&quot;
+ 				path=&quot;/jsp/main_template.jsp&quot; &gt;
+-		&lt;put name=&quot;mitglieder&quot; value=&quot;/jsp/main_members.jsp&quot; /&gt;
+-		&lt;put name=&quot;navigation&quot; value=&quot;/jsp/main_navigation.jsp&quot; /&gt;
+-		&lt;put name=&quot;inhalt&quot; value=&quot;/jsp/main_index.jsp&quot; /&gt;
++			&lt;put name=&quot;page.title&quot; value=&quot;professional Video rental Software&quot; /&gt;
++			&lt;put name=&quot;mitglieder&quot; value=&quot;/jsp/main_members.jsp&quot; /&gt;
++			&lt;put name=&quot;navigation&quot; value=&quot;/jsp/main_navigation.jsp&quot; /&gt;
++			&lt;put name=&quot;inhalt&quot; value=&quot;/jsp/main_index.jsp&quot; /&gt;
+     &lt;/definition&gt;
+ 
+ 
+ 
+ 
+ 	&lt;definition name=&quot;provirent.index&quot; extends=&quot;provirent.default&quot; &gt;
++		&lt;put name=&quot;page.title&quot; value=&quot;herzlich willkommen&quot; /&gt;
+   &lt;/definition&gt;
+ 
+ 
+ 	&lt;definition name=&quot;provirent.movie.list&quot; extends=&quot;provirent.default&quot; &gt;
++		&lt;put name=&quot;page.title&quot; value=&quot;Ergebniss Uebersicht&quot; /&gt;
+ 		&lt;put name=&quot;inhalt&quot; value=&quot;/jsp/movie_list.jsp&quot; /&gt;
+   &lt;/definition&gt;
+ 
++
++
+ &lt;/tiles-definitions&gt;
+
+Modified: project_src/customer/WEB-INF/web.xml
+===================================================================
+--- project_src/customer/WEB-INF/web.xml	2005-12-19 11:19:09 UTC (rev 307)
++++ project_src/customer/WEB-INF/web.xml	2005-12-19 11:37:43 UTC (rev 308)
+@@ -38,39 +38,4 @@
+     &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
+   &lt;/welcome-file-list&gt;
+ 
+-  &lt;!-- Struts Tag Library Descriptors --&gt;
+-  &lt;taglib&gt;
+-    &lt;taglib-uri&gt;/tags/struts-bean.tld&lt;/taglib-uri&gt;
+-    &lt;taglib-location&gt;/WEB-INF/struts-bean.tld&lt;/taglib-location&gt;
+-  &lt;/taglib&gt;
+-
+-  &lt;taglib&gt;
+-    &lt;taglib-uri&gt;/tags/struts-html.tld&lt;/taglib-uri&gt;
+-    &lt;taglib-location&gt;/WEB-INF/struts-html.tld&lt;/taglib-location&gt;
+-  &lt;/taglib&gt;
+-
+-  &lt;taglib&gt;
+-    &lt;taglib-uri&gt;/tags/struts-logic.tld&lt;/taglib-uri&gt;
+-    &lt;taglib-location&gt;/WEB-INF/struts-logic.tld&lt;/taglib-location&gt;
+-  &lt;/taglib&gt;
+-
+-  &lt;taglib&gt;
+-    &lt;taglib-uri&gt;/tags/struts-nested.tld&lt;/taglib-uri&gt;
+-    &lt;taglib-location&gt;/WEB-INF/struts-nested.tld&lt;/taglib-location&gt;
+-  &lt;/taglib&gt;
+-
+-  &lt;taglib&gt;
+-    &lt;taglib-uri&gt;/tags/struts-tiles.tld&lt;/taglib-uri&gt;
+-    &lt;taglib-location&gt;/WEB-INF/struts-tiles.tld&lt;/taglib-location&gt;
+-  &lt;/taglib&gt;
+-
+-  &lt;taglib&gt;
+-    &lt;taglib-uri&gt;/tags/struts-tiles&lt;/taglib-uri&gt;
+-    &lt;taglib-location&gt;/WEB-INF/struts-tiles.tld&lt;/taglib-location&gt;
+-  &lt;/taglib&gt;
+-
+-	&lt;taglib&gt; 
+-	    &lt;taglib-uri&gt;<A HREF="http://displaytag.sf.net&lt;/taglib-uri">http://displaytag.sf.net&lt;/taglib-uri</A>&gt; 
+-	    &lt;taglib-location&gt;/WEB-INF/displaytag-12.tld&lt;/taglib-location&gt;
+-	&lt;/taglib&gt;
+ &lt;/web-app&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000309.html">[Provirent-svn-commit] r307 - project_src/customer/WEB-INF/src
+</A></li>
+	<LI>Next message: <A HREF="000310.html">[Provirent-svn-commit] r309 - docu/latex
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#311">[ date ]</a>
+              <a href="thread.html#311">[ thread ]</a>
+              <a href="subject.html#311">[ subject ]</a>
+              <a href="author.html#311">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r189 - project_src/provirent_hibernate/src/test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r189%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200412012142.iB1Lgtc8019123%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000189.html">
+   <LINK REL="Next"  HREF="000191.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r189 - project_src/provirent_hibernate/src/test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r189%20-%20project_src/provirent_hibernate/src/test/provirent/hibernate&In-Reply-To=%3C200412012142.iB1Lgtc8019123%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r189 - project_src/provirent_hibernate/src/test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Wed Dec  1 22:42:55 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000189.html">[Provirent-svn-commit] r188 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language
+</A></li>
+        <LI>Next message: <A HREF="000191.html">[Provirent-svn-commit] r190 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#190">[ date ]</a>
+              <a href="thread.html#190">[ thread ]</a>
+              <a href="subject.html#190">[ subject ]</a>
+              <a href="author.html#190">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-12-01 22:42:53 +0100 (Wed, 01 Dec 2004)
+New Revision: 189
+
+Modified:
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java
+Log:
+- TestKlasse verbessert und aktualisiert
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java	2004-12-01 18:28:31 UTC (rev 188)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovie.java	2004-12-01 21:42:53 UTC (rev 189)
+@@ -270,7 +270,7 @@
+                 assertTrue(&quot;Db Open? &quot;, s.isOpen());
+ 
+                 
+-                
++                logger.debug(&quot;Erstelle Movie Objekt&quot;);
+                 //create new movie objects
+                 Movie movie = new Movie();
+                 //set simple properties
+@@ -280,8 +280,6 @@
+                 movie.setRuntime(96);
+                 movie.setTitle(&quot;The Forgotten&quot;);
+                 movie.setReleaseDate(Calendar.getInstance());
+-                movie.setImages(new ArrayList());
+-                movie.setMainImage(new Image());                
+                 
+                 
+                 //try to get Actors from db
+@@ -291,9 +289,8 @@
+                 
+                 int anzahl =2;
+                 List movieprops = new ArrayList();
+-                random = new RandomRange(0,dbactors.size());
++                random = new RandomRange(0, (dbactors.size()-1) );
+                 randomNum = random.getNumbers(anzahl);
+-
+                 for (int i = 0; i &lt; anzahl; i++) {
+                     Actor actor = (Actor)dbactors.get( ((Integer)randomNum.get(i)).intValue() );
+                     movieprops.add(actor);
+@@ -310,7 +307,7 @@
+                 
+                 anzahl =1;
+                 movieprops = new ArrayList();
+-                random = new RandomRange(0,dbprops.size());
++                random = new RandomRange(0,(dbprops.size()-1));
+                 randomNum = random.getNumbers(anzahl);
+ 
+                 for (int i = 0; i &lt; anzahl; i++) {
+@@ -326,7 +323,7 @@
+                 
+                 anzahl =1;
+                 movieprops = new ArrayList();
+-                random = new RandomRange(0,dbprops.size());
++                random = new RandomRange(0, (dbprops.size()-1) );
+                 randomNum = random.getNumbers(anzahl);
+ 
+                 for (int i = 0; i &lt; anzahl; i++) {
+@@ -335,6 +332,40 @@
+                 }
+                 movie.setGenres(movieprops);
+                 
++                
++                //try to get Images from db
++                dbprops =  s.find(&quot;from Image as image&quot;);
++                assertNotNull(&quot;testCreateDBMovie(): Can't get Image from DB. Null&quot;, dbprops);
++                assertTrue(&quot;testCreateDBMovie(): Can not find Image in DB&quot;, dbprops.size() &gt;0);
++
++                //set Mainimage
++                anzahl =1;
++                movieprops = new ArrayList();
++                random = new RandomRange(0, (dbprops.size()-1) );
++                randomNum = random.getNumbers(anzahl);
++
++                for (int i = 0; i &lt; anzahl; i++) {
++                    Image prop = (Image)dbprops.get( ((Integer)randomNum.get(i)).intValue() );
++                    movie.setMainImage(prop);
++
++                }
++
++                //set images
++                anzahl =2;
++                movieprops = new ArrayList();
++                random = new RandomRange(0, (dbprops.size()-1) );
++                randomNum = random.getNumbers(anzahl);
++
++                for (int i = 0; i &lt; anzahl; i++) {
++                    Image prop = (Image)dbprops.get( ((Integer)randomNum.get(i)).intValue() );
++                    movie.setMainImage(prop);
++
++                }
++                movie.setImages(movieprops);
++                
++
++                
++                
+                 /*
+                 //try to get Language from db
+                 dbprops =  s.find(&quot;from Language as language&quot;);
+@@ -403,28 +434,30 @@
+                 movie.setVideoFormats(movieprops);
+                 */
+                 
++                logger.debug(&quot;Speichere Movie Objekt&quot;);
++                
+                 int id = ((Integer)s.save(movie)).intValue();
+                 s.flush();
++                logger.debug(&quot;Gespeichert unter id: &quot;+id+&quot; movieid:&quot;+movie.getMovieId());
+ 
+                 
+                    
+-                    //get Condition from Hibernate
+-                    Movie dbc = (Movie) s.get(Movie.class, new Integer(id));
+-                    assertNotNull(&quot;Can't get Movie&quot; + id + &quot; from DB&quot;, dbc);
+-                    if (dbc == null) {
+-                        if (logger.isDebugEnabled()) {
+-                            logger.debug(&quot;testCreateCompleteNewMovie() Kein object mit id &quot;
+-                                    + id + &quot;gefunden.&quot;);
+-                        }
+-                        return;
+-                    }
+-                    //are both equal?
+-                    assertEquals(
+-                            &quot;Select: Customer aus DB nicht gleich meiner. DB: &quot;
+-                                    + dbc + &quot; My:&quot; + movie, movie, dbc); 
+-                
++
++
+                 tx.commit();
++
++                dbprops =  s.find(&quot;from Movie as Movie&quot;);
++                assertNotNull(&quot;testCreateDBMovie(): Can't get Movie from DB. Null&quot;, dbprops);
++                assertTrue(&quot;testCreateDBMovie(): Can not find Movie in DB&quot;, dbprops.size() &gt;0);
+                 
++                for (int i = 0; i &lt; dbprops.size(); i++) {
++                    Movie m = (Movie)dbprops.get(i);
++                    logger.debug(i+&quot; Movie:&quot;+m + &quot; Actors: &quot;+m.getActors()+&quot; Director: &quot;+m.getDirector()+&quot; Images: &quot;+m.getImages()+ &quot; Genre: &quot;+m.getGenres());
++                }
++                
++                
++           
++                
+             } catch (Exception e) {
+                 if (tx != null) {
+                     logger
+@@ -463,4 +496,8 @@
+         super(arg0);
+     }
+ 
++    
++    
++    
++    
+ }
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000189.html">[Provirent-svn-commit] r188 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/language
+</A></li>
+	<LI>Next message: <A HREF="000191.html">[Provirent-svn-commit] r190 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#190">[ date ]</a>
+              <a href="thread.html#190">[ thread ]</a>
+              <a href="subject.html#190">[ subject ]</a>
+              <a href="author.html#190">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

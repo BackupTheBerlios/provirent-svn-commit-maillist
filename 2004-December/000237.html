@@ -1,0 +1,454 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r236 - in project_src/provirent_hibernate/src: de/hsharz/provirent/objects test/provirent/hibernate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r236%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/objects%20test/provirent/hibernate&In-Reply-To=%3C200412111354.iBBDsJoR012312%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000236.html">
+   <LINK REL="Next"  HREF="000238.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r236 - in project_src/provirent_hibernate/src: de/hsharz/provirent/objects test/provirent/hibernate</H1>
+    <B>Philipp Schneider at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r236%20-%20in%20project_src/provirent_hibernate/src%3A%20de/hsharz/provirent/objects%20test/provirent/hibernate&In-Reply-To=%3C200412111354.iBBDsJoR012312%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r236 - in project_src/provirent_hibernate/src: de/hsharz/provirent/objects test/provirent/hibernate">pschneider at sheep.berlios.de
+       </A><BR>
+    <I>Sat Dec 11 14:54:19 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000236.html">[Provirent-svn-commit] r235 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+        <LI>Next message: <A HREF="000238.html">[Provirent-svn-commit] r237 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#237">[ date ]</a>
+              <a href="thread.html#237">[ thread ]</a>
+              <a href="subject.html#237">[ subject ]</a>
+              <a href="author.html#237">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: pschneider
+Date: 2004-12-11 14:54:16 +0100 (Sat, 11 Dec 2004)
+New Revision: 236
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml
+   project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java
+   project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java
+Log:
+
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml	2004-12-11 12:01:55 UTC (rev 235)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.hbm.xml	2004-12-11 13:54:16 UTC (rev 236)
+@@ -22,9 +22,9 @@
+  
+  
+  		 &lt;many-to-one
+-				name=&quot;payment&quot;
+-				column=&quot;payment&quot;
+-				class=&quot;de.hsharz.provirent.objects.Payment&quot;
++				name=&quot;paymentCategory&quot;
++				column=&quot;paymentCategory&quot;
++				class=&quot;de.hsharz.provirent.objects.PaymentCategory&quot;
+ 		&gt;
+ 						&lt;meta attribute=&quot;use-in-tostring&quot;&gt;true&lt;/meta&gt;
+ 				&lt;/many-to-one&gt; 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.java	2004-12-11 12:01:55 UTC (rev 235)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/objects/Dvd.java	2004-12-11 13:54:16 UTC (rev 236)
+@@ -21,7 +21,7 @@
+     private String barcode;
+ 
+     /** nullable persistent field */
+-    private de.hsharz.provirent.objects.Payment payment;
++    private de.hsharz.provirent.objects.PaymentCategory paymentCategory;
+ 
+     /** nullable persistent field */
+     private de.hsharz.provirent.objects.Movie movie;
+@@ -45,9 +45,9 @@
+     private List videoFormats;
+ 
+     /** full constructor */
+-    public Dvd(String barcode, de.hsharz.provirent.objects.Payment payment, de.hsharz.provirent.objects.Movie movie, de.hsharz.provirent.objects.Condition condition, de.hsharz.provirent.objects.Status status, List languages, List subtitles, List audioFormats, List videoFormats) {
++    public Dvd(String barcode, de.hsharz.provirent.objects.PaymentCategory paymentCategory, de.hsharz.provirent.objects.Movie movie, de.hsharz.provirent.objects.Condition condition, de.hsharz.provirent.objects.Status status, List languages, List subtitles, List audioFormats, List videoFormats) {
+         this.barcode = barcode;
+-        this.payment = payment;
++        this.paymentCategory = paymentCategory;
+         this.movie = movie;
+         this.condition = condition;
+         this.status = status;
+@@ -85,12 +85,12 @@
+         this.barcode = barcode;
+     }
+ 
+-    public de.hsharz.provirent.objects.Payment getPayment() {
+-        return this.payment;
++    public de.hsharz.provirent.objects.PaymentCategory getPaymentCategory() {
++        return this.paymentCategory;
+     }
+ 
+-    public void setPayment(de.hsharz.provirent.objects.Payment payment) {
+-        this.payment = payment;
++    public void setPaymentCategory(de.hsharz.provirent.objects.PaymentCategory paymentCategory) {
++        this.paymentCategory = paymentCategory;
+     }
+ 
+     public de.hsharz.provirent.objects.Movie getMovie() {
+@@ -153,7 +153,7 @@
+         return new ToStringBuilder(this)
+             .append(&quot;dvdId&quot;, getDvdId())
+             .append(&quot;barcode&quot;, getBarcode())
+-            .append(&quot;payment&quot;, getPayment())
++            .append(&quot;paymentCategory&quot;, getPaymentCategory())
+             .append(&quot;movie&quot;, getMovie())
+             .append(&quot;languages&quot;, getLanguages())
+             .append(&quot;subtitles&quot;, getSubtitles())
+@@ -169,7 +169,7 @@
+         return new EqualsBuilder()
+             .append(this.getDvdId(), castOther.getDvdId())
+             .append(this.getBarcode(), castOther.getBarcode())
+-            .append(this.getPayment(), castOther.getPayment())
++            .append(this.getPaymentCategory(), castOther.getPaymentCategory())
+             .append(this.getMovie(), castOther.getMovie())
+             .append(this.getCondition(), castOther.getCondition())
+             .append(this.getStatus(), castOther.getStatus())
+@@ -184,7 +184,7 @@
+         return new HashCodeBuilder()
+             .append(getDvdId())
+             .append(getBarcode())
+-            .append(getPayment())
++            .append(getPaymentCategory())
+             .append(getMovie())
+             .append(getCondition())
+             .append(getStatus())
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java	2004-12-11 12:01:55 UTC (rev 235)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestDvd.java	2004-12-11 13:54:16 UTC (rev 236)
+@@ -15,6 +15,7 @@
+ import de.hsharz.provirent.objects.Language;
+ import de.hsharz.provirent.objects.Movie;
+ import de.hsharz.provirent.objects.Payment;
++import de.hsharz.provirent.objects.PaymentCategory;
+ import de.hsharz.provirent.objects.Subtitle;
+ import de.hsharz.provirent.objects.VideoFormat;
+ 
+@@ -240,12 +241,12 @@
+ 
+                     
+                     //add Payment
+-                    dbprops = s.find(&quot;from Payment as payment&quot;);
++                    dbprops = s.find(&quot;from PaymentCategory as paymentCategory&quot;);
+                     assertNotNull(
+-                            &quot;testCreateDvd(): Can't get Payment from DB. Null&quot;,
++                            &quot;testCreateDvd(): Can't get PaymentCategory from DB. Null&quot;,
+                             dbprops);
+                     assertTrue(
+-                            &quot;testCreateDvd(): Can not find Payment in DB&quot;,
++                            &quot;testCreateDvd(): Can not find PaymentCategory in DB&quot;,
+                             dbprops.size() &gt; 0);
+ 
+                     anzahl = 1;
+@@ -254,9 +255,9 @@
+                     random = randomRange.getNumbers(anzahl);
+ 
+                     for (int k = 0; k &lt; anzahl; k++) {
+-                        Payment prop = (Payment) dbprops
++                        PaymentCategory prop = (PaymentCategory) dbprops
+                                 .get(((Integer) random.get(k)).intValue());
+-                        dvd.setPayment(prop);
++                        dvd.setPaymentCategory(prop);
+                         break;
+                     }
+                     
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java	2004-12-11 12:01:55 UTC (rev 235)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestMovieOrder.java	2004-12-11 13:54:16 UTC (rev 236)
+@@ -37,13 +37,13 @@
+ import java.util.List;
+ 
+ import junit.framework.TestCase;
++import net.sf.hibernate.Criteria;
+ import net.sf.hibernate.HibernateException;
+ import net.sf.hibernate.Session;
+ import net.sf.hibernate.Transaction;
+-import de.hsharz.provirent.objects.Condition;
++import net.sf.hibernate.expression.Expression;
++import net.sf.hibernate.expression.Order;
+ import de.hsharz.provirent.objects.Customer;
+-import de.hsharz.provirent.objects.Dvd;
+-import de.hsharz.provirent.objects.Movie;
+ import de.hsharz.provirent.objects.MovieOrder;
+ import de.hsharz.provirent.objects.OrderItem;
+ import de.hsharz.provirent.objects.Payment;
+@@ -76,7 +76,7 @@
+         super(arg0);
+     }
+ 
+-    public void createMovieOrder() {
++    public void testCreateMovieOrder() {
+ 
+         Session s = null;
+         Transaction tx = null;
+@@ -86,10 +86,15 @@
+             tx = s.beginTransaction();
+ 
+             List customers = new ArrayList();
++            
++            List dvds = new ArrayList();
++            
++            
+             //for each movie 
+-            for (int i = 0; i &lt; 3; i++) {
++            for (int i = 0; i &lt; 1; i++) {
+ 
+-                Customer customer = (Customer) customers.get(i);
++                Customer customer =null;
++                //customer = (Customer) customers.get(i);
+ 
+ 
+                 MovieOrder movieOrder = new MovieOrder();
+@@ -97,21 +102,51 @@
+ 
+                 List orderItems = new ArrayList();
+ 
+-                for (int j = 0; j &lt; 3; j++) {
+ 
++                
++                
++                
++                for (int j = 0; j &lt; 1; j++) {
++
+                     OrderItem orderItem = new OrderItem();
+                     orderItem.setCustomer(customer);
+                     orderItem.setDuration(2);
+ 
+-                    orderItem.setDvd(new Dvd());
+                     
++                    //Dvd dvd = (Dvd)dvds.get(0);
++                    //orderItem.setDvd(dvd);
++                    
+                     orderItem.setOrderTime(Calendar.getInstance());
++                    
++                    //dvd.getPaymentCategory();
++                    
++                    //get the Payment where the PaymentCategory are the one
++                    //from dvd and the date is the highest
++                    
++                    
++                    
++                    
++            		Criteria criteria = s.createCriteria(Payment.class).addOrder(Order.desc(&quot;startdate&quot;)).setMaxResults(1)
++            				.createAlias(&quot;PaymentCategory&quot;, &quot;pc&quot;).add(Expression.eq(&quot;pc.name&quot;,&quot;A&quot;));
++
++            		List pay = criteria.list();
++            		System.out.println(&quot;Payment: &quot;+pay.size());
++            		for (int k = 0; k &lt; pay.size(); k++) {
++            		    System.out.println(k+&quot; &quot;+pay.get(k) );
++                    }
++            		
++            		
++                    
++                    
++                    
++                    
++                    
+                     orderItem.setPayment(new Payment());
+ 
+                     //this data is to be set when the dvd is beeing
+                     //send to the customer
+-                    orderItem.setConditionSend(new Condition());
+-                    orderItem.setSenderTime(Calendar.getInstance());
++                    orderItem.setConditionSend(null);
++                    orderItem.setSenderTime(null);
+ 
+                     //this data is set when the dvd is beeig received
+                     //from the customer
+@@ -125,7 +160,7 @@
+                 movieOrder.setMovieOrderItems(orderItems);
+ 
+                 //save the movieOrder
+-                s.save(movieOrder);
++                //s.save(movieOrder);
+             }
+         } catch (HibernateException e) {
+             // TODO Auto-generated catch block
+
+Modified: project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java
+===================================================================
+--- project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java	2004-12-11 12:01:55 UTC (rev 235)
++++ project_src/provirent_hibernate/src/test/provirent/hibernate/TestPayment.java	2004-12-11 13:54:16 UTC (rev 236)
+@@ -85,8 +85,6 @@
+             logger.debug(&quot;tearDown() - end&quot;);
+         }
+     }
+-    
+- 
+ 
+     public void testSavePayment() throws Exception {
+         if (logger.isDebugEnabled()) {
+@@ -107,36 +105,35 @@
+                 //create new objects
+                 List payments = new ArrayList();
+                 Calendar date1 = Calendar.getInstance();
+-                date1.set(2004,11,12);
++                date1.set(2004, 11, 12);
+                 Calendar date2 = Calendar.getInstance();
+-                date2.set(2004,11,30);
++                date2.set(2004, 11, 30);
+                 Calendar date3 = Calendar.getInstance();
+-                date3.set(2005,1,16);
++                date3.set(2005, 1, 16);
+                 Calendar date4 = Calendar.getInstance();
+-                date4.set(2005,11,8);
++                date4.set(2005, 11, 8);
+                 Calendar date5 = Calendar.getInstance();
+-                date5.set(2004,10,12);
++                date5.set(2004, 10, 12);
+                 Calendar date6 = Calendar.getInstance();
+-                date6.set(2004,10,28);
++                date6.set(2004, 10, 28);
+                 Calendar date7 = Calendar.getInstance();
+-                date7.set(2004,10,29);
++                date7.set(2004, 10, 29);
+                 Calendar date8 = Calendar.getInstance();
+-                date8.set(2004,10,20);
+-                
+-                payments.add( new Payment(2.00d, 4.00d, 8.00d,date1,null));
+-                payments.add( new Payment(3.00d, 6.00d, 12.00d,date2,null));
+-                payments.add( new Payment(4.00d, 8.00d, 14.00d,date3,null));
+-                payments.add( new Payment(5.00d, 10.00d, 20.00d,date4,null));
+-                payments.add( new Payment(2.00d, 4.00d, 8.00d,date5,null));
+-                payments.add( new Payment(3.00d, 6.00d, 12.00d,date6,null));
+-                payments.add( new Payment(4.00d, 8.00d, 14.00d,date7,null));
+-                payments.add( new Payment(5.00d, 10.00d, 20.00d,date8,null));
+-                
+-                
+-                
++                date8.set(2004, 10, 20);
++
++                payments.add(new Payment(2.00d, 4.00d, 8.00d, date1, null));
++                payments.add(new Payment(3.00d, 6.00d, 12.00d, date2, null));
++                payments.add(new Payment(4.00d, 8.00d, 14.00d, date3, null));
++                payments.add(new Payment(5.00d, 10.00d, 20.00d, date4, null));
++                payments.add(new Payment(2.00d, 4.00d, 8.00d, date5, null));
++                payments.add(new Payment(3.00d, 6.00d, 12.00d, date6, null));
++                payments.add(new Payment(4.00d, 8.00d, 14.00d, date7, null));
++                payments.add(new Payment(5.00d, 10.00d, 20.00d, date8, null));
++
+                 //get and set the paymentcategory
+                 //add Payment
+-                List categorys = s.find(&quot;from PaymentCategory as paymentcategory&quot;);
++                List categorys = s
++                        .find(&quot;from PaymentCategory as paymentcategory&quot;);
+                 assertNotNull(
+                         &quot;testCreateDvd(): Can't get PaymentCategory from DB. Null&quot;,
+                         categorys);
+@@ -144,34 +141,35 @@
+                         &quot;testCreateDvd(): Can not find PaymentCategory in DB&quot;,
+                         categorys.size() &gt; 0);
+ 
+-                RandomRange randomRange;
+                 
+                 
++                logger.debug(&quot;Test    Test&quot;);
++                logger.debug(&quot;Cat&quot;+categorys.size());
++                logger.debug(&quot;pay&quot;+payments.size());
+                 
+-  
++                RandomRange randomRange;
+ 
+-                 for (int i = 0; i &lt; payments.size(); i++) {
+-                    
+-                     randomRange = new RandomRange(0, (categorys.size() - 1));
++                for (int i = 0; i &lt; payments.size(); i++) {
++
+                      
+-                      randomRange.getNumbers(1); 
+-                
+-                     PaymentCategory prop = (PaymentCategory) categorys
+-                            .get(((Integer) randomRange.getNumbers(1).get(0)).intValue());
+-                   
+-                    ((Payment)payments.get(i)).setPaymentCategory(prop);
+                     
++                    randomRange = new RandomRange(0, (categorys.size() - 1));
++
++                    logger.debug(i + &quot; Randomnum:&quot;
++                            + randomRange.getNumbers(1).get(0));
+                     
+-                 
+-                
+-                 }
++                    PaymentCategory prop = (PaymentCategory) categorys
++                            .get(((Integer) randomRange.getNumbers(
++                                    1 ).get(0)).intValue());
+ 
+-               
++                    ((Payment) payments.get(i)).setPaymentCategory(prop);
+ 
++                }
++
+                 //save objects
+                 for (Iterator iter = payments.iterator(); iter.hasNext();) {
+                     Payment pay = (Payment) iter.next();
+-                    
++
+                     s.save(pay);
+ 
+                 }
+@@ -193,9 +191,10 @@
+             }
+ 
+         } catch (Exception e) {
+-            logger.error(
+-                    &quot;testSavePayment() - Error while trying to beginTransaction&quot;,
+-                    e);
++            logger
++                    .error(
++                            &quot;testSavePayment() - Error while trying to beginTransaction&quot;,
++                            e);
+             throw e;
+         } finally {
+             // No matter what, close the session
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000236.html">[Provirent-svn-commit] r235 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui de/hsharz/provirent/objects de/hsharz/provirent/persistence test/provirent/hibernate
+</A></li>
+	<LI>Next message: <A HREF="000238.html">[Provirent-svn-commit] r237 - in project_src/provirent_hibernate/src: de/hsharz/provirent/management/gui test/provirent/hibernate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#237">[ date ]</a>
+              <a href="thread.html#237">[ thread ]</a>
+              <a href="subject.html#237">[ subject ]</a>
+              <a href="author.html#237">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>

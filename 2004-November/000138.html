@@ -1,0 +1,272 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Provirent-svn-commit] r137 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/provirent-svn-commit/2004-November/index.html" >
+   <LINK REL="made" HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r137%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411152123.iAFLN9ai000306%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000137.html">
+   <LINK REL="Next"  HREF="000139.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Provirent-svn-commit] r137 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui</H1>
+    <B>Remo Griesch at BerliOS</B> 
+    <A HREF="mailto:provirent-svn-commit%40lists.berlios.de?Subject=Re%3A%20%5BProvirent-svn-commit%5D%20r137%20-%20project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui&In-Reply-To=%3C200411152123.iAFLN9ai000306%40sheep.berlios.de%3E"
+       TITLE="[Provirent-svn-commit] r137 - project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui">rgriesch at sheep.berlios.de
+       </A><BR>
+    <I>Mon Nov 15 22:23:09 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000137.html">[Provirent-svn-commit] r136 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+        <LI>Next message: <A HREF="000139.html">[Provirent-svn-commit] r138 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#138">[ date ]</a>
+              <a href="thread.html#138">[ thread ]</a>
+              <a href="subject.html#138">[ subject ]</a>
+              <a href="author.html#138">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: rgriesch
+Date: 2004-11-15 22:23:08 +0100 (Mon, 15 Nov 2004)
+New Revision: 137
+
+Modified:
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDirectors.java
+   project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+Log:
+ManagementGui  - einzelne CTab erzeugt
+               - Movie Funktionalit?\195?\164t hinzugef?\195?\188gt
+
+CompositeMovie - erzeugt und angefangen
+
+movies.properties - angelegt 
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java	2004-11-15 19:40:10 UTC (rev 136)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeActors.java	2004-11-15 21:23:08 UTC (rev 137)
+@@ -73,9 +73,7 @@
+     private TableColumn tableActorsOverview_ColumnFName;
+     private TableColumn tableActorsOverview_ColumnLName;
+     
+-    
+     private SashForm sashForm1;
+-    private SashForm sashForm2;
+     
+     private Group groupActor;
+     private Group groupActorsOverview;
+@@ -185,13 +183,13 @@
+             groupActor.setLayout(groupActorLayout);
+             groupActor.setText(l.getString(&quot;actors.group.label&quot;));
+             {
+-                sashForm2 = new SashForm(groupActor, SWT.NONE);
+-                GridData sashForm2LData = new GridData();
+-                sashForm2LData.verticalAlignment = GridData.FILL;
+-                sashForm2LData.horizontalAlignment = GridData.FILL;
+-                sashForm2LData.grabExcessHorizontalSpace = true;
+-                sashForm2LData.grabExcessVerticalSpace = true;
+-                sashForm2.setLayoutData(sashForm2LData);
++                sashForm1 = new SashForm(groupActor, SWT.NONE);
++                GridData sashForm1LData = new GridData();
++                sashForm1LData.verticalAlignment = GridData.FILL;
++                sashForm1LData.horizontalAlignment = GridData.FILL;
++                sashForm1LData.grabExcessHorizontalSpace = true;
++                sashForm1LData.grabExcessVerticalSpace = true;
++                sashForm1.setLayoutData(sashForm1LData);
+                 
+                
+             }
+@@ -212,9 +210,9 @@
+ 
+ 	
+ 	private void initActorsOverview()  {	    
+-//	  Group Actors Overview 
++	    //	  Group Actors Overview 
+         {
+-            groupActorsOverview = new Group(sashForm2,SWT.NONE);
++            groupActorsOverview = new Group(sashForm1,SWT.NONE);
+             GridLayout group1Layout = new GridLayout();
+             group1Layout.numColumns = 8;
+             groupActorsOverview.setLayout(group1Layout);
+@@ -357,7 +355,7 @@
+ 	private void initActorsDetail()  {	    
+ 	    // Group Actors Detail
+         {
+-            groupActorsDetail = new Group(sashForm2, SWT.NONE);
++            groupActorsDetail = new Group(sashForm1, SWT.NONE);
+             GridLayout group2Layout = new GridLayout();
+             GridData group2LData = new GridData();
+             group2Layout.verticalSpacing = 15;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDirectors.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDirectors.java	2004-11-15 19:40:10 UTC (rev 136)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/CompositeDirectors.java	2004-11-15 21:23:08 UTC (rev 137)
+@@ -71,10 +71,8 @@
+     private TableColumn tableDirectorsOverview_ColumnID;
+     private TableColumn tableDirectorsOverview_ColumnFName;
+     private TableColumn tableDirectorsOverview_ColumnLName;
+-    
+-    
++      
+     private SashForm sashForm1;
+-    private SashForm sashForm2;
+     
+     private Group groupDirector;
+     private Group groupDirectorsOverview;
+@@ -184,13 +182,13 @@
+             groupDirector.setLayout(groupDirectorLayout);
+             groupDirector.setText(l.getString(&quot;directors.group.label&quot;));
+             {
+-                sashForm2 = new SashForm(groupDirector, SWT.NONE);
+-                GridData sashForm2LData = new GridData();
+-                sashForm2LData.verticalAlignment = GridData.FILL;
+-                sashForm2LData.horizontalAlignment = GridData.FILL;
+-                sashForm2LData.grabExcessHorizontalSpace = true;
+-                sashForm2LData.grabExcessVerticalSpace = true;
+-                sashForm2.setLayoutData(sashForm2LData);
++                sashForm1 = new SashForm(groupDirector, SWT.NONE);
++                GridData sashForm1LData = new GridData();
++                sashForm1LData.verticalAlignment = GridData.FILL;
++                sashForm1LData.horizontalAlignment = GridData.FILL;
++                sashForm1LData.grabExcessHorizontalSpace = true;
++                sashForm1LData.grabExcessVerticalSpace = true;
++                sashForm1.setLayoutData(sashForm1LData);
+                 
+                
+             }
+@@ -213,7 +211,7 @@
+ 	private void initDirectorsOverview()  {	    
+ //	  Group Actors Overview 
+         {
+-            groupDirectorsOverview = new Group(sashForm2,SWT.NONE);
++            groupDirectorsOverview = new Group(sashForm1,SWT.NONE);
+             GridLayout group1Layout = new GridLayout();
+             group1Layout.numColumns = 8;
+             groupDirectorsOverview.setLayout(group1Layout);
+@@ -356,7 +354,7 @@
+ 	private void initDirectorsDetail()  {	    
+ 	    // Group Actors Detail
+         {
+-            groupDirectorsDetail = new Group(sashForm2, SWT.NONE);
++            groupDirectorsDetail = new Group(sashForm1, SWT.NONE);
+             GridLayout group2Layout = new GridLayout();
+             GridData group2LData = new GridData();
+             group2Layout.verticalSpacing = 15;
+
+Modified: project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java
+===================================================================
+--- project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-15 19:40:10 UTC (rev 136)
++++ project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui/ManagementGui.java	2004-11-15 21:23:08 UTC (rev 137)
+@@ -104,14 +104,24 @@
+ 
+     private CTabFolder cTabFolderMain;
+ 
+-    private CTabItem tabItemFormat,tabItemActor,tabItemDirector,tabItemLanguage,tabItemGenre,tabItemImage;
+-
++    private CTabItem tabItemFormat;
++    private CTabItem tabItemActor;
++    private CTabItem tabItemDirector;
++    private CTabItem tabItemLanguage;
++    private CTabItem tabItemGenre;
++    private CTabItem tabItemImage;
++    private CTabItem tabItemMovie;
++    
++    
++    
++    
+     private CompositeFormate compositeFormate;
+     private CompositeActors compositeActor;
+     private CompositeDirectors compositeDirector;
+     private CompositeGenre compositeGenre;
+     private CompositeLanguage compositeLanguage;
+     private CompositeImage compositeImage;
++    private CompositeMovie compositeMovie;
+     
+ 
+     private MenuItem aboutMenuItem;
+@@ -515,6 +525,19 @@
+         viewMovieMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewMovieMenuItem.setText(l.getString(&quot;menu.view.movie&quot;));
+         viewMovieMenuItem.setSelection(false);
++        viewMovieMenuItem.addSelectionListener(new SelectionAdapter() {
++            public void widgetSelected(SelectionEvent evt) {
++				if(tabItemMovie == null || tabItemMovie.isDisposed()){
++				    initMovieTab();
++				    return;   
++				}
++				
++				cTabFolderMain.setSelection(tabItemActor);
++				viewActorMenuItem.setSelection(true);
++				cTabFolderMain.showSelection();				
++            
++            }
++        });         
+ 
+         viewDvdMenuItem = new MenuItem(viewMenu, SWT.CHECK);
+         viewDvdMenuItem.setText(l.getString(&quot;menu.view.dvd&quot;));
+@@ -712,6 +735,29 @@
+         cTabFolderMain.setSelection(tabItemLanguage);
+     }    
+     
++    private void initMovieTab() {
++        tabItemMovie = new CTabItem(cTabFolderMain, SWT.NONE);
++        tabItemMovie.setText(l.getString(&quot;tab.movie.title&quot;));
++        tabItemMovie.addDisposeListener(new DisposeListener() {
++
++            public void widgetDisposed(DisposeEvent evt) {
++                if(!viewMovieMenuItem.isDisposed()){
++                viewMovieMenuItem.setSelection(false);
++                }
++            }
++            
++        });
++  
++        {
++            compositeMovie = new CompositeMovie(
++                cTabFolderMain,
++                SWT.NONE, statusLine, locale);
++            
++            tabItemMovie.setControl(compositeMovie);
++        }
++        cTabFolderMain.setSelection(tabItemMovie);
++    }
++    
+     private void initStatusLine() {
+         statusLine = new StatusLineStyledText(compositeStatusLine, SWT.READ_ONLY);
+         statusLine.setText(&quot;&quot;);
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000137.html">[Provirent-svn-commit] r136 - project_src/provirent_hibernate/src/de/hsharz/provirent/objects
+</A></li>
+	<LI>Next message: <A HREF="000139.html">[Provirent-svn-commit] r138 - in project_src/provirent_hibernate/src/de/hsharz/provirent/management/gui: . language
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#138">[ date ]</a>
+              <a href="thread.html#138">[ thread ]</a>
+              <a href="subject.html#138">[ subject ]</a>
+              <a href="author.html#138">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/provirent-svn-commit">More information about the Provirent-svn-commit
+mailing list</a><br>
+</body></html>
